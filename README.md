@@ -67,8 +67,11 @@ Além do pipeline de extração, a v0 inclui uma Agent Skill (`skills/zepp-os/SK
 - não assumir que APIs de browser ou Node.js existem no runtime do Zepp OS
 - explicitar incerteza quando a documentação disponível for insuficiente
 
+## Decisões
+
+1. **Linguagem do extrator: Node/TypeScript.** Acesso nativo a um parser MDX real, alinhamento com o ecossistema do Zepp OS (samples já são JS) e mesmo runtime da Skill/futuro servidor MCP. TypeScript sobre JS puro para tipar o schema dos registros JSON e pegar erros de formato já no parse/enrich.
+
 ## Pontos em aberto (a fechar antes da implementação)
 
-1. **Linguagem do extrator**: Python (parsers de Markdown/MDX maduros) vs. Node/TypeScript (mais alinhado ao ecossistema nativo do Zepp OS, com acesso a um parser MDX real).
-2. **Granularidade dos registros JSON**: um arquivo por símbolo de API vs. símbolos de um mesmo módulo agrupados em um único arquivo.
-3. **Markdown gerado vs. versionado**: se edições manuais na pasta de markdown final devem ser sempre sobrescritas no próximo `render` (JSON como única fonte de verdade), ou se deve existir um mecanismo de anotação manual que sobrevive à regeneração, para cobrir casos que o parser não capturou corretamente.
+1. **Granularidade dos registros JSON**: um arquivo por símbolo de API vs. símbolos de um mesmo módulo agrupados em um único arquivo.
+2. **Markdown gerado vs. versionado**: se edições manuais na pasta de markdown final devem ser sempre sobrescritas no próximo `render` (JSON como única fonte de verdade), ou se deve existir um mecanismo de anotação manual que sobrevive à regeneração, para cobrir casos que o parser não capturou corretamente.

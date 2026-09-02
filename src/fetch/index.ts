@@ -6,8 +6,12 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
 
-// we can input timeout in execFile? 
 const run = promisify(execFile);
+const GIT_TIMEOUT_MS = 30_000;
+
+function git(args: string[]) {
+  return run("git", args, { timeout: GIT_TIMEOUT_MS });
+}
 
 export const SOURCES = {
   "zeppos-docs": "https://github.com/zepp-health/zeppos-docs.git",
@@ -23,31 +27,30 @@ export interface FetchResult {
 async function cloneOrUpdate(name: SourceName, url: string, cacheDir: string): Promise<FetchResult> {
   const repoDir = path.join(cacheDir, name);
 
-  if (existsSync(path.join(repoDir, ".git"))) {
-    try {
-      await run("git", ["-C", repoDir, "fetch", "--depth", "1", "origin"]);
+  try {
+    if (existsSync(path.join(repoDir, ".git"))) {
+      await git(["-C", repoDir, "fetch", "--depth", "1", "origin"]);
       // these two commands ensure that we are at the last commit of the default branch (which can be master or main)
-      await run("git", ["remote", "set-head", "origin", "-a"]);
-      await run("git", ["-C", repoDir, "reset", "--hard", "origin/HEAD"]);
-    } catch (e) {
-      // claude improve this catch pls!
-      console.error(`Failed to fetch from ${url}: ${e}`);
-      throw e;
+      await git(["-C", repoDir, "remote", "set-head", "origin", "-a"]);
+      await git(["-C", repoDir, "reset", "--hard", "origin/HEAD"]);
+    } else {
+      await git(["clone", "--depth", "1", url, repoDir]);
     }
-  } else {
-    await run("git", ["clone", "--depth", "1", url, repoDir]);
+  } catch (e) {
+    throw new Error(`Failed to sync ${name} (${url}): ${(e as Error).message}`, { cause: e });
   }
 
-  const { stdout } = await run("git", ["-C", repoDir, "rev-parse", "HEAD"]);
+  const { stdout } = await git(["-C", repoDir, "rev-parse", "HEAD"]);
   return { commit: stdout.trim() };
 }
 
 export async function fetchSources(cacheDir: string): Promise<Record<SourceName, FetchResult>> {
   await mkdir(cacheDir, { recursive: true });
-  // we can parallelize with Promise.all in future if source grows
-  const results = {} as Record<SourceName, FetchResult>;
-  for (const [name, url] of Object.entries(SOURCES) as [SourceName, string][]) {
-    results[name] = await cloneOrUpdate(name, url, cacheDir);
-  }
-  return results;
+
+  const entries = await Promise.all(
+    (Object.entries(SOURCES) as [SourceName, string][]).map(
+      async ([name, url]) => [name, await cloneOrUpdate(name, url, cacheDir)] as const,
+    ),
+  );
+  return Object.fromEntries(entries) as Record<SourceName, FetchResult>;
 }

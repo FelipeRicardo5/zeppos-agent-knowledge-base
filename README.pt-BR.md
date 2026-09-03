@@ -16,7 +16,7 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `parse` — extrair observações brutas de docs, `static/llms` e samples | implementado |
 | `enrich` — fundir as três frentes em um registro por símbolo | implementado |
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
-| `render` — gerar o Markdown final da base de conhecimento | não implementado |
+| `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/) |
 
 Testes baseados em fixtures cobrem as três frentes de parse e a fusão do enrich: `npm test`.
 
@@ -48,7 +48,7 @@ npm run typecheck
 
 `sync` clona os repositórios oficiais em `.cache/` (não versionado, dezenas de MB) e reescreve `data/`. É idempotente: rodar duas vezes seguidas não gera diff.
 
-`npm run render` existe como comando, mas ainda não está implementado.
+`npm run render` reescreve `api/` e `compatibility/` a partir do JSON fonte de verdade.
 
 ## Como funciona
 
@@ -60,7 +60,7 @@ Quatro estágios, cada um idempotente e inspecionável isoladamente, de modo que
    - **llms** — `static/llms/@zos-*.md`, um arquivo por módulo, aproveitando a estruturação que a própria Zepp Health já fez para consumo por LLMs. O id do módulo vem das linhas de import dentro do arquivo, não do H1: `@zos/ui` é dividido em vários arquivos cujo H1 diz `@zos/ui-methods`, `@zos/ui-widget-basic` etc., e esses ids não são importáveis.
    - **samples** — todo import `@zos/*` nos aplicativos de exemplo oficiais. Evidência de uso real, não uma afirmação da documentação.
 3. **enrich** — agrupa as observações por id de símbolo e normaliza os metadados que são o coração do projeto: `API_LEVEL` mínimo, runtime, fonte e nível de confiança. A prioridade por campo é `docs-reference` > `llms` > `sample`.
-4. **render** — gera o Markdown final em `concepts/`, `api/`, `runtimes/`, `patterns/`, `examples/`, `compatibility/` e `tools/`. É o que a Agent Skill lê.
+4. **render** — gera `api/` (símbolos por módulo) e `compatibility/` (agrupados por `API_LEVEL` mínimo, o eixo populado). Os outros diretórios do README (`concepts/`, `runtimes/`, `patterns/`, `examples/`, `tools/`) guardam conhecimento curado não derivável das três frentes automatizadas, então ainda não são gerados. É o que a Agent Skill lê.
 
 ## Modelo de dados
 
@@ -106,7 +106,7 @@ src/
   parse/    estágio 2 — três frentes de extração
   enrich/   estágio 3 — fundir e normalizar em SymbolRecord
   store/    gravar o JSON fonte de verdade + manifesto
-  render/   estágio 4 — geração de Markdown (não implementado)
+  render/   estágio 4 — geração de Markdown (api/, compatibility/)
   cli.ts    comandos sync / render
 data/
   manifest.json   estado do sync: data, commits das fontes, contagens
@@ -119,7 +119,7 @@ test/
 .cache/     repositórios oficiais clonados (não versionado)
 ```
 
-O Markdown gerado vai para `concepts/`, `api/`, `runtimes/`, `patterns/`, `examples/`, `compatibility/` e `tools/` — vazios enquanto `render` não existir.
+O Markdown gerado vai para `api/` e `compatibility/`. `concepts/`, `runtimes/`, `patterns/`, `examples/` e `tools/` permanecem vazios até existir conteúdo curado para preenchê-los.
 
 ## Decisões de projeto
 

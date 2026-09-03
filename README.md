@@ -1,80 +1,140 @@
 # Zepp OS Agent Knowledge Base
 
-## Contexto e arquitetura da v0
+**English** · [Português](README.pt-BR.md)
 
-O projeto nasce da constatação de que a documentação oficial do Zepp OS existe, mas não está no formato ideal para ser consumida por agentes de IA que desenvolvem software. O objetivo da v0 não é replicar a documentação, e sim criar uma camada intermediária estruturada entre as fontes oficiais — o repositório de documentação `zepp-health/zeppos-docs`, o repositório de exemplos `zepp-health/zeppos-samples`, o comportamento do Zeus CLI e o conteúdo já preparado para LLMs em `static/llms` — e o agente que vai efetivamente escrever código.
+A compatibility-aware knowledge base that sits between the official Zepp OS sources and the AI agents that write Zepp OS code.
 
-A decisão central desta fase é que a extração dessas fontes será **scriptada desde o início**, em vez de a base de conhecimento ser populada manualmente. Isso obriga a definir um padrão e um schema de extração logo de cara, evitando que o projeto vire uma coleção de markdowns inconsistentes escritos à mão. A execução desse pipeline será **local e sob demanda** — não um job agendado em CI, ao menos nesta fase — o que simplifica bastante a v0, já que não é preciso se preocupar com infraestrutura de agendamento, apenas com um pipeline que roda quando o desenvolvedor decide rodar.
+This is **not** a documentation mirror. Official docs exist, but they aren't in a shape an agent can consume reliably when the question is *"can I call this API in this runtime, at this API_LEVEL?"*. This project extracts those sources into a structured layer where that question has a checkable answer.
 
-A arquitetura fica organizada em um pipeline de estágios sequenciais, cada um com responsabilidade única e output inspecionável isoladamente, o que permite reexecutar qualquer estágio sem precisar refazer os anteriores.
+Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) (reference pages and the LLM-oriented content in `static/llms`) and [`zepp-health/zeppos-samples`](https://github.com/zepp-health/zeppos-samples) (real usage in shipped example apps).
 
-### Estágios do pipeline
+## Status — v0, in development
 
-1. **Fetch** — responsável por clonar ou atualizar localmente os repositórios oficiais de documentação e de samples, guardando esse conteúdo bruto em uma pasta de cache local que não é versionada no git — já que é conteúdo de terceiros, facilmente reobtido.
+| Stage | State |
+| --- | --- |
+| `fetch` — clone/update official repos into a local cache | implemented |
+| `parse` — extract raw observations from docs, `static/llms` and samples | implemented |
+| `enrich` — merge the three fronts into one record per symbol | implemented |
+| `store` — write the JSON source of truth, one file per module | implemented |
+| `render` — generate the final Markdown knowledge base | not implemented |
 
-2. **Parse** — lê esse conteúdo bruto e extrai informação estruturada dele. Três frentes:
-   - Parser dedicado a arquivos Markdown/MDX da documentação, capaz de ler frontmatter e seções de forma estruturada.
-   - Parser específico para o conteúdo já formatado para LLMs em `static/llms`, aproveitando o trabalho que a própria Zepp Health já fez de estruturação.
-   - Parser de samples, que varre os projetos de exemplo oficiais (arquivos como `app.json`, páginas JS, etc.) para extrair padrões de implementação real, não apenas descrição textual da API.
+Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
-3. **Enrich** — responsável por inferir e normalizar os metadados que são o coração conceitual do projeto: API_LEVEL mínimo exigido, runtime/contexto de execução em que a API está disponível (Device App, App-side, Side Service, Settings, Watchface, Workout Extension), a fonte da informação e o nível de confiança associado a ela — distinguindo explicitamente entre conteúdo OFFICIAL, OBSERVED, RECOMMENDED, COMMUNITY e INFERRED.
+- **328 symbols** across **40 modules**, from 222 reference pages + 226 `static/llms` entries + 622 sample imports
+- 299 `OFFICIAL`, 29 `OBSERVED`
+- 272 symbols carry a minimum `API_LEVEL`; 153 carry a description
 
-4. **Render** — pega o conhecimento já normalizado e gera os arquivos markdown finais da base de conhecimento, organizados nas pastas conceituais: `concepts/`, `api/`, `runtimes/`, `patterns/`, `examples/`, `compatibility/`, `tools/`. Esse markdown é o que a Skill efetivamente vai ler e usar como referência.
+## Coverage and limits
 
-### Fonte de verdade: JSON, não Markdown
+Read this before trusting an answer that came out of this KB.
 
-Uma decisão arquitetural importante é que **o JSON estruturado gerado no estágio de parse/enrich é a fonte de verdade do projeto, não o markdown**. O markdown é tratado como uma visão derivada desse JSON, gerada automaticamente. Isso importa por dois motivos:
+- **Only the Device App API is covered.** The parser keys on the `import { x } from '@zos/...'` line that reference pages carry. `side-service-api` and `app-settings-api` pages use a different format without that line, and the watchface API (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) lives under a separate tree entirely. All of them are currently skipped.
+- **The runtime axis is empty.** Every record ships `runtimes: []`. Since only one runtime's docs are parsed, this field cannot yet distinguish anything and is not populated rather than being filled with a constant.
+- **A missing symbol means "not covered", not "does not exist."** With one runtime parsed out of six, absence carries no information about the real platform.
+- **`API_LEVEL` is the one axis that works today.** It is read verbatim from the official `Start from API_LEVEL` line, never inferred.
+- **There are no tests yet.** Every parser bug found so far came from reading the output by hand, and each one was the same failure: a source format that looked regular in the first file and wasn't. A wrong record is indistinguishable from a correct one downstream.
 
-1. Permite gerar múltiplas representações da mesma informação no futuro (markdown para leitura humana e para a Skill, JSON para um eventual sistema de retrieval ou servidor MCP) sem duplicar a lógica de extração.
-2. Torna o versionamento muito mais útil, já que um diff em JSON estruturado mostra claramente o que mudou semanticamente (por exemplo, o API_LEVEL mínimo de uma função) em vez do ruído textual que um diff de markdown geraria.
+## Quick start
 
-Cada registro individual desse JSON carrega metadados como:
-- identificador do símbolo (módulo + nome, por exemplo `@zos/router.launchApp`)
-- tipo do símbolo
-- API_LEVEL mínimo exigido
-- runtimes em que é válido
-- fonte
-- nível de confiança
-- caminho do arquivo original de onde foi extraído
-- data de extração
+```bash
+npm install
+npm run sync       # fetch -> parse -> enrich -> write data/
+npm run typecheck
+```
 
-Esse conjunto de metadados alimenta diretamente o conceito de **compatibilidade multi-eixo** que é central ao projeto: um agente não deve apenas saber que uma API existe, mas se ela está disponível no runtime e no API_LEVEL alvo daquele desenvolvimento específico.
+`sync` clones the official repos into `.cache/` (untracked, ~ tens of MB) and rewrites `data/`. It is idempotent: running it twice in a row produces no diff.
 
-### Manifesto de sincronização
+`npm run render` exists as a command but is not implemented yet.
 
-Para controlar o estado da extração, existe um arquivo de manifesto que registra:
-- a data do último sync
-- o commit exato de cada repositório oficial que foi usado como fonte
-- a contagem de registros extraídos
+## How it works
 
-Esse manifesto resolve de forma automática o campo de "última verificação" de cada entrada de conhecimento, já que ele deriva diretamente do commit e da data do sync, sem precisar ser preenchido manualmente.
+Four stages, each idempotent and independently inspectable, so any one of them can be rerun without redoing the earlier ones. Execution is local and on demand — there is no scheduled CI job in v0.
 
-### Fluxo de uso
+1. **fetch** — clones or updates the official repos into `.cache/`, and records the exact commit of each. Third-party content, never versioned here.
+2. **parse** — three independent fronts over the raw cache:
+   - **docs-reference** — `docs/reference/**/*.mdx`, one file per symbol. The module is resolved from the import line in the page's own example, because the directory name doesn't reliably match the module id.
+   - **llms** — `static/llms/@zos-*.md`, one file per module, reusing the structuring Zepp Health already did for LLM consumption.
+   - **samples** — every `@zos/*` import across the official example apps. Evidence of real usage, not a documentation claim.
+3. **enrich** — groups observations by symbol id and normalizes the metadata that is the point of the project: minimum `API_LEVEL`, runtime, source and confidence tier. Field-level priority is `docs-reference` > `llms` > `sample`.
+4. **render** — generates the final Markdown into `concepts/`, `api/`, `runtimes/`, `patterns/`, `examples/`, `compatibility/` and `tools/`. This is what the Agent Skill reads.
 
-Na prática, o fluxo se resume a comandos que disparam o pipeline:
-- Um comando de **sincronização** que executa fetch, parse e enrich, atualizando o JSON estruturado.
-- Um comando de **renderização** que regenera o markdown final a partir desse JSON.
+## Data model
 
-Ambos podem ser executados separadamente ou em conjunto, e como cada estágio é idempotente, o desenvolvedor pode rodar apenas a renderização novamente (por exemplo, se tiver ajustado o gerador de markdown) sem precisar reclonar ou reparsear nada.
+### JSON is the source of truth, Markdown is derived
 
-### Agent Skill
+The structured JSON produced by parse/enrich is the source of truth. Markdown is a generated view of it. Two reasons:
 
-Além do pipeline de extração, a v0 inclui uma Agent Skill (`skills/zepp-os/SKILL.md`), que não contém a documentação em si, mas ensina o agente a **usar** a base de conhecimento, instruindo-o a:
-- identificar o runtime alvo
-- identificar o API_LEVEL alvo
-- verificar compatibilidade antes de sugerir uma API
-- preferir documentação e exemplos oficiais
-- não assumir que APIs de browser ou Node.js existem no runtime do Zepp OS
-- explicitar incerteza quando a documentação disponível for insuficiente
+1. Multiple representations of the same knowledge become possible later (Markdown for humans and for the Skill, JSON for a retrieval system or an MCP server) without duplicating extraction logic.
+2. Versioning gets far more useful — a diff over structured JSON shows what changed semantically (a function's minimum `API_LEVEL` moving, say) instead of the textual noise a Markdown diff produces.
 
-## Decisões
+### `SymbolRecord`
 
-1. **Linguagem do extrator: Node/TypeScript.** Acesso nativo a um parser MDX real, alinhamento com o ecossistema do Zepp OS (samples já são JS) e mesmo runtime da Skill/futuro servidor MCP. TypeScript sobre JS puro para tipar o schema dos registros JSON e pegar erros de formato já no parse/enrich.
+| Field | Meaning |
+| --- | --- |
+| `id` | Canonical symbol id, module + name — `@zos/router.launchApp` |
+| `module` / `symbol` | The two halves of the id, kept separate so grouping needs no string surgery |
+| `type` | `function`, `constant` or `value` |
+| `description` | Short description, when a source states one |
+| `minApiLevel` | Minimum `API_LEVEL`. Absent when no source states it — never fabricated |
+| `runtimes` | Runtimes the symbol is valid in (see *Coverage and limits*) |
+| `source` | Which front the record was primarily built from |
+| `confidence` | See below |
+| `originalPath` | File the record was extracted from, posix-normalized |
+| `extractedAt` | Extraction date |
 
-2. **Granularidade dos registros JSON: um arquivo por módulo**, em `data/symbols/<slug-do-módulo>.json`. Cada arquivo carrega o id canônico do módulo e a lista de símbolos ordenada — o nome do arquivo é apenas um slug derivado (`@zos/router` → `zos-router.json`). Com ~40 módulos e ~335 símbolos, um arquivo por símbolo geraria centenas de arquivos minúsculos e um diff de sync ilegível; agrupar por módulo mantém o diff no nível em que a mudança semanticamente acontece ("o que mudou em `@zos/router`") e ainda deixa cada arquivo pequeno o bastante para ser lido inteiro.
+### Confidence tiers
 
-O estágio de escrita reescreve o diretório inteiro a cada `sync`, de modo que um módulo que desaparece na origem também desaparece aqui, e rodar `sync` duas vezes seguidas não produz diff. Os caminhos gravados em `originalPath` são normalizados para o formato posix, para que o JSON versionado não dependa do sistema operacional de quem sincronizou.
+| Tier | Meaning |
+| --- | --- |
+| `OFFICIAL` | Stated by official documentation (`docs-reference` or `llms`) |
+| `OBSERVED` | Seen in official sample code, with no documentation entry |
+| `RECOMMENDED`, `COMMUNITY`, `INFERRED` | Reserved. Not derivable from the three automated fronts; left for a future curation pass |
 
-## Pontos em aberto (a fechar antes da implementação)
+### Sync manifest
 
-1. **Markdown gerado vs. versionado**: se edições manuais na pasta de markdown final devem ser sempre sobrescritas no próximo `render` (JSON como única fonte de verdade), ou se deve existir um mecanismo de anotação manual que sobrevive à regeneração, para cobrir casos que o parser não capturou corretamente.
+[`data/manifest.json`](data/manifest.json) records the last sync date, the exact commit of every source repo, and the record counts. It is what makes each entry's "last verified" derivable instead of hand-maintained.
+
+## Repository layout
+
+```
+src/
+  fetch/    stage 1 — clone/update official repos
+  parse/    stage 2 — three extraction fronts
+  enrich/   stage 3 — merge and normalize into SymbolRecord
+  store/    write the JSON source of truth + manifest
+  render/   stage 4 — Markdown generation (not implemented)
+  cli.ts    sync / render commands
+data/
+  manifest.json   sync state: date, source commits, counts
+  symbols/        the JSON source of truth, one file per module
+skills/
+  zepp-os/SKILL.md   the Agent Skill
+.cache/     cloned official repos (untracked)
+```
+
+The generated Markdown lands in `concepts/`, `api/`, `runtimes/`, `patterns/`, `examples/`, `compatibility/` and `tools/` — empty until `render` exists.
+
+## Design decisions
+
+1. **Extraction is scripted from day one.** Populating the KB by hand would drift into a pile of inconsistent Markdown; scripting it forces a schema and an extraction standard up front.
+2. **Extractor language: Node/TypeScript.** Native access to a real MDX parser, alignment with the Zepp OS ecosystem (the samples are already JS), and the same runtime as the Skill and any future MCP server. TypeScript over plain JS to type the record schema and catch malformed data at the parse/enrich boundary.
+3. **JSON is the source of truth, not Markdown** (see above).
+4. **One JSON file per module**, at `data/symbols/<module-slug>.json`. Each file carries the canonical module id and its symbols; the filename is only a derived slug (`@zos/router` → `zos-router.json`). With ~40 modules and ~330 symbols, one file per symbol would mean hundreds of tiny files and an unreadable sync diff. Grouping by module keeps the diff at the level where change actually happens — *what changed in `@zos/router`* — while each file stays small enough to read whole.
+   - The write rewrites the whole directory, so a module that disappears upstream disappears here too.
+   - `originalPath` is posix-normalized so the versioned JSON doesn't depend on which OS ran the sync.
+
+## Open questions
+
+1. **Generated vs. versioned Markdown** — should manual edits under the rendered Markdown directories always be overwritten by the next `render` (JSON as the single source of truth), or should there be an annotation mechanism that survives regeneration, to cover what the parser gets wrong?
+
+## Agent Skill
+
+[`skills/zepp-os/SKILL.md`](skills/zepp-os/SKILL.md) contains no documentation itself. It teaches an agent to *use* this knowledge base:
+
+- identify the target runtime and the target `API_LEVEL` first
+- verify compatibility before suggesting an API
+- prefer official documentation and examples
+- never assume browser or Node.js APIs exist on the Zepp OS runtime
+- say so explicitly when the available documentation is insufficient
+
+Given the coverage limits above, the Skill must also state what this KB does *not* cover, so an agent reports "not covered" rather than "does not exist."

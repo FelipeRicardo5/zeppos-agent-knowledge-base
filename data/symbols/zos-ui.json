@@ -18,6 +18,7 @@
       "module": "@zos/ui",
       "symbol": "addLayoutChild",
       "type": "value",
+      "minApiLevel": 4,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -63,6 +64,7 @@
       "module": "@zos/ui",
       "symbol": "BUTTON",
       "type": "value",
+      "minApiLevel": 2,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -86,6 +88,7 @@
       "module": "@zos/ui",
       "symbol": "CHECKBOX_GROUP",
       "type": "value",
+      "minApiLevel": 2,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -247,6 +250,7 @@
       "module": "@zos/ui",
       "symbol": "FILL_RECT",
       "type": "value",
+      "minApiLevel": 2,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -263,6 +267,18 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getAppWidgetSize.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui.getId",
+      "module": "@zos/ui",
+      "symbol": "getId",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
       "extractedAt": "2026-09-03"
     },
     {
@@ -307,6 +323,7 @@
       "symbol": "gettersetter",
       "type": "value",
       "description": "Starting from API_LEVEL 4.0, Zepp OS supports direct access and modification of widget properties through getter/setter features, making property read/write operations more concise and intuitive.",
+      "minApiLevel": 4,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -323,6 +340,18 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getTextLayout.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui.getType",
+      "module": "@zos/ui",
+      "symbol": "getType",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
       "extractedAt": "2026-09-03"
     },
     {
@@ -421,10 +450,23 @@
       "extractedAt": "2026-09-03"
     },
     {
+      "id": "@zos/ui.keyboard API",
+      "module": "@zos/ui",
+      "symbol": "keyboard API",
+      "type": "function",
+      "minApiLevel": 4.2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
       "id": "@zos/ui.openInspector",
       "module": "@zos/ui",
       "symbol": "openInspector",
       "type": "function",
+      "minApiLevel": 4,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -477,6 +519,18 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/PICKER.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui.POLYLINE",
+      "module": "@zos/ui",
+      "symbol": "POLYLINE",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-basic.md",
       "extractedAt": "2026-09-03"
     },
     {
@@ -551,6 +605,18 @@
       "extractedAt": "2026-09-03"
     },
     {
+      "id": "@zos/ui.removeLayoutChild",
+      "module": "@zos/ui",
+      "symbol": "removeLayoutChild",
+      "type": "function",
+      "minApiLevel": 4,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
       "id": "@zos/ui.SCROLL_LIST",
       "module": "@zos/ui",
       "symbol": "SCROLL_LIST",
@@ -584,6 +650,30 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setAppWidgetSize.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui.setEnable",
+      "module": "@zos/ui",
+      "symbol": "setEnable",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui.setLayoutParent",
+      "module": "@zos/ui",
+      "symbol": "setLayoutParent",
+      "type": "function",
+      "minApiLevel": 4,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
       "extractedAt": "2026-09-03"
     },
     {
@@ -650,6 +740,7 @@
       "module": "@zos/ui",
       "symbol": "STROKE_RECT",
       "type": "value",
+      "minApiLevel": 2,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -719,6 +810,7 @@
       "module": "@zos/ui",
       "symbol": "updateLayout",
       "type": "value",
+      "minApiLevel": 4,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -730,6 +822,7 @@
       "module": "@zos/ui",
       "symbol": "updateLayoutStyle",
       "type": "value",
+      "minApiLevel": 4,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -765,6 +858,7 @@
       "module": "@zos/ui",
       "symbol": "VIRTUAL_CONTAINER",
       "type": "value",
+      "minApiLevel": 4,
       "runtimes": [],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
@@ -780,6 +874,18 @@
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui.Widget Animation",
+      "module": "@zos/ui",
+      "symbol": "Widget Animation",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-animations.md",
       "extractedAt": "2026-09-03"
     },
     {

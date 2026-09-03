@@ -6,7 +6,9 @@ import type { RawUnit } from "../types.js";
 import { walkFiles } from "./util.js";
 
 const IMPORT_RE = /import\s*(?:\{([^}]*)\})?[^'"]*from\s+['"](@[^'"]+)['"]/g;
-const API_LEVEL_RE = /Start from API_LEVEL `(\d+(?:\.\d+)?)`/;
+// The badge line is a blockquote, but its wording varies ("Start from API_LEVEL",
+// "Supported since API_LEVEL"), so match the blockquote rather than one phrasing.
+const API_LEVEL_RE = /^>.*API_LEVEL\s+`(\d+(?:\.\d+)?)`/m;
 
 // Docs-site machinery imported by the MDX page itself, not Zepp OS API surface.
 const DOCS_SITE_SCOPES = ["@docusaurus/", "@site/", "@theme/"];
@@ -30,6 +32,33 @@ function resolveModule(content: string, symbol: string): string | undefined {
   }
 
   return fallback;
+}
+
+function importedModules(text: string): string[] {
+  return [...text.matchAll(IMPORT_RE)]
+    .map(([, , module]) => module)
+    .filter((module) => !DOCS_SITE_SCOPES.some((scope) => module.startsWith(scope)));
+}
+
+/** Most-imported module, first occurrence winning a tie so the result is stable. */
+function dominantModule(modules: string[]): string | undefined {
+  const counts = new Map<string, number>();
+  for (const module of modules) counts.set(module, (counts.get(module) ?? 0) + 1);
+
+  let best: string | undefined;
+  let bestCount = 0;
+  for (const [module, count] of counts) {
+    if (count > bestCount) [best, bestCount] = [module, count];
+  }
+  return best;
+}
+
+const IMPORT_BLOCK_RE = /###\s+Import\s*```[a-z]*\n([\s\S]*?)```/;
+
+/** The module named by a symbol's own `### Import` block, ignoring example code. */
+function importBlockModule(chunk: string): string | undefined {
+  const block = chunk.match(IMPORT_BLOCK_RE);
+  return block ? importedModules(block[1])[0] : undefined;
 }
 
 /**
@@ -83,7 +112,7 @@ function extractDescription(content: string): string | undefined {
 
 const CONSTANT_ROW_RE = /^\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|\s*([\d.]+)\s*\|$/;
 
-const LLMS_API_LEVEL_RE = /(?:Start from API_LEVEL `(\d+(?:\.\d+)?)`|-\s*API_LEVEL:\s*(\d+(?:\.\d+)?))/;
+const LLMS_API_LEVEL_RE = /(?:^>.*API_LEVEL\s+`(\d+(?:\.\d+)?)`|-\s*API_LEVEL:\s*(\d+(?:\.\d+)?))/m;
 
 /**
  * Front 2: static/llms/@zos-*.md — one file per module. Each real symbol block is
@@ -104,7 +133,12 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
 
     const moduleMatch = content.match(/^#\s+(@\S+)/m);
     if (!moduleMatch) continue;
-    const module = moduleMatch[1];
+
+    // The H1 mirrors the file name, and `@zos/ui` is split across several files
+    // whose H1 reads "@zos/ui-methods", "@zos/ui-widget-basic" and so on — ids you
+    // cannot import. The import lines inside the file state the real module, so
+    // they win; the H1 is only a fallback for a file that imports nothing.
+    const fileModule = dominantModule(importedModules(content)) ?? moduleMatch[1];
 
     // `---` trails each symbol section rather than leading it, so the chunk before
     // the first `---` holds the module-level `## Constants` table (when the module
@@ -125,7 +159,7 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
       if (!rowMatch) continue;
       const [, name, description, apiLevel] = rowMatch;
       units.push({
-        module,
+        module: fileModule,
         symbol: name,
         kind: "constant",
         description: description.trim(),
@@ -144,7 +178,7 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
       const apiLevelMatch = chunk.match(LLMS_API_LEVEL_RE);
 
       units.push({
-        module,
+        module: importBlockModule(chunk) ?? fileModule,
         symbol,
         kind: "function",
         description: descriptionMatch ? descriptionMatch[1].trim() : undefined,

@@ -1,3 +1,4 @@
+import { enrich } from "./enrich/index.js";
 import { fetchSources } from "./fetch/index.js";
 import { parseLlmsContent, parseMarkdown, parseSamples } from "./parse/index.js";
 
@@ -18,7 +19,12 @@ switch (command) {
       parseSamples(CACHE_DIR),
     ]);
     console.log(`parsed: ${docs.length} docs-reference, ${llms.length} llms, ${samples.length} sample usages`);
-    // TODO: enrich -> write data/symbols/*.json + data/manifest.json
+
+    const records = enrich([...docs, ...llms, ...samples]);
+    const official = records.filter((r) => r.confidence === "OFFICIAL").length;
+    const observed = records.filter((r) => r.confidence === "OBSERVED").length;
+    console.log(`enriched: ${records.length} symbols (${official} OFFICIAL, ${observed} OBSERVED)`);
+    // TODO: write data/symbols/*.json + data/manifest.json once granularity (README open question 2) is decided
     break;
   }
   case "render":

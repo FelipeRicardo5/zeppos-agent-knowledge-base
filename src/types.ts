@@ -16,9 +16,11 @@ export type Confidence =
 export interface SymbolRecord {
   id: string; // e.g. "@zos/router.launchApp"
   type: string;
-  minApiLevel: number;
+  description?: string;
+  // undefined when no source states it — never fabricated.
+  minApiLevel?: number;
   runtimes: Runtime[];
-  source: string;
+  source: RawSourceKind;
   confidence: Confidence;
   originalPath: string;
   extractedAt: string; // ISO date
@@ -35,6 +37,7 @@ export interface RawUnit {
   kind: RawUnitKind;
   description?: string;
   apiLevel?: number;
+  runtimeHint?: Runtime;
   sourceFile: string; // path relative to the cache dir
   sourceKind: RawSourceKind;
 }

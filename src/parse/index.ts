@@ -44,7 +44,8 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
 function extractDescription(content: string): string | undefined {
   const lines = content.split("\n");
   const headingIndex = lines.findIndex((line) => line.startsWith("# "));
-  const typeIndex = lines.findIndex((line) => line.startsWith("## Type"));
+  // finds the next ## heading (it could be ## Type, ## Example, ## Parameters, etc)
+  const typeIndex = lines.findIndex((line) => line.startsWith("## "));
   if (headingIndex === -1 || typeIndex === -1) return undefined;
 
   const body = lines

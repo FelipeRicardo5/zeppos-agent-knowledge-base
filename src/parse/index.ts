@@ -5,8 +5,32 @@ import path from "node:path";
 import type { RawUnit } from "../types.js";
 import { walkFiles } from "./util.js";
 
-const IMPORT_RE = /from\s+['"](@[^'"]+)['"]/;
+const IMPORT_RE = /import\s*(?:\{([^}]*)\})?[^'"]*from\s+['"](@[^'"]+)['"]/g;
 const API_LEVEL_RE = /Start from API_LEVEL `(\d+(?:\.\d+)?)`/;
+
+// Docs-site machinery imported by the MDX page itself, not Zepp OS API surface.
+const DOCS_SITE_SCOPES = ["@docusaurus/", "@site/", "@theme/"];
+
+/**
+ * A reference page often opens with a Docusaurus component import before any
+ * example code, so "first @ import wins" misattributes the symbol. Prefer the
+ * import that actually names this symbol; fall back to the first import that
+ * isn't docs-site machinery.
+ */
+function resolveModule(content: string, symbol: string): string | undefined {
+  let fallback: string | undefined;
+
+  for (const [, namedImports, module] of content.matchAll(IMPORT_RE)) {
+    if (DOCS_SITE_SCOPES.some((scope) => module.startsWith(scope))) continue;
+
+    const names = (namedImports ?? "").split(",").map((name) => name.trim().split(/\s+as\s+/)[0].trim());
+    if (names.includes(symbol)) return module;
+
+    fallback ??= module;
+  }
+
+  return fallback;
+}
 
 /**
  * Front 1: docs/reference/**\/*.mdx — one file per symbol, filename == symbol name.
@@ -20,15 +44,16 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
 
   for (const file of files) {
     const content = await readFile(file, "utf-8");
-    const importMatch = content.match(IMPORT_RE);
-    if (!importMatch) continue; // no example import -> can't attribute a module, skip
-
     const symbol = path.basename(file, path.extname(file));
+
+    const module = resolveModule(content, symbol);
+    if (!module) continue; // no example import -> can't attribute a module, skip
+
     const apiLevelMatch = content.match(API_LEVEL_RE);
     const description = extractDescription(content);
 
     units.push({
-      module: importMatch[1],
+      module,
       symbol,
       kind: content.includes("function " + symbol) ? "function" : "value",
       description,
@@ -82,14 +107,18 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
     const module = moduleMatch[1];
 
     // `---` trails each symbol section rather than leading it, so the chunk before
-    // the first `---` holds both the module's `## Constants` table AND the first
-    // symbol's section. Split header at its second `## ` heading (the first is
-    // "Constants") and treat the remainder as that first symbol chunk.
+    // the first `---` holds the module-level `## Constants` table (when the module
+    // has one — most don't) AND the first symbol's section. Split the header at its
+    // first non-"Constants" heading: everything before it is module-level, the rest
+    // is that first symbol's chunk.
     const [rawHeader, ...restChunks] = content.split(/^---\s*$/m);
-    const headingPositions = [...rawHeader.matchAll(/^##\s+.+$/gm)].map((m) => m.index!);
-    const header = headingPositions.length > 1 ? rawHeader.slice(0, headingPositions[1]) : rawHeader;
+    const firstSymbolAt = [...rawHeader.matchAll(/^##\s+(.+)$/gm)].find(
+      (match) => match[1].trim() !== "Constants",
+    )?.index;
+
+    const header = firstSymbolAt === undefined ? rawHeader : rawHeader.slice(0, firstSymbolAt);
     const symbolChunks =
-      headingPositions.length > 1 ? [rawHeader.slice(headingPositions[1]), ...restChunks] : restChunks;
+      firstSymbolAt === undefined ? restChunks : [rawHeader.slice(firstSymbolAt), ...restChunks];
 
     for (const line of header.split("\n")) {
       const rowMatch = line.match(CONSTANT_ROW_RE);

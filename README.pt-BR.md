@@ -18,11 +18,13 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | não implementado |
 
+Testes baseados em fixtures cobrem as três frentes de parse e a fusão do enrich: `npm test`.
+
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
-- **328 símbolos** em **40 módulos**, vindos de 222 páginas de referência + 226 entradas de `static/llms` + 622 imports em samples
-- 299 `OFFICIAL`, 29 `OBSERVED`
-- 272 símbolos têm `API_LEVEL` mínimo; 153 têm descrição
+- **276 símbolos** em **34 módulos**, vindos de 222 páginas de referência + 226 entradas de `static/llms` + 622 imports em samples
+- 247 `OFFICIAL`, 29 `OBSERVED`
+- 242 símbolos têm `API_LEVEL` mínimo; 153 têm descrição
 
 ## Cobertura e limites
 
@@ -31,14 +33,16 @@ Leia isto antes de confiar em qualquer resposta saída desta base.
 - **Apenas a API de Device App está coberta.** O parser se apoia na linha `import { x } from '@zos/...'` que as páginas de referência carregam. As páginas de `side-service-api` e `app-settings-api` usam outro formato, sem essa linha, e a API de watchface (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) vive em uma árvore separada. Todas são ignoradas hoje.
 - **O eixo de runtime está vazio.** Todo registro sai com `runtimes: []`. Como só a documentação de um runtime é parseada, esse campo ainda não distingue nada e é deixado vazio em vez de preenchido com um valor constante.
 - **Um símbolo ausente significa "não coberto", não "não existe."** Com um runtime parseado de seis, a ausência não diz nada sobre a plataforma real.
-- **`API_LEVEL` é o único eixo que funciona hoje.** É lido literalmente da linha oficial `Start from API_LEVEL`, nunca inferido.
-- **Ainda não há testes.** Todo bug de parser encontrado até agora apareceu na leitura manual do output, e todos foram a mesma falha: um formato de origem que parecia regular no primeiro arquivo e não era. Um registro errado é indistinguível de um correto lá na frente.
+- **`API_LEVEL` é o único eixo que funciona hoje.** É lido literalmente do blockquote de badge de cada página (`Start from API_LEVEL`, ou `Supported since API_LEVEL` — as duas redações ocorrem), nunca inferido.
+- **A descrição está ausente na maioria dos símbolos.** 94 páginas de referência trazem o título no frontmatter em vez de um H1, e o extrator de descrição só lê o texto sob um H1. Registrado como teste `todo` em `test/parse.test.ts`.
+- **Bugs de parser são o principal risco, e todos até agora foram a mesma falha**: um formato de origem que parecia regular no primeiro arquivo e não era. Cada um está agora fixado por um teste de fixture construído a partir do arquivo real que o quebrou, então uma regressão falha a suíte em vez de produzir registros errados silenciosamente.
 
 ## Início rápido
 
 ```bash
 npm install
 npm run sync       # fetch -> parse -> enrich -> grava data/
+npm test           # testes de fixture dos parsers e da fusão do enrich
 npm run typecheck
 ```
 
@@ -53,7 +57,7 @@ Quatro estágios, cada um idempotente e inspecionável isoladamente, de modo que
 1. **fetch** — clona ou atualiza os repositórios oficiais em `.cache/` e registra o commit exato de cada um. Conteúdo de terceiros, nunca versionado aqui.
 2. **parse** — três frentes independentes sobre o cache bruto:
    - **docs-reference** — `docs/reference/**/*.mdx`, um arquivo por símbolo. O módulo é resolvido a partir da linha de import no exemplo da própria página, porque o nome do diretório não corresponde de forma confiável ao id do módulo.
-   - **llms** — `static/llms/@zos-*.md`, um arquivo por módulo, aproveitando a estruturação que a própria Zepp Health já fez para consumo por LLMs.
+   - **llms** — `static/llms/@zos-*.md`, um arquivo por módulo, aproveitando a estruturação que a própria Zepp Health já fez para consumo por LLMs. O id do módulo vem das linhas de import dentro do arquivo, não do H1: `@zos/ui` é dividido em vários arquivos cujo H1 diz `@zos/ui-methods`, `@zos/ui-widget-basic` etc., e esses ids não são importáveis.
    - **samples** — todo import `@zos/*` nos aplicativos de exemplo oficiais. Evidência de uso real, não uma afirmação da documentação.
 3. **enrich** — agrupa as observações por id de símbolo e normaliza os metadados que são o coração do projeto: `API_LEVEL` mínimo, runtime, fonte e nível de confiança. A prioridade por campo é `docs-reference` > `llms` > `sample`.
 4. **render** — gera o Markdown final em `concepts/`, `api/`, `runtimes/`, `patterns/`, `examples/`, `compatibility/` e `tools/`. É o que a Agent Skill lê.
@@ -109,6 +113,9 @@ data/
   symbols/        o JSON fonte de verdade, um arquivo por módulo
 skills/
   zepp-os/SKILL.md   a Agent Skill
+test/
+  fixtures/cache/    excertos reduzidos das fontes reais, no layout do cache
+  *.test.ts          testes dos parsers e do enrich
 .cache/     repositórios oficiais clonados (não versionado)
 ```
 

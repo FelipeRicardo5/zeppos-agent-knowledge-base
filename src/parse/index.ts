@@ -1,13 +1,166 @@
 // Stage 2: parse — three fronts over the raw cached content.
 
-export async function parseMarkdown(cacheDir: string) {
-  throw new Error("not implemented");
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import type { RawUnit } from "../types.js";
+import { walkFiles } from "./util.js";
+
+const IMPORT_RE = /from\s+['"](@[^'"]+)['"]/;
+const API_LEVEL_RE = /Start from API_LEVEL `(\d+(?:\.\d+)?)`/;
+
+/**
+ * Front 1: docs/reference/**\/*.mdx — one file per symbol, filename == symbol name.
+ * The module is read from the `import { symbol } from '@zos/module'` line in the
+ * file's own example, since the directory name doesn't reliably match the module id.
+ */
+export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
+  const referenceDir = path.join(cacheDir, "zeppos-docs", "docs", "reference");
+  const files = await walkFiles(referenceDir, [".mdx", ".md"]);
+  const units: RawUnit[] = [];
+
+  for (const file of files) {
+    const content = await readFile(file, "utf-8");
+    const importMatch = content.match(IMPORT_RE);
+    if (!importMatch) continue; // no example import -> can't attribute a module, skip
+
+    const symbol = path.basename(file, path.extname(file));
+    const apiLevelMatch = content.match(API_LEVEL_RE);
+    const description = extractDescription(content);
+
+    units.push({
+      module: importMatch[1],
+      symbol,
+      kind: content.includes("function " + symbol) ? "function" : "value",
+      description,
+      apiLevel: apiLevelMatch ? Number(apiLevelMatch[1]) : undefined,
+      sourceFile: path.relative(cacheDir, file),
+      sourceKind: "docs-reference",
+    });
+  }
+
+  return units;
 }
 
-export async function parseLlmsContent(cacheDir: string) {
-  throw new Error("not implemented");
+function extractDescription(content: string): string | undefined {
+  const lines = content.split("\n");
+  const headingIndex = lines.findIndex((line) => line.startsWith("# "));
+  const typeIndex = lines.findIndex((line) => line.startsWith("## Type"));
+  if (headingIndex === -1 || typeIndex === -1) return undefined;
+
+  const body = lines
+    .slice(headingIndex + 1, typeIndex)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0 && !line.startsWith(">"));
+
+  return body.length > 0 ? body.join(" ") : undefined;
 }
 
-export async function parseSamples(cacheDir: string) {
-  throw new Error("not implemented");
+const CONSTANT_ROW_RE = /^\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|\s*([\d.]+)\s*\|$/;
+
+const LLMS_API_LEVEL_RE = /(?:Start from API_LEVEL `(\d+(?:\.\d+)?)`|-\s*API_LEVEL:\s*(\d+(?:\.\d+)?))/;
+
+/**
+ * Front 2: static/llms/@zos-*.md — one file per module. Each real symbol block is
+ * separated by a `---` rule; inside a block the first `## heading` is the symbol
+ * name (nested `## Type` / `## Example` / `## Parameters` headings that follow
+ * belong to the same symbol, not siblings — the source dumps a docs-reference-style
+ * copy inline). The chunk before the first `---` carries the module-level
+ * `## Constants` table.
+ */
+export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
+  const llmsDir = path.join(cacheDir, "zeppos-docs", "static", "llms");
+  const files = await walkFiles(llmsDir, [".md"]);
+  const units: RawUnit[] = [];
+
+  for (const file of files) {
+    const content = await readFile(file, "utf-8");
+    const sourceFile = path.relative(cacheDir, file);
+
+    const moduleMatch = content.match(/^#\s+(@\S+)/m);
+    if (!moduleMatch) continue;
+    const module = moduleMatch[1];
+
+    // `---` trails each symbol section rather than leading it, so the chunk before
+    // the first `---` holds both the module's `## Constants` table AND the first
+    // symbol's section. Split header at its second `## ` heading (the first is
+    // "Constants") and treat the remainder as that first symbol chunk.
+    const [rawHeader, ...restChunks] = content.split(/^---\s*$/m);
+    const headingPositions = [...rawHeader.matchAll(/^##\s+.+$/gm)].map((m) => m.index!);
+    const header = headingPositions.length > 1 ? rawHeader.slice(0, headingPositions[1]) : rawHeader;
+    const symbolChunks =
+      headingPositions.length > 1 ? [rawHeader.slice(headingPositions[1]), ...restChunks] : restChunks;
+
+    for (const line of header.split("\n")) {
+      const rowMatch = line.match(CONSTANT_ROW_RE);
+      if (!rowMatch) continue;
+      const [, name, description, apiLevel] = rowMatch;
+      units.push({
+        module,
+        symbol: name,
+        kind: "constant",
+        description: description.trim(),
+        apiLevel: Number(apiLevel),
+        sourceFile,
+        sourceKind: "llms",
+      });
+    }
+
+    for (const chunk of symbolChunks) {
+      const headingMatch = chunk.match(/^##\s+(.+)$/m);
+      if (!headingMatch) continue;
+      const symbol = headingMatch[1].trim();
+
+      const descriptionMatch = chunk.match(/-\s*Description:\s*(.+)/);
+      const apiLevelMatch = chunk.match(LLMS_API_LEVEL_RE);
+
+      units.push({
+        module,
+        symbol,
+        kind: "function",
+        description: descriptionMatch ? descriptionMatch[1].trim() : undefined,
+        apiLevel: apiLevelMatch ? Number(apiLevelMatch[1] ?? apiLevelMatch[2]) : undefined,
+        sourceFile,
+        sourceKind: "llms",
+      });
+    }
+  }
+
+  return units;
+}
+
+const MULTI_IMPORT_RE = /import\s*\{([^}]*)\}\s*from\s*['"](@[^'"]+)['"]/g;
+
+/**
+ * Front 3: samples/**\/*.js — real usage of `@zos/*` symbols in shipped example apps.
+ * These are OBSERVED (not documented) confidence signals, resolved at enrich time.
+ */
+export async function parseSamples(cacheDir: string): Promise<RawUnit[]> {
+  const samplesDir = path.join(cacheDir, "zeppos-samples");
+  const files = await walkFiles(samplesDir, [".js"]);
+  const units: RawUnit[] = [];
+
+  for (const file of files) {
+    const content = await readFile(file, "utf-8");
+    const sourceFile = path.relative(cacheDir, file);
+
+    for (const match of content.matchAll(MULTI_IMPORT_RE)) {
+      const [, namedImports, module] = match;
+      const symbols = namedImports
+        .split(",")
+        .map((s) => s.trim().split(/\s+as\s+/)[0].trim())
+        .filter(Boolean);
+
+      for (const symbol of symbols) {
+        units.push({
+          module,
+          symbol,
+          kind: /^[A-Z][A-Z0-9_]*$/.test(symbol) ? "constant" : "function",
+          sourceFile,
+          sourceKind: "sample",
+        });
+      }
+    }
+  }
+
+  return units;
 }

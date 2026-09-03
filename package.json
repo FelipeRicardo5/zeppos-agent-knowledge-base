@@ -6,6 +6,7 @@
   "scripts": {
     "sync": "tsx src/cli.ts sync",
     "render": "tsx src/cli.ts render",
+    "test": "node --import tsx --test \"test/**/*.test.ts\"",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

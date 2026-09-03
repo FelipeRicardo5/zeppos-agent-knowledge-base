@@ -1,0 +1,27 @@
+---
+title: openInspector
+sidebar_label: openInspector
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+> Supported since API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+<img
+  src={useBaseUrl('/img/docs/guides/framework/layout_debug.jpg')}
+  width="50%"
+/>
+
+## Type
+
+```ts
+function openInspector(): Inspector
+```
+
+## Code Example
+
+```js
+import { openInspector } from '@zos/ui'
+
+const inspector = openInspector()
+```

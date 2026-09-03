@@ -113,13 +113,17 @@ data/
   symbols/        o JSON fonte de verdade, um arquivo por módulo
 skills/
   zepp-os/SKILL.md   a Agent Skill
+concepts/
+  README.md          índice de notas (estudo de retrieval/RAG/MCP)
 test/
   fixtures/cache/    excertos reduzidos das fontes reais, no layout do cache
   *.test.ts          testes dos parsers e do enrich
 .cache/     repositórios oficiais clonados (não versionado)
 ```
 
-O Markdown gerado vai para `api/` e `compatibility/`. `concepts/`, `runtimes/`, `patterns/`, `examples/` e `tools/` permanecem vazios até existir conteúdo curado para preenchê-los.
+O Markdown gerado vai para `api/` e `compatibility/`. `concepts/` guarda notas curadas
+sobre retrieval/RAG/MCP e suas relações com o projeto (ver [concepts/README.md](concepts/README.md)).
+`runtimes/`, `patterns/`, `examples/` e `tools/` permanecem vazios até existir conteúdo curado para preenchê-los.
 
 ## Decisões de projeto
 

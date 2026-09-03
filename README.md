@@ -113,13 +113,15 @@ data/
   symbols/        the JSON source of truth, one file per module
 skills/
   zepp-os/SKILL.md   the Agent Skill
+concepts/
+  README.md          note index (retrieval/RAG/MCP study notes)
 test/
   fixtures/cache/    trimmed excerpts of the real sources, in cache layout
   *.test.ts          parser and enrich tests
 .cache/     cloned official repos (untracked)
 ```
 
-The generated Markdown lands in `api/` and `compatibility/`. `concepts/`, `runtimes/`, `patterns/`, `examples/` and `tools/` stay empty until curated content exists to fill them.
+The generated Markdown lands in `api/` and `compatibility/`. `concepts/` holds curated notes on retrieval/RAG/MCP and their relation to this project (see [concepts/README.md](concepts/README.md)). `runtimes/`, `patterns/`, `examples/` and `tools/` stay empty until curated content exists to fill them.
 
 ## Design decisions
 

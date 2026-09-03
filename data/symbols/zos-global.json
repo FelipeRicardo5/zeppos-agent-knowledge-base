@@ -1,0 +1,173 @@
+{
+  "module": "@zos/global",
+  "symbols": [
+    {
+      "id": "@zos/global.App",
+      "module": "@zos/global",
+      "symbol": "App",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.AppService",
+      "module": "@zos/global",
+      "symbol": "AppService",
+      "type": "function",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.AppWidget",
+      "module": "@zos/global",
+      "symbol": "AppWidget",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.Buffer",
+      "module": "@zos/global",
+      "symbol": "Buffer",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.clearInterval",
+      "module": "@zos/global",
+      "symbol": "clearInterval",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.clearTimeout",
+      "module": "@zos/global",
+      "symbol": "clearTimeout",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.console",
+      "module": "@zos/global",
+      "symbol": "console",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.DataWidget",
+      "module": "@zos/global",
+      "symbol": "DataWidget",
+      "type": "function",
+      "minApiLevel": 3.6,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.getApp",
+      "module": "@zos/global",
+      "symbol": "getApp",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.getCurrentPage",
+      "module": "@zos/global",
+      "symbol": "getCurrentPage",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.Page",
+      "module": "@zos/global",
+      "symbol": "Page",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.SecondaryWidget",
+      "module": "@zos/global",
+      "symbol": "SecondaryWidget",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.setInterval",
+      "module": "@zos/global",
+      "symbol": "setInterval",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/global.setTimeout",
+      "module": "@zos/global",
+      "symbol": "setTimeout",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

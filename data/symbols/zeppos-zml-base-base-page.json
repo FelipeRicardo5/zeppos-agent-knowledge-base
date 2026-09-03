@@ -1,0 +1,16 @@
+{
+  "module": "@zeppos/zml/base/base-page",
+  "symbols": [
+    {
+      "id": "@zeppos/zml/base/base-page.BasePage",
+      "module": "@zeppos/zml/base/base-page",
+      "symbol": "BasePage",
+      "type": "function",
+      "runtimes": [],
+      "source": "sample",
+      "confidence": "OBSERVED",
+      "originalPath": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

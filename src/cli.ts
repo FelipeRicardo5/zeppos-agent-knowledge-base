@@ -1,8 +1,10 @@
 import { enrich } from "./enrich/index.js";
 import { fetchSources } from "./fetch/index.js";
 import { parseLlmsContent, parseMarkdown, parseSamples } from "./parse/index.js";
+import { writeManifest, writeSymbols } from "./store/index.js";
 
 const CACHE_DIR = ".cache";
+const DATA_DIR = "data";
 
 const command = process.argv[2];
 
@@ -24,7 +26,23 @@ switch (command) {
     const official = records.filter((r) => r.confidence === "OFFICIAL").length;
     const observed = records.filter((r) => r.confidence === "OBSERVED").length;
     console.log(`enriched: ${records.length} symbols (${official} OFFICIAL, ${observed} OBSERVED)`);
-    // TODO: write data/symbols/*.json + data/manifest.json once granularity (README open question 2) is decided
+
+    const moduleCount = await writeSymbols(records, DATA_DIR);
+    await writeManifest(
+      {
+        lastSyncAt: new Date().toISOString(),
+        sources: results,
+        recordCounts: {
+          "docs-reference": docs.length,
+          llms: llms.length,
+          sample: samples.length,
+          symbols: records.length,
+          modules: moduleCount,
+        },
+      },
+      DATA_DIR,
+    );
+    console.log(`wrote: ${moduleCount} module files to ${DATA_DIR}/symbols`);
     break;
   }
   case "render":

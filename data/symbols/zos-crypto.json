@@ -1,0 +1,62 @@
+{
+  "module": "@zos/crypto",
+  "symbols": [
+    {
+      "id": "@zos/crypto.AESCrypto",
+      "module": "@zos/crypto",
+      "symbol": "AESCrypto",
+      "type": "value",
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/AESCrypto.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/crypto.CRCCrypto",
+      "module": "@zos/crypto",
+      "symbol": "CRCCrypto",
+      "type": "value",
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/CRCCrypto.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/crypto.DigestCrypto",
+      "module": "@zos/crypto",
+      "symbol": "DigestCrypto",
+      "type": "value",
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/DigestCrypto.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/crypto.ECDSACrypto",
+      "module": "@zos/crypto",
+      "symbol": "ECDSACrypto",
+      "type": "value",
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/ECDSACrypto.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/crypto.encryptKey",
+      "module": "@zos/crypto",
+      "symbol": "encryptKey",
+      "type": "function",
+      "description": "Encrypt data with the firmware PUF hardware module using AES. Input length must be a multiple of 16 bytes; returns `undefined` on failure.",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/encryptKey.mdx",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

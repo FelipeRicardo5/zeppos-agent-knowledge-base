@@ -1,0 +1,31 @@
+{
+  "module": "@zos/timer",
+  "symbols": [
+    {
+      "id": "@zos/timer.createSysTimer",
+      "module": "@zos/timer",
+      "symbol": "createSysTimer",
+      "type": "function",
+      "description": "A system-level timer that can be registered in device app services and runs regardless of watch screen state.",
+      "minApiLevel": 4,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/timer/createSysTimer.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/timer.stopTimer",
+      "module": "@zos/timer",
+      "symbol": "stopTimer",
+      "type": "function",
+      "description": "Stop the timer created by `createSysTimer` method.",
+      "minApiLevel": 4,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/timer/stopTimer.mdx",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

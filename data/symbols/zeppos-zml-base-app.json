@@ -1,0 +1,16 @@
+{
+  "module": "@zeppos/zml/base-app",
+  "symbols": [
+    {
+      "id": "@zeppos/zml/base-app.BaseApp",
+      "module": "@zeppos/zml/base-app",
+      "symbol": "BaseApp",
+      "type": "function",
+      "runtimes": [],
+      "source": "sample",
+      "confidence": "OBSERVED",
+      "originalPath": "zeppos-samples/application/3.0/download/app.js",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

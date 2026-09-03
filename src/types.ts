@@ -15,6 +15,8 @@ export type Confidence =
 
 export interface SymbolRecord {
   id: string; // e.g. "@zos/router.launchApp"
+  module: string; // e.g. "@zos/router"
+  symbol: string; // e.g. "launchApp"
   type: string;
   description?: string;
   // undefined when no source states it — never fabricated.

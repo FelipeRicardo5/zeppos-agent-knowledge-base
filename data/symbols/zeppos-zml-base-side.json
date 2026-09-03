@@ -1,0 +1,38 @@
+{
+  "module": "@zeppos/zml/base-side",
+  "symbols": [
+    {
+      "id": "@zeppos/zml/base-side.BaseSideService",
+      "module": "@zeppos/zml/base-side",
+      "symbol": "BaseSideService",
+      "type": "function",
+      "runtimes": [],
+      "source": "sample",
+      "confidence": "OBSERVED",
+      "originalPath": "zeppos-samples/application/3.0/download/app-side/index.js",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zeppos/zml/base-side.convertLib",
+      "module": "@zeppos/zml/base-side",
+      "symbol": "convertLib",
+      "type": "function",
+      "runtimes": [],
+      "source": "sample",
+      "confidence": "OBSERVED",
+      "originalPath": "zeppos-samples/application/3.0/download/app-side/image-convert-module.js",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zeppos/zml/base-side.settingsLib",
+      "module": "@zeppos/zml/base-side",
+      "symbol": "settingsLib",
+      "type": "function",
+      "runtimes": [],
+      "source": "sample",
+      "confidence": "OBSERVED",
+      "originalPath": "zeppos-samples/application/3.0/todo-list/app-side/index.js",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "module": "@zos/i18n",
+  "symbols": [
+    {
+      "id": "@zos/i18n.getText",
+      "module": "@zos/i18n",
+      "symbol": "getText",
+      "type": "function",
+      "description": "Get the corresponding string from the internationalization resource file (.po) based on the internationalization key.",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/i18n/getText.mdx",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

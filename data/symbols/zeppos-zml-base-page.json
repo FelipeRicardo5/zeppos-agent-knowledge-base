@@ -1,0 +1,16 @@
+{
+  "module": "@zeppos/zml/base-page",
+  "symbols": [
+    {
+      "id": "@zeppos/zml/base-page.BasePage",
+      "module": "@zeppos/zml/base-page",
+      "symbol": "BasePage",
+      "type": "function",
+      "runtimes": [],
+      "source": "sample",
+      "confidence": "OBSERVED",
+      "originalPath": "zeppos-samples/application/3.0/download/page/index.js",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

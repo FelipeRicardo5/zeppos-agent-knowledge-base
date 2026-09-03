@@ -1,0 +1,16 @@
+{
+  "module": "@zeppos/zml/2.0/module/messaging/plugin/app",
+  "symbols": [
+    {
+      "id": "@zeppos/zml/2.0/module/messaging/plugin/app.appPlugin",
+      "module": "@zeppos/zml/2.0/module/messaging/plugin/app",
+      "symbol": "appPlugin",
+      "type": "function",
+      "runtimes": [],
+      "source": "sample",
+      "confidence": "OBSERVED",
+      "originalPath": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app.js",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

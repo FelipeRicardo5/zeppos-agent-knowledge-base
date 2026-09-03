@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { Confidence, RawUnit, SymbolRecord } from "../types.js";
 
 // Stage 3: enrich — group the three fronts' observations by symbol id and
@@ -16,6 +17,11 @@ function bestOf<T extends RawUnit>(units: T[]): T[] {
   return [...units].sort(
     (a, b) => SOURCE_PRIORITY.indexOf(a.sourceKind) - SOURCE_PRIORITY.indexOf(b.sourceKind),
   );
+}
+
+// Paths are persisted posix-style so the JSON is identical whatever OS synced it.
+function toPosixPath(file: string): string {
+  return file.split(path.sep).join("/");
 }
 
 function confidenceFor(units: RawUnit[]): Confidence {
@@ -45,13 +51,15 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
 
     records.push({
       id,
+      module: primary.module,
+      symbol: primary.symbol,
       type: primary.kind,
       description: withDescription?.description,
       minApiLevel: withApiLevel?.apiLevel,
       runtimes,
       source: primary.sourceKind,
       confidence: confidenceFor(units),
-      originalPath: primary.sourceFile,
+      originalPath: toPosixPath(primary.sourceFile),
       extractedAt,
     });
   }

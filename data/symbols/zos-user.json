@@ -1,0 +1,31 @@
+{
+  "module": "@zos/user",
+  "symbols": [
+    {
+      "id": "@zos/user.addHealthData",
+      "module": "@zos/user",
+      "symbol": "addHealthData",
+      "type": "function",
+      "description": "Set user health data information. :::info permission code: `data:user.health` :::",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/user/addHealthData.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/user.getProfile",
+      "module": "@zos/user",
+      "symbol": "getProfile",
+      "type": "function",
+      "description": "Get user information. :::info permission code: `data:user.info` :::",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/user/getProfile.mdx",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

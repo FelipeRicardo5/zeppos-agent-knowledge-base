@@ -1,0 +1,82 @@
+{
+  "module": "@zos/utils",
+  "symbols": [
+    {
+      "id": "@zos/utils.assets",
+      "module": "@zos/utils",
+      "symbol": "assets",
+      "type": "function",
+      "description": "Used to handle resource file paths, splice `basePath`. and can pass in parameters for rtl path conversion of images, for RTL adaptation of Mini Program.",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/assets.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/utils.bufferToString",
+      "module": "@zos/utils",
+      "symbol": "bufferToString",
+      "type": "function",
+      "description": "Convert `ArrayBuffer` type to string type.",
+      "minApiLevel": 4,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/bufferToString.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/utils.EventBus",
+      "module": "@zos/utils",
+      "symbol": "EventBus",
+      "type": "value",
+      "description": "EventBus is a utility class that provides event publishing/subscribing, an implementation of the publish-subscribe pattern",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/EventBus.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/utils.log",
+      "module": "@zos/utils",
+      "symbol": "log",
+      "type": "value",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/log.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/utils.px",
+      "module": "@zos/utils",
+      "symbol": "px",
+      "type": "function",
+      "description": "Pixel scaling calculation. The `designWidth` of each model in the `targets` object in the `app.json` is used as the base..",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/px.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/utils.stringToBuffer",
+      "module": "@zos/utils",
+      "symbol": "stringToBuffer",
+      "type": "function",
+      "description": "Convert string type to `ArrayBuffer` type.",
+      "minApiLevel": 4,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/stringToBuffer.mdx",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

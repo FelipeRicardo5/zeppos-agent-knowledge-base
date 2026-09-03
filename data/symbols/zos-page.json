@@ -1,0 +1,83 @@
+{
+  "module": "@zos/page",
+  "symbols": [
+    {
+      "id": "@zos/page.getScrollTop",
+      "module": "@zos/page",
+      "symbol": "getScrollTop",
+      "type": "function",
+      "description": "Get the vertical coordinate of the current scroll position of the page.",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/getScrollTop.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/page.getSwiperIndex",
+      "module": "@zos/page",
+      "symbol": "getSwiperIndex",
+      "type": "function",
+      "description": "Get the scroll position of the current page, only if the page scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL` return the index of the current item (starting from `1`), otherwise return `undefined`.",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/getSwiperIndex.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/page.scrollTo",
+      "module": "@zos/page",
+      "symbol": "scrollTo",
+      "type": "function",
+      "description": "Scroll the page to the specified position.",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/scrollTo.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/page.setScrollLock",
+      "module": "@zos/page",
+      "symbol": "setScrollLock",
+      "type": "function",
+      "description": "Set the current page scrolling position to be locked, i.e. the screen position will not change with the gesture swipe. After calling this API to perform the unlock operation, the page scrolling mode will be set to free scrolling mode.",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/setScrollLock.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/page.setScrollMode",
+      "module": "@zos/page",
+      "symbol": "setScrollMode",
+      "type": "function",
+      "description": "Set the scroll mode of the page.",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/setScrollMode.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/page.swipeToIndex",
+      "module": "@zos/page",
+      "symbol": "swipeToIndex",
+      "type": "function",
+      "description": "Scrolls the page to the Swiper's target item, only if the current page scroll mode is `SCROLL_MODE_SWIPER`.",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/swipeToIndex.mdx",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

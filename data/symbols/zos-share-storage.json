@@ -1,0 +1,41 @@
+{
+  "module": "@zos/share-storage",
+  "symbols": [
+    {
+      "id": "@zos/share-storage.FileSystem",
+      "module": "@zos/share-storage",
+      "symbol": "FileSystem",
+      "type": "value",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/share-storage/FileSystem.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/share-storage.LocalStorage",
+      "module": "@zos/share-storage",
+      "symbol": "LocalStorage",
+      "type": "value",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/share-storage/LocalStorage.mdx",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/share-storage.TypedStorage",
+      "module": "@zos/share-storage",
+      "symbol": "TypedStorage",
+      "type": "value",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/share-storage/TypedStorage.mdx",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

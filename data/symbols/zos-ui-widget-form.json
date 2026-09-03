@@ -1,0 +1,100 @@
+{
+  "module": "@zos/ui-widget-form",
+  "symbols": [
+    {
+      "id": "@zos/ui-widget-form.CHECKBOX_GROUP",
+      "module": "@zos/ui-widget-form",
+      "symbol": "CHECKBOX_GROUP",
+      "type": "function",
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-form.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui-widget-form.KEYBOARD",
+      "module": "@zos/ui-widget-form",
+      "symbol": "KEYBOARD",
+      "type": "function",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-form.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui-widget-form.PICK_DATE",
+      "module": "@zos/ui-widget-form",
+      "symbol": "PICK_DATE",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-form.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui-widget-form.PICKER",
+      "module": "@zos/ui-widget-form",
+      "symbol": "PICKER",
+      "type": "function",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-form.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui-widget-form.RADIO_GROUP",
+      "module": "@zos/ui-widget-form",
+      "symbol": "RADIO_GROUP",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-form.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui-widget-form.SLIDE_SWITCH",
+      "module": "@zos/ui-widget-form",
+      "symbol": "SLIDE_SWITCH",
+      "type": "function",
+      "minApiLevel": 2,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-form.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui-widget-form.SYSTEM_KEYBOARD",
+      "module": "@zos/ui-widget-form",
+      "symbol": "SYSTEM_KEYBOARD",
+      "type": "function",
+      "minApiLevel": 4,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-form.md",
+      "extractedAt": "2026-09-03"
+    },
+    {
+      "id": "@zos/ui-widget-form.TIME_PICKER",
+      "module": "@zos/ui-widget-form",
+      "symbol": "TIME_PICKER",
+      "type": "function",
+      "minApiLevel": 3.6,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-form.md",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

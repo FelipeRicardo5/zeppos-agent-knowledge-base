@@ -1,0 +1,17 @@
+{
+  "module": "@zos/transfer-file",
+  "symbols": [
+    {
+      "id": "@zos/transfer-file.TransferFile",
+      "module": "@zos/transfer-file",
+      "symbol": "TransferFile",
+      "type": "function",
+      "minApiLevel": 3,
+      "runtimes": [],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-transfer-file.md",
+      "extractedAt": "2026-09-03"
+    }
+  ]
+}

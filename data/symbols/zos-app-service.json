@@ -8,11 +8,13 @@
       "type": "function",
       "description": "Called in The App Service, it will exit the service and will not affect the foreground page. :::info permission code: `device:os.bg_service` :::",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/exit.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app-service.getAllAppServices",
@@ -21,11 +23,13 @@
       "type": "function",
       "description": "Get the list of running App services, used to query the service status. :::info permission code: `device:os.bg_service` :::",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/getAllAppServices.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app-service.start",
@@ -34,11 +38,13 @@
       "type": "function",
       "description": "Start the specified App service, return the result through the callback function. :::info permission code: `device:os.bg_service` :::",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/start.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app-service.stop",
@@ -47,11 +53,13 @@
       "type": "function",
       "description": "Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function. :::info permission code: `device:os.bg_service` :::",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/stop.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

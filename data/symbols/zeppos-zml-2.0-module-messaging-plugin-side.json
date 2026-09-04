@@ -6,11 +6,13 @@
       "module": "@zeppos/zml/2.0/module/messaging/plugin/side",
       "symbol": "messagingPlugin",
       "type": "function",
-      "runtimes": [],
+      "runtimes": [
+        "side-service"
+      ],
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

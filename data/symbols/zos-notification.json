@@ -8,11 +8,13 @@
       "type": "function",
       "description": "Delete the notification message identified by the specified ID in the notification center. :::info permission code: `device:os.notification` :::",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/notification/cancel.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/notification.getAllNotifications",
@@ -21,11 +23,13 @@
       "type": "function",
       "description": "Get the notification IDs that have been sent by the current app and are still in the notification center. :::info permission code: `device:os.notification` :::",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/notification/getAllNotifications.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/notification.notify",
@@ -34,11 +38,13 @@
       "type": "function",
       "description": "Send notifications to the Watch Notification Center. :::info permission code: `device:os.notification` :::",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/notification/notify.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

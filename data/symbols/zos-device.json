@@ -8,11 +8,13 @@
       "type": "function",
       "description": "Gets device information. :::info permission code: `data:os.device.info` :::",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDeviceInfo.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/device.getDiskInfo",
@@ -21,22 +23,26 @@
       "type": "function",
       "description": "Gets disk information.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDiskInfo.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/device.SCREEN_SHAPE_SQUARE",
       "module": "@zos/device",
       "symbol": "SCREEN_SHAPE_SQUARE",
       "type": "constant",
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

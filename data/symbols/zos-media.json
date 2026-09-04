@@ -8,11 +8,13 @@
       "type": "function",
       "description": "Create a media player or recorder.",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/media/create.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/media.Player",
@@ -20,11 +22,13 @@
       "symbol": "Player",
       "type": "value",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/media/Player.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/media.Recorder",
@@ -32,11 +36,13 @@
       "symbol": "Recorder",
       "type": "value",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/media/Recorder.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

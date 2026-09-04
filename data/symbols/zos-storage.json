@@ -7,11 +7,13 @@
       "symbol": "localStorage",
       "type": "value",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/localStorage.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/storage.LocalStorage",
@@ -20,11 +22,13 @@
       "type": "function",
       "description": "Locally stored key-value pairs, data cleared after Mini Program uninstallation",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-storage.md",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/storage.localStorage-instance",
@@ -32,11 +36,13 @@
       "symbol": "localStorage-instance",
       "type": "value",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/localStorage-instance.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/storage.sessionStorage",
@@ -44,11 +50,13 @@
       "symbol": "sessionStorage",
       "type": "value",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/sessionStorage.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/storage.SessionStorage",
@@ -57,11 +65,13 @@
       "type": "function",
       "description": "Key-value pairs are stored and data is cleared after exiting the Mini Program",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-storage.md",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/storage.sessionStorage-instance",
@@ -69,11 +79,13 @@
       "symbol": "sessionStorage-instance",
       "type": "value",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/sessionStorage-instance.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/storage.ShareLocalStorage",
@@ -81,11 +93,13 @@
       "symbol": "ShareLocalStorage",
       "type": "value",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/ShareLocalStorage.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/storage.ShareTypedStorage",
@@ -93,11 +107,13 @@
       "symbol": "ShareTypedStorage",
       "type": "value",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/ShareTypedStorage.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/storage.TypedStorage",
@@ -105,11 +121,13 @@
       "symbol": "TypedStorage",
       "type": "value",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/TypedStorage.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

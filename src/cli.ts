@@ -49,8 +49,10 @@ switch (command) {
     break;
   }
   case "render": {
-    const { modules } = await render(path.join(DATA_DIR, "symbols"), OUT_DIR);
-    console.log(`rendered: ${modules} modules to api/ and compatibility/ (plus an index in each)`);
+    const { modules, runtimes } = await render(path.join(DATA_DIR, "symbols"), OUT_DIR);
+    console.log(
+      `rendered: ${modules} modules to api/ and compatibility/, ${runtimes} runtimes to runtimes/ (plus an index in each)`,
+    );
     break;
   }
   default:

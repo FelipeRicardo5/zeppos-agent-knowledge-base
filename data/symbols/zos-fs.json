@@ -8,11 +8,13 @@
       "type": "function",
       "description": "Close the file handle synchronously.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/closeSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.mkdirSync",
@@ -21,11 +23,13 @@
       "type": "function",
       "description": "Synchronously create a directory in the `/data` directory of the Mini Program.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/mkdirSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.openAssetsSync",
@@ -34,11 +38,13 @@
       "type": "function",
       "description": "Open the file in the `/assets` directory of the Mini Program synchronously and get the file handle.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/openAssetsSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.openSync",
@@ -47,11 +53,13 @@
       "type": "function",
       "description": "Open the file in the `/data` directory of the Mini Program synchronously and get the file handle.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/openSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.readdirSync",
@@ -60,11 +68,13 @@
       "type": "function",
       "description": "Read the directory under the `/data` directory of the Mini Program synchronously.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/readdirSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.readFileSync",
@@ -73,11 +83,13 @@
       "type": "function",
       "description": "Returns the entire contents of the specified file in the `/data` directory of the Mini Program.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/readFileSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.readSync",
@@ -86,11 +98,13 @@
       "type": "function",
       "description": "Synchronously reads the content from the file specified by the file handle into the given `ArrayBuffer`..",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/readSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.renameSync",
@@ -99,11 +113,13 @@
       "type": "function",
       "description": "Rename the files in the `/data` directory of the Mini Program, renaming the files from `oldPath` to `newPath`.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/renameSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.rmSync",
@@ -112,11 +128,13 @@
       "type": "function",
       "description": "Synchronously delete files in the `/data` directory of the Mini Program.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/rmSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.statAssetsSync",
@@ -125,11 +143,13 @@
       "type": "function",
       "description": "Synchronously gets information about the files in the Mini Program `/assets` directory.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/statAssetsSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.statSync",
@@ -138,11 +158,13 @@
       "type": "function",
       "description": "Get information about the files in the `/data` directory of the Mini Program synchronously.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/statSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.writeFileSync",
@@ -151,11 +173,13 @@
       "type": "function",
       "description": "Synchronously write data to a file in the `/data` directory of the Mini Program, replacing the file if it already exists, or creating a new file if it doesn't.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/writeFileSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/fs.writeSync",
@@ -164,11 +188,13 @@
       "type": "function",
       "description": "Synchronously write ArrayBuffer to the file specified by fd.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/writeSync.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

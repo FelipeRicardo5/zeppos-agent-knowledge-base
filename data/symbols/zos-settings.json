@@ -8,11 +8,13 @@
       "type": "function",
       "description": "Get the current system date format.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getDateFormat.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getDistanceUnit",
@@ -21,11 +23,13 @@
       "type": "function",
       "description": "Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user, not to represent the units of the data, the data units refer to the interface description of the corresponding data.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getDistanceUnit.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getLanguage",
@@ -34,11 +38,13 @@
       "type": "function",
       "description": "Get the current system language setting.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getLanguage.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getSleepTarget",
@@ -47,11 +53,13 @@
       "type": "function",
       "description": "Get the sleep target set by the user.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getSleepTarget.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getSystemInfo",
@@ -60,11 +68,13 @@
       "type": "function",
       "description": "Get system related information.",
       "minApiLevel": 2.1,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getSystemInfo.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getSystemMode",
@@ -73,11 +83,13 @@
       "type": "function",
       "description": "Get the system mode setting information.",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getSystemMode.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getTemperatureUnit",
@@ -86,11 +98,13 @@
       "type": "function",
       "description": "Get the temperature units set by the user.",
       "minApiLevel": 2.1,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getTemperatureUnit.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getTimeFormat",
@@ -99,11 +113,13 @@
       "type": "function",
       "description": "Get the current system time format, 12-hour format or 24-hour format.",
       "minApiLevel": 2.1,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getTimeFormat.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getWeightTarget",
@@ -112,11 +128,13 @@
       "type": "function",
       "description": "Get the weight target set by the user.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getWeightTarget.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/settings.getWeightUnit",
@@ -125,11 +143,13 @@
       "type": "function",
       "description": "Gets the weight unit set by the user.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getWeightUnit.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

@@ -6,11 +6,13 @@
       "module": "@zeppos/zml/base/base-side",
       "symbol": "BaseSideService",
       "type": "function",
-      "runtimes": [],
+      "runtimes": [
+        "side-service"
+      ],
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

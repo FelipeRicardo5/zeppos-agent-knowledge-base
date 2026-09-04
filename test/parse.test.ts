@@ -43,6 +43,12 @@ describe("parseMarkdown (docs-reference front)", () => {
     );
   });
 
+  it("attributes the runtime from the reference tree the page lives in", async () => {
+    const unit = byId(await parseMarkdown(CACHE)).get("@zos/router.back");
+
+    assert.equal(unit?.runtimeHint, "device-app", "device-app-api/ pages document the Device App");
+  });
+
   it(
     "reads the description from frontmatter when the page has no H1",
     { todo: "94 reference pages title via frontmatter; their descriptions are currently lost" },
@@ -116,6 +122,13 @@ describe("parseLlmsContent (llms front)", () => {
 
     assert.deepEqual(nested, [], "`## Type` / `## Example` belong to the symbol above them");
   });
+
+  it("attributes every llms unit to the Device App API it restructures", async () => {
+    const units = await parseLlmsContent(CACHE);
+
+    assert.ok(units.length > 0);
+    assert.deepEqual([...new Set(units.map((u) => u.runtimeHint))], ["device-app"]);
+  });
 });
 
 describe("parseSamples (samples front)", () => {
@@ -145,5 +158,14 @@ describe("parseSamples (samples front)", () => {
 
     assert.match(unit?.sourceFile ?? "", /simple-keyboard/);
     assert.equal(unit?.sourceKind, "sample");
+  });
+
+  it("separates the sample trees by runtime", async () => {
+    // The samples front is the only one that observes more than one runtime, and
+    // it is what makes the axis carry information rather than one constant.
+    const units = byId(await parseSamples(CACHE));
+
+    assert.equal(units.get("@zos/ui.createWidget")?.runtimeHint, "device-app"); // application/
+    assert.equal(units.get("@zos/app.getScene")?.runtimeHint, "watchface"); // watchface/
   });
 });

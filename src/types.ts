@@ -1,6 +1,16 @@
+// The five runtimes the official sources actually distinguish.
+//
+// `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App,
+// Settings App, Side Service — and `guides/architecture/folder-structure.mdx`
+// shows `app-side/` *is* the Side Service directory, so "app-side" and
+// "side-service" were the same runtime under two names and only one is kept.
+// Watchface and Workout Extension are separate app types with their own trees.
+//
+// Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are
+// extra entry points, not extra runtimes: they execute on the watch under Zepp
+// OS like the Device App, so they attribute to "device-app".
 export type Runtime =
   | "device-app"
-  | "app-side"
   | "side-service"
   | "settings"
   | "watchface"

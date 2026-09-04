@@ -10,6 +10,10 @@ import type { Confidence, RawUnit, SymbolRecord } from "../types.js";
 // only in sample code (real usage, no doc entry) earns OBSERVED. RECOMMENDED and
 // COMMUNITY aren't derivable from these three automated fronts — they're left for
 // a future manual-curation pass, per the open questions in README.md.
+//
+// `runtimes` is the one field that is unioned rather than resolved by priority,
+// because each front observes a different runtime rather than a competing claim
+// about the same one. See src/parse/runtime.ts for where the hints come from.
 
 const SOURCE_PRIORITY = ["docs-reference", "llms", "sample"] as const;
 
@@ -47,7 +51,10 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
     const primary = ranked[0];
     const withApiLevel = ranked.find((u) => u.apiLevel !== undefined);
     const withDescription = ranked.find((u) => u.description !== undefined);
-    const runtimes = [...new Set(units.map((u) => u.runtimeHint).filter((r) => r !== undefined))];
+    // Unioned, not prioritized: a symbol documented under the Device App API and
+    // also seen in a watchface sample is valid in both, so both are evidence. The
+    // sort keeps the persisted JSON identical whatever order the walk produced.
+    const runtimes = [...new Set(units.map((u) => u.runtimeHint).filter((r) => r !== undefined))].sort();
 
     records.push({
       id,

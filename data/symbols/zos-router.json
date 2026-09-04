@@ -8,11 +8,13 @@
       "type": "function",
       "description": "Closes the current page to return to the previous page.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/back.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.checkSystemApp",
@@ -21,11 +23,13 @@
       "type": "function",
       "description": "Check if the system application supports jumping.",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/checkSystemApp.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.clearLaunchAppTimeout",
@@ -34,11 +38,13 @@
       "type": "function",
       "description": "Cancel the wakeup Mini Program timer created by `setLaunchAppTimeout`.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/clearLaunchAppTimeout.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.exit",
@@ -47,11 +53,13 @@
       "type": "function",
       "description": "Exit the Mini Program and return to the applist page.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/exit.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.getAppIdByName",
@@ -60,11 +68,13 @@
       "type": "function",
       "description": "Fuzzy match the English name of installed Mini Programs on the device by name.",
       "minApiLevel": 3.6,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/getAppIdByName.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.home",
@@ -73,11 +83,13 @@
       "type": "function",
       "description": "Exit the Mini Program and return to the watchface page.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/home.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.launchApp",
@@ -86,11 +98,13 @@
       "type": "function",
       "description": "Open Mini Program.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/launchApp.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.push",
@@ -99,11 +113,13 @@
       "type": "function",
       "description": "Navigate to a page within the Mini Program. Use the `back` method to go back to the original page.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/push.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.replace",
@@ -112,11 +128,13 @@
       "type": "function",
       "description": "Close the current page and jump to a page within the app.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/replace.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/router.setLaunchAppTimeout",
@@ -125,11 +143,13 @@
       "type": "function",
       "description": "Register a timer to launch the Mini Program at a given time.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/setLaunchAppTimeout.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

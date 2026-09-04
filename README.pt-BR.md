@@ -16,23 +16,25 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `parse` — extrair observações brutas de docs, `static/llms` e samples | implementado |
 | `enrich` — fundir as três frentes em um registro por símbolo | implementado |
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
-| `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/) |
+| `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/, runtimes/) |
 
-Testes baseados em fixtures cobrem as três frentes de parse e a fusão do enrich: `npm test`.
+Testes baseados em fixtures cobrem as três frentes de parse, a atribuição de runtime, a fusão do enrich e a saída do render: `npm test` (52 passando, 1 `todo`).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
 - **276 símbolos** em **34 módulos**, vindos de 222 páginas de referência + 226 entradas de `static/llms` + 622 imports em samples
 - 247 `OFFICIAL`, 29 `OBSERVED`
 - 242 símbolos têm `API_LEVEL` mínimo; 153 têm descrição
+- todo símbolo é atribuído a pelo menos um runtime: 267 Device App, 12 Workout Extension, 5 Side Service, 3 Watchface, 0 Settings App — 11 deles a mais de um
 
 ## Cobertura e limites
 
 Leia isto antes de confiar em qualquer resposta saída desta base.
 
-- **Apenas a API de Device App está coberta.** O parser se apoia na linha `import { x } from '@zos/...'` que as páginas de referência carregam. As páginas de `side-service-api` e `app-settings-api` usam outro formato, sem essa linha, e a API de watchface (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) vive em uma árvore separada. Todas são ignoradas hoje.
-- **O eixo de runtime está vazio.** Todo registro sai com `runtimes: []`. Como só a documentação de um runtime é parseada, esse campo ainda não distingue nada e é deixado vazio em vez de preenchido com um valor constante.
-- **Um símbolo ausente significa "não coberto", não "não existe."** Com um runtime parseado de seis, a ausência não diz nada sobre a plataforma real.
+- **A superfície de API documentada é a do Device App.** O parser se apoia na linha `import { x } from '@zos/...'` que as páginas de referência carregam. As páginas de `side-service-api` e `app-settings-api` não têm essa linha — esses runtimes usam globais (`fetch`, `settingsStorage`, `Settings.render`), não módulos `@zos` — e a API de watchface (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) vive em uma árvore separada. Todas seguem ignoradas pelas frentes de docs.
+- **O eixo de runtime está populado, de forma desigual.** Todo símbolo carrega ao menos um runtime, mas 267 de 276 são Device App. Os 5 do Side Service e os 3 do Watchface vêm de código de sample, não de uma entrada de documentação, e o Settings App não tem **nenhum** — ver [`runtimes/index.md`](runtimes/index.md), que declara essa lacuna em vez de omitir o runtime.
+- **Um símbolo ausente significa "não coberto", não "não existe."** Isso vale com mais força no eixo de runtime: um símbolo ausente de `runtimes/settings.md` não diz nada sobre o Settings App poder usá-lo, porque nada foi extraído para aquele runtime.
+- **O runtime é inferido do caminho da fonte, nunca do texto da página.** Nenhuma página ou sample declara seu runtime; os dois repositórios oficiais separam os runtimes por diretório, então o diretório é a evidência. As regras e o documento que ancora cada uma vivem em [`src/parse/runtime.ts`](src/parse/runtime.ts). É o eixo mais exposto a uma reorganização upstream, e a razão de ter arquivo de teste próprio.
 - **`API_LEVEL` é o único eixo que funciona hoje.** É lido literalmente do blockquote de badge de cada página (`Start from API_LEVEL`, ou `Supported since API_LEVEL` — as duas redações ocorrem), nunca inferido.
 - **A descrição está ausente na maioria dos símbolos.** 94 páginas de referência trazem o título no frontmatter em vez de um H1, e o extrator de descrição só lê o texto sob um H1. Registrado como teste `todo` em `test/parse.test.ts`.
 - **Bugs de parser são o principal risco, e todos até agora foram a mesma falha**: um formato de origem que parecia regular no primeiro arquivo e não era. Cada um está agora fixado por um teste de fixture construído a partir do arquivo real que o quebrou, então uma regressão falha a suíte em vez de produzir registros errados silenciosamente.
@@ -48,7 +50,7 @@ npm run typecheck
 
 `sync` clona os repositórios oficiais em `.cache/` (não versionado, dezenas de MB) e reescreve `data/`. É idempotente: rodar duas vezes seguidas não gera diff.
 
-`npm run render` reescreve `api/` e `compatibility/` a partir do JSON fonte de verdade. Cada diretório recebe um `index.md` (lista de módulos e a visão inversa: quais módulos um dado `API_LEVEL` libera). Um `README.md` escrito à mão em qualquer um dos dois é preservado; todo outro `.md` ali é gerado e sobrescrito.
+`npm run render` reescreve `api/`, `compatibility/` e `runtimes/` a partir do JSON fonte de verdade. Cada diretório recebe um `index.md` (a lista de módulos; a visão inversa — quais módulos um dado `API_LEVEL` libera; e a tabela de cobertura por runtime). Um `README.md` escrito à mão em qualquer um deles é preservado; todo outro `.md` ali é gerado e sobrescrito.
 
 ## Como funciona
 
@@ -59,8 +61,10 @@ Quatro estágios, cada um idempotente e inspecionável isoladamente, de modo que
    - **docs-reference** — `docs/reference/**/*.mdx`, um arquivo por símbolo. O módulo é resolvido a partir da linha de import no exemplo da própria página, porque o nome do diretório não corresponde de forma confiável ao id do módulo.
    - **llms** — `static/llms/@zos-*.md`, um arquivo por módulo, aproveitando a estruturação que a própria Zepp Health já fez para consumo por LLMs. O id do módulo vem das linhas de import dentro do arquivo, não do H1: `@zos/ui` é dividido em vários arquivos cujo H1 diz `@zos/ui-methods`, `@zos/ui-widget-basic` etc., e esses ids não são importáveis.
    - **samples** — todo import `@zos/*` nos aplicativos de exemplo oficiais. Evidência de uso real, não uma afirmação da documentação.
-3. **enrich** — agrupa as observações por id de símbolo e normaliza os metadados que são o coração do projeto: `API_LEVEL` mínimo, runtime, fonte e nível de confiança. A prioridade por campo é `docs-reference` > `llms` > `sample`.
-4. **render** — gera `api/` (símbolos por módulo) e `compatibility/` (agrupados por `API_LEVEL` mínimo, o eixo populado), mais um `index.md` em cada. Símbolo sem mínimo documentado é rotulado `not stated`, nunca `any` — ausência de nível é ausência de evidência, não afirmação de compatibilidade. Os outros diretórios do README (`concepts/`, `runtimes/`, `patterns/`, `examples/`, `tools/`) guardam conhecimento curado não derivável das três frentes automatizadas, então ainda não são gerados. É o que a Agent Skill lê.
+
+   Cada frente também atribui um **runtime** a partir do caminho de onde leu a unidade, já que nenhum conteúdo declara um: `docs/reference/device-app-api/` é o Device App, `zeppos-samples/watchface/` é um Watchface, `app-side/` dentro de qualquer app de exemplo é o Side Service. Um caminho que nenhuma regra cobre não recebe runtime, em vez de receber um padrão.
+3. **enrich** — agrupa as observações por id de símbolo e normaliza os metadados que são o coração do projeto: `API_LEVEL` mínimo, runtime, fonte e nível de confiança. A prioridade por campo é `docs-reference` > `llms` > `sample` — exceto `runtimes`, que é **unido** em vez de resolvido por prioridade, porque cada frente observa um runtime diferente em vez de fazer uma afirmação concorrente sobre o mesmo. Um símbolo documentado na API de Device App e também visto em um sample de watchface é válido nos dois.
+4. **render** — gera `api/` (símbolos por módulo), `compatibility/` (agrupados por `API_LEVEL` mínimo) e `runtimes/` (uma página por runtime), mais um `index.md` em cada. Símbolo sem mínimo documentado é rotulado `not stated`, nunca `any` — ausência de nível é ausência de evidência, não afirmação de compatibilidade. `runtimes/` gera página para **todo** runtime, inclusive os sem símbolo algum, porque uma página ausente se lê como "este runtime não existe" enquanto uma página declarando "0 símbolos cobertos" se lê como a lacuna de cobertura que é. Os demais diretórios do README (`concepts/`, `patterns/`, `examples/`, `tools/`) guardam conhecimento que as três frentes automatizadas ainda não alcançam, então não são gerados. É o que a Agent Skill lê.
 
 ## Modelo de dados
 
@@ -80,7 +84,7 @@ O JSON estruturado produzido por parse/enrich é a fonte de verdade. O Markdown 
 | `type` | `function`, `constant` ou `value` |
 | `description` | Descrição curta, quando alguma fonte declara uma |
 | `minApiLevel` | `API_LEVEL` mínimo. Ausente quando nenhuma fonte declara — nunca inventado |
-| `runtimes` | Runtimes em que o símbolo é válido (ver *Cobertura e limites*) |
+| `runtimes` | Runtimes para os quais o símbolo tem evidência, vindos do caminho da fonte. Um de `device-app`, `side-service`, `settings`, `watchface`, `workout-extension` (ver *Cobertura e limites*) |
 | `source` | De qual frente o registro foi construído primariamente |
 | `confidence` | Ver abaixo |
 | `originalPath` | Arquivo de onde o registro foi extraído, normalizado para posix |
@@ -104,9 +108,10 @@ O JSON estruturado produzido por parse/enrich é a fonte de verdade. O Markdown 
 src/
   fetch/    estágio 1 — clonar/atualizar os repositórios oficiais
   parse/    estágio 2 — três frentes de extração
+    runtime.ts  regras caminho -> runtime, com o doc que ancora cada uma
   enrich/   estágio 3 — fundir e normalizar em SymbolRecord
   store/    gravar o JSON fonte de verdade + manifesto
-  render/   estágio 4 — geração de Markdown (api/, compatibility/)
+  render/   estágio 4 — geração de Markdown (api/, compatibility/, runtimes/)
   cli.ts    comandos sync / render
 data/
   manifest.json   estado do sync: data, commits das fontes, contagens
@@ -121,9 +126,11 @@ test/
 .cache/     repositórios oficiais clonados (não versionado)
 ```
 
-O Markdown gerado vai para `api/` e `compatibility/`. `concepts/` guarda notas curadas
+O Markdown gerado vai para `api/`, `compatibility/` e `runtimes/`. `concepts/` guarda notas curadas
 sobre retrieval/RAG/MCP e suas relações com o projeto (ver [concepts/README.md](concepts/README.md)).
-`runtimes/`, `patterns/`, `examples/` e `tools/` permanecem vazios até existir conteúdo curado para preenchê-los.
+`patterns/`, `examples/` e `tools/` permanecem vazios até existir uma frente para preenchê-los — o material
+bruto dos três já está em `.cache/` (`guides/best-practice/`, os 33 apps de exemplo, `guides/tools/`),
+então são trabalho de parsing, não de curadoria.
 
 ## Decisões de projeto
 
@@ -133,6 +140,8 @@ sobre retrieval/RAG/MCP e suas relações com o projeto (ver [concepts/README.md
 4. **Um arquivo JSON por módulo**, em `data/symbols/<slug-do-módulo>.json`. Cada arquivo carrega o id canônico do módulo e seus símbolos; o nome do arquivo é apenas um slug derivado (`@zos/router` → `zos-router.json`). Com ~40 módulos e ~330 símbolos, um arquivo por símbolo geraria centenas de arquivos minúsculos e um diff de sync ilegível. Agrupar por módulo mantém o diff no nível em que a mudança de fato acontece — *o que mudou em `@zos/router`* — e ainda deixa cada arquivo pequeno o bastante para ser lido inteiro.
    - A gravação reescreve o diretório inteiro, então um módulo que desaparece na origem desaparece aqui também.
    - `originalPath` é normalizado para posix, para o JSON versionado não depender do sistema operacional de quem rodou o sync.
+5. **O runtime é lido do caminho da fonte, em um único lugar.** Nenhuma página ou sample declara a que runtime pertence, mas os dois repositórios oficiais separam os runtimes por diretório, então o caminho carrega o fato. Todas as regras vivem em `src/parse/runtime.ts` junto com o documento que ancora cada uma, em vez de espalhadas pelas três frentes. Um caminho que não casa com nenhuma regra não gera runtime — o mesmo contrato de "nunca fabricar" que `minApiLevel` já tem.
+6. **Cinco runtimes, não seis.** `guides/architecture/arc.mdx` nomeia três partes de um Mini Program — Device App, Settings App, Side Service — e `guides/architecture/folder-structure.mdx` mostra que `app-side/` **é** o diretório do Side Service. "App-side" e "Side Service" eram o mesmo runtime com dois nomes, então só um foi mantido. Shortcut Card (`app-widget/`) e SecondaryWidget (`secondary-widget/`) são pontos de entrada extras, não runtimes extras: executam no relógio como o Device App, e são atribuídos a ele.
 
 ## Pontos em aberto
 
@@ -142,8 +151,8 @@ sobre retrieval/RAG/MCP e suas relações com o projeto (ver [concepts/README.md
 
 [`skills/zepp-os/SKILL.md`](skills/zepp-os/SKILL.md) não contém documentação em si. Ela ensina o agente a *usar* esta base de conhecimento:
 
-- identificar primeiro o runtime alvo e o `API_LEVEL` alvo
-- verificar compatibilidade antes de sugerir uma API
+- identificar primeiro o runtime alvo e o `API_LEVEL` alvo, consultando `runtimes/index.md`
+- verificar os dois eixos — `runtimes/` e `compatibility/` — antes de sugerir uma API
 - preferir documentação e exemplos oficiais
 - não assumir que APIs de browser ou Node.js existem no runtime do Zepp OS
 - explicitar quando a documentação disponível for insuficiente

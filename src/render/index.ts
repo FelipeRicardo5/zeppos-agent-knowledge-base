@@ -1,25 +1,50 @@
 import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
-import type { SymbolRecord } from "../types.js";
+import type { Runtime, SymbolRecord } from "../types.js";
 
 // Stage 4: render — generate the final Markdown from the JSON source of truth.
 //
-// This stage ships the knowledge in the shape the Agent Skill can consume. In v0
-// only the axes the data actually supports are rendered: the `api/` view (one file
-// per module, symbols grouped and described) and the `compatibility/` view (the
-// cross-reference that is this project's point — grouped by minimum API_LEVEL,
-// the one axis that is populated today; runtimes is empty and therefore omitted).
+// This stage ships the knowledge in the shape the Agent Skill can consume. Three
+// views, each over an axis the data actually supports:
+//
+//   api/            one file per module, symbols grouped and described
+//   compatibility/  grouped by minimum API_LEVEL — the cross-reference that is
+//                   this project's point
+//   runtimes/       one file per runtime, the axis SKILL.md step 1 depends on
+//
 // Each view also gets an `index.md` so the Skill can find a module without
 // listing the directory and guessing slugs.
 //
-// The other README dirs (concepts/, runtimes/, patterns/, examples/, tools/) hold
-// curated knowledge that is not derivable from the three automated fronts, so they
-// are deliberately not created here rather than being fabricated.
+// `runtimes/` renders a page for every runtime in the union, *including the ones
+// with no symbols*. A missing page reads like "this runtime does not exist"; a
+// page that states "0 symbols covered" reads like the coverage gap it is, which
+// is the distinction the whole KB is built on.
+//
+// The remaining README dirs (concepts/, patterns/, examples/, tools/) hold
+// knowledge the three automated fronts don't yet reach, so they are deliberately
+// not created here rather than being fabricated.
 
 const API_DIR = "api";
 const COMPAT_DIR = "compatibility";
+const RUNTIMES_DIR = "runtimes";
 const INDEX_FILE = "index.md";
+
+/**
+ * Every runtime in the `Runtime` union, in the order a developer meets them, each
+ * with the name the official docs use. Iterating this rather than the runtimes
+ * present in the data is what lets an uncovered runtime render as a stated gap.
+ * The slug is the union value itself, and none of them is "index".
+ */
+const RUNTIMES: [runtime: Runtime, label: string][] = [
+  ["device-app", "Device App"],
+  ["side-service", "Side Service"],
+  ["settings", "Settings App"],
+  ["watchface", "Watchface"],
+  ["workout-extension", "Workout Extension"],
+];
+
+const RUNTIME_LABELS = new Map<Runtime, string>(RUNTIMES);
 
 // Hand-written, so the rewrite in `render` must leave them alone.
 const PRESERVED = new Set(["README.md", "README.pt-BR.md"]);
@@ -203,17 +228,130 @@ function compatIndexMarkdown(modules: ModuleFile[]): string {
   return lines.join("\n");
 }
 
+/** The modules that have at least one symbol attributed to `runtime`. */
+function modulesForRuntime(modules: ModuleFile[], runtime: Runtime): ModuleFile[] {
+  return modules
+    .map(({ module, symbols }) => ({
+      module,
+      symbols: symbols.filter((record) => record.runtimes.includes(runtime)),
+    }))
+    .filter(({ symbols }) => symbols.length > 0);
+}
+
+/** The record's *other* runtimes, labelled — the cross-runtime signal, per row. */
+function alsoValidIn(record: SymbolRecord, runtime: Runtime): string {
+  const others = record.runtimes
+    .filter((other) => other !== runtime)
+    .map((other) => RUNTIME_LABELS.get(other) ?? other);
+  return others.length > 0 ? others.join(", ") : "—";
+}
+
+function runtimeMarkdown(runtime: Runtime, label: string, modules: ModuleFile[]): string {
+  const present = modulesForRuntime(modules, runtime);
+  const symbolCount = present.reduce((sum, m) => sum + m.symbols.length, 0);
+  const lines = [`# ${label} — runtime`, ""];
+
+  if (symbolCount === 0) {
+    lines.push("**No symbols are attributed to this runtime.**", "");
+    lines.push(
+      "Nothing in this knowledge base answers a question about this runtime yet.",
+      "That is a coverage gap here, not a statement about Zepp OS: a symbol absent",
+      "from this page is *not covered*, never *does not exist*.",
+      "",
+    );
+    return lines.join("\n");
+  }
+
+  lines.push(`**${symbolCount} symbols across ${present.length} modules.**`, "");
+  lines.push(
+    "A symbol is attributed to a runtime by the source path it was extracted from,",
+    "not by any statement in its own text. Absence is *not covered*, not *invalid here*.",
+    "",
+  );
+
+  for (const module of present) {
+    lines.push(`## \`${module.module}\``, "");
+    lines.push("| Symbol | Min API_LEVEL | Also valid in |");
+    lines.push("| --- | --- | --- |");
+    for (const record of module.symbols) {
+      lines.push(
+        `| \`${record.symbol}\` | ${apiLevelLabel(record)} | ${cell(alsoValidIn(record, runtime))} |`,
+      );
+    }
+    lines.push("");
+  }
+
+  return lines.join("\n");
+}
+
+/**
+ * The coverage table over the runtime axis: how much each runtime is covered, and
+ * — the part that matters — which runtimes are not covered at all. Also surfaces
+ * the symbols no path rule could attribute, so the gap is a number, not a silence.
+ */
+function runtimeIndexMarkdown(modules: ModuleFile[]): string {
+  const all = modules.flatMap((m) => m.symbols);
+  const lines = ["# Runtime index", ""];
+  lines.push(
+    "Which runtime each covered symbol is valid in. Identify the target runtime",
+    "before trusting anything in `../api/` — a symbol documented for the Device App",
+    "is not thereby available in the Settings App or a Watchface.",
+    "",
+  );
+  lines.push("| Runtime | Symbols | Modules | Page |");
+  lines.push("| --- | --- | --- | --- |");
+
+  for (const [runtime, label] of RUNTIMES) {
+    const present = modulesForRuntime(modules, runtime);
+    const symbolCount = present.reduce((sum, m) => sum + m.symbols.length, 0);
+    const page = `[${runtime}.md](${runtime}.md)`;
+    lines.push(
+      `| ${label} | ${symbolCount} | ${present.length} | ${symbolCount === 0 ? `${page} — **not covered**` : page} |`,
+    );
+  }
+
+  const shared = all.filter((record) => record.runtimes.length > 1);
+  if (shared.length > 0) {
+    lines.push("", "## Valid in more than one runtime", "");
+    lines.push("The symbols for which a second runtime has actual evidence behind it.", "");
+    for (const record of shared) {
+      const labels = record.runtimes.map((r) => RUNTIME_LABELS.get(r) ?? r).join(", ");
+      lines.push(`- \`${record.id}\` — ${labels}`);
+    }
+    lines.push("");
+  }
+
+  const unattributed = all.filter((record) => record.runtimes.length === 0);
+  if (unattributed.length > 0) {
+    lines.push("", "## No runtime attributed", "");
+    lines.push(
+      `${unattributed.length} of ${all.length} symbols came from a path no runtime rule covers.`,
+      "They are absent from every page above, and the runtime question is open for them.",
+      "",
+    );
+    for (const record of unattributed) {
+      lines.push(`- \`${record.id}\``);
+    }
+    lines.push("");
+  }
+
+  return lines.join("\n");
+}
+
 async function writePage(file: string, content: string): Promise<void> {
   await writeFile(file, `${content.replace(/\n+$/, "")}\n`, "utf-8");
 }
 
 /**
- * Rewrites the generated pages in both out dirs so a module that disappeared
+ * Rewrites the generated pages in every out dir so a module that disappeared
  * upstream also disappears here — same idempotence contract as `writeSymbols`.
  * Deterministic ordering makes a rerun a no-op in git. Only generated `.md`
  * files are removed, so a curated README in either dir survives.
  */
-export async function render(symbolsDir: string, outDir: string): Promise<{ modules: number }> {
+export async function render(
+  symbolsDir: string,
+  outDir: string,
+): Promise<{ modules: number; runtimes: number }> {
   const modules = await readModuleFiles(symbolsDir);
 
   // `index.md` is generated, so no module may claim that slug. Resolved before
@@ -233,8 +371,9 @@ export async function render(symbolsDir: string, outDir: string): Promise<{ modu
 
   const apiDir = path.join(outDir, API_DIR);
   const compatDir = path.join(outDir, COMPAT_DIR);
+  const runtimesDir = path.join(outDir, RUNTIMES_DIR);
 
-  for (const dir of [apiDir, compatDir]) {
+  for (const dir of [apiDir, compatDir, runtimesDir]) {
     await mkdir(dir, { recursive: true });
     for (const entry of await readdir(dir)) {
       if (entry.endsWith(".md") && !PRESERVED.has(entry)) await rm(path.join(dir, entry));
@@ -246,8 +385,13 @@ export async function render(symbolsDir: string, outDir: string): Promise<{ modu
     await writePage(path.join(compatDir, `${slug}.md`), compatMarkdown(module));
   }
 
+  for (const [runtime, label] of RUNTIMES) {
+    await writePage(path.join(runtimesDir, `${runtime}.md`), runtimeMarkdown(runtime, label, modules));
+  }
+
   await writePage(path.join(apiDir, INDEX_FILE), apiIndexMarkdown(modules));
   await writePage(path.join(compatDir, INDEX_FILE), compatIndexMarkdown(modules));
+  await writePage(path.join(runtimesDir, INDEX_FILE), runtimeIndexMarkdown(modules));
 
-  return { modules: modules.length };
+  return { modules: modules.length, runtimes: RUNTIMES.length };
 }

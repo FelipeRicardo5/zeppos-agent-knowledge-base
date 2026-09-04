@@ -8,11 +8,13 @@
       "type": "function",
       "description": "The Mini Program can customize the system events and can actively dispatch the custom system events.",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/emitCustomSystemEvent.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app.getPackageInfo",
@@ -21,11 +23,13 @@
       "type": "function",
       "description": "Get some of the fields in the Mini Program configuration `app.json`.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPackageInfo.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app.getPackageInfoById",
@@ -34,11 +38,13 @@
       "type": "function",
       "description": "Get some of the fields in the Mini Program configuration `app.json` by app ID.",
       "minApiLevel": 4,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPackageInfoById.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app.getPerformance",
@@ -47,11 +53,13 @@
       "type": "function",
       "description": "Get Mini Program performance statistics, including memory usage and loading performance metrics.",
       "minApiLevel": 4,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPerformance.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app.getScene",
@@ -60,11 +68,14 @@
       "type": "function",
       "description": "Get the current scene where the Mini Program is running.",
       "minApiLevel": 2,
-      "runtimes": [],
+      "runtimes": [
+        "device-app",
+        "watchface"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getScene.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app.queryPermission",
@@ -73,11 +84,13 @@
       "type": "function",
       "description": "Check the authorization status of Mini Program permissions.",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/queryPermission.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app.requestPermission",
@@ -86,22 +99,26 @@
       "type": "function",
       "description": "Dynamic permission application, when querying a dynamic permission has not been authorized, you can use this interface to apply for the relevant permission. Generally, before using the system-related functional interface (such as the interface to enable app services), do the relevant permission check and application, otherwise the functional interface will not be allowed to execute due to the permission issue.",
       "minApiLevel": 3,
-      "runtimes": [],
+      "runtimes": [
+        "device-app"
+      ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/requestPermission.mdx",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/app.SCENE_AOD",
       "module": "@zos/app",
       "symbol": "SCENE_AOD",
       "type": "constant",
-      "runtimes": [],
+      "runtimes": [
+        "watchface"
+      ],
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

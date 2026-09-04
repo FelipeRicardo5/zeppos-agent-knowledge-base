@@ -6,11 +6,14 @@
       "module": "@zeppos/zml/base-page",
       "symbol": "BasePage",
       "type": "function",
-      "runtimes": [],
+      "runtimes": [
+        "device-app",
+        "workout-extension"
+      ],
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/application/3.0/download/page/index.js",
-      "extractedAt": "2026-09-03"
+      "extractedAt": "2026-09-04"
     }
   ]
 }

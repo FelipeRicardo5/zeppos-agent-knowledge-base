@@ -16,23 +16,25 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `parse` — extract raw observations from docs, `static/llms` and samples | implemented |
 | `enrich` — merge the three fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
-| `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/) |
+| `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/) |
 
-Fixture-based tests cover all three parse fronts and the enrich merge: `npm test`.
+Fixture-based tests cover all three parse fronts, runtime attribution, the enrich merge and the render output: `npm test` (52 passing, 1 `todo`).
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
 - **276 symbols** across **34 modules**, from 222 reference pages + 226 `static/llms` entries + 622 sample imports
 - 247 `OFFICIAL`, 29 `OBSERVED`
 - 242 symbols carry a minimum `API_LEVEL`; 153 carry a description
+- every symbol is attributed to at least one runtime: 267 Device App, 12 Workout Extension, 5 Side Service, 3 Watchface, 0 Settings App — 11 of them to more than one
 
 ## Coverage and limits
 
 Read this before trusting an answer that came out of this KB.
 
-- **Only the Device App API is covered.** The parser keys on the `import { x } from '@zos/...'` line that reference pages carry. `side-service-api` and `app-settings-api` pages use a different format without that line, and the watchface API (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) lives under a separate tree entirely. All of them are currently skipped.
-- **The runtime axis is empty.** Every record ships `runtimes: []`. Since only one runtime's docs are parsed, this field cannot yet distinguish anything and is not populated rather than being filled with a constant.
-- **A missing symbol means "not covered", not "does not exist."** With one runtime parsed out of six, absence carries no information about the real platform.
+- **The documented API surface is the Device App's.** The parser keys on the `import { x } from '@zos/...'` line that reference pages carry. `side-service-api` and `app-settings-api` pages don't have one — those runtimes use globals (`fetch`, `settingsStorage`, `Settings.render`), not `@zos` modules — and the watchface API (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) lives under a separate tree entirely. All of them are currently skipped by the docs fronts.
+- **The runtime axis is populated, unevenly.** Every symbol carries at least one runtime, but 267 of 276 are Device App. The Side Service's 5 and the Watchface's 3 come from sample code, not from a documentation entry, and the Settings App has **none** — see [`runtimes/index.md`](runtimes/index.md), which states that gap rather than omitting the runtime.
+- **A missing symbol means "not covered", not "does not exist."** This holds hardest on the runtime axis: a symbol absent from `runtimes/settings.md` says nothing about whether the Settings App can use it, because nothing has been extracted for that runtime at all.
+- **Runtime is inferred from the source path, never from a page's text.** No page or sample states its runtime; both official repos separate the runtimes by directory, so the directory is the evidence. The rules and the doc that anchors each one live in [`src/parse/runtime.ts`](src/parse/runtime.ts). This is the axis most exposed to an upstream reorganization, and the reason it has its own test file.
 - **`API_LEVEL` is the one axis that works today.** It is read verbatim from the badge blockquote on each page (`Start from API_LEVEL`, or `Supported since API_LEVEL` — both wordings occur), never inferred.
 - **Descriptions are missing for most symbols.** 94 reference pages carry their title in frontmatter instead of an H1, and the description extractor only reads the text under an H1. Tracked as a `todo` test in `test/parse.test.ts`.
 - **Parser bugs are the main risk, and every one so far was the same failure**: a source format that looked regular in the first file and wasn't. Each is now pinned by a fixture test built from the real file that broke it, so a regression fails the suite instead of quietly producing wrong records.
@@ -48,7 +50,7 @@ npm run typecheck
 
 `sync` clones the official repos into `.cache/` (untracked, ~ tens of MB) and rewrites `data/`. It is idempotent: running it twice in a row produces no diff.
 
-`npm run render` rewrites `api/` and `compatibility/` from the JSON source of truth. Each dir gets an `index.md` (module list, and the inverse view: which modules a given `API_LEVEL` unlocks). A hand-written `README.md` in either dir is preserved; every other `.md` there is generated and overwritten.
+`npm run render` rewrites `api/`, `compatibility/` and `runtimes/` from the JSON source of truth. Each dir gets an `index.md` (the module list; the inverse view — which modules a given `API_LEVEL` unlocks; and the runtime coverage table). A hand-written `README.md` in any of them is preserved; every other `.md` there is generated and overwritten.
 
 ## How it works
 
@@ -59,8 +61,10 @@ Four stages, each idempotent and independently inspectable, so any one of them c
    - **docs-reference** — `docs/reference/**/*.mdx`, one file per symbol. The module is resolved from the import line in the page's own example, because the directory name doesn't reliably match the module id.
    - **llms** — `static/llms/@zos-*.md`, one file per module, reusing the structuring Zepp Health already did for LLM consumption. The module id comes from the import lines inside the file, not from the H1: `@zos/ui` is split across several files whose H1 reads `@zos/ui-methods`, `@zos/ui-widget-basic` and so on, and those ids can't be imported.
    - **samples** — every `@zos/*` import across the official example apps. Evidence of real usage, not a documentation claim.
-3. **enrich** — groups observations by symbol id and normalizes the metadata that is the point of the project: minimum `API_LEVEL`, runtime, source and confidence tier. Field-level priority is `docs-reference` > `llms` > `sample`.
-4. **render** — generates `api/` (symbols per module) and `compatibility/` (grouped by minimum `API_LEVEL`, the populated axis), plus an `index.md` in each. A symbol with no documented minimum is labelled `not stated`, never `any` — absence of a level is absence of evidence, not a compatibility claim. The other README dirs (`concepts/`, `runtimes/`, `patterns/`, `examples/`, `tools/`) hold curated knowledge not derivable from the three automated fronts, so they are not generated yet. This is what the Agent Skill reads.
+
+   Each front also attributes a **runtime** from the path it read the unit from, since no content states one: `docs/reference/device-app-api/` is the Device App, `zeppos-samples/watchface/` is a Watchface, `app-side/` inside any sample app is the Side Service. A path no rule covers gets no runtime rather than a default.
+3. **enrich** — groups observations by symbol id and normalizes the metadata that is the point of the project: minimum `API_LEVEL`, runtime, source and confidence tier. Field-level priority is `docs-reference` > `llms` > `sample` — except `runtimes`, which is **unioned** instead, because each front observes a different runtime rather than making a competing claim about the same one. A symbol documented under the Device App API and also seen in a watchface sample is valid in both.
+4. **render** — generates `api/` (symbols per module), `compatibility/` (grouped by minimum `API_LEVEL`) and `runtimes/` (one page per runtime), plus an `index.md` in each. A symbol with no documented minimum is labelled `not stated`, never `any` — absence of a level is absence of evidence, not a compatibility claim. `runtimes/` renders a page for **every** runtime including the ones with no symbols, because a missing page reads like "this runtime does not exist" while a page stating "0 symbols covered" reads like the coverage gap it is. The remaining README dirs (`concepts/`, `patterns/`, `examples/`, `tools/`) hold knowledge the three automated fronts don't yet reach, so they are not generated. This is what the Agent Skill reads.
 
 ## Data model
 
@@ -80,7 +84,7 @@ The structured JSON produced by parse/enrich is the source of truth. Markdown is
 | `type` | `function`, `constant` or `value` |
 | `description` | Short description, when a source states one |
 | `minApiLevel` | Minimum `API_LEVEL`. Absent when no source states it — never fabricated |
-| `runtimes` | Runtimes the symbol is valid in (see *Coverage and limits*) |
+| `runtimes` | Runtimes the symbol has evidence for, from the source path. One of `device-app`, `side-service`, `settings`, `watchface`, `workout-extension` (see *Coverage and limits*) |
 | `source` | Which front the record was primarily built from |
 | `confidence` | See below |
 | `originalPath` | File the record was extracted from, posix-normalized |
@@ -104,9 +108,10 @@ The structured JSON produced by parse/enrich is the source of truth. Markdown is
 src/
   fetch/    stage 1 — clone/update official repos
   parse/    stage 2 — three extraction fronts
+    runtime.ts  path -> runtime rules, with the doc anchoring each one
   enrich/   stage 3 — merge and normalize into SymbolRecord
   store/    write the JSON source of truth + manifest
-  render/   stage 4 — Markdown generation (api/, compatibility/)
+  render/   stage 4 — Markdown generation (api/, compatibility/, runtimes/)
   cli.ts    sync / render commands
 data/
   manifest.json   sync state: date, source commits, counts
@@ -121,7 +126,7 @@ test/
 .cache/     cloned official repos (untracked)
 ```
 
-The generated Markdown lands in `api/` and `compatibility/`. `concepts/` holds curated notes on retrieval/RAG/MCP and their relation to this project (see [concepts/README.md](concepts/README.md)). `runtimes/`, `patterns/`, `examples/` and `tools/` stay empty until curated content exists to fill them.
+The generated Markdown lands in `api/`, `compatibility/` and `runtimes/`. `concepts/` holds curated notes on retrieval/RAG/MCP and their relation to this project (see [concepts/README.md](concepts/README.md)). `patterns/`, `examples/` and `tools/` stay empty until a front exists to fill them — the raw material for all three is already in `.cache/` (`guides/best-practice/`, the 33 sample apps, `guides/tools/`), so they are a parsing job, not a curation job.
 
 ## Design decisions
 
@@ -131,6 +136,8 @@ The generated Markdown lands in `api/` and `compatibility/`. `concepts/` holds c
 4. **One JSON file per module**, at `data/symbols/<module-slug>.json`. Each file carries the canonical module id and its symbols; the filename is only a derived slug (`@zos/router` → `zos-router.json`). With ~40 modules and ~330 symbols, one file per symbol would mean hundreds of tiny files and an unreadable sync diff. Grouping by module keeps the diff at the level where change actually happens — *what changed in `@zos/router`* — while each file stays small enough to read whole.
    - The write rewrites the whole directory, so a module that disappears upstream disappears here too.
    - `originalPath` is posix-normalized so the versioned JSON doesn't depend on which OS ran the sync.
+5. **Runtime is read from the source path, in one place.** No page or sample states which runtime it belongs to, but both official repos separate the runtimes by directory, so the path carries the fact. All the rules live in `src/parse/runtime.ts` with the doc that anchors each one, rather than being spread across the three fronts. A path matching no rule yields no runtime — the same "never fabricate" contract `minApiLevel` has.
+6. **Five runtimes, not six.** `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App, Settings App, Side Service — and `guides/architecture/folder-structure.mdx` shows `app-side/` **is** the Side Service directory. "App-side" and "Side Service" were the same runtime under two names, so only one is kept. Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are extra entry points rather than extra runtimes: they execute on the watch like the Device App, and attribute to it.
 
 ## Open questions
 
@@ -140,8 +147,8 @@ The generated Markdown lands in `api/` and `compatibility/`. `concepts/` holds c
 
 [`skills/zepp-os/SKILL.md`](skills/zepp-os/SKILL.md) contains no documentation itself. It teaches an agent to *use* this knowledge base:
 
-- identify the target runtime and the target `API_LEVEL` first
-- verify compatibility before suggesting an API
+- identify the target runtime and the target `API_LEVEL` first, via [`runtimes/index.md`](runtimes/index.md)
+- verify both axes — `runtimes/` and `compatibility/` — before suggesting an API
 - prefer official documentation and examples
 - never assume browser or Node.js APIs exist on the Zepp OS runtime
 - say so explicitly when the available documentation is insufficient

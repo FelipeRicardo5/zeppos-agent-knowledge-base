@@ -31,6 +31,10 @@ const routerRecord = {
   extractedAt: "2026-09-03",
 };
 
+// routerRecord ships `runtimes: []` (the axis before this stage populated it);
+// deviceRecord is the same record once a source path attributed a runtime to it.
+const deviceRecord = { ...routerRecord, runtimes: ["device-app"] };
+
 describe("render", () => {
   it("writes one api page and one compatibility page per module", async () => {
     const { symbols, out } = await writeFixture({
@@ -39,7 +43,7 @@ describe("render", () => {
 
     const counts = await render(symbols, out);
 
-    assert.deepEqual(counts, { modules: 1 });
+    assert.deepEqual(counts, { modules: 1, runtimes: 5 });
 
     const apiFiles = await readdir(path.join(out, "api"));
     const compatFiles = await readdir(path.join(out, "compatibility"));
@@ -171,6 +175,103 @@ describe("render", () => {
     const apiFiles = (await readdir(path.join(out, "api"))).sort();
     assert.deepEqual(apiFiles, ["README.md", "index.md", "zos-router.md"]);
     assert.equal(await readFile(path.join(out, "api", "README.md"), "utf-8"), "curated by hand\n");
+  });
+
+
+  it("writes a page for every runtime, not only the covered ones", async () => {
+    // A missing page reads like "this runtime does not exist". The KB's whole
+    // stance is that absence is coverage, so every runtime gets a page.
+    const { symbols, out } = await writeFixture({
+      "zos-router": { module: "@zos/router", symbols: [deviceRecord] },
+    });
+
+    await render(symbols, out);
+
+    assert.deepEqual((await readdir(path.join(out, "runtimes"))).sort(), [
+      "device-app.md",
+      "index.md",
+      "settings.md",
+      "side-service.md",
+      "watchface.md",
+      "workout-extension.md",
+    ]);
+  });
+
+  it("states the gap on an uncovered runtime page instead of staying silent", async () => {
+    const { symbols, out } = await writeFixture({
+      "zos-router": { module: "@zos/router", symbols: [deviceRecord] },
+    });
+
+    await render(symbols, out);
+    const content = await readFile(path.join(out, "runtimes", "settings.md"), "utf-8");
+
+    assert.match(content, /^# Settings App — runtime$/m);
+    assert.match(content, /\*\*No symbols are attributed to this runtime\.\*\*/);
+    assert.match(content, /\*not covered\*, never \*does not exist\*/);
+  });
+
+  it("runtime page groups symbols by module and names the other runtimes", async () => {
+    const { symbols, out } = await writeFixture({
+      "zos-ui": {
+        module: "@zos/ui",
+        symbols: [
+          { ...deviceRecord, id: "@zos/ui.createWidget", module: "@zos/ui", symbol: "createWidget", runtimes: ["device-app", "watchface"] },
+          { ...deviceRecord, id: "@zos/ui.deleteWidget", module: "@zos/ui", symbol: "deleteWidget", minApiLevel: undefined },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const content = await readFile(path.join(out, "runtimes", "device-app.md"), "utf-8");
+
+    assert.match(content, /\*\*2 symbols across 1 modules\.\*\*/);
+    assert.match(content, /## `@zos\/ui`/);
+    assert.match(content, /`createWidget` \| >= 2 \| Watchface/);
+    assert.match(content, /`deleteWidget` \| not stated \| —/);
+
+    // The same symbol appears on the watchface page, pointing back the other way.
+    const watchface = await readFile(path.join(out, "runtimes", "watchface.md"), "utf-8");
+    assert.match(watchface, /`createWidget` \| >= 2 \| Device App/);
+    assert.doesNotMatch(watchface, /deleteWidget/);
+  });
+
+  it("runtime index flags the uncovered runtimes and the unattributed symbols", async () => {
+    const { symbols, out } = await writeFixture({
+      "zos-router": {
+        module: "@zos/router",
+        symbols: [
+          deviceRecord,
+          { ...deviceRecord, id: "@zos/router.home", symbol: "home", runtimes: [] },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const index = await readFile(path.join(out, "runtimes", "index.md"), "utf-8");
+
+    assert.match(index, /\| Device App \| 1 \| 1 \| \[device-app\.md\]\(device-app\.md\) \|/);
+    assert.match(index, /\| Side Service \| 0 \| 0 \| \[side-service\.md\]\(side-service\.md\) — \*\*not covered\*\* \|/);
+    assert.match(index, /## No runtime attributed/);
+    assert.match(index, /1 of 2 symbols came from a path no runtime rule covers\./);
+    assert.match(index, /- `@zos\/router.home`/);
+  });
+
+  it("lists a multi-runtime symbol once on the index", async () => {
+    const { symbols, out } = await writeFixture({
+      "zos-ui": {
+        module: "@zos/ui",
+        symbols: [
+          { ...deviceRecord, id: "@zos/ui.createWidget", module: "@zos/ui", symbol: "createWidget", runtimes: ["device-app", "watchface"] },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const index = await readFile(path.join(out, "runtimes", "index.md"), "utf-8");
+
+    assert.match(index, /## Valid in more than one runtime/);
+    assert.match(index, /- `@zos\/ui.createWidget` — Device App, Watchface/);
+    assert.doesNotMatch(index, /## No runtime attributed/);
   });
 
   it("names the offending file when a symbols file is not a module file", async () => {

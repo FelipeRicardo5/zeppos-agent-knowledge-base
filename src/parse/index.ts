@@ -1,8 +1,12 @@
 // Stage 2: parse — three fronts over the raw cached content.
+//
+// Every front also attributes a runtime, which no content states — see
+// ./runtime.ts, where the path-based rules and their doc anchors live.
 
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { RawUnit } from "../types.js";
+import { runtimeForPath } from "./runtime.js";
 import { walkFiles } from "./util.js";
 
 const IMPORT_RE = /import\s*(?:\{([^}]*)\})?[^'"]*from\s+['"](@[^'"]+)['"]/g;
@@ -74,6 +78,7 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
   for (const file of files) {
     const content = await readFile(file, "utf-8");
     const symbol = path.basename(file, path.extname(file));
+    const sourceFile = path.relative(cacheDir, file);
 
     const module = resolveModule(content, symbol);
     if (!module) continue; // no example import -> can't attribute a module, skip
@@ -87,7 +92,8 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
       kind: content.includes("function " + symbol) ? "function" : "value",
       description,
       apiLevel: apiLevelMatch ? Number(apiLevelMatch[1]) : undefined,
-      sourceFile: path.relative(cacheDir, file),
+      runtimeHint: runtimeForPath(sourceFile),
+      sourceFile,
       sourceKind: "docs-reference",
     });
   }
@@ -130,6 +136,7 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
   for (const file of files) {
     const content = await readFile(file, "utf-8");
     const sourceFile = path.relative(cacheDir, file);
+    const runtimeHint = runtimeForPath(sourceFile);
 
     const moduleMatch = content.match(/^#\s+(@\S+)/m);
     if (!moduleMatch) continue;
@@ -164,6 +171,7 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
         kind: "constant",
         description: description.trim(),
         apiLevel: Number(apiLevel),
+        runtimeHint,
         sourceFile,
         sourceKind: "llms",
       });
@@ -183,6 +191,7 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
         kind: "function",
         description: descriptionMatch ? descriptionMatch[1].trim() : undefined,
         apiLevel: apiLevelMatch ? Number(apiLevelMatch[1] ?? apiLevelMatch[2]) : undefined,
+        runtimeHint,
         sourceFile,
         sourceKind: "llms",
       });
@@ -206,6 +215,7 @@ export async function parseSamples(cacheDir: string): Promise<RawUnit[]> {
   for (const file of files) {
     const content = await readFile(file, "utf-8");
     const sourceFile = path.relative(cacheDir, file);
+    const runtimeHint = runtimeForPath(sourceFile);
 
     for (const match of content.matchAll(MULTI_IMPORT_RE)) {
       const [, namedImports, module] = match;
@@ -219,6 +229,7 @@ export async function parseSamples(cacheDir: string): Promise<RawUnit[]> {
           module,
           symbol,
           kind: /^[A-Z][A-Z0-9_]*$/.test(symbol) ? "constant" : "function",
+          runtimeHint,
           sourceFile,
           sourceKind: "sample",
         });

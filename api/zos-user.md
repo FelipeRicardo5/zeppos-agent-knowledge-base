@@ -14,7 +14,7 @@
 
 ### `@zos/user.addHealthData`
 
-Set user health data information. :::info permission code: `data:user.health` :::
+Set user health data information. permission code: `data:user.health`
 
 ### `@zos/user.GENDER_FEMALE`
 
@@ -30,4 +30,4 @@ User not specified
 
 ### `@zos/user.getProfile`
 
-Get user information. :::info permission code: `data:user.info` :::
+Get user information. permission code: `data:user.info`

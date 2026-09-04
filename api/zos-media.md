@@ -13,3 +13,11 @@
 ### `@zos/media.create`
 
 Create a media player or recorder.
+
+### `@zos/media.Player`
+
+The media player controller sets audio sources, prepares playback resources, controls playback, and reads media information..
+
+### `@zos/media.Recorder`
+
+The media recorder controller records audio to a file in the mini program `data` directory..

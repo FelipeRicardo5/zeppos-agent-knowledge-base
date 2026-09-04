@@ -6,7 +6,7 @@
       "module": "@zos/user",
       "symbol": "addHealthData",
       "type": "function",
-      "description": "Set user health data information. :::info permission code: `data:user.health` :::",
+      "description": "Set user health data information. permission code: `data:user.health`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -66,7 +66,7 @@
       "module": "@zos/user",
       "symbol": "getProfile",
       "type": "function",
-      "description": "Get user information. :::info permission code: `data:user.info` :::",
+      "description": "Get user information. permission code: `data:user.info`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"

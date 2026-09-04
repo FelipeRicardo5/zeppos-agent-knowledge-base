@@ -1,0 +1,24 @@
+---
+title: setTimeout
+sidebar_label: setTimeout
+---
+
+# setTimeout
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Set a timer and execute the registered callback function after the timer expires.
+
+## Type
+
+```ts
+function setTimeout(callback: Callback, delay?: Delay): TimeoutID
+```
+
+## Example
+
+```js
+const timer = setTimeout(() => {
+  console.log('fired')
+}, 1000)
+```

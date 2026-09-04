@@ -13,7 +13,7 @@
 
 ### `@zos/device.getDeviceInfo`
 
-Gets device information. :::info permission code: `data:os.device.info` :::
+Gets device information. permission code: `data:os.device.info`
 
 ### `@zos/device.getDiskInfo`
 

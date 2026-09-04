@@ -1,6 +1,6 @@
 # API index
 
-**34 modules, 383 symbols**
+**34 modules, 381 symbols**
 
 | Module | Symbols | With stated API_LEVEL | Page |
 | --- | --- | --- | --- |
@@ -35,6 +35,6 @@
 | `@zos/share-storage` | 3 | 3 | [zos-share-storage.md](zos-share-storage.md) |
 | `@zos/storage` | 9 | 9 | [zos-storage.md](zos-storage.md) |
 | `@zos/timer` | 2 | 2 | [zos-timer.md](zos-timer.md) |
-| `@zos/ui` | 76 | 62 | [zos-ui.md](zos-ui.md) |
+| `@zos/ui` | 74 | 61 | [zos-ui.md](zos-ui.md) |
 | `@zos/user` | 5 | 5 | [zos-user.md](zos-user.md) |
 | `@zos/utils` | 6 | 6 | [zos-utils.md](zos-utils.md) |

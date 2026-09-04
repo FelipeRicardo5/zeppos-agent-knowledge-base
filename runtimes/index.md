@@ -6,7 +6,7 @@ is not thereby available in the Settings App or a Watchface.
 
 | Runtime | Symbols | Modules | Page |
 | --- | --- | --- | --- |
-| Device App | 375 | 31 | [device-app.md](device-app.md) |
+| Device App | 373 | 31 | [device-app.md](device-app.md) |
 | Side Service | 5 | 3 | [side-service.md](side-service.md) |
 | Settings App | 0 | 0 | [settings.md](settings.md) — **not covered** |
 | Watchface | 3 | 2 | [watchface.md](watchface.md) |

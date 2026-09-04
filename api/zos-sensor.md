@@ -41,27 +41,31 @@
 
 ### `@zos/sensor.Accelerometer`
 
-accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward
+accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward. permission code: `device:os.accelerometer`
 
 ### `@zos/sensor.Barometer`
 
-Barometer Sensor
+Barometer Sensor. permission code: `device:os.barometer`
 
 ### `@zos/sensor.Battery`
 
-Battery Sensor
+Battery Sensor.
 
 ### `@zos/sensor.BloodOxygen`
 
-Blood oxygen Sensor
+Blood oxygen Sensor. permission code: `data:user.hd.spo2`
 
 ### `@zos/sensor.BodyTemperature`
 
-Body surface temperature sensor
+Body surface temperature sensor. permission code: `data:user.hd.body_temp`
+
+### `@zos/sensor.Buzzer`
+
+Buzzer.
 
 ### `@zos/sensor.Calorie`
 
-Calorie Sensor
+Calorie Sensor. permission code: `data:user.hd.calorie`
 
 ### `@zos/sensor.checkSensor`
 
@@ -69,15 +73,15 @@ Check the availability of sensors on the current device.
 
 ### `@zos/sensor.Compass`
 
-compass
+compass. permission code: `device:os.compass`
 
 ### `@zos/sensor.Distance`
 
-Distance Sensor
+Distance Sensor. permission code: `data:user.hd.distance`
 
 ### `@zos/sensor.FatBurning`
 
-FatBurning Sensor
+FatBurning Sensor. permission code: `data:user.hd.fat_burning`
 
 ### `@zos/sensor.FREQ_MODE_HIGH`
 
@@ -93,47 +97,47 @@ Normal power consumption mode, medium trigger frequency
 
 ### `@zos/sensor.Geolocation`
 
-Geolocation Sensor
+Geolocation Sensor. permission code: `device:os.geolocation`
 
 ### `@zos/sensor.Gyroscope`
 
-Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction
+Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction. permission code: `device:os.gyroscope`
 
 ### `@zos/sensor.HeartRate`
 
-HeartRate Sensor
+HeartRate Sensor. permission code: `data:user.hd.heart_rate`
 
 ### `@zos/sensor.Pai`
 
-PAI Sensor
+PAI Sensor. permission code: `data:user.hd.pai`
 
 ### `@zos/sensor.Screen`
 
-Screen Status Sensor
+Screen Status Sensor.
 
 ### `@zos/sensor.Sleep`
 
-Sleep Sensor
+Sleep Sensor. permission code: `data:user.hd.sleep`
 
 ### `@zos/sensor.Stand`
 
-Standing behavior Sensor
+Standing behavior Sensor. permission code: `data:user.hd.stand`
 
 ### `@zos/sensor.Step`
 
-Step Sensor
+Step Sensor. permission code: `data:user.hd.step`
 
 ### `@zos/sensor.Stress`
 
-Stress Sensor
+Stress Sensor. permission code: `data:user.hd.stress`
 
 ### `@zos/sensor.SystemSounds`
 
-System Sounds
+System Sounds.
 
 ### `@zos/sensor.Time`
 
-Time/Date Sensor
+Time/Date Sensor.
 
 ### `@zos/sensor.TIME_HOUR_FORMAT_12`
 
@@ -145,20 +149,20 @@ Time/Date Sensor
 
 ### `@zos/sensor.Vibrator`
 
-Vibrator
+Vibrator.
 
 ### `@zos/sensor.Wear`
 
-Wearing status sensor
+Wearing status sensor.
 
 ### `@zos/sensor.Weather`
 
-Weather Forecasts sensor
+This interface has been deprecated, please refer to https://github.com/orgs/zepp-health/discussions/83 Weather Forecasts sensor.
 
 ### `@zos/sensor.Workout`
 
-Workout Sensor
+Workout Sensor. permission code: `data:user.hd.workout`
 
 ### `@zos/sensor.WorldClock`
 
-World Clock Sensor
+World Clock Sensor.

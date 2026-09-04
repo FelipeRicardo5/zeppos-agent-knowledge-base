@@ -79,8 +79,11 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
     const symbol = path.basename(file, path.extname(file));
     const sourceFile = path.relative(cacheDir, file);
 
-    const module = resolveModule(content, symbol);
-    if (!module) continue; // no example import -> can't attribute a module, skip
+    // The import wins; the directory is the fallback for a page documenting a
+    // runtime global, which has nothing to import. A page under neither rule
+    // attributes to no module and is skipped rather than guessed at.
+    const module = resolveModule(content, symbol) ?? moduleFromPath(sourceFile);
+    if (!module) continue;
 
     const apiLevelMatch = content.match(API_LEVEL_RE);
     const description = extractDescription(content);
@@ -100,19 +103,112 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
   return units;
 }
 
+const NON_SYMBOL_PAGES = new Set(["overview", "index", "readme"]);
+
+/** A line that is nothing but an image — `media/Player.mdx` opens with one. */
+const IMAGE_ONLY_RE = /^!\[[^\]]*\]\([^)]*\)$/;
+/**
+ * An HTML or JSX tag, however many lines it spans. These pages are MDX, so an
+ * illustration is markdown on one page and a tag on another: `ui/VIEW_CONTAINER.mdx`
+ * opens with a `<div style={{...}}>` wrapping an `<img>`, which made its
+ * "description" 999 characters of layout markup. `ui/openInspector.mdx` breaks
+ * the same `<img>` across five lines, so a per-line filter leaves its
+ * `src={useBaseUrl(...)}` attributes behind — the tag has to go as a unit.
+ * `[^>]` matches newlines, which is what makes that work.
+ */
+const MARKUP_TAG_RE = /<\/?[A-Za-z][^>]*>/g;
+/** A self-closing tag's tail, left behind once the tag itself is stripped. */
+const MARKUP_TAIL_RE = /^\/?>$/;
+/** Docusaurus admonition fences: `:::info`, `:::caution`, and the bare closer. */
+const ADMONITION_RE = /^:::/;
+
+/**
+ * The line the page's own prose starts after: its H1, or the close of its
+ * frontmatter when it has no H1.
+ *
+ * 140 of the 241 reference pages title with an H1 and the other 101 title in the
+ * frontmatter instead. Anchoring on the H1 alone returned nothing for every page
+ * of the second kind, losing 68 descriptions.
+ */
+function proseStart(lines: string[]): number | undefined {
+  const h1 = lines.findIndex((line) => line.startsWith("# "));
+  if (h1 !== -1) return h1 + 1;
+
+  if (lines[0]?.trim() !== "---") return undefined;
+  const close = lines.findIndex((line, index) => index > 0 && line.trim() === "---");
+  return close === -1 ? undefined : close + 1;
+}
+
+/**
+ * The page's prose description: the text between its title and its first section.
+ *
+ * The end is the first `## ` or code fence *after* the start, not the first in
+ * the file: on a frontmatter-titled page the sections sit above where the old
+ * H1 anchor would have been, and a page with no `## ` at all would otherwise
+ * swallow its example code.
+ *
+ * Dropped from the prose: the API_LEVEL badge blockquote, MDX component imports,
+ * standalone images, and the `:::info` fence markers — the marker lines only,
+ * so the content inside them survives (that is where a permission code is
+ * stated).
+ */
 function extractDescription(content: string): string | undefined {
   const lines = content.split("\n");
-  const headingIndex = lines.findIndex((line) => line.startsWith("# "));
-  // finds the next ## heading (it could be ## Type, ## Example, ## Parameters, etc)
-  const typeIndex = lines.findIndex((line) => line.startsWith("## "));
-  if (headingIndex === -1 || typeIndex === -1) return undefined;
+  const start = proseStart(lines);
+  if (start === undefined) return undefined;
+
+  let end = lines.findIndex(
+    (line, index) => index >= start && (line.startsWith("## ") || line.trimStart().startsWith("```")),
+  );
+  if (end === -1) end = lines.length;
 
   const body = lines
-    .slice(headingIndex + 1, typeIndex)
+    .slice(start, end)
+    // The badge blockquote goes before tags are stripped: it is a whole line and
+    // its `[API_LEVEL](...)` link would otherwise survive as bare text.
+    .filter((line) => !line.trimStart().startsWith(">"))
+    .join("\n")
+    .replace(MARKUP_TAG_RE, "")
+    .split("\n")
     .map((line) => line.trim())
-    .filter((line) => line.length > 0 && !line.startsWith(">"));
+    .filter((line) => line.length > 0)
+    .filter((line) => !line.startsWith("import "))
+    .filter((line) => !IMAGE_ONLY_RE.test(line))
+    .filter((line) => !MARKUP_TAIL_RE.test(line))
+    .filter((line) => !ADMONITION_RE.test(line));
 
   return body.length > 0 ? body.join(" ") : undefined;
+}
+
+/**
+ * `newAPI/<dir>/<symbol>.mdx` read as a module id — used only when the page has
+ * no import line at all.
+ *
+ * Measured against the 222 pages that do have one: 221 agree with `@zos/<dir>`.
+ * The single exception is `transfer-file/TransferFile.mdx`, which imports
+ * `@zos/ble/TransferFile`, a submodule the directory name cannot express. So the
+ * import stays the primary source and this is the fallback — which is exactly
+ * what the 19 pages documenting runtime globals need (`getApp`, `setTimeout`,
+ * `console`, `Buffer`, `App`, `Page`, and 5 under `ui/`): being globals, they
+ * have nothing to import, so they were skipped entirely and their descriptions
+ * never reached the `@zos/global` and `@zos/ui` records the llms front had built.
+ */
+function moduleFromPath(sourceFile: string): string | undefined {
+  const segments = sourceFile.split(path.sep).join("/").split("/");
+  const page = segments[segments.length - 1].replace(/\.[^.]+$/, "").toLowerCase();
+  // A page that titles the module rather than a symbol. `router/overview.mdx`
+  // describes the module and imports nothing, so the directory fallback would
+  // file it as `@zos/router.overview` — an id nothing can import. None exist
+  // upstream today; the guard is here because the fallback is what would turn
+  // one into a fabricated symbol the day one appears.
+  if (NON_SYMBOL_PAGES.has(page)) return undefined;
+
+  const at = segments.indexOf("newAPI");
+  if (at === -1) return undefined;
+
+  const dir = segments[at + 1];
+  // The segment after `newAPI` is the page itself when it sits directly in it.
+  return dir === undefined || dir === segments[segments.length - 1] ? undefined : `@zos/${dir}`;
 }
 
 const CONSTANT_ROW_RE = /^\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|\s*([\d.]+)\s*\|$/;
@@ -121,6 +217,23 @@ const LLMS_API_LEVEL_RE = /(?:^>.*API_LEVEL\s+`(\d+(?:\.\d+)?)`|-\s*API_LEVEL:\s
 
 const HEADING_RE = /^##\s+(.+)$/;
 const CONSTANTS_HEADING = "Constants";
+
+/**
+ * `##` headings that title a section of the document rather than a symbol.
+ * `Constants` heads a table of them; `Overview`, `Usage` and `Submodules` head
+ * prose and link lists. Filing them as symbols invented ids like
+ * `@zos/ui.Submodules`, which nothing can import — the same failure as the
+ * multi-word topic headings the whitespace check catches, except these are one
+ * word so it does not see them.
+ */
+const STRUCTURAL_HEADINGS = new Set([
+  CONSTANTS_HEADING,
+  "Overview",
+  "Usage",
+  "Submodules",
+  // Normally a `###` under a symbol, but `@zos-ui.md` promotes it to `##`.
+  "Import",
+]);
 
 /**
  * Constant rows under every `## Constants` heading in a chunk.
@@ -222,7 +335,7 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
       // `@zos/ui.Widget Animation`, an id nothing can import.
       const symbol = [...chunk.matchAll(/^##\s+(.+)$/gm)]
         .map((match) => match[1].trim())
-        .find((heading) => heading !== CONSTANTS_HEADING && !/\s/.test(heading));
+        .find((heading) => !STRUCTURAL_HEADINGS.has(heading) && !/\s/.test(heading));
       if (symbol === undefined) continue;
 
       const descriptionMatch = chunk.match(/-\s*Description:\s*(.+)/);

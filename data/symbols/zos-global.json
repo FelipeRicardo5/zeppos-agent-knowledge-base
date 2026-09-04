@@ -6,13 +6,14 @@
       "module": "@zos/global",
       "symbol": "App",
       "type": "function",
+      "description": "Register the Mini Program, specifying the Mini Program's lifecycle callbacks, etc. `App()` must be called in `app.js`, and can only be called once.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/App.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -20,13 +21,14 @@
       "module": "@zos/global",
       "symbol": "AppService",
       "type": "function",
+      "description": "Register an App Service in the Mini Program, specify the lifecycle callback for the current App Service, etc. Each App Service file must call the `AppService()` constructor only once. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/AppService.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -34,27 +36,29 @@
       "module": "@zos/global",
       "symbol": "AppWidget",
       "type": "function",
+      "description": "Register AppWidget, specify the lifecycle callback for the current AppWidget, etc. Each AppWidget file must call the `AppWidget()` constructor only once.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/AppWidget.mdx",
       "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/global.Buffer",
       "module": "@zos/global",
       "symbol": "Buffer",
-      "type": "function",
+      "type": "value",
+      "description": "Buffer, Reference Node.js https://nodejs.org/dist/latest-v16.x/docs/api/buffer.html.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/Buffer.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -62,13 +66,14 @@
       "module": "@zos/global",
       "symbol": "clearInterval",
       "type": "function",
+      "description": "Cancel the timer registered by `setInterval`.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/clearInterval.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -76,27 +81,29 @@
       "module": "@zos/global",
       "symbol": "clearTimeout",
       "type": "function",
+      "description": "Cancel the timer registered by `setTimeout`.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/clearTimeout.mdx",
       "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/global.console",
       "module": "@zos/global",
       "symbol": "console",
-      "type": "function",
+      "type": "value",
+      "description": "Console Print Log.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/console.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -104,13 +111,14 @@
       "module": "@zos/global",
       "symbol": "DataWidget",
       "type": "function",
+      "description": "Register DataWidget, specify the lifecycle callback for the current DataWidget, etc. Each DataWidget file must call the `DataWidget()` constructor only once.",
       "minApiLevel": 3.6,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/DataWidget.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -118,13 +126,14 @@
       "module": "@zos/global",
       "symbol": "getApp",
       "type": "function",
+      "description": "Get the app instance object.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/getApp.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -132,13 +141,14 @@
       "module": "@zos/global",
       "symbol": "getCurrentPage",
       "type": "function",
+      "description": "Get the page instance object.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/getCurrentPage.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -146,13 +156,14 @@
       "module": "@zos/global",
       "symbol": "Page",
       "type": "function",
+      "description": "Register a page in the Mini Program, specify the lifecycle callback for the current page, etc. Each page file must call the `Page()` constructor only once.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/Page.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -160,13 +171,14 @@
       "module": "@zos/global",
       "symbol": "SecondaryWidget",
       "type": "function",
+      "description": "Register SecondaryWidget, specify the lifecycle callback for the current SecondaryWidget, etc. Each SecondaryWidget file must call the `SecondaryWidget()` constructor only once.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/SecondaryWidget.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -174,13 +186,14 @@
       "module": "@zos/global",
       "symbol": "setInterval",
       "type": "function",
+      "description": "Repeatedly call a function with a fixed time interval between each call.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/setInterval.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -188,13 +201,14 @@
       "module": "@zos/global",
       "symbol": "setTimeout",
       "type": "function",
+      "description": "Set a timer and execute the registered callback function after the timer expires.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-global.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/setTimeout.mdx",
       "extractedAt": "2026-09-04"
     }
   ]

@@ -6,6 +6,7 @@
       "module": "@zos/ui",
       "symbol": "addEventListener",
       "type": "value",
+      "description": "Register a listener to the UI widget and the given callback function will be executed when the specified event is triggered.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -20,6 +21,7 @@
       "module": "@zos/ui",
       "symbol": "addLayoutChild",
       "type": "value",
+      "description": "Adds a child node to the current widget.",
       "minApiLevel": 4,
       "runtimes": [
         "device-app"
@@ -61,6 +63,7 @@
       "module": "@zos/ui",
       "symbol": "ARC",
       "type": "value",
+      "description": "Arc widget to display arc progress. Support setting line width, color, start and end angle.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -75,6 +78,7 @@
       "module": "@zos/ui",
       "symbol": "BUTTON",
       "type": "value",
+      "description": "The button widget supports setting images and colors for normal and pressed states.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -104,6 +108,7 @@
       "module": "@zos/ui",
       "symbol": "CANVAS",
       "type": "value",
+      "description": "Canvas Current Canvas capabilities include 1. Basic drawing, line, point, rectangle, rectangle fill, ellipse, sector, polygon 1. Image drawing 1. Text drawing 1. Paint 1. The canvas is stacked vertically, up to three layers can be stacked 1. Clean up the canvas 1. Support `addEventListener` method to listen for user interaction events",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -118,6 +123,7 @@
       "module": "@zos/ui",
       "symbol": "CHECKBOX_GROUP",
       "type": "value",
+      "description": "Used to select multiple options from a set of choices. Each option needs to be created using `STATE_BUTTON`.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -132,6 +138,7 @@
       "module": "@zos/ui",
       "symbol": "CIRCLE",
       "type": "value",
+      "description": "Draws a circle with support for color, transparency, and other properties.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -146,6 +153,7 @@
       "module": "@zos/ui",
       "symbol": "createDialog",
       "type": "value",
+      "description": "Create a Dialog.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -173,6 +181,7 @@
       "module": "@zos/ui",
       "symbol": "createWidget",
       "type": "value",
+      "description": "Create UI widgets.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app",
@@ -188,6 +197,7 @@
       "module": "@zos/ui",
       "symbol": "CYCLE_IMAGE_TEXT_LIST",
       "type": "value",
+      "description": "Create a list that can be scrolled in a loop, and each list item can be placed with an image and text.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -202,6 +212,7 @@
       "module": "@zos/ui",
       "symbol": "CYCLE_LIST",
       "type": "value",
+      "description": "Create a list that scrolls in a loop, which can be populated with images.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -242,6 +253,7 @@
       "module": "@zos/ui",
       "symbol": "deleteWidget",
       "type": "value",
+      "description": "Delete the UI widget.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -256,6 +268,7 @@
       "module": "@zos/ui",
       "symbol": "DIALOG",
       "type": "value",
+      "description": "This widget has been discontinued. It is recommended to replace it with the more powerful [@zos/interaction createModal API](../../interaction/createModal.mdx) Dialog popup consists of a piece of text and two buttons. The popup box disappears when the buttons are clicked.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -309,6 +322,7 @@
       "module": "@zos/ui",
       "symbol": "FILL_RECT",
       "type": "value",
+      "description": "The Fill Rectangle widget is used to draw a solid color rectangular area.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -323,6 +337,7 @@
       "module": "@zos/ui",
       "symbol": "getAppWidgetSize",
       "type": "value",
+      "description": "Get the system default shortcut card size for developers to layout the widget.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -336,14 +351,15 @@
       "id": "@zos/ui.getId",
       "module": "@zos/ui",
       "symbol": "getId",
-      "type": "function",
+      "type": "value",
+      "description": "Get the unique ID of the widget.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getId.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -351,6 +367,7 @@
       "module": "@zos/ui",
       "symbol": "getImageInfo",
       "type": "value",
+      "description": "Get information about the image resources in the `/assets` resource directory.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -365,6 +382,7 @@
       "module": "@zos/ui",
       "symbol": "getProperty",
       "type": "value",
+      "description": "Get the UI widget properties, use `widget.getProperty(prop.MORE, {})` to get all the properties of the widget.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -379,6 +397,7 @@
       "module": "@zos/ui",
       "symbol": "getRtlLayout",
       "type": "value",
+      "description": "Query whether the current system language setting is RTL language. Setting the language to Hebrew and Arabic will return `true`.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -408,6 +427,7 @@
       "module": "@zos/ui",
       "symbol": "getTextLayout",
       "type": "value",
+      "description": "Calculate the height and width of the target text after the layout is completed, and does not actually render it, only performs the layout calculation. Can be used to calculate the height of a multi-line text layout with a fixed width, or the width of a single-line text layout.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -421,14 +441,15 @@
       "id": "@zos/ui.getType",
       "module": "@zos/ui",
       "symbol": "getType",
-      "type": "function",
+      "type": "value",
+      "description": "Get the UI widget type.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getType.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -436,6 +457,7 @@
       "module": "@zos/ui",
       "symbol": "GRADIENT_POLYLINE",
       "type": "value",
+      "description": "Draws polylines that can be done on a line graph with multiple segments.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -450,6 +472,7 @@
       "module": "@zos/ui",
       "symbol": "GROUP",
       "type": "value",
+      "description": "GROUP group widget is used to group a series of widgets together for unified widget of show/hide, registering events, etc. The returned `group` instance has the method `createWidget`, which is used to Create UI widget belonging to the `group` group, and the sub-widgets need to use relative positions for layout. 1. The `group` instance of `createWidget` cannot create child `GROUP` components, i.e. `GROUP` components cannot be nested. 2. GROUP cannot be used in [SecondaryWidget](../../../newAPI/global/SecondaryWidget.mdx) and [Shorcut cards](../../../newAPI/global/AppWidget.mdx)",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -464,6 +487,7 @@
       "module": "@zos/ui",
       "symbol": "HISTOGRAM",
       "type": "value",
+      "description": "Draws a histogram.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -478,6 +502,7 @@
       "module": "@zos/ui",
       "symbol": "IMG",
       "type": "value",
+      "description": "The image widget is used to display images and supports image rotation. 1. Recommend using 24-bit or 32-bit png format images with RGB or RGBA color scheme.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -492,6 +517,7 @@
       "module": "@zos/ui",
       "symbol": "IMG_ANIM",
       "type": "value",
+      "description": "Play the pre-given image at the set frame rate to create an animation effect.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -519,6 +545,7 @@
       "module": "@zos/ui",
       "symbol": "keyboard",
       "type": "value",
+      "description": "The keyboard API provides rich input interface capabilities, greatly simplifying the development complexity of custom keyboards.",
       "minApiLevel": 4.2,
       "runtimes": [
         "device-app"
@@ -547,6 +574,7 @@
       "module": "@zos/ui",
       "symbol": "openInspector",
       "type": "function",
+      "description": "During development, especially when using Flex layout, you may need to check the actual layout position and size of each widget. Using `openInspector()` can visually display the boundaries of all widgets participating in layout in the simulator, helping developers debug layout issues. Used in the simulator to draw boundary rectangles for all widgets participating in layout, helping developers debug layout issues. This method should be called after the `build()` lifecycle.",
       "minApiLevel": 4,
       "runtimes": [
         "device-app"
@@ -557,24 +585,11 @@
       "extractedAt": "2026-09-04"
     },
     {
-      "id": "@zos/ui.Overview",
-      "module": "@zos/ui",
-      "symbol": "Overview",
-      "type": "function",
-      "minApiLevel": 4.2,
-      "runtimes": [
-        "device-app"
-      ],
-      "source": "llms",
-      "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
-      "extractedAt": "2026-09-04"
-    },
-    {
       "id": "@zos/ui.PAGE_INDICATOR",
       "module": "@zos/ui",
       "symbol": "PAGE_INDICATOR",
       "type": "value",
+      "description": "When a page is set to Swiper scroll mode using the `@zos/page setScrollMode` method, an indicator control is created on the page to indicate the total number of pages and to indicate which page is currently stopped.",
       "minApiLevel": 2.1,
       "runtimes": [
         "device-app"
@@ -589,6 +604,7 @@
       "module": "@zos/ui",
       "symbol": "PAGE_SCROLLBAR",
       "type": "value",
+      "description": "Page Scrollbar.",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -603,6 +619,7 @@
       "module": "@zos/ui",
       "symbol": "PICK_DATE",
       "type": "value",
+      "description": "After API_LEVEL 3.6, please use the [`TIME_PICKER`](./TIME_PICKER.mdx) widget. Time picker widget, providing user choice",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -617,6 +634,7 @@
       "module": "@zos/ui",
       "symbol": "PICKER",
       "type": "value",
+      "description": "An universal selector, use to text and number list selection",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -659,6 +677,7 @@
       "module": "@zos/ui",
       "symbol": "QRCODE",
       "type": "value",
+      "description": "The QRCODE widget consists of a QR code and a background (white).",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -673,6 +692,7 @@
       "module": "@zos/ui",
       "symbol": "RADIO_GROUP",
       "type": "value",
+      "description": "Used to select a single option among multiple options. Each individual option is a `STATE_BUTTON` widget that needs to be created separately.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -687,6 +707,7 @@
       "module": "@zos/ui",
       "symbol": "redraw",
       "type": "value",
+      "description": "In some boundary cases, after `deleteWidget`, the view may not be updated in time, need to call `redraw()` manually to update the view",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -701,6 +722,7 @@
       "module": "@zos/ui",
       "symbol": "relayoutRtl",
       "type": "value",
+      "description": "Apply RTL layout to the widget based on the current system language. After calling this method, the current system language will be queried. If it is an RTL language, RTL layout adjustments will be made to all widgets on the current calling page. If there are widgets on the current page that do not need to be flipped, you need to organize the calling timing of `relayoutRtl()` and widget creation Design specification reference [Design Specifications - Internationalization - Interface layouts](../../../../designs/internationalization/interface-layouts.md)",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -715,6 +737,7 @@
       "module": "@zos/ui",
       "symbol": "removeEventListener",
       "type": "value",
+      "description": "Remove event listeners registered by the UI widget using the `widget.addEventListener` method.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -728,14 +751,15 @@
       "id": "@zos/ui.removeLayoutChild",
       "module": "@zos/ui",
       "symbol": "removeLayoutChild",
-      "type": "function",
+      "type": "value",
+      "description": "Removes the specified child node from the current node.",
       "minApiLevel": 4,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/removeLayoutChild.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -743,6 +767,7 @@
       "module": "@zos/ui",
       "symbol": "SCROLL_LIST",
       "type": "value",
+      "description": "Create a list area with sliding support, where each list item can contain images and text, and supports horizontal sliding.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -757,6 +782,7 @@
       "module": "@zos/ui",
       "symbol": "setAlpha",
       "type": "value",
+      "description": "Set the opacity of the widget. For widgets that do not support the `alpha` property, use `widget.setAlpha` to set opacity.",
       "minApiLevel": 2.1,
       "runtimes": [
         "device-app"
@@ -771,6 +797,7 @@
       "module": "@zos/ui",
       "symbol": "setAppWidgetSize",
       "type": "value",
+      "description": "Set the size of the Shortcut cards, currently only height adjustment is supported.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -784,28 +811,30 @@
       "id": "@zos/ui.setEnable",
       "module": "@zos/ui",
       "symbol": "setEnable",
-      "type": "function",
+      "type": "value",
+      "description": "Set whether the widget responds to screen gesture interaction events, the default is to respond. If the widgets are stacked in the Z-axis direction, the widgets above the stack will block events and the widgets below will not receive events such as `CLICK_DOWN` and `CLICK_UP`. If you want the widgets below to receive gesture events, set `widget.setEnable(false)` for the widgets stacked above.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setEnable.mdx",
       "extractedAt": "2026-09-04"
     },
     {
       "id": "@zos/ui.setLayoutParent",
       "module": "@zos/ui",
       "symbol": "setLayoutParent",
-      "type": "function",
+      "type": "value",
+      "description": "Sets the parent node of the current node.",
       "minApiLevel": 4,
       "runtimes": [
         "device-app"
       ],
-      "source": "llms",
+      "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-ui-methods.md",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setLayoutParent.mdx",
       "extractedAt": "2026-09-04"
     },
     {
@@ -813,6 +842,7 @@
       "module": "@zos/ui",
       "symbol": "setProperty",
       "type": "value",
+      "description": "Set the properties of the UI widget.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -827,6 +857,7 @@
       "module": "@zos/ui",
       "symbol": "setStatusBarVisible",
       "type": "value",
+      "description": "This interface is only available on square screen devices, set the status bar visible or not. For square screen title bar, refer to [Screen Adaptation](../../../../guides/best-practice/multi-screen-adaption.mdx).",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -841,6 +872,7 @@
       "module": "@zos/ui",
       "symbol": "SLIDE_SWITCH",
       "type": "value",
+      "description": "Used to switch between open and closed states.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -868,6 +900,7 @@
       "module": "@zos/ui",
       "symbol": "SPORT_DATA",
       "type": "value",
+      "description": "Displaying workout data in the workout extension can display a rich variety of workouts data types.",
       "minApiLevel": 3.6,
       "runtimes": [
         "device-app"
@@ -882,6 +915,7 @@
       "module": "@zos/ui",
       "symbol": "STROKE_RECT",
       "type": "value",
+      "description": "The stroked rectangle widget adds a stroke on the basis of the filled rectangle widget.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -892,23 +926,11 @@
       "extractedAt": "2026-09-04"
     },
     {
-      "id": "@zos/ui.Submodules",
-      "module": "@zos/ui",
-      "symbol": "Submodules",
-      "type": "function",
-      "runtimes": [
-        "device-app"
-      ],
-      "source": "llms",
-      "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/static/llms/@zos-ui.md",
-      "extractedAt": "2026-09-04"
-    },
-    {
       "id": "@zos/ui.SYSTEM_KEYBOARD",
       "module": "@zos/ui",
       "symbol": "SYSTEM_KEYBOARD",
       "type": "value",
+      "description": "Create a system-level input keyboard that supports multiple input modes.",
       "minApiLevel": 4,
       "runtimes": [
         "device-app"
@@ -923,6 +945,7 @@
       "module": "@zos/ui",
       "symbol": "TEXT",
       "type": "value",
+      "description": "Text widget for displaying text. Support setting text size, color, alignment, font.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -951,6 +974,7 @@
       "module": "@zos/ui",
       "symbol": "TIME_PICKER",
       "type": "value",
+      "description": "A full-screen widget that supports time and date selection.",
       "minApiLevel": 3.6,
       "runtimes": [
         "device-app"
@@ -965,6 +989,7 @@
       "module": "@zos/ui",
       "symbol": "updateLayout",
       "type": "value",
+      "description": "Used to re-render the view after modifying the widget tree.",
       "minApiLevel": 4,
       "runtimes": [
         "device-app"
@@ -979,6 +1004,7 @@
       "module": "@zos/ui",
       "symbol": "updateLayoutStyle",
       "type": "value",
+      "description": "Updates the layout style of a widget node. For detailed `layout` object properties, please refer to [layout property configuration](../../../../guides/framework/device/layout.md#layout-properties).",
       "minApiLevel": 4,
       "runtimes": [
         "device-app"
@@ -993,6 +1019,7 @@
       "module": "@zos/ui",
       "symbol": "updateStatusBarTitle",
       "type": "value",
+      "description": "This interface is only available on square screen devices, set the status bar to display text content. For square screen title bar, refer to [Screen Adaptation](../../../../guides/best-practice/multi-screen-adaption.mdx).",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -1007,6 +1034,7 @@
       "module": "@zos/ui",
       "symbol": "VIEW_CONTAINER",
       "type": "value",
+      "description": "The `VIEW_CONTAINER` widget container is a very powerful layout widget with the following features. - It is a rectangular layout container that can create child widgets by its instance method - The `z_index` property controls the cascading order of the widget container, allowing for vertical cascading of widgets. And you can create multiple VIEW_CONTAINER widgets in the same page. In Zepp OS v3, you can create up to 7 - The VIEW_CONTAINER widget container itself supports scrolling and can be used as a scrolling container - Used with [`setScrollMode`](../../page/setScrollMode.mdx) Swiper mode to achieve the complex layout in the second GIF (full-screen scrolling, where each screen can also be viewed as a scrollable independent container)",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -1021,6 +1049,7 @@
       "module": "@zos/ui",
       "symbol": "VIRTUAL_CONTAINER",
       "type": "value",
+      "description": "VIRTUAL_CONTAINER is a special container widget used to implement Flex layout. It serves as the root node of a Flex layout container, and the widgets inside the container will be arranged and rendered according to the rules of Flex layout.",
       "minApiLevel": 4,
       "runtimes": [
         "device-app"
@@ -1049,6 +1078,7 @@
       "module": "@zos/ui",
       "symbol": "widgetAnimations",
       "type": "value",
+      "description": "Widget animation can add animation effects to some of the widget's property changes. The above image shows the TEXT widget's `x` and `y` properties changing at the same time, creating a moving animation effect.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"

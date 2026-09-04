@@ -6,7 +6,7 @@
       "module": "@zos/sensor",
       "symbol": "Accelerometer",
       "type": "value",
-      "description": "accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward",
+      "description": "accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward. permission code: `device:os.accelerometer`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -21,7 +21,7 @@
       "module": "@zos/sensor",
       "symbol": "Barometer",
       "type": "value",
-      "description": "Barometer Sensor",
+      "description": "Barometer Sensor. permission code: `device:os.barometer`",
       "minApiLevel": 2.1,
       "runtimes": [
         "device-app"
@@ -36,7 +36,7 @@
       "module": "@zos/sensor",
       "symbol": "Battery",
       "type": "value",
-      "description": "Battery Sensor",
+      "description": "Battery Sensor.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -51,7 +51,7 @@
       "module": "@zos/sensor",
       "symbol": "BloodOxygen",
       "type": "value",
-      "description": "Blood oxygen Sensor",
+      "description": "Blood oxygen Sensor. permission code: `data:user.hd.spo2`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -66,7 +66,7 @@
       "module": "@zos/sensor",
       "symbol": "BodyTemperature",
       "type": "value",
-      "description": "Body surface temperature sensor",
+      "description": "Body surface temperature sensor. permission code: `data:user.hd.body_temp`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -81,6 +81,7 @@
       "module": "@zos/sensor",
       "symbol": "Buzzer",
       "type": "value",
+      "description": "Buzzer.",
       "minApiLevel": 3.6,
       "runtimes": [
         "device-app"
@@ -95,7 +96,7 @@
       "module": "@zos/sensor",
       "symbol": "Calorie",
       "type": "value",
-      "description": "Calorie Sensor",
+      "description": "Calorie Sensor. permission code: `data:user.hd.calorie`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -125,7 +126,7 @@
       "module": "@zos/sensor",
       "symbol": "Compass",
       "type": "value",
-      "description": "compass",
+      "description": "compass. permission code: `device:os.compass`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -140,7 +141,7 @@
       "module": "@zos/sensor",
       "symbol": "Distance",
       "type": "value",
-      "description": "Distance Sensor",
+      "description": "Distance Sensor. permission code: `data:user.hd.distance`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -155,7 +156,7 @@
       "module": "@zos/sensor",
       "symbol": "FatBurning",
       "type": "value",
-      "description": "FatBurning Sensor",
+      "description": "FatBurning Sensor. permission code: `data:user.hd.fat_burning`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -215,7 +216,7 @@
       "module": "@zos/sensor",
       "symbol": "Geolocation",
       "type": "value",
-      "description": "Geolocation Sensor",
+      "description": "Geolocation Sensor. permission code: `device:os.geolocation`",
       "minApiLevel": 2.1,
       "runtimes": [
         "device-app"
@@ -230,7 +231,7 @@
       "module": "@zos/sensor",
       "symbol": "Gyroscope",
       "type": "value",
-      "description": "Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction",
+      "description": "Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction. permission code: `device:os.gyroscope`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -245,7 +246,7 @@
       "module": "@zos/sensor",
       "symbol": "HeartRate",
       "type": "value",
-      "description": "HeartRate Sensor",
+      "description": "HeartRate Sensor. permission code: `data:user.hd.heart_rate`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -260,7 +261,7 @@
       "module": "@zos/sensor",
       "symbol": "Pai",
       "type": "value",
-      "description": "PAI Sensor",
+      "description": "PAI Sensor. permission code: `data:user.hd.pai`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -275,7 +276,7 @@
       "module": "@zos/sensor",
       "symbol": "Screen",
       "type": "value",
-      "description": "Screen Status Sensor",
+      "description": "Screen Status Sensor.",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -290,7 +291,7 @@
       "module": "@zos/sensor",
       "symbol": "Sleep",
       "type": "value",
-      "description": "Sleep Sensor",
+      "description": "Sleep Sensor. permission code: `data:user.hd.sleep`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -305,7 +306,7 @@
       "module": "@zos/sensor",
       "symbol": "Stand",
       "type": "value",
-      "description": "Standing behavior Sensor",
+      "description": "Standing behavior Sensor. permission code: `data:user.hd.stand`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -320,7 +321,7 @@
       "module": "@zos/sensor",
       "symbol": "Step",
       "type": "value",
-      "description": "Step Sensor",
+      "description": "Step Sensor. permission code: `data:user.hd.step`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -335,7 +336,7 @@
       "module": "@zos/sensor",
       "symbol": "Stress",
       "type": "value",
-      "description": "Stress Sensor",
+      "description": "Stress Sensor. permission code: `data:user.hd.stress`",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -350,7 +351,7 @@
       "module": "@zos/sensor",
       "symbol": "SystemSounds",
       "type": "value",
-      "description": "System Sounds",
+      "description": "System Sounds.",
       "minApiLevel": 3.6,
       "runtimes": [
         "device-app"
@@ -365,7 +366,7 @@
       "module": "@zos/sensor",
       "symbol": "Time",
       "type": "value",
-      "description": "Time/Date Sensor",
+      "description": "Time/Date Sensor.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app",
@@ -411,7 +412,7 @@
       "module": "@zos/sensor",
       "symbol": "Vibrator",
       "type": "value",
-      "description": "Vibrator",
+      "description": "Vibrator.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -426,7 +427,7 @@
       "module": "@zos/sensor",
       "symbol": "Wear",
       "type": "value",
-      "description": "Wearing status sensor",
+      "description": "Wearing status sensor.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -441,7 +442,7 @@
       "module": "@zos/sensor",
       "symbol": "Weather",
       "type": "value",
-      "description": "Weather Forecasts sensor",
+      "description": "This interface has been deprecated, please refer to https://github.com/orgs/zepp-health/discussions/83 Weather Forecasts sensor.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -456,7 +457,7 @@
       "module": "@zos/sensor",
       "symbol": "Workout",
       "type": "value",
-      "description": "Workout Sensor",
+      "description": "Workout Sensor. permission code: `data:user.hd.workout`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -471,7 +472,7 @@
       "module": "@zos/sensor",
       "symbol": "WorldClock",
       "type": "value",
-      "description": "World Clock Sensor",
+      "description": "World Clock Sensor.",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"

@@ -5,3 +5,9 @@
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
 | `TransferFile` | value | >= 3 | OFFICIAL |
+
+## Descriptions
+
+### `@zos/ble/TransferFile.TransferFile`
+
+File Transfer.

@@ -12,12 +12,12 @@
 
 ### `@zos/notification.cancel`
 
-Delete the notification message identified by the specified ID in the notification center. :::info permission code: `device:os.notification` :::
+Delete the notification message identified by the specified ID in the notification center. permission code: `device:os.notification`
 
 ### `@zos/notification.getAllNotifications`
 
-Get the notification IDs that have been sent by the current app and are still in the notification center. :::info permission code: `device:os.notification` :::
+Get the notification IDs that have been sent by the current app and are still in the notification center. permission code: `device:os.notification`
 
 ### `@zos/notification.notify`
 
-Send notifications to the Watch Notification Center. :::info permission code: `device:os.notification` :::
+Send notifications to the Watch Notification Center. permission code: `device:os.notification`

@@ -31,7 +31,7 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 **not covered**, never **does not exist**. Report it that way.
 
 - `not stated` in an `API_LEVEL` column means no source documents a minimum. It does *not* mean the symbol works at any level.
-- The runtime axis is heavily skewed: 375 of 383 symbols are Device App. **The Settings App has no symbols at all**, and the Side Service's and Watchface's come from sample code rather than a documentation entry.
+- The runtime axis is heavily skewed: 373 of 381 symbols are Device App. **The Settings App has no symbols at all**, and the Side Service's and Watchface's come from sample code rather than a documentation entry.
 - A pattern's `Minimum API_LEVEL` is **derived**, not quoted: it is the highest minimum among the symbols the guide's code uses, and it skips symbols this KB has no record for. Treat it as a floor, and check the page's own "no record" flag before calling a pattern verified.
 - The documented API surface is the Device App's `@zos/*` modules. The Side Service and Settings App use globals (`fetch`, `settingsStorage`, `Settings.render`) that are not extracted yet, and the watchface `hm*` API is not extracted either. Questions about those are outside what this KB can answer — answer from the official docs and say where the answer came from.
 

@@ -6,7 +6,7 @@
       "module": "@zos/app-service",
       "symbol": "exit",
       "type": "function",
-      "description": "Called in The App Service, it will exit the service and will not affect the foreground page. :::info permission code: `device:os.bg_service` :::",
+      "description": "Called in The App Service, it will exit the service and will not affect the foreground page. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -21,7 +21,7 @@
       "module": "@zos/app-service",
       "symbol": "getAllAppServices",
       "type": "function",
-      "description": "Get the list of running App services, used to query the service status. :::info permission code: `device:os.bg_service` :::",
+      "description": "Get the list of running App services, used to query the service status. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -36,7 +36,7 @@
       "module": "@zos/app-service",
       "symbol": "start",
       "type": "function",
-      "description": "Start the specified App service, return the result through the callback function. :::info permission code: `device:os.bg_service` :::",
+      "description": "Start the specified App service, return the result through the callback function. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -51,7 +51,7 @@
       "module": "@zos/app-service",
       "symbol": "stop",
       "type": "function",
-      "description": "Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function. :::info permission code: `device:os.bg_service` :::",
+      "description": "Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"

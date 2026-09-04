@@ -36,7 +36,7 @@
       "module": "@zos/utils",
       "symbol": "EventBus",
       "type": "value",
-      "description": "EventBus is a utility class that provides event publishing/subscribing, an implementation of the publish-subscribe pattern",
+      "description": "EventBus is a utility class that provides event publishing/subscribing, an implementation of the publish-subscribe pattern.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -51,6 +51,7 @@
       "module": "@zos/utils",
       "symbol": "log",
       "type": "value",
+      "description": "The `log` instance is used for log printing and has multiple levels of logging methods for easy filtering in the console.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app",

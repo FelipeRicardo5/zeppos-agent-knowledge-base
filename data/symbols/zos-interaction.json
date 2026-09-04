@@ -6,7 +6,7 @@
       "module": "@zos/interaction",
       "symbol": "createModal",
       "type": "function",
-      "description": "![createModal_image](https://img-cdn.huami.com/20220927/9a9ce61a400f089c984951ca71c6f9b0.jpg) Create Modal prompt box.",
+      "description": "Create Modal prompt box.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"
@@ -381,7 +381,7 @@
       "module": "@zos/interaction",
       "symbol": "showToast",
       "type": "function",
-      "description": "![showToast_image](https://img-cdn.huami.com/20220927/d53c5278ad075cdabc9bcf4e359d3d5c.jpg) Display Message Prompt Box.",
+      "description": "Display Message Prompt Box.",
       "minApiLevel": 2,
       "runtimes": [
         "device-app"

@@ -13,16 +13,16 @@
 
 ### `@zos/app-service.exit`
 
-Called in The App Service, it will exit the service and will not affect the foreground page. :::info permission code: `device:os.bg_service` :::
+Called in The App Service, it will exit the service and will not affect the foreground page. permission code: `device:os.bg_service`
 
 ### `@zos/app-service.getAllAppServices`
 
-Get the list of running App services, used to query the service status. :::info permission code: `device:os.bg_service` :::
+Get the list of running App services, used to query the service status. permission code: `device:os.bg_service`
 
 ### `@zos/app-service.start`
 
-Start the specified App service, return the result through the callback function. :::info permission code: `device:os.bg_service` :::
+Start the specified App service, return the result through the callback function. permission code: `device:os.bg_service`
 
 ### `@zos/app-service.stop`
 
-Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function. :::info permission code: `device:os.bg_service` :::
+Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function. permission code: `device:os.bg_service`

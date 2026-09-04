@@ -6,6 +6,7 @@
       "module": "@zos/ble/TransferFile",
       "symbol": "TransferFile",
       "type": "value",
+      "description": "File Transfer.",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"

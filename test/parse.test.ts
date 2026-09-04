@@ -33,7 +33,9 @@ describe("parseMarkdown (docs-reference front)", () => {
     assert.equal(unit?.description, "Closes the current page to return to the previous page.");
   });
 
-  it("skips a page with no module import at all", async () => {
+  it("skips a page that titles the module rather than a symbol", async () => {
+    // `router/overview.mdx` imports nothing, and the directory fallback would
+    // otherwise file it as `@zos/router.overview` — an id nothing can import.
     const units = await parseMarkdown(CACHE);
 
     assert.equal(
@@ -49,15 +51,51 @@ describe("parseMarkdown (docs-reference front)", () => {
     assert.equal(unit?.runtimeHint, "device-app", "device-app-api/ pages document the Device App");
   });
 
-  it(
-    "reads the description from frontmatter when the page has no H1",
-    { todo: "94 reference pages title via frontmatter; their descriptions are currently lost" },
-    async () => {
-      const unit = byId(await parseMarkdown(CACHE)).get("@zos/ui.openInspector");
+  it("reads the description on a page that titles in frontmatter, with no H1", async () => {
+    // 101 of the 241 reference pages have no H1. Anchoring the description on one
+    // returned nothing for all of them, losing 68 descriptions.
+    const unit = byId(await parseMarkdown(CACHE)).get("@zos/ui.openInspector");
 
-      assert.ok(unit?.description);
-    },
-  );
+    assert.ok(unit?.description, "a frontmatter-titled page still has prose");
+    assert.match(unit.description, /^During development, especially when using Flex layout/);
+  });
+
+  it("strips a JSX tag from the description even when it spans lines", async () => {
+    // These are MDX pages: an illustration is markdown on one and a tag on
+    // another. `openInspector` breaks its `<img>` across five lines, so a
+    // per-line filter left the `src={useBaseUrl(...)}` attributes as prose.
+    const unit = byId(await parseMarkdown(CACHE)).get("@zos/ui.openInspector");
+
+    assert.doesNotMatch(unit?.description ?? "", /useBaseUrl|src=|width=|<img/);
+  });
+
+  it("drops the admonition markers but keeps what is inside them", async () => {
+    // The permission code a symbol needs is stated inside a `:::info` block.
+    const unit = byId(await parseMarkdown(CACHE)).get("@zos/ui.openInspector");
+
+    assert.doesNotMatch(unit?.description ?? "", /:::/);
+    assert.match(unit?.description ?? "", /permission code: `device:os.debug`/);
+  });
+
+  it("never lets the API_LEVEL badge into the description", async () => {
+    const units = await parseMarkdown(CACHE);
+
+    assert.deepEqual(
+      units.filter((u) => /API_LEVEL/.test(u.description ?? "")),
+      [],
+    );
+  });
+
+  it("falls back to the directory for a page documenting a runtime global", async () => {
+    // `setTimeout` is a global, so its page has nothing to import and was being
+    // skipped — its description never reached the record the llms front built.
+    const unit = byId(await parseMarkdown(CACHE)).get("@zos/global.setTimeout");
+
+    assert.ok(unit, "a page with no import is attributed from newAPI/<dir>");
+    assert.equal(unit.module, "@zos/global");
+    assert.equal(unit.apiLevel, 2);
+    assert.match(unit.description ?? "", /^Set a timer/);
+  });
 });
 
 describe("parseLlmsContent (llms front)", () => {
@@ -155,6 +193,15 @@ describe("parseLlmsContent (llms front)", () => {
     const spaced = units.filter((u) => /\s/.test(u.symbol));
 
     assert.deepEqual(spaced, [], "a heading with whitespace is a title, not a symbol");
+
+    const structural = units.filter((u) =>
+      ["Overview", "Usage", "Submodules", "Import", "Constants"].includes(u.symbol),
+    );
+    assert.deepEqual(
+      structural.filter((u) => u.kind !== "constant"),
+      [],
+      "one-word section headings are titles too — they invented `@zos/ui.Submodules`",
+    );
     assert.ok(
       byId(units).get("@zos/interaction.onKey"),
       "the real symbol under the topic heading is still extracted",

@@ -38,7 +38,7 @@
 
 ### `@zos/interaction.createModal`
 
-![createModal_image](https://img-cdn.huami.com/20220927/9a9ce61a400f089c984951ca71c6f9b0.jpg) Create Modal prompt box.
+Create Modal prompt box.
 
 ### `@zos/interaction.GESTURE_DOWN`
 
@@ -138,7 +138,7 @@ Monitoring hand movement events.
 
 ### `@zos/interaction.showToast`
 
-![showToast_image](https://img-cdn.huami.com/20220927/d53c5278ad075cdabc9bcf4e359d3d5c.jpg) Display Message Prompt Box.
+Display Message Prompt Box.
 
 ### `@zos/interaction.WRIST_MOTION_FLIP`
 

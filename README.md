@@ -18,14 +18,14 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/) |
 
-Fixture-based tests cover all five parse fronts, runtime attribution, the enrich merge and every render view: `npm test` (97 passing, 1 `todo`).
+Fixture-based tests cover all five parse fronts, runtime attribution, the enrich merge and every render view: `npm test` (102 passing, no `todo`).
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
-- **383 symbols** across **34 modules**, from 222 reference pages + 445 `static/llms` entries + 622 sample imports
-- 359 `OFFICIAL`, 24 `OBSERVED`
-- 354 symbols carry a minimum `API_LEVEL`; 265 carry a description
-- every symbol is attributed to at least one runtime: 375 Device App, 12 Workout Extension, 5 Side Service, 3 Watchface, 0 Settings App — 12 of them to more than one
+- **381 symbols** across **34 modules**, from **all 241** reference pages + 443 `static/llms` entries + 622 sample imports
+- 357 `OFFICIAL`, 24 `OBSERVED`
+- 353 symbols carry a minimum `API_LEVEL`; **351 carry a description**
+- every symbol is attributed to at least one runtime: 373 Device App, 12 Workout Extension, 5 Side Service, 3 Watchface, 0 Settings App — 12 of them to more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
 
@@ -38,7 +38,7 @@ Read this before trusting an answer that came out of this KB.
 - **A missing symbol means "not covered", not "does not exist."** This holds hardest on the runtime axis: a symbol absent from `runtimes/settings.md` says nothing about whether the Settings App can use it, because nothing has been extracted for that runtime at all.
 - **Runtime is inferred from the source path, never from a page's text.** No page or sample states its runtime; both official repos separate the runtimes by directory, so the directory is the evidence. The rules and the doc that anchors each one live in [`src/parse/runtime.ts`](src/parse/runtime.ts). This is the axis most exposed to an upstream reorganization, and the reason it has its own test file.
 - **`API_LEVEL` is the one axis that works today.** It is read verbatim from the badge blockquote on each page (`Start from API_LEVEL`, or `Supported since API_LEVEL` — both wordings occur), never inferred.
-- **Descriptions are missing for most symbols.** 94 reference pages carry their title in frontmatter instead of an H1, and the description extractor only reads the text under an H1. Tracked as a `todo` test in `test/parse.test.ts`.
+- **30 of 381 symbols have no description.** 24 are `OBSERVED` — seen only in sample code, which carries no prose. The other 6 are pages that genuinely have none between title and first section (`@zos/crypto`, two `@zos/ui` widgets).
 - **Parser bugs are the main risk, and every one so far was the same failure**: a source format that looked regular in the first file and wasn't. Each is now pinned by a fixture test built from the real file that broke it, so a regression fails the suite instead of quietly producing wrong records.
 - **Fixtures pin regressions; they don't prove coverage.** Two bugs survived a green suite because the fixtures were written from the files already read. Both were found by running the real pipeline and looking at the aggregate counts: a CRLF checkout (see below) silently dropped 188 documented constants, and a path rule mis-filed 10 symbols under a runtime because a docs directory shares a name with an app directory. Aggregate the output of a new front before believing it.
 - **The device list is a snapshot of *latest* levels, not a history.** It states the highest `API_LEVEL` each device reaches today, so a symbols-available count assumes the device is updated. It says nothing about which firmware a given user is actually on.
@@ -63,7 +63,7 @@ Four stages, each idempotent and independently inspectable, so any one of them c
 
 1. **fetch** — clones or updates the official repos into `.cache/`, and records the exact commit of each. Third-party content, never versioned here.
 2. **parse** — five independent fronts over the raw cache:
-   - **docs-reference** — `docs/reference/**/*.mdx`, one file per symbol. The module is resolved from the import line in the page's own example, because the directory name doesn't reliably match the module id.
+   - **docs-reference** — `docs/reference/**/*.mdx`, one file per symbol. The module comes from the import line in the page's own example; when the page has none — it documents a runtime global like `setTimeout` or `console`, so there is nothing to import — it falls back to the `newAPI/<dir>` directory. Measured: 221 of the 222 pages that *do* have an import agree with the directory, the exception being a submodule (`@zos/ble/TransferFile`), so the import stays primary.
    - **llms** — `static/llms/@zos-*.md`, one file per module, reusing the structuring Zepp Health already did for LLM consumption. The module id comes from the import lines inside the file, not from the H1: `@zos/ui` is split across several files whose H1 reads `@zos/ui-methods`, `@zos/ui-widget-basic` and so on, and those ids can't be imported.
    - **samples** — every `@zos/*` import across the official example apps. Evidence of real usage, not a documentation claim.
    - **guides** — `docs/guides/best-practice/**.mdx`, one file per task. Only the parts with a fixed shape are read: frontmatter title, `##` sections, fenced code blocks and the reference pages the guide links to. Nothing is inferred from the prose.
@@ -197,7 +197,9 @@ The generated Markdown lands in `api/`, `compatibility/`, `runtimes/` and `patte
 6. **A pattern is its own record, and its value is the join.** Best-practice guides are prose, so extracting "the pattern" as text would make this a documentation mirror. What is extracted instead is the structured part — title, `##` sections, code blocks, the `@zos` imports inside them — and `render` joins those symbol ids against the symbol records. That produces the minimum `API_LEVEL` a whole task needs and the symbol-to-patterns index, neither of which exists upstream. Only the derived direction is computed at render time; the pattern JSON stays a record of one guide.
 7. **`devices.md` lives in `compatibility/`, and that dir has one owner.** Hardware is the other half of the compatibility axis, not a separate one, so the page belongs there rather than in a `devices/` dir of its own. That forces `render` to own the whole dir: `prepareOutDir` clears it, so a second function writing into it would have its page deleted by whichever ran second. The device join also feeds the compatibility index, so the stage needs the records anyway.
 8. **Reads normalize line endings, once, at the boundary.** `git clone` produces a CRLF cache on Windows and an LF one everywhere else, so a parse regex anchored with `$` matched on one machine and not the other, with no error either way. Every front reads through `readSource`, so the parse output depends on the source commit and nothing else — the same portability guarantee `originalPath` gives the persisted JSON.
-9. **Five runtimes, not six.** `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App, Settings App, Side Service — and `guides/architecture/folder-structure.mdx` shows `app-side/` **is** the Side Service directory. "App-side" and "Side Service" were the same runtime under two names, so only one is kept. Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are extra entry points rather than extra runtimes: they execute on the watch like the Device App, and attribute to it.
+9. **A description is the page's prose, and only that.** These are MDX pages, so the extractor has to know what is not prose: the `API_LEVEL` badge blockquote, MDX component imports, illustrations — written as markdown on one page and as a multi-line JSX tag on another, which is why tags are stripped as units rather than per line — and the `:::info` fence markers, whose *contents* are kept because that is where a permission code is stated. It ends at the first `## ` or code fence after the title so a page without sections doesn't swallow its example.
+10. **A section heading is never a symbol.** `Constants`, `Overview`, `Usage`, `Submodules` and `Import` title parts of a document; a heading containing whitespace (`Widget Animation`, `keyboard API`) titles a group of symbols that its own `### Import` names. Both were being filed as symbols, inventing ids like `@zos/ui.Submodules` that nothing can import. A page named `overview`, `index` or `readme` is excluded from the directory fallback for the same reason.
+11. **Five runtimes, not six.** `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App, Settings App, Side Service — and `guides/architecture/folder-structure.mdx` shows `app-side/` **is** the Side Service directory. "App-side" and "Side Service" were the same runtime under two names, so only one is kept. Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are extra entry points rather than extra runtimes: they execute on the watch like the Device App, and attribute to it.
 
 ## Open questions
 

@@ -82,7 +82,7 @@ Reached by 15 of 29 devices with a stated level — highest first: Amazfit Balan
 
 Reached by 14 of 29 devices with a stated level — highest first: Amazfit Balance 3 (4.4), Amazfit Balance Ultra (4.4), Amazfit Bip Max (4.4), Amazfit Cheetah 2 Ultra (4.3), Cheetah 2 Pro (4.3), …
 
-- `@zos/ui` — 2 symbols ([zos-ui.md](zos-ui.md))
+- `@zos/ui` — 1 symbols ([zos-ui.md](zos-ui.md))
 
 ## No stated API_LEVEL
 
@@ -98,4 +98,4 @@ Symbols no source states a minimum for. Absence means *not stated*, not *any* le
 - `@zeppos/zml/base/base-page` — 1 symbols ([zeppos-zml-base-base-page.md](zeppos-zml-base-base-page.md))
 - `@zeppos/zml/base/base-side` — 1 symbols ([zeppos-zml-base-base-side.md](zeppos-zml-base-base-side.md))
 - `@zos/crypto` — 4 symbols ([zos-crypto.md](zos-crypto.md))
-- `@zos/ui` — 14 symbols ([zos-ui.md](zos-ui.md))
+- `@zos/ui` — 13 symbols ([zos-ui.md](zos-ui.md))

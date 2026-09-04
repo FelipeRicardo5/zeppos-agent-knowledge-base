@@ -1,6 +1,6 @@
 # @zos/ui — compatibility
 
-**62 of 76 symbols state a minimum API_LEVEL**
+**61 of 74 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 
@@ -80,7 +80,6 @@
 ## API_LEVEL 4.2
 
 - `@zos/ui.keyboard`
-- `@zos/ui.Overview`
 
 ## No stated API_LEVEL
 
@@ -97,6 +96,5 @@ These symbols have no documented minimum. Absence means *not stated*, not *any* 
 - `@zos/ui.inputType`
 - `@zos/ui.prop`
 - `@zos/ui.sport_data`
-- `@zos/ui.Submodules`
 - `@zos/ui.text_style`
 - `@zos/ui.widget`

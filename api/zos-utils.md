@@ -23,7 +23,11 @@ Convert `ArrayBuffer` type to string type.
 
 ### `@zos/utils.EventBus`
 
-EventBus is a utility class that provides event publishing/subscribing, an implementation of the publish-subscribe pattern
+EventBus is a utility class that provides event publishing/subscribing, an implementation of the publish-subscribe pattern.
+
+### `@zos/utils.log`
+
+The `log` instance is used for log printing and has multiple levels of logging methods for easy filtering in the console.
 
 ### `@zos/utils.px`
 

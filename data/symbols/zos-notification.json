@@ -6,7 +6,7 @@
       "module": "@zos/notification",
       "symbol": "cancel",
       "type": "function",
-      "description": "Delete the notification message identified by the specified ID in the notification center. :::info permission code: `device:os.notification` :::",
+      "description": "Delete the notification message identified by the specified ID in the notification center. permission code: `device:os.notification`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -21,7 +21,7 @@
       "module": "@zos/notification",
       "symbol": "getAllNotifications",
       "type": "function",
-      "description": "Get the notification IDs that have been sent by the current app and are still in the notification center. :::info permission code: `device:os.notification` :::",
+      "description": "Get the notification IDs that have been sent by the current app and are still in the notification center. permission code: `device:os.notification`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -36,7 +36,7 @@
       "module": "@zos/notification",
       "symbol": "notify",
       "type": "function",
-      "description": "Send notifications to the Watch Notification Center. :::info permission code: `device:os.notification` :::",
+      "description": "Send notifications to the Watch Notification Center. permission code: `device:os.notification`",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"

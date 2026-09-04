@@ -21,6 +21,7 @@
       "module": "@zos/media",
       "symbol": "Player",
       "type": "value",
+      "description": "The media player controller sets audio sources, prepares playback resources, controls playback, and reads media information..",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"
@@ -35,6 +36,7 @@
       "module": "@zos/media",
       "symbol": "Recorder",
       "type": "value",
+      "description": "The media recorder controller records audio to a file in the mini program `data` directory..",
       "minApiLevel": 3,
       "runtimes": [
         "device-app"

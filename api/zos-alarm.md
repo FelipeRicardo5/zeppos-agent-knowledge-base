@@ -26,11 +26,11 @@
 
 ### `@zos/alarm.cancel`
 
-Cancels the set timer, if the timer is set to persist and also cancels the persistence. :::info permission code: `device:os.alarm` :::
+Cancels the set timer, if the timer is set to persist and also cancels the persistence. permission code: `device:os.alarm`
 
 ### `@zos/alarm.getAllAlarms`
 
-Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence. :::info permission code: `device:os.alarm` :::
+Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence. permission code: `device:os.alarm`
 
 ### `@zos/alarm.REPEAT_DAY`
 
@@ -62,7 +62,7 @@ Specify the repetition period as year
 
 ### `@zos/alarm.set`
 
-Support for persistent timers to wake up pages of Mini Program. :::info permission code: `device:os.alarm` :::
+Support for persistent timers to wake up pages of Mini Program. permission code: `device:os.alarm`
 
 ### `@zos/alarm.WEEK_FRI`
 

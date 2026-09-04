@@ -1,6 +1,6 @@
 # Device App — runtime
 
-**375 symbols across 31 modules.**
+**373 symbols across 31 modules.**
 
 A symbol is attributed to a runtime by the source path it was extracted from,
 not by any statement in its own text. Absence is *not covered*, not *invalid here*.
@@ -478,7 +478,6 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `keyboard` | >= 4.2 | — |
 | `KEYBOARD` | >= 3 | — |
 | `openInspector` | >= 4 | — |
-| `Overview` | >= 4.2 | — |
 | `PAGE_INDICATOR` | >= 2.1 | — |
 | `PAGE_SCROLLBAR` | >= 3 | — |
 | `PICK_DATE` | >= 2 | — |
@@ -501,7 +500,6 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `SLIDE_SWITCH` | >= 2 | — |
 | `SPORT_DATA` | >= 3.6 | — |
 | `STROKE_RECT` | >= 2 | — |
-| `Submodules` | not stated | — |
 | `SYSTEM_KEYBOARD` | >= 4 | — |
 | `TEXT` | >= 2 | — |
 | `text_style` | not stated | Workout Extension |

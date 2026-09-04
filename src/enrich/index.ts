@@ -1,5 +1,15 @@
 import path from "node:path";
-import type { Confidence, RawUnit, SymbolRecord } from "../types.js";
+import { deviceSlug } from "../parse/devices.js";
+import type {
+  Confidence,
+  DeviceRecord,
+  PatternRecord,
+  RawDevice,
+  RawPattern,
+  RawUnit,
+  Runtime,
+  SymbolRecord,
+} from "../types.js";
 
 // Stage 3: enrich — group the three fronts' observations by symbol id and
 // reconcile them into one normalized record per symbol.
@@ -72,4 +82,64 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
   }
 
   return records.sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/**
+ * Patterns enrich: one guide in, one record out. There is nothing to reconcile —
+ * each guide is a single source — so this only rolls the per-approach symbol,
+ * module and runtime sets up to the pattern and normalizes the metadata.
+ *
+ * `runtimes` stays what the guide's own fence titles state. The runtimes of the
+ * symbols it uses are *not* folded in: that would copy symbol data into the
+ * pattern record and let the two drift, so render joins them instead.
+ */
+export function enrichPatterns(rawPatterns: RawPattern[]): PatternRecord[] {
+  const extractedAt = new Date().toISOString().slice(0, 10);
+
+  return rawPatterns
+    .map((pattern) => ({
+      id: pattern.id,
+      title: pattern.title,
+      summary: pattern.summary,
+      approaches: pattern.approaches,
+      symbols: [...new Set(pattern.approaches.flatMap((a) => a.symbols))].sort(),
+      modules: [...new Set(pattern.approaches.flatMap((a) => a.modules))].sort(),
+      runtimes: [
+        ...new Set(
+          pattern.approaches
+            .flatMap((a) => a.snippets.map((s) => s.runtime))
+            .filter((runtime): runtime is Runtime => runtime !== undefined),
+        ),
+      ].sort(),
+      referencePages: pattern.referencePages,
+      // A best-practice guide is official documentation, like docs-reference.
+      source: "docs-guide" as const,
+      confidence: "OFFICIAL" as Confidence,
+      originalPath: toPosixPath(pattern.sourceFile),
+      extractedAt,
+    }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/**
+ * Devices enrich: one table row in, one record out. Nothing to reconcile — the
+ * device list is a single source — so this only adds the slug and the metadata.
+ *
+ * Sorted by name rather than by API_LEVEL so the persisted JSON depends on the
+ * source content and not on values that shift when a device gets an update; the
+ * render view sorts by level for reading.
+ */
+export function enrichDevices(rawDevices: RawDevice[]): DeviceRecord[] {
+  const extractedAt = new Date().toISOString().slice(0, 10);
+
+  return rawDevices
+    .map(({ sourceFile, ...device }) => ({
+      ...device,
+      slug: deviceSlug(device.name),
+      source: "docs-device-list" as const,
+      confidence: "OFFICIAL" as Confidence,
+      originalPath: toPosixPath(sourceFile),
+      extractedAt,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }

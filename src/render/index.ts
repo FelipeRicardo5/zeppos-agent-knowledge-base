@@ -1,17 +1,29 @@
-import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
-import type { Runtime, SymbolRecord } from "../types.js";
+import type { DeviceRecord, Runtime, SymbolRecord } from "../types.js";
+import {
+  INDEX_FILE,
+  NOT_STATED,
+  apiLevelLabel as apiLevelLabelFor,
+  cell,
+  prepareOutDir,
+  readDeviceFile,
+  readModuleFiles,
+  writePage,
+} from "./shared.js";
 
 // Stage 4: render — generate the final Markdown from the JSON source of truth.
 //
-// This stage ships the knowledge in the shape the Agent Skill can consume. Three
-// views, each over an axis the data actually supports:
+// This stage ships the knowledge in the shape the Agent Skill can consume. The
+// views this module owns, each over an axis the data actually supports:
 //
 //   api/            one file per module, symbols grouped and described
 //   compatibility/  grouped by minimum API_LEVEL — the cross-reference that is
-//                   this project's point
+//                   this project's point — plus devices.md, the hardware that
+//                   turns a level into a shipping decision
 //   runtimes/       one file per runtime, the axis SKILL.md step 1 depends on
+//
+// `patterns/` is rendered by ./patterns.ts, which owns its own dir.
 //
 // Each view also gets an `index.md` so the Skill can find a module without
 // listing the directory and guessing slugs.
@@ -19,16 +31,18 @@ import type { Runtime, SymbolRecord } from "../types.js";
 // `runtimes/` renders a page for every runtime in the union, *including the ones
 // with no symbols*. A missing page reads like "this runtime does not exist"; a
 // page that states "0 symbols covered" reads like the coverage gap it is, which
-// is the distinction the whole KB is built on.
+// is the distinction the whole KB is built on. `devices.md` treats a device with
+// no stated API_LEVEL the same way: the level is absent, never zero.
 //
-// The remaining README dirs (concepts/, patterns/, examples/, tools/) hold
-// knowledge the three automated fronts don't yet reach, so they are deliberately
-// not created here rather than being fabricated.
+// The remaining README dirs (concepts/, examples/, tools/) hold knowledge the
+// automated fronts don't yet reach, so they are deliberately not created here
+// rather than being fabricated.
 
 const API_DIR = "api";
 const COMPAT_DIR = "compatibility";
 const RUNTIMES_DIR = "runtimes";
-const INDEX_FILE = "index.md";
+/** Lives in `compatibility/`: the hardware is the other half of that axis. */
+const DEVICES_FILE = "devices.md";
 
 /**
  * Every runtime in the `Runtime` union, in the order a developer meets them, each
@@ -46,45 +60,8 @@ const RUNTIMES: [runtime: Runtime, label: string][] = [
 
 const RUNTIME_LABELS = new Map<Runtime, string>(RUNTIMES);
 
-// Hand-written, so the rewrite in `render` must leave them alone.
-const PRESERVED = new Set(["README.md", "README.pt-BR.md"]);
-
-// A missing minimum means no source states one. It does *not* mean the symbol
-// works on every level, so the label must not read like "any".
-const NOT_STATED = "not stated";
-
-function isModuleFile(value: unknown): value is ModuleFile {
-  if (typeof value !== "object" || value === null) return false;
-  const candidate = value as Partial<ModuleFile>;
-  return typeof candidate.module === "string" && Array.isArray(candidate.symbols);
-}
-
-async function readModuleFiles(symbolsDir: string): Promise<ModuleFile[]> {
-  const files = (await readdir(symbolsDir)).filter((f) => f.endsWith(".json"));
-  const modules: ModuleFile[] = [];
-  for (const file of files) {
-    const raw = await readFile(path.join(symbolsDir, file), "utf-8");
-    let parsed: unknown;
-    try {
-      parsed = JSON.parse(raw);
-    } catch (error) {
-      throw new Error(`${file}: invalid JSON (${(error as Error).message})`);
-    }
-    if (!isModuleFile(parsed)) {
-      throw new Error(`${file}: not a module file — expected { module: string, symbols: [] }`);
-    }
-    modules.push(parsed);
-  }
-  return modules.sort((a, b) => a.module.localeCompare(b.module));
-}
-
-// A pipe would end the cell early, and `type` is a free-form string upstream.
-function cell(value: string): string {
-  return value.replace(/\|/g, "\\|");
-}
-
 function apiLevelLabel(record: SymbolRecord): string {
-  return record.minApiLevel === undefined ? NOT_STATED : `>= ${record.minApiLevel}`;
+  return apiLevelLabelFor(record.minApiLevel);
 }
 
 function statedCount(module: ModuleFile): number {
@@ -187,7 +164,7 @@ function apiIndexMarkdown(modules: ModuleFile[]): string {
  * API_LEVEL unlocks. This is the question the project exists to answer, so it is
  * worth one page rather than one read per module.
  */
-function compatIndexMarkdown(modules: ModuleFile[]): string {
+function compatIndexMarkdown(modules: ModuleFile[], devices: DeviceRecord[]): string {
   const byLevel = new Map<number, { module: string; count: number }[]>();
   const unstated: { module: string; count: number }[] = [];
 
@@ -205,9 +182,30 @@ function compatIndexMarkdown(modules: ModuleFile[]): string {
 
   const lines = ["# Compatibility index", ""];
   lines.push("Minimum API_LEVEL each module's symbols require, with the module page linked.", "");
+  if (devices.length > 0) {
+    lines.push(
+      "Each level also names how much hardware reaches it, because a level answers the",
+      "question only once it maps to a device — see [devices.md](devices.md).",
+      "",
+    );
+  }
 
   for (const [level, entries] of [...byLevel].sort(([a], [b]) => a - b)) {
     lines.push(`## API_LEVEL ${level}`, "");
+
+    if (devices.length > 0) {
+      const reaching = devicesAtLevel(devices, level);
+      lines.push(
+        reaching.length === 0
+          ? "**No device in the device list reaches this level.**"
+          : `Reached by ${reaching.length} of ${devices.filter((d) => d.latestApiLevel !== undefined).length} devices with a stated level — highest first: ${reaching
+              .slice(0, 5)
+              .map((d) => `${d.name} (${d.latestApiLevel})`)
+              .join(", ")}${reaching.length > 5 ? ", …" : ""}`,
+        "",
+      );
+    }
+
     for (const entry of entries) {
       const slug = moduleSlug(entry.module);
       lines.push(`- \`${entry.module}\` — ${entry.count} symbols ([${slug}.md](${slug}.md))`);
@@ -221,6 +219,120 @@ function compatIndexMarkdown(modules: ModuleFile[]): string {
     for (const entry of unstated) {
       const slug = moduleSlug(entry.module);
       lines.push(`- \`${entry.module}\` — ${entry.count} symbols ([${slug}.md](${slug}.md))`);
+    }
+    lines.push("");
+  }
+
+  return lines.join("\n");
+}
+
+// --- devices ---------------------------------------------------------------
+//
+// The device list is what turns a level into an answer. `compatibility/` already
+// says a symbol needs `>= 4.2`; only these records say that means "a Bip 6 runs
+// it, a Bip 5 does not". Both directions get rendered, because a developer
+// arrives from either one.
+
+/** A device runs a symbol when it reaches the symbol's minimum. */
+function symbolsAvailableOn(device: DeviceRecord, symbols: SymbolRecord[]): number {
+  if (device.latestApiLevel === undefined) return 0;
+  const level = device.latestApiLevel;
+  return symbols.filter((r) => r.minApiLevel !== undefined && r.minApiLevel <= level).length;
+}
+
+function screenLabel(device: DeviceRecord): string {
+  const shape = device.screen.shape ?? "—";
+  const size =
+    device.screen.width === undefined ? "—" : `${device.screen.width} x ${device.screen.height}`;
+  return `${shape}, ${size}`;
+}
+
+function deviceSourceLabel(device: DeviceRecord): string {
+  if (device.deviceSources.length === 0) return "—";
+  return device.deviceSources
+    .map(({ id, mainlandChina }) => `\`${id}\`${mainlandChina ? "\\*" : ""}`)
+    .join(", ");
+}
+
+function yesNo(value: boolean | undefined): string {
+  return value === undefined ? NOT_STATED : value ? "yes" : "no";
+}
+
+/** Devices that reach `level`, highest-capability first. */
+function devicesAtLevel(devices: DeviceRecord[], level: number): DeviceRecord[] {
+  return devices
+    .filter((d) => d.latestApiLevel !== undefined && d.latestApiLevel >= level)
+    .sort((a, b) => (b.latestApiLevel ?? 0) - (a.latestApiLevel ?? 0) || a.name.localeCompare(b.name));
+}
+
+function devicesMarkdown(devices: DeviceRecord[], modules: ModuleFile[]): string {
+  const symbols = modules.flatMap((m) => m.symbols);
+  const stated = symbols.filter((r) => r.minApiLevel !== undefined).length;
+  const zeppOs = devices
+    .filter((d) => d.runsZeppOs && d.latestApiLevel !== undefined)
+    .sort((a, b) => (b.latestApiLevel ?? 0) - (a.latestApiLevel ?? 0) || a.name.localeCompare(b.name));
+  const noLevel = devices.filter((d) => d.runsZeppOs && d.latestApiLevel === undefined);
+  const nonZeppOs = devices.filter((d) => !d.runsZeppOs);
+
+  const lines = ["# Devices", ""];
+  lines.push(
+    "The hardware side of the compatibility question. `API_LEVEL` on its own does not",
+    "tell a developer whether an app ships — this does.",
+    "",
+    `**Symbols available** counts the ${stated} symbols that state a minimum and whose`,
+    "minimum the device reaches. It is a floor: the 29 symbols with no stated minimum",
+    "are excluded from every count rather than assumed available.",
+    "",
+  );
+
+  lines.push("## Devices running Zepp OS", "");
+  lines.push(
+    "| Device | API_LEVEL | Zepp OS | Symbols available | Screen | Keys | SecondaryWidget | deviceSource |",
+  );
+  lines.push("| --- | --- | --- | --- | --- | --- | --- | --- |");
+  for (const device of zeppOs) {
+    lines.push(
+      `| ${cell(device.name)} | ${device.latestApiLevel} | ${device.latestOsVersion ?? NOT_STATED} | ${symbolsAvailableOn(device, symbols)} of ${stated} | ${cell(screenLabel(device))} | ${device.physicalKeys ?? NOT_STATED} | ${yesNo(device.secondaryWidget)} | ${deviceSourceLabel(device)} |`,
+    );
+  }
+  lines.push("");
+  lines.push(
+    "A `\\*` on a `deviceSource` marks the Mainland China version of that device.",
+    "",
+  );
+
+  if (noLevel.length > 0) {
+    lines.push("## Zepp OS 1.0 devices — no API_LEVEL", "");
+    lines.push(
+      "The device list states no `Latest API_LEVEL` for these. That is not level 0: the",
+      "2.0 API this knowledge base documents does not run on them at all, so **no symbol",
+      "here is available** on this hardware.",
+      "",
+    );
+    lines.push("| Device | Zepp OS | Screen | Keys | deviceSource |");
+    lines.push("| --- | --- | --- | --- | --- |");
+    for (const device of noLevel) {
+      lines.push(
+        `| ${cell(device.name)} | ${device.latestOsVersion ?? NOT_STATED} | ${cell(screenLabel(device))} | ${device.physicalKeys ?? NOT_STATED} | ${deviceSourceLabel(device)} |`,
+      );
+    }
+    lines.push("");
+  }
+
+  if (nonZeppOs.length > 0) {
+    lines.push("## Devices that do not run Zepp OS", "");
+    lines.push(
+      "Listed upstream under *Non-Zepp OS Devices*: they take watchfaces but run no Mini",
+      "Program. Nothing in `../api/` applies to them. They are here so that a question",
+      "about one gets an answer rather than a silence that reads like *not covered*.",
+      "",
+    );
+    lines.push("| Device | Screen | Keys | deviceSource |");
+    lines.push("| --- | --- | --- | --- |");
+    for (const device of nonZeppOs) {
+      lines.push(
+        `| ${cell(device.name)} | ${cell(screenLabel(device))} | ${device.physicalKeys ?? NOT_STATED} | ${deviceSourceLabel(device)} |`,
+      );
     }
     lines.push("");
   }
@@ -338,10 +450,6 @@ function runtimeIndexMarkdown(modules: ModuleFile[]): string {
   return lines.join("\n");
 }
 
-async function writePage(file: string, content: string): Promise<void> {
-  await writeFile(file, `${content.replace(/\n+$/, "")}\n`, "utf-8");
-}
-
 /**
  * Rewrites the generated pages in every out dir so a module that disappeared
  * upstream also disappears here — same idempotence contract as `writeSymbols`.
@@ -351,12 +459,22 @@ async function writePage(file: string, content: string): Promise<void> {
 export async function render(
   symbolsDir: string,
   outDir: string,
-): Promise<{ modules: number; runtimes: number }> {
+  devicesFile?: string,
+): Promise<{ modules: number; runtimes: number; devices: number }> {
   const modules = await readModuleFiles(symbolsDir);
+  // `compatibility/` has one owner, because `prepareOutDir` clears the dir: a
+  // second function writing `devices.md` there would have its page deleted by
+  // whichever ran second. The device join also feeds the compatibility index, so
+  // this stage needs the records regardless.
+  const devices = devicesFile === undefined ? [] : await readDeviceFile(devicesFile);
 
-  // `index.md` is generated, so no module may claim that slug. Resolved before
-  // any write so a collision fails without leaving half a knowledge base behind.
-  const slugs = new Map<string, string>([[path.parse(INDEX_FILE).name, "(the generated index)"]]);
+  // `index.md` is generated, so no module may claim that slug — nor `devices.md`
+  // in the compatibility dir. Resolved before any write so a collision fails
+  // without leaving half a knowledge base behind.
+  const slugs = new Map<string, string>([
+    [path.parse(INDEX_FILE).name, "(the generated index)"],
+    [path.parse(DEVICES_FILE).name, "(the generated device page)"],
+  ]);
   const pages: { slug: string; module: ModuleFile }[] = [];
 
   for (const module of modules) {
@@ -374,10 +492,7 @@ export async function render(
   const runtimesDir = path.join(outDir, RUNTIMES_DIR);
 
   for (const dir of [apiDir, compatDir, runtimesDir]) {
-    await mkdir(dir, { recursive: true });
-    for (const entry of await readdir(dir)) {
-      if (entry.endsWith(".md") && !PRESERVED.has(entry)) await rm(path.join(dir, entry));
-    }
+    await prepareOutDir(dir);
   }
 
   for (const { slug, module } of pages) {
@@ -389,9 +504,13 @@ export async function render(
     await writePage(path.join(runtimesDir, `${runtime}.md`), runtimeMarkdown(runtime, label, modules));
   }
 
+  if (devices.length > 0) {
+    await writePage(path.join(compatDir, DEVICES_FILE), devicesMarkdown(devices, modules));
+  }
+
   await writePage(path.join(apiDir, INDEX_FILE), apiIndexMarkdown(modules));
-  await writePage(path.join(compatDir, INDEX_FILE), compatIndexMarkdown(modules));
+  await writePage(path.join(compatDir, INDEX_FILE), compatIndexMarkdown(modules, devices));
   await writePage(path.join(runtimesDir, INDEX_FILE), runtimeIndexMarkdown(modules));
 
-  return { modules: modules.length, runtimes: RUNTIMES.length };
+  return { modules: modules.length, runtimes: RUNTIMES.length, devices: devices.length };
 }

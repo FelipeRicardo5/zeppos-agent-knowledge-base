@@ -2,7 +2,12 @@
 
 Minimum API_LEVEL each module's symbols require, with the module page linked.
 
+Each level also names how much hardware reaches it, because a level answers the
+question only once it maps to a device — see [devices.md](devices.md).
+
 ## API_LEVEL 2
+
+Reached by 29 of 29 devices with a stated level — highest first: Amazfit Balance 3 (4.4), Amazfit Balance Ultra (4.4), Amazfit Bip Max (4.4), Amazfit Cheetah 2 Ultra (4.3), Cheetah 2 Pro (4.3), …
 
 - `@zos/app` — 6 symbols ([zos-app.md](zos-app.md))
 - `@zos/ble` — 6 symbols ([zos-ble.md](zos-ble.md))
@@ -23,6 +28,8 @@ Minimum API_LEVEL each module's symbols require, with the module page linked.
 
 ## API_LEVEL 2.1
 
+Reached by 28 of 29 devices with a stated level — highest first: Amazfit Balance 3 (4.4), Amazfit Balance Ultra (4.4), Amazfit Bip Max (4.4), Amazfit Cheetah 2 Ultra (4.3), Cheetah 2 Pro (4.3), …
+
 - `@zos/display` — 4 symbols ([zos-display.md](zos-display.md))
 - `@zos/page` — 1 symbols ([zos-page.md](zos-page.md))
 - `@zos/sensor` — 4 symbols ([zos-sensor.md](zos-sensor.md))
@@ -30,6 +37,8 @@ Minimum API_LEVEL each module's symbols require, with the module page linked.
 - `@zos/ui` — 2 symbols ([zos-ui.md](zos-ui.md))
 
 ## API_LEVEL 3
+
+Reached by 26 of 29 devices with a stated level — highest first: Amazfit Balance 3 (4.4), Amazfit Balance Ultra (4.4), Amazfit Bip Max (4.4), Amazfit Cheetah 2 Ultra (4.3), Cheetah 2 Pro (4.3), …
 
 - `@zos/alarm` — 17 symbols ([zos-alarm.md](zos-alarm.md))
 - `@zos/app` — 3 symbols ([zos-app.md](zos-app.md))
@@ -52,6 +61,8 @@ Minimum API_LEVEL each module's symbols require, with the module page linked.
 
 ## API_LEVEL 3.6
 
+Reached by 24 of 29 devices with a stated level — highest first: Amazfit Balance 3 (4.4), Amazfit Balance Ultra (4.4), Amazfit Bip Max (4.4), Amazfit Cheetah 2 Ultra (4.3), Cheetah 2 Pro (4.3), …
+
 - `@zos/app-access` — 1 symbols ([zos-app-access.md](zos-app-access.md))
 - `@zos/global` — 1 symbols ([zos-global.md](zos-global.md))
 - `@zos/router` — 1 symbols ([zos-router.md](zos-router.md))
@@ -60,12 +71,16 @@ Minimum API_LEVEL each module's symbols require, with the module page linked.
 
 ## API_LEVEL 4
 
+Reached by 15 of 29 devices with a stated level — highest first: Amazfit Balance 3 (4.4), Amazfit Balance Ultra (4.4), Amazfit Bip Max (4.4), Amazfit Cheetah 2 Ultra (4.3), Cheetah 2 Pro (4.3), …
+
 - `@zos/app` — 2 symbols ([zos-app.md](zos-app.md))
 - `@zos/timer` — 2 symbols ([zos-timer.md](zos-timer.md))
 - `@zos/ui` — 9 symbols ([zos-ui.md](zos-ui.md))
 - `@zos/utils` — 2 symbols ([zos-utils.md](zos-utils.md))
 
 ## API_LEVEL 4.2
+
+Reached by 14 of 29 devices with a stated level — highest first: Amazfit Balance 3 (4.4), Amazfit Balance Ultra (4.4), Amazfit Bip Max (4.4), Amazfit Cheetah 2 Ultra (4.3), Cheetah 2 Pro (4.3), …
 
 - `@zos/ui` — 2 symbols ([zos-ui.md](zos-ui.md))
 

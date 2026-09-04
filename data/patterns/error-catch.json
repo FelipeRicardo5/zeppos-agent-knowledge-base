@@ -1,0 +1,40 @@
+{
+  "id": "error-catch",
+  "title": "Error Capture",
+  "summary": "During the development of the Mini Program process, the simulator preview or real machine will often encounter program execution errors, when the need to troubleshoot the logs, due to the length of the logs do limit, and no source-map tool, resulting in low efficiency in locating errors. The device app framework is currently unable to capture errors in the lifecycle, and this article provides some ideas for developers to follow.",
+  "approaches": [
+    {
+      "heading": "Introduction",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Thinking",
+      "symbols": [],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "title": "page.js",
+          "runtime": "device-app",
+          "code": "Page({\n  build() {\n    const a = undefined\n    const b = () => {\n      a()\n    }\n    const c = () => {\n      b()\n    }\n    c()\n  }\n})"
+        },
+        {
+          "language": "js",
+          "code": "Page({\n  build() {\n    try {\n      const a = undefined\n      const b = () => {\n        a()\n      }\n      const c = () => {\n        b()\n      }\n      c()\n    } catch (e) {\n      console.log('LifeCycle Error', e)\n      e && e.stack && e.stack.split(/\\n/).forEach((i) => console.log('error stack', i))\n    }\n  }\n})"
+        }
+      ]
+    }
+  ],
+  "symbols": [],
+  "modules": [],
+  "runtimes": [
+    "device-app"
+  ],
+  "referencePages": [],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/error-catch.mdx",
+  "extractedAt": "2026-09-04"
+}

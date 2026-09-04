@@ -1,0 +1,42 @@
+{
+  "id": "basic-environment-construction",
+  "title": "Construction of basic environment",
+  "summary": "The Zepp OS development environment is very simple to set up, requiring only a Node.js environment and a code editor. This article will guide developers through a quick build of the Zepp OS development environment, including the installation of Node.js and the installation of the code editor.",
+  "approaches": [
+    {
+      "heading": "Introduction",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Installing Node.js",
+      "symbols": [],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "sh",
+          "code": "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh\n\n// or\n\nwget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh"
+        },
+        {
+          "language": "txt",
+          "code": "export NVM_DIR=\"$([ -z \"${XDG_CONFIG_HOME-}\" ] && printf %s \"${HOME}/.nvm\" || printf %s \"${XDG_CONFIG_HOME}/nvm\")\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\" # This loads nvm"
+        }
+      ]
+    },
+    {
+      "heading": "Code Editor",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    }
+  ],
+  "symbols": [],
+  "modules": [],
+  "runtimes": [],
+  "referencePages": [],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/Basic-environment-construction.mdx",
+  "extractedAt": "2026-09-04"
+}

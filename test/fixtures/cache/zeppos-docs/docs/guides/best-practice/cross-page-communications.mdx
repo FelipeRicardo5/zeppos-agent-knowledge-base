@@ -1,0 +1,29 @@
+---
+title: Cross-Page Communications
+sidebar_label: Cross-Page Communications
+---
+
+When a Mini Program has more than one page, how should the pages communicate with each other?
+
+This article gives some solution ideas for [some common scenarios](../../reference/device-app-api/newAPI/router/push.mdx).
+
+- Page jumping
+- Via the storage module's [`sessionStorage`](../../reference/device-app-api/newAPI/storage/sessionStorage.mdx) API
+
+## Page Jumping
+
+Use the [`push`](../../reference/device-app-api/newAPI/router/push.mdx) API.
+
+```js title=pageA.js
+import { push } from '@zos/router'
+
+push({ url: 'path/to/pageB' })
+```
+
+## Via [sessionStorage API](../../reference/device-app-api/newAPI/storage/sessionStorage.mdx)
+
+```js title=pageB.js
+import { sessionStorage } from '@zos/storage'
+
+sessionStorage.getItem('test')
+```

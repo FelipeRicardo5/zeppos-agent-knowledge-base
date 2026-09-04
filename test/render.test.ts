@@ -43,7 +43,8 @@ describe("render", () => {
 
     const counts = await render(symbols, out);
 
-    assert.deepEqual(counts, { modules: 1, runtimes: 5 });
+    // `devices: 0` because no device file is passed; test/devices.test.ts covers that.
+    assert.deepEqual(counts, { modules: 1, runtimes: 5, devices: 0 });
 
     const apiFiles = await readdir(path.join(out, "api"));
     const compatFiles = await readdir(path.join(out, "compatibility"));

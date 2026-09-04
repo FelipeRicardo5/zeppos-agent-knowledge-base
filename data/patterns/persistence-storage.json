@@ -1,0 +1,42 @@
+{
+  "id": "persistence-storage",
+  "title": "Data Persistence",
+  "summary": "In some cases, we want to be able to store a part of the data state of an Mini Program persistently. In simple terms, persistence means saving data to a storage device that can be saved permanently. Take a look at a practical Mini Program with an example. The sample Mini Program calories reads the consumption of the day and calculates the relationship between the calorie value and different foods, providing 10 foods for the user to choose from, with chocolate as the default. If the user wants to change to a burger, he needs to go to the selection page. Assuming that the program is not persistent, when the user exits the Mini Program and enters the Mini Program again, the food selected will still be chocolate. If persistence is done, then each time the Mini Program is entered, the previously saved application state is fetched and the selected food becomes a burger.",
+  "approaches": [
+    {
+      "heading": "Introduction",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Thinking",
+      "symbols": [
+        "@zos/storage.LocalStorage"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "title": "page.js",
+          "runtime": "device-app",
+          "code": "import { LocalStorage } from '@zos/storage'\n\nconst localStorage = new LocalStorage()\n\nPage({\n  state: {\n    data: null,\n    storage: localStorage\n  },\n  build() {\n    this.state.data = localStorage.getItem('state')\n    // ...\n  },\n  onDestroy() {\n    localStorage.setItem('state', this.state.data)\n  }\n})"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/storage.LocalStorage"
+  ],
+  "modules": [],
+  "runtimes": [
+    "device-app"
+  ],
+  "referencePages": [
+    "zeppos-docs/docs/reference/device-app-api/newAPI/storage/localStorage.mdx"
+  ],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/persistence-storage.mdx",
+  "extractedAt": "2026-09-04"
+}

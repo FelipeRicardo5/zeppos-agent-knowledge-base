@@ -1,0 +1,94 @@
+{
+  "id": "cross-page-communications",
+  "title": "Cross-Page Communications",
+  "summary": "When a Mini Program has more than one page, how should the pages communicate with each other? This article gives some solution ideas for some common scenarios.",
+  "approaches": [
+    {
+      "heading": "Page Jumping",
+      "symbols": [
+        "@zos/router.push"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "title": "pageA.js",
+          "runtime": "device-app",
+          "code": "import { push } from '@zos/router'\n\npush({\n  url: 'path/to/pageB',\n  params: {\n    id: '0',\n    type: 'normal'\n  }\n})"
+        },
+        {
+          "language": "js",
+          "title": "pageB.js",
+          "runtime": "device-app",
+          "code": "Page({\n  onInit(params) {\n    const paramsObj = JSON.parse(params)\n    const { id, type } = paramsObj\n    console.log(id === '0') // true\n    console.log(type === 'normal') // true\n  }\n})"
+        }
+      ]
+    },
+    {
+      "heading": "Communicating through the global `app` object",
+      "symbols": [
+        "@zos/router.back"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "title": "app.js",
+          "runtime": "device-app",
+          "code": "App({\n  globalData: {\n    type: 'normal'\n  }\n})"
+        },
+        {
+          "language": "js",
+          "title": "pageA.js",
+          "runtime": "device-app",
+          "code": "Page({\n  build() {\n    console.log(getApp()._options.globalData.type)\n  }\n})"
+        },
+        {
+          "language": "js",
+          "title": "pageB.js",
+          "runtime": "device-app",
+          "code": "import { back } from '@zos/router'\n\n// ...\ngetApp()._options.globalData.type = 'classic'\n\nback()"
+        }
+      ]
+    },
+    {
+      "heading": "Via sessionStorage API",
+      "symbols": [
+        "@zos/storage.sessionStorage"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "title": "pageA.js",
+          "runtime": "device-app",
+          "code": "import { sessionStorage } from '@zos/storage'\n\nsessionStorage.setItem('test', 'test value')"
+        },
+        {
+          "language": "js",
+          "title": "pageB.js",
+          "runtime": "device-app",
+          "code": "import { sessionStorage } from '@zos/storage'\n\nsessionStorage.getItem('test')"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/router.back",
+    "@zos/router.push",
+    "@zos/storage.sessionStorage"
+  ],
+  "modules": [],
+  "runtimes": [
+    "device-app"
+  ],
+  "referencePages": [
+    "zeppos-docs/docs/reference/device-app-api/newAPI/router/back.mdx",
+    "zeppos-docs/docs/reference/device-app-api/newAPI/router/push.mdx",
+    "zeppos-docs/docs/reference/device-app-api/newAPI/storage/sessionStorage.mdx"
+  ],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/cross-page-communications.mdx",
+  "extractedAt": "2026-09-04"
+}

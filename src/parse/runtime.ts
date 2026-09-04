@@ -53,6 +53,22 @@ const DOCS_PREFIXES: [prefix: string, runtime: Runtime][] = [
   ["static/llms/", "device-app"],
 ];
 
+/**
+ * Runtime of a path relative to an app's own root, rather than to the cache — a
+ * code fence's `title=` in a guide states exactly such a path. `app-side/index.js`
+ * is the Side Service and `setting/index.js` the Settings App; everything else in
+ * an app tree runs on the watch per `folder-structure.mdx`, so a bare `page.js`
+ * or `app.js` is the Device App. Unlike `runtimeForPath` this always answers,
+ * because the caller has already established that the path *is* an app file.
+ */
+export function runtimeForAppFile(file: string): Runtime {
+  for (const segment of toPosixPath(file).split("/")) {
+    const phoneRuntime = PHONE_DIRS[segment];
+    if (phoneRuntime) return phoneRuntime;
+  }
+  return "device-app";
+}
+
 /** Cache-relative paths are produced with the host separator; rules are posix. */
 function toPosixPath(file: string): string {
   return file.split(path.sep).join("/");

@@ -1,0 +1,58 @@
+{
+  "id": "widget-group",
+  "title": "Widgets Management by Group",
+  "summary": "This article introduces the use of `GROUP` widget to group and manage a series of widgets in some suitable scenarios for a more elegant code implementation. Examples are given for the following scenarios, and we look forward to more scenarios from the community",
+  "approaches": [
+    {
+      "heading": "Scenario 1: Uniformly control the widgets in a rectangular area to show/hide, modify the position, etc.",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "code": "import { createWidget, widget, prop } from '@zos/ui'\n\nconst img_icon_widget = createWidget(widget.IMG, {\n  // ...\n})\n\nconst img_arrow_widget = createWidget(widget.IMG, {\n  // ...\n})\n\nconst text_name_widget = createWidget(widget.TEXT, {\n  // ...\n})\n\nimg_icon_widget.setProperty(prop.VISIBLE, false)\nimg_arrow_widget.setProperty(prop.VISIBLE, false)\ntext_name_widget.setProperty(prop.VISIBLE, false)"
+        },
+        {
+          "language": "js",
+          "code": "import { createWidget, widget, prop } from '@zos/ui'\n\nconst group_widget = createWidget(widget.GROUP , {\n  // ...\n})\n\nconst img_icon_widget = group_widget.createWidget(widget.IMG, {\n  // ...\n})\n\nconst img_arrow_widget = group_widget.createWidget(widget.IMG, {\n  // ...\n})\n\nconst text_name_widget = group_widget.createWidget(widget.TEXT, {\n  // ...\n})\n\ngroup_widget.setProperty(prop.VISIBLE, false)"
+        }
+      ]
+    },
+    {
+      "heading": "Scenario 2: Register the same click events for controls in a rectangular area and expand the click area for user interaction",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.widget"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "code": "import { createWidget, widget, event } from '@zos/ui'\n\nconst callback = () => {\n  console.log('callback')\n}\n\nconst img_icon_widget = createWidget(widget.IMG, {\n  // ...\n})\n\nimg_icon_widget.addEventListener(event.CLICK_DOWN, callback)\n\nconst img_arrow_widget = createWidget(widget.IMG, {\n  // ...\n})\n\nimg_arrow_widget.addEventListener(event.CLICK_DOWN, callback)\n\nconst text_name_widget = createWidget(widget.TEXT, {\n  // ...\n})\n\ntext_name_widget.addEventListener(event.CLICK_DOWN, callback)"
+        },
+        {
+          "language": "js",
+          "code": "import { createWidget, widget, event } from '@zos/ui'\n\nconst callback = () => {\n  console.log('callback')\n}\n\nconst group_widget = createWidget(widget.GROUP , {\n  // ...\n})\n\nconst img_icon_widget = group_widget.createWidget(widget.IMG, {\n  // ...\n})\n\nconst img_arrow_widget = group_widget.createWidget(widget.IMG, {\n  // ...\n})\n\nconst text_name_widget = group_widget.createWidget(widget.TEXT, {\n  // ...\n})\n\ngroup_widget.addEventListener(event.CLICK_DOWN, callback)"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/ui.createWidget",
+    "@zos/ui.event",
+    "@zos/ui.prop",
+    "@zos/ui.widget"
+  ],
+  "modules": [],
+  "runtimes": [],
+  "referencePages": [],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/widget-group.mdx",
+  "extractedAt": "2026-09-04"
+}

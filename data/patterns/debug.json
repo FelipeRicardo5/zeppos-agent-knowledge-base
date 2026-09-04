@@ -1,0 +1,50 @@
+{
+  "id": "debug",
+  "title": "Debug Mini Program",
+  "summary": "At this stage Zepp OS development tools do not support breakpoint debugging code, adding logging is the best debugging tool. This article will cover the following.",
+  "approaches": [
+    {
+      "heading": "Introduction",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Add logs in the Mini Program",
+      "symbols": [
+        "@zos/utils.log"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "code": "import { log } from '@zos/utils'\n\nconst pageLogger = log.getLogger('page')\n\npageLogger.log('page created')\npageLogger.error('page error')"
+        }
+      ]
+    },
+    {
+      "heading": "View Simulator Log",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Real Machine Log",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    }
+  ],
+  "symbols": [
+    "@zos/utils.log"
+  ],
+  "modules": [],
+  "runtimes": [],
+  "referencePages": [
+    "zeppos-docs/docs/reference/device-app-api/newAPI/utils/log.mdx"
+  ],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/debug.mdx",
+  "extractedAt": "2026-09-04"
+}

@@ -1,0 +1,1381 @@
+[
+  {
+    "name": "Active 2 (Round)",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "8913152",
+        "mainlandChina": true
+      },
+      {
+        "id": "8913153",
+        "mainlandChina": false
+      },
+      {
+        "id": "8913155",
+        "mainlandChina": false
+      },
+      {
+        "id": "8913159",
+        "mainlandChina": false
+      },
+      {
+        "id": "10092800",
+        "mainlandChina": true
+      },
+      {
+        "id": "10092801",
+        "mainlandChina": false
+      },
+      {
+        "id": "10092803",
+        "mainlandChina": false
+      },
+      {
+        "id": "10092807",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 466,
+      "height": 466
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 314,
+      "height": 314
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "active-2-round",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Active 3 Premium",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "10944768",
+        "mainlandChina": true
+      },
+      {
+        "id": "10944769",
+        "mainlandChina": false
+      },
+      {
+        "id": "10944771",
+        "mainlandChina": false
+      },
+      {
+        "id": "10948867",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 466,
+      "height": 466
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 314,
+      "height": 314
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "active-3-premium",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Active",
+    "latestApiLevel": 3.6,
+    "latestOsVersion": "4.0",
+    "deviceSources": [
+      {
+        "id": "8323328",
+        "mainlandChina": true
+      },
+      {
+        "id": "8323329",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 86,
+      "width": 390,
+      "height": 450
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 266,
+      "height": 307
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-active",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Active 2 (Square)",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "10223872",
+        "mainlandChina": true
+      },
+      {
+        "id": "10223873",
+        "mainlandChina": false
+      },
+      {
+        "id": "10223875",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 86,
+      "width": 390,
+      "height": 450
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 266,
+      "height": 307
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-active-2-square",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Active Edge",
+    "latestApiLevel": 3.5,
+    "latestOsVersion": "3.5",
+    "deviceSources": [
+      {
+        "id": "8388864",
+        "mainlandChina": true
+      },
+      {
+        "id": "8388865",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 360,
+      "height": 360
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 243,
+      "height": 243
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-active-edge",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Active Max",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "10813697",
+        "mainlandChina": false
+      },
+      {
+        "id": "10813699",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-active-max",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Balance",
+    "latestApiLevel": 3.7,
+    "latestOsVersion": "4.0",
+    "deviceSources": [
+      {
+        "id": "8519936",
+        "mainlandChina": true
+      },
+      {
+        "id": "8519937",
+        "mainlandChina": false
+      },
+      {
+        "id": "8519939",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-balance",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Balance 2",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "9568512",
+        "mainlandChina": true
+      },
+      {
+        "id": "9568513",
+        "mainlandChina": false
+      },
+      {
+        "id": "9568515",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-balance-2",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Balance 3",
+    "latestApiLevel": 4.4,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "11141376",
+        "mainlandChina": true
+      },
+      {
+        "id": "11141377",
+        "mainlandChina": false
+      },
+      {
+        "id": "11141379",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 5,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-balance-3",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Balance Ultra",
+    "latestApiLevel": 4.4,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "11075840",
+        "mainlandChina": true
+      },
+      {
+        "id": "11075841",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 5,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-balance-ultra",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Band 7",
+    "latestOsVersion": "1.0",
+    "deviceSources": [
+      {
+        "id": "252",
+        "mainlandChina": false
+      },
+      {
+        "id": "253",
+        "mainlandChina": false
+      },
+      {
+        "id": "254",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "band",
+      "radius": 25,
+      "width": 194,
+      "height": 368
+    },
+    "watchfacePreview": {
+      "width": 152,
+      "height": 288
+    },
+    "runsZeppOs": true,
+    "slug": "amazfit-band-7",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Bip 5",
+    "latestApiLevel": 2.1,
+    "latestOsVersion": "2.1",
+    "deviceSources": [
+      {
+        "id": "8454400",
+        "mainlandChina": true
+      },
+      {
+        "id": "8454401",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 69,
+      "width": 320,
+      "height": 380
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 200,
+      "height": 238
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-bip-5",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Bip 5 Unity",
+    "latestApiLevel": 3,
+    "latestOsVersion": "3.0",
+    "deviceSources": [
+      {
+        "id": "8782081",
+        "mainlandChina": false
+      },
+      {
+        "id": "8782088",
+        "mainlandChina": false
+      },
+      {
+        "id": "8782089",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 69,
+      "width": 320,
+      "height": 380
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 200,
+      "height": 238
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-bip-5-unity",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Bip 6",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "9765120",
+        "mainlandChina": true
+      },
+      {
+        "id": "9765121",
+        "mainlandChina": false
+      },
+      {
+        "id": "10158337",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 86,
+      "width": 390,
+      "height": 450
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 266,
+      "height": 307
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-bip-6",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Bip Max",
+    "latestApiLevel": 4.4,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "11206915",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 106,
+      "width": 432,
+      "height": 514
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 294,
+      "height": 350
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-bip-max",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Cheetah (Round)",
+    "latestApiLevel": 3.6,
+    "latestOsVersion": "3.5",
+    "deviceSources": [
+      {
+        "id": "8192256",
+        "mainlandChina": true
+      },
+      {
+        "id": "8192257",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 454,
+      "height": 454
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 306,
+      "height": 306
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-cheetah-round",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Cheetah (Square)",
+    "latestApiLevel": 3.6,
+    "latestOsVersion": "3.5",
+    "deviceSources": [
+      {
+        "id": "8257793",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 86,
+      "width": 390,
+      "height": 450
+    },
+    "physicalKeys": 3,
+    "watchfacePreview": {
+      "width": 266,
+      "height": 307
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-cheetah-square",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Cheetah 2 Ultra",
+    "latestApiLevel": 4.3,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "9961728",
+        "mainlandChina": true
+      },
+      {
+        "id": "9961729",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-cheetah-2-ultra",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Cheetah Pro",
+    "latestApiLevel": 3.6,
+    "latestOsVersion": "3.5",
+    "deviceSources": [
+      {
+        "id": "8126720",
+        "mainlandChina": true
+      },
+      {
+        "id": "8126721",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-cheetah-pro",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Falcon",
+    "latestApiLevel": 3.6,
+    "latestOsVersion": "3.5",
+    "deviceSources": [
+      {
+        "id": "414",
+        "mainlandChina": true
+      },
+      {
+        "id": "415",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 416,
+      "height": 416
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 280,
+      "height": 280
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-falcon",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTR 2",
+    "deviceSources": [
+      {
+        "id": "63",
+        "mainlandChina": false
+      },
+      {
+        "id": "64",
+        "mainlandChina": false
+      },
+      {
+        "id": "244",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 454,
+      "height": 454
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 306,
+      "height": 306
+    },
+    "runsZeppOs": false,
+    "slug": "amazfit-gtr-2",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTR 2e",
+    "deviceSources": [
+      {
+        "id": "206",
+        "mainlandChina": false
+      },
+      {
+        "id": "209",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 454,
+      "height": 454
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 306,
+      "height": 306
+    },
+    "runsZeppOs": false,
+    "slug": "amazfit-gtr-2e",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTR 3",
+    "latestOsVersion": "1.0",
+    "deviceSources": [
+      {
+        "id": "226",
+        "mainlandChina": true
+      },
+      {
+        "id": "227",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 454,
+      "height": 454
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 306,
+      "height": 306
+    },
+    "runsZeppOs": true,
+    "slug": "amazfit-gtr-3",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTR 3 Pro",
+    "latestOsVersion": "1.0",
+    "deviceSources": [
+      {
+        "id": "229",
+        "mainlandChina": true
+      },
+      {
+        "id": "230",
+        "mainlandChina": false
+      },
+      {
+        "id": "242",
+        "mainlandChina": true
+      },
+      {
+        "id": "6095106",
+        "mainlandChina": true
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "runsZeppOs": true,
+    "slug": "amazfit-gtr-3-pro",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTR 4",
+    "latestApiLevel": 3.6,
+    "latestOsVersion": "3.5",
+    "deviceSources": [
+      {
+        "id": "7930112",
+        "mainlandChina": true
+      },
+      {
+        "id": "7930113",
+        "mainlandChina": false
+      },
+      {
+        "id": "7864577",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 466,
+      "height": 466
+    },
+    "physicalKeys": 2,
+    "watchfacePreview": {
+      "width": 314,
+      "height": 314
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-gtr-4",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTR Mini",
+    "latestApiLevel": 2,
+    "latestOsVersion": "2.0",
+    "deviceSources": [
+      {
+        "id": "250",
+        "mainlandChina": false
+      },
+      {
+        "id": "251",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 416,
+      "height": 416
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 280,
+      "height": 280
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-gtr-mini",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTS 2 mini",
+    "deviceSources": [
+      {
+        "id": "91",
+        "mainlandChina": false
+      },
+      {
+        "id": "92",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 64,
+      "width": 306,
+      "height": 354
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 210,
+      "height": 242
+    },
+    "runsZeppOs": false,
+    "slug": "amazfit-gts-2-mini",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTS 3",
+    "latestOsVersion": "1.0",
+    "deviceSources": [
+      {
+        "id": "224",
+        "mainlandChina": true
+      },
+      {
+        "id": "225",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 86,
+      "width": 390,
+      "height": 450
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 266,
+      "height": 307
+    },
+    "runsZeppOs": true,
+    "slug": "amazfit-gts-3",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTS 4",
+    "latestApiLevel": 3.6,
+    "latestOsVersion": "3.5",
+    "deviceSources": [
+      {
+        "id": "7995648",
+        "mainlandChina": true
+      },
+      {
+        "id": "7995649",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 86,
+      "width": 390,
+      "height": 450
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 266,
+      "height": 307
+    },
+    "secondaryWidget": true,
+    "runsZeppOs": true,
+    "slug": "amazfit-gts-4",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit GTS 4 mini",
+    "latestOsVersion": "1.0",
+    "deviceSources": [
+      {
+        "id": "246",
+        "mainlandChina": true
+      },
+      {
+        "id": "247",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 80,
+      "width": 336,
+      "height": 384
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 228,
+      "height": 260
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-gts-4-mini",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit Pop",
+    "deviceSources": [
+      {
+        "id": "68",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 43,
+      "width": 302,
+      "height": 320
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 202,
+      "height": 214
+    },
+    "runsZeppOs": false,
+    "slug": "amazfit-pop",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit T-Rex 2",
+    "latestApiLevel": 2.1,
+    "latestOsVersion": "2.1",
+    "deviceSources": [
+      {
+        "id": "418",
+        "mainlandChina": true
+      },
+      {
+        "id": "419",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 454,
+      "height": 454
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 306,
+      "height": 306
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-t-rex-2",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit T-Rex 3",
+    "latestApiLevel": 4,
+    "latestOsVersion": "4.5",
+    "deviceSources": [
+      {
+        "id": "8716544",
+        "mainlandChina": true
+      },
+      {
+        "id": "8716545",
+        "mainlandChina": false
+      },
+      {
+        "id": "8716547",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-t-rex-3",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit T-Rex 3 Pro (44mm)",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "10682624",
+        "mainlandChina": true
+      },
+      {
+        "id": "10682625",
+        "mainlandChina": false
+      },
+      {
+        "id": "10682627",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 466,
+      "height": 466
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 314,
+      "height": 314
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-t-rex-3-pro-44mm",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit T-Rex 3 Pro (48mm)",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "10551552",
+        "mainlandChina": true
+      },
+      {
+        "id": "10551553",
+        "mainlandChina": false
+      },
+      {
+        "id": "10551555",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-t-rex-3-pro-48mm",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit T-Rex Pro",
+    "deviceSources": [
+      {
+        "id": "83",
+        "mainlandChina": false
+      },
+      {
+        "id": "200",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 360,
+      "height": 360
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 220,
+      "height": 220
+    },
+    "runsZeppOs": false,
+    "slug": "amazfit-t-rex-pro",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit T-Rex Ultra",
+    "latestApiLevel": 3.6,
+    "latestOsVersion": "3.5",
+    "deviceSources": [
+      {
+        "id": "6553856",
+        "mainlandChina": true
+      },
+      {
+        "id": "6553857",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 454,
+      "height": 454
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 306,
+      "height": 306
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-t-rex-ultra",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Amazfit T-Rex Ultra 2",
+    "latestApiLevel": 4.2,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "10879232",
+        "mainlandChina": true
+      },
+      {
+        "id": "10879233",
+        "mainlandChina": false
+      },
+      {
+        "id": "10879235",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 480,
+      "height": 480
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 324,
+      "height": 324
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "amazfit-t-rex-ultra-2",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Cheetah 2 Pro",
+    "latestApiLevel": 4.3,
+    "latestOsVersion": "5.0",
+    "deviceSources": [
+      {
+        "id": "11010304",
+        "mainlandChina": true
+      },
+      {
+        "id": "11010305",
+        "mainlandChina": false
+      },
+      {
+        "id": "11010307",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 466,
+      "height": 466
+    },
+    "physicalKeys": 4,
+    "watchfacePreview": {
+      "width": 314,
+      "height": 314
+    },
+    "secondaryWidget": false,
+    "runsZeppOs": true,
+    "slug": "cheetah-2-pro",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Zepp E (Round)",
+    "deviceSources": [
+      {
+        "id": "57",
+        "mainlandChina": false
+      },
+      {
+        "id": "81",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "round",
+      "width": 416,
+      "height": 416
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 280,
+      "height": 280
+    },
+    "runsZeppOs": false,
+    "slug": "zepp-e-round",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  },
+  {
+    "name": "Zepp E (Square)",
+    "deviceSources": [
+      {
+        "id": "61",
+        "mainlandChina": false
+      },
+      {
+        "id": "82",
+        "mainlandChina": false
+      }
+    ],
+    "screen": {
+      "shape": "square",
+      "radius": 60,
+      "width": 348,
+      "height": 442
+    },
+    "physicalKeys": 1,
+    "watchfacePreview": {
+      "width": 254,
+      "height": 323
+    },
+    "runsZeppOs": false,
+    "slug": "zepp-e-square",
+    "source": "docs-device-list",
+    "confidence": "OFFICIAL",
+    "originalPath": "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "extractedAt": "2026-09-04"
+  }
+]

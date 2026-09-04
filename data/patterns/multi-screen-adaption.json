@@ -1,0 +1,90 @@
+{
+  "id": "multi-screen-adaption",
+  "title": "Screen Adaptation",
+  "summary": "The screen shape and size of each device can be found in the Device Basic Information. The entire area of the round screen is available for developers to draw, while **a status bar** is pre-drawn on square screen devices for application uniformity, as shown in the following image. !square screen The height of the status bar is 64 px, the text is displayed on the left and the current time is displayed on the right. The text defaults to the `appName` field in `app.json`, and if the `appName` field is configured in `i18n`, the configuration in `i18n` is used first. There are the following APIs related to the status bar",
+  "approaches": [
+    {
+      "heading": "Introduction to different screens",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Adaptation scheme",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "`px` global functions",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "code": "{\n  ...\n  \"targets\": {\n    \"gtr-3-pro\": {\n      \"designWidth\": 480\n    },\n    \"gtr-3\": {\n      \"designWidth\": 480\n    },\n  }\n}"
+        },
+        {
+          "language": "js",
+          "code": "import { px } from '@zos/utils'\n\n// in GTR 3 PRO\nconsole.log(px(100)) // 100\n\n// in GTR 3\nconsole.log(px(100)) // 95"
+        },
+        {
+          "language": "js",
+          "code": "import { createWidget, widget, text_style, align } from '@zos/ui'\nimport { px } from '@zos/utils'\n\nconst textStyle = {\n  x: px(96),\n  y: px(40),\n  w: px(288),\n  h: px(46),\n  color: 0xffffff,\n  text_size: px(36),\n  align_h: align.CENTER_H,\n  align_v: align.CENTER_V,\n  text_style: text_style.WRAP\n}\n\nconst text = createWidget(widget.TEXT, textStyle)"
+        }
+      ]
+    },
+    {
+      "heading": "Style code is organized by screen shape",
+      "symbols": [
+        "@zos/device.SCREEN_SHAPE_ROUND",
+        "@zos/device.SCREEN_SHAPE_SQUARE",
+        "@zos/device.getDeviceInfo",
+        "@zos/ui.align",
+        "@zos/ui.text_style",
+        "@zos/utils.px"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "title": "index.style.js",
+          "runtime": "device-app",
+          "code": "import { getDeviceInfo, SCREEN_SHAPE_SQUARE, SCREEN_SHAPE_ROUND } from '@zos/device'\nimport { align, text_style } from '@zos/ui'\nimport { px } from '@zos/utils'\n\nconst deviceInfo = getDeviceInfo()\nconst { width, height, screenShape } = deviceInfo\n\nconst processStyles = (styleObj = {}) => {\n  return styleObj[screenShape]\n}\n\nconst HOME_TITLE = {\n  [SCREEN_SHAPE_ROUND]: {\n    attrs: {\n      text: 'Hello World Round'\n    },\n    x: px(96),\n    y: px(40),\n    w: px(288),\n    h: px(46),\n    color: 0xffffff,\n    text_size: px(36),\n    align_h: align.CENTER_H,\n    align_v: align.CENTER_V,\n    text_style: text_style.WRAP\n  },\n  [SCREEN_SHAPE_SQUARE]: {\n    attrs: {\n      text: 'Hello World Square',\n      x: 32,\n      y: 11,\n      w: 232,\n      h: 42,\n      color: 0x666666,\n      text_size: 32,\n      align_h: align.CENTER_H,\n      align_v: align.CENTER_V,\n      text_style: text_style.NONE\n    }\n  }\n}\n\nexport default {\n  HOME_TITLE: processStyles(HOME_TITLE)\n}"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/device.SCREEN_SHAPE_ROUND",
+    "@zos/device.SCREEN_SHAPE_SQUARE",
+    "@zos/device.getDeviceInfo",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.px"
+  ],
+  "modules": [],
+  "runtimes": [
+    "device-app"
+  ],
+  "referencePages": [
+    "zeppos-docs/docs/reference/app-json.mdx",
+    "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDeviceInfo.mdx",
+    "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setStatusBarVisible.mdx",
+    "zeppos-docs/docs/reference/device-app-api/newAPI/ui/updateStatusBarTitle.mdx",
+    "zeppos-docs/docs/reference/device-app-api/newAPI/utils/px.mdx",
+    "zeppos-docs/docs/reference/related-resources/device-list.mdx"
+  ],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/multi-screen-adaption.mdx",
+  "extractedAt": "2026-09-04"
+}

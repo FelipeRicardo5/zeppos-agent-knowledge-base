@@ -1,0 +1,29 @@
+---
+title: MessageBuilder Bluetooth Communication
+sidebar_label: MessageBuilder Bluetooth Communication
+---
+
+## Introduction
+
+Communication between "Device App" and "Side Service" is carried out via Bluetooth.
+
+:::tip
+The communication library is `/shared/message.js`.
+:::
+
+## Usage
+
+```js title="app.js"
+import { getPackageInfo } from '@zos/app'
+import * as ble from '@zos/ble'
+
+App({ onCreate() { console.log(getPackageInfo(), ble) } })
+```
+
+```js title=app-side/index.js
+AppSideService({ onInit() {} })
+```
+
+```sh
+npm install
+```

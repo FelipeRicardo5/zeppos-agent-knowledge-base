@@ -1,0 +1,67 @@
+{
+  "id": "bluetooth-communication",
+  "title": "MessageBuilder Bluetooth Communication",
+  "summary": "First, let's review the Overall Architecture of the Zepp OS Mini Program. Communication between \"Device App\" and \"Side Service\" is carried out via Bluetooth. The \"Device App\" uses Bluetooth capabilities through the `ble` API and the \"Side Service\" uses Bluetooth capabilities through the `Messaging API`, both of which can currently only manipulate binary data and are cumbersome for developers to organize data structures. Refer to the example ToDoList, where `/shared/message.js` encapsulates the Bluetooth communication process, making it easier for developers to develop applications. This article shares the experience of using `MessageBuilder`, i.e. `message.js`, to complete the communication between \"Device App\" and \"Side Service\" The communication library that Device Application relies on is `/shared/message.js`. The communication library that the Side Service depends on is `/shared/message-side.js`.",
+  "approaches": [
+    {
+      "heading": "Usage",
+      "symbols": [
+        "@zos/app.getPackageInfo",
+        "@zos/utils.log"
+      ],
+      "modules": [
+        "@zos/ble"
+      ],
+      "snippets": [
+        {
+          "language": "js",
+          "title": "app.js",
+          "runtime": "device-app",
+          "code": "import './shared/device-polyfill'"
+        },
+        {
+          "language": "js",
+          "title": "app.js",
+          "runtime": "device-app",
+          "code": "import './shared/device-polyfill'\nimport { MessageBuilder } from './shared/message'\nimport { getPackageInfo } from '@zos/app'\nimport * as ble from '@zos/ble'\n\nApp({\n  globalData: {\n    messageBuilder: null\n  },\n  onCreate(options) {\n    console.log('app on create invoke')\n    // establish connection\n    const { appId } = getPackageInfo()\n    const messageBuilder = new MessageBuilder({ appId, appDevicePort: 20, appSidePort: 0, ble })\n    this.globalData.messageBuilder = messageBuilder\n    messageBuilder.connect()\n  },\n  onDestroy(options) {\n    console.log('app on destroy invoke')\n    messageBuilder.disConnect()\n  }\n})"
+        },
+        {
+          "language": "js",
+          "title": "app-side/index.js",
+          "runtime": "side-service",
+          "code": "import { MessageBuilder } from '../shared/message-side'\n\nconst messageBuilder = new MessageBuilder()\n\nAppSideService({\n  onInit() {\n    // establish connection\n    messageBuilder.listen(() => {})\n  },\n})"
+        },
+        {
+          "language": "js",
+          "title": "page.js",
+          "runtime": "device-app",
+          "code": "import { log } from '@zos/utils'\n\nconst { messageBuilder } = getApp()._options.globalData\nconst logger = log.getLogger('demo')\n\nPage({\n  build() {\n    // receive a message from the Side Service\n    messageBuilder.on('call', ({ payload: buf }) => {\n      // call the messageBuilder.buf2Json method to convert the buffer to a JS JSON object\n      const data = messageBuilder.buf2Json(buf)\n      logger.log('data', data)\n    })\n\n    // send a message to Side Service\n    messageBuilder.request({\n      method: 'GET',\n      params: {\n        index: 0\n      }\n    }).then(data => {\n      // process Side Service responses\n      const { result } = data\n      logger.log(result)\n    })\n  }\n})"
+        },
+        {
+          "language": "js",
+          "title": "app-side/index.js",
+          "runtime": "side-service",
+          "code": "import { MessageBuilder } from '../shared/message-side'\n\nconst messageBuilder = new MessageBuilder()\n\nAppSideService({\n  onInit() {\n    messageBuilder.listen(() => {})\n\n    // send a message to Device App\n    messageBuilder.call({ text: 'Hello Zepp OS' })\n\n    // receive a message from Device App\n    messageBuilder.on('request', (ctx) => {\n      const payload = messageBuilder.buf2Json(ctx.request.payload)\n      const { method, params } = payload\n\n      if (method === 'GET') {\n        ctx.response({\n          data: { result : 0 }\n        })\n      }\n    })\n  },\n})"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/app.getPackageInfo",
+    "@zos/utils.log"
+  ],
+  "modules": [
+    "@zos/ble"
+  ],
+  "runtimes": [
+    "device-app",
+    "side-service"
+  ],
+  "referencePages": [
+    "zeppos-docs/docs/reference/device-app-api/newAPI/ble/send.mdx"
+  ],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/bluetooth-communication.mdx",
+  "extractedAt": "2026-09-04"
+}

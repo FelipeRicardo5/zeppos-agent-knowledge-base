@@ -1,0 +1,67 @@
+{
+  "id": "i18n",
+  "title": "i18n",
+  "summary": "This article shares some experience in internationalization during the development of Zepp OS.",
+  "approaches": [
+    {
+      "heading": "Intro",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Design Specifications",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Widget Text i18n Usage",
+      "symbols": [
+        "@zos/i18n.getText"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "txt",
+          "code": "// en-US.po\n\nmsgid \"unit\"\nmsgstr \"KCAL\"\n\nmsgid \"cake\"\nmsgstr \"Cake\"\n\nmsgid \"coffee\"\nmsgstr \"Coffee\"\n\nmsgid \"calories\"\nmsgstr \"Calories\"\n\nmsgid \"beer\"\nmsgstr \"Beer\"\n\nmsgid \"iceCream\"\nmsgstr \"Ice cream\"\n\nmsgid \"equivalent\"\nmsgstr \"Equivalent to\"\n\nmsgid \"hamburger\"\nmsgstr \"Hamburger\"\n\nmsgid \"pizza\"\nmsgstr \"Pizza\"\n\nmsgid \"chocolate\"\nmsgstr \"Chocolate\"\n\nmsgid \"consumption\"\nmsgstr \"Consumption Today\"\n\nmsgid \"sausage\"\nmsgstr \"Sausage\"\n\nmsgid \"ham\"\nmsgstr \"Ham\"\n\nmsgid \"cookie\"\nmsgstr \"Cookie\""
+        },
+        {
+          "language": "txt",
+          "code": "// zh-CN.po\n\nmsgid \"unit\"\nmsgstr \"KCAL\"\n\nmsgid \"cake\"\nmsgstr \"蛋糕\"\n\nmsgid \"coffee\"\nmsgstr \"咖啡\"\n\nmsgid \"calories\"\nmsgstr \"卡路里\"\n\nmsgid \"beer\"\nmsgstr \"啤酒\"\n\nmsgid \"iceCream\"\nmsgstr \"冰淇淋\"\n\nmsgid \"equivalent\"\nmsgstr \"相当于\"\n\nmsgid \"hamburger\"\nmsgstr \"汉堡包\"\n\nmsgid \"pizza\"\nmsgstr \"披萨\"\n\nmsgid \"chocolate\"\nmsgstr \"巧克力\"\n\nmsgid \"consumption\"\nmsgstr \"今日消耗\"\n\nmsgid \"sausage\"\nmsgstr \"香肠\"\n\nmsgid \"ham\"\nmsgstr \"火腿\"\n\nmsgid \"cookie\"\nmsgstr \"曲奇饼\""
+        },
+        {
+          "language": "js",
+          "code": "// page.js\nimport { getText } from '@zos/i18n'\n\nconsole.log(getText('cake'))"
+        }
+      ]
+    },
+    {
+      "heading": "Configuration Internationalization",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Implementation of RTL",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    }
+  ],
+  "symbols": [
+    "@zos/i18n.getText"
+  ],
+  "modules": [],
+  "runtimes": [],
+  "referencePages": [
+    "zeppos-docs/docs/reference/app-json.mdx",
+    "zeppos-docs/docs/reference/device-app-api/newAPI/i18n/getText.mdx",
+    "zeppos-docs/docs/reference/device-app-api/newAPI/ui/relayoutRtl.mdx",
+    "zeppos-docs/docs/reference/related-resources/language-list.mdx"
+  ],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/i18n.mdx",
+  "extractedAt": "2026-09-04"
+}

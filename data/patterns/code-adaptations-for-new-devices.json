@@ -1,0 +1,56 @@
+{
+  "id": "code-adaptations-for-new-devices",
+  "title": "Code adaptations for more Zepp OS devices",
+  "summary": "Developers have already built an Mini Program based on one device, how can they get it to run on more Zepp OS devices? This article helps developers quickly adapt existing Mini Program code to more Zepp OS-enabled devices. Zepp OS Mini Programs are designed with compatibility in mind, so there is no need for developers to adjust the code too much.",
+  "approaches": [
+    {
+      "heading": "`app.json` configuration",
+      "symbols": [],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "json",
+          "title": "app.json",
+          "code": "{\n  // ...\n  \"targets\": {\n    \"gtr-3-pro\": {\n      \"module\": {\n        // ···\n      },\n      \"platforms\": [\n        {\n          \"name\": \"gtr-3-pro\",\n          \"deviceSource\": 229\n        },\n        {\n          \"name\": \"gtr-3-prow\",\n          \"deviceSource\": 230\n        }\n      ],\n      \"designWidth\": 480\n    }\n  }\n}"
+        },
+        {
+          "language": "txt",
+          "code": ".\n├── app.js\n├── app.json\n├── assets\n│   ├── gtr-3-pro\n│   │   ├── icon.png\n│   │   └── image\n│   │       └── logo.png\n..."
+        },
+        {
+          "language": "json",
+          "title": "app.json",
+          "code": "{\n  // ...\n  \"targets\": {\n    \"gtr-3-pro\": {\n      \"module\": {\n        // ···\n      },\n      \"platforms\": [\n        {\n          \"name\": \"gtr-3-pro\",\n          \"deviceSource\": 229\n        },\n        {\n          \"name\": \"gtr-3-prow\",\n          \"deviceSource\": 230\n        }\n      ],\n      \"designWidth\": 480\n    },\n    \"gtr-3\": {\n      \"module\": {\n        // ···\n      },\n      \"platforms\": [\n        {\n          \"name\": \"gtr-3\",\n          \"deviceSource\": 226\n        },\n        {\n          \"name\": \"gtr-3w\",\n          \"deviceSource\": 227\n        }\n      ],\n      \"designWidth\": 480\n    }\n  }\n}"
+        },
+        {
+          "language": "txt",
+          "code": ".\n├── app.js\n├── app.json\n├── assets\n│   ├── gtr-3\n│   │   ├── icon.png\n│   │   └── image\n│   │       └── logo.png\n│   └── gtr-3-pro\n│       ├── icon.png\n│       └── image\n│           └── logo.png\n..."
+        }
+      ]
+    },
+    {
+      "heading": "Different screen adaptations",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Physical keys, crown logic adaptation",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    }
+  ],
+  "symbols": [],
+  "modules": [],
+  "runtimes": [],
+  "referencePages": [
+    "zeppos-docs/docs/reference/app-json.mdx",
+    "zeppos-docs/docs/reference/related-resources/device-list.mdx",
+    "zeppos-docs/docs/reference/related-resources/physical-keys.mdx"
+  ],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/code-adaptations-for-new-devices.mdx",
+  "extractedAt": "2026-09-04"
+}

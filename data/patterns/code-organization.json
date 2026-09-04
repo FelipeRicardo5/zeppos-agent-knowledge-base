@@ -1,0 +1,66 @@
+{
+  "id": "code-organization",
+  "title": "Code Organization",
+  "summary": "In order to improve development efficiency and project maintainability, a better way of organizing code is needed, and this article only provides an idea.",
+  "approaches": [
+    {
+      "heading": "Principles",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "How to improve development efficiency",
+      "symbols": [],
+      "modules": [],
+      "snippets": []
+    },
+    {
+      "heading": "Example",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ],
+      "modules": [],
+      "snippets": [
+        {
+          "language": "js",
+          "title": "page.js",
+          "runtime": "device-app",
+          "code": "import { createWidget, widget } from '@zos/ui'\nimport { TEXT_STYLE } from './page.styles.js'\nimport TextClass from './text.class.js'\n\nPage({\n  state: {\n    textInstance: null\n  },\n  build() {\n    this.state.textInstance = new TextClass()\n    this.buildUI()\n  },\n  buildUI() {\n    createWidget(widget.TEXT, {\n      attr: {\n        text: this.state.textInstance.getText()\n      },\n      styles: TEXT_STYLE\n    })\n  }\n})"
+        },
+        {
+          "language": "js",
+          "title": "class.js",
+          "runtime": "device-app",
+          "code": "export default class TextClass {\n  constructor() {\n    this.text = 'Hello World'\n  }\n  getText() {\n    return this.text\n  }\n}"
+        },
+        {
+          "language": "js",
+          "title": "page.styles.js",
+          "runtime": "device-app",
+          "code": "import { align, text_style } from '@zos/ui'\nimport { px } from '@zos/utils'\n\nexport const TEXT_STYLE = {\n  x: px(96),\n  y: px(40),\n  w: px(288),\n  h: px(46),\n  color: 0xffffff,\n  text_size: px(36),\n  align_h: align.CENTER_H,\n  align_v: align.CENTER_V,\n  text_style: text_style.WRAP\n}"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.px"
+  ],
+  "modules": [],
+  "runtimes": [
+    "device-app"
+  ],
+  "referencePages": [],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/guides/best-practice/code-organization.mdx",
+  "extractedAt": "2026-09-04"
+}

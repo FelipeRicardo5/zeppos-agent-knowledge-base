@@ -10,7 +10,7 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | Symbol | Min API_LEVEL | Also valid in |
 | --- | --- | --- |
 | `getScene` | >= 2 | Device App |
-| `SCENE_AOD` | not stated | — |
+| `SCENE_AOD` | >= 2 | Device App |
 
 ## `@zos/utils`
 

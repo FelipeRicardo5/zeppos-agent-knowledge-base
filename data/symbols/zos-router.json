@@ -150,6 +150,591 @@
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/setLaunchAppTimeout.mdx",
       "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_ALARM",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_ALARM",
+      "type": "constant",
+      "description": "Alarm",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_ALEAX",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_ALEAX",
+      "type": "constant",
+      "description": "Alexa",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_ALIPAY",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_ALIPAY",
+      "type": "constant",
+      "description": "Alipay",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_ALTIMETER",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_ALTIMETER",
+      "type": "constant",
+      "description": "Barometer",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_BODY_COMPOSITION",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_BODY_COMPOSITION",
+      "type": "constant",
+      "description": "Body Composition",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_BREATH",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_BREATH",
+      "type": "constant",
+      "description": "Breathe",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_CALENDAR",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_CALENDAR",
+      "type": "constant",
+      "description": "Calendar",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_CAMERA",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_CAMERA",
+      "type": "constant",
+      "description": "Camera Remote",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_CARD",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_CARD",
+      "type": "constant",
+      "description": "Cards",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_CLUB_CARD",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_CLUB_CARD",
+      "type": "constant",
+      "description": "Membership Card",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_COMPASS",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_COMPASS",
+      "type": "constant",
+      "description": "Compass",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_COUNTDOWN",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_COUNTDOWN",
+      "type": "constant",
+      "description": "Timer",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_FINE_PHONE",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_FINE_PHONE",
+      "type": "constant",
+      "description": "Find My Phone",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_HR",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_HR",
+      "type": "constant",
+      "description": "Heart Rate",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_MEASUREMENT",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_MEASUREMENT",
+      "type": "constant",
+      "description": "One-tap Measuring",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_MENSTRUAL",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_MENSTRUAL",
+      "type": "constant",
+      "description": "Cycle Tracking",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_MUSIC",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_MUSIC",
+      "type": "constant",
+      "description": "Music",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_NETEASE_MUSIC",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_NETEASE_MUSIC",
+      "type": "constant",
+      "description": "NetEase Music",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_PAI",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_PAI",
+      "type": "constant",
+      "description": "PAI",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_PHONE",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_PHONE",
+      "type": "constant",
+      "description": "Phone",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_POMODORO",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_POMODORO",
+      "type": "constant",
+      "description": "Pomodoro Timer",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_PRESSURE",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_PRESSURE",
+      "type": "constant",
+      "description": "Stress",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_READINESS",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_READINESS",
+      "type": "constant",
+      "description": "Readiness",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_SETTING",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_SETTING",
+      "type": "constant",
+      "description": "Settings",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_SLEEP",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_SLEEP",
+      "type": "constant",
+      "description": "Sleep",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_SPO2",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_SPO2",
+      "type": "constant",
+      "description": "Blood Oxygen",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_SPORT",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_SPORT",
+      "type": "constant",
+      "description": "Workout",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_SPORT_HISTORY",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_SPORT_HISTORY",
+      "type": "constant",
+      "description": "Workout History",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_SPORT_STATUS",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_SPORT_STATUS",
+      "type": "constant",
+      "description": "Workout Status",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_STATUS",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_STATUS",
+      "type": "constant",
+      "description": "Activity",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_STOPWATCH",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_STOPWATCH",
+      "type": "constant",
+      "description": "Stopwatch",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_SUN_AND_MOON",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_SUN_AND_MOON",
+      "type": "constant",
+      "description": "Sun & Moon",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_THERMOMETER",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_THERMOMETER",
+      "type": "constant",
+      "description": "Thermometer",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_TODO_LIST",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_TODO_LIST",
+      "type": "constant",
+      "description": "To Do",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_VOICE_MEMO",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_VOICE_MEMO",
+      "type": "constant",
+      "description": "Voice Memos",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_WEATHER",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_WEATHER",
+      "type": "constant",
+      "description": "Weather",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_WEPAY",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_WEPAY",
+      "type": "constant",
+      "description": "Weixin Pay",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_WORLD_CLOCK",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_WORLD_CLOCK",
+      "type": "constant",
+      "description": "World Clock",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/router.SYSTEM_APP_ZEPP_COACH",
+      "module": "@zos/router",
+      "symbol": "SYSTEM_APP_ZEPP_COACH",
+      "type": "constant",
+      "description": "Zepp Coach",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-router.md",
+      "extractedAt": "2026-09-04"
     }
   ]
 }

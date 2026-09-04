@@ -112,12 +112,60 @@
       "module": "@zos/app",
       "symbol": "SCENE_AOD",
       "type": "constant",
+      "description": "In the rest screen screen",
+      "minApiLevel": 2,
       "runtimes": [
+        "device-app",
         "watchface"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-app.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/app.SCENE_APP",
+      "module": "@zos/app",
+      "symbol": "SCENE_APP",
+      "type": "constant",
+      "description": "In Mini Program",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-app.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/app.SCENE_SETTINGS",
+      "module": "@zos/app",
+      "symbol": "SCENE_SETTINGS",
+      "type": "constant",
+      "description": "In the Mini Program configuration or dial edit page",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-app.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/app.SCENE_WATCHFACE",
+      "module": "@zos/app",
+      "symbol": "SCENE_WATCHFACE",
+      "type": "constant",
+      "description": "In watchface interface",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-app.md",
       "extractedAt": "2026-09-04"
     }
   ]

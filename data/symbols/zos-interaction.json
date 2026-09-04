@@ -17,16 +17,198 @@
       "extractedAt": "2026-09-04"
     },
     {
+      "id": "@zos/interaction.GESTURE_DOWN",
+      "module": "@zos/interaction",
+      "symbol": "GESTURE_DOWN",
+      "type": "constant",
+      "description": "Gesture down slide",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.GESTURE_LEFT",
+      "module": "@zos/interaction",
+      "symbol": "GESTURE_LEFT",
+      "type": "constant",
+      "description": "Gesture left slide",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
       "id": "@zos/interaction.GESTURE_RIGHT",
       "module": "@zos/interaction",
       "symbol": "GESTURE_RIGHT",
       "type": "constant",
+      "description": "Gesture right slide",
+      "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.GESTURE_UP",
+      "module": "@zos/interaction",
+      "symbol": "GESTURE_UP",
+      "type": "constant",
+      "description": "Gesture up slide",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_BACK",
+      "module": "@zos/interaction",
+      "symbol": "KEY_BACK",
+      "type": "constant",
+      "description": "BACK KEY",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_DOWN",
+      "module": "@zos/interaction",
+      "symbol": "KEY_DOWN",
+      "type": "constant",
+      "description": "SHORTCUT KEY",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_EVENT_CLICK",
+      "module": "@zos/interaction",
+      "symbol": "KEY_EVENT_CLICK",
+      "type": "constant",
+      "description": "Key click event",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_EVENT_DOUBLE_CLICK",
+      "module": "@zos/interaction",
+      "symbol": "KEY_EVENT_DOUBLE_CLICK",
+      "type": "constant",
+      "description": "Key double-click event",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_EVENT_LONG_PRESS",
+      "module": "@zos/interaction",
+      "symbol": "KEY_EVENT_LONG_PRESS",
+      "type": "constant",
+      "description": "Key long-press event",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_EVENT_PRESS",
+      "module": "@zos/interaction",
+      "symbol": "KEY_EVENT_PRESS",
+      "type": "constant",
+      "description": "Key press event",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_EVENT_RELEASE",
+      "module": "@zos/interaction",
+      "symbol": "KEY_EVENT_RELEASE",
+      "type": "constant",
+      "description": "Key release event",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_HOME",
+      "module": "@zos/interaction",
+      "symbol": "KEY_HOME",
+      "type": "constant",
+      "description": "HOME KEY",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_SELECT",
+      "module": "@zos/interaction",
+      "symbol": "KEY_SELECT",
+      "type": "constant",
+      "description": "SELECT KEY",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
       "extractedAt": "2026-09-04"
     },
     {
@@ -34,12 +216,44 @@
       "module": "@zos/interaction",
       "symbol": "KEY_SHORTCUT",
       "type": "constant",
+      "description": "SHORTCUT KEY",
+      "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/showcase/page/interaction/on_key.js",
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.KEY_UP",
+      "module": "@zos/interaction",
+      "symbol": "KEY_UP",
+      "type": "constant",
+      "description": "UP KEY",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.MODAL_CANCEL",
+      "module": "@zos/interaction",
+      "symbol": "MODAL_CANCEL",
+      "type": "constant",
+      "description": "Modal Cancel button",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
       "extractedAt": "2026-09-04"
     },
     {
@@ -47,12 +261,14 @@
       "module": "@zos/interaction",
       "symbol": "MODAL_CONFIRM",
       "type": "constant",
+      "description": "Modal Confirm button",
+      "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/showcase/page/interaction/create_modal.js",
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
       "extractedAt": "2026-09-04"
     },
     {
@@ -173,6 +389,51 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/showToast.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.WRIST_MOTION_FLIP",
+      "module": "@zos/interaction",
+      "symbol": "WRIST_MOTION_FLIP",
+      "type": "constant",
+      "description": "Flip wrist movement",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.WRIST_MOTION_LIFT",
+      "module": "@zos/interaction",
+      "symbol": "WRIST_MOTION_LIFT",
+      "type": "constant",
+      "description": "Wrist lift",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/interaction.WRIST_MOTION_LOWER",
+      "module": "@zos/interaction",
+      "symbol": "WRIST_MOTION_LOWER",
+      "type": "constant",
+      "description": "Wrist down",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
       "extractedAt": "2026-09-04"
     }
   ]

@@ -32,16 +32,33 @@
       "extractedAt": "2026-09-04"
     },
     {
+      "id": "@zos/device.SCREEN_SHAPE_ROUND",
+      "module": "@zos/device",
+      "symbol": "SCREEN_SHAPE_ROUND",
+      "type": "constant",
+      "description": "Round Screen",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-device.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
       "id": "@zos/device.SCREEN_SHAPE_SQUARE",
       "module": "@zos/device",
       "symbol": "SCREEN_SHAPE_SQUARE",
       "type": "constant",
+      "description": "Square Screen",
+      "minApiLevel": 2,
       "runtimes": [
         "device-app"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-device.md",
       "extractedAt": "2026-09-04"
     }
   ]

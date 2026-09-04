@@ -1,6 +1,6 @@
 # @zos/sensor
 
-**27 symbols**
+**32 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
@@ -15,6 +15,9 @@
 | `Compass` | value | >= 3 | OFFICIAL |
 | `Distance` | value | >= 2 | OFFICIAL |
 | `FatBurning` | value | >= 2 | OFFICIAL |
+| `FREQ_MODE_HIGH` | constant | >= 3 | OFFICIAL |
+| `FREQ_MODE_LOW` | constant | >= 3 | OFFICIAL |
+| `FREQ_MODE_NORMAL` | constant | >= 3 | OFFICIAL |
 | `Geolocation` | value | >= 2.1 | OFFICIAL |
 | `Gyroscope` | value | >= 3 | OFFICIAL |
 | `HeartRate` | value | >= 2 | OFFICIAL |
@@ -26,6 +29,8 @@
 | `Stress` | value | >= 2 | OFFICIAL |
 | `SystemSounds` | value | >= 3.6 | OFFICIAL |
 | `Time` | value | >= 2 | OFFICIAL |
+| `TIME_HOUR_FORMAT_12` | constant | >= 2.1 | OFFICIAL |
+| `TIME_HOUR_FORMAT_24` | constant | >= 2.1 | OFFICIAL |
 | `Vibrator` | value | >= 2 | OFFICIAL |
 | `Wear` | value | >= 2 | OFFICIAL |
 | `Weather` | value | >= 2 | OFFICIAL |
@@ -54,10 +59,6 @@ Blood oxygen Sensor
 
 Body surface temperature sensor
 
-### `@zos/sensor.Buzzer`
-
-Buzzer
-
 ### `@zos/sensor.Calorie`
 
 Calorie Sensor
@@ -77,6 +78,18 @@ Distance Sensor
 ### `@zos/sensor.FatBurning`
 
 FatBurning Sensor
+
+### `@zos/sensor.FREQ_MODE_HIGH`
+
+High power consumption mode with high trigger frequency
+
+### `@zos/sensor.FREQ_MODE_LOW`
+
+Low power mode with low trigger frequency
+
+### `@zos/sensor.FREQ_MODE_NORMAL`
+
+Normal power consumption mode, medium trigger frequency
 
 ### `@zos/sensor.Geolocation`
 
@@ -121,6 +134,14 @@ System Sounds
 ### `@zos/sensor.Time`
 
 Time/Date Sensor
+
+### `@zos/sensor.TIME_HOUR_FORMAT_12`
+
+12-hour format
+
+### `@zos/sensor.TIME_HOUR_FORMAT_24`
+
+24-hour format
 
 ### `@zos/sensor.Vibrator`
 

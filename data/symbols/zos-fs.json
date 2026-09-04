@@ -32,6 +32,111 @@
       "extractedAt": "2026-09-04"
     },
     {
+      "id": "@zos/fs.O_APPEND",
+      "module": "@zos/fs",
+      "symbol": "O_APPEND",
+      "type": "constant",
+      "description": "Flag indicating that data will be appended to the end of the file",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/fs.O_CREAT",
+      "module": "@zos/fs",
+      "symbol": "O_CREAT",
+      "type": "constant",
+      "description": "Flag indicating to create the file if it does not already exist",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/fs.O_EXCL",
+      "module": "@zos/fs",
+      "symbol": "O_EXCL",
+      "type": "constant",
+      "description": "Flag indicating that opening a file should fail if the `O_CREAT` flag is set and the file already exists",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/fs.O_RDONLY",
+      "module": "@zos/fs",
+      "symbol": "O_RDONLY",
+      "type": "constant",
+      "description": "Flag indicating to open a file for read-only access",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/fs.O_RDWR",
+      "module": "@zos/fs",
+      "symbol": "O_RDWR",
+      "type": "constant",
+      "description": "Flag indicating to open a file for read-write access",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/fs.O_TRUNC",
+      "module": "@zos/fs",
+      "symbol": "O_TRUNC",
+      "type": "constant",
+      "description": "Flag indicating that if the file exists and the file is opened successfully for write access, its length shall be truncated to zero",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/fs.O_WRONLY",
+      "module": "@zos/fs",
+      "symbol": "O_WRONLY",
+      "type": "constant",
+      "description": "Flag indicating to open a file for write-only access",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
       "id": "@zos/fs.openAssetsSync",
       "module": "@zos/fs",
       "symbol": "openAssetsSync",

@@ -123,6 +123,44 @@ describe("parseLlmsContent (llms front)", () => {
     assert.deepEqual(nested, [], "`## Type` / `## Example` belong to the symbol above them");
   });
 
+  it("parses a CRLF checkout the same as an LF one", async () => {
+    // git clones the official repos, so on Windows (`core.autocrlf`) the whole
+    // cache arrives CRLF. Regexes anchored with `$` stopped matching and the
+    // `## Constants` tables silently vanished — a sync on Windows produced a
+    // materially smaller KB than the same commit synced on Linux.
+    const constant = byId(await parseLlmsContent(CACHE)).get("@zos/interaction.MODAL_CONFIRM");
+
+    assert.ok(constant, "a constant row in a CRLF file must still be extracted");
+    assert.equal(constant.kind, "constant");
+    assert.equal(constant.apiLevel, 2);
+    assert.equal(constant.description, "Modal Confirm button");
+  });
+
+  it("reads every `## Constants` group, not only the first chunk's", async () => {
+    // A module documents its constants as several groups, and they are spread
+    // across `---` chunks — sometimes after the chunk's symbol. Reading only the
+    // first chunk found 61 of the 249 constant rows upstream.
+    const units = byId(await parseLlmsContent(CACHE));
+
+    assert.ok(units.get("@zos/interaction.MODAL_CONFIRM"), "first group, before any symbol");
+    assert.ok(units.get("@zos/interaction.GESTURE_UP"), "second group, after the chunk's symbol");
+    assert.equal(units.get("@zos/interaction.GESTURE_DOWN")?.apiLevel, 2);
+  });
+
+  it("never files a topic heading as a symbol", async () => {
+    // `## Widget Animation` and `## keyboard API` group several symbols, which the
+    // section's own `### Import` names. Filing the title invented the id
+    // `@zos/ui.Widget Animation`, which nothing can import.
+    const units = await parseLlmsContent(CACHE);
+    const spaced = units.filter((u) => /\s/.test(u.symbol));
+
+    assert.deepEqual(spaced, [], "a heading with whitespace is a title, not a symbol");
+    assert.ok(
+      byId(units).get("@zos/interaction.onKey"),
+      "the real symbol under the topic heading is still extracted",
+    );
+  });
+
   it("attributes every llms unit to the Device App API it restructures", async () => {
     const units = await parseLlmsContent(CACHE);
 

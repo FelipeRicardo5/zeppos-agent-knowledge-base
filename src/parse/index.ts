@@ -3,11 +3,10 @@
 // Every front also attributes a runtime, which no content states — see
 // ./runtime.ts, where the path-based rules and their doc anchors live.
 
-import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { RawUnit } from "../types.js";
 import { runtimeForPath } from "./runtime.js";
-import { walkFiles } from "./util.js";
+import { readSource, walkFiles } from "./util.js";
 
 const IMPORT_RE = /import\s*(?:\{([^}]*)\})?[^'"]*from\s+['"](@[^'"]+)['"]/g;
 // The badge line is a blockquote, but its wording varies ("Start from API_LEVEL",
@@ -76,7 +75,7 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
   const units: RawUnit[] = [];
 
   for (const file of files) {
-    const content = await readFile(file, "utf-8");
+    const content = await readSource(file);
     const symbol = path.basename(file, path.extname(file));
     const sourceFile = path.relative(cacheDir, file);
 
@@ -120,13 +119,48 @@ const CONSTANT_ROW_RE = /^\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|\s*([\d.]+)\s*\|$/;
 
 const LLMS_API_LEVEL_RE = /(?:^>.*API_LEVEL\s+`(\d+(?:\.\d+)?)`|-\s*API_LEVEL:\s*(\d+(?:\.\d+)?))/m;
 
+const HEADING_RE = /^##\s+(.+)$/;
+const CONSTANTS_HEADING = "Constants";
+
+/**
+ * Constant rows under every `## Constants` heading in a chunk.
+ *
+ * A module documents its constants as several groups, not one table:
+ * `@zos/interaction` has separate `## Constants` sections for keys, gestures, key
+ * events and wrist motions, and they are spread across chunks — sometimes *after*
+ * the chunk's symbol rather than before it. Reading rows only from the file's
+ * first chunk found 61 of 249. Scoping to each `## Constants` region instead
+ * picks up all of them while still ignoring the parameter tables that sit under
+ * other headings, which are not module constants and must not become symbols.
+ */
+function constantRows(chunk: string): { name: string; description: string; apiLevel: number }[] {
+  const rows: { name: string; description: string; apiLevel: number }[] = [];
+  let inConstants = false;
+
+  for (const line of chunk.split("\n")) {
+    const heading = line.match(HEADING_RE);
+    if (heading) {
+      inConstants = heading[1].trim() === CONSTANTS_HEADING;
+      continue;
+    }
+    if (!inConstants) continue;
+
+    const rowMatch = line.match(CONSTANT_ROW_RE);
+    if (rowMatch) {
+      rows.push({ name: rowMatch[1], description: rowMatch[2].trim(), apiLevel: Number(rowMatch[3]) });
+    }
+  }
+
+  return rows;
+}
+
 /**
  * Front 2: static/llms/@zos-*.md — one file per module. Each real symbol block is
  * separated by a `---` rule; inside a block the first `## heading` is the symbol
  * name (nested `## Type` / `## Example` / `## Parameters` headings that follow
  * belong to the same symbol, not siblings — the source dumps a docs-reference-style
- * copy inline). The chunk before the first `---` carries the module-level
- * `## Constants` table.
+ * copy inline). `## Constants` headings are the exception: they name a table of
+ * module constants rather than a symbol, and occur in several chunks per file.
  */
 export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
   const llmsDir = path.join(cacheDir, "zeppos-docs", "static", "llms");
@@ -134,7 +168,7 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
   const units: RawUnit[] = [];
 
   for (const file of files) {
-    const content = await readFile(file, "utf-8");
+    const content = await readSource(file);
     const sourceFile = path.relative(cacheDir, file);
     const runtimeHint = runtimeForPath(sourceFile);
 
@@ -161,26 +195,35 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
     const symbolChunks =
       firstSymbolAt === undefined ? restChunks : [rawHeader.slice(firstSymbolAt), ...restChunks];
 
-    for (const line of header.split("\n")) {
-      const rowMatch = line.match(CONSTANT_ROW_RE);
-      if (!rowMatch) continue;
-      const [, name, description, apiLevel] = rowMatch;
-      units.push({
-        module: fileModule,
-        symbol: name,
-        kind: "constant",
-        description: description.trim(),
-        apiLevel: Number(apiLevel),
-        runtimeHint,
-        sourceFile,
-        sourceKind: "llms",
-      });
+    // header and symbolChunks partition the file, so every `## Constants` region
+    // is scanned exactly once.
+    for (const chunk of [header, ...symbolChunks]) {
+      for (const { name, description, apiLevel } of constantRows(chunk)) {
+        units.push({
+          module: fileModule,
+          symbol: name,
+          kind: "constant",
+          description,
+          apiLevel,
+          runtimeHint,
+          sourceFile,
+          sourceKind: "llms",
+        });
+      }
     }
 
     for (const chunk of symbolChunks) {
-      const headingMatch = chunk.match(/^##\s+(.+)$/m);
-      if (!headingMatch) continue;
-      const symbol = headingMatch[1].trim();
+      // `## Constants` names a table, not a symbol, so it can never be the symbol
+      // this chunk is about — take the first heading that isn't one.
+      //
+      // A heading containing whitespace is a topic title, not a symbol: `## Widget
+      // Animation` and `## keyboard API` group several symbols, which the section's
+      // own `### Import` block then names. Filing the title as a symbol invented
+      // `@zos/ui.Widget Animation`, an id nothing can import.
+      const symbol = [...chunk.matchAll(/^##\s+(.+)$/gm)]
+        .map((match) => match[1].trim())
+        .find((heading) => heading !== CONSTANTS_HEADING && !/\s/.test(heading));
+      if (symbol === undefined) continue;
 
       const descriptionMatch = chunk.match(/-\s*Description:\s*(.+)/);
       const apiLevelMatch = chunk.match(LLMS_API_LEVEL_RE);
@@ -213,7 +256,7 @@ export async function parseSamples(cacheDir: string): Promise<RawUnit[]> {
   const units: RawUnit[] = [];
 
   for (const file of files) {
-    const content = await readFile(file, "utf-8");
+    const content = await readSource(file);
     const sourceFile = path.relative(cacheDir, file);
     const runtimeHint = runtimeForPath(sourceFile);
 

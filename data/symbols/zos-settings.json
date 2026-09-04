@@ -2,6 +2,81 @@
   "module": "@zos/settings",
   "symbols": [
     {
+      "id": "@zos/settings.DATE_FORMAT_DMY",
+      "module": "@zos/settings",
+      "symbol": "DATE_FORMAT_DMY",
+      "type": "constant",
+      "description": "day-month-year",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.DATE_FORMAT_MDY",
+      "module": "@zos/settings",
+      "symbol": "DATE_FORMAT_MDY",
+      "type": "constant",
+      "description": "month-day-year",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.DATE_FORMAT_YMD",
+      "module": "@zos/settings",
+      "symbol": "DATE_FORMAT_YMD",
+      "type": "constant",
+      "description": "year-month-day",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.DISTANCE_UNIT_IMPERIAL",
+      "module": "@zos/settings",
+      "symbol": "DISTANCE_UNIT_IMPERIAL",
+      "type": "constant",
+      "description": "imperial system",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.DISTANCE_UNIT_METRIC",
+      "module": "@zos/settings",
+      "symbol": "DISTANCE_UNIT_METRIC",
+      "type": "constant",
+      "description": "metric system",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
       "id": "@zos/settings.getDateFormat",
       "module": "@zos/settings",
       "symbol": "getDateFormat",
@@ -149,6 +224,126 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getWeightUnit.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.TEMPERATURE_UNIT_CENTIGRADE",
+      "module": "@zos/settings",
+      "symbol": "TEMPERATURE_UNIT_CENTIGRADE",
+      "type": "constant",
+      "description": "Celsius temperature",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.TEMPERATURE_UNIT_FAHRENHEIT",
+      "module": "@zos/settings",
+      "symbol": "TEMPERATURE_UNIT_FAHRENHEIT",
+      "type": "constant",
+      "description": "Fahrenheit temperature",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.TIME_FORMAT_12",
+      "module": "@zos/settings",
+      "symbol": "TIME_FORMAT_12",
+      "type": "constant",
+      "description": "12-hour format",
+      "minApiLevel": 2.1,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.TIME_FORMAT_24",
+      "module": "@zos/settings",
+      "symbol": "TIME_FORMAT_24",
+      "type": "constant",
+      "description": "24-hour format",
+      "minApiLevel": 2.1,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.WEIGHT_UNIT_JIN",
+      "module": "@zos/settings",
+      "symbol": "WEIGHT_UNIT_JIN",
+      "type": "constant",
+      "description": "Jin",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.WEIGHT_UNIT_KILOGRAM",
+      "module": "@zos/settings",
+      "symbol": "WEIGHT_UNIT_KILOGRAM",
+      "type": "constant",
+      "description": "Kilogram",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.WEIGHT_UNIT_POUND",
+      "module": "@zos/settings",
+      "symbol": "WEIGHT_UNIT_POUND",
+      "type": "constant",
+      "description": "Pound",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/settings.WEIGHT_UNIT_STONE",
+      "module": "@zos/settings",
+      "symbol": "WEIGHT_UNIT_STONE",
+      "type": "constant",
+      "description": "Stone",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
       "extractedAt": "2026-09-04"
     }
   ]

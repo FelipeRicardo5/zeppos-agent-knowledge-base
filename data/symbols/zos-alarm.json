@@ -32,6 +32,111 @@
       "extractedAt": "2026-09-04"
     },
     {
+      "id": "@zos/alarm.REPEAT_DAY",
+      "module": "@zos/alarm",
+      "symbol": "REPEAT_DAY",
+      "type": "constant",
+      "description": "Specify the repetition period as day",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.REPEAT_HOUR",
+      "module": "@zos/alarm",
+      "symbol": "REPEAT_HOUR",
+      "type": "constant",
+      "description": "Specify the repetition period as hour",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.REPEAT_MINUTE",
+      "module": "@zos/alarm",
+      "symbol": "REPEAT_MINUTE",
+      "type": "constant",
+      "description": "Specify the repetition period as minute",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.REPEAT_MONTH",
+      "module": "@zos/alarm",
+      "symbol": "REPEAT_MONTH",
+      "type": "constant",
+      "description": "Specify the repetition period as month",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.REPEAT_ONCE",
+      "module": "@zos/alarm",
+      "symbol": "REPEAT_ONCE",
+      "type": "constant",
+      "description": "Repeat once",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.REPEAT_WEEK",
+      "module": "@zos/alarm",
+      "symbol": "REPEAT_WEEK",
+      "type": "constant",
+      "description": "Specify the repetition period as week",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.REPEAT_YEAR",
+      "module": "@zos/alarm",
+      "symbol": "REPEAT_YEAR",
+      "type": "constant",
+      "description": "Specify the repetition period as year",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
       "id": "@zos/alarm.set",
       "module": "@zos/alarm",
       "symbol": "set",
@@ -44,6 +149,111 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/alarm/set.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.WEEK_FRI",
+      "module": "@zos/alarm",
+      "symbol": "WEEK_FRI",
+      "type": "constant",
+      "description": "Friday",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.WEEK_MON",
+      "module": "@zos/alarm",
+      "symbol": "WEEK_MON",
+      "type": "constant",
+      "description": "Monday",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.WEEK_SAT",
+      "module": "@zos/alarm",
+      "symbol": "WEEK_SAT",
+      "type": "constant",
+      "description": "Saturday",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.WEEK_SUN",
+      "module": "@zos/alarm",
+      "symbol": "WEEK_SUN",
+      "type": "constant",
+      "description": "Sunday",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.WEEK_THU",
+      "module": "@zos/alarm",
+      "symbol": "WEEK_THU",
+      "type": "constant",
+      "description": "Thursday",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.WEEK_TUE",
+      "module": "@zos/alarm",
+      "symbol": "WEEK_TUE",
+      "type": "constant",
+      "description": "Tuesday",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/alarm.WEEK_WED",
+      "module": "@zos/alarm",
+      "symbol": "WEEK_WED",
+      "type": "constant",
+      "description": "Wednesday",
+      "minApiLevel": 3,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
       "extractedAt": "2026-09-04"
     }
   ]

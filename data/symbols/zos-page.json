@@ -32,6 +32,81 @@
       "extractedAt": "2026-09-04"
     },
     {
+      "id": "@zos/page.SCROLL_ANIMATION_NONE",
+      "module": "@zos/page",
+      "symbol": "SCROLL_ANIMATION_NONE",
+      "type": "constant",
+      "description": "No animation, scroll directly to the corresponding position",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-page.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/page.SCROLL_ANIMATION_SMOOTH",
+      "module": "@zos/page",
+      "symbol": "SCROLL_ANIMATION_SMOOTH",
+      "type": "constant",
+      "description": "Scroll smoothly to the corresponding position",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-page.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/page.SCROLL_MODE_FREE",
+      "module": "@zos/page",
+      "symbol": "SCROLL_MODE_FREE",
+      "type": "constant",
+      "description": "Free scrolling mode, system default scrolling mode",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-page.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/page.SCROLL_MODE_SWIPER",
+      "module": "@zos/page",
+      "symbol": "SCROLL_MODE_SWIPER",
+      "type": "constant",
+      "description": "Swiper mode, vertical rotating map, walking lights, by configuring the height and number of individual pages can achieve the whole screen scrolling effect",
+      "minApiLevel": 2,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-page.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "@zos/page.SCROLL_MODE_SWIPER_HORIZONTAL",
+      "module": "@zos/page",
+      "symbol": "SCROLL_MODE_SWIPER_HORIZONTAL",
+      "type": "constant",
+      "description": "Swiper mode, horizontal rotating map, walking lights, by configuring the width and number of individual pages can achieve the whole screen scrolling effect",
+      "minApiLevel": 2.1,
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "llms",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/static/llms/@zos-page.md",
+      "extractedAt": "2026-09-04"
+    },
+    {
       "id": "@zos/page.scrollTo",
       "module": "@zos/page",
       "symbol": "scrollTo",

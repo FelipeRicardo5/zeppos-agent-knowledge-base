@@ -45,7 +45,6 @@
 - `@zos/ui.TEXT`
 - `@zos/ui.updateStatusBarTitle`
 - `@zos/ui.VIEW_CONTAINER`
-- `@zos/ui.Widget Animation`
 - `@zos/ui.widgetAnimations`
 
 ## API_LEVEL 2.1
@@ -62,6 +61,7 @@
 
 ## API_LEVEL 3.6
 
+- `@zos/ui.Buzzer`
 - `@zos/ui.SPORT_DATA`
 - `@zos/ui.TIME_PICKER`
 
@@ -80,7 +80,7 @@
 ## API_LEVEL 4.2
 
 - `@zos/ui.keyboard`
-- `@zos/ui.keyboard API`
+- `@zos/ui.Overview`
 
 ## No stated API_LEVEL
 

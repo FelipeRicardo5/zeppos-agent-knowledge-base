@@ -1,6 +1,6 @@
 # @zos/app
 
-**8 symbols**
+**11 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
@@ -11,9 +11,10 @@
 | `getScene` | function | >= 2 | OFFICIAL |
 | `queryPermission` | function | >= 3 | OFFICIAL |
 | `requestPermission` | function | >= 3 | OFFICIAL |
-| `SCENE_AOD` | constant | not stated | OBSERVED |
-
-`not stated` means no source documents a minimum for that symbol — not that it works on any level.
+| `SCENE_AOD` | constant | >= 2 | OFFICIAL |
+| `SCENE_APP` | constant | >= 2 | OFFICIAL |
+| `SCENE_SETTINGS` | constant | >= 2 | OFFICIAL |
+| `SCENE_WATCHFACE` | constant | >= 2 | OFFICIAL |
 
 ## Descriptions
 
@@ -44,3 +45,19 @@ Check the authorization status of Mini Program permissions.
 ### `@zos/app.requestPermission`
 
 Dynamic permission application, when querying a dynamic permission has not been authorized, you can use this interface to apply for the relevant permission. Generally, before using the system-related functional interface (such as the interface to enable app services), do the relevant permission check and application, otherwise the functional interface will not be allowed to execute due to the permission issue.
+
+### `@zos/app.SCENE_AOD`
+
+In the rest screen screen
+
+### `@zos/app.SCENE_APP`
+
+In Mini Program
+
+### `@zos/app.SCENE_SETTINGS`
+
+In the Mini Program configuration or dial edit page
+
+### `@zos/app.SCENE_WATCHFACE`
+
+In watchface interface

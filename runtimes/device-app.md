@@ -1,6 +1,6 @@
 # Device App — runtime
 
-**267 symbols across 31 modules.**
+**375 symbols across 31 modules.**
 
 A symbol is attributed to a runtime by the source path it was extracted from,
 not by any statement in its own text. Absence is *not covered*, not *invalid here*.
@@ -47,7 +47,21 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | --- | --- | --- |
 | `cancel` | >= 3 | — |
 | `getAllAlarms` | >= 3 | — |
+| `REPEAT_DAY` | >= 3 | — |
+| `REPEAT_HOUR` | >= 3 | — |
+| `REPEAT_MINUTE` | >= 3 | — |
+| `REPEAT_MONTH` | >= 3 | — |
+| `REPEAT_ONCE` | >= 3 | — |
+| `REPEAT_WEEK` | >= 3 | — |
+| `REPEAT_YEAR` | >= 3 | — |
 | `set` | >= 3 | — |
+| `WEEK_FRI` | >= 3 | — |
+| `WEEK_MON` | >= 3 | — |
+| `WEEK_SAT` | >= 3 | — |
+| `WEEK_SUN` | >= 3 | — |
+| `WEEK_THU` | >= 3 | — |
+| `WEEK_TUE` | >= 3 | — |
+| `WEEK_WED` | >= 3 | — |
 
 ## `@zos/app`
 
@@ -60,6 +74,10 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `getScene` | >= 2 | Watchface |
 | `queryPermission` | >= 3 | — |
 | `requestPermission` | >= 3 | — |
+| `SCENE_AOD` | >= 2 | Watchface |
+| `SCENE_APP` | >= 2 | — |
+| `SCENE_SETTINGS` | >= 2 | — |
+| `SCENE_WATCHFACE` | >= 2 | — |
 
 ## `@zos/app-access`
 
@@ -133,7 +151,8 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | --- | --- | --- |
 | `getDeviceInfo` | >= 2 | — |
 | `getDiskInfo` | >= 2 | — |
-| `SCREEN_SHAPE_SQUARE` | not stated | — |
+| `SCREEN_SHAPE_ROUND` | >= 2 | — |
+| `SCREEN_SHAPE_SQUARE` | >= 2 | — |
 
 ## `@zos/display`
 
@@ -159,6 +178,13 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | --- | --- | --- |
 | `closeSync` | >= 2 | — |
 | `mkdirSync` | >= 2 | — |
+| `O_APPEND` | >= 2 | — |
+| `O_CREAT` | >= 2 | — |
+| `O_EXCL` | >= 2 | — |
+| `O_RDONLY` | >= 2 | — |
+| `O_RDWR` | >= 2 | — |
+| `O_TRUNC` | >= 2 | — |
+| `O_WRONLY` | >= 2 | — |
 | `openAssetsSync` | >= 2 | — |
 | `openSync` | >= 2 | — |
 | `readdirSync` | >= 2 | — |
@@ -201,9 +227,23 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | Symbol | Min API_LEVEL | Also valid in |
 | --- | --- | --- |
 | `createModal` | >= 2 | — |
-| `GESTURE_RIGHT` | not stated | — |
-| `KEY_SHORTCUT` | not stated | — |
-| `MODAL_CONFIRM` | not stated | — |
+| `GESTURE_DOWN` | >= 2 | — |
+| `GESTURE_LEFT` | >= 2 | — |
+| `GESTURE_RIGHT` | >= 2 | — |
+| `GESTURE_UP` | >= 2 | — |
+| `KEY_BACK` | >= 2 | — |
+| `KEY_DOWN` | >= 2 | — |
+| `KEY_EVENT_CLICK` | >= 2 | — |
+| `KEY_EVENT_DOUBLE_CLICK` | >= 2 | — |
+| `KEY_EVENT_LONG_PRESS` | >= 2 | — |
+| `KEY_EVENT_PRESS` | >= 2 | — |
+| `KEY_EVENT_RELEASE` | >= 2 | — |
+| `KEY_HOME` | >= 2 | — |
+| `KEY_SELECT` | >= 2 | — |
+| `KEY_SHORTCUT` | >= 2 | — |
+| `KEY_UP` | >= 2 | — |
+| `MODAL_CANCEL` | >= 2 | — |
+| `MODAL_CONFIRM` | >= 2 | — |
 | `offDigitalCrown` | >= 2 | — |
 | `offGesture` | >= 2 | — |
 | `offKey` | >= 2 | — |
@@ -212,6 +252,9 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `onKey` | >= 2 | — |
 | `onWristMotion` | >= 3 | — |
 | `showToast` | >= 2 | — |
+| `WRIST_MOTION_FLIP` | >= 2 | — |
+| `WRIST_MOTION_LIFT` | >= 2 | — |
+| `WRIST_MOTION_LOWER` | >= 2 | — |
 
 ## `@zos/media`
 
@@ -235,6 +278,11 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | --- | --- | --- |
 | `getScrollTop` | >= 2 | — |
 | `getSwiperIndex` | >= 2 | — |
+| `SCROLL_ANIMATION_NONE` | >= 2 | — |
+| `SCROLL_ANIMATION_SMOOTH` | >= 2 | — |
+| `SCROLL_MODE_FREE` | >= 2 | — |
+| `SCROLL_MODE_SWIPER` | >= 2 | — |
+| `SCROLL_MODE_SWIPER_HORIZONTAL` | >= 2.1 | — |
 | `scrollTo` | >= 2 | — |
 | `setScrollLock` | >= 2 | — |
 | `setScrollMode` | >= 2 | — |
@@ -254,6 +302,45 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `push` | >= 2 | — |
 | `replace` | >= 2 | — |
 | `setLaunchAppTimeout` | >= 2 | — |
+| `SYSTEM_APP_ALARM` | >= 3 | — |
+| `SYSTEM_APP_ALEAX` | >= 3 | — |
+| `SYSTEM_APP_ALIPAY` | >= 3 | — |
+| `SYSTEM_APP_ALTIMETER` | >= 3 | — |
+| `SYSTEM_APP_BODY_COMPOSITION` | >= 3 | — |
+| `SYSTEM_APP_BREATH` | >= 3 | — |
+| `SYSTEM_APP_CALENDAR` | >= 3 | — |
+| `SYSTEM_APP_CAMERA` | >= 3 | — |
+| `SYSTEM_APP_CARD` | >= 3 | — |
+| `SYSTEM_APP_CLUB_CARD` | >= 3 | — |
+| `SYSTEM_APP_COMPASS` | >= 3 | — |
+| `SYSTEM_APP_COUNTDOWN` | >= 3 | — |
+| `SYSTEM_APP_FINE_PHONE` | >= 3 | — |
+| `SYSTEM_APP_HR` | >= 3 | — |
+| `SYSTEM_APP_MEASUREMENT` | >= 3 | — |
+| `SYSTEM_APP_MENSTRUAL` | >= 3 | — |
+| `SYSTEM_APP_MUSIC` | >= 3 | — |
+| `SYSTEM_APP_NETEASE_MUSIC` | >= 3 | — |
+| `SYSTEM_APP_PAI` | >= 3 | — |
+| `SYSTEM_APP_PHONE` | >= 3 | — |
+| `SYSTEM_APP_POMODORO` | >= 3 | — |
+| `SYSTEM_APP_PRESSURE` | >= 3 | — |
+| `SYSTEM_APP_READINESS` | >= 3 | — |
+| `SYSTEM_APP_SETTING` | >= 3 | — |
+| `SYSTEM_APP_SLEEP` | >= 3 | — |
+| `SYSTEM_APP_SPO2` | >= 3 | — |
+| `SYSTEM_APP_SPORT` | >= 3 | — |
+| `SYSTEM_APP_SPORT_HISTORY` | >= 3 | — |
+| `SYSTEM_APP_SPORT_STATUS` | >= 3 | — |
+| `SYSTEM_APP_STATUS` | >= 3 | — |
+| `SYSTEM_APP_STOPWATCH` | >= 3 | — |
+| `SYSTEM_APP_SUN_AND_MOON` | >= 3 | — |
+| `SYSTEM_APP_THERMOMETER` | >= 3 | — |
+| `SYSTEM_APP_TODO_LIST` | >= 3 | — |
+| `SYSTEM_APP_VOICE_MEMO` | >= 3 | — |
+| `SYSTEM_APP_WEATHER` | >= 3 | — |
+| `SYSTEM_APP_WEPAY` | >= 3 | — |
+| `SYSTEM_APP_WORLD_CLOCK` | >= 3 | — |
+| `SYSTEM_APP_ZEPP_COACH` | >= 3 | — |
 
 ## `@zos/sensor`
 
@@ -270,6 +357,9 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `Compass` | >= 3 | — |
 | `Distance` | >= 2 | — |
 | `FatBurning` | >= 2 | — |
+| `FREQ_MODE_HIGH` | >= 3 | — |
+| `FREQ_MODE_LOW` | >= 3 | — |
+| `FREQ_MODE_NORMAL` | >= 3 | — |
 | `Geolocation` | >= 2.1 | — |
 | `Gyroscope` | >= 3 | — |
 | `HeartRate` | >= 2 | — |
@@ -281,6 +371,8 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `Stress` | >= 2 | — |
 | `SystemSounds` | >= 3.6 | — |
 | `Time` | >= 2 | Workout Extension |
+| `TIME_HOUR_FORMAT_12` | >= 2.1 | — |
+| `TIME_HOUR_FORMAT_24` | >= 2.1 | — |
 | `Vibrator` | >= 2 | — |
 | `Wear` | >= 2 | — |
 | `Weather` | >= 2 | — |
@@ -291,6 +383,11 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 
 | Symbol | Min API_LEVEL | Also valid in |
 | --- | --- | --- |
+| `DATE_FORMAT_DMY` | >= 2 | — |
+| `DATE_FORMAT_MDY` | >= 2 | — |
+| `DATE_FORMAT_YMD` | >= 2 | — |
+| `DISTANCE_UNIT_IMPERIAL` | >= 2 | — |
+| `DISTANCE_UNIT_METRIC` | >= 2 | — |
 | `getDateFormat` | >= 2 | — |
 | `getDistanceUnit` | >= 2 | — |
 | `getLanguage` | >= 2 | — |
@@ -301,6 +398,14 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `getTimeFormat` | >= 2.1 | — |
 | `getWeightTarget` | >= 2 | — |
 | `getWeightUnit` | >= 2 | — |
+| `TEMPERATURE_UNIT_CENTIGRADE` | >= 2 | — |
+| `TEMPERATURE_UNIT_FAHRENHEIT` | >= 2 | — |
+| `TIME_FORMAT_12` | >= 2.1 | — |
+| `TIME_FORMAT_24` | >= 2.1 | — |
+| `WEIGHT_UNIT_JIN` | >= 2 | — |
+| `WEIGHT_UNIT_KILOGRAM` | >= 2 | — |
+| `WEIGHT_UNIT_POUND` | >= 2 | — |
+| `WEIGHT_UNIT_STONE` | >= 2 | — |
 
 ## `@zos/share-storage`
 
@@ -341,6 +446,7 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `anim_status` | not stated | — |
 | `ARC` | >= 2 | — |
 | `BUTTON` | >= 2 | — |
+| `Buzzer` | >= 3.6 | — |
 | `CANVAS` | >= 3 | — |
 | `CHECKBOX_GROUP` | >= 2 | — |
 | `CIRCLE` | >= 2 | — |
@@ -371,8 +477,8 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `inputType` | not stated | — |
 | `keyboard` | >= 4.2 | — |
 | `KEYBOARD` | >= 3 | — |
-| `keyboard API` | >= 4.2 | — |
 | `openInspector` | >= 4 | — |
+| `Overview` | >= 4.2 | — |
 | `PAGE_INDICATOR` | >= 2.1 | — |
 | `PAGE_SCROLLBAR` | >= 3 | — |
 | `PICK_DATE` | >= 2 | — |
@@ -406,7 +512,6 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `VIEW_CONTAINER` | >= 2 | — |
 | `VIRTUAL_CONTAINER` | >= 4 | — |
 | `widget` | not stated | Workout Extension |
-| `Widget Animation` | >= 2 | — |
 | `widgetAnimations` | >= 2 | — |
 
 ## `@zos/user`
@@ -414,6 +519,9 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | Symbol | Min API_LEVEL | Also valid in |
 | --- | --- | --- |
 | `addHealthData` | >= 3 | — |
+| `GENDER_FEMALE` | >= 2 | — |
+| `GENDER_MALE` | >= 2 | — |
+| `GENDER_UNSPECIFIED` | >= 2 | — |
 | `getProfile` | >= 2 | — |
 
 ## `@zos/utils`

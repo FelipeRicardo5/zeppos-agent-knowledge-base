@@ -1,11 +1,15 @@
 # @zos/app — compatibility
 
-**7 of 8 symbols state a minimum API_LEVEL**
+**11 of 11 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 
 - `@zos/app.getPackageInfo`
 - `@zos/app.getScene`
+- `@zos/app.SCENE_AOD`
+- `@zos/app.SCENE_APP`
+- `@zos/app.SCENE_SETTINGS`
+- `@zos/app.SCENE_WATCHFACE`
 
 ## API_LEVEL 3
 
@@ -17,9 +21,3 @@
 
 - `@zos/app.getPackageInfoById`
 - `@zos/app.getPerformance`
-
-## No stated API_LEVEL
-
-These symbols have no documented minimum. Absence means *not stated*, not *any* level.
-
-- `@zos/app.SCENE_AOD`

@@ -10,6 +10,7 @@
 | `anim_status` | function | not stated | OBSERVED |
 | `ARC` | value | >= 2 | OFFICIAL |
 | `BUTTON` | value | >= 2 | OFFICIAL |
+| `Buzzer` | function | >= 3.6 | OFFICIAL |
 | `CANVAS` | value | >= 3 | OFFICIAL |
 | `CHECKBOX_GROUP` | value | >= 2 | OFFICIAL |
 | `CIRCLE` | value | >= 2 | OFFICIAL |
@@ -42,8 +43,8 @@
 | `inputType` | function | not stated | OBSERVED |
 | `keyboard` | value | >= 4.2 | OFFICIAL |
 | `KEYBOARD` | value | >= 3 | OFFICIAL |
-| `keyboard API` | function | >= 4.2 | OFFICIAL |
 | `openInspector` | function | >= 4 | OFFICIAL |
+| `Overview` | function | >= 4.2 | OFFICIAL |
 | `PAGE_INDICATOR` | value | >= 2.1 | OFFICIAL |
 | `PAGE_SCROLLBAR` | value | >= 3 | OFFICIAL |
 | `PICK_DATE` | value | >= 2 | OFFICIAL |
@@ -78,12 +79,15 @@
 | `VIEW_CONTAINER` | value | >= 2 | OFFICIAL |
 | `VIRTUAL_CONTAINER` | value | >= 4 | OFFICIAL |
 | `widget` | function | not stated | OBSERVED |
-| `Widget Animation` | function | >= 2 | OFFICIAL |
 | `widgetAnimations` | value | >= 2 | OFFICIAL |
 
 `not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
 ## Descriptions
+
+### `@zos/ui.Buzzer`
+
+Buzzer
 
 ### `@zos/ui.gettersetter`
 

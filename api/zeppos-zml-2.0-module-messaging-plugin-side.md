@@ -4,4 +4,6 @@
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
-| `messagingPlugin` | function | any | OBSERVED |
+| `messagingPlugin` | function | not stated | OBSERVED |
+
+`not stated` means no source documents a minimum for that symbol — not that it works on any level.

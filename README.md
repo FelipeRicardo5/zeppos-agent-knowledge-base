@@ -48,7 +48,7 @@ npm run typecheck
 
 `sync` clones the official repos into `.cache/` (untracked, ~ tens of MB) and rewrites `data/`. It is idempotent: running it twice in a row produces no diff.
 
-`npm run render` rewrites `api/` and `compatibility/` from the JSON source of truth.
+`npm run render` rewrites `api/` and `compatibility/` from the JSON source of truth. Each dir gets an `index.md` (module list, and the inverse view: which modules a given `API_LEVEL` unlocks). A hand-written `README.md` in either dir is preserved; every other `.md` there is generated and overwritten.
 
 ## How it works
 
@@ -60,7 +60,7 @@ Four stages, each idempotent and independently inspectable, so any one of them c
    - **llms** — `static/llms/@zos-*.md`, one file per module, reusing the structuring Zepp Health already did for LLM consumption. The module id comes from the import lines inside the file, not from the H1: `@zos/ui` is split across several files whose H1 reads `@zos/ui-methods`, `@zos/ui-widget-basic` and so on, and those ids can't be imported.
    - **samples** — every `@zos/*` import across the official example apps. Evidence of real usage, not a documentation claim.
 3. **enrich** — groups observations by symbol id and normalizes the metadata that is the point of the project: minimum `API_LEVEL`, runtime, source and confidence tier. Field-level priority is `docs-reference` > `llms` > `sample`.
-4. **render** — generates `api/` (symbols per module) and `compatibility/` (grouped by minimum `API_LEVEL`, the populated axis). The other README dirs (`concepts/`, `runtimes/`, `patterns/`, `examples/`, `tools/`) hold curated knowledge not derivable from the three automated fronts, so they are not generated yet. This is what the Agent Skill reads.
+4. **render** — generates `api/` (symbols per module) and `compatibility/` (grouped by minimum `API_LEVEL`, the populated axis), plus an `index.md` in each. A symbol with no documented minimum is labelled `not stated`, never `any` — absence of a level is absence of evidence, not a compatibility claim. The other README dirs (`concepts/`, `runtimes/`, `patterns/`, `examples/`, `tools/`) hold curated knowledge not derivable from the three automated fronts, so they are not generated yet. This is what the Agent Skill reads.
 
 ## Data model
 

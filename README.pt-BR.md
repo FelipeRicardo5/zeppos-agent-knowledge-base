@@ -48,7 +48,7 @@ npm run typecheck
 
 `sync` clona os repositórios oficiais em `.cache/` (não versionado, dezenas de MB) e reescreve `data/`. É idempotente: rodar duas vezes seguidas não gera diff.
 
-`npm run render` reescreve `api/` e `compatibility/` a partir do JSON fonte de verdade.
+`npm run render` reescreve `api/` e `compatibility/` a partir do JSON fonte de verdade. Cada diretório recebe um `index.md` (lista de módulos e a visão inversa: quais módulos um dado `API_LEVEL` libera). Um `README.md` escrito à mão em qualquer um dos dois é preservado; todo outro `.md` ali é gerado e sobrescrito.
 
 ## Como funciona
 
@@ -60,7 +60,7 @@ Quatro estágios, cada um idempotente e inspecionável isoladamente, de modo que
    - **llms** — `static/llms/@zos-*.md`, um arquivo por módulo, aproveitando a estruturação que a própria Zepp Health já fez para consumo por LLMs. O id do módulo vem das linhas de import dentro do arquivo, não do H1: `@zos/ui` é dividido em vários arquivos cujo H1 diz `@zos/ui-methods`, `@zos/ui-widget-basic` etc., e esses ids não são importáveis.
    - **samples** — todo import `@zos/*` nos aplicativos de exemplo oficiais. Evidência de uso real, não uma afirmação da documentação.
 3. **enrich** — agrupa as observações por id de símbolo e normaliza os metadados que são o coração do projeto: `API_LEVEL` mínimo, runtime, fonte e nível de confiança. A prioridade por campo é `docs-reference` > `llms` > `sample`.
-4. **render** — gera `api/` (símbolos por módulo) e `compatibility/` (agrupados por `API_LEVEL` mínimo, o eixo populado). Os outros diretórios do README (`concepts/`, `runtimes/`, `patterns/`, `examples/`, `tools/`) guardam conhecimento curado não derivável das três frentes automatizadas, então ainda não são gerados. É o que a Agent Skill lê.
+4. **render** — gera `api/` (símbolos por módulo) e `compatibility/` (agrupados por `API_LEVEL` mínimo, o eixo populado), mais um `index.md` em cada. Símbolo sem mínimo documentado é rotulado `not stated`, nunca `any` — ausência de nível é ausência de evidência, não afirmação de compatibilidade. Os outros diretórios do README (`concepts/`, `runtimes/`, `patterns/`, `examples/`, `tools/`) guardam conhecimento curado não derivável das três frentes automatizadas, então ainda não são gerados. É o que a Agent Skill lê.
 
 ## Modelo de dados
 

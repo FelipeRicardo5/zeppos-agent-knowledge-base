@@ -4,6 +4,8 @@
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
-| `BaseSideService` | function | any | OBSERVED |
-| `convertLib` | function | any | OBSERVED |
-| `settingsLib` | function | any | OBSERVED |
+| `BaseSideService` | function | not stated | OBSERVED |
+| `convertLib` | function | not stated | OBSERVED |
+| `settingsLib` | function | not stated | OBSERVED |
+
+`not stated` means no source documents a minimum for that symbol — not that it works on any level.

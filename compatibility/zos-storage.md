@@ -1,6 +1,6 @@
 # @zos/storage — compatibility
 
-**9 symbols with a stated minimum API_LEVEL**
+**9 of 9 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

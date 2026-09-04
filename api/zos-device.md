@@ -6,7 +6,9 @@
 | --- | --- | --- | --- |
 | `getDeviceInfo` | function | >= 2 | OFFICIAL |
 | `getDiskInfo` | function | >= 2 | OFFICIAL |
-| `SCREEN_SHAPE_SQUARE` | constant | any | OBSERVED |
+| `SCREEN_SHAPE_SQUARE` | constant | not stated | OBSERVED |
+
+`not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
 ## Descriptions
 

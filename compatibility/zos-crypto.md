@@ -1,6 +1,6 @@
 # @zos/crypto — compatibility
 
-**1 symbols with a stated minimum API_LEVEL**
+**1 of 5 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 3
 

@@ -39,12 +39,12 @@ describe("render", () => {
 
     const counts = await render(symbols, out);
 
-    assert.deepEqual(counts, { api: 1, compat: 1 });
+    assert.deepEqual(counts, { modules: 1 });
 
     const apiFiles = await readdir(path.join(out, "api"));
     const compatFiles = await readdir(path.join(out, "compatibility"));
-    assert.deepEqual(apiFiles, ["zos-router.md"]);
-    assert.deepEqual(compatFiles, ["zos-router.md"]);
+    assert.deepEqual(apiFiles.sort(), ["index.md", "zos-router.md"]);
+    assert.deepEqual(compatFiles.sort(), ["index.md", "zos-router.md"]);
   });
 
   it("api page lists symbol metadata in a deterministic table", async () => {
@@ -76,7 +76,8 @@ describe("render", () => {
 
     assert.match(content, /^# @zos\/idle$/m);
     assert.match(content, /`setIdleTimerSecond` \| function \| >= 3 \| OFFICIAL/);
-    assert.match(content, /`wakeUp` \| function \| any \| OFFICIAL/);
+    assert.match(content, /`wakeUp` \| function \| not stated \| OFFICIAL/);
+    assert.doesNotMatch(content, /\| any \|/);
     assert.match(content, /### `@zos\/idle.setIdleTimerSecond`/);
     assert.match(content, /Closes the current page\./);
   });
@@ -130,5 +131,61 @@ describe("render", () => {
     const apiSecond = await readFile(path.join(out, "api", "zos-router.md"), "utf-8");
 
     assert.equal(apiFirst, apiSecond);
+  });
+
+  it("indexes every module and inverts the API_LEVEL axis", async () => {
+    const { symbols, out } = await writeFixture({
+      "zos-router": { module: "@zos/router", symbols: [routerRecord] },
+      "zos-idle": {
+        module: "@zos/idle",
+        symbols: [
+          { ...routerRecord, id: "@zos/idle.wakeUp", module: "@zos/idle", symbol: "wakeUp", minApiLevel: undefined },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+
+    const apiIndex = await readFile(path.join(out, "api", "index.md"), "utf-8");
+    assert.match(apiIndex, /\*\*2 modules, 2 symbols\*\*/);
+    assert.match(apiIndex, /`@zos\/idle` \| 1 \| 0 \| \[zos-idle\.md\]\(zos-idle\.md\)/);
+    assert.match(apiIndex, /`@zos\/router` \| 1 \| 1 \| \[zos-router\.md\]\(zos-router\.md\)/);
+
+    const compatIndex = await readFile(path.join(out, "compatibility", "index.md"), "utf-8");
+    assert.match(compatIndex, /## API_LEVEL 2\n\n- `@zos\/router` — 1 symbols/);
+    assert.match(compatIndex, /## No stated API_LEVEL\n/);
+    assert.match(compatIndex, /- `@zos\/idle` — 1 symbols/);
+  });
+
+  it("keeps a curated README but drops a page whose module disappeared", async () => {
+    const { symbols, out } = await writeFixture({
+      "zos-router": { module: "@zos/router", symbols: [routerRecord] },
+    });
+
+    await render(symbols, out);
+    await writeFile(path.join(out, "api", "README.md"), "curated by hand\n", "utf-8");
+    await writeFile(path.join(out, "api", "zos-gone.md"), "stale\n", "utf-8");
+
+    await render(symbols, out);
+
+    const apiFiles = (await readdir(path.join(out, "api"))).sort();
+    assert.deepEqual(apiFiles, ["README.md", "index.md", "zos-router.md"]);
+    assert.equal(await readFile(path.join(out, "api", "README.md"), "utf-8"), "curated by hand\n");
+  });
+
+  it("names the offending file when a symbols file is not a module file", async () => {
+    const { symbols, out } = await writeFixture({});
+    await writeFile(path.join(symbols, "manifest.json"), JSON.stringify({ lastSyncAt: "2026-09-03" }), "utf-8");
+
+    await assert.rejects(render(symbols, out), /manifest\.json: not a module file/);
+  });
+
+  it("refuses to write when two modules map to the same slug", async () => {
+    const { symbols, out } = await writeFixture({
+      "a": { module: "@zos/ble", symbols: [routerRecord] },
+      "b": { module: "@zos-ble", symbols: [routerRecord] },
+    });
+
+    await assert.rejects(render(symbols, out), /slug collision/);
   });
 });

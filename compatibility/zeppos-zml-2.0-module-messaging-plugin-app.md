@@ -1,6 +1,6 @@
 # @zeppos/zml/2.0/module/messaging/plugin/app — compatibility
 
-**0 symbols with a stated minimum API_LEVEL**
+**0 of 1 symbols state a minimum API_LEVEL**
 
 ## No stated API_LEVEL
 

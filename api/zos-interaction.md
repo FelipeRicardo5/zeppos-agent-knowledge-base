@@ -5,9 +5,9 @@
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
 | `createModal` | function | >= 2 | OFFICIAL |
-| `GESTURE_RIGHT` | constant | any | OBSERVED |
-| `KEY_SHORTCUT` | constant | any | OBSERVED |
-| `MODAL_CONFIRM` | constant | any | OBSERVED |
+| `GESTURE_RIGHT` | constant | not stated | OBSERVED |
+| `KEY_SHORTCUT` | constant | not stated | OBSERVED |
+| `MODAL_CONFIRM` | constant | not stated | OBSERVED |
 | `offDigitalCrown` | function | >= 2 | OFFICIAL |
 | `offGesture` | function | >= 2 | OFFICIAL |
 | `offKey` | function | >= 2 | OFFICIAL |
@@ -16,6 +16,8 @@
 | `onKey` | function | >= 2 | OFFICIAL |
 | `onWristMotion` | function | >= 3 | OFFICIAL |
 | `showToast` | function | >= 2 | OFFICIAL |
+
+`not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
 ## Descriptions
 

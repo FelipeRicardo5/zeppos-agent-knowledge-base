@@ -1,6 +1,6 @@
 # @zos/global — compatibility
 
-**14 symbols with a stated minimum API_LEVEL**
+**14 of 14 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

@@ -1,6 +1,6 @@
 # @zos/app-service — compatibility
 
-**4 symbols with a stated minimum API_LEVEL**
+**4 of 4 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 3
 

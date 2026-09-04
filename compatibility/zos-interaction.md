@@ -1,6 +1,6 @@
 # @zos/interaction — compatibility
 
-**9 symbols with a stated minimum API_LEVEL**
+**9 of 12 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

@@ -6,25 +6,25 @@
 | --- | --- | --- | --- |
 | `addEventListener` | value | >= 2 | OFFICIAL |
 | `addLayoutChild` | value | >= 4 | OFFICIAL |
-| `align` | function | any | OBSERVED |
-| `anim_status` | function | any | OBSERVED |
+| `align` | function | not stated | OBSERVED |
+| `anim_status` | function | not stated | OBSERVED |
 | `ARC` | value | >= 2 | OFFICIAL |
 | `BUTTON` | value | >= 2 | OFFICIAL |
 | `CANVAS` | value | >= 3 | OFFICIAL |
 | `CHECKBOX_GROUP` | value | >= 2 | OFFICIAL |
 | `CIRCLE` | value | >= 2 | OFFICIAL |
 | `createDialog` | value | >= 2 | OFFICIAL |
-| `createKeyboard` | function | any | OBSERVED |
+| `createKeyboard` | function | not stated | OBSERVED |
 | `createWidget` | value | >= 2 | OFFICIAL |
 | `CYCLE_IMAGE_TEXT_LIST` | value | >= 2 | OFFICIAL |
 | `CYCLE_LIST` | value | >= 2 | OFFICIAL |
-| `data_type` | function | any | OBSERVED |
-| `deleteKeyboard` | function | any | OBSERVED |
+| `data_type` | function | not stated | OBSERVED |
+| `deleteKeyboard` | function | not stated | OBSERVED |
 | `deleteWidget` | value | >= 2 | OFFICIAL |
 | `DIALOG` | value | >= 2 | OFFICIAL |
-| `dumpLayout` | function | any | OBSERVED |
-| `edit_widget_group_type` | function | any | OBSERVED |
-| `event` | function | any | OBSERVED |
+| `dumpLayout` | function | not stated | OBSERVED |
+| `edit_widget_group_type` | function | not stated | OBSERVED |
+| `event` | function | not stated | OBSERVED |
 | `FILL_RECT` | value | >= 2 | OFFICIAL |
 | `getAppWidgetSize` | value | >= 2 | OFFICIAL |
 | `getId` | function | >= 2 | OFFICIAL |
@@ -39,7 +39,7 @@
 | `HISTOGRAM` | value | >= 2 | OFFICIAL |
 | `IMG` | value | >= 2 | OFFICIAL |
 | `IMG_ANIM` | value | >= 2 | OFFICIAL |
-| `inputType` | function | any | OBSERVED |
+| `inputType` | function | not stated | OBSERVED |
 | `keyboard` | value | >= 4.2 | OFFICIAL |
 | `KEYBOARD` | value | >= 3 | OFFICIAL |
 | `keyboard API` | function | >= 4.2 | OFFICIAL |
@@ -49,7 +49,7 @@
 | `PICK_DATE` | value | >= 2 | OFFICIAL |
 | `PICKER` | value | >= 3 | OFFICIAL |
 | `POLYLINE` | function | >= 2 | OFFICIAL |
-| `prop` | function | any | OBSERVED |
+| `prop` | function | not stated | OBSERVED |
 | `QRCODE` | value | >= 2 | OFFICIAL |
 | `RADIO_GROUP` | value | >= 2 | OFFICIAL |
 | `redraw` | value | >= 2 | OFFICIAL |
@@ -64,22 +64,24 @@
 | `setProperty` | value | >= 2 | OFFICIAL |
 | `setStatusBarVisible` | value | >= 2 | OFFICIAL |
 | `SLIDE_SWITCH` | value | >= 2 | OFFICIAL |
-| `sport_data` | function | any | OBSERVED |
+| `sport_data` | function | not stated | OBSERVED |
 | `SPORT_DATA` | value | >= 3.6 | OFFICIAL |
 | `STROKE_RECT` | value | >= 2 | OFFICIAL |
-| `Submodules` | function | any | OFFICIAL |
+| `Submodules` | function | not stated | OFFICIAL |
 | `SYSTEM_KEYBOARD` | value | >= 4 | OFFICIAL |
 | `TEXT` | value | >= 2 | OFFICIAL |
-| `text_style` | function | any | OBSERVED |
+| `text_style` | function | not stated | OBSERVED |
 | `TIME_PICKER` | value | >= 3.6 | OFFICIAL |
 | `updateLayout` | value | >= 4 | OFFICIAL |
 | `updateLayoutStyle` | value | >= 4 | OFFICIAL |
 | `updateStatusBarTitle` | value | >= 2 | OFFICIAL |
 | `VIEW_CONTAINER` | value | >= 2 | OFFICIAL |
 | `VIRTUAL_CONTAINER` | value | >= 4 | OFFICIAL |
-| `widget` | function | any | OBSERVED |
+| `widget` | function | not stated | OBSERVED |
 | `Widget Animation` | function | >= 2 | OFFICIAL |
 | `widgetAnimations` | value | >= 2 | OFFICIAL |
+
+`not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
 ## Descriptions
 

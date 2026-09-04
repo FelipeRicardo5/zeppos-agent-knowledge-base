@@ -4,11 +4,13 @@
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
-| `AESCrypto` | value | any | OFFICIAL |
-| `CRCCrypto` | value | any | OFFICIAL |
-| `DigestCrypto` | value | any | OFFICIAL |
-| `ECDSACrypto` | value | any | OFFICIAL |
+| `AESCrypto` | value | not stated | OFFICIAL |
+| `CRCCrypto` | value | not stated | OFFICIAL |
+| `DigestCrypto` | value | not stated | OFFICIAL |
+| `ECDSACrypto` | value | not stated | OFFICIAL |
 | `encryptKey` | function | >= 3 | OFFICIAL |
+
+`not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
 ## Descriptions
 

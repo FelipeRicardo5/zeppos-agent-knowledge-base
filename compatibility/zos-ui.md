@@ -1,6 +1,6 @@
 # @zos/ui — compatibility
 
-**62 symbols with a stated minimum API_LEVEL**
+**62 of 76 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

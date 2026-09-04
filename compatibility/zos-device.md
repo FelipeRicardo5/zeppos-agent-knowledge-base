@@ -1,6 +1,6 @@
 # @zos/device — compatibility
 
-**2 symbols with a stated minimum API_LEVEL**
+**2 of 3 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

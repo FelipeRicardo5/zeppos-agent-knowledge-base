@@ -1,6 +1,6 @@
 # @zos/sensor — compatibility
 
-**27 symbols with a stated minimum API_LEVEL**
+**27 of 27 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

@@ -1,6 +1,6 @@
 # @zos/display — compatibility
 
-**13 symbols with a stated minimum API_LEVEL**
+**13 of 13 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

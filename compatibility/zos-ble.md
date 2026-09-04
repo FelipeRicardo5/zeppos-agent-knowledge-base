@@ -1,6 +1,6 @@
 # @zos/ble — compatibility
 
-**30 symbols with a stated minimum API_LEVEL**
+**30 of 30 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

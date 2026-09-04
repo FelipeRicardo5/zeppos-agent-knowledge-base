@@ -11,7 +11,9 @@
 | `getScene` | function | >= 2 | OFFICIAL |
 | `queryPermission` | function | >= 3 | OFFICIAL |
 | `requestPermission` | function | >= 3 | OFFICIAL |
-| `SCENE_AOD` | constant | any | OBSERVED |
+| `SCENE_AOD` | constant | not stated | OBSERVED |
+
+`not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
 ## Descriptions
 

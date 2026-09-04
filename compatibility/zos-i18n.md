@@ -1,6 +1,6 @@
 # @zos/i18n — compatibility
 
-**1 symbols with a stated minimum API_LEVEL**
+**1 of 1 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

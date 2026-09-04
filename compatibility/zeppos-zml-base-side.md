@@ -1,6 +1,6 @@
 # @zeppos/zml/base-side — compatibility
 
-**0 symbols with a stated minimum API_LEVEL**
+**0 of 3 symbols state a minimum API_LEVEL**
 
 ## No stated API_LEVEL
 

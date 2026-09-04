@@ -1,6 +1,6 @@
 # @zos/notification — compatibility
 
-**3 symbols with a stated minimum API_LEVEL**
+**3 of 3 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 3
 

@@ -1,6 +1,6 @@
 # @zos/app — compatibility
 
-**7 symbols with a stated minimum API_LEVEL**
+**7 of 8 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

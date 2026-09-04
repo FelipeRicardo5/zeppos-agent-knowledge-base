@@ -1,6 +1,6 @@
 # @zos/page — compatibility
 
-**6 symbols with a stated minimum API_LEVEL**
+**6 of 6 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 

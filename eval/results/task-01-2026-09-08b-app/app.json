@@ -1,0 +1,59 @@
+{
+  "//": "HeartSync — app.json. Every key below is justified in CITATIONS.md.",
+  "//keys": "app, configVersion, defaultLanguage, permissions, runtime present in 33/33 sample manifests; targets in 32/33; i18n in 31/33 — examples/index.md, 'What a real app.json contains' table",
+
+  "configVersion": "v3",
+
+  "app": {
+    "appId": 1000001,
+    "appName": "HeartSync",
+    "appType": "app",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "icon": "icon.png",
+    "vender": "heartsync",
+    "description": "Streams live heart rate to a user-configured HTTP endpoint."
+  },
+
+  "permissions": [
+    "data:user.hd.heart_rate",
+    "data:os.device.info",
+    "device:os.local_storage"
+  ],
+
+  "runtime": {
+    "apiVersion": {
+      "compatible": "4.2.0",
+      "target": "4.2.0",
+      "minVersion": "2.0.0"
+    }
+  },
+
+  "defaultLanguage": "en-US",
+
+  "i18n": {
+    "en-US": {
+      "appName": "HeartSync"
+    }
+  },
+
+  "targets": {
+    "bip-6": {
+      "module": {
+        "page": {
+          "pages": ["page/index"]
+        }
+      },
+      "platforms": [
+        { "name": "bip-6", "deviceSource": 9765120 },
+        { "name": "bip-6-global", "deviceSource": 9765121 },
+        { "name": "bip-6-b", "deviceSource": 10158337 }
+      ],
+      "designWidth": 390
+    }
+  },
+
+  "debug": true
+}

@@ -1,0 +1,20 @@
+# HeartSync — en-US
+# Format (msgid / msgstr, .po) verbatim from patterns/i18n.md,
+# "Widget Text i18n Usage" — which shows `en-US.po` and `zh-CN.po` contents.
+# The DIRECTORY the toolchain reads these from is not stated anywhere in the KB;
+# `i18n/` is an assumption (see CITATIONS.md, gap G8).
+
+msgid "appName"
+msgstr "HeartSync"
+
+msgid "bpmUnit"
+msgstr "BPM"
+
+msgid "waiting"
+msgstr "Waiting for reading..."
+
+msgid "noEndpoint"
+msgstr "No endpoint set"
+
+msgid "syncNow"
+msgstr "Sync now"

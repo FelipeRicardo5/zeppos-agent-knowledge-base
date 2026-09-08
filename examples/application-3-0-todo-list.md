@@ -254,3 +254,209 @@ hmUI.showToast({
 })
 ```
 — `zeppos-samples/application/3.0/todo-list/page/home/index.page.js`, line 82
+
+## Global calls in the phone runtimes
+
+The Settings App and the Side Service are all globals: their files import
+nothing that names a module, so nothing else in this base can see these. Some
+have no symbol record at all — `AppSettingsPage`, which registers a settings
+page, is the clearest case. Here the code is the only evidence there is.
+
+### `AppSettingsPage()` *(no record in this KB)*
+
+```js
+AppSettingsPage({
+  state: {
+    todoList: [],
+    props: {}
+  },
+  addTodoList(val) {
+    this.state.todoList = [...this.state.todoList, val]
+    this.setItem()
+  },
+  editTodoList(val, index) {
+    this.state.todoList[index] = val
+    this.setItem()
+```
+— `zeppos-samples/application/3.0/todo-list/setting/index.js`, line 3
+
+### `AppSideService()` *(no record in this KB)*
+
+```js
+AppSideService(
+  BaseSideService({
+    onInit() {},
+    onRequest(req, res) {
+      if (req.method === 'GET_TODO_LIST') {
+        res(null, {
+          result: getTodoList()
+        })
+      } else if (req.method === 'ADD') {
+        // 这里补充一个
+        const todoList = getTodoList()
+        const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 11
+
+### `BaseSideService()` — recorded as `@zeppos/zml/base-side.BaseSideService` or `@zeppos/zml/base/base-side.BaseSideService`
+
+```js
+BaseSideService({
+  onInit() {},
+  onRequest(req, res) {
+    if (req.method === 'GET_TODO_LIST') {
+      res(null, {
+        result: getTodoList()
+      })
+    } else if (req.method === 'ADD') {
+      // 这里补充一个
+      const todoList = getTodoList()
+      const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]
+      settingsLib.setItem('todoList', JSON.stringify(newTodoList))
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 12
+
+### `Button()` — recorded as `ui.Button`
+
+```js
+Button({
+  label: gettext('delete'),
+  style: {
+    fontSize: '12px',
+    borderRadius: '30px',
+    background: '#D85E33',
+    color: 'white'
+  },
+  onClick: () => {
+    this.deleteTodoList(index)
+  }
+})
+```
+— `zeppos-samples/application/3.0/todo-list/setting/index.js`, line 103
+
+### `gettext()` *(no record in this KB)*
+
+```js
+label: gettext('addTodo'),
+```
+— `zeppos-samples/application/3.0/todo-list/setting/index.js`, line 53
+
+```js
+label: gettext('delete'),
+```
+— `zeppos-samples/application/3.0/todo-list/setting/index.js`, line 104
+
+### `getTodoList()` *(no record in this KB)*
+
+```js
+function getTodoList() {
+  return settingsLib.getItem('todoList')
+    ? JSON.parse(settingsLib.getItem('todoList'))
+    : [...DEFAULT_TODO_LIST]
+}
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 6
+
+```js
+result: getTodoList()
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 17
+
+### `onDestroy()` *(no record in this KB)*
+
+```js
+onDestroy() {}
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 45
+
+### `onInit()` *(no record in this KB)*
+
+```js
+onInit() {},
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 13
+
+### `onRun()` *(no record in this KB)*
+
+```js
+onRun() {},
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 44
+
+### `res()` *(no record in this KB)*
+
+```js
+res(null, {
+  result: getTodoList()
+})
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 16
+
+```js
+res(null, {
+  result: newTodoList
+})
+```
+— `zeppos-samples/application/3.0/todo-list/app-side/index.js`, line 25
+
+### `TextInput()` — recorded as `ui.TextInput`
+
+```js
+TextInput({
+  label: gettext('addTodo'),
+  onChange: (val) => {
+    this.addTodoList(val)
+  }
+})
+```
+— `zeppos-samples/application/3.0/todo-list/setting/index.js`, line 52
+
+```js
+TextInput({
+  label: '',
+  bold: true,
+  value: item,
+  subStyle: {
+    color: '#333',
+    fontSize: '14px'
+  },
+  maxLength: 200,
+  onChange: (val) => {
+    if (val.length > 0 && val.length <= 200) {
+      this.editTodoList(val, index)
+```
+— `zeppos-samples/application/3.0/todo-list/setting/index.js`, line 84
+
+### `View()` — recorded as `ui.View`
+
+```js
+const addBTN = View(
+  {
+    style: {
+      fontSize: '12px',
+      lineHeight: '30px',
+      borderRadius: '30px',
+      background: '#409EFF',
+      color: 'white',
+      textAlign: 'center',
+      padding: '0 15px',
+      width: '30%'
+    }
+```
+— `zeppos-samples/application/3.0/todo-list/setting/index.js`, line 38
+
+```js
+View(
+  {
+    style: {
+      borderBottom: '1px solid #eaeaea',
+      padding: '6px 0',
+      marginBottom: '6px',
+      display: 'flex',
+      flexDirection: 'row'
+    }
+  },
+  [
+    View(
+```
+— `zeppos-samples/application/3.0/todo-list/setting/index.js`, line 62

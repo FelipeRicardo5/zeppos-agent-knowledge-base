@@ -142,3 +142,129 @@ textWidget = hmUI.createWidget(hmUI.widget.TEXT, {
 textWidget.setProperty(hmUI.prop.TEXT, text);
 ```
 — `zeppos-samples/application/4.0/fetch-api/page/index.js`, line 39
+
+## Global calls in the phone runtimes
+
+The Settings App and the Side Service are all globals: their files import
+nothing that names a module, so nothing else in this base can see these. Some
+have no symbol record at all — `AppSettingsPage`, which registers a settings
+page, is the clearest case. Here the code is the only evidence there is.
+
+### `AppSideService()` *(no record in this KB)*
+
+```js
+AppSideService(
+  BaseSideService({
+    onInit() {},
+
+    onRequest(req, res) {
+      console.log("=====>,", req.method);
+      if (req.method === "GET_DATA") {
+        fetchData(res);
+      }
+    },
+
+    onRun() {},
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 41
+
+### `BaseSideService()` — recorded as `@zeppos/zml/base-side.BaseSideService` or `@zeppos/zml/base/base-side.BaseSideService`
+
+```js
+BaseSideService({
+  onInit() {},
+
+  onRequest(req, res) {
+    console.log("=====>,", req.method);
+    if (req.method === "GET_DATA") {
+      fetchData(res);
+    }
+  },
+
+  onRun() {},
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 42
+
+### `fetch()` — recorded as `fetch.fetch`
+
+```js
+// const { body: { data = {} } = {} } = await fetch({
+//   url: 'https://xxx.com/api/xxx',
+//   method: 'GET'
+// })
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 8
+
+```js
+// const { body: { data = {} } = {} } = await fetch({
+//   url: 'https://xxx.com/api/xxx',
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({
+//     text: 'Hello Zepp OS'
+//   })
+// })
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 13
+
+### `fetchData()` *(no record in this KB)*
+
+```js
+async function fetchData(res) {
+  try {
+    // Requesting network data using the fetch API
+    // The sample program is for simulation only and does not request real network data, so it is commented here
+    // Example of a GET method request
+    // const { body: { data = {} } = {} } = await fetch({
+    //   url: 'https://xxx.com/api/xxx',
+    //   method: 'GET'
+    // })
+    // Example of a POST method request
+    // const { body: { data = {} } = {} } = await fetch({
+    //   url: 'https://xxx.com/api/xxx',
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 3
+
+```js
+fetchData(res);
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 48
+
+### `onDestroy()` *(no record in this KB)*
+
+```js
+onDestroy() {},
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 54
+
+### `onInit()` *(no record in this KB)*
+
+```js
+onInit() {},
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 43
+
+### `onRun()` *(no record in this KB)*
+
+```js
+onRun() {},
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 52
+
+### `res()` *(no record in this KB)*
+
+```js
+res(null, {
+  result: resBody,
+});
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 31
+
+```js
+res(null, {
+  result: "ERROR",
+});
+```
+— `zeppos-samples/application/4.0/fetch-api/app-side/index.js`, line 35

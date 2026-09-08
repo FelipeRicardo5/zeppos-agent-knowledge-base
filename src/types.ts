@@ -248,6 +248,15 @@ export interface RawExample {
   files: ExampleFile[];
   usages: SymbolUsage[];
   memberCalls: MemberCallUsage[];
+  /**
+   * Bare function calls in a Settings App or Side Service file. Those runtimes
+   * are all globals, so their code imports nothing that names a module — which
+   * made every `setting/` file produce zero excerpts, the largest single gap the
+   * second eval run found. `AppSettingsPage({...})` registers a settings page and
+   * `View(...)` builds its UI; neither has an import line anywhere, so code is
+   * the only evidence they exist.
+   */
+  globalCalls: MemberCallUsage[];
   sourceDir: string;
 }
 

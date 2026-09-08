@@ -111,6 +111,38 @@
       ]
     }
   ],
+  "globalCalls": [
+    {
+      "method": "AppSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js",
+          "line": 4,
+          "code": "AppSideService(\n  BaseSideService({\n    onInit(e) {\n      log.log(\"app-side-service onInit invoked\", e);\n    },\n\n    onRun(e) {\n      log.log(\"app-side-service onEvent invoked\", e);\n    },\n\n    onDestroy() {\n      log.log(\"app-side-service onDestroy invoked\");"
+        }
+      ]
+    },
+    {
+      "method": "BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js",
+          "line": 5,
+          "code": "BaseSideService({\n  onInit(e) {\n    log.log(\"app-side-service onInit invoked\", e);\n  },\n\n  onRun(e) {\n    log.log(\"app-side-service onEvent invoked\", e);\n  },\n\n  onDestroy() {\n    log.log(\"app-side-service onDestroy invoked\");\n  },"
+        }
+      ]
+    },
+    {
+      "method": "res",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js",
+          "line": 21,
+          "code": "res(null, {\n  code: 0,\n  message: 'success',\n})"
+        }
+      ]
+    }
+  ],
   "memberCalls": [],
   "symbols": [
     "@zeppos/zml/base-app.BaseApp",

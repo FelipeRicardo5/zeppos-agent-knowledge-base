@@ -134,6 +134,7 @@
       ]
     }
   ],
+  "globalCalls": [],
   "memberCalls": [
     {
       "method": "createWidget",

@@ -112,3 +112,56 @@ x: px(240),
 y: px(82),
 ```
 — `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js`, line 22
+
+## Global calls in the phone runtimes
+
+The Settings App and the Side Service are all globals: their files import
+nothing that names a module, so nothing else in this base can see these. Some
+have no symbol record at all — `AppSettingsPage`, which registers a settings
+page, is the clearest case. Here the code is the only evidence there is.
+
+### `AppSideService()` *(no record in this KB)*
+
+```js
+AppSideService(
+  BaseSideService({
+    onInit(e) {
+      log.log("app-side-service onInit invoked", e);
+    },
+
+    onRun(e) {
+      log.log("app-side-service onEvent invoked", e);
+    },
+
+    onDestroy() {
+      log.log("app-side-service onDestroy invoked");
+```
+— `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js`, line 4
+
+### `BaseSideService()` — recorded as `@zeppos/zml/base-side.BaseSideService` or `@zeppos/zml/base/base-side.BaseSideService`
+
+```js
+BaseSideService({
+  onInit(e) {
+    log.log("app-side-service onInit invoked", e);
+  },
+
+  onRun(e) {
+    log.log("app-side-service onEvent invoked", e);
+  },
+
+  onDestroy() {
+    log.log("app-side-service onDestroy invoked");
+  },
+```
+— `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js`, line 5
+
+### `res()` *(no record in this KB)*
+
+```js
+res(null, {
+  code: 0,
+  message: 'success',
+})
+```
+— `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js`, line 21

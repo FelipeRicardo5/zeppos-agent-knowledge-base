@@ -223,3 +223,79 @@ mask.setProperty(hmUI.prop.VISIBLE, isMaskActive);
 mask.setProperty(hmUI.prop.VISIBLE, true);
 ```
 — `zeppos-samples/application/3.0/download/components/pressed-btn/index.js`, line 14
+
+## Global calls in the phone runtimes
+
+The Settings App and the Side Service are all globals: their files import
+nothing that names a module, so nothing else in this base can see these. Some
+have no symbol record at all — `AppSettingsPage`, which registers a settings
+page, is the clearest case. Here the code is the only evidence there is.
+
+### `AppSideService()` *(no record in this KB)*
+
+```js
+AppSideService(
+  BaseSideService({
+    ...fetchModule,
+    ...fileDownloadModule,
+    ...imageConvertModule,
+    ...fileTransferModule,
+    onInit() {
+      logger.log("app side service invoke onInit");
+    },
+    onRun() {
+      logger.log("app side service invoke onRun");
+    },
+```
+— `zeppos-samples/application/3.0/download/app-side/index.js`, line 10
+
+### `BaseSideService()` — recorded as `@zeppos/zml/base-side.BaseSideService` or `@zeppos/zml/base/base-side.BaseSideService`
+
+```js
+BaseSideService({
+  ...fetchModule,
+  ...fileDownloadModule,
+  ...imageConvertModule,
+  ...fileTransferModule,
+  onInit() {
+    logger.log("app side service invoke onInit");
+  },
+  onRun() {
+    logger.log("app side service invoke onRun");
+  },
+  onDestroy() {
+```
+— `zeppos-samples/application/3.0/download/app-side/index.js`, line 11
+
+### `fileNameStamp()` *(no record in this KB)*
+
+```js
+function fileNameStamp() {
+  const d = new Date();
+  return d.getTime();
+}
+```
+— `zeppos-samples/application/3.0/download/app-side/file-download-module.js`, line 3
+
+```js
+filePath: `${fileNameStamp()}.png`,
+```
+— `zeppos-samples/application/3.0/download/app-side/file-download-module.js`, line 16
+
+### `res()` *(no record in this KB)*
+
+```js
+res(null, {
+  status: "success",
+  data: "",
+});
+```
+— `zeppos-samples/application/3.0/download/app-side/index.js`, line 35
+
+```js
+res(null, {
+  status: "success",
+  data: "",
+});
+```
+— `zeppos-samples/application/3.0/download/app-side/index.js`, line 45

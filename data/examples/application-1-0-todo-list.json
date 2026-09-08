@@ -130,6 +130,128 @@
     }
   ],
   "usages": [],
+  "globalCalls": [
+    {
+      "method": "AppSettingsPage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/setting/index.js",
+          "line": 3,
+          "code": "AppSettingsPage({\n  state: {\n    todoList: [],\n    props: {}\n  },\n  addTodoList(val) {\n    this.state.todoList = [...this.state.todoList, val]\n    this.setItem()\n  },\n  editTodoList(val, index) {\n    this.state.todoList[index] = val\n    this.setItem()"
+        }
+      ]
+    },
+    {
+      "method": "AppSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 10,
+          "code": "AppSideService({\n  onInit() {\n    messageBuilder.listen(() => {})\n    settings.settingsStorage.addListener('change', ({ key, newValue, oldValue }) => {\n      messageBuilder.call(getTodoList())\n    })\n    messageBuilder.on('request', (ctx) => {\n      const payload = messageBuilder.buf2Json(ctx.request.payload)\n      if (payload.method === 'GET_TODO_LIST') {\n        ctx.response({\n          data: { result: getTodoList() }\n        })"
+        }
+      ]
+    },
+    {
+      "method": "Button",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/setting/index.js",
+          "line": 103,
+          "code": "Button({\n  label: gettext('delete'),\n  style: {\n    fontSize: '12px',\n    borderRadius: '30px',\n    background: '#D85E33',\n    color: 'white'\n  },\n  onClick: () => {\n    this.deleteTodoList(index)\n  }\n})"
+        }
+      ]
+    },
+    {
+      "method": "gettext",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/setting/index.js",
+          "line": 53,
+          "code": "label: gettext('addTodo'),"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/setting/index.js",
+          "line": 104,
+          "code": "label: gettext('delete'),"
+        }
+      ]
+    },
+    {
+      "method": "getTodoList",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 5,
+          "code": "function getTodoList() {\n  return settings.settingsStorage.getItem('todoList')\n    ? JSON.parse(settings.settingsStorage.getItem('todoList'))\n    : [...DEFAULT_TODO_LIST]\n}"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 14,
+          "code": "messageBuilder.call(getTodoList())"
+        }
+      ]
+    },
+    {
+      "method": "MessageBuilder",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 3,
+          "code": "const messageBuilder = new MessageBuilder()"
+        }
+      ]
+    },
+    {
+      "method": "onDestroy",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 44,
+          "code": "onDestroy() {}"
+        }
+      ]
+    },
+    {
+      "method": "onRun",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 43,
+          "code": "onRun() {},"
+        }
+      ]
+    },
+    {
+      "method": "TextInput",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/setting/index.js",
+          "line": 52,
+          "code": "TextInput({\n  label: gettext('addTodo'),\n  onChange: (val) => {\n    this.addTodoList(val)\n  }\n})"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/setting/index.js",
+          "line": 84,
+          "code": "TextInput({\n  label: '',\n  bold: true,\n  value: item,\n  subStyle: {\n    color: '#333',\n    fontSize: '14px'\n  },\n  maxLength: 200,\n  onChange: (val) => {\n    if (val.length > 0 && val.length <= 200) {\n      this.editTodoList(val, index)"
+        }
+      ]
+    },
+    {
+      "method": "View",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/setting/index.js",
+          "line": 38,
+          "code": "const addBTN = View(\n  {\n    style: {\n      fontSize: '12px',\n      lineHeight: '30px',\n      borderRadius: '30px',\n      background: '#409EFF',\n      color: 'white',\n      textAlign: 'center',\n      padding: '0 15px',\n      width: '30%'\n    }"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/setting/index.js",
+          "line": 62,
+          "code": "View(\n  {\n    style: {\n      borderBottom: '1px solid #eaeaea',\n      padding: '6px 0',\n      marginBottom: '6px',\n      display: 'flex',\n      flexDirection: 'row'\n    }\n  },\n  [\n    View("
+        }
+      ]
+    }
+  ],
   "memberCalls": [
     {
       "method": "addListener",

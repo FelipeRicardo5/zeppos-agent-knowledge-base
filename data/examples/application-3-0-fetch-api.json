@@ -144,6 +144,103 @@
       ]
     }
   ],
+  "globalCalls": [
+    {
+      "method": "AppSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 41,
+          "code": "AppSideService(\n  BaseSideService({\n    onInit() {},\n\n    onRequest(req, res) {\n      console.log(\"=====>,\", req.method);\n      if (req.method === \"GET_DATA\") {\n        fetchData(res);\n      }\n    },\n\n    onRun() {},"
+        }
+      ]
+    },
+    {
+      "method": "BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 42,
+          "code": "BaseSideService({\n  onInit() {},\n\n  onRequest(req, res) {\n    console.log(\"=====>,\", req.method);\n    if (req.method === \"GET_DATA\") {\n      fetchData(res);\n    }\n  },\n\n  onRun() {},"
+        }
+      ]
+    },
+    {
+      "method": "fetch",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 8,
+          "code": "// const { body: { data = {} } = {} } = await fetch({\n//   url: 'https://xxx.com/api/xxx',\n//   method: 'GET'\n// })"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 13,
+          "code": "// const { body: { data = {} } = {} } = await fetch({\n//   url: 'https://xxx.com/api/xxx',\n//   method: 'POST',\n//   headers: {\n//     'Content-Type': 'application/json'\n//   },\n//   body: JSON.stringify({\n//     text: 'Hello Zepp OS'\n//   })\n// })"
+        }
+      ]
+    },
+    {
+      "method": "fetchData",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 3,
+          "code": "async function fetchData(res) {\n  try {\n    // Requesting network data using the fetch API\n    // The sample program is for simulation only and does not request real network data, so it is commented here\n    // Example of a GET method request\n    // const { body: { data = {} } = {} } = await fetch({\n    //   url: 'https://xxx.com/api/xxx',\n    //   method: 'GET'\n    // })\n    // Example of a POST method request\n    // const { body: { data = {} } = {} } = await fetch({\n    //   url: 'https://xxx.com/api/xxx',"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 48,
+          "code": "fetchData(res);"
+        }
+      ]
+    },
+    {
+      "method": "onDestroy",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 54,
+          "code": "onDestroy() {},"
+        }
+      ]
+    },
+    {
+      "method": "onInit",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 43,
+          "code": "onInit() {},"
+        }
+      ]
+    },
+    {
+      "method": "onRun",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 52,
+          "code": "onRun() {},"
+        }
+      ]
+    },
+    {
+      "method": "res",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 31,
+          "code": "res(null, {\n  result: resBody,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 35,
+          "code": "res(null, {\n  result: \"ERROR\",\n});"
+        }
+      ]
+    }
+  ],
   "memberCalls": [
     {
       "method": "createWidget",

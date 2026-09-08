@@ -529,6 +529,7 @@
       ]
     }
   ],
+  "globalCalls": [],
   "memberCalls": [
     {
       "method": "addEventListener",

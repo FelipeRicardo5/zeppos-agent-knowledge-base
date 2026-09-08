@@ -192,6 +192,58 @@
       ]
     }
   ],
+  "globalCalls": [
+    {
+      "method": "AppSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/index.js",
+          "line": 10,
+          "code": "AppSideService(\n  BaseSideService({\n    ...fetchModule,\n    ...fileDownloadModule,\n    ...imageConvertModule,\n    ...fileTransferModule,\n    onInit() {\n      logger.log(\"app side service invoke onInit\");\n    },\n    onRun() {\n      logger.log(\"app side service invoke onRun\");\n    },"
+        }
+      ]
+    },
+    {
+      "method": "BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/index.js",
+          "line": 11,
+          "code": "BaseSideService({\n  ...fetchModule,\n  ...fileDownloadModule,\n  ...imageConvertModule,\n  ...fileTransferModule,\n  onInit() {\n    logger.log(\"app side service invoke onInit\");\n  },\n  onRun() {\n    logger.log(\"app side service invoke onRun\");\n  },\n  onDestroy() {"
+        }
+      ]
+    },
+    {
+      "method": "fileNameStamp",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/file-download-module.js",
+          "line": 3,
+          "code": "function fileNameStamp() {\n  const d = new Date();\n  return d.getTime();\n}"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/file-download-module.js",
+          "line": 16,
+          "code": "filePath: `${fileNameStamp()}.png`,"
+        }
+      ]
+    },
+    {
+      "method": "res",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/index.js",
+          "line": 35,
+          "code": "res(null, {\n  status: \"success\",\n  data: \"\",\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/index.js",
+          "line": 45,
+          "code": "res(null, {\n  status: \"success\",\n  data: \"\",\n});"
+        }
+      ]
+    }
+  ],
   "memberCalls": [
     {
       "method": "convert",

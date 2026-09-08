@@ -224,3 +224,157 @@ settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
 this.state.textWidget.setProperty(prop.TEXT, text);
 ```
 — `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 84
+
+## Global calls in the phone runtimes
+
+The Settings App and the Side Service are all globals: their files import
+nothing that names a module, so nothing else in this base can see these. Some
+have no symbol record at all — `AppSettingsPage`, which registers a settings
+page, is the clearest case. Here the code is the only evidence there is.
+
+### `AppSettingsPage()` *(no record in this KB)*
+
+```js
+AppSettingsPage({
+  state: {
+    sleepData: {},
+    dataReady: false,
+  },
+  build(props) {
+    console.log(gettext("example"));
+    console.log(this.state.sleepData);
+
+    this.getStorage(props);
+
+    const ButtonList = [];
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js`, line 3
+
+### `AppSideService()` *(no record in this KB)*
+
+```js
+AppSideService(
+  BaseSideService({
+    async onRequest(req, res) {
+      const { type, params } = req;
+
+      if (type === "UPLOAD") {
+        console.log(params);
+
+        settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
+
+        const result = await this.postData();
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 6
+
+### `BaseSideService()` — recorded as `@zeppos/zml/base-side.BaseSideService` or `@zeppos/zml/base/base-side.BaseSideService`
+
+```js
+BaseSideService({
+  async onRequest(req, res) {
+    const { type, params } = req;
+
+    if (type === "UPLOAD") {
+      console.log(params);
+
+      settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
+
+      const result = await this.postData();
+
+      res(null, result);
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 7
+
+### `Button()` — recorded as `ui.Button`
+
+```js
+Button({
+  style: {
+    display: "block",
+    margin: "1em 1em 0 1em",
+    width: "auto",
+    fontSize: "1.5rem",
+  },
+  label: "Request Sleep Data From Device App",
+  color: "primary",
+  onClick: () => {
+    this.requestData(props);
+  },
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js`, line 17
+
+```js
+Button({
+  style: {
+    display: "block",
+    margin: "1em 1em 0 1em",
+    width: "auto",
+    fontSize: "1.5rem",
+  },
+  color: "secondary",
+  label: "Post Data To Web Service",
+  onClick: () => {
+    this.postData(props);
+  },
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js`, line 34
+
+### `fetch()` — recorded as `fetch.fetch`
+
+```js
+const res = await fetch({
+  url: "http://localhost:4080/sleep",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: settings.settingsStorage.getItem("sleepData"),
+});
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 44
+
+### `gettext()` *(no record in this KB)*
+
+```js
+console.log(gettext("example"));
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js`, line 9
+
+### `res()` *(no record in this KB)*
+
+```js
+res(null, result);
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 18
+
+```js
+res(null, {
+  code: 0,
+  message: "SUCCESS",
+});
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 23
+
+### `View()` — recorded as `ui.View`
+
+```js
+return View(
+  {
+    style: {
+      margin: "1em 1em 0 1em",
+      fontSize: "1.5rem",
+      lineHeight: "1.5rem",
+    },
+  },
+  [`${key}: ${val}`]
+);
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js`, line 51
+
+```js
+return View({}, [
+  ButtonList,
+  DataList,
+]);
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js`, line 63

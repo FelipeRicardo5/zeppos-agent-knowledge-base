@@ -143,6 +143,27 @@ function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord
     }
   }
 
+  if (example.globalCalls.length > 0) {
+    lines.push("## Global calls in the phone runtimes", "");
+    lines.push(
+      "The Settings App and the Side Service are all globals: their files import",
+      "nothing that names a module, so nothing else in this base can see these. Some",
+      "have no symbol record at all — `AppSettingsPage`, which registers a settings",
+      "page, is the clearest case. Here the code is the only evidence there is.",
+      "",
+    );
+    for (const call of example.globalCalls) {
+      const owners = [...known.values()]
+        .filter((record) => record.symbol === call.method)
+        .map((record) => `\`${record.id}\``);
+      lines.push(
+        `### \`${call.method}()\`${owners.length > 0 ? ` — recorded as ${owners.join(" or ")}` : " *(no record in this KB)*"}`,
+        "",
+      );
+      for (const snippet of call.snippets) lines.push(...snippetBlock(snippet));
+    }
+  }
+
   return lines.join("\n");
 }
 
@@ -210,6 +231,32 @@ function examplesIndexMarkdown(examples: ExampleRecord[], known: Map<string, Sym
       lines.push(
         `- \`.${method}()\`${owners ? ` — likely ${owners}` : ""} — ${ids.map((e) => `[${e}](${e}.md)`).join(", ")}`,
       );
+    }
+  }
+
+  const globals = new Map<string, string[]>();
+  for (const example of examples) {
+    for (const call of example.globalCalls) {
+      globals.set(call.method, [...(globals.get(call.method) ?? []), example.id]);
+    }
+  }
+
+  if (globals.size > 0) {
+    lines.push("", "## Global calls in the phone runtimes", "");
+    lines.push(
+      "The Settings App and the Side Service are all globals, so their files import",
+      "nothing and no other front can see this API at all. Entries marked *no record*",
+      "exist only as code — `AppSettingsPage`, which registers a settings page, is the",
+      "one a build cannot do without.",
+      "",
+    );
+    for (const [method, ids] of [...globals].sort(([a], [b]) => a.localeCompare(b))) {
+      const owners = [...known.values()]
+        .filter((record) => record.symbol === method)
+        .map((record) => `\`${record.id}\``)
+        .join(" or ");
+      const label = owners ? ` — recorded as ${owners}` : " *(no record in this KB)*";
+      lines.push(`- \`${method}()\`${label} — ${ids.map((e) => `[${e}](${e}.md)`).join(", ")}`);
     }
   }
 

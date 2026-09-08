@@ -258,6 +258,7 @@
       ]
     }
   ],
+  "globalCalls": [],
   "memberCalls": [
     {
       "method": "createWidget",

@@ -297,6 +297,7 @@
       ]
     }
   ],
+  "globalCalls": [],
   "memberCalls": [
     {
       "method": "Button",

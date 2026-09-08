@@ -46,6 +46,62 @@ const MAX_SNIPPET_LINES = 12;
 const NAMED_IMPORT_RE = /import\s*\{([^}]*)\}\s*from\s*['"](@[^'"]+)['"]/g;
 /** `text.setProperty(`, `sensor.addEventListener(` — receiver unresolved. */
 const MEMBER_CALL_RE = /\.([a-zA-Z_$][\w$]*)\s*\(/g;
+/**
+ * A bare call — `View(...)`, `AppSettingsPage({...})` — with no receiver and no
+ * import. Collected only in the phone runtimes, where the whole API is global:
+ * a `setting/` file imports nothing that names a module, so every one of them
+ * produced zero excerpts until now. In a Device App file a bare call is almost
+ * always an imported symbol, which `usages` already covers.
+ */
+const BARE_CALL_RE = /(?<![.\w$])([A-Za-z_$][\w$]*)\s*\(/g;
+/** Language constructs that a bare-call regex cannot tell from a function. */
+const KEYWORDS = new Set([
+  "if",
+  "for",
+  "while",
+  "switch",
+  "catch",
+  "function",
+  "return",
+  "typeof",
+  "new",
+  "async",
+  "await",
+  "encodeURI",
+  "decodeURI",
+  "encodeURIComponent",
+  "decodeURIComponent",
+  "throw",
+  "delete",
+  "void",
+  "in",
+  "of",
+  "do",
+  "else",
+  "case",
+  "require",
+  "Number",
+  "String",
+  "Boolean",
+  "Object",
+  "Array",
+  "JSON",
+  "Math",
+  "Date",
+  "Promise",
+  "Error",
+]);
+/** The phone runtimes, whose API is global and therefore invisible to imports. */
+const PHONE_RUNTIMES = new Set(["settings", "side-service"]);
+/**
+ * A method or function *definition*, not a call: `addTodoList(val) {`,
+ * `build(props) {`, `onInit() {`. A bare-call regex cannot tell the two apart,
+ * and taking definitions filed the sample's own helpers as platform API.
+ *
+ * `AppSettingsPage({` survives, because its `{` is inside the parentheses as an
+ * argument rather than after them as a body.
+ */
+const DEFINITION_LINE_RE = /^\s*(?:async\s+)?[A-Za-z_$][\w$]*\s*\([^)]*\)\s*\{\s*$/;
 
 /**
  * Method names too generic to be worth a snippet. Every one of these is either a
@@ -210,6 +266,7 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
     const files: ExampleFile[] = [];
     const usages = new Map<string, CodeSnippet[]>();
     const memberCalls = new Map<string, CodeSnippet[]>();
+    const globalCalls = new Map<string, CodeSnippet[]>();
 
     for (const file of await walkFiles(appDir, [".js"])) {
       const content = await readSource(file);
@@ -245,11 +302,32 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
         );
       }
 
+      const runtime = runtimeForPath(`${SAMPLES_REPO}/${tree}/${platformVersion}/${appRelative}`);
+
+      if (runtime !== undefined && PHONE_RUNTIMES.has(runtime)) {
+        const defined = new Set(
+          lines
+            .filter((line) => DEFINITION_LINE_RE.test(line))
+            .map((line) => line.trim().replace(/^async\s+/, "").split("(")[0].trim()),
+        );
+
+        for (const [, name] of content.matchAll(BARE_CALL_RE)) {
+          if (KEYWORDS.has(name) || NOISE_METHODS.has(name) || defined.has(name)) continue;
+
+          const existing = globalCalls.get(name) ?? [];
+          if (existing.length >= SNIPPETS_PER_SYMBOL) continue;
+          globalCalls.set(
+            name,
+            [...existing, ...snippetsFor(lines, name, cacheRelative)].slice(0, SNIPPETS_PER_SYMBOL),
+          );
+        }
+      }
+
       files.push({
         path: appRelative,
         // The app-relative path is what the runtime rules read: `app-side/` is
         // the Side Service wherever the app itself lives.
-        runtime: runtimeForPath(`${SAMPLES_REPO}/${tree}/${platformVersion}/${appRelative}`),
+        runtime,
         symbols: [...new Set(symbols)].sort(),
       });
     }
@@ -267,6 +345,10 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
         .filter(({ snippets }) => snippets.length > 0)
         .sort((a, b) => a.id.localeCompare(b.id)),
       memberCalls: [...memberCalls]
+        .map(([method, snippets]): MemberCallUsage => ({ method, snippets }))
+        .filter(({ snippets }) => snippets.length > 0)
+        .sort((a, b) => a.method.localeCompare(b.method)),
+      globalCalls: [...globalCalls]
         .map(([method, snippets]): MemberCallUsage => ({ method, snippets }))
         .filter(({ snippets }) => snippets.length > 0)
         .sort((a, b) => a.method.localeCompare(b.method)),

@@ -71,6 +71,7 @@
       ]
     }
   ],
+  "globalCalls": [],
   "memberCalls": [],
   "symbols": [
     "@zos/ui.align",

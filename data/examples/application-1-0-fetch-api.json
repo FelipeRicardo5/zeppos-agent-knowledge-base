@@ -107,6 +107,78 @@
     }
   ],
   "usages": [],
+  "globalCalls": [
+    {
+      "method": "AppSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 44,
+          "code": "AppSideService({\n  onInit() {\n    messageBuilder.listen(() => { });\n\n    messageBuilder.on(\"request\", (ctx) => {\n      const jsonRpc = messageBuilder.buf2Json(ctx.request.payload);\n      if (jsonRpc.method === \"GET_DATA\") {\n        return fetchData(ctx);\n      }\n    });\n  },"
+        }
+      ]
+    },
+    {
+      "method": "fetch",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 10,
+          "code": "// const res = await fetch({\n//   url: 'https://xxx.com/api/xxx',\n//   method: 'GET'\n// })"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 15,
+          "code": "// const res = await fetch({\n//   url: 'https://xxx.com/api/xxx',\n//   method: 'POST',\n//   headers: {\n//     'Content-Type': 'application/json'\n//   },\n//   body: JSON.stringify({\n//     text: 'Hello Zepp OS'\n//   })\n// })"
+        }
+      ]
+    },
+    {
+      "method": "fetchData",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 5,
+          "code": "async function fetchData(ctx) {\n  try {\n    // Requesting network data using the fetch API\n    // The sample program is for simulation only and does not request real network data, so it is commented here\n    // Example of a GET method request\n    // const res = await fetch({\n    //   url: 'https://xxx.com/api/xxx',\n    //   method: 'GET'\n    // })\n    // Example of a POST method request\n    // const res = await fetch({\n    //   url: 'https://xxx.com/api/xxx',"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 51,
+          "code": "return fetchData(ctx);"
+        }
+      ]
+    },
+    {
+      "method": "MessageBuilder",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 3,
+          "code": "const messageBuilder = new MessageBuilder();"
+        }
+      ]
+    },
+    {
+      "method": "onDestroy",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 58,
+          "code": "onDestroy() { },"
+        }
+      ]
+    },
+    {
+      "method": "onRun",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 56,
+          "code": "onRun() { },"
+        }
+      ]
+    }
+  ],
   "memberCalls": [
     {
       "method": "addListener",

@@ -69,6 +69,7 @@
     }
   ],
   "usages": [],
+  "globalCalls": [],
   "memberCalls": [
     {
       "method": "addEventListener",

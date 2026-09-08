@@ -204,6 +204,103 @@
       ]
     }
   ],
+  "globalCalls": [
+    {
+      "method": "AppSettingsPage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js",
+          "line": 3,
+          "code": "AppSettingsPage({\n  state: {\n    sleepData: {},\n    dataReady: false,\n  },\n  build(props) {\n    console.log(gettext(\"example\"));\n    console.log(this.state.sleepData);\n\n    this.getStorage(props);\n\n    const ButtonList = [];"
+        }
+      ]
+    },
+    {
+      "method": "AppSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 6,
+          "code": "AppSideService(\n  BaseSideService({\n    async onRequest(req, res) {\n      const { type, params } = req;\n\n      if (type === \"UPLOAD\") {\n        console.log(params);\n\n        settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));\n\n        const result = await this.postData();"
+        }
+      ]
+    },
+    {
+      "method": "BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 7,
+          "code": "BaseSideService({\n  async onRequest(req, res) {\n    const { type, params } = req;\n\n    if (type === \"UPLOAD\") {\n      console.log(params);\n\n      settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));\n\n      const result = await this.postData();\n\n      res(null, result);"
+        }
+      ]
+    },
+    {
+      "method": "Button",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js",
+          "line": 17,
+          "code": "Button({\n  style: {\n    display: \"block\",\n    margin: \"1em 1em 0 1em\",\n    width: \"auto\",\n    fontSize: \"1.5rem\",\n  },\n  label: \"Request Sleep Data From Device App\",\n  color: \"primary\",\n  onClick: () => {\n    this.requestData(props);\n  },"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js",
+          "line": 34,
+          "code": "Button({\n  style: {\n    display: \"block\",\n    margin: \"1em 1em 0 1em\",\n    width: \"auto\",\n    fontSize: \"1.5rem\",\n  },\n  color: \"secondary\",\n  label: \"Post Data To Web Service\",\n  onClick: () => {\n    this.postData(props);\n  },"
+        }
+      ]
+    },
+    {
+      "method": "fetch",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 44,
+          "code": "const res = await fetch({\n  url: \"http://localhost:4080/sleep\",\n  method: \"POST\",\n  headers: {\n    \"Content-Type\": \"application/json\",\n  },\n  body: settings.settingsStorage.getItem(\"sleepData\"),\n});"
+        }
+      ]
+    },
+    {
+      "method": "gettext",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js",
+          "line": 9,
+          "code": "console.log(gettext(\"example\"));"
+        }
+      ]
+    },
+    {
+      "method": "res",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 18,
+          "code": "res(null, result);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 23,
+          "code": "res(null, {\n  code: 0,\n  message: \"SUCCESS\",\n});"
+        }
+      ]
+    },
+    {
+      "method": "View",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js",
+          "line": 51,
+          "code": "return View(\n  {\n    style: {\n      margin: \"1em 1em 0 1em\",\n      fontSize: \"1.5rem\",\n      lineHeight: \"1.5rem\",\n    },\n  },\n  [`${key}: ${val}`]\n);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js",
+          "line": 63,
+          "code": "return View({}, [\n  ButtonList,\n  DataList,\n]);"
+        }
+      ]
+    }
+  ],
   "memberCalls": [
     {
       "method": "addListener",

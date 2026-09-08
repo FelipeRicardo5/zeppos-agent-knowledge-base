@@ -174,6 +174,12 @@ export function enrichExamples(rawExamples: RawExample[], symbols: SymbolRecord[
     .map(({ sourceDir, memberCalls, ...example }) => ({
       ...example,
       memberCalls: memberCalls.filter(({ method }) => knownNames.has(method)),
+      // `globalCalls` is NOT filtered against the symbol table. It comes only
+      // from the phone runtimes, whose API is global, and the symbols missing
+      // there are precisely the ones a filter would drop: `AppSettingsPage`
+      // registers a settings page and has no record at all. Filtering would
+      // discard the evidence for the gap it exists to close.
+      globalCalls: example.globalCalls,
       symbols: [...new Set(example.files.flatMap((file) => file.symbols))].sort(),
       runtimes: [
         ...new Set(

@@ -191,3 +191,95 @@ timerRef && timer.stopTimer(timerRef)
 timerRef && timer.stopTimer(timerRef)
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js`, line 26
+
+## Global calls in the phone runtimes
+
+The Settings App and the Side Service are all globals: their files import
+nothing that names a module, so nothing else in this base can see these. Some
+have no symbol record at all — `AppSettingsPage`, which registers a settings
+page, is the clearest case. Here the code is the only evidence there is.
+
+### `AppSideService()` *(no record in this KB)*
+
+```js
+AppSideService({
+  onInit() {
+    messageBuilder.listen(() => { });
+
+    messageBuilder.on("request", (ctx) => {
+      const jsonRpc = messageBuilder.buf2Json(ctx.request.payload);
+      if (jsonRpc.method === "GET_DATA") {
+        return fetchData(ctx);
+      }
+    });
+  },
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 44
+
+### `fetch()` — recorded as `fetch.fetch`
+
+```js
+// const res = await fetch({
+//   url: 'https://xxx.com/api/xxx',
+//   method: 'GET'
+// })
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 10
+
+```js
+// const res = await fetch({
+//   url: 'https://xxx.com/api/xxx',
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({
+//     text: 'Hello Zepp OS'
+//   })
+// })
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 15
+
+### `fetchData()` *(no record in this KB)*
+
+```js
+async function fetchData(ctx) {
+  try {
+    // Requesting network data using the fetch API
+    // The sample program is for simulation only and does not request real network data, so it is commented here
+    // Example of a GET method request
+    // const res = await fetch({
+    //   url: 'https://xxx.com/api/xxx',
+    //   method: 'GET'
+    // })
+    // Example of a POST method request
+    // const res = await fetch({
+    //   url: 'https://xxx.com/api/xxx',
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 5
+
+```js
+return fetchData(ctx);
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 51
+
+### `MessageBuilder()` *(no record in this KB)*
+
+```js
+const messageBuilder = new MessageBuilder();
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 3
+
+### `onDestroy()` *(no record in this KB)*
+
+```js
+onDestroy() { },
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 58
+
+### `onRun()` *(no record in this KB)*
+
+```js
+onRun() { },
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 56

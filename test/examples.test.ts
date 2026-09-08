@@ -56,7 +56,9 @@ describe("parseExamples", () => {
     const files = (await byId()).get("application-4-2-simple-keyboard")?.files ?? [];
 
     assert.ok(files.length > 0);
-    assert.deepEqual([...new Set(files.map((f) => f.runtime))], ["device-app"]);
+    // `setting/` is the Settings App wherever the app itself lives, so one sample
+    // spans two runtimes — the same rule the samples front uses.
+    assert.deepEqual([...new Set(files.map((f) => f.runtime))].sort(), ["device-app", "settings"]);
     assert.deepEqual([...new Set(((await byId()).get("watchface-3-0-timer")?.files ?? []).map((f) => f.runtime))], [
       "watchface",
     ]);
@@ -111,6 +113,44 @@ describe("parseExamples", () => {
     );
   });
 
+  it("captures the phone runtimes' global calls, which no import can reveal", async () => {
+    // A Settings App file imports nothing that names a module: AppSettingsPage,
+    // View, TextInput and Button are all globals. Every `setting/` file therefore
+    // produced zero excerpts, which was the largest gap the second eval run found
+    // — and `AppSettingsPage` has no symbol record anywhere, so code is the only
+    // evidence it exists.
+    const calls = (await byId()).get("application-4-2-simple-keyboard")?.globalCalls ?? [];
+    const names = calls.map((c) => c.method);
+
+    assert.ok(names.includes("AppSettingsPage"), "the settings entry point");
+    assert.ok(names.includes("View"), "and the components it builds with");
+    assert.ok(names.includes("TextInput"));
+    assert.match(
+      calls.find((c) => c.method === "AppSettingsPage")?.snippets[0].code ?? "",
+      /AppSettingsPage\(\{/,
+    );
+  });
+
+  it("does not mistake a method definition for a call", async () => {
+    // `addItem(value) {` and `build(props) {` are the sample's own methods. A
+    // bare-call regex cannot tell them from a call, and taking them filed the
+    // sample's helpers as platform API.
+    const names = ((await byId()).get("application-4-2-simple-keyboard")?.globalCalls ?? []).map(
+      (c) => c.method,
+    );
+
+    assert.ok(!names.includes("addItem"), "defined in this file, not called");
+    assert.ok(!names.includes("build"));
+  });
+
+  it("collects global calls only in the phone runtimes", async () => {
+    // In a Device App file a bare call is almost always an imported symbol, which
+    // `usages` already covers with a certain module id.
+    const watchface = (await byId()).get("watchface-3-0-timer");
+
+    assert.deepEqual(watchface?.globalCalls, []);
+  });
+
   it("skips generic method names that would attach noise to a symbol", async () => {
     const examples = await parseExamples(CACHE);
     const methods = examples.flatMap((e) => e.memberCalls.map((c) => c.method));
@@ -148,6 +188,9 @@ describe("enrichExamples", () => {
       { method: "setProperty", snippets: [{ file: "a.js", line: 1, code: "x.setProperty(1)" }] },
       { method: "cursorWidget", snippets: [{ file: "a.js", line: 2, code: "x.cursorWidget()" }] },
     ],
+    globalCalls: [
+      { method: "AppSettingsPage", snippets: [{ file: "s.js", line: 1, code: "AppSettingsPage({})" }] },
+    ],
     sourceDir: path.join("zeppos-samples", "application", "4.2", "demo"),
     ...overrides,
   });
@@ -160,6 +203,18 @@ describe("enrichExamples", () => {
     assert.deepEqual(
       record.memberCalls.map((c) => c.method),
       ["setProperty"],
+    );
+  });
+
+  it("keeps every global call, filter or no filter", () => {
+    // These come only from the phone runtimes, and the symbols missing there are
+    // exactly what a filter would drop: `AppSettingsPage` has no record at all.
+    const [record] = enrichExamples([raw()], [symbol("@zos/ui.setProperty")]);
+
+    assert.deepEqual(
+      record.globalCalls.map((c) => c.method),
+      ["AppSettingsPage"],
+      "filtering would discard the evidence for the gap this closes",
     );
   });
 
@@ -195,6 +250,12 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
     {
       method: "setProperty",
       snippets: [{ file: "zeppos-samples/a/page/index.js", line: 20, code: "text.setProperty(prop.MORE, {})" }],
+    },
+  ],
+  globalCalls: [
+    {
+      method: "AppSettingsPage",
+      snippets: [{ file: "zeppos-samples/a/setting/index.js", line: 3, code: "AppSettingsPage({})" }],
     },
   ],
   symbols: ["@zos/ui.createWidget"],

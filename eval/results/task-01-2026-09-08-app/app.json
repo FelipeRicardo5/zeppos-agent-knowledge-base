@@ -1,0 +1,40 @@
+{
+  "_comment_kb": [
+    "PARTIALLY UNCITED FILE. The knowledge base covers the 'targets' object only",
+    "(patterns/code-adaptations-for-new-devices.md, patterns/multi-screen-adaption.md).",
+    "Everything else here — appId, appName, appType, version, icon, vender, module,",
+    "permissions, runtime, and the target KEY NAME 'bip-6' — is ASSUMED. See gaps",
+    "G03, G07, G08 in the report. Comments are kept because the KB's own app.json",
+    "snippets contain '// ...' comments, so the format appears to tolerate them."
+  ],
+
+  "appId": 1000001,
+  "appName": "HeartSync",
+  "appType": "app",
+  "version": { "code": 1, "name": "1.0.0" },
+  "icon": "icon.png",
+  "vender": "heartsync",
+
+  "permissions": [
+    "data:user.hd.heart_rate",
+    "device:os.local_storage"
+  ],
+
+  "runtime": { "apiVersion": { "compatible": "4.2", "target": "4.2", "minVersion": "3.0" } },
+
+  "targets": {
+    "bip-6": {
+      "module": {
+        "page": { "main": ["page/index"] },
+        "app-side": { "main": "app-side/index" },
+        "setting": { "main": "setting/index" }
+      },
+      "platforms": [
+        { "name": "bip-6",  "deviceSource": 9765120 },
+        { "name": "bip-6a", "deviceSource": 9765121 },
+        { "name": "bip-6b", "deviceSource": 10158337 }
+      ],
+      "designWidth": 390
+    }
+  }
+}

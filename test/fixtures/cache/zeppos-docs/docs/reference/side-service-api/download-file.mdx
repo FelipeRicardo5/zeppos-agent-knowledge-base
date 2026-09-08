@@ -1,0 +1,30 @@
+---
+title: Download File
+sidebar_label: Download File
+---
+
+The file download module `network.downloader` can download network files.
+
+## network.downloader module
+
+### downloadFile
+
+return `DownloadTask` object
+
+### Types
+
+```ts
+(options: Options) => DownloadTask
+```
+
+### Options: object
+
+| Property | Description | Required | Type     |
+| -------- | ----------- | -------- | -------- |
+| url      | File URL    | YES      | `string` |
+
+### DownloadTask: object
+
+#### cancel
+
+Cancel the current download task

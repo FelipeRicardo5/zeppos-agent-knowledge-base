@@ -7,8 +7,8 @@ is not thereby available in the Settings App or a Watchface.
 | Runtime | Symbols | Modules | Page |
 | --- | --- | --- | --- |
 | Device App | 373 | 31 | [device-app.md](device-app.md) |
-| Side Service | 5 | 3 | [side-service.md](side-service.md) |
-| Settings App | 0 | 0 | [settings.md](settings.md) — **not covered** |
+| Side Service | 20 | 10 | [side-service.md](side-service.md) |
+| Settings App | 21 | 3 | [settings.md](settings.md) |
 | Watchface | 3 | 2 | [watchface.md](watchface.md) |
 | Workout Extension | 12 | 5 | [workout-extension.md](workout-extension.md) |
 
@@ -28,3 +28,11 @@ The symbols for which a second runtime has actual evidence behind it.
 - `@zos/ui.widget` — Device App, Workout Extension
 - `@zos/utils.log` — Device App, Watchface
 - `@zos/utils.px` — Device App, Workout Extension
+- `global.console.log` — Settings App, Side Service
+- `settings-storage.addListener` — Settings App, Side Service
+- `settings-storage.clear` — Settings App, Side Service
+- `settings-storage.getItem` — Settings App, Side Service
+- `settings-storage.length` — Settings App, Side Service
+- `settings-storage.removeItem` — Settings App, Side Service
+- `settings-storage.setItem` — Settings App, Side Service
+- `settings-storage.toObject` — Settings App, Side Service

@@ -13,19 +13,19 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | Stage | State |
 | --- | --- |
 | `fetch` — clone/update official repos into a local cache | implemented |
-| `parse` — extract raw observations from docs, `static/llms`, samples, guides and the device list | implemented |
+| `parse` — six fronts: reference pages, the phone runtimes, `static/llms`, samples, guides, the device list | implemented |
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/) |
 
-Fixture-based tests cover all five parse fronts, runtime attribution, the enrich merge and every render view: `npm test` (102 passing, no `todo`).
+Fixture-based tests cover all six parse fronts, runtime attribution, the enrich merge and every render view: `npm test` (114 passing, no `todo`).
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
-- **381 symbols** across **34 modules**, from **all 241** reference pages + 443 `static/llms` entries + 622 sample imports
-- 357 `OFFICIAL`, 24 `OBSERVED`
-- 353 symbols carry a minimum `API_LEVEL`; **351 carry a description**
-- every symbol is attributed to at least one runtime: 373 Device App, 12 Workout Extension, 5 Side Service, 3 Watchface, 0 Settings App — 12 of them to more than one
+- **409 symbols** across **42 modules**, from all 241 reference pages + 36 phone-runtime entries + 443 `static/llms` entries + 622 sample imports
+- 385 `OFFICIAL`, 24 `OBSERVED`
+- 353 symbols carry a minimum `API_LEVEL`; 367 carry a description
+- **every runtime is covered**: 373 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
 
@@ -33,8 +33,9 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 
 Read this before trusting an answer that came out of this KB.
 
-- **The documented API surface is the Device App's.** The parser keys on the `import { x } from '@zos/...'` line that reference pages carry. `side-service-api` and `app-settings-api` pages don't have one — those runtimes use globals (`fetch`, `settingsStorage`, `Settings.render`), not `@zos` modules — and the watchface API (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) lives under a separate tree entirely. All of them are currently skipped by the docs fronts.
-- **The runtime axis is populated, unevenly.** Every symbol carries at least one runtime, but 267 of 276 are Device App. The Side Service's 5 and the Watchface's 3 come from sample code, not from a documentation entry, and the Settings App has **none** — see [`runtimes/index.md`](runtimes/index.md), which states that gap rather than omitting the runtime.
+- **The watchface API is not covered.** `hmUI`, `hmFS`, `hmSensor` and `hmSetting` live under `docs/watchface/**` — 93 pages, a separate tree with its own format, none of them parsed. The 3 Watchface symbols in the KB are `@zos/*` calls seen in watchface sample code, not the `hm*` API.
+- **The runtime axis is populated, unevenly.** Every runtime now has symbols, but 373 of 409 are Device App. The Settings App's 21 and the Side Service's 20 have **no `API_LEVEL` at all** — no page in either tree states one — so they answer "does this exist here" but not "since when".
+- **`####` methods on returned objects are skipped.** `DownloadTask.cancel`, `Onbox.enqueFile` and similar are real API, but reached through an instance a function returns rather than named at module level, so filing them beside module symbols would misstate how they are called.
 - **A missing symbol means "not covered", not "does not exist."** This holds hardest on the runtime axis: a symbol absent from `runtimes/settings.md` says nothing about whether the Settings App can use it, because nothing has been extracted for that runtime at all.
 - **Runtime is inferred from the source path, never from a page's text.** No page or sample states its runtime; both official repos separate the runtimes by directory, so the directory is the evidence. The rules and the doc that anchors each one live in [`src/parse/runtime.ts`](src/parse/runtime.ts). This is the axis most exposed to an upstream reorganization, and the reason it has its own test file.
 - **`API_LEVEL` is the one axis that works today.** It is read verbatim from the badge blockquote on each page (`Start from API_LEVEL`, or `Supported since API_LEVEL` — both wordings occur), never inferred.
@@ -62,8 +63,9 @@ npm run typecheck
 Four stages, each idempotent and independently inspectable, so any one of them can be rerun without redoing the earlier ones. Execution is local and on demand — there is no scheduled CI job in v0.
 
 1. **fetch** — clones or updates the official repos into `.cache/`, and records the exact commit of each. Third-party content, never versioned here.
-2. **parse** — five independent fronts over the raw cache:
+2. **parse** — six independent fronts over the raw cache:
    - **docs-reference** — `docs/reference/**/*.mdx`, one file per symbol. The module comes from the import line in the page's own example; when the page has none — it documents a runtime global like `setTimeout` or `console`, so there is nothing to import — it falls back to the `newAPI/<dir>` directory. Measured: 221 of the 222 pages that *do* have an import agree with the directory, the exception being a submodule (`@zos/ble/TransferFile`), so the import stays primary.
+   - **phone runtimes** — `docs/reference/side-service-api/**` and `docs/reference/app-settings-api/**`. These APIs are globals (`fetch`, `settings.settingsStorage`, `messaging.peerSocket`) or Settings App components, so there is no import to key on and the docs-reference front skips them. Across all 22 pages they take four shapes — page-as-symbol, `##`-as-symbol, `##`-as-module with `###` symbols (signalled by the heading ending in the word `module`), and no heading at all — so the shape is detected rather than assumed.
    - **llms** — `static/llms/@zos-*.md`, one file per module, reusing the structuring Zepp Health already did for LLM consumption. The module id comes from the import lines inside the file, not from the H1: `@zos/ui` is split across several files whose H1 reads `@zos/ui-methods`, `@zos/ui-widget-basic` and so on, and those ids can't be imported.
    - **samples** — every `@zos/*` import across the official example apps. Evidence of real usage, not a documentation claim.
    - **guides** — `docs/guides/best-practice/**.mdx`, one file per task. Only the parts with a fixed shape are read: frontmatter title, `##` sections, fenced code blocks and the reference pages the guide links to. Nothing is inferred from the prose.
@@ -110,6 +112,8 @@ The structured JSON produced by parse/enrich is the source of truth. Markdown is
 | `OFFICIAL` | Stated by official documentation (`docs-reference` or `llms`) |
 | `OBSERVED` | Seen in official sample code, with no documentation entry |
 | `RECOMMENDED`, `COMMUNITY`, `INFERRED` | Reserved. Not derivable from the automated fronts; left for a future curation pass |
+
+`OFFICIAL` covers every front but `sample`: reference pages, the phone runtimes and `static/llms` are all official documentation.
 
 ### `PatternRecord`
 
@@ -160,6 +164,7 @@ src/
   parse/    stage 2 — four extraction fronts
     devices.ts   the device-list front (columns resolved by header name)
     patterns.ts  the best-practice guides front
+    phone.ts     the Side Service + Settings App front (four page shapes)
     runtime.ts   path -> runtime rules, with the doc anchoring each one
     util.ts      dir walk + the LF-normalizing read
   enrich/   stage 3 — merge and normalize into SymbolRecord / PatternRecord
@@ -199,7 +204,8 @@ The generated Markdown lands in `api/`, `compatibility/`, `runtimes/` and `patte
 8. **Reads normalize line endings, once, at the boundary.** `git clone` produces a CRLF cache on Windows and an LF one everywhere else, so a parse regex anchored with `$` matched on one machine and not the other, with no error either way. Every front reads through `readSource`, so the parse output depends on the source commit and nothing else — the same portability guarantee `originalPath` gives the persisted JSON.
 9. **A description is the page's prose, and only that.** These are MDX pages, so the extractor has to know what is not prose: the `API_LEVEL` badge blockquote, MDX component imports, illustrations — written as markdown on one page and as a multi-line JSX tag on another, which is why tags are stripped as units rather than per line — and the `:::info` fence markers, whose *contents* are kept because that is where a permission code is stated. It ends at the first `## ` or code fence after the title so a page without sections doesn't swallow its example.
 10. **A section heading is never a symbol.** `Constants`, `Overview`, `Usage`, `Submodules` and `Import` title parts of a document; a heading containing whitespace (`Widget Animation`, `keyboard API`) titles a group of symbols that its own `### Import` names. Both were being filed as symbols, inventing ids like `@zos/ui.Submodules` that nothing can import. A page named `overview`, `index` or `readme` is excluded from the directory fallback for the same reason.
-11. **Five runtimes, not six.** `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App, Settings App, Side Service — and `guides/architecture/folder-structure.mdx` shows `app-side/` **is** the Side Service directory. "App-side" and "Side Service" were the same runtime under two names, so only one is kept. Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are extra entry points rather than extra runtimes: they execute on the watch like the Device App, and attribute to it.
+11. **A pseudo-module id for an API with no import.** The phone runtimes are globals, so there is no module to read. The docs' own grouping stands in: the containing directory when a page sits in one (`ui/button.mdx` → `ui`, the family `Settings.render` draws from), else the filename. The tree name is deliberately dropped, so both trees' `settings-storage` pages map to one id, enrich merges them, and the record comes out valid in **both** runtimes — which is what the sources state, since `app-settings-api/settings-storage.mdx` is literally an MDX re-export of the Side Service page. These ids are locators into this knowledge base, not something to type in code.
+12. **Five runtimes, not six.** `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App, Settings App, Side Service — and `guides/architecture/folder-structure.mdx` shows `app-side/` **is** the Side Service directory. "App-side" and "Side Service" were the same runtime under two names, so only one is kept. Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are extra entry points rather than extra runtimes: they execute on the watch like the Device App, and attribute to it.
 
 ## Open questions
 

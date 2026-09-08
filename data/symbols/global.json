@@ -1,0 +1,20 @@
+{
+  "module": "global",
+  "symbols": [
+    {
+      "id": "global.console.log",
+      "module": "global",
+      "symbol": "console.log",
+      "type": "function",
+      "description": "Console prints a log with any number of parameters.",
+      "runtimes": [
+        "settings",
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/global.mdx",
+      "extractedAt": "2026-09-04"
+    }
+  ]
+}

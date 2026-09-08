@@ -7,7 +7,7 @@ description: Guides an agent writing Zepp OS code to check runtime/API_LEVEL com
 
 Before suggesting any Zepp OS API:
 
-1. **Identify the target runtime**: Device App, Side Service, Settings App, Watchface or Workout Extension. `../../runtimes/index.md` lists all five with their coverage; `../../runtimes/<runtime>.md` lists the symbols attributed to one.
+1. **Identify the target runtime**: Device App, Side Service, Settings App, Watchface or Workout Extension. A full Mini Program uses three of them — Device App on the watch, Settings App and Side Service in the Zepp App — and a symbol from one is not available in another. `../../runtimes/index.md` lists all five with their coverage; `../../runtimes/<runtime>.md` lists the symbols attributed to one.
 2. **Identify the target `API_LEVEL`** — or, better, the target *device*. `../../compatibility/devices.md` maps every device to the level it reaches, so "does this run on a Bip 6?" has a direct answer. A level alone is not one.
 3. **Check the symbol on both axes before recommending it** — `../../runtimes/` for the runtime, `../../compatibility/` for the minimum `API_LEVEL`, `../../api/` for the module's symbols and descriptions.
 4. **When the question is a task rather than a symbol** ("how do I communicate between pages", "how do I adapt to a round screen"), start at `../../patterns/index.md`. Each pattern page carries the official snippet, the symbols it uses, and the minimum `API_LEVEL` the whole task needs — the highest minimum among those symbols. Its symbol-to-patterns index also goes the other way: given a symbol, it finds working code for it.
@@ -31,7 +31,9 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 **not covered**, never **does not exist**. Report it that way.
 
 - `not stated` in an `API_LEVEL` column means no source documents a minimum. It does *not* mean the symbol works at any level.
-- The runtime axis is heavily skewed: 373 of 381 symbols are Device App. **The Settings App has no symbols at all**, and the Side Service's and Watchface's come from sample code rather than a documentation entry.
+- The runtime axis is heavily skewed: 373 of 409 symbols are Device App. Every runtime is covered, but the Settings App's 21 and the Side Service's 20 carry **no `API_LEVEL`** — no page in either tree states one — so they answer "does this exist here" but not "since when".
+- The **watchface `hm*` API is not covered at all** (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`). The 3 Watchface symbols here are `@zos/*` calls seen in watchface samples. Answer a `hm*` question from the official docs and say so.
+- Methods reached through a returned object (`DownloadTask.cancel`, `Onbox.enqueFile`) are not recorded. Their parent function is.
 - A pattern's `Minimum API_LEVEL` is **derived**, not quoted: it is the highest minimum among the symbols the guide's code uses, and it skips symbols this KB has no record for. Treat it as a floor, and check the page's own "no record" flag before calling a pattern verified.
 - The documented API surface is the Device App's `@zos/*` modules. The Side Service and Settings App use globals (`fetch`, `settingsStorage`, `Settings.render`) that are not extracted yet, and the watchface `hm*` API is not extracted either. Questions about those are outside what this KB can answer — answer from the official docs and say where the answer came from.
 

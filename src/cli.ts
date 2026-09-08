@@ -3,6 +3,7 @@ import { fetchSources } from "./fetch/index.js";
 import { parseDevices } from "./parse/devices.js";
 import { parseLlmsContent, parseMarkdown, parseSamples } from "./parse/index.js";
 import { parsePatterns } from "./parse/patterns.js";
+import { parsePhoneApis } from "./parse/phone.js";
 import { render } from "./render/index.js";
 import { renderPatterns } from "./render/patterns.js";
 import { writeDevices, writeManifest, writePatterns, writeSymbols } from "./store/index.js";
@@ -21,18 +22,19 @@ switch (command) {
       console.log(`${name}: ${commit}`);
     }
 
-    const [docs, llms, samples, guides, hardware] = await Promise.all([
+    const [docs, phone, llms, samples, guides, hardware] = await Promise.all([
       parseMarkdown(CACHE_DIR),
+      parsePhoneApis(CACHE_DIR),
       parseLlmsContent(CACHE_DIR),
       parseSamples(CACHE_DIR),
       parsePatterns(CACHE_DIR),
       parseDevices(CACHE_DIR),
     ]);
     console.log(
-      `parsed: ${docs.length} docs-reference, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices`,
+      `parsed: ${docs.length} docs-reference, ${phone.length} phone-api, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices`,
     );
 
-    const records = enrich([...docs, ...llms, ...samples]);
+    const records = enrich([...docs, ...phone, ...llms, ...samples]);
     const official = records.filter((r) => r.confidence === "OFFICIAL").length;
     const observed = records.filter((r) => r.confidence === "OBSERVED").length;
     console.log(`enriched: ${records.length} symbols (${official} OFFICIAL, ${observed} OBSERVED)`);
@@ -56,6 +58,7 @@ switch (command) {
         sources: results,
         recordCounts: {
           "docs-reference": docs.length,
+          "docs-phone-api": phone.length,
           llms: llms.length,
           sample: samples.length,
           guide: guides.length,

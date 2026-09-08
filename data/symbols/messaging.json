@@ -1,0 +1,33 @@
+{
+  "module": "messaging",
+  "symbols": [
+    {
+      "id": "messaging.addListener",
+      "module": "messaging",
+      "symbol": "addListener",
+      "type": "function",
+      "description": "Listening to messages",
+      "runtimes": [
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/messaging.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "messaging.send",
+      "module": "messaging",
+      "symbol": "send",
+      "type": "function",
+      "description": "After establishing a connection, send a message.",
+      "runtimes": [
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/messaging.mdx",
+      "extractedAt": "2026-09-04"
+    }
+  ]
+}

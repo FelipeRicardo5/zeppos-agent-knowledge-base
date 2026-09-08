@@ -1,6 +1,6 @@
 # API index
 
-**34 modules, 381 symbols**
+**42 modules, 409 symbols**
 
 | Module | Symbols | With stated API_LEVEL | Page |
 | --- | --- | --- | --- |
@@ -38,3 +38,11 @@
 | `@zos/ui` | 74 | 61 | [zos-ui.md](zos-ui.md) |
 | `@zos/user` | 5 | 5 | [zos-user.md](zos-user.md) |
 | `@zos/utils` | 6 | 6 | [zos-utils.md](zos-utils.md) |
+| `download-file` | 1 | 0 | [download-file.md](download-file.md) |
+| `fetch` | 1 | 0 | [fetch.md](fetch.md) |
+| `global` | 1 | 0 | [global.md](global.md) |
+| `image-convert` | 1 | 0 | [image-convert.md](image-convert.md) |
+| `messaging` | 2 | 0 | [messaging.md](messaging.md) |
+| `settings-storage` | 7 | 0 | [settings-storage.md](settings-storage.md) |
+| `transfer-file` | 2 | 0 | [transfer-file.md](transfer-file.md) |
+| `ui` | 13 | 0 | [ui.md](ui.md) |

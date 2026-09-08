@@ -6,6 +6,7 @@ import type {
   PatternRecord,
   RawDevice,
   RawPattern,
+  RawSourceKind,
   RawUnit,
   Runtime,
   SymbolRecord,
@@ -25,7 +26,9 @@ import type {
 // because each front observes a different runtime rather than a competing claim
 // about the same one. See src/parse/runtime.ts for where the hints come from.
 
-const SOURCE_PRIORITY = ["docs-reference", "llms", "sample"] as const;
+// docs-phone-api sits beside docs-reference: both are official reference pages,
+// just for runtimes whose API has no import line to key on.
+const SOURCE_PRIORITY = ["docs-reference", "docs-phone-api", "llms", "sample"] as const;
 
 function bestOf<T extends RawUnit>(units: T[]): T[] {
   return [...units].sort(
@@ -38,9 +41,11 @@ function toPosixPath(file: string): string {
   return file.split(path.sep).join("/");
 }
 
+/** Every front but `sample` reads official documentation. */
+const DOCUMENTED: RawSourceKind[] = ["docs-reference", "docs-phone-api", "llms"];
+
 function confidenceFor(units: RawUnit[]): Confidence {
-  const hasDocs = units.some((u) => u.sourceKind === "docs-reference" || u.sourceKind === "llms");
-  return hasDocs ? "OFFICIAL" : "OBSERVED";
+  return units.some((u) => DOCUMENTED.includes(u.sourceKind)) ? "OFFICIAL" : "OBSERVED";
 }
 
 export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {

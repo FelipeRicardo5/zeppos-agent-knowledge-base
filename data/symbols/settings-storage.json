@@ -1,0 +1,110 @@
+{
+  "module": "settings-storage",
+  "symbols": [
+    {
+      "id": "settings-storage.addListener",
+      "module": "settings-storage",
+      "symbol": "addListener",
+      "type": "function",
+      "description": "This API only needs to be used in the Side Service. The Settings App is \"responsive\" to data changes in `settingsStorage`, so there is no need to manually listen for data changes.",
+      "runtimes": [
+        "settings",
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "settings-storage.clear",
+      "module": "settings-storage",
+      "symbol": "clear",
+      "type": "function",
+      "description": "Delete all key-value pairs.",
+      "runtimes": [
+        "settings",
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "settings-storage.getItem",
+      "module": "settings-storage",
+      "symbol": "getItem",
+      "type": "function",
+      "description": "Get the stored value by key name.",
+      "runtimes": [
+        "settings",
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "settings-storage.length",
+      "module": "settings-storage",
+      "symbol": "length",
+      "type": "function",
+      "description": "`settings.settingsStorage.length` returns the number of members in `settingsStorage`",
+      "runtimes": [
+        "settings",
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "settings-storage.removeItem",
+      "module": "settings-storage",
+      "symbol": "removeItem",
+      "type": "function",
+      "description": "Delete the value stored by the key name.",
+      "runtimes": [
+        "settings",
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "settings-storage.setItem",
+      "module": "settings-storage",
+      "symbol": "setItem",
+      "type": "function",
+      "description": "Storing key-value pairs.",
+      "runtimes": [
+        "settings",
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "settings-storage.toObject",
+      "module": "settings-storage",
+      "symbol": "toObject",
+      "type": "function",
+      "description": "Converts the content stored in `settingsStorage` to the form of an object.",
+      "runtimes": [
+        "settings",
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
+      "extractedAt": "2026-09-04"
+    }
+  ]
+}

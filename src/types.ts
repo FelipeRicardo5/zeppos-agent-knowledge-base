@@ -39,7 +39,7 @@ export interface SymbolRecord {
 }
 
 export type RawUnitKind = "function" | "constant" | "value";
-export type RawSourceKind = "docs-reference" | "llms" | "sample";
+export type RawSourceKind = "docs-reference" | "llms" | "sample" | "docs-phone-api";
 
 // Output of the parse stage — pre-enrichment, one entry per observation.
 // Enrich merges/reconciles observations of the same symbol across sources.

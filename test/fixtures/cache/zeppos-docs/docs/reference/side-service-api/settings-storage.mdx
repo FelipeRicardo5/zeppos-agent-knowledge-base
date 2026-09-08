@@ -1,0 +1,30 @@
+---
+title: Settings Storage API
+sidebar_label: Settings Storage API
+---
+
+The settingsStorage API can store data persistently in the Zepp App.
+
+:::tip
+Both the "Side Service" and the "Settings App" can access the data.
+:::
+
+## setItem
+
+Storing key-value pairs.
+
+### Type
+
+```ts
+(key: string, value: string) => void
+```
+
+## length: number
+
+`settings.settingsStorage.length` returns the number of members in `settingsStorage`
+
+## Code example
+
+```js
+settings.settingsStorage.setItem('key', 'Hello World')
+```

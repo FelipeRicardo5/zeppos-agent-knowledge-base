@@ -1,0 +1,175 @@
+{
+  "module": "ui",
+  "symbols": [
+    {
+      "id": "ui.Auth",
+      "module": "ui",
+      "symbol": "Auth",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/auth.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Button",
+      "module": "ui",
+      "symbol": "Button",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/button.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Image",
+      "module": "ui",
+      "symbol": "Image",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/image.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Link",
+      "module": "ui",
+      "symbol": "Link",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/link.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Section",
+      "module": "ui",
+      "symbol": "Section",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/section.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Select",
+      "module": "ui",
+      "symbol": "Select",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/select.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Slider",
+      "module": "ui",
+      "symbol": "Slider",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/slider.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Text",
+      "module": "ui",
+      "symbol": "Text",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/text.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.TextImageRow",
+      "module": "ui",
+      "symbol": "TextImageRow",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/textimagerow.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.TextInput",
+      "module": "ui",
+      "symbol": "TextInput",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/textinput.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Toast",
+      "module": "ui",
+      "symbol": "Toast",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/toast.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.Toggle",
+      "module": "ui",
+      "symbol": "Toggle",
+      "type": "function",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/toggle.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "ui.View",
+      "module": "ui",
+      "symbol": "View",
+      "type": "function",
+      "description": "The View container is analogous to the `div` in the Web standard.",
+      "runtimes": [
+        "settings"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/view.mdx",
+      "extractedAt": "2026-09-04"
+    }
+  ]
+}

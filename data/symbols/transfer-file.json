@@ -1,0 +1,33 @@
+{
+  "module": "transfer-file",
+  "symbols": [
+    {
+      "id": "transfer-file.getInbox",
+      "module": "transfer-file",
+      "symbol": "getInbox",
+      "type": "function",
+      "description": "Returns an `Inbox` object for receiving files.",
+      "runtimes": [
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/transfer-file.mdx",
+      "extractedAt": "2026-09-04"
+    },
+    {
+      "id": "transfer-file.getOnbox",
+      "module": "transfer-file",
+      "symbol": "getOnbox",
+      "type": "function",
+      "description": "Returns an `Onbox` object for sending files.",
+      "runtimes": [
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/transfer-file.mdx",
+      "extractedAt": "2026-09-04"
+    }
+  ]
+}

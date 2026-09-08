@@ -1,0 +1,19 @@
+{
+  "module": "download-file",
+  "symbols": [
+    {
+      "id": "download-file.downloadFile",
+      "module": "download-file",
+      "symbol": "downloadFile",
+      "type": "function",
+      "description": "return `DownloadTask` object",
+      "runtimes": [
+        "side-service"
+      ],
+      "source": "docs-phone-api",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/side-service-api/download-file.mdx",
+      "extractedAt": "2026-09-04"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+Zepp OS Agent Knowledge Base
+Copyright 2026 F. Ricardo
+
+This product includes a derivative work built from structured extraction of
+content originally published by Zepp Health in the following repositories,
+each licensed under the Apache License, Version 2.0:
+
+- zepp-health/zeppos-docs
+  https://github.com/zepp-health/zeppos-docs
+
+- zepp-health/zeppos-samples
+  https://github.com/zepp-health/zeppos-samples
+
+The data in `data/`, and the generated views in `api/`, `compatibility/`,
+`runtimes/`, `patterns/`, and `examples/`, are derived works produced by an
+automated extraction pipeline (see `src/`) operating on the source
+repositories above. They are not a mirror or verbatim copy: content is
+parsed, normalized, cross-referenced, and re-rendered, and any errors
+introduced by that process are the responsibility of this project, not of
+Zepp Health.
+
+A copy of the Apache License, Version 2.0 is included in this repository as
+LICENSE, and also available at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+This project is an independent, community-built tool. It is not affiliated
+with, endorsed by, or officially connected to Zepp Health.

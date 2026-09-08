@@ -1,3 +1,5 @@
+<img src="assets/logo.png" alt="Zepp OS Agent Knowledge Base" width="96" />
+
 # Zepp OS Agent Knowledge Base
 
 **English** · [Português](README.pt-BR.md)
@@ -219,6 +221,7 @@ eval/
   task-*.md          tasks an agent attempts using only the rendered base
   results/           one report per run: the gaps it hit, ranked by cost
 .cache/     cloned official repos (untracked)
+assets/     this repository's own logo — not a Zepp OS app `assets/` directory
 ```
 
 The generated Markdown lands in `api/`, `compatibility/`, `runtimes/` and `patterns/`. `concepts/` holds curated notes on retrieval/RAG/MCP and their relation to this project (see [concepts/README.md](concepts/README.md)). `examples/` and `tools/` stay empty until a front exists to fill them — the raw material for both is already in `.cache/` (the 33 sample apps, and `guides/tools/` + `guides/version-info/`), so they are a parsing job, not a curation job.

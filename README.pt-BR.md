@@ -1,3 +1,5 @@
+<img src="assets/logo.png" alt="Zepp OS Agent Knowledge Base" width="96" />
+
 # Zepp OS Agent Knowledge Base
 
 [English](README.md) · **Português**
@@ -192,6 +194,7 @@ eval/
   task-*.md          tarefas que um agente tenta usando so a base renderizada
   results/           um relatorio por rodada: as lacunas encontradas, por custo
 .cache/     repositórios oficiais clonados (não versionado)
+assets/     a logo deste repositório — não é o `assets/` de um app Zepp OS
 ```
 
 O Markdown gerado vai para `api/`, `compatibility/`, `runtimes/` e `patterns/`. `concepts/` guarda notas curadas

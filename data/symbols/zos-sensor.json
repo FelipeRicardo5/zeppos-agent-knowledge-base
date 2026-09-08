@@ -8,6 +8,31 @@
       "type": "value",
       "description": "accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward. permission code: `device:os.accelerometer`",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "x",
+              "type": "number",
+              "description": "Acceleration of x-axis in cm/s^2",
+              "apiLevel": 3
+            },
+            {
+              "name": "y",
+              "type": "number",
+              "description": "Acceleration of y-axis in cm/s^2",
+              "apiLevel": 3
+            },
+            {
+              "name": "z",
+              "type": "number",
+              "description": "Acceleration of z-axis in cm/s^2",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -53,6 +78,48 @@
       "type": "value",
       "description": "Blood oxygen Sensor. permission code: `data:user.hd.spo2`",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "description": "Blood oxygen measurement values",
+              "apiLevel": 2
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "description": "Measurement time",
+              "apiLevel": 2
+            },
+            {
+              "name": "retCode",
+              "type": "number",
+              "description": "Result code, refer to retCode description",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "Data",
+          "props": [
+            {
+              "name": "spo2",
+              "type": "number",
+              "description": "Blood oxygen measurement value",
+              "apiLevel": 3
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "description": "Time of measurement of blood oxygen values, UTC time stamp in seconds",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -68,6 +135,25 @@
       "type": "value",
       "description": "Body surface temperature sensor. permission code: `data:user.hd.body_temp`",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "current",
+              "type": "number",
+              "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
+              "apiLevel": 3
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -113,6 +199,7 @@
       "type": "function",
       "description": "Check the availability of sensors on the current device.",
       "minApiLevel": 3,
+      "signature": "function checkSensor(sensor: Sensor): Result",
       "runtimes": [
         "device-app"
       ],
@@ -218,6 +305,206 @@
       "type": "value",
       "description": "Geolocation Sensor. permission code: `device:os.geolocation`",
       "minApiLevel": 2.1,
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "format",
+              "type": "string",
+              "default": "DD",
+              "description": "Coordinate format, optionally DD for decimal or DMS in degrees, minutes and seconds",
+              "apiLevel": 2.1
+            }
+          ]
+        },
+        {
+          "name": "DMS",
+          "props": [
+            {
+              "name": "direction",
+              "type": "string",
+              "description": "Direction, N for north latitude, S for south latitude",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "degrees",
+              "type": "number",
+              "description": "degree",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "minutes",
+              "type": "number",
+              "description": "minute",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "seconds",
+              "type": "number",
+              "description": "second",
+              "apiLevel": 2.1
+            }
+          ]
+        },
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "format",
+              "type": "string",
+              "default": "DD",
+              "description": "Coordinate format, optionally DD for decimal or DMS in degrees, minutes and seconds",
+              "apiLevel": 2.1
+            }
+          ]
+        },
+        {
+          "name": "DMS",
+          "props": [
+            {
+              "name": "direction",
+              "type": "string",
+              "description": "Direction, E for east longitude, W for west longitude",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "degrees",
+              "type": "number",
+              "description": "degree",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "minutes",
+              "type": "number",
+              "description": "minute",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "seconds",
+              "type": "number",
+              "description": "second",
+              "apiLevel": 2.1
+            }
+          ]
+        },
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "mode",
+              "type": "number",
+              "description": "Positioning settings, see mode below for value descriptions",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "Info",
+          "props": [
+            {
+              "name": "agps_inject_time",
+              "type": "number",
+              "description": "AGPS update time UTC timestamp in milliseconds",
+              "apiLevel": 3
+            },
+            {
+              "name": "top4_cn_val",
+              "type": "number",
+              "description": "Signal strength value of the positioning satellite",
+              "apiLevel": 3
+            },
+            {
+              "name": "is_dualband",
+              "type": "number",
+              "description": "Whether dual-band",
+              "apiLevel": 3
+            },
+            {
+              "name": "nb_valid_satellite",
+              "type": "number",
+              "description": "Number of available satellites",
+              "apiLevel": 3
+            },
+            {
+              "name": "nb_used_satellite",
+              "type": "number",
+              "description": "Number of satellites used",
+              "apiLevel": 3
+            },
+            {
+              "name": "elapsed_time",
+              "type": "number",
+              "description": "Time consumed from the start of satellite search to successful positioning, in seconds",
+              "apiLevel": 3
+            },
+            {
+              "name": "satellite_data",
+              "type": "Array&#60;SatelliteSystem&#62;",
+              "description": "Satellite data arrays",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "SatelliteSystem",
+          "props": [
+            {
+              "name": "gnss_id",
+              "type": "number",
+              "description": "Satellite ID, see gnss_id below for value descriptions",
+              "apiLevel": 3
+            },
+            {
+              "name": "sub_top4_cn_val",
+              "type": "number",
+              "description": "The strongest signal value of this satellite system",
+              "apiLevel": 3
+            },
+            {
+              "name": "nb_valid_satellite",
+              "type": "number",
+              "description": "Number of available satellites that can be searched",
+              "apiLevel": 3
+            },
+            {
+              "name": "gsv_data",
+              "type": "Array&#60;Satellite&#62;",
+              "description": "Single satellite data array, maximum length 32",
+              "apiLevel": 3.6
+            }
+          ]
+        },
+        {
+          "name": "Satellite",
+          "props": [
+            {
+              "name": "id",
+              "type": "number",
+              "description": "Satellite ID",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "elevation",
+              "type": "number",
+              "description": "Pitch angle",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "azimuth",
+              "type": "number",
+              "description": "Azimuth",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "snr",
+              "type": "number",
+              "description": "Signal-to-noise ratio",
+              "apiLevel": 3.6
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -233,6 +520,31 @@
       "type": "value",
       "description": "Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction. permission code: `device:os.gyroscope`",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "x",
+              "type": "number",
+              "description": "Angular velocity of x-axis in DPS, degrees per second",
+              "apiLevel": 3
+            },
+            {
+              "name": "y",
+              "type": "number",
+              "description": "Angular velocity of y-axis in DPS, degrees per second",
+              "apiLevel": 3
+            },
+            {
+              "name": "z",
+              "type": "number",
+              "description": "Angular velocity of z-axis in DPS, degrees per second",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -248,6 +560,77 @@
       "type": "value",
       "description": "HeartRate Sensor. permission code: `data:user.hd.heart_rate`",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "maximum",
+              "type": "Maximum",
+              "description": "Maximum heart rate information",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "Maximum",
+          "props": [
+            {
+              "name": "hr_value",
+              "type": "number",
+              "description": "Maximum heart rate value",
+              "apiLevel": 3
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "description": "Measurement time of maximum heart rate",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "AfibInfo",
+          "props": [
+            {
+              "name": "flag",
+              "type": "number",
+              "description": "Atrial fibrillation test results, 0 - normal, 1 - high alert, 2 - low alert, 3 - atrial fibrillation",
+              "apiLevel": 3
+            },
+            {
+              "name": "val",
+              "type": "number",
+              "description": "Atrial fibrillation data value, integer value 0 - 255",
+              "apiLevel": 3
+            },
+            {
+              "name": "maxValue",
+              "type": "number",
+              "description": "Atrial fibrillation data maximum value, integer value 0 - 255",
+              "apiLevel": 3
+            },
+            {
+              "name": "minValue",
+              "type": "number",
+              "description": "Atrial fibrillation data minimum value, integer value 0 - 255",
+              "apiLevel": 3
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "description": "Time of Atrial fibrillation data acquisition, UTC seconds",
+              "apiLevel": 3
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "description": "Duration in seconds",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -293,6 +676,118 @@
       "type": "value",
       "description": "Sleep Sensor. permission code: `data:user.hd.sleep`",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "SleepInfo",
+          "props": [
+            {
+              "name": "score",
+              "type": "number",
+              "description": "Sleep score",
+              "apiLevel": 2
+            },
+            {
+              "name": "deepTime",
+              "type": "number",
+              "description": "Deep sleep time (minutes)",
+              "apiLevel": 2
+            },
+            {
+              "name": "startTime",
+              "type": "number",
+              "description": "Sleep onset time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 2
+            },
+            {
+              "name": "endTime",
+              "type": "number",
+              "description": "Sleep end time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 2
+            },
+            {
+              "name": "totalTime",
+              "type": "number",
+              "description": "Get total sleep time (minutes)",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "StageConstants",
+          "props": [
+            {
+              "name": "WAKE_STAGE",
+              "type": "number",
+              "description": "Awake stage",
+              "apiLevel": 2
+            },
+            {
+              "name": "REM_STAGE",
+              "type": "number",
+              "description": "Deep sleep time (minutes)",
+              "apiLevel": 2
+            },
+            {
+              "name": "LIGHT_STAGE",
+              "type": "number",
+              "description": "Light Sleep stage",
+              "apiLevel": 2
+            },
+            {
+              "name": "DEEP_STAGE",
+              "type": "number",
+              "description": "Deep Sleep stage",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "StageInfo",
+          "props": [
+            {
+              "name": "model",
+              "type": "number",
+              "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
+              "apiLevel": 2
+            },
+            {
+              "name": "start",
+              "type": "number",
+              "description": "Sleep stage onset time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 2
+            },
+            {
+              "name": "stop",
+              "type": "number",
+              "description": "Sleep stage end time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "NapInfo",
+          "props": [
+            {
+              "name": "length",
+              "type": "number",
+              "description": "Nap duration (minutes)",
+              "apiLevel": 3
+            },
+            {
+              "name": "start",
+              "type": "number",
+              "description": "Nap start time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 3
+            },
+            {
+              "name": "stop",
+              "type": "number",
+              "description": "Nap end time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -338,6 +833,59 @@
       "type": "value",
       "description": "Stress Sensor. permission code: `data:user.hd.stress`",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "value",
+              "type": "number",
+              "description": "Stress measurement values",
+              "apiLevel": 2
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "description": "Time to obtain the measured value",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "StressInfo",
+          "props": [
+            {
+              "name": "second",
+              "type": "number",
+              "description": "Pressure value measurement time, UTC time stamp, in seconds",
+              "apiLevel": 3
+            },
+            {
+              "name": "stress",
+              "type": "number",
+              "description": "Pressure value, 0 means invalid",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "StressInfo",
+          "props": [
+            {
+              "name": "second",
+              "type": "number",
+              "description": "Pressure value measurement time, UTC time stamp, in seconds",
+              "apiLevel": 3
+            },
+            {
+              "name": "stress",
+              "type": "number",
+              "description": "Pressure value, 0 means invalid",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -353,6 +901,61 @@
       "type": "value",
       "description": "System Sounds.",
       "minApiLevel": 3.6,
+      "shapes": [
+        {
+          "name": "Type",
+          "props": [
+            {
+              "name": "ALARM",
+              "type": "number",
+              "description": "Alarm clock reminder",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "MESSAGE",
+              "type": "number",
+              "description": "Notification sound when receiving text messages or emails",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "REGULAR",
+              "type": "number",
+              "description": "TingTing sound",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "ACHIEVE",
+              "type": "number",
+              "description": "Goals achieved",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "CAMERA",
+              "type": "number",
+              "description": "Camera shutter",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "ABN_HIGH",
+              "type": "number",
+              "description": "Health data measurement abnormalities (high values)",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "ABN_LOW",
+              "type": "number",
+              "description": "Health data measurement abnormalities (low values)",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "SOS",
+              "type": "number",
+              "description": "SOS for help",
+              "apiLevel": 3.6
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -368,6 +971,25 @@
       "type": "value",
       "description": "Time/Date Sensor.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "LunarMonthCalendar",
+          "props": [
+            {
+              "name": "day_count",
+              "type": "number",
+              "description": "Number of days in the current month",
+              "apiLevel": 2
+            },
+            {
+              "name": "lunar_days_array",
+              "type": "Array&#60;string&#62;",
+              "description": "Array of display content for each day of the current month, display content priority for holidays, Solar Term, date",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app",
         "workout-extension"
@@ -414,6 +1036,124 @@
       "type": "value",
       "description": "Vibrator.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "mode",
+              "type": "number",
+              "default": "VIBRATOR_SCENE_SHORT_MIDDLE",
+              "description": "Vibration mode, Value refer to Vibration motor mode constants",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "Action",
+          "props": [
+            {
+              "name": "type",
+              "type": "number",
+              "description": "Vibration Scene Type",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "description": "Duration of vibration",
+              "apiLevel": 3.6
+            }
+          ]
+        },
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "mode",
+              "type": "number",
+              "description": "Vibration mode, Value refer to Vibration motor mode constants",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "mode",
+              "type": "number",
+              "description": "Vibration mode, Value refer to Vibration motor mode constants",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "props": [
+            {
+              "name": "GENTLE_SHORT",
+              "type": "number",
+              "description": "Vibration scene, light short vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "STRONG_SHORT",
+              "type": "number",
+              "description": "Vibration scene, strong and short vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "STANDARD_CROWN",
+              "type": "number",
+              "description": "Vibration scene, standard crown vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "STRONG_CROWN",
+              "type": "number",
+              "description": "Vibration scene, strong crown vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "SPULSE_CROWN",
+              "type": "number",
+              "description": "Vibration scene, single-pulse crown vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "DIPULSE_CROWN",
+              "type": "number",
+              "description": "Vibration scene, dual-pulse crown vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "KEYCODE_CLICK",
+              "type": "number",
+              "description": "Vibration scene, password button vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "URGENT",
+              "type": "number",
+              "description": "Vibration scene, urgent vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "CONTINUOUS",
+              "type": "number",
+              "description": "Vibration scene, continuous vibration",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "PAUSE",
+              "type": "number",
+              "description": "Vibration scene, stop vibration",
+              "apiLevel": 3.6
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -444,6 +1184,139 @@
       "type": "value",
       "description": "This interface has been deprecated, please refer to https://github.com/orgs/zepp-health/discussions/83 Weather Forecasts sensor.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "ForecastWeather",
+          "props": [
+            {
+              "name": "cityName",
+              "type": "string",
+              "description": "City Name",
+              "apiLevel": 2
+            },
+            {
+              "name": "forecastData",
+              "type": "ForecastData",
+              "description": "Weather Information",
+              "apiLevel": 2
+            },
+            {
+              "name": "tideData",
+              "type": "TideData",
+              "description": "Tide Information",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "ForecastData",
+          "props": [
+            {
+              "name": "data",
+              "type": "Array&#60;ForecastDataItem&#62;",
+              "description": "Weather Information Array, index 0 position represents the day",
+              "apiLevel": 2
+            },
+            {
+              "name": "count",
+              "type": "number",
+              "description": "The length of Weather Information Array",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "ForecastDataItem",
+          "props": [
+            {
+              "name": "high",
+              "type": "number",
+              "description": "Maximum temperature",
+              "apiLevel": 2
+            },
+            {
+              "name": "low",
+              "type": "number",
+              "description": "Lowest temperature",
+              "apiLevel": 2
+            },
+            {
+              "name": "index",
+              "type": "number",
+              "description": "The index value of the weather, see index below for a description of the value",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "TideData",
+          "props": [
+            {
+              "name": "data",
+              "type": "Array&#60;TideDataItem&#62;",
+              "description": "Tide Information Array, index 0 position represents the day",
+              "apiLevel": 2
+            },
+            {
+              "name": "count",
+              "type": "number",
+              "description": "The length of Tide Information Array",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "TideDataItem",
+          "props": [
+            {
+              "name": "sunrise",
+              "type": "Sunrise",
+              "description": "Sunrise time",
+              "apiLevel": 2
+            },
+            {
+              "name": "sunset",
+              "type": "Sunset",
+              "description": "Sunset time",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "Sunrise",
+          "props": [
+            {
+              "name": "hour",
+              "type": "number",
+              "description": "Sunrise time - hour",
+              "apiLevel": 2
+            },
+            {
+              "name": "minute",
+              "type": "number",
+              "description": "Sunrise time - minute",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "Sunset",
+          "props": [
+            {
+              "name": "hour",
+              "type": "number",
+              "description": "Sunrise time - hour",
+              "apiLevel": 2
+            },
+            {
+              "name": "minute",
+              "type": "number",
+              "description": "Sunrise time - minute",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -459,6 +1332,118 @@
       "type": "value",
       "description": "Workout Sensor. permission code: `data:user.hd.workout`",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "Status",
+          "props": [
+            {
+              "name": "vo2Max",
+              "type": "number",
+              "description": "VO2 Max",
+              "apiLevel": 3
+            },
+            {
+              "name": "trainingLoad",
+              "type": "number",
+              "description": "Training Load",
+              "apiLevel": 3
+            },
+            {
+              "name": "fullRecoveryTime",
+              "type": "number",
+              "description": "Full Recovery Time",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "History",
+          "props": [
+            {
+              "name": "startTime",
+              "type": "number",
+              "description": "Workout start time",
+              "apiLevel": 3
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "description": "Duration of workout in seconds",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "HrZoneSettings",
+          "props": [
+            {
+              "name": "type",
+              "type": "number",
+              "description": "Heart rate zone type, 0: by heart rate reserve, 1: by maximum heart rate",
+              "apiLevel": 4.2
+            },
+            {
+              "name": "rest",
+              "type": "number",
+              "description": "Resting heart rate value",
+              "apiLevel": 4.2
+            },
+            {
+              "name": "range",
+              "type": "number[]",
+              "description": "Heart rate zone value array with 6 values, corresponding to: Ligit, Intensive, Aerobic, Anaerobic, VO2 max and maximum heart rate",
+              "apiLevel": 4.2
+            }
+          ]
+        },
+        {
+          "name": "WorkoutTrackNavInfo",
+          "props": [
+            {
+              "name": "update",
+              "type": "number",
+              "description": "Data update status, true: need update, false: no need to update",
+              "apiLevel": 4.2
+            },
+            {
+              "name": "isYaw",
+              "type": "number",
+              "description": "Whether off course, true: off course, false: on course",
+              "apiLevel": 4.2
+            },
+            {
+              "name": "yawAngle",
+              "type": "number",
+              "description": "Yaw angle",
+              "apiLevel": 4.2
+            },
+            {
+              "name": "yawDistance",
+              "type": "number",
+              "description": "Yaw distance in meters",
+              "apiLevel": 4.2
+            },
+            {
+              "name": "remainDistance",
+              "type": "number",
+              "description": "Remaining distance in meters",
+              "apiLevel": 4.2
+            },
+            {
+              "name": "turnDistance",
+              "type": "number",
+              "description": "Distance to next turn in meters",
+              "apiLevel": 4.2
+            },
+            {
+              "name": "turnType",
+              "type": "number",
+              "description": "The direction of the next turn, refer to TURN_TYPE for value meanings",
+              "apiLevel": 4.2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -474,6 +1459,49 @@
       "type": "value",
       "description": "World Clock Sensor.",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "WorldClockInfo",
+          "props": [
+            {
+              "name": "city",
+              "type": "string",
+              "description": "City Name",
+              "apiLevel": 3
+            },
+            {
+              "name": "cityCode",
+              "type": "string",
+              "description": "City code, e.g. San Francisco SFO",
+              "apiLevel": 3
+            },
+            {
+              "name": "hour",
+              "type": "number",
+              "description": "Hour",
+              "apiLevel": 3
+            },
+            {
+              "name": "minute",
+              "type": "number",
+              "description": "Minute",
+              "apiLevel": 3
+            },
+            {
+              "name": "timeZoneHour",
+              "type": "number",
+              "description": "Time Zone hours",
+              "apiLevel": 3
+            },
+            {
+              "name": "timeZoneMinute",
+              "type": "number",
+              "description": "Time zone minutes",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

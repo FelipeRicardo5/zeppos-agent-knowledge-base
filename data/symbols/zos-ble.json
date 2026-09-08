@@ -8,6 +8,7 @@
       "type": "function",
       "description": "Registering connection status listening callback function.",
       "minApiLevel": 2,
+      "signature": "function addListener(callback: Callback): void",
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +24,7 @@
       "type": "function",
       "description": "Query connection status, `true` means connected, `false` means not connected.",
       "minApiLevel": 2,
+      "signature": "function connectStatus(): boolean",
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +40,7 @@
       "type": "function",
       "description": "Create connection.",
       "minApiLevel": 2,
+      "signature": "function createConnect(callback: Callback): void",
       "runtimes": [
         "device-app"
       ],
@@ -53,6 +56,7 @@
       "type": "function",
       "description": "Disconnect.",
       "minApiLevel": 2,
+      "signature": "function disConnect(): void",
       "runtimes": [
         "device-app"
       ],
@@ -68,6 +72,145 @@
       "type": "function",
       "description": "Creating a Profile connection.",
       "minApiLevel": 3,
+      "signature": "function mstBuildProfile(profile: ProfileObj): Result",
+      "shapes": [
+        {
+          "name": "ProfileObj",
+          "props": [
+            {
+              "name": "pair",
+              "type": "boolean",
+              "description": "Whether to pair automatically",
+              "apiLevel": 3
+            },
+            {
+              "name": "id",
+              "type": "number",
+              "description": "Connection ID",
+              "apiLevel": 3
+            },
+            {
+              "name": "profile",
+              "type": "string",
+              "description": "Profile Name",
+              "apiLevel": 3
+            },
+            {
+              "name": "dev",
+              "type": "ArrayBuffer",
+              "description": "Device MAC address, 6 bytes long, Uint8Array view recommended",
+              "apiLevel": 3
+            },
+            {
+              "name": "len",
+              "type": "number",
+              "description": "list array length",
+              "apiLevel": 3
+            },
+            {
+              "name": "list",
+              "type": "Array&#60;ServicesObj&#62;",
+              "description": "Services list array",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "ServicesObj",
+          "props": [
+            {
+              "name": "len",
+              "type": "number",
+              "description": "list array length",
+              "apiLevel": 3
+            },
+            {
+              "name": "list",
+              "type": "Array&#60;ServiceObj&#62;",
+              "description": "Service array",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "ServiceObj",
+          "props": [
+            {
+              "name": "uuid",
+              "type": "string",
+              "description": "Service UUID",
+              "apiLevel": 3
+            },
+            {
+              "name": "permission",
+              "type": "number",
+              "default": "0",
+              "description": "Permission control, default 0 No control",
+              "apiLevel": 3
+            },
+            {
+              "name": "len1",
+              "type": "number",
+              "description": "Characteristic array length",
+              "apiLevel": 3
+            },
+            {
+              "name": "list",
+              "type": "Array&#60;CharacteristicObj&#62;",
+              "description": "Characteristic length",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "CharacteristicObj",
+          "props": [
+            {
+              "name": "uuid",
+              "type": "string",
+              "description": "Characteristic UUID",
+              "apiLevel": 3
+            },
+            {
+              "name": "permission",
+              "type": "number",
+              "default": "0",
+              "description": "Permission control, default 0 No control",
+              "apiLevel": 3
+            },
+            {
+              "name": "len",
+              "type": "number",
+              "description": "Descriptor array length",
+              "apiLevel": 3
+            },
+            {
+              "name": "list",
+              "type": "Array&#60;DescriptorObj&#62;",
+              "description": "Descriptor array",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "DescriptorObj",
+          "props": [
+            {
+              "name": "uuid",
+              "type": "string",
+              "description": "Descriptor UUID",
+              "apiLevel": 3
+            },
+            {
+              "name": "permission",
+              "type": "number",
+              "default": "0",
+              "description": "Permission control, default 0 No control",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -83,6 +226,32 @@
       "type": "function",
       "description": "Connecting Devices.",
       "minApiLevel": 3,
+      "signature": "function mstConnect(deviceAddress: DeviceAddress, callback: Callback): Result",
+      "shapes": [
+        {
+          "name": "ConnectResult",
+          "props": [
+            {
+              "name": "connected",
+              "type": "number",
+              "description": "Connection status, 0 - successful connection, 1 - failed connection, 2 - disconnected",
+              "apiLevel": 3
+            },
+            {
+              "name": "connect_id",
+              "type": "number",
+              "description": "The ID of the connection is returned when the connection is successful",
+              "apiLevel": 3
+            },
+            {
+              "name": "dev_addr",
+              "type": "ArrayBuffer",
+              "description": "Device MAC address, 6 bytes long, Uint8Array view recommended",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -98,6 +267,7 @@
       "type": "function",
       "description": "Destroy Profile.",
       "minApiLevel": 3,
+      "signature": "function mstDestroyProfileInstance(profile: Profile): void",
       "runtimes": [
         "device-app"
       ],
@@ -113,6 +283,7 @@
       "type": "function",
       "description": "Disconnecting devices.",
       "minApiLevel": 3,
+      "signature": "function mstDisconnect(connectId: ConnectId): Result",
       "runtimes": [
         "device-app"
       ],
@@ -128,6 +299,7 @@
       "type": "function",
       "description": "Look up the connection Id based on the Peripheral MAC address.",
       "minApiLevel": 3,
+      "signature": "function mstGetConnIdByRemoteAddr(deviceAddress: DeviceAddress): Result",
       "runtimes": [
         "device-app"
       ],
@@ -143,6 +315,7 @@
       "type": "function",
       "description": "Query Profile pointer based on Profile name and connection ID.",
       "minApiLevel": 3,
+      "signature": "function mstGetProfileInstance(profileName: ProfileName, connectId: ConnectId): Result",
       "runtimes": [
         "device-app"
       ],
@@ -158,6 +331,7 @@
       "type": "function",
       "description": "Unregister of all registered Bluetooth-related callback functions.",
       "minApiLevel": 3,
+      "signature": "function mstOffAllCb(): void",
       "runtimes": [
         "device-app"
       ],
@@ -173,6 +347,7 @@
       "type": "function",
       "description": "Register Characteristic Notification to reach the callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnCharaNotification(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -188,6 +363,7 @@
       "type": "function",
       "description": "Register the read Characteristic completion callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnCharaReadComplete(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -203,6 +379,7 @@
       "type": "function",
       "description": "Register to read Characteristic data to the callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnCharaValueArrived(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -218,6 +395,7 @@
       "type": "function",
       "description": "Register the Write Characteristic data completion callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnCharaWriteComplete(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -233,6 +411,7 @@
       "type": "function",
       "description": "Register the Read Descriptor data arrival callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnDescValueArrived(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -248,6 +427,7 @@
       "type": "function",
       "description": "Register Descriptor data write completion callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnDescWriteComplete(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -263,6 +443,7 @@
       "type": "function",
       "description": "Register the prepare operation callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnPrepare(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -278,6 +459,7 @@
       "type": "function",
       "description": "Register the Service start change callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnServiceChangeBegin(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -293,6 +475,7 @@
       "type": "function",
       "description": "Register the Service change end callback function.",
       "minApiLevel": 3,
+      "signature": "function mstOnServiceChangeEnd(callback: Callback): Result",
       "runtimes": [
         "device-app"
       ],
@@ -308,6 +491,7 @@
       "type": "function",
       "description": "Pairing with devices via `connectId`.",
       "minApiLevel": 3,
+      "signature": "function mstPair(connectId: ConnectId): Result",
       "runtimes": [
         "device-app"
       ],
@@ -323,6 +507,7 @@
       "type": "function",
       "description": "prepare interface.",
       "minApiLevel": 3,
+      "signature": "function mstPrepare(profile: Profile): void",
       "runtimes": [
         "device-app"
       ],
@@ -338,6 +523,7 @@
       "type": "function",
       "description": "Read Characteristic information.",
       "minApiLevel": 3,
+      "signature": "function mstReadCharacteristic(profile: Profile, uuid: UUID): void",
       "runtimes": [
         "device-app"
       ],
@@ -353,6 +539,7 @@
       "type": "function",
       "description": "Write characteristic information.",
       "minApiLevel": 3,
+      "signature": "function mstReadDescriptor(profile: Profile, uuid: UUID, descUUID: DescUUID): void",
       "runtimes": [
         "device-app"
       ],
@@ -368,6 +555,113 @@
       "type": "function",
       "description": "Scan and discover Bluetooth peripherals, which can be filtered according to filter conditions.",
       "minApiLevel": 3,
+      "signature": "function mstStartScan(callback: Callback, filter?: Filter): Result",
+      "shapes": [
+        {
+          "name": "ScanResult",
+          "props": [
+            {
+              "name": "dev_name",
+              "type": "string",
+              "description": "Device name",
+              "apiLevel": 3
+            },
+            {
+              "name": "dev_addr",
+              "type": "ArrayBuffer",
+              "description": "Device MAC address, 6 bytes long, Uint8Array view recommended",
+              "apiLevel": 3
+            },
+            {
+              "name": "rssi",
+              "type": "number",
+              "description": "RSSI Signal Strength",
+              "apiLevel": 3
+            },
+            {
+              "name": "service_uuid_array",
+              "type": "Array&#60;string&#62;",
+              "description": "Service UUID array in broadcast data",
+              "apiLevel": 3
+            },
+            {
+              "name": "service_data_array",
+              "type": "Array&#60;ServiceData&#62;",
+              "description": "Array of Service Data Objects in Broadcast Data",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "ServiceData",
+          "props": [
+            {
+              "name": "uuid",
+              "type": "string",
+              "description": "Service UUID",
+              "apiLevel": 3
+            },
+            {
+              "name": "service_data",
+              "type": "ArrayBuffer",
+              "description": "Service data",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "Filter",
+          "props": [
+            {
+              "name": "device_name",
+              "type": "string",
+              "description": "Device name",
+              "apiLevel": 3
+            },
+            {
+              "name": "fuzzy_mode",
+              "type": "string",
+              "description": "Whether to use fuzzy mode for device name matching",
+              "apiLevel": 3
+            },
+            {
+              "name": "service_uuid",
+              "type": "string",
+              "description": "Service UUID",
+              "apiLevel": 3
+            },
+            {
+              "name": "service_data_uuid",
+              "type": "string",
+              "description": "Service data UUID",
+              "apiLevel": 3
+            },
+            {
+              "name": "manufacturer_id",
+              "type": "number",
+              "description": "Manufacturer ID",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "Timeout",
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "description": "Scanning duration, in seconds. Scanning automatically stops when the given duration is reached",
+              "apiLevel": 3
+            },
+            {
+              "name": "on_timeout",
+              "type": "() =&#62; void",
+              "description": "Callback function after scanning stops",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -383,6 +677,7 @@
       "type": "function",
       "description": "Stop device scanning, used in conjunction with `mstStartScan`.",
       "minApiLevel": 3,
+      "signature": "function mstStopScan(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -398,6 +693,7 @@
       "type": "function",
       "description": "Write Characteristic information.",
       "minApiLevel": 3,
+      "signature": "function mstWriteCharacteristic(profile: Profile, uuid: UUID, data: Data, length: Length): void",
       "runtimes": [
         "device-app"
       ],
@@ -413,6 +709,7 @@
       "type": "function",
       "description": "Register the Characteristic notification arrival callback function.",
       "minApiLevel": 3,
+      "signature": "function mstWriteDescriptor(\n  profile: Profile,\n  uuid: UUID,\n  descUUID: DescUUID,\n  data: Data,\n  length: Length,\n): Result",
       "runtimes": [
         "device-app"
       ],
@@ -428,6 +725,7 @@
       "type": "function",
       "description": "Cancel connection status listening callback function.",
       "minApiLevel": 2,
+      "signature": "function removeListener(): void",
       "runtimes": [
         "device-app"
       ],
@@ -443,6 +741,7 @@
       "type": "function",
       "description": "Send message, `data` data to be sent, `size` length of data to be sent.",
       "minApiLevel": 2,
+      "signature": "function send(data: object, size: number): void",
       "runtimes": [
         "device-app"
       ],

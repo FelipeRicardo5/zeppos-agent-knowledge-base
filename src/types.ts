@@ -23,6 +23,31 @@ export type Confidence =
   | "COMMUNITY"
   | "INFERRED";
 
+/** One row of a property table: what to pass, and whether it is optional. */
+export interface PropSpec {
+  name: string;
+  description?: string;
+  type?: string;
+  required?: boolean;
+  default?: string;
+  /**
+   * Some device-app tables state a minimum per property, so a symbol available
+   * at one level can have a property that is not. Absent when the table has no
+   * such column, which is not the same as "available since the symbol was".
+   */
+  apiLevel?: number;
+}
+
+/**
+ * A named object shape the page declares — `Props`, `SelectOption`, `Options`.
+ * A signature is unusable without them: `(props: Props) => RenderFunc` says
+ * nothing on its own, and `Select`'s `options` needs `SelectOption`.
+ */
+export interface ShapeSpec {
+  name: string;
+  props: PropSpec[];
+}
+
 export interface SymbolRecord {
   id: string; // e.g. "@zos/router.launchApp"
   module: string; // e.g. "@zos/router"
@@ -31,6 +56,14 @@ export interface SymbolRecord {
   description?: string;
   // undefined when no source states it — never fabricated.
   minApiLevel?: number;
+  /**
+   * The call signature the docs state, verbatim. Both eval runs found its
+   * absence to be the base's root gap: it recorded that a symbol exists and
+   * never how to call it.
+   */
+  signature?: string;
+  /** The object shapes the signature refers to, `Props` first where present. */
+  shapes?: ShapeSpec[];
   runtimes: Runtime[];
   source: RawSourceKind;
   confidence: Confidence;
@@ -49,6 +82,8 @@ export interface RawUnit {
   kind: RawUnitKind;
   description?: string;
   apiLevel?: number;
+  signature?: string;
+  shapes?: ShapeSpec[];
   runtimeHint?: Runtime;
   sourceFile: string; // path relative to the cache dir
   sourceKind: RawSourceKind;

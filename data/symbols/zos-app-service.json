@@ -8,6 +8,7 @@
       "type": "function",
       "description": "Called in The App Service, it will exit the service and will not affect the foreground page. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
+      "signature": "function exit(): void",
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +24,7 @@
       "type": "function",
       "description": "Get the list of running App services, used to query the service status. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
+      "signature": "function getAllAppServices(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +40,56 @@
       "type": "function",
       "description": "Start the specified App service, return the result through the callback function. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
+      "signature": "function start(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "file",
+              "type": "string",
+              "description": "The App Service js file must be the one configured in the module app-service in app.json",
+              "apiLevel": 3
+            },
+            {
+              "name": "param",
+              "type": "string",
+              "description": "Parameters passed in when the js file is loaded by the backend service",
+              "apiLevel": 3
+            },
+            {
+              "name": "complete_func",
+              "type": "(callbackOption: CallbackOption) =&#62; void",
+              "description": "Callback function for the completion of the backend service start",
+              "apiLevel": 3
+            },
+            {
+              "name": "reload",
+              "type": "boolean",
+              "default": "true",
+              "description": "Whether to persist and automatically restart following system running state changes. System state changes include: system restart, power saving mode entry/exit, system language changes, Mini Program updates, etc.",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "CallbackOption",
+          "props": [
+            {
+              "name": "file",
+              "type": "string",
+              "description": "App service js file, same as start incoming parameters",
+              "apiLevel": 3
+            },
+            {
+              "name": "result",
+              "type": "boolean",
+              "description": "App service start result, true means success, false means failure",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -53,6 +105,43 @@
       "type": "function",
       "description": "Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function. permission code: `device:os.bg_service`",
       "minApiLevel": 3,
+      "signature": "function stop(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "file",
+              "type": "string",
+              "description": "The App Service js file must be the one configured in the service module in app.json",
+              "apiLevel": 3
+            },
+            {
+              "name": "complete_func",
+              "type": "(callbackOption: CallbackOption) =&#62; void",
+              "description": "Callback function for the completion of the backend service stop",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "CallbackOption",
+          "props": [
+            {
+              "name": "file",
+              "type": "string",
+              "description": "App service js file, same as stop incoming parameters",
+              "apiLevel": 3
+            },
+            {
+              "name": "result",
+              "type": "boolean",
+              "description": "App service stop result, true means success, false means failure",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

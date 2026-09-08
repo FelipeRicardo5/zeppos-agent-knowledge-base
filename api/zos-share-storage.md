@@ -8,7 +8,7 @@
 | `LocalStorage` | value | >= 3 | OFFICIAL |
 | `TypedStorage` | value | >= 3 | OFFICIAL |
 
-## Descriptions
+## Symbols in detail
 
 ### `@zos/share-storage.FileSystem`
 

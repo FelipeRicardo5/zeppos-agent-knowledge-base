@@ -8,6 +8,7 @@
       "type": "function",
       "description": "Get whether to turn on the screen auto brightness setting.",
       "minApiLevel": 2,
+      "signature": "function getAutoBrightness(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +24,7 @@
       "type": "function",
       "description": "Get the screen brightness of the current device.",
       "minApiLevel": 2,
+      "signature": "function getBrightness(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +40,107 @@
       "type": "function",
       "description": "Get system display related information.",
       "minApiLevel": 3,
+      "signature": "function getSettings(): Result",
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "screen",
+              "type": "ScreenObj",
+              "description": "Screen Status",
+              "apiLevel": 3
+            },
+            {
+              "name": "wrist",
+              "type": "WristObj",
+              "description": "Lift wrist to view info setting",
+              "apiLevel": 3
+            },
+            {
+              "name": "standby",
+              "type": "StandbyObj",
+              "description": "Rest screen display settings",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "ScreenObj",
+          "props": [
+            {
+              "name": "status",
+              "type": "number",
+              "description": "Current screen status, 1: On, 2: Off",
+              "apiLevel": 3
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "description": "Screen light-up time, in seconds",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "WristObj",
+          "props": [
+            {
+              "name": "speed",
+              "type": "number",
+              "description": "Response speed",
+              "apiLevel": 3
+            },
+            {
+              "name": "model",
+              "type": "number",
+              "description": "Mode, see model for value",
+              "apiLevel": 3
+            },
+            {
+              "name": "startTime",
+              "type": "number",
+              "description": "Start time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 3
+            },
+            {
+              "name": "endTime",
+              "type": "number",
+              "description": "End time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "StandbyObj",
+          "props": [
+            {
+              "name": "style",
+              "type": "number",
+              "description": "Rest screen Watchface style, 0: system default, 1: follow the current dial",
+              "apiLevel": 3
+            },
+            {
+              "name": "model",
+              "type": "number",
+              "description": "Mode, see model for value",
+              "apiLevel": 3
+            },
+            {
+              "name": "startTime",
+              "type": "number",
+              "description": "Start time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 3
+            },
+            {
+              "name": "endTime",
+              "type": "number",
+              "description": "End time, based on the number of minutes at 0:00 of the day",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -53,6 +156,21 @@
       "type": "function",
       "description": "Suspension of wrist resting behavior.",
       "minApiLevel": 2.1,
+      "signature": "function pauseDropWristScreenOff(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "default": "30000",
+              "description": "Duration (milliseconds), if 0 is passed, the wrist rest behavior will be suspended until resetPalmScreenOff is called",
+              "apiLevel": 2.1
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -68,6 +186,21 @@
       "type": "function",
       "description": "Suspension of overlapping palm resting screen behavior.",
       "minApiLevel": 2.1,
+      "signature": "function pausePalmScreenOff(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "duration",
+              "type": "number",
+              "default": "30000",
+              "description": "Duration (milliseconds), if 0 is passed, the palm rest behavior is suspended until resetPalmScreenOff is called",
+              "apiLevel": 2.1
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -83,6 +216,7 @@
       "type": "function",
       "description": "Resume wrist drop resting behavior.",
       "minApiLevel": 2.1,
+      "signature": "function resetDropWristScreenOff(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -98,6 +232,7 @@
       "type": "function",
       "description": "Cancel the bright time set by `setPageBrightTime`.",
       "minApiLevel": 2,
+      "signature": "function resetPageBrightTime(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -113,6 +248,7 @@
       "type": "function",
       "description": "Recovery of overlapping palm resting screen behavior.",
       "minApiLevel": 2.1,
+      "signature": "function resetPalmScreenOff(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -128,6 +264,20 @@
       "type": "function",
       "description": "Set whether to turn on auto-brightness, if it is on, then the screen brightness will be controlled by the light sensor and the `setBrightness` will be disabled.",
       "minApiLevel": 2,
+      "signature": "function setAutoBrightness(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "autoBright",
+              "type": "boolean",
+              "description": "Whether to open the automatic brightness",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -143,6 +293,20 @@
       "type": "function",
       "description": "Set the screen brightness of the current device. If the auto brightness setting is currently turned on, the brightness is automatically adjusted by the light sensor, calling `setBrightness` will not take effect at this time, you need to use `setAutoBrightness` to turn off the auto brightness and then set it again. Note: If you exit the current page, you need to consider whether you need to set the brightness back to the original brightness.",
       "minApiLevel": 2,
+      "signature": "function setBrightness(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "brightness",
+              "type": "number",
+              "description": "Screen brightness value, range 0 - 100",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -158,6 +322,21 @@
       "type": "function",
       "description": "Set the current page screen lighting time, this setting will follow the page destruction to do reset.",
       "minApiLevel": 2,
+      "signature": "function setPageBrightTime(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "brightTime",
+              "type": "number",
+              "default": "10000",
+              "description": "Screen lighting time (milliseconds), range [1000 - 2147483000]",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -173,6 +352,7 @@
       "type": "function",
       "description": "Set the screen to rest.",
       "minApiLevel": 2,
+      "signature": "function setScreenOff(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -188,6 +368,20 @@
       "type": "function",
       "description": "By default, the system will off the screen in one page of the Mini Program, and the system will exit the Mini Program after 10s, and enter the dial page when the watch is woken up again. If `relaunch` is set to `true`, the Mini Program will reopen and enter the corresponding page when the watch is woken up again.",
       "minApiLevel": 2,
+      "signature": "function setWakeUpRelaunch(option: Option): void",
+      "shapes": [
+        {
+          "name": "Options",
+          "props": [
+            {
+              "name": "relaunch",
+              "type": "boolean",
+              "description": "Whether to reopen the Mini Program after waking up the watch again after a screen break",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

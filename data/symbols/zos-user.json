@@ -8,6 +8,26 @@
       "type": "function",
       "description": "Set user health data information. permission code: `data:user.health`",
       "minApiLevel": 3,
+      "signature": "function addHealthData(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "weight",
+              "type": "number",
+              "description": "Weight, in g",
+              "apiLevel": 3
+            },
+            {
+              "name": "bmi",
+              "type": "number",
+              "description": "100 times the value of BMI",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -68,6 +88,50 @@
       "type": "function",
       "description": "Get user information. permission code: `data:user.info`",
       "minApiLevel": 2,
+      "signature": "function getProfile(): Result",
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "age",
+              "type": "number",
+              "description": "User age, 0 if no data",
+              "apiLevel": 2
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "description": "User height, 0 if no data",
+              "apiLevel": 2
+            },
+            {
+              "name": "weight",
+              "type": "number",
+              "description": "User weight, 0 if no data",
+              "apiLevel": 2
+            },
+            {
+              "name": "gender",
+              "type": "number",
+              "description": "User gender, value refer to user gender constants",
+              "apiLevel": 2
+            },
+            {
+              "name": "nickName",
+              "type": "string",
+              "description": "User's nickname",
+              "apiLevel": 2
+            },
+            {
+              "name": "region",
+              "type": "string",
+              "description": "ISO code of the country or region where the user account is registered",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

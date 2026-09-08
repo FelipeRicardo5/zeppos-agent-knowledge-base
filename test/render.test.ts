@@ -87,6 +87,79 @@ describe("render", () => {
     assert.match(content, /Closes the current page\./);
   });
 
+  it("renders the signature and its property tables", async () => {
+    // The gap both eval runs called root: the base said a symbol exists and
+    // never how to call it. `(props: Props)` is unusable without `Props`.
+    const { symbols, out } = await writeFixture({
+      ui: {
+        module: "ui",
+        symbols: [
+          {
+            ...routerRecord,
+            id: "ui.Select",
+            module: "ui",
+            symbol: "Select",
+            minApiLevel: undefined,
+            description: undefined,
+            signature: "(props: Props) => result: RenderFunc",
+            shapes: [
+              {
+                name: "Props",
+                props: [
+                  { name: "options", type: "Array<SelectOption>", required: false, description: "select options" },
+                  { name: "multiple", type: "boolean", required: true, default: "false" },
+                ],
+              },
+              { name: "SelectOption", props: [{ name: "value", type: "string" }] },
+            ],
+          },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const page = await readFile(path.join(out, "api", "ui.md"), "utf-8");
+
+    assert.match(page, /```ts\n\(props: Props\) => result: RenderFunc\n```/);
+    assert.match(page, /\*\*Props\*\*/);
+    assert.match(page, /`options` \| `Array<SelectOption>` \| no \| — \| select options/);
+    assert.match(page, /`multiple` \| `boolean` \| yes \| `false`/);
+    assert.match(page, /\*\*SelectOption\*\*/, "the shape the signature refers to");
+  });
+
+  it("adds a per-property API_LEVEL column only where a table states one", async () => {
+    // A symbol available at one level can have a property that is not, and most
+    // tables have no such column at all.
+    const { symbols, out } = await writeFixture({
+      "zos-alarm": {
+        module: "@zos/alarm",
+        symbols: [
+          {
+            ...routerRecord,
+            id: "@zos/alarm.cancel",
+            module: "@zos/alarm",
+            symbol: "cancel",
+            shapes: [{ name: "Option", props: [{ name: "id", type: "number", apiLevel: 3 }] }],
+          },
+          {
+            ...routerRecord,
+            id: "@zos/alarm.set",
+            module: "@zos/alarm",
+            symbol: "set",
+            shapes: [{ name: "Option", props: [{ name: "time", type: "number" }] }],
+          },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const page = await readFile(path.join(out, "api", "zos-alarm.md"), "utf-8");
+
+    assert.match(page, /\| Property \| Type \| Required \| Default \| Min API_LEVEL \| Description \|/);
+    assert.match(page, /`id` \| `number` \| not stated \| — \| >= 3 \|/);
+    assert.match(page, /\| Property \| Type \| Required \| Default \| Description \|/);
+  });
+
   it("compatibility page groups symbols by stated API_LEVEL and flags uncovered ones", async () => {
     const { symbols, out } = await writeFixture({
       "zos-router": {

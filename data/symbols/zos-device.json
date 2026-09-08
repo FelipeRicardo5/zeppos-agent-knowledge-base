@@ -8,6 +8,68 @@
       "type": "function",
       "description": "Gets device information. permission code: `data:os.device.info`",
       "minApiLevel": 2,
+      "signature": "function getDeviceInfo(): Result",
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "width",
+              "type": "number",
+              "description": "Device screen width",
+              "apiLevel": 2
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "description": "Device screen height",
+              "apiLevel": 2
+            },
+            {
+              "name": "screenShape",
+              "type": "number",
+              "description": "Screen shape, value refer to screen shape constants",
+              "apiLevel": 2
+            },
+            {
+              "name": "deviceName",
+              "type": "number",
+              "description": "Device name",
+              "apiLevel": 2
+            },
+            {
+              "name": "keyNumber",
+              "type": "number",
+              "description": "Number of keys",
+              "apiLevel": 2
+            },
+            {
+              "name": "deviceSource",
+              "type": "number",
+              "description": "Device Plain Numeric Designators",
+              "apiLevel": 2
+            },
+            {
+              "name": "keyType",
+              "type": "string",
+              "description": "Device physical button type",
+              "apiLevel": 2
+            },
+            {
+              "name": "deviceColor",
+              "type": "number",
+              "description": "Device color identification",
+              "apiLevel": 2
+            },
+            {
+              "name": "uuid",
+              "type": "string",
+              "description": "Device unique identifier, 32 bytes in length",
+              "apiLevel": 4.2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +85,50 @@
       "type": "function",
       "description": "Gets disk information.",
       "minApiLevel": 2,
+      "signature": "function getDiskInfo(): Result",
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "total",
+              "type": "number",
+              "description": "Total Space in bytes",
+              "apiLevel": 2
+            },
+            {
+              "name": "free",
+              "type": "number",
+              "description": "Available Space in bytes",
+              "apiLevel": 2
+            },
+            {
+              "name": "app",
+              "type": "number",
+              "description": "Space occupied by Mini Programs in bytes",
+              "apiLevel": 2
+            },
+            {
+              "name": "watchface",
+              "type": "number",
+              "description": "Space occupied by watchfaces in bytes",
+              "apiLevel": 2
+            },
+            {
+              "name": "music",
+              "type": "number",
+              "description": "Space occupied by musics in bytes",
+              "apiLevel": 2
+            },
+            {
+              "name": "system",
+              "type": "number",
+              "description": "Space occupied by system in bytes",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

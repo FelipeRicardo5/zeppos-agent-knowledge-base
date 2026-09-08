@@ -8,6 +8,7 @@
       "type": "function",
       "description": "Closes the current page to return to the previous page.",
       "minApiLevel": 2,
+      "signature": "function back(): void",
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +24,20 @@
       "type": "function",
       "description": "Check if the system application supports jumping.",
       "minApiLevel": 3,
+      "signature": "function checkSystemApp(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "appId",
+              "type": "number",
+              "description": "ID of the system App to be jumped to, value refers to the system App ID constant",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +53,20 @@
       "type": "function",
       "description": "Cancel the wakeup Mini Program timer created by `setLaunchAppTimeout`.",
       "minApiLevel": 2,
+      "signature": "function clearLaunchAppTimeout(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "timeoutId",
+              "type": "number",
+              "description": "The identifier of the timeout you want to cancel. This ID was returned by the corresponding call to setLaunchAppTimeout()",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -53,6 +82,7 @@
       "type": "function",
       "description": "Exit the Mini Program and return to the applist page.",
       "minApiLevel": 2,
+      "signature": "function exit(): void",
       "runtimes": [
         "device-app"
       ],
@@ -68,6 +98,7 @@
       "type": "function",
       "description": "Fuzzy match the English name of installed Mini Programs on the device by name.",
       "minApiLevel": 3.6,
+      "signature": "function getAppIdByName(name: string): Result",
       "runtimes": [
         "device-app"
       ],
@@ -83,6 +114,7 @@
       "type": "function",
       "description": "Exit the Mini Program and return to the watchface page.",
       "minApiLevel": 2,
+      "signature": "function home(): void",
       "runtimes": [
         "device-app"
       ],
@@ -98,6 +130,39 @@
       "type": "function",
       "description": "Open Mini Program.",
       "minApiLevel": 2,
+      "signature": "function launchApp(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "appId",
+              "type": "number",
+              "description": "Mini Program ID or System App ID (API_LEVEL 3.0 support, value reference System App ID constant)",
+              "apiLevel": 2
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "description": "path",
+              "apiLevel": 2
+            },
+            {
+              "name": "native",
+              "type": "boolean",
+              "default": "false",
+              "description": "Whether to jump to the system App",
+              "apiLevel": 3
+            },
+            {
+              "name": "params",
+              "type": "string&#124;object",
+              "description": "The argument passed to the app.js lifecycle onCreate supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -113,6 +178,26 @@
       "type": "function",
       "description": "Navigate to a page within the Mini Program. Use the `back` method to go back to the original page.",
       "minApiLevel": 2,
+      "signature": "function push(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "url",
+              "type": "string",
+              "description": "path",
+              "apiLevel": 2
+            },
+            {
+              "name": "params",
+              "type": "string&#124;object",
+              "description": "Parameters passed to the page onInit lifecycle, supporting strings or standard JSON object. If a standard JSON object is passed, the method internally converts it to a string",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -128,6 +213,26 @@
       "type": "function",
       "description": "Close the current page and jump to a page within the app.",
       "minApiLevel": 2,
+      "signature": "function replace(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "url",
+              "type": "string",
+              "description": "path",
+              "apiLevel": 2
+            },
+            {
+              "name": "params",
+              "type": "string&#124;object",
+              "description": "Parameters passed to the page onCreate lifecycle, supporting strings or standard JSON objects. If a standard JSON object is passed, the method internally converts it to a string",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -143,6 +248,45 @@
       "type": "function",
       "description": "Register a timer to launch the Mini Program at a given time.",
       "minApiLevel": 2,
+      "signature": "function setLaunchAppTimeout(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "appId",
+              "type": "number",
+              "description": "Mini Program ID",
+              "apiLevel": 2
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "description": "path",
+              "apiLevel": 2
+            },
+            {
+              "name": "utc",
+              "type": "number",
+              "description": "utc timestamp(milliseconds)，the priority is higher than delay, and when set at the same time as the delay field, only the utc field takes effect",
+              "apiLevel": 2
+            },
+            {
+              "name": "delay",
+              "type": "number",
+              "default": "0",
+              "description": "The time, in milliseconds that the timer should wait before the Mini Program is waked.",
+              "apiLevel": 3
+            },
+            {
+              "name": "params",
+              "type": "string&#124;object",
+              "description": "The argument passed to the app.js lifecycle onCreate supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

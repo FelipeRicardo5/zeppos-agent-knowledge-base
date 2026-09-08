@@ -8,6 +8,118 @@
       "type": "function",
       "description": "Create Modal prompt box.",
       "minApiLevel": 2,
+      "signature": "function createModal(option: Option): Modal",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "content",
+              "type": "string",
+              "description": "title of Modal",
+              "apiLevel": 2
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "description": "Modal dialog box title, alias for content",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "show",
+              "type": "boolean",
+              "default": "true",
+              "description": "Whether to display Modal immediately after the creation is completed",
+              "apiLevel": 2
+            },
+            {
+              "name": "onClick",
+              "type": "(keyObj: KeyObj) =&#62; void",
+              "description": "Whether to display Modal immediately",
+              "apiLevel": 2
+            },
+            {
+              "name": "autoHide",
+              "type": "boolean",
+              "default": "true",
+              "description": "Whether to automatically close the Modal dialog after clicking the Confirm or Cancel button",
+              "apiLevel": 2
+            },
+            {
+              "name": "subtitle",
+              "type": "string",
+              "description": "subtitle",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "src",
+              "type": "string",
+              "description": "Icon icon path",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "description": "text content",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "textColor",
+              "type": "number",
+              "default": "0xFFFFFF",
+              "description": "text color",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "textAlpha",
+              "type": "number",
+              "default": "255",
+              "description": "Text transparency, transparency [0-255], 0 is full transparency",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "okButton",
+              "type": "string",
+              "description": "The icon path of the confirmation button",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "cancelButton",
+              "type": "string",
+              "description": "Cancel button icon icon path",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "capsuleButton",
+              "type": "Array&#60;string&#62;",
+              "description": "Capsule button configuration, as a string array, click type in the returned KeyObj starting from 10",
+              "apiLevel": 3.6
+            }
+          ]
+        },
+        {
+          "name": "KeyObj",
+          "props": [
+            {
+              "name": "type",
+              "type": "number",
+              "description": "Modal key name, value reference Modal key name constants",
+              "apiLevel": 2
+            }
+          ]
+        },
+        {
+          "name": "Modal",
+          "props": [
+            {
+              "name": "show",
+              "type": "(isShow: boolean) =&#62; void",
+              "description": "Show or hide Modal",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -278,6 +390,7 @@
       "type": "function",
       "description": "Cancel the `onDigitalCrown` registration to listen for digital crown rotation events.",
       "minApiLevel": 2,
+      "signature": "function offDigitalCrown(): void",
       "runtimes": [
         "device-app"
       ],
@@ -293,6 +406,7 @@
       "type": "function",
       "description": "Cancel the `onGesture` registration to listen for user gesture events.",
       "minApiLevel": 2,
+      "signature": "function offGesture(): void",
       "runtimes": [
         "device-app"
       ],
@@ -308,6 +422,7 @@
       "type": "function",
       "description": "Cancel the keystroke event registered by `onKey`..",
       "minApiLevel": 2,
+      "signature": "function offKey(): void",
       "runtimes": [
         "device-app"
       ],
@@ -323,6 +438,20 @@
       "type": "function",
       "description": "Listen to the digital crown rotation event, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.",
       "minApiLevel": 2,
+      "signature": "function onDigitalCrown(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "callback",
+              "type": "(key: Key, degree: Degree) =&#62; void",
+              "description": "Digital crown rotation event callback function",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -338,6 +467,20 @@
       "type": "function",
       "description": "Listen to user gesture events, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.",
       "minApiLevel": 2,
+      "signature": "function onGesture(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "callback",
+              "type": "(event: GestureEvent) =&#62; PreventDefault",
+              "description": "Gesture event callback function",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -353,6 +496,20 @@
       "type": "function",
       "description": "Listen to key events, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.",
       "minApiLevel": 2,
+      "signature": "function onKey(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "callback",
+              "type": "(key: Key, event: KeyEvent) =&#62; PreventDefault",
+              "description": "Key event callback function",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -368,6 +525,37 @@
       "type": "function",
       "description": "Monitoring hand movement events.",
       "minApiLevel": 3,
+      "signature": "function onWristMotion(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "callback",
+              "type": "(params: Params) =&#62; void",
+              "description": "Digital crown rotation event callback function",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "Params",
+          "props": [
+            {
+              "name": "type",
+              "type": "number",
+              "description": "Action type, 0 - palm covering, 3 - wrist event",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "motion",
+              "type": "number",
+              "description": "Action code, value reference hand motion constant",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -383,6 +571,20 @@
       "type": "function",
       "description": "Display Message Prompt Box.",
       "minApiLevel": 2,
+      "signature": "function showToast(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "content",
+              "type": "string",
+              "description": "Content of the prompt",
+              "apiLevel": 2
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

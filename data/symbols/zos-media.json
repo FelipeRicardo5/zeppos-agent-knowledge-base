@@ -8,6 +8,7 @@
       "type": "function",
       "description": "Create a media player or recorder.",
       "minApiLevel": 3,
+      "signature": "function create(controllerId: typeof id.PLAYER): Player\nfunction create(controllerId: typeof id.RECORDER): Recorder",
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +24,119 @@
       "type": "value",
       "description": "The media player controller sets audio sources, prepares playback resources, controls playback, and reads media information..",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "source",
+          "props": [
+            {
+              "name": "FILE",
+              "type": "number",
+              "description": "Play a specified audio file",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "event",
+          "props": [
+            {
+              "name": "PREPARE",
+              "type": "number",
+              "description": "Asynchronous result of prepare()",
+              "apiLevel": 3
+            },
+            {
+              "name": "COMPLETE",
+              "type": "number",
+              "description": "Audio playback completed",
+              "apiLevel": 3
+            },
+            {
+              "name": "PLAY",
+              "type": "number",
+              "description": "Result after start() or resume()",
+              "apiLevel": 3
+            },
+            {
+              "name": "STOP",
+              "type": "number",
+              "description": "Playback stopped",
+              "apiLevel": 3
+            },
+            {
+              "name": "PAUSE",
+              "type": "number",
+              "description": "Playback paused",
+              "apiLevel": 3
+            },
+            {
+              "name": "PROGRESS",
+              "type": "number",
+              "description": "Playback progress updated",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "state",
+          "props": [
+            {
+              "name": "IDLE",
+              "type": "number",
+              "description": "Initial state",
+              "apiLevel": 3
+            },
+            {
+              "name": "INITIALIZED",
+              "type": "number",
+              "description": "State after setSource()",
+              "apiLevel": 3
+            },
+            {
+              "name": "PREPARING",
+              "type": "number",
+              "description": "Intermediate preparing state",
+              "apiLevel": 3
+            },
+            {
+              "name": "PREPARED",
+              "type": "number",
+              "description": "Resources prepared",
+              "apiLevel": 3
+            },
+            {
+              "name": "STARTING",
+              "type": "number",
+              "description": "Intermediate starting state",
+              "apiLevel": 3
+            },
+            {
+              "name": "PLAY",
+              "type": "number",
+              "description": "Playback in progress",
+              "apiLevel": 3
+            },
+            {
+              "name": "PAUSING",
+              "type": "number",
+              "description": "Intermediate pausing state",
+              "apiLevel": 3
+            },
+            {
+              "name": "PAUSED",
+              "type": "number",
+              "description": "Playback paused",
+              "apiLevel": 3
+            },
+            {
+              "name": "RESUMING",
+              "type": "number",
+              "description": "Intermediate resuming state",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +152,54 @@
       "type": "value",
       "description": "The media recorder controller records audio to a file in the mini program `data` directory..",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "event",
+          "props": [
+            {
+              "name": "START",
+              "type": "number",
+              "description": "Result reported after recording starts",
+              "apiLevel": 3
+            },
+            {
+              "name": "STOP",
+              "type": "number",
+              "description": "Recording stopped",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "state",
+          "props": [
+            {
+              "name": "IDLE",
+              "type": "number",
+              "description": "Initial state",
+              "apiLevel": 3
+            },
+            {
+              "name": "PREPARING",
+              "type": "number",
+              "description": "Requesting recording resources",
+              "apiLevel": 3
+            },
+            {
+              "name": "STARTING",
+              "type": "number",
+              "description": "Starting recording",
+              "apiLevel": 3
+            },
+            {
+              "name": "RECORDING",
+              "type": "number",
+              "description": "Recording in progress",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

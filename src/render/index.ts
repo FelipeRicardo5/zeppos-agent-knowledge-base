@@ -99,12 +99,47 @@ function apiMarkdown(module: ModuleFile): string {
     );
   }
 
-  const described = module.symbols.filter((r) => r.description !== undefined);
-  if (described.length > 0) {
-    lines.push("", "## Descriptions", "");
-    for (const record of described) {
+  const detailed = module.symbols.filter(
+    (r) => r.description !== undefined || r.signature !== undefined || r.shapes !== undefined,
+  );
+  if (detailed.length > 0) {
+    lines.push("", "## Symbols in detail", "");
+    for (const record of detailed) {
       lines.push(`### \`${module.module}.${record.symbol}\``, "");
-      lines.push(record.description!, "");
+      if (record.description !== undefined) lines.push(record.description, "");
+
+      if (record.signature !== undefined) {
+        // Verbatim: `(props: Props) => result: RenderFunc` is not valid
+        // TypeScript, and normalising it would invent a shape the docs never
+        // stated. The shapes below are what the parameter names refer to.
+        lines.push("```ts", record.signature, "```", "");
+      }
+
+      for (const shape of record.shapes ?? []) {
+        lines.push(`**${cell(shape.name)}**`, "");
+        const levelled = shape.props.some((p) => p.apiLevel !== undefined);
+        lines.push(
+          levelled
+            ? "| Property | Type | Required | Default | Min API_LEVEL | Description |"
+            : "| Property | Type | Required | Default | Description |",
+        );
+        lines.push(levelled ? "| --- | --- | --- | --- | --- | --- |" : "| --- | --- | --- | --- | --- |");
+
+        for (const prop of shape.props) {
+          const required = prop.required === undefined ? NOT_STATED : prop.required ? "yes" : "no";
+          const level = prop.apiLevel === undefined ? NOT_STATED : `>= ${prop.apiLevel}`;
+          const columns = [
+            `\`${prop.name}\``,
+            prop.type === undefined ? NOT_STATED : `\`${cell(prop.type)}\``,
+            required,
+            prop.default === undefined ? "—" : `\`${cell(prop.default)}\``,
+            ...(levelled ? [level] : []),
+            prop.description === undefined ? "—" : cell(prop.description),
+          ];
+          lines.push(`| ${columns.join(" | ")} |`);
+        }
+        lines.push("");
+      }
     }
   }
 

@@ -20,13 +20,13 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/) |
 
-Fixture-based tests cover all seven parse fronts, runtime attribution, the enrich merge and every render view: `npm test` (135 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all seven parse fronts, runtime attribution, call-shape extraction, the enrich merge and every render view: `npm test` (152 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
 - **409 symbols** across **42 modules**, from all 241 reference pages + 36 phone-runtime entries + 443 `static/llms` entries + 622 sample imports
 - 385 `OFFICIAL`, 24 `OBSERVED`
-- 353 symbols carry a minimum `API_LEVEL`; 367 carry a description
+- 353 symbols carry a minimum `API_LEVEL`; 367 carry a description; **178 carry a call signature and 121 carry property tables** — 643 properties, 484 of them with their own minimum level
 - **every runtime is covered**: 373 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
@@ -139,6 +139,19 @@ A pattern is a task ("communicate between pages", "adapt to a round screen"), no
 - **which of those symbols this KB has no record for**, so a gap is visible instead of the pattern looking fully verified.
 - **the inverse index** on `patterns/index.md`: given a symbol, which patterns show it in use. The guides link to the reference pages; nothing upstream links back.
 
+### Call shapes: `signature` and `shapes`
+
+Both eval runs found the same root gap — the base recorded that a symbol exists and never how to call it. The documentation *did* state it, and the extractor was walking past it: 182 of 269 reference pages carry a signature in a ```ts block under `## Type`, and each of the 13 Settings App components carries a full property table that had been reduced to a bare name.
+
+| Field | Meaning |
+| --- | --- |
+| `signature` | The call signature the page states, **verbatim**. `(props: Props) => result: RenderFunc` is not valid TypeScript, so normalising it would either lose information or invent a shape the docs never stated |
+| `shapes` | Every named property table on the page, keyed by the heading above it — `Props`, `SelectOption`, `Options`, `DownloadTask`. A signature is unusable without them, and `Select`'s `options` is unusable without `SelectOption`. `Props` sorts first |
+
+Each property carries `type`, `required`, `default`, `description`, and sometimes its **own** minimum `API_LEVEL`: a symbol you may call can have a property you may not. 484 of the 643 properties state one.
+
+Table columns are resolved by header name, never by position, because the two trees disagree on order *and* wording — `Name | Description | Required | Type | Default` in `app-settings-api`, `Property | Type | Required | DefaultValue | Description | API_LEVEL` in `device-app-api`. A positional read files a type as a description on one of them.
+
 ### `DeviceRecord`
 
 `data/devices.json` — one file, because the source is a single table of 41 rows and one file per device would mean 41 tiny files and an unreadable sync diff.
@@ -194,6 +207,7 @@ src/
     devices.ts   the device-list front (columns resolved by header name)
     patterns.ts  the best-practice guides front
     examples.ts  the sample apps read as code, with cited excerpts
+    spec.ts      signatures and property tables, columns by header name
     phone.ts     the Side Service + Settings App front (four page shapes)
     runtime.ts   path -> runtime rules, with the doc anchoring each one
     util.ts      dir walk + the LF-normalizing read

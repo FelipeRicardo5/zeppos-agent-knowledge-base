@@ -57,10 +57,21 @@ description, no level, no signature. Read it as "this exists" and nothing more.
 
 ## How to find out how a symbol is called
 
-**No record has a signature.** `type` holds only `function`, `constant` or
-`value` — no parameter list, no return type. So `api/` and `compatibility/`
-answer *may I use X here*, and for *how do I call X* go to
-`../../examples/index.md`.
+Two sources, and use both — they fail in opposite directions.
+
+**What the docs declare** is on the symbol's entry in `../../api/`, under
+*Symbols in detail*: the signature verbatim, plus a table for every object shape
+it refers to. `(props: Props) => RenderFunc` is unusable without its `Props`
+table, so both are there. Some property tables state their **own** minimum
+`API_LEVEL` — a symbol you may call can have a property you may not.
+
+178 of 409 symbols carry a signature and 121 carry shapes; the rest state none
+upstream. `type` still holds only `function`, `constant` or `value`, so a symbol
+with no signature tells you nothing about its call shape.
+
+**What working code does** is in `../../examples/index.md`. Go there when the
+signature is absent, when it is too abstract to act on, or to check that your
+call matches something that actually ran.
 
 It indexes 33 official sample apps by symbol: arrive with a symbol from `api/`,
 leave with verbatim code that calls it, cited to a file and line. Two sections
@@ -102,7 +113,8 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 - The **watchface `hm*` API is not covered at all** (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`). The 3 Watchface symbols here are `@zos/*` calls seen in watchface samples. Answer a `hm*` question from the official docs and say so.
 - Methods reached through a returned object (`DownloadTask.cancel`, `Onbox.enqueFile`) are not recorded. Their parent function is.
 - A pattern's `Minimum API_LEVEL` is **derived**, not quoted: it is the highest minimum among the symbols the guide's code uses, and it skips symbols this KB has no record for. Treat it as a floor, and check the page's own "no record" flag before calling a pattern verified.
-- The Side Service and Settings App **are** covered: see `../../runtimes/side-service.md` and `../../runtimes/settings.md`, plus `../../api/fetch.md` and `../../api/settings-storage.md`. What is missing there is narrower than the runtime: the Settings App's **entry point** (the function that registers a settings page) and the **props of its `ui.*` components` — the base has 13 component names and one sentence of description across all of them. Those two, answer from the official docs and say so; everything else in those runtimes, answer from here.
+- The Settings App's 13 `ui.*` components now carry a signature and a full property table each (74 properties in total), so they are no longer bare names. What is still missing there is the **entry point** — `AppSettingsPage`, which registers a settings page, has no symbol record; it appears only as code, under *Global calls in the phone runtimes* in `../../examples/index.md`.
+- The Side Service and Settings App **are** covered: see `../../runtimes/side-service.md` and `../../runtimes/settings.md`, plus `../../api/fetch.md` and `../../api/settings-storage.md`. What is missing there is narrower than the runtime: the Settings App's **entry point** (the function that registers a settings page) and the **props of its `ui.*` components`. Answer that one from the official docs and say so; everything else in those runtimes, answer from here.
 - The watchface `hm*` API (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) is genuinely not extracted — 93 upstream pages, none of them parsed. The Watchface symbols here are `@zos/*` calls seen in watchface samples.
 
 ## Where the numbers come from

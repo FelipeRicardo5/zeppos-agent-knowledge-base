@@ -10,11 +10,22 @@
 | `GENDER_UNSPECIFIED` | constant | >= 2 | OFFICIAL |
 | `getProfile` | function | >= 2 | OFFICIAL |
 
-## Descriptions
+## Symbols in detail
 
 ### `@zos/user.addHealthData`
 
 Set user health data information. permission code: `data:user.health`
+
+```ts
+function addHealthData(option: Option): Result
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `weight` | `number` | not stated | — | >= 3 | Weight, in g |
+| `bmi` | `number` | not stated | — | >= 3 | 100 times the value of BMI |
 
 ### `@zos/user.GENDER_FEMALE`
 
@@ -31,3 +42,18 @@ User not specified
 ### `@zos/user.getProfile`
 
 Get user information. permission code: `data:user.info`
+
+```ts
+function getProfile(): Result
+```
+
+**Result**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `age` | `number` | not stated | — | >= 2 | User age, 0 if no data |
+| `height` | `number` | not stated | — | >= 2 | User height, 0 if no data |
+| `weight` | `number` | not stated | — | >= 2 | User weight, 0 if no data |
+| `gender` | `number` | not stated | — | >= 2 | User gender, value refer to user gender constants |
+| `nickName` | `string` | not stated | — | >= 2 | User's nickname |
+| `region` | `string` | not stated | — | >= 2 | ISO code of the country or region where the user account is registered |

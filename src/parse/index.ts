@@ -6,6 +6,7 @@
 import path from "node:path";
 import type { RawUnit } from "../types.js";
 import { runtimeForPath } from "./runtime.js";
+import { extractShapes, extractSignature } from "./spec.js";
 import { readSource, walkFiles } from "./util.js";
 
 const IMPORT_RE = /import\s*(?:\{([^}]*)\})?[^'"]*from\s+['"](@[^'"]+)['"]/g;
@@ -87,6 +88,7 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
 
     const apiLevelMatch = content.match(API_LEVEL_RE);
     const description = extractDescription(content);
+    const shapes = extractShapes(content);
 
     units.push({
       module,
@@ -94,6 +96,8 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
       kind: content.includes("function " + symbol) ? "function" : "value",
       description,
       apiLevel: apiLevelMatch ? Number(apiLevelMatch[1]) : undefined,
+      signature: extractSignature(content),
+      shapes: shapes.length > 0 ? shapes : undefined,
       runtimeHint: runtimeForPath(sourceFile),
       sourceFile,
       sourceKind: "docs-reference",

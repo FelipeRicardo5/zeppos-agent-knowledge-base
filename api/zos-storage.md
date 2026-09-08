@@ -14,7 +14,7 @@
 | `ShareTypedStorage` | value | >= 3 | OFFICIAL |
 | `TypedStorage` | value | >= 3 | OFFICIAL |
 
-## Descriptions
+## Symbols in detail
 
 ### `@zos/storage.localStorage`
 

@@ -81,15 +81,37 @@
 
 `not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
-## Descriptions
+## Symbols in detail
 
 ### `@zos/ui.addEventListener`
 
 Register a listener to the UI widget and the given callback function will be executed when the specified event is triggered.
 
+```ts
+(eventId: EventId, callback: (event: Event) => void) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `eventId` | `EventId` | not stated | — | Event type. (e.g., event.MOVE, event.CLICK_DOWN, etc.) |
+| `event` | `object` | not stated | — | Event details, refer to different events. |
+
 ### `@zos/ui.addLayoutChild`
 
 Adds a child node to the current widget.
+
+```ts
+(child: UIWidget, index?: number) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `child` | `UIWidget` | yes | — | Child widget instance to add |
+| `index` | `number` | no | — | Insertion position index |
 
 ### `@zos/ui.ARC`
 
@@ -119,13 +141,35 @@ Draws a circle with support for color, transparency, and other properties.
 
 Create a Dialog.
 
+```ts
+(option: Option) => result
+```
+
 ### `@zos/ui.createWidget`
 
 Create UI widgets.
 
+```ts
+(widgetId: WIDGET_ID, option?: Option) => widget: WIDGET
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `widgetId` | not stated | yes | — | The ID of the widget to be created. (Reference WIDGET_ID) |
+| `option` | not stated | no | — | Parameters. |
+| `widget` | not stated | not stated | — | The instance of widget. |
+
 ### `@zos/ui.CYCLE_IMAGE_TEXT_LIST`
 
 Create a list that can be scrolled in a loop, and each list item can be placed with an image and text.
+
+**Set the top item index of the list**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `index` | `number` | yes | — | The index of item.Starting from 0. |
 
 ### `@zos/ui.CYCLE_LIST`
 
@@ -135,33 +179,109 @@ Create a list that scrolls in a loop, which can be populated with images.
 
 Delete the UI widget.
 
+```ts
+(widget: WIDGET) => void
+```
+
 ### `@zos/ui.DIALOG`
 
 This widget has been discontinued. It is recommended to replace it with the more powerful [@zos/interaction createModal API](../../interaction/createModal.mdx) Dialog popup consists of a piece of text and two buttons. The popup box disappears when the buttons are clicked.
+
+**Dialog**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `text` | `string` | not stated | — | The content of dialog. |
+| `... omitted` | not stated | not stated | — | Refer to dialog related properties in the setting field |
 
 ### `@zos/ui.FILL_RECT`
 
 The Fill Rectangle widget is used to draw a solid color rectangular area.
 
+**Param**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `x` | `number` | yes | — | >= 2 | The x-coordinate of the widget |
+| `y` | `number` | yes | — | >= 2 | The y-coordinate of the widget |
+| `w` | `number` | yes | — | >= 2 | The width of the widget |
+| `h` | `number` | yes | — | >= 2 | The height of the widget |
+| `color` | `number` | yes | — | >= 2 | The color of the widget |
+| `radius` | `number` | no | — | >= 2 | The corner radius of the rectangle |
+| `angle` | `number` | no | — | >= 2 | The rotation angle |
+| `alpha` | `number` | no | — | >= 3 | Opacity, value range 0-255, default 255 (opaque), 0 (transparent) |
+| `pos_x` | `number` | no | — | >= 4 | Drawing area x offset (only works when angle%360!=0) |
+| `pos_y` | `number` | no | — | >= 4 | Drawing area y offset (only works when angle%360!=0) |
+| `rect_width` | `number` | no | — | >= 4 | Width of the drawing area (only works when angle%360!=0) |
+| `rect_height` | `number` | no | — | >= 4 | Height of the drawing area (only works when angle%360!=0) |
+
 ### `@zos/ui.getAppWidgetSize`
 
 Get the system default shortcut card size for developers to layout the widget.
+
+```ts
+() => result
+```
+
+**result**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `w` | `number` | not stated | — | Shortcut card width |
+| `h` | `number` | not stated | — | shortcut card height |
+| `margin` | `number` | not stated | — | Margin of the shortcut card from the edge of the screen |
+| `radius` | `number` | not stated | — | Quick Card Rounded Corners |
 
 ### `@zos/ui.getId`
 
 Get the unique ID of the widget.
 
+```ts
+() => result
+```
+
 ### `@zos/ui.getImageInfo`
 
 Get information about the image resources in the `/assets` resource directory.
+
+```ts
+(img_path: string) => result
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `img_path` | `string` | yes | — | The path to the image file, relative to the /assets resource directory |
+
+**result**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `width` | `number` | not stated | — | Image width value |
+| `height` | `number` | not stated | — | Image height value |
 
 ### `@zos/ui.getProperty`
 
 Get the UI widget properties, use `widget.getProperty(prop.MORE, {})` to get all the properties of the widget.
 
+```ts
+(key: any) => result
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `key` | `any` | not stated | — | The value of property. |
+
 ### `@zos/ui.getRtlLayout`
 
 Query whether the current system language setting is RTL language. Setting the language to Hebrew and Arabic will return `true`.
+
+```ts
+() => result
+```
 
 ### `@zos/ui.gettersetter`
 
@@ -171,9 +291,24 @@ Starting from API_LEVEL 4.0, Zepp OS supports direct access and modification of 
 
 Calculate the height and width of the target text after the layout is completed, and does not actually render it, only performs the layout calculation. Can be used to calculate the height of a multi-line text layout with a fixed width, or the width of a single-line text layout.
 
+```ts
+(text: string, options: object) => result
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `text` | `string` | yes | — | Text content of the layout to be calculated |
+| `options` | `Options` | yes | — | Options |
+
 ### `@zos/ui.getType`
 
 Get the UI widget type.
+
+```ts
+() => result
+```
 
 ### `@zos/ui.GRADIENT_POLYLINE`
 
@@ -199,9 +334,65 @@ Play the pre-given image at the set frame rate to create an animation effect.
 
 The keyboard API provides rich input interface capabilities, greatly simplifying the development complexity of custom keyboards.
 
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `rect` | `object` | yes | — | Object containing x, y, w, h properties |
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `text` | `string` | yes | — | Text to be inserted |
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `count` | `number` | no | `1` | Number of characters to delete |
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `keyType` | `number` | yes | — | Key type constant |
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `text` | `string` | yes | — | Buffer text |
+| `color` | `number` | no | `0xffffff` | Text color |
+| `underlineColor` | `number` | no | `0xffffff` | Underline color |
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `inputType` | `number` | yes | — | Input type constant |
+
 ### `@zos/ui.openInspector`
 
 During development, especially when using Flex layout, you may need to check the actual layout position and size of each widget. Using `openInspector()` can visually display the boundaries of all widgets participating in layout in the simulator, helping developers debug layout issues. Used in the simulator to draw boundary rectangles for all widgets participating in layout, helping developers debug layout issues. This method should be called after the `build()` lifecycle.
+
+```ts
+function openInspector(): Inspector
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `options` | `object` | no | — | Draw options |
+
+**options Object Properties**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `line_color` | `number` | no | — | Border line color, hexadecimal value, e.g., 0xff0000 for red |
+| `line_width` | `number` | no | — | Border line width |
+| `border_mode` | `number` | no | `0` | Border draw mode, 0 for outward drawing, 1 for inward drawing |
 
 ### `@zos/ui.PAGE_INDICATOR`
 
@@ -231,17 +422,46 @@ Used to select a single option among multiple options. Each individual option is
 
 In some boundary cases, after `deleteWidget`, the view may not be updated in time, need to call `redraw()` manually to update the view
 
+```ts
+() => undefined
+```
+
 ### `@zos/ui.relayoutRtl`
 
 Apply RTL layout to the widget based on the current system language. After calling this method, the current system language will be queried. If it is an RTL language, RTL layout adjustments will be made to all widgets on the current calling page. If there are widgets on the current page that do not need to be flipped, you need to organize the calling timing of `relayoutRtl()` and widget creation Design specification reference [Design Specifications - Internationalization - Interface layouts](../../../../designs/internationalization/interface-layouts.md)
+
+```ts
+() => result
+```
 
 ### `@zos/ui.removeEventListener`
 
 Remove event listeners registered by the UI widget using the `widget.addEventListener` method.
 
+```ts
+(eventId: EventId, callback) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `eventId` | `number` | not stated | — | Event type (e.g., swipe, press, lift, etc.) |
+| `callback` | `function` | not stated | — | The callback function to register. |
+
 ### `@zos/ui.removeLayoutChild`
 
 Removes the specified child node from the current node.
+
+```ts
+(child: UIWidget) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `child` | `UIWidget` | not stated | — | Child widget instance to remove |
 
 ### `@zos/ui.SCROLL_LIST`
 
@@ -251,25 +471,68 @@ Create a list area with sliding support, where each list item can contain images
 
 Set the opacity of the widget. For widgets that do not support the `alpha` property, use `widget.setAlpha` to set opacity.
 
+```ts
+(val: any) => void
+```
+
 ### `@zos/ui.setAppWidgetSize`
 
 Set the size of the Shortcut cards, currently only height adjustment is supported.
+
+```ts
+(option: Option) => undefined
+```
 
 ### `@zos/ui.setEnable`
 
 Set whether the widget responds to screen gesture interaction events, the default is to respond. If the widgets are stacked in the Z-axis direction, the widgets above the stack will block events and the widgets below will not receive events such as `CLICK_DOWN` and `CLICK_UP`. If you want the widgets below to receive gesture events, set `widget.setEnable(false)` for the widgets stacked above.
 
+```ts
+(response: boolean) => void
+```
+
 ### `@zos/ui.setLayoutParent`
 
 Sets the parent node of the current node.
+
+```ts
+(parent: UIWidget) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `parent` | `UIWidget` | not stated | — | Widget instance object participating in layout |
 
 ### `@zos/ui.setProperty`
 
 Set the properties of the UI widget.
 
+```ts
+(propertyId: string, val: any) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `propertyId` | `PropertyId` | not stated | — | The property of ID. |
+| `val` | `any` | not stated | — | Set the value. (when property is prop.MORE, val is used in the same way as createWidget's option, which can set multiple parameters.) |
+
 ### `@zos/ui.setStatusBarVisible`
 
 This interface is only available on square screen devices, set the status bar visible or not. For square screen title bar, refer to [Screen Adaptation](../../../../guides/best-practice/multi-screen-adaption.mdx).
+
+```ts
+(visible: boolean) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `visible` | `boolean` | not stated | — | true: show the status bar; false: hide the status bar |
 
 ### `@zos/ui.SLIDE_SWITCH`
 
@@ -283,9 +546,37 @@ Displaying workout data in the workout extension can display a rich variety of w
 
 The stroked rectangle widget adds a stroke on the basis of the filled rectangle widget.
 
+**Param**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `x` | `number` | yes | — | >= 2 | The x-axis coordinate of the widget |
+| `y` | `number` | yes | — | >= 2 | The y-axis coordinate of the widget |
+| `w` | `number` | yes | — | >= 2 | The width of the widget |
+| `h` | `number` | yes | — | >= 2 | The height of the widget |
+| `color` | `number` | yes | — | >= 2 | The widget's color |
+| `radius` | `number` | no | — | >= 2 | The rectangle's rounded corners |
+| `line_width` | `number` | no | — | >= 2 | The width of stroke |
+| `angle` | `number` | no | — | >= 2 | Rotation angle |
+| `pos_x` | `number` | no | — | >= 4 | Drawing area x offset (only effective when angle%360!=0) |
+| `pos_y` | `number` | no | — | >= 4 | Drawing area y offset (only effective when angle%360!=0) |
+| `rect_width` | `number` | no | — | >= 4 | Width of the drawing area (only effective when angle%360!=0) |
+| `rect_height` | `number` | no | — | >= 4 | Height of the drawing area (only effective when angle%360!=0) |
+
 ### `@zos/ui.SYSTEM_KEYBOARD`
 
 Create a system-level input keyboard that supports multiple input modes.
+
+**Param**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `inputType` | `number` | yes | — | Input type, refer to inputType enum |
+| `onComplete` | `function` | yes | — | Callback when user confirms input |
+| `onCancel` | `function` | yes | — | Callback when user swipes right or presses back button |
+| `text` | `string` | no | — | Initial text for editing |
+| `onClick` | `function` | no | — | Click event callback (Not available yet) |
+| `selection` | `array` | no | — | Quick reply options (Not available yet) |
 
 ### `@zos/ui.TEXT`
 
@@ -299,13 +590,37 @@ A full-screen widget that supports time and date selection.
 
 Used to re-render the view after modifying the widget tree.
 
+```ts
+() => void
+```
+
 ### `@zos/ui.updateLayoutStyle`
 
 Updates the layout style of a widget node. For detailed `layout` object properties, please refer to [layout property configuration](../../../../guides/framework/device/layout.md#layout-properties).
 
+```ts
+(style: LayoutStyle) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `style` | `LayoutStyle` | not stated | — | Object containing layout properties, the layout object |
+
 ### `@zos/ui.updateStatusBarTitle`
 
 This interface is only available on square screen devices, set the status bar to display text content. For square screen title bar, refer to [Screen Adaptation](../../../../guides/best-practice/multi-screen-adaption.mdx).
+
+```ts
+(title: string) => void
+```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `title` | `string` | not stated | — | Status bar display text |
 
 ### `@zos/ui.VIEW_CONTAINER`
 
@@ -315,6 +630,36 @@ The `VIEW_CONTAINER` widget container is a very powerful layout widget with the 
 
 VIRTUAL_CONTAINER is a special container widget used to implement Flex layout. It serves as the root node of a Flex layout container, and the widgets inside the container will be arranged and rendered according to the rules of Flex layout.
 
+**Param**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `layout` | `object` | yes | — | >= 4 | Layout properties for Flex layout configuration |
+
 ### `@zos/ui.widgetAnimations`
 
 Widget animation can add animation effects to some of the widget's property changes. The above image shows the TEXT widget's `x` and `y` properties changing at the same time, creating a moving animation effect.
+
+**Individual property animation configuration**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `anim_prop` | `number` | not stated | — | To add the properties of the animation, refer to [anim_prop](#properties-that-support-animations) |
+| `anim_from` | `number` | not stated | — | The value of the property at the start of the animation |
+| `anim_to` | `number` | not stated | — | The value of the property at the end of the animation |
+| `anim_rate` | `string` | not stated | — | Animation curve, optional values linear, easein, easeout, easeinout, bounce, refer to [https://easings.net/](https://easings.net/) |
+| `anim_duration` | `number` | not stated | — | Animation duration, in milliseconds |
+| `anim_offset` | `number` | not stated | — | The delay before the animation starts, in milliseconds |
+
+**Animation Configuration**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `anim_steps` | `Array<anim_config>` | not stated | — | >= 2 | Attribute animation configuration array, refer to [anim_config](#individual-property-animation-configuration), multiple sets of animations can be performed simultaneously |
+| `anim_fps` | `number` | not stated | — | >= 2 | Animation frame rate, default 25 |
+| `anim_auto_start` | `number` | not stated | — | >= 2 | If or not the animation plays automatically, default 1, 0: don't play automatically; 1: play automatically |
+| `anim_auto_destroy` | `number` | not stated | — | >= 2 | If or not the animation is automatically destroyed, default 1, 0: not automatically destroyed; 1: automatically destroyed |
+| `anim_repeat` | `number` | not stated | — | >= 2 | Animation loop, default 0, -1: infinite loop; 0: play once; or specify the number of times to play directly |
+| `anim_frame_func` | `() => void` | not stated | — | >= 2 | Callback function for each frame of animation playback |
+| `anim_complete_func` | `() => void` | not stated | — | >= 2 | End of animation callback function |
+| `anim_repeat_func` | `() => void` | not stated | — | >= 3.6 | The animation plays the callback function of each loop, which takes effect when anim_repeat is greater than '0' |

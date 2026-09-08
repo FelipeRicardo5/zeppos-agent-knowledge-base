@@ -68,6 +68,8 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
     const primary = ranked[0];
     const withApiLevel = ranked.find((u) => u.apiLevel !== undefined);
     const withDescription = ranked.find((u) => u.description !== undefined);
+    const withSignature = ranked.find((u) => u.signature !== undefined);
+    const withShapes = ranked.find((u) => u.shapes !== undefined);
     // Unioned, not prioritized: a symbol documented under the Device App API and
     // also seen in a watchface sample is valid in both, so both are evidence. The
     // sort keeps the persisted JSON identical whatever order the walk produced.
@@ -80,6 +82,8 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
       type: primary.kind,
       description: withDescription?.description,
       minApiLevel: withApiLevel?.apiLevel,
+      signature: withSignature?.signature,
+      shapes: withShapes?.shapes,
       runtimes,
       source: primary.sourceKind,
       confidence: confidenceFor(units),

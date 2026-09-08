@@ -8,6 +8,7 @@
       "type": "function",
       "description": "Get the corresponding string from the internationalization resource file (.po) based on the internationalization key.",
       "minApiLevel": 2,
+      "signature": "function getText(key: Key): Result",
       "runtimes": [
         "device-app"
       ],

@@ -83,6 +83,7 @@
       "type": "function",
       "description": "Get the current system date format.",
       "minApiLevel": 2,
+      "signature": "function getDateFormat(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -98,6 +99,7 @@
       "type": "function",
       "description": "Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user, not to represent the units of the data, the data units refer to the interface description of the corresponding data.",
       "minApiLevel": 2,
+      "signature": "function getDistanceUnit(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -113,6 +115,7 @@
       "type": "function",
       "description": "Get the current system language setting.",
       "minApiLevel": 2,
+      "signature": "function getLanguage(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -128,6 +131,7 @@
       "type": "function",
       "description": "Get the sleep target set by the user.",
       "minApiLevel": 2,
+      "signature": "function getSleepTarget(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -143,6 +147,32 @@
       "type": "function",
       "description": "Get system related information.",
       "minApiLevel": 2.1,
+      "signature": "function getSystemInfo(): Result",
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "osVersion",
+              "type": "string",
+              "description": "Zepp OS System Version",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "firmwareVersion",
+              "type": "string",
+              "description": "Device firmware version",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "minAPI",
+              "type": "string",
+              "description": "API_LEVEL",
+              "apiLevel": 2.1
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -158,6 +188,68 @@
       "type": "function",
       "description": "Get the system mode setting information.",
       "minApiLevel": 3,
+      "signature": "function getSystemMode(): Result",
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "DND",
+              "type": "boolean",
+              "description": "State of Do Not Disturb Mode",
+              "apiLevel": 3
+            },
+            {
+              "name": "sleep",
+              "type": "boolean",
+              "description": "State of Sleep Mode",
+              "apiLevel": 3
+            },
+            {
+              "name": "theater",
+              "type": "boolean",
+              "description": "State of Sleep Mode",
+              "apiLevel": 3
+            },
+            {
+              "name": "systemLock",
+              "type": "boolean",
+              "description": "State of Screen Lock Mode",
+              "apiLevel": 3
+            },
+            {
+              "name": "lowTemperature",
+              "type": "boolean",
+              "description": "State of Low Temperature Mode",
+              "apiLevel": 3
+            },
+            {
+              "name": "powerSaving",
+              "type": "boolean",
+              "description": "State of Power Saving Mode",
+              "apiLevel": 3
+            },
+            {
+              "name": "ultraPowerSaving",
+              "type": "boolean",
+              "description": "State of Clock Mode",
+              "apiLevel": 3
+            },
+            {
+              "name": "button",
+              "type": "boolean",
+              "description": "State of Button Mode",
+              "apiLevel": 3
+            },
+            {
+              "name": "accessibleSwitch",
+              "type": "boolean",
+              "description": "State of Accessible",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -173,6 +265,7 @@
       "type": "function",
       "description": "Get the temperature units set by the user.",
       "minApiLevel": 2.1,
+      "signature": "function getTemperatureUnit(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -188,6 +281,7 @@
       "type": "function",
       "description": "Get the current system time format, 12-hour format or 24-hour format.",
       "minApiLevel": 2.1,
+      "signature": "function getTimeFormat(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -203,6 +297,7 @@
       "type": "function",
       "description": "Get the weight target set by the user.",
       "minApiLevel": 2,
+      "signature": "function getWeightTarget(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -218,6 +313,7 @@
       "type": "function",
       "description": "Gets the weight unit set by the user.",
       "minApiLevel": 2,
+      "signature": "function getWeightUnit(): Result",
       "runtimes": [
         "device-app"
       ],

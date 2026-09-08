@@ -14,7 +14,7 @@
 
 `not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
-## Descriptions
+## Symbols in detail
 
 ### `settings-storage.addListener`
 

@@ -34,11 +34,45 @@
 | `WRIST_MOTION_LIFT` | constant | >= 2 | OFFICIAL |
 | `WRIST_MOTION_LOWER` | constant | >= 2 | OFFICIAL |
 
-## Descriptions
+## Symbols in detail
 
 ### `@zos/interaction.createModal`
 
 Create Modal prompt box.
+
+```ts
+function createModal(option: Option): Modal
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `content` | `string` | not stated | — | >= 2 | title of Modal |
+| `title` | `string` | not stated | — | >= 3.6 | Modal dialog box title, alias for content |
+| `show` | `boolean` | not stated | `true` | >= 2 | Whether to display Modal immediately after the creation is completed |
+| `onClick` | `(keyObj: KeyObj) =&#62; void` | not stated | — | >= 2 | Whether to display Modal immediately |
+| `autoHide` | `boolean` | not stated | `true` | >= 2 | Whether to automatically close the Modal dialog after clicking the Confirm or Cancel button |
+| `subtitle` | `string` | not stated | — | >= 3.6 | subtitle |
+| `src` | `string` | not stated | — | >= 3.6 | Icon icon path |
+| `text` | `string` | not stated | — | >= 3.6 | text content |
+| `textColor` | `number` | not stated | `0xFFFFFF` | >= 3.6 | text color |
+| `textAlpha` | `number` | not stated | `255` | >= 3.6 | Text transparency, transparency [0-255], 0 is full transparency |
+| `okButton` | `string` | not stated | — | >= 3.6 | The icon path of the confirmation button |
+| `cancelButton` | `string` | not stated | — | >= 3.6 | Cancel button icon icon path |
+| `capsuleButton` | `Array&#60;string&#62;` | not stated | — | >= 3.6 | Capsule button configuration, as a string array, click type in the returned KeyObj starting from 10 |
+
+**KeyObj**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `type` | `number` | not stated | — | >= 2 | Modal key name, value reference Modal key name constants |
+
+**Modal**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `show` | `(isShow: boolean) =&#62; void` | not stated | — | >= 2 | Show or hide Modal |
 
 ### `@zos/interaction.GESTURE_DOWN`
 
@@ -112,33 +146,102 @@ Modal Confirm button
 
 Cancel the `onDigitalCrown` registration to listen for digital crown rotation events.
 
+```ts
+function offDigitalCrown(): void
+```
+
 ### `@zos/interaction.offGesture`
 
 Cancel the `onGesture` registration to listen for user gesture events.
+
+```ts
+function offGesture(): void
+```
 
 ### `@zos/interaction.offKey`
 
 Cancel the keystroke event registered by `onKey`..
 
+```ts
+function offKey(): void
+```
+
 ### `@zos/interaction.onDigitalCrown`
 
 Listen to the digital crown rotation event, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.
+
+```ts
+function onDigitalCrown(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `callback` | `(key: Key, degree: Degree) =&#62; void` | not stated | — | >= 2 | Digital crown rotation event callback function |
 
 ### `@zos/interaction.onGesture`
 
 Listen to user gesture events, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.
 
+```ts
+function onGesture(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `callback` | `(event: GestureEvent) =&#62; PreventDefault` | not stated | — | >= 2 | Gesture event callback function |
+
 ### `@zos/interaction.onKey`
 
 Listen to key events, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.
+
+```ts
+function onKey(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `callback` | `(key: Key, event: KeyEvent) =&#62; PreventDefault` | not stated | — | >= 2 | Key event callback function |
 
 ### `@zos/interaction.onWristMotion`
 
 Monitoring hand movement events.
 
+```ts
+function onWristMotion(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `callback` | `(params: Params) =&#62; void` | not stated | — | >= 3 | Digital crown rotation event callback function |
+
+**Params**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `type` | `number` | not stated | — | >= 3.6 | Action type, 0 - palm covering, 3 - wrist event |
+| `motion` | `number` | not stated | — | >= 3 | Action code, value reference hand motion constant |
+
 ### `@zos/interaction.showToast`
 
 Display Message Prompt Box.
+
+```ts
+function showToast(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `content` | `string` | not stated | — | >= 2 | Content of the prompt |
 
 ### `@zos/interaction.WRIST_MOTION_FLIP`
 

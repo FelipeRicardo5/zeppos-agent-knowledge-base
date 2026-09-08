@@ -11,15 +11,23 @@
 | `px` | function | >= 2 | OFFICIAL |
 | `stringToBuffer` | function | >= 4 | OFFICIAL |
 
-## Descriptions
+## Symbols in detail
 
 ### `@zos/utils.assets`
 
 Used to handle resource file paths, splice `basePath`. and can pass in parameters for rtl path conversion of images, for RTL adaptation of Mini Program.
 
+```ts
+function assets(basePath: BasePath): AssetsPathFunc
+```
+
 ### `@zos/utils.bufferToString`
 
 Convert `ArrayBuffer` type to string type.
+
+```ts
+function bufferToString(buffer: InputBuffer): Result
+```
 
 ### `@zos/utils.EventBus`
 
@@ -33,6 +41,14 @@ The `log` instance is used for log printing and has multiple levels of logging m
 
 Pixel scaling calculation. The `designWidth` of each model in the `targets` object in the `app.json` is used as the base..
 
+```ts
+function px(value: PxValue): Result
+```
+
 ### `@zos/utils.stringToBuffer`
 
 Convert string type to `ArrayBuffer` type.
+
+```ts
+function stringToBuffer(str: InputString): Result
+```

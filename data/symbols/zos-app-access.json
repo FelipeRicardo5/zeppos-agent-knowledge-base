@@ -8,6 +8,37 @@
       "type": "function",
       "description": "By default, the system will off the screen in one page of the Mini Program, and the system will exit the Mini Program after 10s, and enter the dial page when the watch is woken up again. If `relaunch` is set to `true`, the Mini Program will reopen and enter the corresponding page when the watch is woken up again. permission code: `data:user.hd.workout`",
       "minApiLevel": 3.6,
+      "signature": "function getSportData(options: Options, callback: (callbackResult: CallbackResult) => void): Result",
+      "shapes": [
+        {
+          "name": "Options",
+          "props": [
+            {
+              "name": "type",
+              "type": "string",
+              "description": "Sports type, refer to the value of SportType",
+              "apiLevel": 3.6
+            }
+          ]
+        },
+        {
+          "name": "CallbackResult",
+          "props": [
+            {
+              "name": "code",
+              "type": "number",
+              "description": "Result status code, 0 means success, non- 0 means failure",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "data",
+              "type": "string",
+              "description": "Sports data, return value type is string, needs to be parsed using JSON.parse, the parsed type is Array<object>, the specific type of object can be referred to the SportType type description below, and the return value corresponding to each type is different",
+              "apiLevel": 3.6
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

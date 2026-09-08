@@ -8,6 +8,26 @@
       "type": "function",
       "description": "The Mini Program can customize the system events and can actively dispatch the custom system events.",
       "minApiLevel": 3,
+      "signature": "function emitCustomSystemEvent(option: Option): void",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "eventName",
+              "type": "string",
+              "description": "Customize event names that meet the naming convention of event:customize.${event}",
+              "apiLevel": 3
+            },
+            {
+              "name": "eventParam",
+              "type": "string",
+              "description": "Custom event parameters, this parameter is passed to the onInit lifecycle function of the AppService constructor",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +43,7 @@
       "type": "function",
       "description": "Get some of the fields in the Mini Program configuration `app.json`.",
       "minApiLevel": 2,
+      "signature": "function getPackageInfo(): Result",
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +59,20 @@
       "type": "function",
       "description": "Get some of the fields in the Mini Program configuration `app.json` by app ID.",
       "minApiLevel": 4,
+      "signature": "function getPackageInfoById(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "appId",
+              "type": "number",
+              "description": "Mini Program ID",
+              "apiLevel": 4
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -53,6 +88,193 @@
       "type": "function",
       "description": "Get Mini Program performance statistics, including memory usage and loading performance metrics.",
       "minApiLevel": 4,
+      "signature": "function getPerformance(...args: Array<'memory' | 'perf'>): Result",
+      "shapes": [
+        {
+          "name": "Result",
+          "props": [
+            {
+              "name": "memory",
+              "type": "Memory",
+              "description": "Memory statistics",
+              "apiLevel": 4
+            },
+            {
+              "name": "perf",
+              "type": "Perf",
+              "description": "Performance statistics",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "Memory",
+          "props": [
+            {
+              "name": "system",
+              "type": "SystemMemory",
+              "description": "system memory information",
+              "apiLevel": 4
+            },
+            {
+              "name": "app",
+              "type": "Array&#60;AppMemory&#62;",
+              "description": "Application memory information list",
+              "apiLevel": 4
+            },
+            {
+              "name": "leaking",
+              "type": "Array&#60;LeakingMemory&#62;",
+              "description": "Unreleased memory information list",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "SystemMemory",
+          "props": [
+            {
+              "name": "used",
+              "type": "number",
+              "description": "Used memory (bytes)",
+              "apiLevel": 4
+            },
+            {
+              "name": "total",
+              "type": "number",
+              "description": "Total memory (bytes)",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "AppMemory",
+          "props": [
+            {
+              "name": "appid",
+              "type": "number",
+              "description": "Mini Program ID",
+              "apiLevel": 4
+            },
+            {
+              "name": "used",
+              "type": "number",
+              "description": "Memory usage (bytes)",
+              "apiLevel": 4
+            },
+            {
+              "name": "peak",
+              "type": "number",
+              "description": "Peak memory usage (bytes)",
+              "apiLevel": 4
+            },
+            {
+              "name": "modules",
+              "type": "Array&#60;MemoryModule&#62;",
+              "description": "Module memory information",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "LeakingMemory",
+          "props": [
+            {
+              "name": "appid",
+              "type": "number",
+              "description": "Mini Program ID",
+              "apiLevel": 4
+            },
+            {
+              "name": "used",
+              "type": "number",
+              "description": "Memory usage (bytes)",
+              "apiLevel": 4
+            },
+            {
+              "name": "modules",
+              "type": "Array&#60;MemoryModule&#62;",
+              "description": "Module memory information",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "MemoryModule",
+          "props": [
+            {
+              "name": "file",
+              "type": "string",
+              "description": "File path",
+              "apiLevel": 4
+            },
+            {
+              "name": "used",
+              "type": "number",
+              "description": "Memory usage (bytes)",
+              "apiLevel": 4
+            },
+            {
+              "name": "peak",
+              "type": "number",
+              "description": "Peak memory usage (bytes)",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "Perf",
+          "props": [
+            {
+              "name": "appid",
+              "type": "number",
+              "description": "Mini Program ID",
+              "apiLevel": 4
+            },
+            {
+              "name": "modules",
+              "type": "Array&#60;PerfModule&#62;",
+              "description": "Module performance information list",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "PerfModule",
+          "props": [
+            {
+              "name": "file",
+              "type": "string",
+              "description": "File name",
+              "apiLevel": 4
+            },
+            {
+              "name": "evalTime",
+              "type": "number",
+              "description": "File reading and running time (excluding lifecycle execution time)",
+              "apiLevel": 4
+            },
+            {
+              "name": "createTime",
+              "type": "number",
+              "description": "onCreate lifecycle execution time",
+              "apiLevel": 4
+            },
+            {
+              "name": "initTime",
+              "type": "number",
+              "description": "onInit lifecycle execution time",
+              "apiLevel": 4
+            },
+            {
+              "name": "buildTime",
+              "type": "number",
+              "description": "build lifecycle execution time",
+              "apiLevel": 4
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -68,6 +290,7 @@
       "type": "function",
       "description": "Get the current scene where the Mini Program is running.",
       "minApiLevel": 2,
+      "signature": "function getScene(): Result",
       "runtimes": [
         "device-app",
         "watchface"
@@ -84,6 +307,20 @@
       "type": "function",
       "description": "Check the authorization status of Mini Program permissions.",
       "minApiLevel": 3,
+      "signature": "function queryPermission(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "permissions",
+              "type": "Array&#60;string&#62;",
+              "description": "An array of permission strings, with an array length of at least 1",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -99,6 +336,26 @@
       "type": "function",
       "description": "Dynamic permission application, when querying a dynamic permission has not been authorized, you can use this interface to apply for the relevant permission. Generally, before using the system-related functional interface (such as the interface to enable app services), do the relevant permission check and application, otherwise the functional interface will not be allowed to execute due to the permission issue.",
       "minApiLevel": 3,
+      "signature": "function requestPermission(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "permissions",
+              "type": "Array&#60;string&#62;",
+              "description": "An array of permission strings, with an array length of at least 1",
+              "apiLevel": 3
+            },
+            {
+              "name": "callback",
+              "type": "(result: Array&#60;number&#62;) =&#62; void",
+              "description": "Permission request result callback function",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

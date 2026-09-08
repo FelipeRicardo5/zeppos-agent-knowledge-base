@@ -6,6 +6,80 @@
       "module": "ui",
       "symbol": "Auth",
       "type": "function",
+      "signature": "(props: Props) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "title",
+              "description": "The title of the OAuth component",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "label",
+              "description": "The label text of the OAuth component",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "description": "The description of the OAuth component",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "authorizeUrl",
+              "description": "Url for requesting user authorization for the Token",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "requestTokenUrl",
+              "description": "Url to get the unauthorized Token",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "clientId",
+              "description": "The client ID specified on the authorized provider account",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "clientSecret",
+              "description": "The password corresponding to the specified client ID on the authorized provider's account",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "scope",
+              "description": "the scope of the request being made",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "pkce",
+              "description": "Protect authorization code authorization. This is actually a cryptographic means of ensuring that a malicious third party canNOt exchange Access Token to the authentication server even if they intercept the Authorization Code or other key.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "onAccessToken",
+              "description": "A function that receives the accessToken and anything provided by OAuth (such as refresh tokens and expiration times)",
+              "required": false,
+              "type": "function"
+            },
+            {
+              "name": "onReturn",
+              "description": "A function that receives an oauthCode",
+              "required": false,
+              "type": "function"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -19,6 +93,39 @@
       "module": "ui",
       "symbol": "Button",
       "type": "function",
+      "signature": "(props: Props) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "color",
+              "description": "Set component color, support default, primary, secondary",
+              "required": false,
+              "type": "string",
+              "default": "default"
+            },
+            {
+              "name": "style",
+              "description": "Style properties, support for CSS attributes",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "label",
+              "description": "content on the button",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "onClick",
+              "description": "click button",
+              "required": false,
+              "type": "() => void"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -32,6 +139,44 @@
       "module": "ui",
       "symbol": "Image",
       "type": "function",
+      "signature": "(props: Props) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "style",
+              "description": "Style property, support for CSS attributes",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "src",
+              "description": "Image URL or base64 string",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "alt",
+              "description": "Alternative text when the image cannot be displayed",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "width",
+              "description": "The width of the component",
+              "required": false,
+              "type": "string or number"
+            },
+            {
+              "name": "height",
+              "description": "The height of the component",
+              "required": false,
+              "type": "string or number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -45,6 +190,20 @@
       "module": "ui",
       "symbol": "Link",
       "type": "function",
+      "signature": "(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "source",
+              "description": "link",
+              "required": false,
+              "type": "string"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -58,6 +217,32 @@
       "module": "ui",
       "symbol": "Section",
       "type": "function",
+      "signature": "(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "style",
+              "description": "style property, support for CSS attributes",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "title",
+              "description": "title of the Section",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "description": "description of Section",
+              "required": false,
+              "type": "string"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -71,6 +256,68 @@
       "module": "ui",
       "symbol": "Select",
       "type": "function",
+      "signature": "(props: Props) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "label",
+              "description": "select label",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "options",
+              "description": "select options",
+              "required": false,
+              "type": "Array<SelectOption>"
+            },
+            {
+              "name": "multiple",
+              "description": "multiple options",
+              "required": false,
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "value",
+              "description": "selectedValue",
+              "required": false,
+              "type": "string or Array<string>"
+            },
+            {
+              "name": "onChange",
+              "description": "(value: SelectValue) => void",
+              "required": false,
+              "type": "function"
+            },
+            {
+              "name": "title",
+              "description": "title",
+              "required": false,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "SelectOption",
+          "props": [
+            {
+              "name": "name",
+              "description": "option name",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "description": "option value",
+              "required": false,
+              "type": "string"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -84,6 +331,56 @@
       "module": "ui",
       "symbol": "Slider",
       "type": "function",
+      "signature": "(props: Props) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "label",
+              "description": "slider label text",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "max",
+              "description": "maximum",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "min",
+              "description": "min",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "step",
+              "description": "step",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "value",
+              "description": "value",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "onChange",
+              "description": "(value: SelectValue) => void",
+              "required": false,
+              "type": "function"
+            },
+            {
+              "name": "settingsKey",
+              "description": "the key for storing values in the Settings Storage API",
+              "required": false,
+              "type": "string"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -97,6 +394,48 @@
       "module": "ui",
       "symbol": "Text",
       "type": "function",
+      "signature": "(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "style",
+              "description": "style property, support for CSS properties",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "align",
+              "description": "Horizontal alignment, support left, center, right",
+              "required": false,
+              "type": "string",
+              "default": "left"
+            },
+            {
+              "name": "bold",
+              "description": "bold",
+              "required": false,
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "italic",
+              "description": "italic",
+              "required": false,
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "paragraph",
+              "description": "act as paragraph",
+              "required": false,
+              "type": "boolean",
+              "default": "false"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -110,6 +449,50 @@
       "module": "ui",
       "symbol": "TextImageRow",
       "type": "function",
+      "signature": "(props: Props) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "label",
+              "description": "Primary text for TextImageRow",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sublabel",
+              "description": "gray text below label",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "icon",
+              "description": "the source of the icon",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "iconColor",
+              "description": "the color of the icon",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "rounded",
+              "description": "If true, the icon is rounded.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "iconRight",
+              "description": "If true, the icon is on the right side.",
+              "required": false,
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -123,6 +506,86 @@
       "module": "ui",
       "symbol": "TextInput",
       "type": "function",
+      "signature": "(props: Props) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "label",
+              "description": "text label",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "disabled",
+              "description": "whether to disable the input box",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "multiline",
+              "description": "whether multi-line",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "placeholder",
+              "description": "placeholder text for the input box",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "rows",
+              "description": "number of rows",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "bold",
+              "description": "bold",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "value",
+              "description": "the value of the text box",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "rows",
+              "description": "number of rows",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "onChange",
+              "description": "input event",
+              "required": false,
+              "type": "(value: string) => void"
+            },
+            {
+              "name": "settingsKey",
+              "description": "The key to store the value in the Settings Storage API",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "labelStyle",
+              "description": "The style of the text, supporting CSS properties",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "subStyle",
+              "description": "Style object for the bottom text, supports CSS properties",
+              "required": false,
+              "type": "object"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -136,6 +599,53 @@
       "module": "ui",
       "symbol": "Toast",
       "type": "function",
+      "signature": "(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "duration",
+              "description": "Duration of the popup prompt",
+              "required": false,
+              "type": "number",
+              "default": "2000"
+            },
+            {
+              "name": "horizontal",
+              "description": "Horizontal position of the Toast",
+              "required": false,
+              "type": "string",
+              "default": "center"
+            },
+            {
+              "name": "message",
+              "description": "The message to display",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "vertical",
+              "description": "The vertical position of the Toast",
+              "required": false,
+              "type": "string",
+              "default": "top"
+            },
+            {
+              "name": "visible",
+              "description": "If true, the Toast is visible",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "onClose",
+              "description": "Triggers a callback when the component requests to be closed",
+              "required": false,
+              "type": "function"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -149,6 +659,38 @@
       "module": "ui",
       "symbol": "Toggle",
       "type": "function",
+      "signature": "(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "label",
+              "description": "label",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "settingsKey",
+              "description": "the key in Settings Storage",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "description": "value",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "onChange",
+              "description": "change event callback",
+              "required": false,
+              "type": "(value: boolean) => void"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],
@@ -163,6 +705,26 @@
       "symbol": "View",
       "type": "function",
       "description": "The View container is analogous to the `div` in the Web standard.",
+      "signature": "(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc",
+      "shapes": [
+        {
+          "name": "Props",
+          "props": [
+            {
+              "name": "style",
+              "description": "Style property, support for CSS attributes",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "onClick",
+              "description": "Triggers a callback when the component requests to be closed",
+              "required": false,
+              "type": "function"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "settings"
       ],

@@ -54,47 +54,132 @@
 | `SYSTEM_APP_WORLD_CLOCK` | constant | >= 3 | OFFICIAL |
 | `SYSTEM_APP_ZEPP_COACH` | constant | >= 3 | OFFICIAL |
 
-## Descriptions
+## Symbols in detail
 
 ### `@zos/router.back`
 
 Closes the current page to return to the previous page.
 
+```ts
+function back(): void
+```
+
 ### `@zos/router.checkSystemApp`
 
 Check if the system application supports jumping.
+
+```ts
+function checkSystemApp(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `appId` | `number` | not stated | — | >= 3 | ID of the system App to be jumped to, value refers to the system App ID constant |
 
 ### `@zos/router.clearLaunchAppTimeout`
 
 Cancel the wakeup Mini Program timer created by `setLaunchAppTimeout`.
 
+```ts
+function clearLaunchAppTimeout(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `timeoutId` | `number` | not stated | — | >= 2 | The identifier of the timeout you want to cancel. This ID was returned by the corresponding call to setLaunchAppTimeout() |
+
 ### `@zos/router.exit`
 
 Exit the Mini Program and return to the applist page.
+
+```ts
+function exit(): void
+```
 
 ### `@zos/router.getAppIdByName`
 
 Fuzzy match the English name of installed Mini Programs on the device by name.
 
+```ts
+function getAppIdByName(name: string): Result
+```
+
 ### `@zos/router.home`
 
 Exit the Mini Program and return to the watchface page.
+
+```ts
+function home(): void
+```
 
 ### `@zos/router.launchApp`
 
 Open Mini Program.
 
+```ts
+function launchApp(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `appId` | `number` | not stated | — | >= 2 | Mini Program ID or System App ID (API_LEVEL 3.0 support, value reference System App ID constant) |
+| `url` | `string` | not stated | — | >= 2 | path |
+| `native` | `boolean` | not stated | `false` | >= 3 | Whether to jump to the system App |
+| `params` | `string&#124;object` | not stated | — | >= 2 | The argument passed to the app.js lifecycle onCreate supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string |
+
 ### `@zos/router.push`
 
 Navigate to a page within the Mini Program. Use the `back` method to go back to the original page.
+
+```ts
+function push(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `url` | `string` | not stated | — | >= 2 | path |
+| `params` | `string&#124;object` | not stated | — | >= 2 | Parameters passed to the page onInit lifecycle, supporting strings or standard JSON object. If a standard JSON object is passed, the method internally converts it to a string |
 
 ### `@zos/router.replace`
 
 Close the current page and jump to a page within the app.
 
+```ts
+function replace(option: Option): void
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `url` | `string` | not stated | — | >= 2 | path |
+| `params` | `string&#124;object` | not stated | — | >= 2 | Parameters passed to the page onCreate lifecycle, supporting strings or standard JSON objects. If a standard JSON object is passed, the method internally converts it to a string |
+
 ### `@zos/router.setLaunchAppTimeout`
 
 Register a timer to launch the Mini Program at a given time.
+
+```ts
+function setLaunchAppTimeout(option: Option): Result
+```
+
+**Option**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `appId` | `number` | not stated | — | >= 2 | Mini Program ID |
+| `url` | `string` | not stated | — | >= 2 | path |
+| `utc` | `number` | not stated | — | >= 2 | utc timestamp(milliseconds)，the priority is higher than delay, and when set at the same time as the delay field, only the utc field takes effect |
+| `delay` | `number` | not stated | `0` | >= 3 | The time, in milliseconds that the timer should wait before the Mini Program is waked. |
+| `params` | `string&#124;object` | not stated | — | >= 2 | The argument passed to the app.js lifecycle onCreate supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string |
 
 ### `@zos/router.SYSTEM_APP_ALARM`
 

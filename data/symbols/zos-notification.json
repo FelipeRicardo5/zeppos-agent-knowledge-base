@@ -8,6 +8,7 @@
       "type": "function",
       "description": "Delete the notification message identified by the specified ID in the notification center. permission code: `device:os.notification`",
       "minApiLevel": 3,
+      "signature": "function cancel(alarmId: number | Array<number>): void",
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +24,7 @@
       "type": "function",
       "description": "Get the notification IDs that have been sent by the current app and are still in the notification center. permission code: `device:os.notification`",
       "minApiLevel": 3,
+      "signature": "function getAllNotifications(): Array<number>",
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +40,62 @@
       "type": "function",
       "description": "Send notifications to the Watch Notification Center. permission code: `device:os.notification`",
       "minApiLevel": 3,
+      "signature": "function notify(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "title",
+              "type": "string",
+              "description": "Notice title text",
+              "apiLevel": 3
+            },
+            {
+              "name": "content",
+              "type": "string",
+              "description": "Text of the notice",
+              "apiLevel": 3
+            },
+            {
+              "name": "actions",
+              "type": "Array&#60;Action&#62;",
+              "description": "Custom button arrays",
+              "apiLevel": 3
+            },
+            {
+              "name": "vibrate",
+              "type": "number",
+              "default": "0",
+              "description": "Specify the vibration effect when the notification center pops up, 0 - default, 1 - beep, 2 - birdsong, 3 - drumbeat, 4 - gentle, 5 - buzz, Only effective for linear motors",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "Action",
+          "props": [
+            {
+              "name": "text",
+              "type": "string",
+              "description": "Button Text",
+              "apiLevel": 3
+            },
+            {
+              "name": "file",
+              "type": "string",
+              "description": "The App Service file to be started",
+              "apiLevel": 3
+            },
+            {
+              "name": "param",
+              "type": "string",
+              "description": "Parameters passed in during file loading",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

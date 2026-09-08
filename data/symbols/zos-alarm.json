@@ -8,6 +8,20 @@
       "type": "function",
       "description": "Cancels the set timer, if the timer is set to persist and also cancels the persistence. permission code: `device:os.alarm`",
       "minApiLevel": 3,
+      "signature": "function cancel(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "id",
+              "type": "number",
+              "description": "Vertical axis coordinates of the page",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +37,7 @@
       "type": "function",
       "description": "Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence. permission code: `device:os.alarm`",
       "minApiLevel": 3,
+      "signature": "function getAllAlarms(): Array<number>",
       "runtimes": [
         "device-app"
       ],
@@ -143,6 +158,89 @@
       "type": "function",
       "description": "Support for persistent timers to wake up pages of Mini Program. permission code: `device:os.alarm`",
       "minApiLevel": 3,
+      "signature": "function set(option: Option): Result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "appid",
+              "type": "number",
+              "description": "App ID of the Mini Program, default current Mini Program ID",
+              "apiLevel": 3
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "description": "File path to wake up Mini Program, supporting App Service",
+              "apiLevel": 3
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "description": "Timer execution time, UTC timestamp, in seconds, this field has higher priority than delay, each call must pass one of the time and delay parameter",
+              "apiLevel": 3
+            },
+            {
+              "name": "delay",
+              "type": "number",
+              "description": "How many seconds of delay based on the current time after the execution, in seconds. Each call must pass one of the time and delay parameter",
+              "apiLevel": 3
+            },
+            {
+              "name": "param",
+              "type": "string",
+              "description": "The argument passed to the app.js lifecycle onCreate",
+              "apiLevel": 3
+            },
+            {
+              "name": "store",
+              "type": "boolean",
+              "default": "false",
+              "description": "Does the timer need persistent storage (can still be executed successfully after device reboot)",
+              "apiLevel": 3
+            },
+            {
+              "name": "repeat_type",
+              "type": "number",
+              "description": "Timer repetition type, refer to timer periodic repetition constants",
+              "apiLevel": 3
+            },
+            {
+              "name": "repeat_period",
+              "type": "number",
+              "default": "REPEAT_MINUTE",
+              "description": "Effective when repeat_type is set to REPEAT_MINUTE, REPEAT_HOUR, REPEAT_DAY, used in conjunction with repeat_duration to set a repeat period, one repeat period in the current repeat_type, containing repeat_period times, and repeat_duration times before the reminder",
+              "apiLevel": 3
+            },
+            {
+              "name": "repeat_duration",
+              "type": "number",
+              "default": "1",
+              "description": "When repeat_type is set to REPEAT_MINUTE, REPEAT_HOUR, REPEAT_DAY, the number of reminders in a period of the timer, used with repeat_duration, a period of the current repeat_type, including repeat_period times, repeat_duration times before the reminder",
+              "apiLevel": 3
+            },
+            {
+              "name": "week_days",
+              "type": "number",
+              "description": "Effective when repeat_type is REPEAT_WEEK, you can customize which days of the week are repeated, refer to the timer week constants",
+              "apiLevel": 3
+            },
+            {
+              "name": "start_time",
+              "type": "number",
+              "description": "The time when the repeat reminder starts, in UTC seconds, and the repeat reminder only takes effect during the repeat time period",
+              "apiLevel": 3
+            },
+            {
+              "name": "end_time",
+              "type": "number",
+              "description": "The time when the repeat reminder ends, in UTC seconds, and the repeat reminder only takes effect during the repeat time period",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

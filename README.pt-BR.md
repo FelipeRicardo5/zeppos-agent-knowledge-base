@@ -20,13 +20,13 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/, runtimes/, patterns/) |
 
-Testes baseados em fixtures cobrem as sete frentes de parse, a atribuição de runtime, a fusão do enrich e todas as visões do render: `npm test` (135 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
+Testes baseados em fixtures cobrem as sete frentes de parse, a atribuição de runtime, a extração de forma de chamada, a fusão do enrich e todas as visões do render: `npm test` (152 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
 - **409 símbolos** em **42 módulos**, vindos de todas as 241 páginas de referência + 36 entradas dos runtimes do celular + 443 de `static/llms` + 622 imports em samples
 - 385 `OFFICIAL`, 24 `OBSERVED`
-- 353 símbolos têm `API_LEVEL` mínimo; 367 têm descrição
+- 353 símbolos têm `API_LEVEL` mínimo; 367 têm descrição; **178 têm assinatura de chamada e 121 têm tabelas de propriedades** — 643 propriedades, 484 delas com nível mínimo próprio
 - **todo runtime está coberto**: 373 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 símbolos válidos em mais de um
 - **11 patterns** vindos dos guias de boas práticas, 32 abordagens, usando 17 símbolos distintos — todos os 17 cobertos pelos registros de símbolo
 - **41 dispositivos**: 29 rodando Zepp OS com `API_LEVEL` declarado, 5 em Zepp OS 1.0 sem nenhum, 7 que não rodam Mini Program
@@ -167,6 +167,7 @@ src/
     devices.ts   a frente da lista de dispositivos (colunas por nome de cabeçalho)
     patterns.ts  a frente dos guias de boas práticas
     examples.ts  os apps de exemplo lidos como código, com excertos citados
+    spec.ts      assinaturas e tabelas de propriedades, colunas por cabeçalho
     phone.ts     a frente Side Service + Settings App (quatro formas de página)
     runtime.ts   regras caminho -> runtime, com o doc que ancora cada uma
     util.ts      caminhada de diretório + a leitura que normaliza para LF

@@ -8,6 +8,7 @@
       "type": "function",
       "description": "Used to handle resource file paths, splice `basePath`. and can pass in parameters for rtl path conversion of images, for RTL adaptation of Mini Program.",
       "minApiLevel": 2,
+      "signature": "function assets(basePath: BasePath): AssetsPathFunc",
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +24,7 @@
       "type": "function",
       "description": "Convert `ArrayBuffer` type to string type.",
       "minApiLevel": 4,
+      "signature": "function bufferToString(buffer: InputBuffer): Result",
       "runtimes": [
         "device-app"
       ],
@@ -69,6 +71,7 @@
       "type": "function",
       "description": "Pixel scaling calculation. The `designWidth` of each model in the `targets` object in the `app.json` is used as the base..",
       "minApiLevel": 2,
+      "signature": "function px(value: PxValue): Result",
       "runtimes": [
         "device-app",
         "workout-extension"
@@ -85,6 +88,7 @@
       "type": "function",
       "description": "Convert string type to `ArrayBuffer` type.",
       "minApiLevel": 4,
+      "signature": "function stringToBuffer(str: InputString): Result",
       "runtimes": [
         "device-app"
       ],

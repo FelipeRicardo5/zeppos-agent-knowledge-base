@@ -6,6 +6,74 @@
       "module": "@zos/crypto",
       "symbol": "AESCrypto",
       "type": "value",
+      "signature": "function createCrypto(algorithmId: typeof alg.AES_CBC, option: AESOptions): AESCrypto | undefined",
+      "shapes": [
+        {
+          "name": "AESOptions",
+          "props": [
+            {
+              "name": "key_bit_length",
+              "type": "number",
+              "description": "Key length in bits; AES-CBC uses 128"
+            },
+            {
+              "name": "key_encrypt",
+              "type": "boolean&#124;number",
+              "description": "Whether the key is encrypted again by the hardware key"
+            },
+            {
+              "name": "private_key",
+              "type": "AESData",
+              "description": "Existing private key; use it instead of generating a new key"
+            }
+          ]
+        },
+        {
+          "name": "AESKeyResult",
+          "props": [
+            {
+              "name": "private_key_length",
+              "type": "number",
+              "description": "Private key length"
+            },
+            {
+              "name": "private_key",
+              "type": "ArrayBuffer",
+              "description": "Private key data"
+            }
+          ]
+        },
+        {
+          "name": "AESCipherResult",
+          "props": [
+            {
+              "name": "data",
+              "type": "ArrayBuffer",
+              "description": "Encrypted data"
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "description": "Data length"
+            }
+          ]
+        },
+        {
+          "name": "AESCipherResult",
+          "props": [
+            {
+              "name": "data",
+              "type": "ArrayBuffer",
+              "description": "Decrypted data"
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "description": "Data length"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -19,6 +87,24 @@
       "module": "@zos/crypto",
       "symbol": "CRCCrypto",
       "type": "value",
+      "signature": "function createCrypto(algorithmId: typeof alg.CRC16 | typeof alg.CRC32): CRCCrypto | undefined",
+      "shapes": [
+        {
+          "name": "CRCResult",
+          "props": [
+            {
+              "name": "data",
+              "type": "ArrayBuffer",
+              "description": "CRC checksum in little-endian form"
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "description": "Data length"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -32,6 +118,64 @@
       "module": "@zos/crypto",
       "symbol": "DigestCrypto",
       "type": "value",
+      "signature": "function createCrypto(\n  algorithmId: typeof alg.MD5 | typeof alg.SHA_256 | typeof alg.SHA_1,\n  option?: DigestOptions,\n): DigestCrypto | undefined\nfunction createCrypto(\n  algorithmId: typeof alg.HMACMD5 | typeof alg.HMAC_SHA_256 | typeof alg.HMAC_SHA_1,\n  option: HMACOptions,\n): DigestCrypto | undefined",
+      "shapes": [
+        {
+          "name": "DigestOptions",
+          "props": [
+            {
+              "name": "key_encrypt",
+              "type": "boolean&#124;number",
+              "description": "Whether the key is encrypted again by the hardware key"
+            }
+          ]
+        },
+        {
+          "name": "HMACOptions",
+          "props": [
+            {
+              "name": "private_key",
+              "type": "DigestData",
+              "description": "Key used by HMAC algorithms"
+            },
+            {
+              "name": "key_encrypt",
+              "type": "boolean&#124;number",
+              "description": "Whether the key is encrypted again by the hardware key"
+            }
+          ]
+        },
+        {
+          "name": "DigestResult",
+          "props": [
+            {
+              "name": "md_content",
+              "type": "ArrayBuffer",
+              "description": "Digest data"
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "description": "Digest length"
+            }
+          ]
+        },
+        {
+          "name": "DigestResult",
+          "props": [
+            {
+              "name": "md_content",
+              "type": "ArrayBuffer",
+              "description": "Digest data"
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "description": "Digest length"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -45,6 +189,109 @@
       "module": "@zos/crypto",
       "symbol": "ECDSACrypto",
       "type": "value",
+      "signature": "function createCrypto(algorithmId: typeof alg.ECDSA, option?: ECDSAOptions): ECDSACrypto | undefined",
+      "shapes": [
+        {
+          "name": "ECDSAOptions",
+          "props": [
+            {
+              "name": "ecp_dp_mode",
+              "type": "typeof ecp_dp.SECP192K1&#124;typeof ecp_dp.SECP224K1&#124;typeof ecp_dp.SECP256K1",
+              "description": "Elliptic curve parameter; defaults to ecp_dp.SECP256K1"
+            },
+            {
+              "name": "key_encrypt",
+              "type": "boolean&#124;number",
+              "description": "Whether the key is encrypted again by the hardware key"
+            },
+            {
+              "name": "private_key",
+              "type": "ECDSAData",
+              "description": "Existing private key"
+            },
+            {
+              "name": "pub_key",
+              "type": "ECDSAData",
+              "description": "Existing public key"
+            }
+          ]
+        },
+        {
+          "name": "ECDSAKeyResult",
+          "props": [
+            {
+              "name": "private_key_length",
+              "type": "number",
+              "description": "Private key length"
+            },
+            {
+              "name": "private_key",
+              "type": "ArrayBuffer",
+              "description": "Private key data"
+            },
+            {
+              "name": "pub_key_length",
+              "type": "number",
+              "description": "Public key length"
+            },
+            {
+              "name": "pub_key",
+              "type": "ArrayBuffer",
+              "description": "Public key data"
+            }
+          ]
+        },
+        {
+          "name": "Options",
+          "props": [
+            {
+              "name": "digest_type",
+              "type": "typeof alg.MD5&#124;typeof alg.HMACMD5",
+              "description": "Digest algorithm; supports alg.MD5 and alg.HMACMD5"
+            }
+          ]
+        },
+        {
+          "name": "ECDSACipherResult",
+          "props": [
+            {
+              "name": "data",
+              "type": "ArrayBuffer",
+              "description": "Digital signature data"
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "description": "Data length"
+            }
+          ]
+        },
+        {
+          "name": "Options",
+          "props": [
+            {
+              "name": "sig_data",
+              "type": "createCrypto.ECDSAData",
+              "description": "Digital signature to verify"
+            }
+          ]
+        },
+        {
+          "name": "ECDSACipherResult",
+          "props": [
+            {
+              "name": "data",
+              "type": "ArrayBuffer",
+              "description": "Signature verification result data"
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "description": "Data length"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -60,6 +307,7 @@
       "type": "function",
       "description": "Encrypt data with the firmware PUF hardware module using AES. Input length must be a multiple of 16 bytes; returns `undefined` on failure.",
       "minApiLevel": 3,
+      "signature": "function encryptKey(data: CryptoData): ArrayBuffer | undefined",
       "runtimes": [
         "device-app"
       ],

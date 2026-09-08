@@ -1,6 +1,7 @@
 import path from "node:path";
 import type { RawUnit } from "../types.js";
 import { runtimeForPath } from "./runtime.js";
+import { extractShapes, extractSignature } from "./spec.js";
 import { readSource, walkFiles } from "./util.js";
 
 // Front 6: the two runtimes that execute in the Zepp App on the phone —
@@ -217,6 +218,12 @@ function reexportTarget(content: string, sourceFile: string): string | undefined
   return path.posix.normalize(path.posix.join(path.posix.dirname(posix), match[1]));
 }
 
+/** `Props` first: it is what the signature's parameter refers to. */
+function shapesOrUndefined(shapes: ReturnType<typeof extractShapes>) {
+  if (shapes.length === 0) return undefined;
+  return [...shapes].sort((a, b) => Number(b.name === "Props") - Number(a.name === "Props"));
+}
+
 function unitsFor(content: string, sourceFile: string): RawUnit[] {
   const module = pseudoModule(sourceFile);
   const runtimeHint = runtimeForPath(sourceFile);
@@ -232,7 +239,16 @@ function unitsFor(content: string, sourceFile: string): RawUnit[] {
         const symbol = symbolFromHeading(section.heading);
         return symbol === undefined
           ? []
-          : [{ ...base, symbol, kind: "function" as const, description: description(section.body) }];
+          : [
+              {
+                ...base,
+                symbol,
+                kind: "function" as const,
+                description: description(section.body),
+                signature: extractSignature(section.body),
+                shapes: shapesOrUndefined(extractShapes(section.body)),
+              },
+            ];
       });
   }
 
@@ -266,12 +282,17 @@ function unitsFor(content: string, sourceFile: string): RawUnit[] {
   const page = path.basename(sourceFile, path.extname(sourceFile));
   const symbol = pageSymbol(page, content);
 
+  // A page-as-symbol page *is* the component's documentation, so its signature
+  // and property tables belong to that one symbol. This is where the 13 Settings
+  // App components stop being bare names.
   return [
     {
       ...base,
       symbol,
       kind: "function" as const,
       description: description(content.replace(FRONTMATTER_TITLE_RE, "")),
+      signature: extractSignature(content),
+      shapes: shapesOrUndefined(extractShapes(content)),
     },
   ];
 }

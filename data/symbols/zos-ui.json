@@ -8,6 +8,24 @@
       "type": "value",
       "description": "Register a listener to the UI widget and the given callback function will be executed when the specified event is triggered.",
       "minApiLevel": 2,
+      "signature": "(eventId: EventId, callback: (event: Event) => void) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "eventId",
+              "description": "Event type. (e.g., event.MOVE, event.CLICK_DOWN, etc.)",
+              "type": "EventId"
+            },
+            {
+              "name": "event",
+              "description": "Event details, refer to different events.",
+              "type": "object"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +41,26 @@
       "type": "value",
       "description": "Adds a child node to the current widget.",
       "minApiLevel": 4,
+      "signature": "(child: UIWidget, index?: number) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "child",
+              "type": "UIWidget",
+              "required": true,
+              "description": "Child widget instance to add"
+            },
+            {
+              "name": "index",
+              "type": "number",
+              "required": false,
+              "description": "Insertion position index"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -155,6 +193,7 @@
       "type": "value",
       "description": "Create a Dialog.",
       "minApiLevel": 2,
+      "signature": "(option: Option) => result",
       "runtimes": [
         "device-app"
       ],
@@ -183,6 +222,28 @@
       "type": "value",
       "description": "Create UI widgets.",
       "minApiLevel": 2,
+      "signature": "(widgetId: WIDGET_ID, option?: Option) => widget: WIDGET",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "widgetId",
+              "description": "The ID of the widget to be created. (Reference WIDGET_ID)",
+              "required": true
+            },
+            {
+              "name": "option",
+              "description": "Parameters.",
+              "required": false
+            },
+            {
+              "name": "widget",
+              "description": "The instance of widget."
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app",
         "workout-extension"
@@ -199,6 +260,19 @@
       "type": "value",
       "description": "Create a list that can be scrolled in a loop, and each list item can be placed with an image and text.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Set the top item index of the list",
+          "props": [
+            {
+              "name": "index",
+              "description": "The index of item.Starting from 0.",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -255,6 +329,7 @@
       "type": "value",
       "description": "Delete the UI widget.",
       "minApiLevel": 2,
+      "signature": "(widget: WIDGET) => void",
       "runtimes": [
         "device-app"
       ],
@@ -270,6 +345,22 @@
       "type": "value",
       "description": "This widget has been discontinued. It is recommended to replace it with the more powerful [@zos/interaction createModal API](../../interaction/createModal.mdx) Dialog popup consists of a piece of text and two buttons. The popup box disappears when the buttons are clicked.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Dialog",
+          "props": [
+            {
+              "name": "text",
+              "description": "The content of dialog.",
+              "type": "string"
+            },
+            {
+              "name": "... omitted",
+              "description": "Refer to dialog related properties in the setting field"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -324,6 +415,97 @@
       "type": "value",
       "description": "The Fill Rectangle widget is used to draw a solid color rectangular area.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "color",
+              "description": "The color of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "radius",
+              "description": "The corner radius of the rectangle",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "angle",
+              "description": "The rotation angle",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "alpha",
+              "description": "Opacity, value range 0-255, default 255 (opaque), 0 (transparent)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 3
+            },
+            {
+              "name": "pos_x",
+              "description": "Drawing area x offset (only works when angle%360!=0)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "pos_y",
+              "description": "Drawing area y offset (only works when angle%360!=0)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "rect_width",
+              "description": "Width of the drawing area (only works when angle%360!=0)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "rect_height",
+              "description": "Height of the drawing area (only works when angle%360!=0)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -339,6 +521,34 @@
       "type": "value",
       "description": "Get the system default shortcut card size for developers to layout the widget.",
       "minApiLevel": 2,
+      "signature": "() => result",
+      "shapes": [
+        {
+          "name": "result",
+          "props": [
+            {
+              "name": "w",
+              "description": "Shortcut card width",
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "shortcut card height",
+              "type": "number"
+            },
+            {
+              "name": "margin",
+              "description": "Margin of the shortcut card from the edge of the screen",
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Quick Card Rounded Corners",
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -354,6 +564,7 @@
       "type": "value",
       "description": "Get the unique ID of the widget.",
       "minApiLevel": 2,
+      "signature": "() => result",
       "runtimes": [
         "device-app"
       ],
@@ -369,6 +580,35 @@
       "type": "value",
       "description": "Get information about the image resources in the `/assets` resource directory.",
       "minApiLevel": 2,
+      "signature": "(img_path: string) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "img_path",
+              "description": "The path to the image file, relative to the /assets resource directory",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "result",
+          "props": [
+            {
+              "name": "width",
+              "description": "Image width value",
+              "type": "number"
+            },
+            {
+              "name": "height",
+              "description": "Image height value",
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -384,6 +624,19 @@
       "type": "value",
       "description": "Get the UI widget properties, use `widget.getProperty(prop.MORE, {})` to get all the properties of the widget.",
       "minApiLevel": 2,
+      "signature": "(key: any) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "key",
+              "description": "The value of property.",
+              "type": "any"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -399,6 +652,7 @@
       "type": "value",
       "description": "Query whether the current system language setting is RTL language. Setting the language to Hebrew and Arabic will return `true`.",
       "minApiLevel": 2,
+      "signature": "() => result",
       "runtimes": [
         "device-app"
       ],
@@ -429,6 +683,26 @@
       "type": "value",
       "description": "Calculate the height and width of the target text after the layout is completed, and does not actually render it, only performs the layout calculation. Can be used to calculate the height of a multi-line text layout with a fixed width, or the width of a single-line text layout.",
       "minApiLevel": 2,
+      "signature": "(text: string, options: object) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "text",
+              "description": "Text content of the layout to be calculated",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "options",
+              "description": "Options",
+              "required": true,
+              "type": "Options"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -444,6 +718,7 @@
       "type": "value",
       "description": "Get the UI widget type.",
       "minApiLevel": 2,
+      "signature": "() => result",
       "runtimes": [
         "device-app"
       ],
@@ -547,6 +822,89 @@
       "type": "value",
       "description": "The keyboard API provides rich input interface capabilities, greatly simplifying the development complexity of custom keyboards.",
       "minApiLevel": 4.2,
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "rect",
+              "description": "Object containing x, y, w, h properties",
+              "required": true,
+              "type": "object"
+            }
+          ]
+        },
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "text",
+              "description": "Text to be inserted",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "count",
+              "description": "Number of characters to delete",
+              "required": false,
+              "type": "number",
+              "default": "1"
+            }
+          ]
+        },
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "keyType",
+              "description": "Key type constant",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "text",
+              "description": "Buffer text",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "color",
+              "description": "Text color",
+              "required": false,
+              "type": "number",
+              "default": "0xffffff"
+            },
+            {
+              "name": "underlineColor",
+              "description": "Underline color",
+              "required": false,
+              "type": "number",
+              "default": "0xffffff"
+            }
+          ]
+        },
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "inputType",
+              "description": "Input type constant",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -576,6 +934,44 @@
       "type": "function",
       "description": "During development, especially when using Flex layout, you may need to check the actual layout position and size of each widget. Using `openInspector()` can visually display the boundaries of all widgets participating in layout in the simulator, helping developers debug layout issues. Used in the simulator to draw boundary rectangles for all widgets participating in layout, helping developers debug layout issues. This method should be called after the `build()` lifecycle.",
       "minApiLevel": 4,
+      "signature": "function openInspector(): Inspector",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "options",
+              "type": "object",
+              "required": false,
+              "description": "Draw options"
+            }
+          ]
+        },
+        {
+          "name": "options Object Properties",
+          "props": [
+            {
+              "name": "line_color",
+              "type": "number",
+              "required": false,
+              "description": "Border line color, hexadecimal value, e.g., 0xff0000 for red"
+            },
+            {
+              "name": "line_width",
+              "type": "number",
+              "required": false,
+              "description": "Border line width"
+            },
+            {
+              "name": "border_mode",
+              "type": "number",
+              "required": false,
+              "default": "0",
+              "description": "Border draw mode, 0 for outward drawing, 1 for inward drawing"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -709,6 +1105,7 @@
       "type": "value",
       "description": "In some boundary cases, after `deleteWidget`, the view may not be updated in time, need to call `redraw()` manually to update the view",
       "minApiLevel": 2,
+      "signature": "() => undefined",
       "runtimes": [
         "device-app"
       ],
@@ -724,6 +1121,7 @@
       "type": "value",
       "description": "Apply RTL layout to the widget based on the current system language. After calling this method, the current system language will be queried. If it is an RTL language, RTL layout adjustments will be made to all widgets on the current calling page. If there are widgets on the current page that do not need to be flipped, you need to organize the calling timing of `relayoutRtl()` and widget creation Design specification reference [Design Specifications - Internationalization - Interface layouts](../../../../designs/internationalization/interface-layouts.md)",
       "minApiLevel": 2,
+      "signature": "() => result",
       "runtimes": [
         "device-app"
       ],
@@ -739,6 +1137,24 @@
       "type": "value",
       "description": "Remove event listeners registered by the UI widget using the `widget.addEventListener` method.",
       "minApiLevel": 2,
+      "signature": "(eventId: EventId, callback) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "eventId",
+              "description": "Event type (e.g., swipe, press, lift, etc.)",
+              "type": "number"
+            },
+            {
+              "name": "callback",
+              "description": "The callback function to register.",
+              "type": "function"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -754,6 +1170,19 @@
       "type": "value",
       "description": "Removes the specified child node from the current node.",
       "minApiLevel": 4,
+      "signature": "(child: UIWidget) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "child",
+              "type": "UIWidget",
+              "description": "Child widget instance to remove"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -784,6 +1213,7 @@
       "type": "value",
       "description": "Set the opacity of the widget. For widgets that do not support the `alpha` property, use `widget.setAlpha` to set opacity.",
       "minApiLevel": 2.1,
+      "signature": "(val: any) => void",
       "runtimes": [
         "device-app"
       ],
@@ -799,6 +1229,7 @@
       "type": "value",
       "description": "Set the size of the Shortcut cards, currently only height adjustment is supported.",
       "minApiLevel": 2,
+      "signature": "(option: Option) => undefined",
       "runtimes": [
         "device-app"
       ],
@@ -814,6 +1245,7 @@
       "type": "value",
       "description": "Set whether the widget responds to screen gesture interaction events, the default is to respond. If the widgets are stacked in the Z-axis direction, the widgets above the stack will block events and the widgets below will not receive events such as `CLICK_DOWN` and `CLICK_UP`. If you want the widgets below to receive gesture events, set `widget.setEnable(false)` for the widgets stacked above.",
       "minApiLevel": 2,
+      "signature": "(response: boolean) => void",
       "runtimes": [
         "device-app"
       ],
@@ -829,6 +1261,19 @@
       "type": "value",
       "description": "Sets the parent node of the current node.",
       "minApiLevel": 4,
+      "signature": "(parent: UIWidget) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "parent",
+              "type": "UIWidget",
+              "description": "Widget instance object participating in layout"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -844,6 +1289,24 @@
       "type": "value",
       "description": "Set the properties of the UI widget.",
       "minApiLevel": 2,
+      "signature": "(propertyId: string, val: any) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "propertyId",
+              "description": "The property of ID.",
+              "type": "PropertyId"
+            },
+            {
+              "name": "val",
+              "description": "Set the value. (when property is prop.MORE, val is used in the same way as createWidget's option, which can set multiple parameters.)",
+              "type": "any"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -859,6 +1322,19 @@
       "type": "value",
       "description": "This interface is only available on square screen devices, set the status bar visible or not. For square screen title bar, refer to [Screen Adaptation](../../../../guides/best-practice/multi-screen-adaption.mdx).",
       "minApiLevel": 2,
+      "signature": "(visible: boolean) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "visible",
+              "description": "true: show the status bar; false: hide the status bar",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -917,6 +1393,97 @@
       "type": "value",
       "description": "The stroked rectangle widget adds a stroke on the basis of the filled rectangle widget.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "color",
+              "description": "The widget's color",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "radius",
+              "description": "The rectangle's rounded corners",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "line_width",
+              "description": "The width of stroke",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "angle",
+              "description": "Rotation angle",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "pos_x",
+              "description": "Drawing area x offset (only effective when angle%360!=0)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "pos_y",
+              "description": "Drawing area y offset (only effective when angle%360!=0)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "rect_width",
+              "description": "Width of the drawing area (only effective when angle%360!=0)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "rect_height",
+              "description": "Height of the drawing area (only effective when angle%360!=0)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -932,6 +1499,49 @@
       "type": "value",
       "description": "Create a system-level input keyboard that supports multiple input modes.",
       "minApiLevel": 4,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "inputType",
+              "description": "Input type, refer to inputType enum",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "onComplete",
+              "description": "Callback when user confirms input",
+              "required": true,
+              "type": "function"
+            },
+            {
+              "name": "onCancel",
+              "description": "Callback when user swipes right or presses back button",
+              "required": true,
+              "type": "function"
+            },
+            {
+              "name": "text",
+              "description": "Initial text for editing",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "onClick",
+              "description": "Click event callback (Not available yet)",
+              "required": false,
+              "type": "function"
+            },
+            {
+              "name": "selection",
+              "description": "Quick reply options (Not available yet)",
+              "required": false,
+              "type": "array"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -991,6 +1601,7 @@
       "type": "value",
       "description": "Used to re-render the view after modifying the widget tree.",
       "minApiLevel": 4,
+      "signature": "() => void",
       "runtimes": [
         "device-app"
       ],
@@ -1006,6 +1617,19 @@
       "type": "value",
       "description": "Updates the layout style of a widget node. For detailed `layout` object properties, please refer to [layout property configuration](../../../../guides/framework/device/layout.md#layout-properties).",
       "minApiLevel": 4,
+      "signature": "(style: LayoutStyle) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "style",
+              "type": "LayoutStyle",
+              "description": "Object containing layout properties, the layout object"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1021,6 +1645,19 @@
       "type": "value",
       "description": "This interface is only available on square screen devices, set the status bar to display text content. For square screen title bar, refer to [Screen Adaptation](../../../../guides/best-practice/multi-screen-adaption.mdx).",
       "minApiLevel": 2,
+      "signature": "(title: string) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "title",
+              "description": "Status bar display text",
+              "type": "string"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1051,6 +1688,20 @@
       "type": "value",
       "description": "VIRTUAL_CONTAINER is a special container widget used to implement Flex layout. It serves as the root node of a Flex layout container, and the widgets inside the container will be arranged and rendered according to the rules of Flex layout.",
       "minApiLevel": 4,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "layout",
+              "description": "Layout properties for Flex layout configuration",
+              "required": true,
+              "type": "object",
+              "apiLevel": 4
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1080,6 +1731,96 @@
       "type": "value",
       "description": "Widget animation can add animation effects to some of the widget's property changes. The above image shows the TEXT widget's `x` and `y` properties changing at the same time, creating a moving animation effect.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Individual property animation configuration",
+          "props": [
+            {
+              "name": "anim_prop",
+              "type": "number",
+              "description": "To add the properties of the animation, refer to [anim_prop](#properties-that-support-animations)"
+            },
+            {
+              "name": "anim_from",
+              "type": "number",
+              "description": "The value of the property at the start of the animation"
+            },
+            {
+              "name": "anim_to",
+              "type": "number",
+              "description": "The value of the property at the end of the animation"
+            },
+            {
+              "name": "anim_rate",
+              "type": "string",
+              "description": "Animation curve, optional values linear, easein, easeout, easeinout, bounce, refer to [https://easings.net/](https://easings.net/)"
+            },
+            {
+              "name": "anim_duration",
+              "type": "number",
+              "description": "Animation duration, in milliseconds"
+            },
+            {
+              "name": "anim_offset",
+              "type": "number",
+              "description": "The delay before the animation starts, in milliseconds"
+            }
+          ]
+        },
+        {
+          "name": "Animation Configuration",
+          "props": [
+            {
+              "name": "anim_steps",
+              "type": "Array<anim_config>",
+              "description": "Attribute animation configuration array, refer to [anim_config](#individual-property-animation-configuration), multiple sets of animations can be performed simultaneously",
+              "apiLevel": 2
+            },
+            {
+              "name": "anim_fps",
+              "type": "number",
+              "description": "Animation frame rate, default 25",
+              "apiLevel": 2
+            },
+            {
+              "name": "anim_auto_start",
+              "type": "number",
+              "description": "If or not the animation plays automatically, default 1, 0: don't play automatically; 1: play automatically",
+              "apiLevel": 2
+            },
+            {
+              "name": "anim_auto_destroy",
+              "type": "number",
+              "description": "If or not the animation is automatically destroyed, default 1, 0: not automatically destroyed; 1: automatically destroyed",
+              "apiLevel": 2
+            },
+            {
+              "name": "anim_repeat",
+              "type": "number",
+              "description": "Animation loop, default 0, -1: infinite loop; 0: play once; or specify the number of times to play directly",
+              "apiLevel": 2
+            },
+            {
+              "name": "anim_frame_func",
+              "type": "() => void",
+              "description": "Callback function for each frame of animation playback",
+              "apiLevel": 2
+            },
+            {
+              "name": "anim_complete_func",
+              "type": "() => void",
+              "description": "End of animation callback function",
+              "apiLevel": 2
+            },
+            {
+              "name": "anim_repeat_func",
+              "type": "() => void",
+              "description": "The animation plays the callback function of each loop, which takes effect when anim_repeat is greater than '0'",
+              "apiLevel": 3.6
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

@@ -7,6 +7,21 @@ description: Guides an agent writing Zepp OS code to check runtime/API_LEVEL com
 
 Before suggesting any Zepp OS API:
 
+**If you are building rather than checking**, read in this order instead of the one
+below, which is written for *may I use symbol X here*:
+
+1. `../../examples/index.md` — find the closest whole sample and read its page end
+   to end. Its **Methods called on a value** section is where the call shapes are, and
+   many of them appear nowhere else in the base.
+2. That sample's modern siblings, for the current idiom rather than a 2.0-era one.
+3. `../../patterns/` for the cross-cutting mechanics — persistence, screen
+   adaptation, `app.json` targets, logging, i18n.
+4. `../../api/` and `../../compatibility/` **last**, as a verification pass over a
+   design you already drafted.
+
+`api/` is where a question ends, not where it starts. The steps below are that
+verification pass.
+
 1. **Identify the target runtime**: Device App, Side Service, Settings App, Watchface or Workout Extension. A full Mini Program uses three of them — Device App on the watch, Settings App and Side Service in the Zepp App — and a symbol from one is not available in another. `../../runtimes/index.md` lists all five with their coverage; `../../runtimes/<runtime>.md` lists the symbols attributed to one.
 2. **Identify the target `API_LEVEL`** — or, better, the target *device*. `../../compatibility/devices.md` maps every device to the level it reaches, so "does this run on a Bip 6?" has a direct answer. A level alone is not one.
 3. **Check the symbol on both axes before recommending it** — `../../runtimes/` for the runtime, `../../compatibility/` for the minimum `API_LEVEL`, `../../api/` for the module's symbols and descriptions.
@@ -87,7 +102,8 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 - The **watchface `hm*` API is not covered at all** (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`). The 3 Watchface symbols here are `@zos/*` calls seen in watchface samples. Answer a `hm*` question from the official docs and say so.
 - Methods reached through a returned object (`DownloadTask.cancel`, `Onbox.enqueFile`) are not recorded. Their parent function is.
 - A pattern's `Minimum API_LEVEL` is **derived**, not quoted: it is the highest minimum among the symbols the guide's code uses, and it skips symbols this KB has no record for. Treat it as a floor, and check the page's own "no record" flag before calling a pattern verified.
-- The documented API surface is the Device App's `@zos/*` modules. The Side Service and Settings App use globals (`fetch`, `settingsStorage`, `Settings.render`) that are not extracted yet, and the watchface `hm*` API is not extracted either. Questions about those are outside what this KB can answer — answer from the official docs and say where the answer came from.
+- The Side Service and Settings App **are** covered: see `../../runtimes/side-service.md` and `../../runtimes/settings.md`, plus `../../api/fetch.md` and `../../api/settings-storage.md`. What is missing there is narrower than the runtime: the Settings App's **entry point** (the function that registers a settings page) and the **props of its `ui.*` components` — the base has 13 component names and one sentence of description across all of them. Those two, answer from the official docs and say so; everything else in those runtimes, answer from here.
+- The watchface `hm*` API (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) is genuinely not extracted — 93 upstream pages, none of them parsed. The Watchface symbols here are `@zos/*` calls seen in watchface samples.
 
 ## Where the numbers come from
 

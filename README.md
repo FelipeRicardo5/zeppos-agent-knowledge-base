@@ -13,12 +13,12 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | Stage | State |
 | --- | --- |
 | `fetch` — clone/update official repos into a local cache | implemented |
-| `parse` — six fronts: reference pages, the phone runtimes, `static/llms`, samples, guides, the device list | implemented |
+| `parse` — seven fronts: reference pages, the phone runtimes, `static/llms`, sample imports, sample apps, guides, the device list | implemented |
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/) |
 
-Fixture-based tests cover all six parse fronts, runtime attribution, the enrich merge and every render view: `npm test` (114 passing, no `todo`).
+Fixture-based tests cover all seven parse fronts, runtime attribution, the enrich merge and every render view: `npm test` (135 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
@@ -28,6 +28,7 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 - **every runtime is covered**: 373 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
+- **33 sample apps** read as code, yielding 592 cited excerpts and the shape of 33 working `app.json` files
 
 ## Coverage and limits
 
@@ -63,12 +64,13 @@ npm run typecheck
 Four stages, each idempotent and independently inspectable, so any one of them can be rerun without redoing the earlier ones. Execution is local and on demand — there is no scheduled CI job in v0.
 
 1. **fetch** — clones or updates the official repos into `.cache/`, and records the exact commit of each. Third-party content, never versioned here.
-2. **parse** — six independent fronts over the raw cache:
+2. **parse** — seven independent fronts over the raw cache:
    - **docs-reference** — `docs/reference/**/*.mdx`, one file per symbol. The module comes from the import line in the page's own example; when the page has none — it documents a runtime global like `setTimeout` or `console`, so there is nothing to import — it falls back to the `newAPI/<dir>` directory. Measured: 221 of the 222 pages that *do* have an import agree with the directory, the exception being a submodule (`@zos/ble/TransferFile`), so the import stays primary.
    - **phone runtimes** — `docs/reference/side-service-api/**` and `docs/reference/app-settings-api/**`. These APIs are globals (`fetch`, `settings.settingsStorage`, `messaging.peerSocket`) or Settings App components, so there is no import to key on and the docs-reference front skips them. Across all 22 pages they take four shapes — page-as-symbol, `##`-as-symbol, `##`-as-module with `###` symbols (signalled by the heading ending in the word `module`), and no heading at all — so the shape is detected rather than assumed.
    - **llms** — `static/llms/@zos-*.md`, one file per module, reusing the structuring Zepp Health already did for LLM consumption. The module id comes from the import lines inside the file, not from the H1: `@zos/ui` is split across several files whose H1 reads `@zos/ui-methods`, `@zos/ui-widget-basic` and so on, and those ids can't be imported.
    - **samples** — every `@zos/*` import across the official example apps. Evidence of real usage, not a documentation claim.
    - **guides** — `docs/guides/best-practice/**.mdx`, one file per task. Only the parts with a fixed shape are read: frontmatter title, `##` sections, fenced code blocks and the reference pages the guide links to. Nothing is inferred from the prose.
+   - **sample apps** — the same 33 apps, read as *code* rather than as a list of import names. For each: its `app.json` shape, each file’s runtime, and verbatim excerpts of real calls cited to file and line. Also every method called on a value (`text.setProperty(...)`), whose receiver type is left unresolved and matched to a module by name at render time — the only way `setProperty` surfaces at all, since it is never imported.
    - **device list** — `docs/reference/related-resources/device-list.mdx`, the only source that ties an `API_LEVEL` to hardware. One file, two tables with *different* columns, so columns are resolved by header name and a missing one throws.
 
    Each front also attributes a **runtime** from the path it read the unit from, since no content states one: `docs/reference/device-app-api/` is the Device App, `zeppos-samples/watchface/` is a Watchface, `app-side/` inside any sample app is the Side Service. A path no rule covers gets no runtime rather than a default.
@@ -78,6 +80,7 @@ Four stages, each idempotent and independently inspectable, so any one of them c
    - `compatibility/` — grouped by minimum `API_LEVEL`, plus `devices.md`
    - `runtimes/` — one page per runtime
    - `patterns/` — one page per best-practice guide
+   - `examples/` — one page per sample app, indexed by symbol
 
    A symbol with no documented minimum is labelled `not stated`, never `any` — absence of a level is absence of evidence, not a compatibility claim. `runtimes/` renders a page for **every** runtime including the ones with no symbols, because a missing page reads like "this runtime does not exist" while a page stating "0 symbols covered" reads like the coverage gap it is. The remaining README dirs (`concepts/`, `examples/`, `tools/`) hold knowledge the automated fronts don't yet reach, so they are not generated. This is what the Agent Skill reads.
 
@@ -152,6 +155,30 @@ A pattern is a task ("communicate between pages", "adapt to a round screen"), no
 
 The count is a floor, deliberately: the 29 symbols with no stated minimum are excluded rather than assumed available, and a device with no stated level counts zero symbols and is rendered in its own section saying so.
 
+### `ExampleRecord`
+
+`data/examples/<id>.json`, one per sample app. The first eval run found the base's
+root gap: no record carries a signature, so it answered *may I use X* and never
+*how do I call X*. A signature would say `(props: Props) => RenderFunc`; a sample
+shows what goes in `props`. And some things exist only here — updating a widget's
+text is documented nowhere upstream and appears in 65 sample files.
+
+| Field | Meaning |
+| --- | --- |
+| `id` / `name` / `tree` / `platformVersion` | Slug and directory name, which tree (`application`, `watchface`, `workout-extensions`), and the version directory it sits in |
+| `manifest` | The `app.json` **shape**: top-level keys, declared `permissions`, `targets`. Not its values — an `appId` belongs to whoever registered it |
+| `files` | Each file's app-relative path, its runtime, and the symbols it imports |
+| `usages` | An imported symbol id and up to two verbatim calls to it, each with file and 1-indexed line |
+| `memberCalls` | A method called on some value, with its code. The receiver's **type is not resolved** — that needs flow analysis — so only the name is recorded, and `render` matches it to a module by name and says so |
+
+`enrich` drops every member call whose name no known symbol shares, which is the
+join `parse` cannot do: it has no symbol table. That filter cut 1930 raw excerpts
+to 592 useful ones, keeping `setProperty` and discarding a hundred
+receiver-specific names.
+
+Sample code is `OBSERVED`. It proves a call that works, never a documented
+contract, and the pages say so where they quote it.
+
 ### Sync manifest
 
 [`data/manifest.json`](data/manifest.json) records the last sync date, the exact commit of every source repo, and the record counts. It is what makes each entry's "last verified" derivable instead of hand-maintained.
@@ -164,12 +191,14 @@ src/
   parse/    stage 2 — four extraction fronts
     devices.ts   the device-list front (columns resolved by header name)
     patterns.ts  the best-practice guides front
+    examples.ts  the sample apps read as code, with cited excerpts
     phone.ts     the Side Service + Settings App front (four page shapes)
     runtime.ts   path -> runtime rules, with the doc anchoring each one
     util.ts      dir walk + the LF-normalizing read
   enrich/   stage 3 — merge and normalize into SymbolRecord / PatternRecord
   store/    write the JSON source of truth + manifest
   render/   stage 4 — Markdown generation
+    examples.ts  the examples view: symbol -> code, method -> likely symbol
     patterns.ts  the patterns view and its join against the symbols
     shared.ts    helpers every view agrees on
   cli.ts    sync / render commands
@@ -178,6 +207,7 @@ data/
   devices.json    the device list: API_LEVEL, OS version, screen, deviceSource
   symbols/        the JSON source of truth, one file per module
   patterns/       one file per best-practice guide
+  examples/       one file per sample app: manifest, files, cited excerpts
 skills/
   zepp-os/SKILL.md   the Agent Skill
 concepts/
@@ -185,6 +215,9 @@ concepts/
 test/
   fixtures/cache/    trimmed excerpts of the real sources, in cache layout
   *.test.ts          parser and enrich tests
+eval/
+  task-*.md          tasks an agent attempts using only the rendered base
+  results/           one report per run: the gaps it hit, ranked by cost
 .cache/     cloned official repos (untracked)
 ```
 
@@ -205,7 +238,8 @@ The generated Markdown lands in `api/`, `compatibility/`, `runtimes/` and `patte
 9. **A description is the page's prose, and only that.** These are MDX pages, so the extractor has to know what is not prose: the `API_LEVEL` badge blockquote, MDX component imports, illustrations — written as markdown on one page and as a multi-line JSX tag on another, which is why tags are stripped as units rather than per line — and the `:::info` fence markers, whose *contents* are kept because that is where a permission code is stated. It ends at the first `## ` or code fence after the title so a page without sections doesn't swallow its example.
 10. **A section heading is never a symbol.** `Constants`, `Overview`, `Usage`, `Submodules` and `Import` title parts of a document; a heading containing whitespace (`Widget Animation`, `keyboard API`) titles a group of symbols that its own `### Import` names. Both were being filed as symbols, inventing ids like `@zos/ui.Submodules` that nothing can import. A page named `overview`, `index` or `readme` is excluded from the directory fallback for the same reason.
 11. **A pseudo-module id for an API with no import.** The phone runtimes are globals, so there is no module to read. The docs' own grouping stands in: the containing directory when a page sits in one (`ui/button.mdx` → `ui`, the family `Settings.render` draws from), else the filename. The tree name is deliberately dropped, so both trees' `settings-storage` pages map to one id, enrich merges them, and the record comes out valid in **both** runtimes — which is what the sources state, since `app-settings-api/settings-storage.mdx` is literally an MDX re-export of the Side Service page. These ids are locators into this knowledge base, not something to type in code.
-12. **Five runtimes, not six.** `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App, Settings App, Side Service — and `guides/architecture/folder-structure.mdx` shows `app-side/` **is** the Side Service directory. "App-side" and "Side Service" were the same runtime under two names, so only one is kept. Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are extra entry points rather than extra runtimes: they execute on the watch like the Device App, and attribute to it.
+12. **Sample code is a source, not a citation pool.** The samples front read 33k lines of working JavaScript for the *names* in its import lines and threw the rest away. Reading the same files as code answers the question a signature cannot — what to pass — and reaches API that has no import line at all. Excerpts are quoted verbatim with file and line rather than summarised, because the value is that the code runs.
+13. **Five runtimes, not six.** `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App, Settings App, Side Service — and `guides/architecture/folder-structure.mdx` shows `app-side/` **is** the Side Service directory. "App-side" and "Side Service" were the same runtime under two names, so only one is kept. Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are extra entry points rather than extra runtimes: they execute on the watch like the Device App, and attribute to it.
 
 ## Open questions
 

@@ -13,12 +13,12 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | Estágio | Situação |
 | --- | --- |
 | `fetch` — clonar/atualizar os repositórios oficiais em um cache local | implementado |
-| `parse` — seis frentes: páginas de referência, os runtimes do celular, `static/llms`, samples, guias, lista de dispositivos | implementado |
+| `parse` — sete frentes: páginas de referência, os runtimes do celular, `static/llms`, imports dos samples, apps de exemplo, guias, lista de dispositivos | implementado |
 | `enrich` — fundir as frentes de símbolo em um registro por símbolo | implementado |
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/, runtimes/, patterns/) |
 
-Testes baseados em fixtures cobrem as seis frentes de parse, a atribuição de runtime, a fusão do enrich e todas as visões do render: `npm test` (114 passando, nenhum `todo`).
+Testes baseados em fixtures cobrem as sete frentes de parse, a atribuição de runtime, a fusão do enrich e todas as visões do render: `npm test` (135 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
@@ -28,6 +28,7 @@ Retrato do último sync (números atualizados em [`data/manifest.json`](data/man
 - **todo runtime está coberto**: 373 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 símbolos válidos em mais de um
 - **11 patterns** vindos dos guias de boas práticas, 32 abordagens, usando 17 símbolos distintos — todos os 17 cobertos pelos registros de símbolo
 - **41 dispositivos**: 29 rodando Zepp OS com `API_LEVEL` declarado, 5 em Zepp OS 1.0 sem nenhum, 7 que não rodam Mini Program
+- **33 apps de exemplo** lidos como código, rendendo 592 excertos citados e a forma de 33 `app.json` que funcionam
 
 ## Cobertura e limites
 
@@ -63,7 +64,7 @@ npm run typecheck
 Quatro estágios, cada um idempotente e inspecionável isoladamente, de modo que qualquer um pode ser reexecutado sem refazer os anteriores. A execução é local e sob demanda — não há job agendado em CI na v0.
 
 1. **fetch** — clona ou atualiza os repositórios oficiais em `.cache/` e registra o commit exato de cada um. Conteúdo de terceiros, nunca versionado aqui.
-2. **parse** — seis frentes independentes sobre o cache bruto:
+2. **parse** — sete frentes independentes sobre o cache bruto:
    - **docs-reference** — `docs/reference/**/*.mdx`, um arquivo por símbolo. O módulo vem da linha de import no exemplo da própria página; quando a página não tem nenhuma — ela documenta um global do runtime como `setTimeout` ou `console`, então não há o que importar — cai para o diretório `newAPI/<dir>`. Medido: 221 das 222 páginas que *têm* import concordam com o diretório, e a exceção é um submódulo (`@zos/ble/TransferFile`), então o import continua primário.
    - **runtimes do celular** — `docs/reference/side-service-api/**` e `docs/reference/app-settings-api/**`. Essas APIs são globais (`fetch`, `settings.settingsStorage`, `messaging.peerSocket`) ou componentes do Settings App, então não há import para se apoiar e a frente docs-reference as ignora. Nas 22 páginas elas assumem quatro formas — página-como-símbolo, `##`-como-símbolo, `##`-como-módulo com símbolos em `###` (sinalizado pelo título terminando na palavra `module`), e sem heading algum — então a forma é detectada, não presumida.
    - **llms** — `static/llms/@zos-*.md`, um arquivo por módulo, aproveitando a estruturação que a própria Zepp Health já fez para consumo por LLMs. O id do módulo vem das linhas de import dentro do arquivo, não do H1: `@zos/ui` é dividido em vários arquivos cujo H1 diz `@zos/ui-methods`, `@zos/ui-widget-basic` etc., e esses ids não são importáveis.
@@ -78,6 +79,7 @@ Quatro estágios, cada um idempotente e inspecionável isoladamente, de modo que
    - `compatibility/` — agrupados por `API_LEVEL` mínimo, mais `devices.md`
    - `runtimes/` — uma página por runtime
    - `patterns/` — uma página por guia de boas práticas
+   - `examples/` — uma página por app de exemplo, indexado por símbolo
 
    Símbolo sem mínimo documentado é rotulado `not stated`, nunca `any` — ausência de nível é ausência de evidência, não afirmação de compatibilidade. `runtimes/` gera página para **todo** runtime, inclusive os sem símbolo algum, porque uma página ausente se lê como "este runtime não existe" enquanto uma página declarando "0 símbolos cobertos" se lê como a lacuna de cobertura que é. Os demais diretórios do README (`concepts/`, `examples/`, `tools/`) guardam conhecimento que as frentes automatizadas ainda não alcançam, então não são gerados. É o que a Agent Skill lê.
 
@@ -162,12 +164,14 @@ src/
   parse/    estágio 2 — quatro frentes de extração
     devices.ts   a frente da lista de dispositivos (colunas por nome de cabeçalho)
     patterns.ts  a frente dos guias de boas práticas
+    examples.ts  os apps de exemplo lidos como código, com excertos citados
     phone.ts     a frente Side Service + Settings App (quatro formas de página)
     runtime.ts   regras caminho -> runtime, com o doc que ancora cada uma
     util.ts      caminhada de diretório + a leitura que normaliza para LF
   enrich/   estágio 3 — fundir e normalizar em SymbolRecord / PatternRecord
   store/    gravar o JSON fonte de verdade + manifesto
   render/   estágio 4 — geração de Markdown
+    examples.ts  a visão de examples: símbolo -> código, método -> símbolo provável
     patterns.ts  a visão de patterns e seu join contra os símbolos
     shared.ts    helpers com que todas as visões concordam
   cli.ts    comandos sync / render
@@ -176,6 +180,7 @@ data/
   devices.json    a lista de dispositivos: API_LEVEL, versão do OS, tela, deviceSource
   symbols/        o JSON fonte de verdade, um arquivo por módulo
   patterns/       um arquivo por guia de boas práticas
+  examples/       um arquivo por app de exemplo: manifesto, arquivos, excertos
 skills/
   zepp-os/SKILL.md   a Agent Skill
 concepts/
@@ -183,6 +188,9 @@ concepts/
 test/
   fixtures/cache/    excertos reduzidos das fontes reais, no layout do cache
   *.test.ts          testes dos parsers e do enrich
+eval/
+  task-*.md          tarefas que um agente tenta usando so a base renderizada
+  results/           um relatorio por rodada: as lacunas encontradas, por custo
 .cache/     repositórios oficiais clonados (não versionado)
 ```
 
@@ -207,7 +215,8 @@ então são trabalho de parsing, não de curadoria.
 9. **Descrição é a prosa da página, e só ela.** São páginas MDX, então o extrator precisa saber o que não é prosa: o blockquote do badge de `API_LEVEL`, imports de componente MDX, ilustrações — escritas em markdown numa página e como tag JSX multi-linha em outra, e é por isso que as tags são removidas como unidade e não por linha — e os marcadores `:::info`, cujo *conteúdo* é mantido porque é ali que o código de permissão aparece. Termina no primeiro `## ` ou cerca de código depois do título, para uma página sem seções não engolir o próprio exemplo.
 10. **Título de seção nunca é símbolo.** `Constants`, `Overview`, `Usage`, `Submodules` e `Import` intitulam partes de um documento; um título com espaço (`Widget Animation`, `keyboard API`) intitula um grupo de símbolos que o próprio `### Import` nomeia. Os dois estavam sendo arquivados como símbolo, inventando ids como `@zos/ui.Submodules` que nada consegue importar. Uma página chamada `overview`, `index` ou `readme` fica fora do fallback por diretório pelo mesmo motivo.
 11. **Um id de pseudo-módulo para API sem import.** Os runtimes do celular são globais, então não há módulo a ler. O agrupamento do próprio doc faz esse papel: o diretório que contém a página quando ela está em um (`ui/button.mdx` → `ui`, a família de que `Settings.render` se serve), senão o nome do arquivo. O nome da árvore é descartado de propósito, então as páginas `settings-storage` das duas árvores mapeiam para um id, o enrich as funde, e o registro sai válido nos **dois** runtimes — que é o que as fontes declaram, já que `app-settings-api/settings-storage.mdx` é literalmente um re-export MDX da página do Side Service. Esses ids são localizadores nesta base, não algo para digitar em código.
-12. **Cinco runtimes, não seis.** `guides/architecture/arc.mdx` nomeia três partes de um Mini Program — Device App, Settings App, Side Service — e `guides/architecture/folder-structure.mdx` mostra que `app-side/` **é** o diretório do Side Service. "App-side" e "Side Service" eram o mesmo runtime com dois nomes, então só um foi mantido. Shortcut Card (`app-widget/`) e SecondaryWidget (`secondary-widget/`) são pontos de entrada extras, não runtimes extras: executam no relógio como o Device App, e são atribuídos a ele.
+12. **Código de sample é fonte, não acervo de citação.** A frente de samples lia 33 mil linhas de JavaScript que funciona apenas pelos *nomes* nas linhas de import e descartava o resto. Ler os mesmos arquivos como código responde o que assinatura nenhuma responde — o que passar — e alcança API que não tem linha de import. Os excertos são citados literalmente com arquivo e linha em vez de resumidos, porque o valor está em o código rodar.
+13. **Cinco runtimes, não seis.** `guides/architecture/arc.mdx` nomeia três partes de um Mini Program — Device App, Settings App, Side Service — e `guides/architecture/folder-structure.mdx` mostra que `app-side/` **é** o diretório do Side Service. "App-side" e "Side Service" eram o mesmo runtime com dois nomes, então só um foi mantido. Shortcut Card (`app-widget/`) e SecondaryWidget (`secondary-widget/`) são pontos de entrada extras, não runtimes extras: executam no relógio como o Device App, e são atribuídos a ele.
 
 ## Pontos em aberto
 

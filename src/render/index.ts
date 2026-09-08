@@ -274,14 +274,23 @@ function devicesMarkdown(devices: DeviceRecord[], modules: ModuleFile[]): string
   const noLevel = devices.filter((d) => d.runsZeppOs && d.latestApiLevel === undefined);
   const nonZeppOs = devices.filter((d) => !d.runsZeppOs);
 
+  // Computed, never written in. A hand-typed count here read "29" while the data
+  // said 56, because a later front added symbols with no stated level — and this
+  // is the one number the page offers as evidence that the base is honest about
+  // its own gaps. Any derived figure in generated text has to be derived.
+  const unstated = symbols.length - stated;
+
   const lines = ["# Devices", ""];
   lines.push(
     "The hardware side of the compatibility question. `API_LEVEL` on its own does not",
     "tell a developer whether an app ships — this does.",
     "",
     `**Symbols available** counts the ${stated} symbols that state a minimum and whose`,
-    "minimum the device reaches. It is a floor: the 29 symbols with no stated minimum",
-    "are excluded from every count rather than assumed available.",
+    `minimum the device reaches. It is a floor: the ${unstated} symbols with no stated`,
+    "minimum are excluded from every count rather than assumed available, so a device",
+    `showing "${stated} of ${stated}" runs everything the base can vouch for — not`,
+    `everything the base lists. ${unstated} of ${symbols.length} symbols cannot be`,
+    "vouched for on any device, and some of them are needed by every UI.",
     "",
   );
 

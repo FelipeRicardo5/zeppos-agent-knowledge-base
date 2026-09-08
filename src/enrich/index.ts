@@ -3,7 +3,9 @@ import { deviceSlug } from "../parse/devices.js";
 import type {
   Confidence,
   DeviceRecord,
+  ExampleRecord,
   PatternRecord,
+  RawExample,
   RawDevice,
   RawPattern,
   RawSourceKind,
@@ -147,4 +149,45 @@ export function enrichDevices(rawDevices: RawDevice[]): DeviceRecord[] {
       extractedAt,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * Examples enrich: one sample app in, one record out, plus the join that decides
+ * which member calls are worth keeping.
+ *
+ * `parse` cannot filter them — resolving `text.setProperty(...)` to a module
+ * needs the symbol table, which only exists here. So it collects every method
+ * call and this drops the ones no symbol shares a name with. That is what keeps
+ * `setProperty` (it is `@zos/ui.setProperty`) and discards `cursor_widget` and
+ * the hundred other receiver-specific names, which would otherwise be attached
+ * to nothing and read as noise.
+ *
+ * The match is by name only, never by resolved type. Render says so where it
+ * shows these, because a same-named method on an unrelated object would land
+ * here too.
+ */
+export function enrichExamples(rawExamples: RawExample[], symbols: SymbolRecord[]): ExampleRecord[] {
+  const extractedAt = new Date().toISOString().slice(0, 10);
+  const knownNames = new Set(symbols.map((record) => record.symbol));
+
+  return rawExamples
+    .map(({ sourceDir, memberCalls, ...example }) => ({
+      ...example,
+      memberCalls: memberCalls.filter(({ method }) => knownNames.has(method)),
+      symbols: [...new Set(example.files.flatMap((file) => file.symbols))].sort(),
+      runtimes: [
+        ...new Set(
+          example.files
+            .map((file) => file.runtime)
+            .filter((runtime): runtime is Runtime => runtime !== undefined),
+        ),
+      ].sort(),
+      // Sample code is real usage, not a documentation claim — the same tier the
+      // samples front already assigns.
+      source: "sample-app" as const,
+      confidence: "OBSERVED" as Confidence,
+      originalPath: toPosixPath(sourceDir),
+      extractedAt,
+    }))
+    .sort((a, b) => a.id.localeCompare(b.id));
 }

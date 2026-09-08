@@ -1,12 +1,20 @@
-import { enrich, enrichDevices, enrichPatterns } from "./enrich/index.js";
+import { enrich, enrichDevices, enrichExamples, enrichPatterns } from "./enrich/index.js";
 import { fetchSources } from "./fetch/index.js";
 import { parseDevices } from "./parse/devices.js";
+import { parseExamples } from "./parse/examples.js";
 import { parseLlmsContent, parseMarkdown, parseSamples } from "./parse/index.js";
 import { parsePatterns } from "./parse/patterns.js";
 import { parsePhoneApis } from "./parse/phone.js";
 import { render } from "./render/index.js";
+import { renderExamples } from "./render/examples.js";
 import { renderPatterns } from "./render/patterns.js";
-import { writeDevices, writeManifest, writePatterns, writeSymbols } from "./store/index.js";
+import {
+  writeDevices,
+  writeExamples,
+  writeManifest,
+  writePatterns,
+  writeSymbols,
+} from "./store/index.js";
 import path from "node:path";
 
 const CACHE_DIR = ".cache";
@@ -22,16 +30,17 @@ switch (command) {
       console.log(`${name}: ${commit}`);
     }
 
-    const [docs, phone, llms, samples, guides, hardware] = await Promise.all([
+    const [docs, phone, llms, samples, guides, hardware, apps] = await Promise.all([
       parseMarkdown(CACHE_DIR),
       parsePhoneApis(CACHE_DIR),
       parseLlmsContent(CACHE_DIR),
       parseSamples(CACHE_DIR),
       parsePatterns(CACHE_DIR),
       parseDevices(CACHE_DIR),
+      parseExamples(CACHE_DIR),
     ]);
     console.log(
-      `parsed: ${docs.length} docs-reference, ${phone.length} phone-api, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices`,
+      `parsed: ${docs.length} docs-reference, ${phone.length} phone-api, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices, ${apps.length} sample apps`,
     );
 
     const records = enrich([...docs, ...phone, ...llms, ...samples]);
@@ -51,7 +60,18 @@ switch (command) {
 
     const moduleCount = await writeSymbols(records, DATA_DIR);
     const patternCount = await writePatterns(patterns, DATA_DIR);
+    const examples = enrichExamples(apps, records);
+    const snippets = examples.reduce(
+      (n, e) =>
+        n +
+        e.usages.reduce((m, u) => m + u.snippets.length, 0) +
+        e.memberCalls.reduce((m, c) => m + c.snippets.length, 0),
+      0,
+    );
+    console.log(`enriched: ${examples.length} sample apps (${snippets} cited code excerpts)`);
+
     const deviceCount = await writeDevices(devices, DATA_DIR);
+    const exampleCount = await writeExamples(examples, DATA_DIR);
     await writeManifest(
       {
         lastSyncAt: new Date().toISOString(),
@@ -66,12 +86,13 @@ switch (command) {
           modules: moduleCount,
           patterns: patternCount,
           devices: deviceCount,
+          examples: exampleCount,
         },
       },
       DATA_DIR,
     );
     console.log(
-      `wrote: ${moduleCount} module files to ${DATA_DIR}/symbols, ${patternCount} pattern files to ${DATA_DIR}/patterns, ${deviceCount} devices to ${DATA_DIR}/devices.json`,
+      `wrote: ${moduleCount} module files, ${patternCount} patterns, ${exampleCount} examples, ${deviceCount} devices under ${DATA_DIR}/`,
     );
     break;
   }
@@ -83,8 +104,9 @@ switch (command) {
       path.join(DATA_DIR, "devices.json"),
     );
     const { patterns } = await renderPatterns(path.join(DATA_DIR, "patterns"), symbolsDir, OUT_DIR);
+    const { examples } = await renderExamples(path.join(DATA_DIR, "examples"), symbolsDir, OUT_DIR);
     console.log(
-      `rendered: ${modules} modules to api/ and compatibility/, ${devices} devices to compatibility/devices.md, ${runtimes} runtimes to runtimes/, ${patterns} patterns to patterns/ (plus an index in each)`,
+      `rendered: ${modules} modules, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples (plus an index in each)`,
     );
     break;
   }

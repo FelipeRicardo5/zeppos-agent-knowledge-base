@@ -1,6 +1,12 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { DeviceRecord, PatternRecord, SymbolRecord, SyncManifest } from "../types.js";
+import type {
+  DeviceRecord,
+  ExampleRecord,
+  PatternRecord,
+  SymbolRecord,
+  SyncManifest,
+} from "../types.js";
 
 // Persistence of the JSON source of truth: one file per module (README decision),
 // so a diff shows which module changed and each file stays small enough to read.
@@ -97,4 +103,20 @@ export async function writeDevices(devices: DeviceRecord[], dataDir: string): Pr
   await mkdir(dataDir, { recursive: true });
   await writeJson(path.join(dataDir, "devices.json"), devices);
   return devices.length;
+}
+
+/** Rewrites the examples directory, one file per sample app. */
+export async function writeExamples(examples: ExampleRecord[], dataDir: string): Promise<number> {
+  const examplesDir = path.join(dataDir, "examples");
+  await mkdir(examplesDir, { recursive: true });
+
+  for (const entry of await readdir(examplesDir)) {
+    if (entry.endsWith(".json")) await rm(path.join(examplesDir, entry));
+  }
+
+  for (const example of examples) {
+    await writeJson(path.join(examplesDir, `${example.id}.json`), example);
+  }
+
+  return examples.length;
 }

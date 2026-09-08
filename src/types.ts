@@ -177,3 +177,86 @@ export interface DeviceRecord extends Omit<RawDevice, "sourceFile"> {
   originalPath: string;
   extractedAt: string;
 }
+
+// --- Examples -------------------------------------------------------------
+//
+// The 33 official sample apps are 33k lines of JavaScript that runs. Until now
+// the pipeline read them only for the *names* in their import lines, which threw
+// away the one thing no other source has: how a symbol is actually called.
+//
+// The first eval run made that the root finding — no record carries a signature,
+// so the base answered "may I use X" and never "how do I call X". A signature
+// would say `(props: Props) => RenderFunc`; a sample says what goes in `props`.
+// It also answers what the docs simply omit: updating a widget's text is
+// documented nowhere upstream and appears in 65 sample files.
+
+/** A verbatim excerpt of sample code, with where it came from. */
+export interface CodeSnippet {
+  /** Path relative to the cache dir, posix-normalized. */
+  file: string;
+  /** 1-indexed line the excerpt starts at, so a reader can go look. */
+  line: number;
+  code: string;
+}
+
+/** An imported symbol, with real calls to it. */
+export interface SymbolUsage {
+  /** Symbol id, e.g. `@zos/ui.createWidget`. */
+  id: string;
+  snippets: CodeSnippet[];
+}
+
+/**
+ * A method called on some value (`text.setProperty(...)`). The receiver's type
+ * is not resolved — that would need flow analysis — so this records the method
+ * name and the code, and `render` joins it against the symbol records by name.
+ * That join is what surfaces `setProperty`, which is never imported and so was
+ * invisible to the samples front.
+ */
+export interface MemberCallUsage {
+  method: string;
+  snippets: CodeSnippet[];
+}
+
+export interface ExampleFile {
+  /** Path relative to the app's own root, so the runtime rule can read it. */
+  path: string;
+  runtime?: Runtime;
+  /** Symbol ids imported in this file. */
+  symbols: string[];
+}
+
+/** The parts of a sample's `app.json` that generalize to another project. */
+export interface ExampleManifest {
+  appType?: string;
+  /** Declared permission codes — the list to cross-check against symbols used. */
+  permissions: string[];
+  /** Target keys (`gt.r`, `gt.s`), which name the `assets/` subdirectories. */
+  targets: string[];
+  /** Keys present at the top level, so a reader sees the shape of a real file. */
+  keys: string[];
+}
+
+export interface RawExample {
+  id: string;
+  name: string;
+  /** `application`, `watchface` or `workout-extensions`. */
+  tree: string;
+  /** The version directory the sample sits in: `2.0`, `4.2`, ... */
+  platformVersion: string;
+  manifest?: ExampleManifest;
+  files: ExampleFile[];
+  usages: SymbolUsage[];
+  memberCalls: MemberCallUsage[];
+  sourceDir: string;
+}
+
+export interface ExampleRecord extends Omit<RawExample, "sourceDir"> {
+  /** Union of every file's symbol ids, sorted. */
+  symbols: string[];
+  runtimes: Runtime[];
+  source: "sample-app";
+  confidence: Confidence;
+  originalPath: string;
+  extractedAt: string;
+}

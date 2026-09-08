@@ -215,6 +215,31 @@ describe("render devices", () => {
     assert.match(page, /\| Old \| 2 \| 5\.0 \| 1 of 2 \|/);
   });
 
+  it("derives the unstated-symbol count instead of stating it", async () => {
+    // This count was hand-typed once and read 29 while the data said 56, after a
+    // later front added symbols with no level. It is the one number the page
+    // offers as evidence that the base is honest about its own gaps, so it has
+    // to be computed from the records it is describing.
+    const { symbolsDir, devicesFile, out } = await fixture([device()], {
+      "zos-router": {
+        module: "@zos/router",
+        symbols: [
+          symbol("@zos/router.back", 2),
+          symbol("@zos/router.push", 4),
+          symbol("@zos/router.mystery", undefined),
+        ],
+      },
+    });
+
+    await render(symbolsDir, out, devicesFile);
+    const page = await readFile(path.join(out, "compatibility", "devices.md"), "utf-8");
+
+    assert.match(page, /counts the 2 symbols that state a minimum/);
+    assert.match(page, /the 1 symbols with no stated/);
+    assert.match(page, /1 of 3 symbols cannot be/);
+    assert.doesNotMatch(page, /29 symbols/, "no hand-typed count may survive here");
+  });
+
   it("puts a device with no stated level in its own section, not at zero", async () => {
     const { symbolsDir, devicesFile, out } = await fixture(
       [device({ name: "GTS 4 mini", slug: "gts-4-mini", latestApiLevel: undefined, latestOsVersion: "1.0" })],

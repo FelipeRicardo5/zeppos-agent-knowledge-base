@@ -1,0 +1,108 @@
+{
+  "id": "application-1-0-hello-world",
+  "name": "hello-world",
+  "tree": "application",
+  "platformVersion": "1.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [],
+    "targets": [
+      "gtr3",
+      "gtr3-pro",
+      "gts3"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr3-pro/home/index.page.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr3-pro/home/index.style.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr3/home/index.page.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr3/home/index.style.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gts3/home/index.page.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gts3/home/index.style.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [],
+  "memberCalls": [
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/hello-world/page/gtr3/home/index.page.js",
+          "line": 7,
+          "code": "hmUI.createWidget(hmUI.widget.TEXT, {\n  ...TEXT_STYLE,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/hello-world/page/gtr3-pro/home/index.page.js",
+          "line": 7,
+          "code": "hmUI.createWidget(hmUI.widget.TEXT, {\n  ...TEXT_STYLE,\n});"
+        }
+      ]
+    },
+    {
+      "method": "getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/hello-world/page/gtr3/home/index.style.js",
+          "line": 4,
+          "code": "hmSetting.getDeviceInfo();"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/hello-world/page/gtr3-pro/home/index.style.js",
+          "line": 4,
+          "code": "hmSetting.getDeviceInfo();"
+        }
+      ]
+    }
+  ],
+  "symbols": [],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/1.0/hello-world",
+  "extractedAt": "2026-09-08"
+}

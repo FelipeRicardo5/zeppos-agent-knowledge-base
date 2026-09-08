@@ -14,7 +14,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/exit.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/app-service.getAllAppServices",
@@ -29,7 +29,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/getAllAppServices.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/app-service.start",
@@ -44,7 +44,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/start.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/app-service.stop",
@@ -59,7 +59,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/stop.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     }
   ]
 }

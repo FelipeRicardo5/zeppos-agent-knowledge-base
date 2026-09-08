@@ -1,0 +1,271 @@
+{
+  "id": "application-1-0-fetch-api",
+  "name": "fetch-api",
+  "tree": "application",
+  "platformVersion": "1.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [],
+    "targets": [
+      "common"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-side/index.js",
+      "runtime": "side-service",
+      "symbols": []
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "pages/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/buffer.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/data.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/defer.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/device-polyfill.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/event.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/fs.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/global.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/js-module.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/logger.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/message.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/promise.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/setTimeout.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/config/constants.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/config/device.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [],
+  "memberCalls": [
+    {
+      "method": "addListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 229,
+          "code": "messaging.peerSocket.addListener('message', (message) => {\n  // logger.warn('[RAW] [R] receive size=>%d bin=>%s', message.byteLength, this.bin2hex(message))\n  this.onMessage(message)\n})"
+        }
+      ]
+    },
+    {
+      "method": "clear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/event.js",
+          "line": 29,
+          "code": "this.map.clear()"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 159,
+          "code": "clear() {\n  this.sessions.clear()\n}"
+        }
+      ]
+    },
+    {
+      "method": "clearTimeout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
+          "line": 7,
+          "code": "globalNS.clearTimeout = function clearTimeout(timerRef) {\n  timerRef && timer.stopTimer(timerRef)\n}"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
+          "line": 16,
+          "code": "globalNS.clearTimeout(timer1)"
+        }
+      ]
+    },
+    {
+      "method": "createConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 208,
+          "code": "hmBle.createConnect((index, data, size) => {\n  // logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, this.bin2hex(data))\n  console.log('createConnect-------', size)\n  this.onFragmentData(data)\n})"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/pages/index.js",
+          "line": 13,
+          "code": "hmUI.createWidget(hmUI.widget.BUTTON, {\n  x: (DEVICE_WIDTH - px(400)) / 2,\n  y: px(260),\n  w: px(400),\n  h: px(100),\n  text_size: px(36),\n  radius: px(12),\n  normal_color: DEFAULT_COLOR,\n  press_color: DEFAULT_COLOR_TRANSPARENT,\n  text: \"Fetch Data\",\n  click_func: (button_widget) => {\n    logger.log(\"click button\");"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/pages/index.js",
+          "line": 39,
+          "code": "hmUI.createWidget(hmUI.widget.TEXT, {\n  x: px(56),\n  y: px(74),\n  w: DEVICE_WIDTH - 2 * px(56),\n  h: px(200),\n  color: 0xffffff,\n  text_size: px(36),\n  align_h: hmUI.align.CENTER_H,\n  align_v: hmUI.align.CENTER_V,\n  text_style: hmUI.text_style.NONE,\n  text: text,\n});"
+        }
+      ]
+    },
+    {
+      "method": "disConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app.js",
+          "line": 25,
+          "code": "this.globalData.messageBuilder.disConnect();"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 218,
+          "code": "disConnect(cb) {\n  // logger.debug('app ble disconnect')\n  this.sendClose()\n  this.off('message')\n  hmBle && hmBle.disConnect()\n\n  cb && cb(this)\n}"
+        }
+      ]
+    },
+    {
+      "method": "getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/utils/config/device.js",
+          "line": 2,
+          "code": "hmSetting.getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "method": "readdirSync",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 124,
+          "code": "export function readdirSync(path, options) {\n  logger.log('readdirSync begin -->', path)\n  hmFS.readdirSync(path)\n  logger.log('readdirSync success -->', path)\n}"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 126,
+          "code": "hmFS.readdirSync(path)"
+        }
+      ]
+    },
+    {
+      "method": "send",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 388,
+          "code": "hmBle.send(buf.buffer, buf.byteLength)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 394,
+          "code": "messaging.peerSocket.send(buf.buffer)"
+        }
+      ]
+    },
+    {
+      "method": "set",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/event.js",
+          "line": 10,
+          "code": "this.map.set(type, [cb])"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 142,
+          "code": "this.sessions.set(this.key(newSession), newSession)"
+        }
+      ]
+    },
+    {
+      "method": "stopTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
+          "line": 8,
+          "code": "timerRef && timer.stopTimer(timerRef)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
+          "line": 26,
+          "code": "timerRef && timer.stopTimer(timerRef)"
+        }
+      ]
+    }
+  ],
+  "symbols": [],
+  "runtimes": [
+    "device-app",
+    "side-service"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/1.0/fetch-api",
+  "extractedAt": "2026-09-08"
+}

@@ -1,0 +1,188 @@
+{
+  "id": "application-3-0-notification",
+  "name": "notification",
+  "tree": "application",
+  "platformVersion": "3.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.alarm",
+      "device:os.notification"
+    ],
+    "targets": [
+      "gt"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-service/delay.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/app.getPackageInfo",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "app-service/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/i18n.getText",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/i18n.getText"
+      ]
+    },
+    {
+      "path": "page/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/constants.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/app.getPackageInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/delay.js",
+          "line": 12,
+          "code": "const { appId } = getPackageInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/utils/constants.js",
+          "line": 3,
+          "code": "export const DEVICE_INFO = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/i18n.getText",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/index.js",
+          "line": 14,
+          "code": "title: getText(\"title\"),"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/index.js",
+          "line": 15,
+          "code": "content: getText(\"content\"),"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/delay.js",
+          "line": 8,
+          "code": "logger.log(\"delay onInit=\", params);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/index.js",
+          "line": 9,
+          "code": "logger.log(\"index onInit=\", params);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/page/index.r.layout.js",
+          "line": 6,
+          "code": "x: px(56),"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/notification/page/index.r.layout.js",
+          "line": 7,
+          "code": "y: px(240),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/page/index.js",
+          "line": 8,
+          "code": "hmUI.createWidget(hmUI.widget.BUTTON, {\n  ...Styles.BTN_STYLE,\n  click_func: () => {\n    notificationMgr.notify({\n      title: getText(\"title\"),\n      content: getText(\"content\"),\n      actions: [\n        {\n          text: getText(\"later_min\", 1),\n          file: \"app-service/delay\",\n          param: \"\",\n        },"
+        }
+      ]
+    },
+    {
+      "method": "notify",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/index.js",
+          "line": 13,
+          "code": "notificationMgr.notify({\n  title: getText(\"title\"),\n  content: getText(\"content\"),\n  actions: [],\n  vibrate: 6,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/notification/page/index.js",
+          "line": 11,
+          "code": "notificationMgr.notify({\n  title: getText(\"title\"),\n  content: getText(\"content\"),\n  actions: [\n    {\n      text: getText(\"later_min\", 1),\n      file: \"app-service/delay\",\n      param: \"\",\n    },\n  ],\n  vibrate: 6,\n});"
+        }
+      ]
+    },
+    {
+      "method": "set",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/delay.js",
+          "line": 23,
+          "code": "alarmMgr.set(alarm);"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/app.getPackageInfo",
+    "@zos/device.getDeviceInfo",
+    "@zos/i18n.getText",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/3.0/notification",
+  "extractedAt": "2026-09-08"
+}

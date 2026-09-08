@@ -1,0 +1,44 @@
+{
+  "id": "workout-extensions-3-5-empty",
+  "name": "empty",
+  "tree": "workout-extensions",
+  "platformVersion": "3.5",
+  "manifest": {
+    "appType": "app",
+    "permissions": [],
+    "targets": [
+      "common"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "workout-extension",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/common/index.js",
+      "runtime": "workout-extension",
+      "symbols": []
+    }
+  ],
+  "usages": [],
+  "memberCalls": [],
+  "symbols": [],
+  "runtimes": [
+    "workout-extension"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/workout-extensions/3.5/empty",
+  "extractedAt": "2026-09-08"
+}

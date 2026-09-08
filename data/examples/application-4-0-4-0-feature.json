@@ -1,0 +1,333 @@
+{
+  "id": "application-4-0-4-0-feature",
+  "name": "4.0-feature",
+  "tree": "application",
+  "platformVersion": "4.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "data:user.hd.heart_rate",
+      "data:user.hd.sleep",
+      "data:user.hd.spo2",
+      "data:user.hd.stress",
+      "data:user.hd.workout",
+      "device:os.accelerometer",
+      "device:os.alarm",
+      "device:os.bg_service",
+      "device:os.ble",
+      "device:os.compass",
+      "device:os.geolocation",
+      "device:os.gyroscope",
+      "device:os.notification",
+      "event:customize.test",
+      "event:os.bp.expires",
+      "event:os.bp.high",
+      "event:os.bp.low",
+      "event:os.health.heart_rate_abnl",
+      "event:os.health.sleep_status",
+      "event:os.system.no_disturb",
+      "event:os.system.power_saving",
+      "event:os.system.theater_mode",
+      "event:os.weather.sun_rise",
+      "event:os.weather.sun_set"
+    ],
+    "targets": [
+      "default"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.EventBus",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/router.exit",
+        "@zos/router.push",
+        "@zos/router.replace",
+        "@zos/ui.createWidget",
+        "@zos/ui.updateLayout",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "page/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.SCREEN_SHAPE_SQUARE",
+        "@zos/device.getDeviceInfo",
+        "@zos/ui.SCROLL_LIST",
+        "@zos/ui.align"
+      ]
+    },
+    {
+      "path": "page/TC/TC_01/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/router.exit",
+        "@zos/router.push",
+        "@zos/router.replace",
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.dumpLayout",
+        "@zos/ui.prop",
+        "@zos/ui.text_style",
+        "@zos/ui.updateLayout",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "page/TC/TC_01/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.text_style"
+      ]
+    },
+    {
+      "path": "page/TC/TC_02/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.dumpLayout",
+        "@zos/ui.updateLayout",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "page/TC/TC_02/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.text_style"
+      ]
+    },
+    {
+      "path": "page/TC/TC_03/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.dumpLayout",
+        "@zos/ui.updateLayout",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "page/TC/TC_03/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.text_style"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js",
+          "line": 74,
+          "code": "export const sysUIFocusIsEnable = ((getDeviceInfo().keyType.indexOf('sport') !== -1) || (getDeviceInfo().keyNumber === 4));"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js",
+          "line": 75,
+          "code": "export const sysScreenIsSquare = (getDeviceInfo().screenShape == SCREEN_SHAPE_SQUARE)"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.push",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.js",
+          "line": 44,
+          "code": "push({\n  url: \"page/TC/TC_\" + String(index).padStart(2, '0') + \"/index\"\n});"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 33,
+          "code": "fill_rect_list.push(btn);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.js",
+          "line": 24,
+          "code": "this.state.scroll_list = createWidget(widget.SCROLL_LIST, {\n  ...Styles.SCROLL_LIST_CONFIG_STYLE,\n  data_array: page_list,\n  data_count: page_list.length,\n  item_common_focus: common_focus_flag,\n  data_type_config: [\n    {\n      start: 0,\n      end: 0,\n      type_id: 0,\n    },\n    {"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 20,
+          "code": "let root_container = createWidget(widget.VIRTUAL_CONTAINER, { layout: Styles.BUTTON_ROOT_CONTAINER_STYLE });"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.deleteWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 70,
+          "code": "deleteWidget(btn);"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_02/index.js",
+          "line": 61,
+          "code": "deleteWidget(fill_rect_widget);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.dumpLayout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 113,
+          "code": "dumpLayout(\"layout.txt\");"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_02/index.js",
+          "line": 83,
+          "code": "dumpLayout(\"layout.txt\");"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.updateLayout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.js",
+          "line": 51,
+          "code": "// updateLayout(); no need call by user when screen load"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 59,
+          "code": "updateLayout();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.EventBus",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/app.js",
+          "line": 8,
+          "code": "devEvent: new EventBus(),"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/app.js",
+          "line": 11,
+          "code": "logger.log(\"app onCreate\");"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/app.js",
+          "line": 14,
+          "code": "logger.log(\"app onDestroy\");"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 20,
+          "code": "let root_container = createWidget(widget.VIRTUAL_CONTAINER, { layout: Styles.BUTTON_ROOT_CONTAINER_STYLE });"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 22,
+          "code": "createWidget(widget.FILL_RECT, { parent: root_container, ...Styles.BACKGROUND_FILL_STYLE });"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 118,
+          "code": "layout_show.setProperty(prop.TEXT, text_show);"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 139,
+          "code": "layout_show.setProperty(prop.TEXT, \"tags:newtrack\");"
+        }
+      ]
+    },
+    {
+      "method": "updateLayoutStyle",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 84,
+          "code": "root_container.updateLayoutStyle({ x: \"0\", y: \"9vh\", width: \"100vw\", height: String(style_height) + \"vh\" });"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 111,
+          "code": "group_root.updateLayoutStyle(flex_layout);"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/device.SCREEN_SHAPE_SQUARE",
+    "@zos/device.getDeviceInfo",
+    "@zos/router.exit",
+    "@zos/router.push",
+    "@zos/router.replace",
+    "@zos/ui.SCROLL_LIST",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.deleteWidget",
+    "@zos/ui.dumpLayout",
+    "@zos/ui.prop",
+    "@zos/ui.text_style",
+    "@zos/ui.updateLayout",
+    "@zos/ui.widget",
+    "@zos/utils.EventBus",
+    "@zos/utils.log"
+  ],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/4.0/4.0-feature",
+  "extractedAt": "2026-09-08"
+}

@@ -1,0 +1,144 @@
+{
+  "id": "watchface-1-0-simple",
+  "name": "simple",
+  "tree": "watchface",
+  "platformVersion": "1.0",
+  "manifest": {
+    "appType": "watchface",
+    "permissions": [
+      "gps"
+    ],
+    "targets": [],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "designWidth",
+      "i18n",
+      "module",
+      "packageInfo",
+      "permissions",
+      "platforms",
+      "runtime"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "watchface/default-target/index.js",
+      "runtime": "watchface",
+      "symbols": []
+    }
+  ],
+  "usages": [],
+  "memberCalls": [
+    {
+      "method": "addEventListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 77,
+          "code": "timeSensor.addEventListener(timeSensor.event.MINUTEEND, function () {\n    digitalTime.setProperty(hmUI.prop.MORE, {\n        text: `${String(timeSensor.hour).padStart(2, \"0\")}:${String(\n            timeSensor.minute\n        ).padStart(2, \"0\")}`,\n    });\n});"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 85,
+          "code": "heartSensor.addEventListener(heartSensor.event.LAST, function () {\n    heartRate.setProperty(hmUI.prop.MORE, {\n        text: `HR:${heartSensor.last}`,\n    });\n});"
+        }
+      ]
+    },
+    {
+      "method": "App",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 81,
+          "code": "__$$app$$__.app = DeviceRuntimeCore.App({\n    globalData: {},\n    onCreate(options) {\n    },\n    onDestroy(options) {\n    },\n    onError(error) {\n    },\n    onPageNotFound(obj) {\n    },\n    onUnhandledRejection(obj) {\n    }"
+        }
+      ]
+    },
+    {
+      "method": "clearTimeout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 51,
+          "code": "globalNS.clearTimeout = function clearTimeout(timerRef) {\n    timerRef && timer.stopTimer(timerRef);\n};"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 56,
+          "code": "globalNS.clearTimeout(timer1);"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 13,
+          "code": "hmUI.createWidget(hmUI.widget.FILL_RECT, {\n    x: 0,\n    y: 0,\n    w: 480,\n    h: 480,\n    color: \"0xFF343934\",\n    radius: 240,\n    show_level: hmUI.show_level.ONLY_NORMAL,\n});"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 23,
+          "code": "digitalTime = hmUI.createWidget(hmUI.widget.TEXT, {\n    x: 141,\n    y: 190,\n    w: 200,\n    h: 100,\n    text: \"[HOUR_24_Z]:[MIN_Z]\",\n    color: \"0xFF497d80\",\n    text_size: 60,\n    text_style: hmUI.text_style.NONE,\n    align_h: hmUI.align.CENTER_H,\n    align_v: hmUI.align.CENTER_V,\n    show_level: hmUI.show_level.ONLY_NORMAL,"
+        }
+      ]
+    },
+    {
+      "method": "getLanguage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 11,
+          "code": "lang: new DeviceRuntimeCore.HmUtils.Lang(DeviceRuntimeCore.HmUtils.getLanguage()),"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 78,
+          "code": "digitalTime.setProperty(hmUI.prop.MORE, {\n    text: `${String(timeSensor.hour).padStart(2, \"0\")}:${String(\n        timeSensor.minute\n    ).padStart(2, \"0\")}`,\n});"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 86,
+          "code": "heartRate.setProperty(hmUI.prop.MORE, {\n    text: `HR:${heartSensor.last}`,\n});"
+        }
+      ]
+    },
+    {
+      "method": "stopTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 52,
+          "code": "timerRef && timer.stopTimer(timerRef);"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 62,
+          "code": "timerRef && timer.stopTimer(timerRef);"
+        }
+      ]
+    }
+  ],
+  "symbols": [],
+  "runtimes": [
+    "watchface"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/watchface/1.0/simple",
+  "extractedAt": "2026-09-08"
+}

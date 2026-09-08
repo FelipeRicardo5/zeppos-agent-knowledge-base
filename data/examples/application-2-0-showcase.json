@@ -1,0 +1,923 @@
+{
+  "id": "application-2-0-showcase",
+  "name": "showcase",
+  "tree": "application",
+  "platformVersion": "2.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "data:user.hd.calorie",
+      "data:user.hd.distance",
+      "data:user.hd.fat_burning",
+      "data:user.hd.heart_rate",
+      "data:user.hd.pai",
+      "data:user.hd.sleep",
+      "data:user.hd.spo2",
+      "data:user.hd.stand",
+      "data:user.hd.step",
+      "data:user.hd.stress",
+      "device:os.geolocation"
+    ],
+    "targets": [
+      "gt4"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.setStatusBarVisible"
+      ]
+    },
+    {
+      "path": "config/constants.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "config/device.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo"
+      ]
+    },
+    {
+      "path": "config/tree.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/router.push",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/interaction/create_modal.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/interaction.MODAL_CONFIRM",
+        "@zos/interaction.createModal",
+        "@zos/ui.event"
+      ]
+    },
+    {
+      "path": "page/interaction/on_digital_crown.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/interaction.onDigitalCrown",
+        "@zos/ui.prop"
+      ]
+    },
+    {
+      "path": "page/interaction/on_key.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/interaction.KEY_SHORTCUT",
+        "@zos/interaction.onKey",
+        "@zos/ui.prop"
+      ]
+    },
+    {
+      "path": "page/interaction/on_wrist_motion.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/interaction.onWristMotion",
+        "@zos/ui.prop"
+      ]
+    },
+    {
+      "path": "page/interaction/show_toast.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/interaction.showToast",
+        "@zos/ui.event"
+      ]
+    },
+    {
+      "path": "page/router/set_launch_app_timeout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/router.setLaunchAppTimeout",
+        "@zos/sensor.Time",
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/sensor/blood_oxygen.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.BloodOxygen",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/sensor/calorie.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Calorie",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/sensor/distance.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Distance",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/sensor/fat_burning.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.FatBurning",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/sensor/geolocation.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Geolocation"
+      ]
+    },
+    {
+      "path": "page/sensor/heart_rate.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.HeartRate",
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/sensor/pai.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Pai"
+      ]
+    },
+    {
+      "path": "page/sensor/sleep.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Sleep"
+      ]
+    },
+    {
+      "path": "page/sensor/stand.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Stand",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/sensor/step.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Step",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/sensor/stress.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Stress",
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/arc.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/button.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/checkbox_group.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/circle.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/ui/widget/cycle_image_text_list.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/cycle_list.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/dialog.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "page/ui/widget/fill_rect.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/histogram.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/img_anim.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.anim_status",
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/img.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/page_indicator.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/ui/widget/pick_date.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/polyline.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/qrcode.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/radio_group.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/scroll_list.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/slide_switch.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/stroke_rect.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/text.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/ui/widget/view_container.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/log.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "utils/styles.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/template/PageAdvanced.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.setStatusBarVisible"
+      ]
+    },
+    {
+      "path": "utils/test.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/UI/ButtonList.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/UI/EmptySpace.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/UI/TextByLine.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/UI/Title.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/utils.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/config/device.js",
+          "line": 3,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.createModal",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/create_modal.js",
+          "line": 10,
+          "code": "const dialog = createModal({\n  content: 'hello world',\n  autoHide: false,\n  onClick: (keyObj) => {\n    console.log('type', keyObj.type)\n    if (keyName === MODAL_CONFIRM) {\n      console.log('confirm')\n    } else {\n      console.log('close')\n      dialog.show(false)\n    }\n  }"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.onDigitalCrown",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/on_digital_crown.js",
+          "line": 17,
+          "code": "onDigitalCrown({\n  callback: (key, degree) => {\n    this.state.logger.log(key, degree)\n    text.setProperty(prop.MORE, {\n      text: `KEY:${key};DEGREE:${degree}`\n    })\n  }\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.onKey",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/on_key.js",
+          "line": 17,
+          "code": "onKey({\n  callback: (key, action) => {\n    text.setProperty(prop.MORE, {\n      text: `key: ${key};action: ${action}`\n    })\n\n    if (key === KEY_SHORTCUT) {\n      this.state.logger.log('key shortcut')\n    }\n\n    return true\n  }"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.onWristMotion",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/on_wrist_motion.js",
+          "line": 17,
+          "code": "onWristMotion({\n  callback: (data = {}) => {\n    const { motion } = data\n    this.state.logger.log('motion', motion)\n    text.setProperty(prop.MORE, {\n      text: `MOTION:${motion}`\n    })\n  }\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.showToast",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/show_toast.js",
+          "line": 11,
+          "code": "showToast({\n  content: 'Hello ZeppOS'\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.push",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/index.js",
+          "line": 57,
+          "code": "push({\n  url: `page/${this.state.params.path.join(\"/\")}/${path}`,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/index.js",
+          "line": 61,
+          "code": "push({\n  url: \"page/index\",\n  params: {\n    path: [...this.state.params.path, text],\n  },\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.setLaunchAppTimeout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/router/set_launch_app_timeout.js",
+          "line": 24,
+          "code": "setLaunchAppTimeout({\n  url: 'page/index',\n  appId: 25107,\n  utc: time.getTime() + 1000\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.BloodOxygen",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js",
+          "line": 13,
+          "code": "const bloodOxygen = new BloodOxygen();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Calorie",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/calorie.js",
+          "line": 12,
+          "code": "const calorie = new Calorie();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Distance",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/distance.js",
+          "line": 12,
+          "code": "const distance = new Distance();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.FatBurning",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/fat_burning.js",
+          "line": 12,
+          "code": "const fatBurning = new FatBurning();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Geolocation",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js",
+          "line": 10,
+          "code": "const geolocation = new Geolocation();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.HeartRate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js",
+          "line": 12,
+          "code": "const heartRate = new HeartRate();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Pai",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/pai.js",
+          "line": 11,
+          "code": "const pai = new Pai();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Sleep",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/sleep.js",
+          "line": 10,
+          "code": "const sleep = new Sleep();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Stand",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/stand.js",
+          "line": 12,
+          "code": "const stand = new Stand();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Step",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/step.js",
+          "line": 12,
+          "code": "const step = new Step();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Stress",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/stress.js",
+          "line": 15,
+          "code": "const stress = new Stress();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Time",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/router/set_launch_app_timeout.js",
+          "line": 12,
+          "code": "const time = new Time()"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/router/set_launch_app_timeout.js",
+          "line": 14,
+          "code": "createWidget(widget.BUTTON, {\n  x: px(80),\n  y: px(300),\n  w: px(300),\n  h: px(60),\n  radius: px(12),\n  normal_color: 0xfc6950,\n  press_color: 0xfeb4a8,\n  text: 'setLaunchAppTimeOut',\n  click_func: () => {\n    setLaunchAppTimeout({\n      url: 'page/index',"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js",
+          "line": 34,
+          "code": "createWidget(widget.BUTTON, {\n  x: px(80),\n  y: px(300),\n  w: px(300),\n  h: px(60),\n  radius: px(12),\n  normal_color: 0xfc6950,\n  press_color: 0xfeb4a8,\n  text: \"REGISTER_CHANGE\",\n  click_func: bloodOxygen.onChange(changeCallback),\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.setStatusBarVisible",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/app.js",
+          "line": 7,
+          "code": "setStatusBarVisible(false);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/utils/template/PageAdvanced.js",
+          "line": 19,
+          "code": "setStatusBarVisible(false);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/index.js",
+          "line": 44,
+          "code": "absolute_y: px(120),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/router/set_launch_app_timeout.js",
+          "line": 15,
+          "code": "x: px(80),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "addEventListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/create_modal.js",
+          "line": 24,
+          "code": "this.state.titleWidget.addEventListener(event.CLICK_DOWN, () => {\n  dialog.show(true)\n})"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/show_toast.js",
+          "line": 10,
+          "code": "this.state.titleWidget.addEventListener(event.CLICK_DOWN, () => {\n  showToast({\n    content: 'Hello ZeppOS'\n  })\n})"
+        }
+      ]
+    },
+    {
+      "method": "clear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/ui/widget/polyline.js",
+          "line": 26,
+          "code": "polyline.clear()"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/ui/widget/polyline.js",
+          "line": 33,
+          "code": "polyline.clear()"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/ui/widget/checkbox_group.js",
+          "line": 10,
+          "code": "const checkbox_group = createWidget(widget.CHECKBOX_GROUP, {\n  x: px(0),\n  y: px(0),\n  w: px(480),\n  h: px(64),\n  select_src: 'selected.png',\n  unselect_src: 'unselected.png',\n  check_func: (group, index, checked) => {\n    this.state.logger.log('index', index)\n    this.state.logger.log('checked', checked)\n  }\n})"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/ui/widget/checkbox_group.js",
+          "line": 23,
+          "code": "const button1 = checkbox_group.createWidget(widget.STATE_BUTTON, {\n  x: px(40),\n  y: px(200),\n  w: px(64),\n  h: px(64)\n})"
+        }
+      ]
+    },
+    {
+      "method": "getProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/ui/widget/cycle_image_text_list.js",
+          "line": 39,
+          "code": "this.state.logger.log('property', cycle_image_text_list.getProperty(prop.MORE, {}))"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/ui/widget/img_anim.js",
+          "line": 27,
+          "code": "const isRunning = imgAnimation.getProperty(prop.ANIM_IS_RUNINNG)"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/on_digital_crown.js",
+          "line": 20,
+          "code": "text.setProperty(prop.MORE, {\n  text: `KEY:${key};DEGREE:${degree}`\n})"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/on_key.js",
+          "line": 19,
+          "code": "text.setProperty(prop.MORE, {\n  text: `key: ${key};action: ${action}`\n})"
+        }
+      ]
+    },
+    {
+      "method": "start",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js",
+          "line": 57,
+          "code": "bloodOxygen.start();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js",
+          "line": 21,
+          "code": "geolocation.start();"
+        }
+      ]
+    },
+    {
+      "method": "stop",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js",
+          "line": 56,
+          "code": "bloodOxygen.stop();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js",
+          "line": 25,
+          "code": "this.state.instance && this.state.instance.stop()"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/device.getDeviceInfo",
+    "@zos/interaction.KEY_SHORTCUT",
+    "@zos/interaction.MODAL_CONFIRM",
+    "@zos/interaction.createModal",
+    "@zos/interaction.onDigitalCrown",
+    "@zos/interaction.onKey",
+    "@zos/interaction.onWristMotion",
+    "@zos/interaction.showToast",
+    "@zos/router.push",
+    "@zos/router.setLaunchAppTimeout",
+    "@zos/sensor.BloodOxygen",
+    "@zos/sensor.Calorie",
+    "@zos/sensor.Distance",
+    "@zos/sensor.FatBurning",
+    "@zos/sensor.Geolocation",
+    "@zos/sensor.HeartRate",
+    "@zos/sensor.Pai",
+    "@zos/sensor.Sleep",
+    "@zos/sensor.Stand",
+    "@zos/sensor.Step",
+    "@zos/sensor.Stress",
+    "@zos/sensor.Time",
+    "@zos/ui.align",
+    "@zos/ui.anim_status",
+    "@zos/ui.createWidget",
+    "@zos/ui.event",
+    "@zos/ui.prop",
+    "@zos/ui.setStatusBarVisible",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/2.0/showcase",
+  "extractedAt": "2026-09-08"
+}

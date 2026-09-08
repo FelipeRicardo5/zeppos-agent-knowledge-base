@@ -1,0 +1,91 @@
+{
+  "id": "workout-extensions-3-5-running-pace-master",
+  "name": "running-pace-master",
+  "tree": "workout-extensions",
+  "platformVersion": "3.5",
+  "manifest": {
+    "appType": "app",
+    "permissions": [],
+    "targets": [
+      "common"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "workout-extension",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/common/index.js",
+      "runtime": "workout-extension",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.edit_widget_group_type",
+        "@zos/ui.sport_data",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master/data-widget/common/index.js",
+          "line": 6,
+          "code": "const bg = createWidget(widget.IMG, {\n  x: 0,\n  y: 0,\n  src: 'bg.png'\n})"
+        },
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master/data-widget/common/index.js",
+          "line": 11,
+          "code": "const text = createWidget(widget.TEXT, {\n  x: px(240),\n  y: px(82),\n  w: px(150),\n  h: px(85),\n  color: 0xffffff,\n  text_size: px(30),\n  align_h: align.CENTER_H,\n  align_v: align.CENTER_V,\n  text_style: text_style.NONE,\n  text: 'BPM'\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master/data-widget/common/index.js",
+          "line": 12,
+          "code": "x: px(240),"
+        },
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master/data-widget/common/index.js",
+          "line": 13,
+          "code": "y: px(82),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [],
+  "symbols": [
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.edit_widget_group_type",
+    "@zos/ui.sport_data",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "workout-extension"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/workout-extensions/3.5/running-pace-master",
+  "extractedAt": "2026-09-08"
+}

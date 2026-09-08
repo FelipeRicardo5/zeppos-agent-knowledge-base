@@ -14,7 +14,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDeviceInfo.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/device.getDiskInfo",
@@ -29,7 +29,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDiskInfo.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/device.SCREEN_SHAPE_ROUND",
@@ -44,7 +44,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-device.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/device.SCREEN_SHAPE_SQUARE",
@@ -59,7 +59,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-device.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     }
   ]
 }

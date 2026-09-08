@@ -1,0 +1,190 @@
+{
+  "id": "application-3-0-fetch-api",
+  "name": "fetch-api",
+  "tree": "application",
+  "platformVersion": "3.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.local_storage"
+    ],
+    "targets": [
+      "common"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-side/index.js",
+      "runtime": "side-service",
+      "symbols": [
+        "@zeppos/zml/base-side.BaseSideService"
+      ]
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zeppos/zml/base-app.BaseApp"
+      ]
+    },
+    {
+      "path": "page/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zeppos/zml/base-page.BasePage",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/index.s.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/config/constants.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/config/device.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zeppos/zml/base-app.BaseApp",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app.js",
+          "line": 4,
+          "code": "BaseApp({\n  globalData: {},\n  onCreate(options) {\n    console.log(\"app on create invoke\");\n  },\n\n  onDestroy(options) {\n    console.log(\"app on destroy invoke\");\n  },\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base-page.BasePage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/page/index.js",
+          "line": 13,
+          "code": "BasePage({\n  state: {},\n  build() {\n    hmUI.createWidget(hmUI.widget.BUTTON, {\n      ...FETCH_BUTTON,\n      click_func: (button_widget) => {\n        logger.log(\"click button\");\n        this.fetchData();\n      },\n    });\n  },\n  fetchData() {"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base-side.BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/app-side/index.js",
+          "line": 42,
+          "code": "BaseSideService({\n  onInit() {},\n\n  onRequest(req, res) {\n    console.log(\"=====>,\", req.method);\n    if (req.method === \"GET_DATA\") {\n      fetchData(res);\n    }\n  },\n\n  onRun() {},"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/utils/config/device.js",
+          "line": 2,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/page/index.js",
+          "line": 19,
+          "code": "logger.log(\"click button\");"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/page/index.js",
+          "line": 29,
+          "code": "logger.log(\"receive data\");"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/page/index.r.layout.js",
+          "line": 11,
+          "code": "x: (DEVICE_WIDTH - px(360)) / 2,"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/page/index.r.layout.js",
+          "line": 12,
+          "code": "y: px(300),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/page/index.js",
+          "line": 16,
+          "code": "hmUI.createWidget(hmUI.widget.BUTTON, {\n  ...FETCH_BUTTON,\n  click_func: (button_widget) => {\n    logger.log(\"click button\");\n    this.fetchData();\n  },\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/page/index.js",
+          "line": 34,
+          "code": "textWidget = hmUI.createWidget(hmUI.widget.TEXT, {\n  ...FETCH_RESULT_TEXT,\n  text,\n});"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/fetch-api/page/index.js",
+          "line": 39,
+          "code": "textWidget.setProperty(hmUI.prop.TEXT, text);"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zeppos/zml/base-app.BaseApp",
+    "@zeppos/zml/base-page.BasePage",
+    "@zeppos/zml/base-side.BaseSideService",
+    "@zos/device.getDeviceInfo",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app",
+    "side-service"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/3.0/fetch-api",
+  "extractedAt": "2026-09-08"
+}

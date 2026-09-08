@@ -1,0 +1,937 @@
+{
+  "id": "application-3-0-3-0-feature",
+  "name": "3.0-feature",
+  "tree": "application",
+  "platformVersion": "3.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "data:user.hd.heart_rate",
+      "data:user.hd.sleep",
+      "data:user.hd.spo2",
+      "data:user.hd.stress",
+      "data:user.hd.workout",
+      "device:os.accelerometer",
+      "device:os.alarm",
+      "device:os.bg_service",
+      "device:os.ble",
+      "device:os.compass",
+      "device:os.geolocation",
+      "device:os.gyroscope",
+      "device:os.notification",
+      "event:customize.test",
+      "event:os.bp.expires",
+      "event:os.bp.high",
+      "event:os.bp.low",
+      "event:os.health.heart_rate_abnl",
+      "event:os.health.sleep_status",
+      "event:os.system.no_disturb",
+      "event:os.system.power_saving",
+      "event:os.system.theater_mode",
+      "event:os.weather.sun_rise",
+      "event:os.weather.sun_set"
+    ],
+    "targets": [
+      "common"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-service/system_event_service.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "app-service/time_service.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Time",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.EventBus",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "components/empty-space/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "components/empty-space/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "libs/ble.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "libs/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "libs/utils.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo"
+      ]
+    },
+    {
+      "path": "pages/acc.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Accelerometer",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/alarm.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/router.push",
+        "@zos/router.replace",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/bgService.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/app.queryPermission",
+        "@zos/app.requestPermission",
+        "@zos/router.replace",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/ble.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/display.setPageBrightTime"
+      ]
+    },
+    {
+      "path": "pages/canvas.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/compass.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Compass",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/gps.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Geolocation",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/gyro.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Gyroscope",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/heart.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.HeartRate",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/router.push",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/newAlarm.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/interaction.GESTURE_RIGHT",
+        "@zos/interaction.offGesture",
+        "@zos/interaction.onGesture",
+        "@zos/utils.log",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "pages/notification.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/router.replace",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/screen.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Screen",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/sensor.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/router.push",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/sleep.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Sleep",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/spo2.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.BloodOxygen",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/stress.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/sensor.Stress",
+        "@zos/utils.log",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "pages/style.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "pages/systemEvent.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/app.emitCustomSystemEvent",
+        "@zos/device.getDeviceInfo",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/target.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "pages/workout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Workout",
+        "@zos/utils.log"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/app.emitCustomSystemEvent",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/systemEvent.js",
+          "line": 38,
+          "code": "emitCustomSystemEvent({\n  eventName: 'event:customize.test',\n  eventParam: 'eventName=event:customize.test&type=0',\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/app.queryPermission",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/bgService.js",
+          "line": 33,
+          "code": "const [result2] = queryPermission({\n  permissions,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/app.requestPermission",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/bgService.js",
+          "line": 38,
+          "code": "requestPermission({\n  permissions,\n  callback([result2]) {\n    if (result2 === 2) {\n      startTimeService(vm);\n    }\n  },\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/utils.js",
+          "line": 3,
+          "code": "export const { height: DEVICE_HEIGHT, width: DEVICE_WIDTH } = getDeviceInfo();"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/alarm.js",
+          "line": 7,
+          "code": "const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/display.setPageBrightTime",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/ble.js",
+          "line": 84,
+          "code": "setPageBrightTime({\n  brightTime: 60000,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.offGesture",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 510,
+          "code": "offGesture();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.onGesture",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 55,
+          "code": "onGesture(function (event) {\n  switch (event) {\n    case GESTURE_RIGHT:\n      if (vc) {\n        //! in dialog\n        return true;\n      }\n    default:\n      break;\n  }\n  return false;\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.push",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/alarm.js",
+          "line": 104,
+          "code": "push({\n  url: \"pages/newAlarm\",\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/index.js",
+          "line": 41,
+          "code": "push({\n  url: feature.url,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.replace",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/alarm.js",
+          "line": 68,
+          "code": "replace({\n  url: `${thisFile}`,\n  params: `${thisFile}`,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/bgService.js",
+          "line": 149,
+          "code": "replace({ url: `${thisFile}` });"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Accelerometer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/acc.js",
+          "line": 7,
+          "code": "const acc = new Accelerometer();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.BloodOxygen",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/spo2.js",
+          "line": 19,
+          "code": "let spo2Sr = new BloodOxygen();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Compass",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/compass.js",
+          "line": 6,
+          "code": "const compass = new Compass();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Geolocation",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/gps.js",
+          "line": 6,
+          "code": "const gps = new Geolocation();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Gyroscope",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/gyro.js",
+          "line": 6,
+          "code": "const gyro = new Gyroscope();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.HeartRate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/heart.js",
+          "line": 19,
+          "code": "let hrSr = new HeartRate();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Screen",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/screen.js",
+          "line": 7,
+          "code": "const screen = new Screen();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Sleep",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/sleep.js",
+          "line": 20,
+          "code": "let sleepSr = new Sleep();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Stress",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/stress.js",
+          "line": 44,
+          "code": "let stressSr = new Stress();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Time",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 8,
+          "code": "const timeSensor = new Time();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Workout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/workout.js",
+          "line": 7,
+          "code": "const workout = new Workout();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.EventBus",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app.js",
+          "line": 8,
+          "code": "devEvent: new EventBus(),"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/system_event_service.js",
+          "line": 6,
+          "code": "logger.log(\"service init\");"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/system_event_service.js",
+          "line": 7,
+          "code": "logger.log(e);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 15,
+          "code": "const BUTTON_H = px(40);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 271,
+          "code": "font_size: px(32),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "addEventListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 78,
+          "code": "canvasIndex0.addEventListener(hmUI.event.CLICK_UP, btnUpCb);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 79,
+          "code": "canvasIndex0.addEventListener(hmUI.event.CLICK_DOWN, btnDnCb);"
+        }
+      ]
+    },
+    {
+      "method": "cancel",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/alarm.js",
+          "line": 67,
+          "code": "alarmMgr.cancel(b);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/notification.js",
+          "line": 70,
+          "code": "notificationMgr.cancel(b);"
+        }
+      ]
+    },
+    {
+      "method": "clear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 166,
+          "code": "canvasIndex2.clear(CANVAS_STYLE_2_CLEAR_1);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 212,
+          "code": "canvasIndex1.clear({\n  ...CANVAS_STYLE_1_CLEAR_1,\n  x: anim.posx,\n});"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/components/empty-space/index.js",
+          "line": 7,
+          "code": "vc.createWidget(hmUI.widget.FILL_RECT, {\n  ...EMPTY_SPACE,\n  y,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/acc.js",
+          "line": 14,
+          "code": "textWidget = hmUI.createWidget(hmUI.widget.TEXT, {\n  ...Styles.TEXT_STYLE,\n  text: \"ACC Info simulator sample value from positive horizontal to negative horizontal\",\n});"
+        }
+      ]
+    },
+    {
+      "method": "deleteWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 83,
+          "code": "hmUI.deleteWidget(vc), (vc = null);"
+        }
+      ]
+    },
+    {
+      "method": "exit",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 37,
+          "code": "appServiceMgr.exit();"
+        }
+      ]
+    },
+    {
+      "method": "getAllAlarms",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/alarm.js",
+          "line": 39,
+          "code": "let alarms = alarmMgr.getAllAlarms();"
+        }
+      ]
+    },
+    {
+      "method": "getAllAppServices",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/bgService.js",
+          "line": 119,
+          "code": "let services = appService.getAllAppServices();"
+        }
+      ]
+    },
+    {
+      "method": "getAllNotifications",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/notification.js",
+          "line": 52,
+          "code": "let notifications = notificationMgr.getAllNotifications();"
+        }
+      ]
+    },
+    {
+      "method": "mstBuildProfile",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 57,
+          "code": "hmBle.mstBuildProfile(profileObject);"
+        }
+      ]
+    },
+    {
+      "method": "mstConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 94,
+          "code": "hmBle.mstConnect(mac, function (conParam) {\n  console.log(\"----------mstConnect\");\n  console.log(conParam.connected, conParam.connect_id);\n  if (conParam.connected === 0) {\n    console.log(\"**************connected\");\n    hmBle.mstDisconnect(() => {\n      console.log(\"----------mstDisconnect\");\n      devEvent.emit(\"error\");\n    });\n    hmBle.mstOnPrepare(function (preParam) {\n      console.log(\"----------mstOnPrepare\");\n      if (preParam.status === 0) {"
+        }
+      ]
+    },
+    {
+      "method": "mstDisconnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 99,
+          "code": "hmBle.mstDisconnect(() => {\n  console.log(\"----------mstDisconnect\");\n  devEvent.emit(\"error\");\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 204,
+          "code": "hmBle.mstDisconnect(connectId);"
+        }
+      ]
+    },
+    {
+      "method": "mstOffAllCb",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 209,
+          "code": "hmBle.mstOffAllCb();"
+        }
+      ]
+    },
+    {
+      "method": "mstOnCharaNotification",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 143,
+          "code": "hmBle.mstOnCharaNotification(function (cnParam) {\n  console.log(\"----------mstOnCharaNotification\");\n  console.log(\"*1***\", cnParam.uuid);\n  console.log(\"*2***\", cnParam.length);\n  console.log(\"*3***\", cnParam.profile);\n  const arr = Utils.ab2Str(cnParam.data);\n\n  console.log(\"*origin data***\", JSON.stringify(arr));\n  if (cnParam.data.byteLength < 6) {\n    return;\n  }\n  const dataview = new DataView(cnParam.data);"
+        }
+      ]
+    },
+    {
+      "method": "mstOnCharaValueArrived",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 113,
+          "code": "hmBle.mstOnCharaValueArrived(function (ccParam) {\n  console.log(\"----------mstOnCharaValueArrived\");\n  console.log(ccParam.profile, ccParam.uuid, ccParam.status);\n  if (ccParam.status === 0) {\n    console.log(\"**************CharaValueArrived\");\n  } else {\n    console.log(\"===error CharaValueArrived\");\n    devEvent.emit(\"error\");\n  }\n});"
+        }
+      ]
+    },
+    {
+      "method": "mstOnCharaWriteComplete",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 123,
+          "code": "hmBle.mstOnCharaWriteComplete(function (ccParam) {\n  console.log(\"----------mstOnCharaWriteComplete\");\n  console.log(ccParam.profile, ccParam.uuid, ccParam.status);\n  if (ccParam.status === 0) {\n    console.log(\"**************CharaWriteComplete\");\n  } else {\n    console.log(\"===error mstOnCharaWriteComplete\");\n    devEvent.emit(\"error\");\n  }\n});"
+        }
+      ]
+    },
+    {
+      "method": "mstOnDescValueArrived",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 133,
+          "code": "hmBle.mstOnDescValueArrived(function (param) {\n  console.log(\"----------mstOnDescValueArrived\");\n});"
+        }
+      ]
+    },
+    {
+      "method": "mstOnDescWriteComplete",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 136,
+          "code": "hmBle.mstOnDescWriteComplete(function (dwcParam) {\n  console.log(\"----------mstOnDescWriteComplete\");\n  console.log(\"*1***\", dwcParam.chara);\n  console.log(\"*2***\", dwcParam.desc);\n  console.log(\"*3***\", dwcParam.status);\n  console.log(\"*4***\", dwcParam.profile);\n});"
+        }
+      ]
+    },
+    {
+      "method": "mstOnPrepare",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 103,
+          "code": "hmBle.mstOnPrepare(function (preParam) {\n  console.log(\"----------mstOnPrepare\");\n  if (preParam.status === 0) {\n    console.log(\"**************prepared\");\n    createListen(preParam.profile);\n  } else {\n    console.log(\"===error mstOnPrepare\");\n    devEvent.emit(\"error\");\n  }\n});"
+        }
+      ]
+    },
+    {
+      "method": "mstOnServiceChangeBegin",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 189,
+          "code": "hmBle.mstOnServiceChangeBegin(function (param) {\n  console.log(\"----------mstOnServiceChangeBegin\");\n});"
+        }
+      ]
+    },
+    {
+      "method": "mstOnServiceChangeEnd",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 192,
+          "code": "hmBle.mstOnServiceChangeEnd(function (param) {\n  console.log(\"----------mstOnServiceChangeEnd\");\n});"
+        }
+      ]
+    },
+    {
+      "method": "mstStartScan",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 76,
+          "code": "hmBle.mstStartScan(function (result) {\n  console.log(\"--has been scanned---\", result.dev_name);\n  if (result.dev_name !== deviceName) {\n    return;\n  }\n  console.log(\"--target device----\", JSON.stringify(result));\n  devEvent.emit(\"scan\", result.dev_addr);\n});"
+        }
+      ]
+    },
+    {
+      "method": "mstStopScan",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 88,
+          "code": "hmBle.mstStopScan();"
+        }
+      ]
+    },
+    {
+      "method": "mstWriteDescriptor",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 65,
+          "code": "hmBle.mstWriteDescriptor(\n  profile,\n  `0000${uuid}-0000-1000-8000-00805f9b34fb`,\n  \"2902\",\n  data,\n  arr.length\n);"
+        }
+      ]
+    },
+    {
+      "method": "notify",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 15,
+          "code": "notificationMgr.notify({\n  title: \"Time Service\",\n  content: `Now the time is ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`,\n  actions: [\n    {\n      text: \"Home Page\",\n      file: \"pages/index\",\n    },\n    {\n      text: \"Stop Service\",\n      file: \"app-service/time_service\",\n      param: \"action=exit\", //! processed in onEvent()"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/notification.js",
+          "line": 29,
+          "code": "notificationMgr.notify({\n  title: \"This is title\",\n  content: \"This is content ...\",\n  actions: [\n    {\n      text: \"Home Page\",\n      file: \"pages/index\",\n    },\n    {\n      text: \"GO1\",\n      file: \"pages/target\",\n      param: \"GO1 button Clicked\","
+        }
+      ]
+    },
+    {
+      "method": "redraw",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 84,
+          "code": "hmUI.redraw();"
+        }
+      ]
+    },
+    {
+      "method": "set",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 77,
+          "code": "let id = alarmMgr.set(alarmObj);"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/acc.js",
+          "line": 22,
+          "code": "textWidget.setProperty(hmUI.prop.TEXT, show_text);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/bgService.js",
+          "line": 11,
+          "code": "function setProperty(w, p, v) {\n  w.setProperty(p, v);\n}"
+        }
+      ]
+    },
+    {
+      "method": "showToast",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/bgService.js",
+          "line": 57,
+          "code": "hmUI.showToast({ text: `start result: ${info.result}` });"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/bgService.js",
+          "line": 88,
+          "code": "hmUI.showToast({ text: `stop result: ${info.result}` });"
+        }
+      ]
+    },
+    {
+      "method": "start",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/acc.js",
+          "line": 30,
+          "code": "acc.start();"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/bgService.js",
+          "line": 52,
+          "code": "const result = appService.start({\n  url: serviceFile,\n  param: `service=${serviceFile}&action=start`,\n  complete_func: (info) => {\n    logger.log(`startService result: ` + JSON.stringify(info));\n    hmUI.showToast({ text: `start result: ${info.result}` });\n    // refresh for button status\n\n    if (info.result) {\n      vm.state.running = true;\n      setProperty(\n        vm.state.txtLabel,"
+        }
+      ]
+    },
+    {
+      "method": "stop",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/acc.js",
+          "line": 39,
+          "code": "acc.stop();"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/acc.js",
+          "line": 48,
+          "code": "acc && acc.stop();"
+        }
+      ]
+    },
+    {
+      "method": "stopTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 244,
+          "code": "// timer.stopTimer(animTimer);"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/app.emitCustomSystemEvent",
+    "@zos/app.queryPermission",
+    "@zos/app.requestPermission",
+    "@zos/device.getDeviceInfo",
+    "@zos/display.setPageBrightTime",
+    "@zos/interaction.GESTURE_RIGHT",
+    "@zos/interaction.offGesture",
+    "@zos/interaction.onGesture",
+    "@zos/router.push",
+    "@zos/router.replace",
+    "@zos/sensor.Accelerometer",
+    "@zos/sensor.BloodOxygen",
+    "@zos/sensor.Compass",
+    "@zos/sensor.Geolocation",
+    "@zos/sensor.Gyroscope",
+    "@zos/sensor.HeartRate",
+    "@zos/sensor.Screen",
+    "@zos/sensor.Sleep",
+    "@zos/sensor.Stress",
+    "@zos/sensor.Time",
+    "@zos/sensor.Workout",
+    "@zos/utils.EventBus",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/3.0/3.0-feature",
+  "extractedAt": "2026-09-08"
+}

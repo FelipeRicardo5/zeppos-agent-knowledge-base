@@ -1,0 +1,491 @@
+{
+  "id": "application-4-2-t9-keyboard",
+  "name": "t9-keyboard",
+  "tree": "application",
+  "platformVersion": "4.2",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.input.method"
+    ],
+    "targets": [
+      "default"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/engine/dictionary.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/engine/t9-engine.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "data-widget/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "data-widget/index.s.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "data-widget/modules/font-atlas.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/modules/input-field-manager.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "data-widget/modules/keyboard-config.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/modules/keyboard-handlers.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/sensor.Vibrator",
+        "@zos/ui.inputType"
+      ]
+    },
+    {
+      "path": "data-widget/modules/keyboard-renderer.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "data-widget/modules/multitap-handler.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/modules/preloader.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "data-widget/modules/safe-keyboard.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "helpers/required.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.SCREEN_SHAPE_SQUARE",
+        "@zos/device.getDeviceInfo",
+        "@zos/ui.getImageInfo",
+        "@zos/ui.setStatusBarVisible"
+      ]
+    },
+    {
+      "path": "pages/guidelines.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/app.getPackageInfo",
+        "@zos/device.SCREEN_SHAPE_SQUARE",
+        "@zos/device.getDeviceInfo",
+        "@zos/interaction.showToast",
+        "@zos/page.scrollTo",
+        "@zos/router.exit",
+        "@zos/ui.align",
+        "@zos/ui.createKeyboard",
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteKeyboard",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.setStatusBarVisible",
+        "@zos/ui.text_style",
+        "@zos/ui.updateLayout",
+        "@zos/ui.widget"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/app.getPackageInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 20,
+          "code": "const KEYBOARD_NAME = getPackageInfo().name;"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/helpers/required.js",
+          "line": 26,
+          "code": "export const DeviceInfo = getDeviceInfo();"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 19,
+          "code": "const DeviceInfo = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.showToast",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 380,
+          "code": "showToast({\n  content: \"You're all set\",\n});"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 471,
+          "code": "showToast({ content: \"Input: \" + result.data });"
+        }
+      ]
+    },
+    {
+      "id": "@zos/page.scrollTo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 136,
+          "code": "scrollToTop() { scrollTo({ y: 0 }); },"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.exit",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 450,
+          "code": "exit();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Vibrator",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-handlers.js",
+          "line": 9,
+          "code": "const vibro = new Vibrator();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createKeyboard",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 468,
+          "code": "createKeyboard({\n  onComplete: (kb, result) => {\n    deleteKeyboard();\n    showToast({ content: \"Input: \" + result.data });\n    cb && cb();\n  },\n  onCancel: () => {\n    deleteKeyboard();\n    cb && cb();\n  },\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/index.js",
+          "line": 124,
+          "code": "createWidget(widget.FILL_RECT, styles.bg_fill_rect);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/index.js",
+          "line": 128,
+          "code": "createWidget(widget.STROKE_RECT, s.top_sep);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.deleteKeyboard",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 470,
+          "code": "deleteKeyboard();"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 475,
+          "code": "deleteKeyboard();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.deleteWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/preloader.js",
+          "line": 61,
+          "code": "deleteWidget(this.spinner_widget);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/preloader.js",
+          "line": 66,
+          "code": "deleteWidget(this.preloader_widget);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.getImageInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/helpers/required.js",
+          "line": 57,
+          "code": "image_info_cache[src] = getImageInfo(src);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.setStatusBarVisible",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/helpers/required.js",
+          "line": 47,
+          "code": "setStatusBarVisible(false);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 154,
+          "code": "setStatusBarVisible(false);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.updateLayout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 140,
+          "code": "updateLayout(this.state.vc.current);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/index.r.layout.js",
+          "line": 11,
+          "code": "const INPUT_TEXT_SIZE = px(28);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/index.r.layout.js",
+          "line": 28,
+          "code": "x: px(70), y: px(70), w: px(350), h: px(40),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "addEventListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/input-field-manager.js",
+          "line": 120,
+          "code": "this.keyboard.state.ui.input_overlay.addEventListener(event.CLICK_UP, (info) => {\n  this.handleInputFieldClick(info);\n});"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-renderer.js",
+          "line": 179,
+          "code": "key_data.touch_overlay.addEventListener(event.CLICK_DOWN, (info) => {\n  if (is_pressed) return;\n\n  is_pressed = true;\n  press_start_time = Date.now();\n  is_long_press = false;\n\n  highlightKey();\n\n  if (this.keyboard.state.longpress_timer) {\n    clearTimeout(this.keyboard.state.longpress_timer);\n  }"
+        }
+      ]
+    },
+    {
+      "method": "cancel",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-handlers.js",
+          "line": 134,
+          "code": "t9_engine.cancel();"
+        }
+      ]
+    },
+    {
+      "method": "clear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 311,
+          "code": "this.seq_cache.clear();"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 54,
+          "code": "const ele = parent.createWidget(id, rest);"
+        }
+      ]
+    },
+    {
+      "method": "getType",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 63,
+          "code": "if (ele.getType() === widget.VIRTUAL_CONTAINER) {\n  opts.layout_parent = ele;\n} else if (\n  [widget.GROUP, widget.VIEW_CONTAINER].includes(ele.getType()) &&\n  ele.isAutoLayout\n) {\n  opts.layout_parent = ele;\n}"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 66,
+          "code": "[widget.GROUP, widget.VIEW_CONTAINER].includes(ele.getType()) &&"
+        }
+      ]
+    },
+    {
+      "method": "keyboard",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 346,
+          "code": "this.keyboard(() => {\n  this.onResume();\n});"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 432,
+          "code": "this.keyboard();"
+        }
+      ]
+    },
+    {
+      "method": "launchApp",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/safe-keyboard.js",
+          "line": 198,
+          "code": "r.launchApp({ url: 'Settings_keyboardScreen', params: { native: true } });"
+        }
+      ]
+    },
+    {
+      "method": "set",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 64,
+          "code": "this.seq_map.set(seq, words_arr);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 93,
+          "code": "this.prefix_idx.set(prefix, prefix_arr);"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/input-field-manager.js",
+          "line": 135,
+          "code": "this.keyboard.state.ui.cursor_widget.setProperty(prop.ALPHA, 255);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/input-field-manager.js",
+          "line": 144,
+          "code": "this.keyboard.state.ui.cursor_widget.setProperty(prop.ALPHA, 255);"
+        }
+      ]
+    },
+    {
+      "method": "start",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-handlers.js",
+          "line": 575,
+          "code": "vibro.start();"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/app.getPackageInfo",
+    "@zos/device.SCREEN_SHAPE_SQUARE",
+    "@zos/device.getDeviceInfo",
+    "@zos/interaction.showToast",
+    "@zos/page.scrollTo",
+    "@zos/router.exit",
+    "@zos/sensor.Vibrator",
+    "@zos/ui.align",
+    "@zos/ui.createKeyboard",
+    "@zos/ui.createWidget",
+    "@zos/ui.deleteKeyboard",
+    "@zos/ui.deleteWidget",
+    "@zos/ui.event",
+    "@zos/ui.getImageInfo",
+    "@zos/ui.inputType",
+    "@zos/ui.prop",
+    "@zos/ui.setStatusBarVisible",
+    "@zos/ui.text_style",
+    "@zos/ui.updateLayout",
+    "@zos/ui.widget",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/4.2/t9-keyboard",
+  "extractedAt": "2026-09-08"
+}

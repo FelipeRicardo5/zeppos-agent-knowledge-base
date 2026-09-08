@@ -1,0 +1,286 @@
+{
+  "id": "application-2-0-post-health-data-miniprogram",
+  "name": "MiniProgram",
+  "tree": "application",
+  "platformVersion": "2.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "data:user.hd.sleep"
+    ],
+    "targets": [
+      "320x380-amazfit-bip-5",
+      "360x360-amazfit-active-edge",
+      "390x450-amazfit-active",
+      "390x450-amazfit-cheetah-square",
+      "390x450-amazfit-gts-4",
+      "416x416-amazfit-falcon",
+      "416x416-amazfit-gtr-mini",
+      "454x454-amazfit-cheetah-round",
+      "454x454-amazfit-t-rex-2",
+      "454x454-amazfit-t-rex-ultra",
+      "466x466-amazfit-gtr-4",
+      "480x480-amazfit-balance",
+      "480x480-amazfit-cheetah-pro",
+      "480x480-amazfit-gtr-4-limited-edition",
+      "480x480-runner-pro"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-side/index.js",
+      "runtime": "side-service",
+      "symbols": [
+        "@zeppos/zml/2.0/module/messaging/plugin/side.messagingPlugin",
+        "@zeppos/zml/base/base-side.BaseSideService"
+      ]
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zeppos/zml/2.0/module/messaging/plugin/app.appPlugin",
+        "@zeppos/zml/base/base-app.BaseApp",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zeppos/zml/2.0/module/messaging/plugin/page.pagePlugin",
+        "@zeppos/zml/base/base-page.BasePage",
+        "@zos/device.getDeviceInfo",
+        "@zos/interaction.showToast",
+        "@zos/sensor.Sleep",
+        "@zos/sensor.Time",
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "setting/index.js",
+      "runtime": "settings",
+      "symbols": []
+    },
+    {
+      "path": "utils/config.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zeppos/zml/base/base-app.BaseApp",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app.js",
+          "line": 10,
+          "code": "BaseApp({\n  globalData: {},\n  onCreate() {\n    logger.log(\"app onCreate invoked\");\n  },\n  onDestroy() {\n    logger.log(\"app onDestroy invoked\");\n  },\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base/base-page.BasePage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 17,
+          "code": "BasePage({\n  state: {\n    buttonWidgetGet: null,\n    buttonWidgetPost: null,\n    textWidget: null,\n    sleepData: null,\n    sleepInstance: null,\n    timeInstance: null,\n  },\n  build() {\n    this.state.buttonWidgetGet = createWidget(widget.BUTTON, {\n      x: (DEVICE_WIDTH - px(400)) / 2,"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base/base-side.BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 7,
+          "code": "BaseSideService({\n  async onRequest(req, res) {\n    const { type, params } = req;\n\n    if (type === \"UPLOAD\") {\n      console.log(params);\n\n      settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));\n\n      const result = await this.postData();\n\n      res(null, result);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 9,
+          "code": "const { width: DEVICE_WIDTH } = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.showToast",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 55,
+          "code": "showToast({\n  content: \"No Sleep Data\",\n});"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 115,
+          "code": "showToast({ content: `UPLOAD ${message}` });"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Sleep",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 48,
+          "code": "this.state.sleepInstance = new Sleep();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Time",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 49,
+          "code": "this.state.timeInstance = new Time();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 27,
+          "code": "this.state.buttonWidgetGet = createWidget(widget.BUTTON, {\n  x: (DEVICE_WIDTH - px(400)) / 2,\n  y: px(260),\n  w: px(400),\n  h: px(80),\n  text_size: px(36),\n  radius: px(12),\n  normal_color: DEFAULT_COLOR,\n  press_color: DEFAULT_COLOR_TRANSPARENT,\n  text: \"Get Sleep Data\",\n  click_func: (button_widget) => {\n    this.getSleepData();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 72,
+          "code": "this.state.textWidget = createWidget(widget.TEXT, {\n  x: (DEVICE_WIDTH - px(400)) / 2,\n  y: px(48),\n  w: px(400),\n  h: px(200),\n  text_size: px(22),\n  align_h: align.CENTER_H,\n  align_v: align.CENTER_V,\n  text,\n  color: 0xffffff,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app.js",
+          "line": 13,
+          "code": "logger.log(\"app onCreate invoked\");"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app.js",
+          "line": 16,
+          "code": "logger.log(\"app onDestroy invoked\");"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 28,
+          "code": "x: (DEVICE_WIDTH - px(400)) / 2,"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 29,
+          "code": "y: px(260),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "addListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 30,
+          "code": "settings.settingsStorage.addListener(\n  \"change\",\n  async ({ key, newValue, oldValue }) => {\n    if (key === \"REQUEST_ACTION\") {\n      this.call({ type: \"SETTINGS_APP_REQUEST_DATA\" });\n    } else if (key === \"POST_ACTION\") {\n      this.postData();\n    }\n  }\n);"
+        }
+      ]
+    },
+    {
+      "method": "getItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 50,
+          "code": "body: settings.settingsStorage.getItem(\"sleepData\"),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js",
+          "line": 70,
+          "code": "const sleepData = JSON.parse(props.settingsStorage.getItem(\"sleepData\"));"
+        }
+      ]
+    },
+    {
+      "method": "setItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 14,
+          "code": "settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 21,
+          "code": "settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 84,
+          "code": "this.state.textWidget.setProperty(prop.TEXT, text);"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zeppos/zml/2.0/module/messaging/plugin/app.appPlugin",
+    "@zeppos/zml/2.0/module/messaging/plugin/page.pagePlugin",
+    "@zeppos/zml/2.0/module/messaging/plugin/side.messagingPlugin",
+    "@zeppos/zml/base/base-app.BaseApp",
+    "@zeppos/zml/base/base-page.BasePage",
+    "@zeppos/zml/base/base-side.BaseSideService",
+    "@zos/device.getDeviceInfo",
+    "@zos/interaction.showToast",
+    "@zos/sensor.Sleep",
+    "@zos/sensor.Time",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.prop",
+    "@zos/ui.widget",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app",
+    "settings",
+    "side-service"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/2.0/post-health-data/MiniProgram",
+  "extractedAt": "2026-09-08"
+}

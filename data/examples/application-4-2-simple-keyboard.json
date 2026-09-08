@@ -1,0 +1,418 @@
+{
+  "id": "application-4-2-simple-keyboard",
+  "name": "simple-keyboard",
+  "tree": "application",
+  "platformVersion": "4.2",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.input.method"
+    ],
+    "targets": [
+      "default"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/index.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.event",
+        "@zos/ui.keyboard",
+        "@zos/ui.prop",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "data-widget/index.page.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.event",
+        "@zos/ui.keyboard",
+        "@zos/ui.prop",
+        "@zos/ui.setAlpha",
+        "@zos/ui.text_style",
+        "@zos/ui.updateLayout",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "data-widget/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/index.s.layout.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/input-method-engine.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/pinyin-dict.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/app.getPackageInfo",
+        "@zos/device.SCREEN_SHAPE_SQUARE",
+        "@zos/device.getDeviceInfo",
+        "@zos/interaction.showToast",
+        "@zos/page.scrollTo",
+        "@zos/router.exit",
+        "@zos/router.launchApp",
+        "@zos/ui.align",
+        "@zos/ui.createKeyboard",
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteKeyboard",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.inputType",
+        "@zos/ui.keyboard",
+        "@zos/ui.setStatusBarVisible",
+        "@zos/ui.text_style",
+        "@zos/ui.updateLayout",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/app.getPackageInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 25,
+          "code": "const appName = getPackageInfo().name;"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.layout.js",
+          "line": 13,
+          "code": "const { width: device_width, height: device_height } = getDeviceInfo();"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 24,
+          "code": "const device_info = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/interaction.showToast",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 493,
+          "code": "showToast({\n  content: \"You're all set\",\n});"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 584,
+          "code": "showToast({\n  content: i,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/page.scrollTo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 269,
+          "code": "scrollTo({\n  y: 0,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.exit",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 606,
+          "code": "exit();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.launchApp",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 45,
+          "code": "launchApp({ url: \"Settings_keyboardScreen\", native: true });"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createKeyboard",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 634,
+          "code": "createKeyboard({\n  onComplete: (kb, result) => {\n    console.log(\"complete\");\n    deleteKeyboard();\n    showToast({\n      content: \"Input: \" + result.data,\n    });\n    cb && cb();\n  },\n  onCancel: () => {\n    console.log(\"cancel\");\n    deleteKeyboard();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 17,
+          "code": "return createWidget(widget.VIRTUAL_CONTAINER, styles.container);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 21,
+          "code": "return createWidget(type, {\n  ...props,\n  parent: layoutParent,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.deleteKeyboard",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 637,
+          "code": "deleteKeyboard();"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 645,
+          "code": "deleteKeyboard();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.deleteWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 54,
+          "code": "deleteWidget(c);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 213,
+          "code": "deleteWidget(ele);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.keyboard",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 460,
+          "code": "this.keyboard(() => {\n  this.onResume();\n});"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 538,
+          "code": "this.keyboard();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.setAlpha",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 171,
+          "code": "btn.setAlpha(0);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.setStatusBarVisible",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 224,
+          "code": "setStatusBarVisible(false);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.updateLayout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 74,
+          "code": "updateLayout(vc1);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 276,
+          "code": "updateLayout(ele);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 301,
+          "code": "row_gap: px(25),"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 302,
+          "code": "padding_top: px(40),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "Button",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 362,
+          "code": "widgets.Button({\n  text: \"Go to Settings\",\n  normal_color: 0x383838,\n  press_color: 0x383838,\n  click_func() {\n    keyboard_gotoSettings();\n  },\n  layout: {\n    ...default_layout,\n    width: unit.f(),\n    height: px(88),\n    font_size: px(36),"
+        }
+      ]
+    },
+    {
+      "method": "cancel",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 209,
+          "code": "this.cancel();"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 258,
+          "code": "cancel() {\n  keyboard.sendFnKey(keyboard.CANCEL);\n},"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 161,
+          "code": "const ele = parent.createWidget(id, widget_props);"
+        }
+      ]
+    },
+    {
+      "method": "getType",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 211,
+          "code": "if (ele.getType() === idOfWidget.VIRTUAL_CONTAINER) {\n  const children = ele.layoutChildren;\n  deleteWidget(ele);\n  children.forEach((item) => {\n    removeElement(item);\n  });\n} else {\n  deleteWidget(ele);\n}"
+        }
+      ]
+    },
+    {
+      "method": "keyboard",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 460,
+          "code": "this.keyboard(() => {\n  this.onResume();\n});"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 538,
+          "code": "this.keyboard();"
+        }
+      ]
+    },
+    {
+      "method": "setAlpha",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 171,
+          "code": "btn.setAlpha(0);"
+        }
+      ]
+    },
+    {
+      "method": "Text",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 307,
+          "code": "widgets.Text({\n  text: `Enable ${appName}`,\n  ...default_text_style,\n  layout: {\n    ...default_layout,\n    width: unit.f(),\n    height: unit.wrap_content(),\n    font_size: px(40),\n  },\n}),"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 337,
+          "code": "widgets.Text({\n  ...default_text_style,\n  text: appName,\n  align_h: align.LEFT,\n  layout: {\n    ...default_layout,\n    left: px(20),\n    width: unit.wrap_content(),\n    max_width: px(200),\n    height: px(70),\n    font_size: px(27),\n    line_clamp: 2,"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/app.getPackageInfo",
+    "@zos/device.SCREEN_SHAPE_SQUARE",
+    "@zos/device.getDeviceInfo",
+    "@zos/interaction.showToast",
+    "@zos/page.scrollTo",
+    "@zos/router.exit",
+    "@zos/router.launchApp",
+    "@zos/ui.align",
+    "@zos/ui.createKeyboard",
+    "@zos/ui.createWidget",
+    "@zos/ui.deleteKeyboard",
+    "@zos/ui.deleteWidget",
+    "@zos/ui.event",
+    "@zos/ui.inputType",
+    "@zos/ui.keyboard",
+    "@zos/ui.prop",
+    "@zos/ui.setAlpha",
+    "@zos/ui.setStatusBarVisible",
+    "@zos/ui.text_style",
+    "@zos/ui.updateLayout",
+    "@zos/ui.widget",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/4.2/simple-keyboard",
+  "extractedAt": "2026-09-08"
+}

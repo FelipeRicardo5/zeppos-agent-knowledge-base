@@ -1,0 +1,279 @@
+{
+  "id": "application-2-0-fetch-api",
+  "name": "fetch-api",
+  "tree": "application",
+  "platformVersion": "2.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.local_storage"
+    ],
+    "targets": [
+      "common"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-side/index.js",
+      "runtime": "side-service",
+      "symbols": []
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/app.getPackageInfo"
+      ]
+    },
+    {
+      "path": "pages/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.log",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "shared/data.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/defer.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/device-polyfill.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/es6-promise.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/event.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/message-side.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/message.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.EventBus",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "utils/config/constants.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/config/device.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/app.getPackageInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/app.js",
+          "line": 12,
+          "code": "const { appId } = getPackageInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/utils/config/device.js",
+          "line": 2,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/pages/index.js",
+          "line": 15,
+          "code": "createWidget(widget.BUTTON, {\n  x: (DEVICE_WIDTH - px(400)) / 2,\n  y: px(260),\n  w: px(400),\n  h: px(100),\n  text_size: px(36),\n  radius: px(12),\n  normal_color: DEFAULT_COLOR,\n  press_color: DEFAULT_COLOR_TRANSPARENT,\n  text: \"Fetch Data\",\n  click_func: (button_widget) => {\n    logger.log(\"click button\");"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/pages/index.js",
+          "line": 41,
+          "code": "createWidget(widget.TEXT, {\n  x: px(56),\n  y: px(74),\n  w: DEVICE_WIDTH - 2 * px(56),\n  h: px(200),\n  color: 0xffffff,\n  text_size: px(36),\n  align_h: align.CENTER_H,\n  align_v: align.CENTER_V,\n  text_style: text_style.NONE,\n  text\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/pages/index.js",
+          "line": 26,
+          "code": "logger.log(\"click button\");"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/pages/index.js",
+          "line": 37,
+          "code": "logger.log(\"receive data\");"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/pages/index.js",
+          "line": 16,
+          "code": "x: (DEVICE_WIDTH - px(400)) / 2,"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/pages/index.js",
+          "line": 17,
+          "code": "y: px(260),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "addListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 287,
+          "code": "messaging.peerSocket.addListener('message', (message) => {\n  DEBUG && logger.warn('[RAW] [R] receive size=>%d bin=>%s', message.byteLength, bin2hex(message))\n  this.onMessage(message)\n})"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message.js",
+          "line": 293,
+          "code": "messaging.peerSocket.addListener('message', (message) => {\n  DEBUG && logger.warn('[RAW] [R] receive size=>%d bin=>%s', message.byteLength, bin2hex(message))\n  this.onMessage(message)\n})"
+        }
+      ]
+    },
+    {
+      "method": "clear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/event.js",
+          "line": 29,
+          "code": "this.map.clear()"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 202,
+          "code": "clear() {\n  this.sessions.clear()\n}"
+        }
+      ]
+    },
+    {
+      "method": "createConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 263,
+          "code": "this.ble.createConnect((index, data, size) => {\n  DEBUG && logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, bin2hex(data))\n  this.onFragmentData(data)\n})"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message.js",
+          "line": 269,
+          "code": "this.ble.createConnect((index, data, size) => {\n  DEBUG && logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, bin2hex(data))\n  this.onFragmentData(data)\n})"
+        }
+      ]
+    },
+    {
+      "method": "disConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/app.js",
+          "line": 26,
+          "code": "this.globalData.messageBuilder.disConnect();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 272,
+          "code": "disConnect(cb) {\n  logger.debug('app ble disconnect')\n  this.sendClose()\n  this.off('message')\n  this.ble && this.ble.disConnect()\n\n  cb && cb(this)\n}"
+        }
+      ]
+    },
+    {
+      "method": "send",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 814,
+          "code": "xhr.send();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 429,
+          "code": "const result = this.ble.send(buf.buffer, buf.byteLength)"
+        }
+      ]
+    },
+    {
+      "method": "set",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/event.js",
+          "line": 10,
+          "code": "this.map.set(type, [cb])"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 175,
+          "code": "this.sessions.set(this.key(newSession), newSession)"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/app.getPackageInfo",
+    "@zos/device.getDeviceInfo",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.EventBus",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app",
+    "side-service"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/2.0/fetch-api",
+  "extractedAt": "2026-09-08"
+}

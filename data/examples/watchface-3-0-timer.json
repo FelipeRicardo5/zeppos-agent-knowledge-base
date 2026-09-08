@@ -1,0 +1,147 @@
+{
+  "id": "watchface-3-0-timer",
+  "name": "timer",
+  "tree": "watchface",
+  "platformVersion": "3.0",
+  "manifest": {
+    "appType": "watchface",
+    "permissions": [],
+    "targets": [
+      "gtr-3-pro"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "watchface",
+      "symbols": [
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "watchface/gtr-3-pro/index.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "watchface/round/index.js",
+      "runtime": "watchface",
+      "symbols": [
+        "@zos/app.SCENE_AOD",
+        "@zos/app.getScene",
+        "@zos/utils.log"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/app.getScene",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 93,
+          "code": "var screenType = getScene()"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/app.js",
+          "line": 8,
+          "code": "logger.log('app on create invoke')"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/app.js",
+          "line": 11,
+          "code": "logger.log('app on destroy invoke')"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "addEventListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 255,
+          "code": "secondImg.addEventListener(ui.event.CLICK_UP, function (info) {\n  week.setProperty(ui.prop.VISIBLE, false)\n  monthDay.setProperty(ui.prop.VISIBLE, false)\n  secondImg.setProperty(ui.prop.VISIBLE, false)\n  secondPointer.setProperty(ui.prop.VISIBLE, false)\n  centerSecondPointer.setProperty(ui.prop.VISIBLE, true)\n  for (let n = 0; n < 8; n++) {\n    bigNumObject[n].setProperty(ui.prop.VISIBLE, true)\n    smallNumObject[n].setProperty(ui.prop.VISIBLE, true)\n    if (n == 0 || n == 1 || n == 3 || n == 4 || n == 6 || n == 7) {\n      bigNumObject[n].setProperty(ui.prop.SRC, img('bigNum/0.png'))\n      smallNumObject[n].setProperty(ui.prop.SRC, img('smallNum/0.png'))"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 279,
+          "code": "backBtn.addEventListener(ui.event.CLICK_UP, function (info) {\n  timer.stopTimer(hsTimer)\n  timer.stopTimer(sTimer)\n  green_red_btn.setProperty(ui.prop.SRC, img('btn/lv.png'))\n  for (let n = 0; n < 8; n++) {\n    bigNumObject[n].setProperty(ui.prop.VISIBLE, false)\n    smallNumObject[n].setProperty(ui.prop.VISIBLE, false)\n  }\n  backBtn.setProperty(ui.prop.VISIBLE, false)\n  green_red_btn.setProperty(ui.prop.VISIBLE, false)\n\n  week.setProperty(ui.prop.VISIBLE, true)"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 95,
+          "code": "imgBg = ui.createWidget(ui.widget.FILL_RECT, {\n  x: px(0),\n  y: px(0),\n  w: px(480),\n  h: px(480),\n  color: 0x000000,\n})"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 103,
+          "code": "imgBg = ui.createWidget(ui.widget.IMG, {\n  x: px(0),\n  y: px(0),\n  w: px(480),\n  h: px(480),\n  src: img('bg/bg.png'),\n  show_level: ui.show_level.ONAL_NORML,\n})"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 156,
+          "code": "bigNumObject[i].setProperty(ui.prop.VISIBLE, false)"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 175,
+          "code": "smallNumObject[j].setProperty(ui.prop.VISIBLE, false)"
+        }
+      ]
+    },
+    {
+      "method": "stopTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 280,
+          "code": "timer.stopTimer(hsTimer)"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 281,
+          "code": "timer.stopTimer(sTimer)"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/app.SCENE_AOD",
+    "@zos/app.getScene",
+    "@zos/utils.log"
+  ],
+  "runtimes": [
+    "watchface"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/watchface/3.0/timer",
+  "extractedAt": "2026-09-08"
+}

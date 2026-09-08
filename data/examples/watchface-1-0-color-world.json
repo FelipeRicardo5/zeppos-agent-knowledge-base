@@ -1,0 +1,143 @@
+{
+  "id": "watchface-1-0-color-world",
+  "name": "color-world",
+  "tree": "watchface",
+  "platformVersion": "1.0",
+  "manifest": {
+    "appType": "watchface",
+    "permissions": [
+      "gps"
+    ],
+    "targets": [
+      "gts-3"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "shared/buffer.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "shared/device-polyfill.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "shared/global.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "shared/js-module.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "shared/logger.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "shared/setTimeout.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "watchface/gts-3/index.js",
+      "runtime": "watchface",
+      "symbols": []
+    },
+    {
+      "path": "watchface/square/index.js",
+      "runtime": "watchface",
+      "symbols": []
+    }
+  ],
+  "usages": [],
+  "memberCalls": [
+    {
+      "method": "clearTimeout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js",
+          "line": 7,
+          "code": "globalNS.clearTimeout = function clearTimeout(timerRef) {\n  timerRef && timer.stopTimer(timerRef)\n}"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js",
+          "line": 16,
+          "code": "globalNS.clearTimeout(timer1)"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/watchface/square/index.js",
+          "line": 329,
+          "code": "config.iconPath = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {\n  x: 156,\n  y: 275,\n  image_array: moonArray,\n  image_length: moonArray.length,\n  type: hmUI.data_type.MOON,\n  show_level: hmUI.show_level.ONLY_NORMAL,\n})"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/watchface/square/index.js",
+          "line": 346,
+          "code": "hmUI.createWidget(hmUI.widget.TEXT_IMG, {\n  x: config.numX + 1,\n  y: config.numY,\n  w: config.bgw,\n  type: config.dataType,\n  font_array: config.numArray,\n  h_space: config.h,\n  align_h: hmUI.align.CENTER_H,\n  show_level: hmUI.show_level.ONLY_NORMAL,\n  unit_sc: config.unitSc,\n  unit_en: config.unitEn,\n  unit_tc: config.unitTc,"
+        }
+      ]
+    },
+    {
+      "method": "getProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/watchface/square/index.js",
+          "line": 609,
+          "code": "let type = editBg.getProperty(hmUI.prop.CURRENT_TYPE)"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/watchface/square/index.js",
+          "line": 731,
+          "code": "let item = editGroup.getProperty(hmUI.prop.CURRENT_TYPE)"
+        }
+      ]
+    },
+    {
+      "method": "stopTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js",
+          "line": 8,
+          "code": "timerRef && timer.stopTimer(timerRef)"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js",
+          "line": 26,
+          "code": "timerRef && timer.stopTimer(timerRef)"
+        }
+      ]
+    }
+  ],
+  "symbols": [],
+  "runtimes": [
+    "watchface"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/watchface/1.0/color-world",
+  "extractedAt": "2026-09-08"
+}

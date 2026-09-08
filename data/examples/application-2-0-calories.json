@@ -1,0 +1,374 @@
+{
+  "id": "application-2-0-calories",
+  "name": "calories",
+  "tree": "application",
+  "platformVersion": "2.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "data:user.hd.calorie",
+      "device:os.local_storage"
+    ],
+    "targets": [
+      "gts"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-widget/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/i18n.getText",
+        "@zos/sensor.Calorie",
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.getAppWidgetSize",
+        "@zos/ui.getTextLayout",
+        "@zos/ui.setAppWidgetSize",
+        "@zos/ui.widget",
+        "@zos/utils.log",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/storage.localStorage",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/gts/food-list.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/router.back",
+        "@zos/storage.localStorage",
+        "@zos/utils.log",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/gts/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/i18n.getText",
+        "@zos/router.push",
+        "@zos/sensor.Calorie",
+        "@zos/ui.createWidget",
+        "@zos/ui.getTextLayout",
+        "@zos/ui.widget",
+        "@zos/utils.log",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "secondary-widget/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/i18n.getText",
+        "@zos/router.push",
+        "@zos/sensor.Calorie",
+        "@zos/ui.createWidget",
+        "@zos/ui.deleteWidget",
+        "@zos/ui.getTextLayout",
+        "@zos/ui.widget",
+        "@zos/utils.log",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/constants.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/i18n.getText"
+      ]
+    },
+    {
+      "path": "utils/styles-gts-3.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/i18n.getText",
+        "@zos/ui.align",
+        "@zos/ui.text_style",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/styles.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/i18n.getText",
+        "@zos/ui.align",
+        "@zos/ui.text_style",
+        "@zos/utils.px"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/utils/styles-gts-3.js",
+          "line": 6,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/utils/styles.js",
+          "line": 6,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/i18n.getText",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 71,
+          "code": "const { width: w2 } = getTextLayout(getText(\"unit\"), {\n  text_size: UNIT_TEXT_SIZE,\n  text_width: 0,\n  wrapped: 0,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/index.js",
+          "line": 38,
+          "code": "const { width: w2 } = getTextLayout(getText('unit'), {\n  text_size: UNIT_TEXT_SIZE,\n  text_width: 0,\n  wrapped: 0,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.back",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/food-list.js",
+          "line": 35,
+          "code": "back();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/router.push",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/index.js",
+          "line": 82,
+          "code": "push({\n  url: \"page/gts/food-list\",\n});"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/secondary-widget/index.js",
+          "line": 65,
+          "code": "this.state.refreshWidgetList.push(textId, unitId);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/sensor.Calorie",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 60,
+          "code": "const calories = new Calorie().getCurrent(); // Math.floor(Math.random() * 1000)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/index.js",
+          "line": 68,
+          "code": "let calories = new Calorie().getCurrent(); // Math.floor(Math.random() * 1000)"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 39,
+          "code": "createWidget(widget.TEXT, TOTAL_CONSUME_TEXT);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 82,
+          "code": "const textId = createWidget(widget.TEXT, {\n  ...CALORIE_TEXT,\n  text: `${calories}`,\n  x: x + CONSUME_ICON_WIDTH + IMGAE_CALORIES_MARIN,\n  w: w1,\n  y: CALORIE_TEXT.y + baseY,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.deleteWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 46,
+          "code": "deleteWidget(i);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/secondary-widget/index.js",
+          "line": 119,
+          "code": "deleteWidget(i);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.getAppWidgetSize",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 33,
+          "code": "logger.log(getAppWidgetSize())"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.getTextLayout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 66,
+          "code": "const { width: w1 } = getTextLayout(\"\" + calories, {\n  text_size: CALORIE_TEXT_SIZE,\n  text_width: 0,\n  wrapped: 0,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 71,
+          "code": "const { width: w2 } = getTextLayout(getText(\"unit\"), {\n  text_size: UNIT_TEXT_SIZE,\n  text_width: 0,\n  wrapped: 0,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.setAppWidgetSize",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 35,
+          "code": "setAppWidgetSize({\n  h: px(120)\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 27,
+          "code": "logger.log(\"===onInit===\");"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 33,
+          "code": "logger.log(getAppWidgetSize())"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 36,
+          "code": "h: px(120)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 80,
+          "code": "const baseY = px(48);"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "addEventListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/food-list.js",
+          "line": 89,
+          "code": "text.addEventListener(hmUI.event.SELECT, () => {\n  this.state.radioGroup.setProperty(\n    hmUI.prop.CHECKED,\n    this.state.radioButtonsArray[index]\n  );\n});"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/food-list.js",
+          "line": 39,
+          "code": "const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {\n  ...FOOD_LIST_RADIOGROUP,\n  check_func: (group, index, checked) => {\n    if (checked) {\n      this.state.isFinishInit && this.setPrograms(index);\n    }\n  },\n});"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/food-list.js",
+          "line": 60,
+          "code": "hmUI.createWidget(hmUI.widget.FILL_RECT, {\n  x: 0,\n  y: 0,\n  w: DEVICE_WIDTH,\n  h: px(\n    FOOD_LIST_Y +\n      (FOOD_CALORIES.length + 1) *\n        (FOOD_LIST_ITEM_HEIGHT + FOOD_LIST_ITEM_MARGIN)\n  ),\n});"
+        }
+      ]
+    },
+    {
+      "method": "getItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app.js",
+          "line": 12,
+          "code": "const { foodType = 'chocolate' } = localStorage.getItem('calorie', {})"
+        }
+      ]
+    },
+    {
+      "method": "setItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/food-list.js",
+          "line": 32,
+          "code": "localStorage.setItem(\"calorie\", {\n  foodType: globalData.foodType\n});"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/food-list.js",
+          "line": 90,
+          "code": "this.state.radioGroup.setProperty(\n  hmUI.prop.CHECKED,\n  this.state.radioButtonsArray[index]\n);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/food-list.js",
+          "line": 97,
+          "code": "this.state.radioGroup.setProperty(\n  hmUI.prop.INIT,\n  this.state.radioButtonsArray[0]\n);"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/device.getDeviceInfo",
+    "@zos/i18n.getText",
+    "@zos/router.back",
+    "@zos/router.push",
+    "@zos/sensor.Calorie",
+    "@zos/storage.localStorage",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.deleteWidget",
+    "@zos/ui.getAppWidgetSize",
+    "@zos/ui.getTextLayout",
+    "@zos/ui.setAppWidgetSize",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/2.0/calories",
+  "extractedAt": "2026-09-08"
+}

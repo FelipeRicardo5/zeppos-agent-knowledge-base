@@ -14,7 +14,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/back.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.checkSystemApp",
@@ -29,7 +29,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/checkSystemApp.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.clearLaunchAppTimeout",
@@ -44,7 +44,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/clearLaunchAppTimeout.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.exit",
@@ -59,7 +59,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/exit.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.getAppIdByName",
@@ -74,7 +74,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/getAppIdByName.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.home",
@@ -89,7 +89,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/home.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.launchApp",
@@ -104,7 +104,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/launchApp.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.push",
@@ -119,7 +119,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/push.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.replace",
@@ -134,7 +134,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/replace.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.setLaunchAppTimeout",
@@ -149,7 +149,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/router/setLaunchAppTimeout.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_ALARM",
@@ -164,7 +164,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_ALEAX",
@@ -179,7 +179,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_ALIPAY",
@@ -194,7 +194,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_ALTIMETER",
@@ -209,7 +209,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_BODY_COMPOSITION",
@@ -224,7 +224,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_BREATH",
@@ -239,7 +239,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_CALENDAR",
@@ -254,7 +254,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_CAMERA",
@@ -269,7 +269,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_CARD",
@@ -284,7 +284,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_CLUB_CARD",
@@ -299,7 +299,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_COMPASS",
@@ -314,7 +314,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_COUNTDOWN",
@@ -329,7 +329,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_FINE_PHONE",
@@ -344,7 +344,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_HR",
@@ -359,7 +359,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_MEASUREMENT",
@@ -374,7 +374,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_MENSTRUAL",
@@ -389,7 +389,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_MUSIC",
@@ -404,7 +404,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_NETEASE_MUSIC",
@@ -419,7 +419,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_PAI",
@@ -434,7 +434,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_PHONE",
@@ -449,7 +449,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_POMODORO",
@@ -464,7 +464,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_PRESSURE",
@@ -479,7 +479,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_READINESS",
@@ -494,7 +494,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_SETTING",
@@ -509,7 +509,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_SLEEP",
@@ -524,7 +524,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_SPO2",
@@ -539,7 +539,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_SPORT",
@@ -554,7 +554,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_SPORT_HISTORY",
@@ -569,7 +569,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_SPORT_STATUS",
@@ -584,7 +584,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_STATUS",
@@ -599,7 +599,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_STOPWATCH",
@@ -614,7 +614,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_SUN_AND_MOON",
@@ -629,7 +629,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_THERMOMETER",
@@ -644,7 +644,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_TODO_LIST",
@@ -659,7 +659,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_VOICE_MEMO",
@@ -674,7 +674,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_WEATHER",
@@ -689,7 +689,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_WEPAY",
@@ -704,7 +704,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_WORLD_CLOCK",
@@ -719,7 +719,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/router.SYSTEM_APP_ZEPP_COACH",
@@ -734,7 +734,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-router.md",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     }
   ]
 }

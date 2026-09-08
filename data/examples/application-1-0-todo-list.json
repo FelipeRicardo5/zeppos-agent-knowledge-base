@@ -1,0 +1,380 @@
+{
+  "id": "application-1-0-todo-list",
+  "name": "todo-list",
+  "tree": "application",
+  "platformVersion": "1.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [],
+    "targets": [
+      "gtr-3",
+      "gtr-3-pro",
+      "gts-3"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": ".prettierrc.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "app-side/index.js",
+      "runtime": "side-service",
+      "symbols": []
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr-3/home/index.page.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr-3/home/index.style.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "setting/index.js",
+      "runtime": "settings",
+      "symbols": []
+    },
+    {
+      "path": "shared/buffer.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/data.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/defer.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/device-polyfill.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/event.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/fs.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/global.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/js-module.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/logger.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/message.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/promise.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/setTimeout.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/constants.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/fs.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [],
+  "memberCalls": [
+    {
+      "method": "addListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 13,
+          "code": "settings.settingsStorage.addListener('change', ({ key, newValue, oldValue }) => {\n  messageBuilder.call(getTodoList())\n})"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+          "line": 366,
+          "code": "messaging.peerSocket.addListener('message', (message) => {\n  DEBUG &&\n    logger.warn('[RAW] [R] receive size=>%d bin=>%s', message.byteLength, bin2hex(message))\n  this.onMessage(message)\n})"
+        }
+      ]
+    },
+    {
+      "method": "clear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/event.js",
+          "line": 29,
+          "code": "this.map.clear()"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+          "line": 271,
+          "code": "clear() {\n  this.sessions.clear()\n}"
+        }
+      ]
+    },
+    {
+      "method": "clearTimeout",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/setTimeout.js",
+          "line": 7,
+          "code": "globalNS.clearTimeout = function clearTimeout(timerRef) {\n  timerRef && timer.stopTimer(timerRef)\n}"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/setTimeout.js",
+          "line": 16,
+          "code": "globalNS.clearTimeout(timer1)"
+        }
+      ]
+    },
+    {
+      "method": "createConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+          "line": 345,
+          "code": "this.ble.createConnect((index, data, size) => {\n  DEBUG &&\n    logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, bin2hex(data))\n  this.onFragmentData(data)\n})"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+          "line": 24,
+          "code": "this.state.title = hmUI.createWidget(hmUI.widget.TEXT, {\n  ...TITLE_TEXT_STYLE\n})"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+          "line": 29,
+          "code": "this.state.addButton = hmUI.createWidget(hmUI.widget.BUTTON, {\n  ...ADD_BUTTON,\n  click_func: () => {\n    this.addRandomTodoItem()\n  }\n})"
+        }
+      ]
+    },
+    {
+      "method": "disConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app.js",
+          "line": 26,
+          "code": "this.globalData.messageBuilder.disConnect();"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+          "line": 355,
+          "code": "disConnect(cb) {\n  logger.debug('app ble disconnect')\n  this.sendClose()\n  this.off('message')\n  this.ble && this.ble.disConnect()\n\n  cb && cb(this)\n}"
+        }
+      ]
+    },
+    {
+      "method": "getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+          "line": 23,
+          "code": "if (hmSetting.getDeviceInfo().screenShape !== 0) {\n  this.state.title = hmUI.createWidget(hmUI.widget.TEXT, {\n    ...TITLE_TEXT_STYLE\n  })\n}"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.style.js",
+          "line": 3,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = hmSetting.getDeviceInfo()"
+        }
+      ]
+    },
+    {
+      "method": "getItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 6,
+          "code": "return settings.settingsStorage.getItem('todoList')"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 7,
+          "code": "? JSON.parse(settings.settingsStorage.getItem('todoList'))"
+        }
+      ]
+    },
+    {
+      "method": "readdirSync",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/fs.js",
+          "line": 115,
+          "code": "export function readdirSync(path, options) {\n  logger.log('readdirSync begin -->', path)\n  hmFS.readdirSync(path)\n  logger.log('readdirSync success -->', path)\n}"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/fs.js",
+          "line": 117,
+          "code": "hmFS.readdirSync(path)"
+        }
+      ]
+    },
+    {
+      "method": "readFileSync",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/utils/fs.js",
+          "line": 4,
+          "code": "export function readFileSync() {\n  const resData = fs.readFileSync(TODO_FILE_NAME)\n  return !resData ? [] : JSON.parse(resData)\n}"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/utils/fs.js",
+          "line": 5,
+          "code": "const resData = fs.readFileSync(TODO_FILE_NAME)"
+        }
+      ]
+    },
+    {
+      "method": "send",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+          "line": 509,
+          "code": "const result = this.ble.send(buf.buffer, buf.byteLength)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+          "line": 519,
+          "code": "messaging.peerSocket.send(buf.buffer)"
+        }
+      ]
+    },
+    {
+      "method": "set",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/event.js",
+          "line": 10,
+          "code": "this.map.set(type, [cb])"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+          "line": 244,
+          "code": "this.sessions.set(this.key(newSession), newSession)"
+        }
+      ]
+    },
+    {
+      "method": "setItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 26,
+          "code": "settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 35,
+          "code": "settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+          "line": 98,
+          "code": "this.state.refreshText && this.state.refreshText.setProperty(hmUI.prop.VISIBLE, false)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+          "line": 99,
+          "code": "this.state.tipText && this.state.tipText.setProperty(hmUI.prop.VISIBLE, isTip)"
+        }
+      ]
+    },
+    {
+      "method": "stopTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/setTimeout.js",
+          "line": 8,
+          "code": "timerRef && timer.stopTimer(timerRef)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/shared/setTimeout.js",
+          "line": 26,
+          "code": "timerRef && timer.stopTimer(timerRef)"
+        }
+      ]
+    },
+    {
+      "method": "writeFileSync",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/utils/fs.js",
+          "line": 9,
+          "code": "export function writeFileSync(data, merge = true) {\n  let params = data\n  if (merge) {\n    params = [...readFileSync(), ...data]\n  }\n  fs.writeFileSync(TODO_FILE_NAME, JSON.stringify(params))\n}"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/todo-list/utils/fs.js",
+          "line": 14,
+          "code": "fs.writeFileSync(TODO_FILE_NAME, JSON.stringify(params))"
+        }
+      ]
+    }
+  ],
+  "symbols": [],
+  "runtimes": [
+    "device-app",
+    "settings",
+    "side-service"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/1.0/todo-list",
+  "extractedAt": "2026-09-08"
+}

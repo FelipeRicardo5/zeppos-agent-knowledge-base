@@ -1,0 +1,136 @@
+{
+  "id": "workout-extensions-3-5-running-data-assistant",
+  "name": "running-data-assistant",
+  "tree": "workout-extensions",
+  "platformVersion": "3.5",
+  "manifest": {
+    "appType": "app",
+    "permissions": [],
+    "targets": [
+      "common"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "workout-extension",
+      "symbols": []
+    },
+    {
+      "path": "data-widget/common/index.js",
+      "runtime": "workout-extension",
+      "symbols": [
+        "@zos/sensor.Time",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget"
+      ]
+    },
+    {
+      "path": "data-widget/common/index.r.layout.js",
+      "runtime": "workout-extension",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.data_type",
+        "@zos/ui.edit_widget_group_type",
+        "@zos/ui.sport_data",
+        "@zos/ui.text_style",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "data-widget/common/index.s.layout.js",
+      "runtime": "workout-extension",
+      "symbols": [
+        "@zos/ui.align",
+        "@zos/ui.data_type",
+        "@zos/ui.edit_widget_group_type",
+        "@zos/ui.sport_data",
+        "@zos/ui.text_style",
+        "@zos/utils.px"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/sensor.Time",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js",
+          "line": 13,
+          "code": "const time = new Time();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js",
+          "line": 20,
+          "code": "const bg = createWidget(widget.IMG, bgStyle);"
+        },
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js",
+          "line": 22,
+          "code": "const timeText = createWidget(widget.TEXT, timeStyle);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.r.layout.js",
+          "line": 22,
+          "code": "y: px(40),"
+        },
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.r.layout.js",
+          "line": 23,
+          "code": "w: px(480),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js",
+          "line": 33,
+          "code": "timeText.setProperty(prop.MORE, {\n  text: hour + \":\" + minute + \":\" + second,\n});"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/sensor.Time",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.data_type",
+    "@zos/ui.edit_widget_group_type",
+    "@zos/ui.prop",
+    "@zos/ui.sport_data",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "workout-extension"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/workout-extensions/3.5/running-data-assistant",
+  "extractedAt": "2026-09-08"
+}

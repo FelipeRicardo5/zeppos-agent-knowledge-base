@@ -1,0 +1,152 @@
+{
+  "id": "application-1-0-calories",
+  "name": "calories",
+  "tree": "application",
+  "platformVersion": "1.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [],
+    "targets": [
+      "gtr-3",
+      "gtr-3-pro",
+      "gts-3"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr-3/food-list.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr-3/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gts-3/food-list.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gts-3/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/constants.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/storage.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/styles-gts-3.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/styles.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [],
+  "memberCalls": [
+    {
+      "method": "addEventListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js",
+          "line": 86,
+          "code": "text.addEventListener(hmUI.event.SELECT, () => {\n  this.state.radioGroup.setProperty(\n    hmUI.prop.CHECKED,\n    this.state.radioButtonsArray[index]\n  );\n});"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gts-3/food-list.js",
+          "line": 81,
+          "code": "text.addEventListener(hmUI.event.SELECT, () => {\n  this.state.radioGroup.setProperty(\n    hmUI.prop.CHECKED,\n    this.state.radioButtonsArray[index]\n  );\n});"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js",
+          "line": 31,
+          "code": "hmUI.createWidget(hmUI.widget.TEXT, COMMON_TITLE_TEXT);"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js",
+          "line": 35,
+          "code": "const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {\n  ...FOOD_LIST_RADIOGROUP,\n  check_func: (group, index, checked) => {\n    if (checked) {\n      this.state.isFinishInit && this.setPrograms(index);\n    }\n  },\n});"
+        }
+      ]
+    },
+    {
+      "method": "getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/styles-gts-3.js",
+          "line": 4,
+          "code": "hmSetting.getDeviceInfo();"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/styles.js",
+          "line": 4,
+          "code": "hmSetting.getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "method": "set",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/app.js",
+          "line": 22,
+          "code": "this.globalData.localStorage.set({\n  foodType: getApp()._options.globalData.foodType,\n});"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js",
+          "line": 87,
+          "code": "this.state.radioGroup.setProperty(\n  hmUI.prop.CHECKED,\n  this.state.radioButtonsArray[index]\n);"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js",
+          "line": 94,
+          "code": "this.state.radioGroup.setProperty(\n  hmUI.prop.INIT,\n  this.state.radioButtonsArray[0]\n);"
+        }
+      ]
+    }
+  ],
+  "symbols": [],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/1.0/calories",
+  "extractedAt": "2026-09-08"
+}

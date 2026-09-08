@@ -1,0 +1,383 @@
+{
+  "id": "application-2-0-todo-list",
+  "name": "todo-list",
+  "tree": "application",
+  "platformVersion": "2.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.local_storage"
+    ],
+    "targets": [
+      "gts"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": ".prettierrc.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "app-side/index.js",
+      "runtime": "side-service",
+      "symbols": []
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/app.getPackageInfo",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/home/index.page.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.SCREEN_SHAPE_SQUARE",
+        "@zos/device.getDeviceInfo",
+        "@zos/storage.localStorage",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/home/index.style.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/i18n.getText",
+        "@zos/ui.align",
+        "@zos/ui.text_style",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "secondary-widget/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.SCREEN_SHAPE_SQUARE",
+        "@zos/device.getDeviceInfo",
+        "@zos/ui.createWidget",
+        "@zos/ui.prop",
+        "@zos/ui.widget",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "setting/index.js",
+      "runtime": "settings",
+      "symbols": []
+    },
+    {
+      "path": "shared/data.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/defer.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/device-polyfill.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/es6-promise.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/event.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/message-side.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "shared/message.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/utils.EventBus",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "utils/constants.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/app.getPackageInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app.js",
+          "line": 15,
+          "code": "const { appId } = getPackageInfo()"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 28,
+          "code": "if (getDeviceInfo().screenShape !== SCREEN_SHAPE_SQUARE) {\n  this.state.title = createWidget(widget.TEXT, {\n    ...TITLE_TEXT_STYLE\n  })\n}"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.style.js",
+          "line": 6,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo()"
+        }
+      ]
+    },
+    {
+      "id": "@zos/i18n.getText",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.style.js",
+          "line": 9,
+          "code": "text: getText('todoList'),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.style.js",
+          "line": 21,
+          "code": "text: getText('add'),"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 29,
+          "code": "this.state.title = createWidget(widget.TEXT, {\n  ...TITLE_TEXT_STYLE\n})"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 34,
+          "code": "this.state.addButton = createWidget(widget.BUTTON, {\n  ...ADD_BUTTON,\n  click_func: () => {\n    this.addRandomTodoItem()\n  }\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app.js",
+          "line": 14,
+          "code": "logger.log('app onCreate invoked')"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app.js",
+          "line": 22,
+          "code": "logger.log('app onDestroy invoked')"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.style.js",
+          "line": 10,
+          "code": "x: px(42),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.style.js",
+          "line": 11,
+          "code": "y: px(65),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "addListener",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
+          "line": 13,
+          "code": "settings.settingsStorage.addListener('change', ({ key, newValue, oldValue }) => {\n  messageBuilder.call(getTodoList())\n})"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 306,
+          "code": "messaging.peerSocket.addListener('message', (message) => {\n  DEBUG &&\n    logger.warn('[RAW] [R] receive size=>%d bin=>%s', message.byteLength, bin2hex(message))\n  this.onMessage(message)\n})"
+        }
+      ]
+    },
+    {
+      "method": "clear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/event.js",
+          "line": 29,
+          "code": "this.map.clear()"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 220,
+          "code": "clear() {\n  this.sessions.clear()\n}"
+        }
+      ]
+    },
+    {
+      "method": "createConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 281,
+          "code": "this.ble.createConnect((index, data, size) => {\n  DEBUG &&\n    logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, bin2hex(data))\n  this.onFragmentData(data)\n})"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message.js",
+          "line": 287,
+          "code": "this.ble.createConnect((index, data, size) => {\n  DEBUG &&\n    logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, bin2hex(data))\n  this.onFragmentData(data)\n})"
+        }
+      ]
+    },
+    {
+      "method": "disConnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app.js",
+          "line": 23,
+          "code": "this.globalData.messageBuilder && this.globalData.messageBuilder.disConnect()"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 291,
+          "code": "disConnect(cb) {\n  logger.debug('app ble disconnect')\n  this.sendClose()\n  this.off('message')\n  this.ble && this.ble.disConnect()\n\n  cb && cb(this)\n}"
+        }
+      ]
+    },
+    {
+      "method": "getItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
+          "line": 6,
+          "code": "return settings.settingsStorage.getItem('todoList')"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
+          "line": 7,
+          "code": "? JSON.parse(settings.settingsStorage.getItem('todoList'))"
+        }
+      ]
+    },
+    {
+      "method": "send",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 846,
+          "code": "xhr.send();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 449,
+          "code": "const result = this.ble.send(buf.buffer, buf.byteLength)"
+        }
+      ]
+    },
+    {
+      "method": "set",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/event.js",
+          "line": 10,
+          "code": "this.map.set(type, [cb])"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 193,
+          "code": "this.sessions.set(this.key(newSession), newSession)"
+        }
+      ]
+    },
+    {
+      "method": "setItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
+          "line": 26,
+          "code": "settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
+          "line": 35,
+          "code": "settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 103,
+          "code": "this.state.refreshText && this.state.refreshText.setProperty(prop.VISIBLE, false)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 104,
+          "code": "this.state.tipText && this.state.tipText.setProperty(prop.VISIBLE, isTip)"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zos/app.getPackageInfo",
+    "@zos/device.SCREEN_SHAPE_SQUARE",
+    "@zos/device.getDeviceInfo",
+    "@zos/i18n.getText",
+    "@zos/storage.localStorage",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.prop",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.EventBus",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app",
+    "settings",
+    "side-service"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/2.0/todo-list",
+  "extractedAt": "2026-09-08"
+}

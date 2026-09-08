@@ -14,7 +14,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/media/create.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/media.Player",
@@ -29,7 +29,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/media/Player.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     },
     {
       "id": "@zos/media.Recorder",
@@ -44,7 +44,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/media/Recorder.mdx",
-      "extractedAt": "2026-09-04"
+      "extractedAt": "2026-09-08"
     }
   ]
 }

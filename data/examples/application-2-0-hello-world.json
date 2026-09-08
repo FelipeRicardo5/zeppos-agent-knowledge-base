@@ -1,0 +1,158 @@
+{
+  "id": "application-2-0-hello-world",
+  "name": "hello-world",
+  "tree": "application",
+  "platformVersion": "2.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.local_storage"
+    ],
+    "targets": [
+      "gtr",
+      "gts"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/gtr/home/index.page.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/gtr/home/index.style.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/i18n.getText",
+        "@zos/ui.align",
+        "@zos/ui.text_style",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/gts/home/index.page.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/ui.createWidget",
+        "@zos/ui.widget",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/gts/home/index.style.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/i18n.getText",
+        "@zos/ui.align",
+        "@zos/ui.text_style"
+      ]
+    },
+    {
+      "path": "utils/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gtr/home/index.style.js",
+          "line": 6,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gts/home/index.style.js",
+          "line": 5,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/i18n.getText",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gtr/home/index.style.js",
+          "line": 9,
+          "code": "text: getText(\"appName\"),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gts/home/index.style.js",
+          "line": 8,
+          "code": "text: getText(\"appName\"),"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gtr/home/index.page.js",
+          "line": 9,
+          "code": "createWidget(widget.TEXT, {\n  ...TEXT_STYLE,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gts/home/index.page.js",
+          "line": 10,
+          "code": "createWidget(widget.TEXT, {\n  ...TEXT_STYLE,\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gtr/home/index.style.js",
+          "line": 10,
+          "code": "x: px(42),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gtr/home/index.style.js",
+          "line": 11,
+          "code": "y: px(200),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [],
+  "symbols": [
+    "@zos/device.getDeviceInfo",
+    "@zos/i18n.getText",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/2.0/hello-world",
+  "extractedAt": "2026-09-08"
+}

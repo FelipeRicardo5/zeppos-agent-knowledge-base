@@ -1,0 +1,135 @@
+{
+  "id": "workout-extensions-3-5-running-pace-master-with-side-service",
+  "name": "running-pace-master-with-side-service",
+  "tree": "workout-extensions",
+  "platformVersion": "3.5",
+  "manifest": {
+    "appType": "app",
+    "permissions": [],
+    "targets": [
+      "common"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-side/index/index.js",
+      "runtime": "side-service",
+      "symbols": [
+        "@zeppos/zml/base-side.BaseSideService"
+      ]
+    },
+    {
+      "path": "app.js",
+      "runtime": "workout-extension",
+      "symbols": [
+        "@zeppos/zml/base-app.BaseApp"
+      ]
+    },
+    {
+      "path": "data-widget/common/index.js",
+      "runtime": "workout-extension",
+      "symbols": [
+        "@zeppos/zml/base-page.BasePage",
+        "@zos/ui.align",
+        "@zos/ui.createWidget",
+        "@zos/ui.edit_widget_group_type",
+        "@zos/ui.sport_data",
+        "@zos/ui.text_style",
+        "@zos/ui.widget",
+        "@zos/utils.px"
+      ]
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zeppos/zml/base-app.BaseApp",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app.js",
+          "line": 4,
+          "code": "BaseApp({\n  globalData: {},\n  onCreate(options) {},\n  onDestroy(options) {},\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base-page.BasePage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js",
+          "line": 13,
+          "code": "BasePage({\n  init() {\n    const bg = createWidget(widget.IMG, {\n      x: 0,\n      y: 0,\n      src: \"bg.png\",\n    });\n    const text = createWidget(widget.TEXT, {\n      x: px(240),\n      y: px(82),\n      w: px(150),\n      h: px(85),"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base-side.BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js",
+          "line": 5,
+          "code": "BaseSideService({\n  onInit(e) {\n    log.log(\"app-side-service onInit invoked\", e);\n  },\n\n  onRun(e) {\n    log.log(\"app-side-service onEvent invoked\", e);\n  },\n\n  onDestroy() {\n    log.log(\"app-side-service onDestroy invoked\");\n  },"
+        }
+      ]
+    },
+    {
+      "id": "@zos/ui.createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js",
+          "line": 15,
+          "code": "const bg = createWidget(widget.IMG, {\n  x: 0,\n  y: 0,\n  src: \"bg.png\",\n});"
+        },
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js",
+          "line": 20,
+          "code": "const text = createWidget(widget.TEXT, {\n  x: px(240),\n  y: px(82),\n  w: px(150),\n  h: px(85),\n  color: 0xffffff,\n  text_size: px(30),\n  align_h: align.CENTER_H,\n  align_v: align.CENTER_V,\n  text_style: text_style.NONE,\n  text: \"BPM\",\n});"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js",
+          "line": 21,
+          "code": "x: px(240),"
+        },
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js",
+          "line": 22,
+          "code": "y: px(82),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [],
+  "symbols": [
+    "@zeppos/zml/base-app.BaseApp",
+    "@zeppos/zml/base-page.BasePage",
+    "@zeppos/zml/base-side.BaseSideService",
+    "@zos/ui.align",
+    "@zos/ui.createWidget",
+    "@zos/ui.edit_widget_group_type",
+    "@zos/ui.sport_data",
+    "@zos/ui.text_style",
+    "@zos/ui.widget",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "side-service",
+    "workout-extension"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service",
+  "extractedAt": "2026-09-08"
+}

@@ -1,5 +1,5 @@
 {
-  "lastSyncAt": "2026-09-04T20:58:39.372Z",
+  "lastSyncAt": "2026-09-08T15:40:25.151Z",
   "sources": {
     "zeppos-docs": {
       "commit": "c08725b2cfa3398d9e4da9379a2d83abaf3475a6"
@@ -17,6 +17,7 @@
     "symbols": 409,
     "modules": 42,
     "patterns": 11,
-    "devices": 41
+    "devices": 41,
+    "examples": 33
   }
 }

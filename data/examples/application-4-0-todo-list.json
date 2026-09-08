@@ -1,0 +1,324 @@
+{
+  "id": "application-4-0-todo-list",
+  "name": "todo-list",
+  "tree": "application",
+  "platformVersion": "4.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.local_storage"
+    ],
+    "targets": [
+      "gt"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "debug",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": ".prettierrc.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "app-side/index.js",
+      "runtime": "side-service",
+      "symbols": [
+        "@zeppos/zml/base-side.BaseSideService",
+        "@zeppos/zml/base-side.settingsLib"
+      ]
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zeppos/zml/base-app.BaseApp",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/home/index.page.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zeppos/zml/base-page.BasePage",
+        "@zos/device.SCREEN_SHAPE_SQUARE",
+        "@zos/device.getDeviceInfo",
+        "@zos/i18n.getText",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/home/index.page.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/i18n.getText",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "page/home/index.page.s.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo",
+        "@zos/i18n.getText",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "setting/index.js",
+      "runtime": "settings",
+      "symbols": []
+    },
+    {
+      "path": "utils/constants.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "utils/fs.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/fs.readFileSync",
+        "@zos/fs.statSync",
+        "@zos/fs.writeFileSync"
+      ]
+    },
+    {
+      "path": "utils/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zeppos/zml/base-app.BaseApp",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/app.js",
+          "line": 7,
+          "code": "BaseApp({\n  globalData: {},\n  onCreate() {\n    logger.log('app onCreate invoked')\n  },\n\n  onDestroy() {\n    logger.log('app onDestroy invoked')\n  }\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base-page.BasePage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 19,
+          "code": "BasePage({\n  state: {\n    scrollList: null,\n    tipText: null,\n    refreshText: null,\n    addButton: null,\n    dataList: readFileSync()\n  },\n  onInit() {\n    logger.debug('page onInit invoked')\n    this.getTodoList()\n  },"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base-side.BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/app-side/index.js",
+          "line": 12,
+          "code": "BaseSideService({\n  onInit() {},\n  onRequest(req, res) {\n    if (req.method === 'GET_TODO_LIST') {\n      res(null, {\n        result: getTodoList()\n      })\n    } else if (req.method === 'ADD') {\n      // 这里补充一个\n      const todoList = getTodoList()\n      const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]\n      settingsLib.setItem('todoList', JSON.stringify(newTodoList))"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 34,
+          "code": "if (getDeviceInfo().screenShape !== SCREEN_SHAPE_SQUARE) {\n  this.state.title = hmUI.createWidget(hmUI.widget.TEXT, {\n    ...TITLE_TEXT_STYLE\n  })\n}"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.r.layout.js",
+          "line": 6,
+          "code": "export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo()"
+        }
+      ]
+    },
+    {
+      "id": "@zos/fs.readFileSync",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/utils/fs.js",
+          "line": 5,
+          "code": "export function readFileSync() {\n  const fStat = statSync({\n    path: this.fileName\n  })\n  if (fStat) {\n    const resData = readFile({\n      path: TODO_FILE_NAME,\n      options: {\n        encoding: 'utf8'\n      }\n    })\n    return !resData ? [] : JSON.parse(resData)"
+        }
+      ]
+    },
+    {
+      "id": "@zos/fs.statSync",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/utils/fs.js",
+          "line": 6,
+          "code": "const fStat = statSync({\n  path: this.fileName\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zos/fs.writeFileSync",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/utils/fs.js",
+          "line": 22,
+          "code": "export function writeFileSync(data, merge = true) {\n  let params = data\n  if (merge) {\n    params = [...readFile(), ...data]\n  }\n  writeFile({\n    path: TODO_FILE_NAME,\n    data: JSON.stringify(params),\n    options: {\n      encoding: 'utf8'\n    }\n  })"
+        }
+      ]
+    },
+    {
+      "id": "@zos/i18n.getText",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 78,
+          "code": "text: getText('addSuccess')"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 83,
+          "code": "text: getText('addFailure')"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/app.js",
+          "line": 10,
+          "code": "logger.log('app onCreate invoked')"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/app.js",
+          "line": 14,
+          "code": "logger.log('app onDestroy invoked')"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.r.layout.js",
+          "line": 10,
+          "code": "x: px(42),"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.r.layout.js",
+          "line": 11,
+          "code": "y: px(65),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 35,
+          "code": "this.state.title = hmUI.createWidget(hmUI.widget.TEXT, {\n  ...TITLE_TEXT_STYLE\n})"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 40,
+          "code": "this.state.addButton = hmUI.createWidget(hmUI.widget.BUTTON, {\n  ...ADD_BUTTON,\n  click_func: () => {\n    this.addRandomTodoItem()\n  }\n})"
+        }
+      ]
+    },
+    {
+      "method": "getItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/app-side/index.js",
+          "line": 7,
+          "code": "return settingsLib.getItem('todoList')"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/app-side/index.js",
+          "line": 8,
+          "code": "? JSON.parse(settingsLib.getItem('todoList'))"
+        }
+      ]
+    },
+    {
+      "method": "setItem",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/app-side/index.js",
+          "line": 23,
+          "code": "settingsLib.setItem('todoList', JSON.stringify(newTodoList))"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/app-side/index.js",
+          "line": 32,
+          "code": "settingsLib.setItem('todoList', JSON.stringify(newTodoList))"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 93,
+          "code": "this.state.scrollList.setProperty(hmUI.prop.DELETE_ITEM, { index: index })"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 117,
+          "code": "this.state.refreshText && this.state.refreshText.setProperty(hmUI.prop.VISIBLE, false)"
+        }
+      ]
+    },
+    {
+      "method": "showToast",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 77,
+          "code": "hmUI.showToast({\n  text: getText('addSuccess')\n})"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/todo-list/page/home/index.page.js",
+          "line": 82,
+          "code": "hmUI.showToast({\n  text: getText('addFailure')\n})"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zeppos/zml/base-app.BaseApp",
+    "@zeppos/zml/base-page.BasePage",
+    "@zeppos/zml/base-side.BaseSideService",
+    "@zeppos/zml/base-side.settingsLib",
+    "@zos/device.SCREEN_SHAPE_SQUARE",
+    "@zos/device.getDeviceInfo",
+    "@zos/fs.readFileSync",
+    "@zos/fs.statSync",
+    "@zos/fs.writeFileSync",
+    "@zos/i18n.getText",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app",
+    "settings",
+    "side-service"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/4.0/todo-list",
+  "extractedAt": "2026-09-08"
+}

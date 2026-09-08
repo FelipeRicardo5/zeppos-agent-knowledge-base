@@ -1,0 +1,291 @@
+{
+  "id": "application-3-0-download",
+  "name": "download",
+  "tree": "application",
+  "platformVersion": "3.0",
+  "manifest": {
+    "appType": "app",
+    "permissions": [
+      "data:os.device.info",
+      "device:os.ble"
+    ],
+    "targets": [
+      "gt"
+    ],
+    "keys": [
+      "app",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "permissions",
+      "runtime",
+      "targets"
+    ]
+  },
+  "files": [
+    {
+      "path": "app-side/fetch-module.js",
+      "runtime": "side-service",
+      "symbols": []
+    },
+    {
+      "path": "app-side/file-download-module.js",
+      "runtime": "side-service",
+      "symbols": []
+    },
+    {
+      "path": "app-side/file-transfer-module.js",
+      "runtime": "side-service",
+      "symbols": []
+    },
+    {
+      "path": "app-side/image-convert-module.js",
+      "runtime": "side-service",
+      "symbols": [
+        "@zeppos/zml/base-side.convertLib"
+      ]
+    },
+    {
+      "path": "app-side/index.js",
+      "runtime": "side-service",
+      "symbols": [
+        "@zeppos/zml/base-side.BaseSideService"
+      ]
+    },
+    {
+      "path": "app.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zeppos/zml/base-app.BaseApp",
+        "@zos/utils.EventBus"
+      ]
+    },
+    {
+      "path": "components/mask/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "components/pressed-btn/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    },
+    {
+      "path": "page/index.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zeppos/zml/base-page.BasePage",
+        "@zos/i18n.getText",
+        "@zos/utils.log"
+      ]
+    },
+    {
+      "path": "page/index.r.layout.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/i18n.getText",
+        "@zos/utils.px"
+      ]
+    },
+    {
+      "path": "utils/constants.js",
+      "runtime": "device-app",
+      "symbols": [
+        "@zos/device.getDeviceInfo"
+      ]
+    },
+    {
+      "path": "utils/index.js",
+      "runtime": "device-app",
+      "symbols": []
+    }
+  ],
+  "usages": [
+    {
+      "id": "@zeppos/zml/base-app.BaseApp",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app.js",
+          "line": 7,
+          "code": "BaseApp({\n  globalData: {\n    bus,\n  },\n  onCreate() {\n    console.log(\"app on create invoke\");\n  },\n\n  onDestroy() {\n    console.log(\"app on destroy invoke\");\n  },\n})"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base-page.BasePage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/page/index.js",
+          "line": 13,
+          "code": "BasePage({\n  state: {\n    isDownload: false,\n    isTransfer: false,\n    filePath: \"\",\n    fileName: \"\",\n  },\n  onCall({ result }) {\n    if (result && \"filePath\" in result) {\n      this.state.filePath = result.filePath;\n      this.state.isDownload = false;\n      textWidget.setProperty(hmUI.prop.TEXT, getText(\"transTip\"));"
+        }
+      ]
+    },
+    {
+      "id": "@zeppos/zml/base-side.BaseSideService",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/index.js",
+          "line": 11,
+          "code": "BaseSideService({\n  ...fetchModule,\n  ...fileDownloadModule,\n  ...imageConvertModule,\n  ...fileTransferModule,\n  onInit() {\n    logger.log(\"app side service invoke onInit\");\n  },\n  onRun() {\n    logger.log(\"app side service invoke onRun\");\n  },\n  onDestroy() {"
+        }
+      ]
+    },
+    {
+      "id": "@zos/device.getDeviceInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/utils/constants.js",
+          "line": 3,
+          "code": "export const DEVICE_INFO = getDeviceInfo();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/i18n.getText",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/page/index.js",
+          "line": 24,
+          "code": "textWidget.setProperty(hmUI.prop.TEXT, getText(\"transTip\"));"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/page/index.js",
+          "line": 38,
+          "code": "const path = getText(\n  \"imagePath\",\n  getResourcePath(this.state.fileName)\n);"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.EventBus",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app.js",
+          "line": 4,
+          "code": "const bus = new EventBus();"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.log",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/page/index.js",
+          "line": 67,
+          "code": "console.log(\"--->click\");"
+        }
+      ]
+    },
+    {
+      "id": "@zos/utils.px",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/page/index.r.layout.js",
+          "line": 7,
+          "code": "x: px(56),"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/page/index.r.layout.js",
+          "line": 8,
+          "code": "y: px(100),"
+        }
+      ]
+    }
+  ],
+  "memberCalls": [
+    {
+      "method": "convert",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/image-convert-module.js",
+          "line": 9,
+          "code": "async convert(filePath) {\n  const result = await convertLib.convert({\n    filePath: filePath,\n    targetFilePath: filePath,\n  });\n\n  logger.log(\"ConvertImage result=>%j\", result);\n  return result;\n},"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/image-convert-module.js",
+          "line": 10,
+          "code": "const result = await convertLib.convert({\n  filePath: filePath,\n  targetFilePath: filePath,\n});"
+        }
+      ]
+    },
+    {
+      "method": "createWidget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/components/mask/index.js",
+          "line": 4,
+          "code": "const mask = parent.createWidget(hmUI.widget.FILL_RECT, {\n  ...style,\n  color: 0x000000,\n  alpha: 0x96,\n  enable: isMaskActive,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/components/pressed-btn/index.js",
+          "line": 11,
+          "code": "const btn = parent.createWidget(hmUI.widget.BUTTON, {\n  ...style,\n  click_down: () => {\n    mask.setProperty(hmUI.prop.VISIBLE, true);\n  },\n  click_func: () => {\n    mask.setProperty(hmUI.prop.VISIBLE, false);\n    clickCb && typeof clickCb === \"function\" && clickCb();\n  },\n  click_up: () => {\n    mask.setProperty(hmUI.prop.VISIBLE, false);\n  },"
+        }
+      ]
+    },
+    {
+      "method": "downloadFile",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/index.js",
+          "line": 34,
+          "code": "this.downloadFile(encodeURI(coverUrl));"
+        }
+      ]
+    },
+    {
+      "method": "fetch",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/fetch-module.js",
+          "line": 8,
+          "code": "const result = await this.fetch({\n  method: \"get\",\n  url: \"http://yijuzhan.com/api/word.php\",\n}).catch((e) => {\n  console.log(\"fetch=>\", e);\n});"
+        }
+      ]
+    },
+    {
+      "method": "setAlpha",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/components/mask/index.js",
+          "line": 10,
+          "code": "mask.setAlpha(0x96);"
+        }
+      ]
+    },
+    {
+      "method": "setProperty",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/components/mask/index.js",
+          "line": 11,
+          "code": "mask.setProperty(hmUI.prop.VISIBLE, isMaskActive);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/components/pressed-btn/index.js",
+          "line": 14,
+          "code": "mask.setProperty(hmUI.prop.VISIBLE, true);"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    "@zeppos/zml/base-app.BaseApp",
+    "@zeppos/zml/base-page.BasePage",
+    "@zeppos/zml/base-side.BaseSideService",
+    "@zeppos/zml/base-side.convertLib",
+    "@zos/device.getDeviceInfo",
+    "@zos/i18n.getText",
+    "@zos/utils.EventBus",
+    "@zos/utils.log",
+    "@zos/utils.px"
+  ],
+  "runtimes": [
+    "device-app",
+    "side-service"
+  ],
+  "source": "sample-app",
+  "confidence": "OBSERVED",
+  "originalPath": "zeppos-samples/application/3.0/download",
+  "extractedAt": "2026-09-08"
+}

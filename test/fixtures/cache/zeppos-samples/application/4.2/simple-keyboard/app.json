@@ -1,0 +1,17 @@
+{
+  "configVersion": "v3",
+  "app": {
+    "appId": 1022389,
+    "appName": "simple-keyboard",
+    "appType": "app",
+    "version": { "code": 1, "name": "1.0.0" },
+    "icon": "icon.png",
+    "vender": "zepp",
+    "description": "simple keyboard sample"
+  },
+  "permissions": ["device:os.input.method", "data:os.device.info"],
+  "runtime": { "apiVersion": { "compatible": "4.2.0", "target": "4.2.0" } },
+  "targets": { "gt.r": { "module": {} }, "gt.s": { "module": {} } },
+  "i18n": { "en-US": { "appName": "Simple Keyboard" } },
+  "defaultLanguage": "en-US"
+}

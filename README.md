@@ -86,7 +86,7 @@ Four stages, each idempotent and independently inspectable, so any one of them c
    - `patterns/` — one page per best-practice guide
    - `examples/` — one page per sample app, indexed by symbol
 
-   A symbol with no documented minimum is labelled `not stated`, never `any` — absence of a level is absence of evidence, not a compatibility claim. `runtimes/` renders a page for **every** runtime including the ones with no symbols, because a missing page reads like "this runtime does not exist" while a page stating "0 symbols covered" reads like the coverage gap it is. The remaining README dirs (`concepts/`, `examples/`, `tools/`) hold knowledge the automated fronts don't yet reach, so they are not generated. This is what the Agent Skill reads.
+   A symbol with no documented minimum is labelled `not stated`, never `any` — absence of a level is absence of evidence, not a compatibility claim. `runtimes/` renders a page for **every** runtime including the ones with no symbols, because a missing page reads like "this runtime does not exist" while a page stating "0 symbols covered" reads like the coverage gap it is. `concepts/` and `tools/` are the two dirs `render` does not write: `concepts/` is hand-written by design, and `tools/` waits on a front. This is what the Agent Skill reads.
 
 ## Data model
 
@@ -257,7 +257,12 @@ data/
 skills/
   zepp-os/SKILL.md   the Agent Skill
 concepts/
-  README.md          note index (retrieval/RAG/MCP study notes)
+  README.md          note index, in two blocks
+  dominio.md         the domain model: units, pipeline, what a "front" is
+  simbolos.md        symbol, id, module, signature, shape
+  runtimes.md        the five runtimes and how they are inferred
+  api-level.md       the four version numbers that are not interchangeable
+  confianca.md       OFFICIAL vs. OBSERVED, provenance, documented != complete
 test/
   fixtures/cache/    trimmed excerpts of the real sources, in cache layout
   *.test.ts          parser and enrich tests
@@ -268,7 +273,7 @@ eval/
 assets/     this repository's own logo — not a Zepp OS app `assets/` directory
 ```
 
-The generated Markdown lands in `api/`, `compatibility/`, `runtimes/`, `patterns/`, `examples/` and `manifest/`. `concepts/` holds curated notes on retrieval/RAG/MCP and their relation to this project (see [concepts/README.md](concepts/README.md)). `tools/` stays empty until a front exists to fill it — the raw material is already in `.cache/` (`guides/tools/` + `guides/version-info/`), so it is a parsing job, not a curation job.
+The generated Markdown lands in `api/`, `compatibility/`, `runtimes/`, `patterns/`, `examples/` and `manifest/`. `concepts/` holds hand-written notes in two blocks: **the domain model** — what a symbol is, what a runtime is, which of the four version numbers answers which question, what a confidence tier promises — and the retrieval stack (RAG, embeddings, vector stores, MCP) and its relation to this project. Start at [concepts/dominio.md](concepts/dominio.md); index at [concepts/README.md](concepts/README.md). `tools/` stays empty until a front exists to fill it — the raw material is already in `.cache/` (`guides/tools/` + `guides/version-info/`), so it is a parsing job, not a curation job.
 
 ## Design decisions
 

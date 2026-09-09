@@ -1,7 +1,12 @@
 # Concepts
 
-Notas de estudo sobre a stack de retrieval (RAG, embeddings, vector stores, MCP)
-e como cada peça se relaciona com este projeto.
+Notas curadas em dois blocos:
+
+- **O modelo de domínio** — os termos desta aplicação. O que é um símbolo, o que é
+  um runtime, o que `API_LEVEL` versiona, o que uma tier de confiança promete.
+  Comece aqui se você está entendendo o repositório.
+- **A stack de retrieval** — RAG, embeddings, vector stores, MCP, e como cada peça
+  se relaciona com este projeto.
 
 Estas notas **não** fazem parte da base de conhecimento gerada. Elas ficam aqui de
 propósito: `render` nunca escreve em `concepts/`, então este diretório é seguro para
@@ -9,6 +14,18 @@ conteúdo curado e mantido à mão — ao contrário de `api/` e `compatibility/
 regenerados a partir de `data/symbols/` e não devem ser editados.
 
 ## Mapa de documentos
+
+### Modelo de domínio
+
+| Documento | O que cobre |
+| --- | --- |
+| [dominio.md](dominio.md) | As cinco unidades de conhecimento, o pipeline, o que é uma "frente" |
+| [simbolos.md](simbolos.md) | Símbolo, id, módulo, assinatura, shape, e o que a ausência significa |
+| [runtimes.md](runtimes.md) | Os cinco runtimes, por que cinco, e como são inferidos do caminho |
+| [api-level.md](api-level.md) | Os quatro números de versão que não são intercambiáveis |
+| [confianca.md](confianca.md) | `OFFICIAL` vs. `OBSERVED`, proveniência, e por que documentado ≠ completo |
+
+### Stack de retrieval
 
 | Documento | O que cobre |
 | --- | --- |
@@ -21,9 +38,13 @@ regenerados a partir de `data/symbols/` e não devem ser editados.
 
 ## Ordem de leitura sugerida
 
-Se você é novo no assunto, leia os documentos na ordem acima. Se quer a versão
-curta, leia [rag-architecture.md](rag-architecture.md) por último — ele amarra todos
-os outros de volta a este projeto.
+Para entender **o repositório**: [dominio.md](dominio.md) primeiro, depois as outras
+três notas de domínio na ordem que a pergunta pedir. [confianca.md](confianca.md) é
+a que mais muda como se *responde* usando a base.
+
+Para entender **a stack de retrieval**: leia na ordem da tabela, deixando
+[rag-architecture.md](rag-architecture.md) por último — ele amarra os outros de
+volta a este projeto.
 
 ## O resumo em uma frase para este projeto
 

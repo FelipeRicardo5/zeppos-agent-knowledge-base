@@ -85,7 +85,7 @@ Quatro estágios, cada um idempotente e inspecionável isoladamente, de modo que
    - `patterns/` — uma página por guia de boas práticas
    - `examples/` — uma página por app de exemplo, indexado por símbolo
 
-   Símbolo sem mínimo documentado é rotulado `not stated`, nunca `any` — ausência de nível é ausência de evidência, não afirmação de compatibilidade. `runtimes/` gera página para **todo** runtime, inclusive os sem símbolo algum, porque uma página ausente se lê como "este runtime não existe" enquanto uma página declarando "0 símbolos cobertos" se lê como a lacuna de cobertura que é. Os demais diretórios do README (`concepts/`, `examples/`, `tools/`) guardam conhecimento que as frentes automatizadas ainda não alcançam, então não são gerados. É o que a Agent Skill lê.
+   Símbolo sem mínimo documentado é rotulado `not stated`, nunca `any` — ausência de nível é ausência de evidência, não afirmação de compatibilidade. `runtimes/` gera página para **todo** runtime, inclusive os sem símbolo algum, porque uma página ausente se lê como "este runtime não existe" enquanto uma página declarando "0 símbolos cobertos" se lê como a lacuna de cobertura que é. `concepts/` e `tools/` são os dois diretórios em que o `render` não escreve: `concepts/` é escrito à mão por decisão, e `tools/` espera uma frente. É o que a Agent Skill lê.
 
 ## Modelo de dados
 
@@ -218,7 +218,12 @@ data/
 skills/
   zepp-os/SKILL.md   a Agent Skill
 concepts/
-  README.md          índice de notas (estudo de retrieval/RAG/MCP)
+  README.md          índice de notas, em dois blocos
+  dominio.md         o modelo de domínio: unidades, pipeline, o que é uma "frente"
+  simbolos.md        símbolo, id, módulo, assinatura, shape
+  runtimes.md        os cinco runtimes e como são inferidos
+  api-level.md       os quatro números de versão que não são intercambiáveis
+  confianca.md       OFFICIAL vs. OBSERVED, proveniência, documentado != completo
 test/
   fixtures/cache/    excertos reduzidos das fontes reais, no layout do cache
   *.test.ts          testes dos parsers e do enrich
@@ -230,8 +235,11 @@ assets/     a logo deste repositório — não é o `assets/` de um app Zepp OS
 ```
 
 O Markdown gerado vai para `api/`, `compatibility/`, `runtimes/`, `patterns/`, `examples/` e `manifest/`.
-`concepts/` guarda notas curadas sobre retrieval/RAG/MCP e suas relações com o projeto
-(ver [concepts/README.md](concepts/README.md)). `tools/` permanece vazio até existir uma frente
+`concepts/` guarda notas escritas à mão em dois blocos: **o modelo de domínio** — o que é
+um símbolo, o que é um runtime, qual dos quatro números de versão responde o quê, o que uma
+tier de confiança promete — e a stack de retrieval (RAG, embeddings, vector stores, MCP) e
+sua relação com o projeto. Comece por [concepts/dominio.md](concepts/dominio.md); índice em
+[concepts/README.md](concepts/README.md). `tools/` permanece vazio até existir uma frente
 para preenchê-lo — o material bruto já está em `.cache/` (`guides/tools/` + `guides/version-info/`),
 então é trabalho de parsing, não de curadoria.
 

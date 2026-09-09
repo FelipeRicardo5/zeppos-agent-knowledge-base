@@ -15,7 +15,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/timer/createSysTimer.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/timer.stopTimer",
@@ -31,7 +31,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/timer/stopTimer.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     }
   ]
 }

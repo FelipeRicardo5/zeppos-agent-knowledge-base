@@ -205,6 +205,34 @@ function snippetsFor(lines: string[], name: string, file: string): CodeSnippet[]
     .map((index) => ({ file, line: index + 1, code: statementAt(lines, index) }));
 }
 
+/**
+ * Every key path in a manifest, dotted.
+ *
+ * Arrays are walked through rather than indexed — `platforms[0].st` and
+ * `platforms[1].st` are the same key — and the immediate children of `targets`
+ * are collapsed to `*`, because those names are chosen per project (`gtr-3-pro`,
+ * `common`) and keying on them would make every sample incomparable.
+ *
+ * Recursion is depth-capped: this reads files from a repo, and a manifest that
+ * nests pathologically would otherwise blow the stack during a sync.
+ */
+function keyPaths(value: unknown, prefix = "", depth = 0): string[] {
+  if (depth > 12 || typeof value !== "object" || value === null) return [];
+
+  if (Array.isArray(value)) {
+    return [...new Set(value.flatMap((entry) => keyPaths(entry, prefix, depth + 1)))];
+  }
+
+  const paths: string[] = [];
+  for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+    const name = prefix === "targets" ? "*" : key;
+    const dotted = prefix === "" ? name : `${prefix}.${name}`;
+    paths.push(dotted);
+    paths.push(...keyPaths(child, dotted, depth + 1));
+  }
+  return [...new Set(paths)];
+}
+
 async function readManifest(appJson: string): Promise<ExampleManifest | undefined> {
   let parsed: unknown;
   try {
@@ -230,6 +258,7 @@ async function readManifest(appJson: string): Promise<ExampleManifest | undefine
         ? Object.keys(targets).sort()
         : [],
     keys: Object.keys(manifest).sort(),
+    keyPaths: keyPaths(manifest).sort(),
   };
 }
 

@@ -238,7 +238,13 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
   name: "demo",
   tree: "application",
   platformVersion: "4.2",
-  manifest: { appType: "app", permissions: ["device:os.alarm"], targets: ["gt.r"], keys: ["app", "permissions"] },
+  manifest: {
+    appType: "app",
+    permissions: ["device:os.alarm"],
+    targets: ["gt.r"],
+    keys: ["app", "permissions"],
+    keyPaths: ["app", "app.appType", "permissions"],
+  },
   files: [{ path: "page/index.js", runtime: "device-app", symbols: ["@zos/ui.createWidget"] }],
   usages: [
     {

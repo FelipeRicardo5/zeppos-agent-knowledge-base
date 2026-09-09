@@ -86,7 +86,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/auth.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Button",
@@ -132,7 +132,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/button.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Image",
@@ -183,7 +183,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/image.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Link",
@@ -210,7 +210,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/link.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Section",
@@ -249,7 +249,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/section.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Select",
@@ -324,7 +324,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/select.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Slider",
@@ -387,7 +387,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/slider.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Text",
@@ -442,7 +442,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/text.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.TextImageRow",
@@ -499,7 +499,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/textimagerow.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.TextInput",
@@ -592,7 +592,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/textinput.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Toast",
@@ -652,7 +652,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/toast.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.Toggle",
@@ -697,7 +697,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/toggle.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "ui.View",
@@ -731,7 +731,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/app-settings-api/ui/view.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     }
   ]
 }

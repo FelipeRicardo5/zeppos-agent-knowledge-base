@@ -15,12 +15,12 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | Stage | State |
 | --- | --- |
 | `fetch` — clone/update official repos into a local cache | implemented |
-| `parse` — seven fronts: reference pages, the phone runtimes, `static/llms`, sample imports, sample apps, guides, the device list | implemented |
+| `parse` — eight fronts: reference pages, the phone runtimes, `static/llms`, sample imports, sample apps, guides, the device list, `app.json` | implemented |
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
-| `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/) |
+| `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/, examples/, manifest/) |
 
-Fixture-based tests cover all seven parse fronts, runtime attribution, call-shape extraction, the enrich merge and every render view: `npm test` (152 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all eight parse fronts, runtime attribution, call-shape extraction, the enrich merge and every render view: `npm test` (168 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
@@ -31,6 +31,7 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
 - **33 sample apps** read as code, yielding 592 cited excerpts and the shape of 33 working `app.json` files
+- **the `app.json` schema**: 20 documented keys with their property tables, 3 keys the reference page names and never describes, and a two-way diff against the 33 working manifests — 48 key paths real apps use that the page never mentions, 12 documented keys no sample uses, and 38 permission strings joined to the symbols that state them
 
 ## Coverage and limits
 
@@ -45,6 +46,7 @@ Read this before trusting an answer that came out of this KB.
 - **30 of 381 symbols have no description.** 24 are `OBSERVED` — seen only in sample code, which carries no prose. The other 6 are pages that genuinely have none between title and first section (`@zos/crypto`, two `@zos/ui` widgets).
 - **Parser bugs are the main risk, and every one so far was the same failure**: a source format that looked regular in the first file and wasn't. Each is now pinned by a fixture test built from the real file that broke it, so a regression fails the suite instead of quietly producing wrong records.
 - **Fixtures pin regressions; they don't prove coverage.** Two bugs survived a green suite because the fixtures were written from the files already read. Both were found by running the real pipeline and looking at the aggregate counts: a CRLF checkout (see below) silently dropped 188 documented constants, and a path rule mis-filed 10 symbols under a runtime because a docs directory shares a name with an app directory. Aggregate the output of a new front before believing it.
+- **The documented `app.json` is incomplete, and the base says where.** The reference page names no `module` key that reaches the Workout Extension runtime, yet six samples are one — they use a `data-widget` key the page never mentions. `manifest/index.md` reports the diff in both directions rather than presenting the documented tree as the whole schema. Documented rows are `OFFICIAL`; observed key paths are `OBSERVED`, and 33 apps are not the whole surface either way.
 - **The device list is a snapshot of *latest* levels, not a history.** It states the highest `API_LEVEL` each device reaches today, so a symbols-available count assumes the device is updated. It says nothing about which firmware a given user is actually on.
 - **Line endings are normalized at the read boundary.** `git clone` gives a CRLF cache on Windows and an LF one elsewhere, and regexes anchored with `$` stopped matching without erroring — a sync on Windows produced a materially smaller KB than the same commit synced on Linux. `readSource` in `src/parse/util.ts` normalizes to LF so the parse output depends only on the commit.
 
@@ -194,6 +196,31 @@ receiver-specific names.
 Sample code is `OBSERVED`. It proves a call that works, never a documented
 contract, and the pages say so where they quote it.
 
+### `AppJsonRecord`
+
+[`data/app-json.json`](data/app-json.json), one record for the whole
+`reference/app-json.mdx` page. `app.json` is not a symbol — it is a tree of
+configuration keys, each with its own property table — and it is on the critical
+path of every Mini Program: a wrong `targets`, a missing `module` entry point or
+an undeclared permission breaks the build or the install before any API matters.
+
+| Field | Meaning |
+| --- | --- |
+| `sections` | One per documented key: dotted `path`, `parent`, its property table, its verbatim examples, and the `runtime` it turns on where the source states one |
+| `gaps` | Keys typed `object` in a table and given no section anywhere on the page — `targets.module.app-service`, the Background Service switch, is one |
+| `completeExample` | The whole-file example the page closes with, cited to its line |
+
+A property here carries `minConfigVersion`, not `apiLevel`: the page's last
+column is headed *Minimum Version* and holds `v2`/`v3`, which is the
+configVersion of the file, not an `API_LEVEL`. Reusing `PropSpec` would have
+filed `v3` as level 3, which is why this front has its own row type.
+
+Nesting is derived from **row membership, not heading depth**. `### module:
+object` is a child of `targets` written at the same depth as `targets` itself,
+while `#### platforms` is its sibling one level deeper — reading `#` would file
+`module` at the root. A section is a child of the most recent table with a row
+naming it.
+
 ### Sync manifest
 
 [`data/manifest.json`](data/manifest.json) records the last sync date, the exact commit of every source repo, and the record counts. It is what makes each entry's "last verified" derivable instead of hand-maintained.
@@ -207,6 +234,7 @@ src/
     devices.ts   the device-list front (columns resolved by header name)
     patterns.ts  the best-practice guides front
     examples.ts  the sample apps read as code, with cited excerpts
+    manifest.ts  the app.json schema, nested by row membership
     spec.ts      signatures and property tables, columns by header name
     phone.ts     the Side Service + Settings App front (four page shapes)
     runtime.ts   path -> runtime rules, with the doc anchoring each one
@@ -215,12 +243,14 @@ src/
   store/    write the JSON source of truth + manifest
   render/   stage 4 — Markdown generation
     examples.ts  the examples view: symbol -> code, method -> likely symbol
+    manifest.ts  the app.json view: key -> runtime, documented vs. observed
     patterns.ts  the patterns view and its join against the symbols
     shared.ts    helpers every view agrees on
   cli.ts    sync / render commands
 data/
   manifest.json   sync state: date, source commits, counts
   devices.json    the device list: API_LEVEL, OS version, screen, deviceSource
+  app-json.json   the app.json schema: key tree, property tables, gaps
   symbols/        the JSON source of truth, one file per module
   patterns/       one file per best-practice guide
   examples/       one file per sample app: manifest, files, cited excerpts
@@ -238,7 +268,7 @@ eval/
 assets/     this repository's own logo — not a Zepp OS app `assets/` directory
 ```
 
-The generated Markdown lands in `api/`, `compatibility/`, `runtimes/` and `patterns/`. `concepts/` holds curated notes on retrieval/RAG/MCP and their relation to this project (see [concepts/README.md](concepts/README.md)). `examples/` and `tools/` stay empty until a front exists to fill them — the raw material for both is already in `.cache/` (the 33 sample apps, and `guides/tools/` + `guides/version-info/`), so they are a parsing job, not a curation job.
+The generated Markdown lands in `api/`, `compatibility/`, `runtimes/`, `patterns/`, `examples/` and `manifest/`. `concepts/` holds curated notes on retrieval/RAG/MCP and their relation to this project (see [concepts/README.md](concepts/README.md)). `tools/` stays empty until a front exists to fill it — the raw material is already in `.cache/` (`guides/tools/` + `guides/version-info/`), so it is a parsing job, not a curation job.
 
 ## Design decisions
 
@@ -257,6 +287,8 @@ The generated Markdown lands in `api/`, `compatibility/`, `runtimes/` and `patte
 11. **A pseudo-module id for an API with no import.** The phone runtimes are globals, so there is no module to read. The docs' own grouping stands in: the containing directory when a page sits in one (`ui/button.mdx` → `ui`, the family `Settings.render` draws from), else the filename. The tree name is deliberately dropped, so both trees' `settings-storage` pages map to one id, enrich merges them, and the record comes out valid in **both** runtimes — which is what the sources state, since `app-settings-api/settings-storage.mdx` is literally an MDX re-export of the Side Service page. These ids are locators into this knowledge base, not something to type in code.
 12. **Sample code is a source, not a citation pool.** The samples front read 33k lines of working JavaScript for the *names* in its import lines and threw the rest away. Reading the same files as code answers the question a signature cannot — what to pass — and reaches API that has no import line at all. Excerpts are quoted verbatim with file and line rather than summarised, because the value is that the code runs.
 13. **Five runtimes, not six.** `guides/architecture/arc.mdx` names three parts of a Mini Program — Device App, Settings App, Side Service — and `guides/architecture/folder-structure.mdx` shows `app-side/` **is** the Side Service directory. "App-side" and "Side Service" were the same runtime under two names, so only one is kept. Shortcut Card (`app-widget/`) and SecondaryWidget (`secondary-widget/`) are extra entry points rather than extra runtimes: they execute on the watch like the Device App, and attribute to it.
+
+14. **`app.json` gets its own dir, and its gaps are content.** It is neither a symbol nor a runtime, so it belongs in neither `api/` nor `runtimes/`; `manifest/` owns its own dir for the same reason `compatibility/` owns `devices.md` — `prepareOutDir` clears a directory, so two writers cannot share one. Its value is four joins the source cannot make: manifest key → runtime (nothing upstream connects them, so *"which key ships a Side Service"* is otherwise unanswerable), the documented key tree diffed **both ways** against 33 working manifests, permission string → the symbols whose docs state it, and the keys the page types as objects and never describes. A page rendering only the documented tree would be a copy of the upstream page.
 
 ## Open questions
 

@@ -1,0 +1,631 @@
+{
+  "sections": [
+    {
+      "path": "",
+      "key": "",
+      "props": [
+        {
+          "name": "configVersion",
+          "type": "string",
+          "required": true,
+          "description": "Configuration file version number, supports the following values: v3 currently , v1 deprecated used. All features labeled v3 in this article require the v3 version of app.json to work properly."
+        },
+        {
+          "name": "app",
+          "type": "object",
+          "required": true,
+          "description": "Mini Program configuration information."
+        },
+        {
+          "name": "runtime",
+          "type": "object",
+          "required": true,
+          "description": "Mini Program runtime settings."
+        },
+        {
+          "name": "permissions",
+          "type": "Array<string>",
+          "required": true,
+          "description": "List of Mini Program permissions."
+        },
+        {
+          "name": "targets",
+          "type": "object",
+          "required": true,
+          "description": "Build Mini Program installer setup."
+        },
+        {
+          "name": "i18n",
+          "type": "object",
+          "required": true,
+          "description": "Mini Program internationalization configuration."
+        },
+        {
+          "name": "defaultLanguage",
+          "type": "string",
+          "required": true,
+          "description": "The default language setting for the Mini Program. This value is used as the language of the program when the system cannot find a suitable language to set the program. This value is not recommended to be empty."
+        },
+        {
+          "name": "debug",
+          "type": "boolean",
+          "required": false,
+          "description": "Mini Program debugging function, supports the following values: true Enable debugging function; false Default value. Turn off the debugging function."
+        }
+      ],
+      "examples": []
+    },
+    {
+      "path": "configVersion",
+      "key": "configVersion",
+      "parent": "",
+      "props": [],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 27,
+          "code": "{\n  \"configVersion\": \"v3\"\n}"
+        }
+      ]
+    },
+    {
+      "path": "app",
+      "key": "app",
+      "parent": "",
+      "props": [
+        {
+          "name": "appId",
+          "type": "number",
+          "required": true,
+          "description": "The Mini Program \"id\", \"id\" is the unique identification of the Mini Program.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "appName",
+          "type": "string",
+          "required": true,
+          "description": "Mini Program Name.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "appType",
+          "type": "string",
+          "required": true,
+          "description": "Mini Program type. The following values are supported: app Mini Program; watchface dial.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "version",
+          "type": "object",
+          "required": true,
+          "description": "Mini Program version information.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "required": false,
+          "description": "The path to the Mini Program icon. Reference [Design Specifications - app icons](../designs/visual/icons.md#app-icons). If not passed, use the default icon.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "vender",
+          "type": "string",
+          "required": true,
+          "description": "Developer Name.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "venderId",
+          "type": "number",
+          "required": false,
+          "description": "Developer id."
+        },
+        {
+          "name": "cover",
+          "type": "Array<string>",
+          "required": false,
+          "description": "Matching images for Mini Program display. In general, dials are used."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": true,
+          "description": "Short description of the Mini Program.",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 60,
+          "code": "{\n  \"app\": {\n    \"appId\": 1000089,\n    \"appName\": \"······\",\n    \"appType\": \"app\",\n    \"version\": {\n      \"code\": 5,\n      \"name\": \"0.0.5\"\n    },\n    \"icon\": \"logo.png\",\n    \"vender\": \"······\",\n    \"description\": \"······\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "path": "app.version",
+      "key": "version",
+      "parent": "app",
+      "props": [
+        {
+          "name": "code",
+          "type": "number",
+          "required": true,
+          "description": "Mini Program program version number. The default starts from 1. Note: Each version should be larger than the previous one. For example: 12, 13, 2001, etc."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Semantic version of the Mini Program. It is recommended that versions be recorded in the format x.x.x. For example: 1.0.1."
+        }
+      ],
+      "examples": []
+    },
+    {
+      "path": "runtime",
+      "key": "runtime",
+      "parent": "",
+      "props": [
+        {
+          "name": "apiVersion",
+          "type": "object",
+          "required": true,
+          "description": "Runtime API Versions.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "type",
+          "type": "number",
+          "required": false,
+          "description": "The loader type for loading Mini Programs at runtime, supporting the following values: 0 Current value YES Default value. It indicates that the Mini Program is loaded with the loader of the QuickJS-js interpreter, with the suffix .js, 1 indicates that the Mini Program is loaded with the loader of the C interpreter, with the suffix .c, 2 indicates that the Mini Program is loaded with the loader of the QuickJS-bytecode interpreter, with the suffix .bin",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 100,
+          "code": "{\n  \"runtime\": {\n    \"apiVersion\": {\n      \"compatible\": \"1.0.0\",\n      \"target\": \"1.0.1\",\n      \"minVersion\": \"1.0.0\"\n    }，\n  \"type\": \"0\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "path": "runtime.apiVersion",
+      "key": "apiVersion",
+      "parent": "runtime",
+      "props": [
+        {
+          "name": "minVersion",
+          "type": "string",
+          "required": true,
+          "description": "Runtime requirements, this field YES is required to determine the current runtime requirements of the Mini Program; v <= minVersion, cannot be upgraded or installed.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "compatible",
+          "type": "string",
+          "required": false,
+          "description": "Compatible version, optional.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "target",
+          "type": "string",
+          "required": false,
+          "description": "This is the version of the target SDK, runtime, optionally.",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "path": "permissions",
+      "key": "permissions",
+      "parent": "",
+      "props": [],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 117,
+          "code": "{\n  \"permissions\": []\n}"
+        }
+      ]
+    },
+    {
+      "path": "targets",
+      "key": "targets",
+      "parent": "",
+      "props": [
+        {
+          "name": "module",
+          "type": "object",
+          "required": true,
+          "description": "Mini Program function module configuration.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "platforms",
+          "type": "Array<object>",
+          "required": true,
+          "description": "Mini Program running platform device selection.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "designWidth",
+          "type": "number",
+          "required": true,
+          "description": "The design width of the current view, adjusted using the px runtime; this value depends on the design drafts",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 139,
+          "code": "{\n  \"targets\": {\n    \"gtr-3-pro\": {\n      \"module\": {\n        // ...\n      }\n    },\n    \"gtr-3\": {\n      \"module\": {\n        // ...\n      }\n    },\n    \"gts-3\": {\n      \"module\": {\n        // ...\n      }\n    },\n  }\n}"
+        }
+      ]
+    },
+    {
+      "path": "targets.module",
+      "key": "module",
+      "parent": "targets",
+      "props": [
+        {
+          "name": "shortcut",
+          "type": "object",
+          "requiredNote": "NO, only valid if appType is app.",
+          "description": "The description of jumping to the Mini Program.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "page",
+          "type": "object",
+          "requiredNote": "YES, required when appType is app.",
+          "description": "The configuration of page in Device App module .",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "app-widget",
+          "type": "object",
+          "required": false,
+          "description": "The configuration of Shortcut Cards.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "secondary-widget",
+          "type": "object",
+          "required": false,
+          "description": "The configuration of SecondaryWidget.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "watch-widget",
+          "type": "object",
+          "required": false,
+          "description": "The configuration of watchface component module.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "watchface",
+          "type": "object",
+          "requiredNote": "YES, required when appType is watchface.",
+          "description": "The configuration of watchface module.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "app-side",
+          "type": "object",
+          "required": false,
+          "description": "The configuration of companion module.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "setting",
+          "type": "object",
+          "required": false,
+          "description": "The configuration of Settings App module.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "app-service",
+          "type": "object",
+          "required": false,
+          "description": "The configuration of Background Service.",
+          "minConfigVersion": "v3"
+        },
+        {
+          "name": "app-event",
+          "type": "object",
+          "required": false,
+          "description": "The configuration of System Event Listening.",
+          "minConfigVersion": "v3"
+        }
+      ],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 178,
+          "code": "{\n  \"module\": {\n    \"page\": {\n      \"pages\": [\"page/gtr-3-pro/loading\"]\n    },\n    \"app-side\": {\n      \"path\": \"app-side/index\"\n    },\n    \"setting\": {\n      \"path\": \"setting/index\"\n    },\n    \"app-widget\": {\n      \"widgets\": [\n        {\n          \"path\": \"app-widget/index\",\n          \"icon\": \"icon.png\",\n          \"name\": \"app-widget-demo\",\n          \"runtime\": {\n            \"type\": \"js\"\n          }\n        }\n      ]\n    },\n    \"secondary-widget\": {\n      \"widgets\": [\n        {\n          \"path\": \"secondary-widget/index\",\n          \"icon\": \"icon.png\",\n          \"preview\": \"preview.png\",\n          \"name\": \"secondary-widget-demo\",\n          \"runtime\": {\n            \"type\": \"js\"\n          }\n        }\n      ]\n    }\n  }\n}"
+        }
+      ]
+    },
+    {
+      "path": "targets.module.shortcut",
+      "key": "shortcut",
+      "parent": "targets.module",
+      "props": [
+        {
+          "name": "scheme",
+          "type": "string",
+          "required": true,
+          "description": "Protocol type: Support type dapp.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "appLangType",
+          "type": "number",
+          "required": true,
+          "description": "Jump to target Mini Program type: 0: js Mini Program; 1: native app.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "appId",
+          "type": "number",
+          "requiredNote": "Required if appLangType is js.",
+          "description": "The appid of the Mini Program.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "File's path/native app's name.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "params",
+          "type": "string",
+          "required": false,
+          "description": "The parameters for jumping.",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "path": "targets.module.page",
+      "key": "page",
+      "parent": "targets.module",
+      "props": [
+        {
+          "name": "pages",
+          "type": "Array<string>",
+          "required": true,
+          "description": "Page path, at least one; the default is the first Mini Program entrance.",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [],
+      "runtime": "device-app"
+    },
+    {
+      "path": "targets.module.app-widget",
+      "key": "app-widget",
+      "parent": "targets.module",
+      "props": [
+        {
+          "name": "widgets",
+          "type": "Array<string>",
+          "required": true,
+          "description": "Component path, can be none.",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [],
+      "runtime": "device-app"
+    },
+    {
+      "path": "targets.module.watch-widget",
+      "key": "watch-widget",
+      "parent": "targets.module",
+      "props": [
+        {
+          "name": "widgets",
+          "type": "Array<string>",
+          "required": true,
+          "description": "Component path, can be none.",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [],
+      "runtime": "watchface"
+    },
+    {
+      "path": "targets.module.watchface",
+      "key": "watchface",
+      "parent": "targets.module",
+      "props": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "The path of watchface.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "main",
+          "type": "number",
+          "requiredNote": "NO(If you don't add it, the default is 1.)",
+          "description": "The watchface which displays in home page.(0:none)",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "editable",
+          "type": "number",
+          "requiredNote": "NO(If you don't add it, the default is 0.)",
+          "description": "Editable watchface (0: not supported)",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "lockscreen",
+          "type": "number",
+          "requiredNote": "NO(If you don't add it, the default is 0.)",
+          "description": "Lock screen(0:none)",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "photoscreen",
+          "type": "number",
+          "requiredNote": "NO(If you don't add it, the default is 0.)",
+          "description": "Photo watchface (0: not supported)",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [],
+      "runtime": "watchface"
+    },
+    {
+      "path": "targets.module.app-side",
+      "key": "app-side",
+      "parent": "targets.module",
+      "props": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": false,
+          "description": "The path of Side Service.",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [],
+      "runtime": "side-service"
+    },
+    {
+      "path": "targets.module.setting",
+      "key": "setting",
+      "parent": "targets.module",
+      "props": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "The path of Settings App.",
+          "minConfigVersion": "v2"
+        }
+      ],
+      "examples": [],
+      "runtime": "settings"
+    },
+    {
+      "path": "targets.platforms",
+      "key": "platforms",
+      "parent": "targets",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Device description, named by the developer.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "deviceSource",
+          "type": "number",
+          "requiredNote": "YES, v3 NO",
+          "description": "Number of the equipment.",
+          "minConfigVersion": "v2"
+        },
+        {
+          "name": "st",
+          "type": "string",
+          "required": false,
+          "description": "Screen shape, support s, r, b, Refer to [Screen Adaptation](../guides/framework/device/screen-adaption.md) for details",
+          "minConfigVersion": "v3"
+        },
+        {
+          "name": "sr",
+          "type": "string",
+          "required": false,
+          "description": "The resolution of the screen, the format is w + number, such as w480 means the screen width 480 px, for details refer to [Screen Adaptation](../guides/framework/device/screen-adaption.md) for details",
+          "minConfigVersion": "v3"
+        }
+      ],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 298,
+          "code": "{\n  \"platforms\": [{\n    \"name\": \"gts-3\",\n    \"deviceSource\": 229\n  }, {\n    \"name\": \"gts-3\",\n    \"deviceSource\": 230\n  }]\n}"
+        }
+      ]
+    },
+    {
+      "path": "targets.designWidth",
+      "key": "designWidth",
+      "parent": "targets",
+      "props": [],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 314,
+          "code": "{\n  \"designWidth\": 390\n}"
+        }
+      ]
+    },
+    {
+      "path": "i18n",
+      "key": "i18n",
+      "parent": "",
+      "props": [],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 328,
+          "code": "{\n  \"i18n\": {\n    \"en-US\": {\n      \"appName\": \"······\"\n    },\n    \"en-ES\": {\n      \"appName\": \"······\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    {
+      "path": "defaultLanguage",
+      "key": "defaultLanguage",
+      "parent": "",
+      "props": [],
+      "examples": [
+        {
+          "file": "zeppos-docs/docs/reference/app-json.mdx",
+          "line": 345,
+          "code": "{\n  \"defaultLanguage\": \"zh-cn\"\n}"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "path": "targets.module.secondary-widget",
+      "type": "object",
+      "description": "The configuration of SecondaryWidget.",
+      "runtime": "device-app"
+    },
+    {
+      "path": "targets.module.app-service",
+      "type": "object",
+      "description": "The configuration of Background Service."
+    },
+    {
+      "path": "targets.module.app-event",
+      "type": "object",
+      "description": "The configuration of System Event Listening."
+    }
+  ],
+  "completeExample": {
+    "file": "zeppos-docs/docs/reference/app-json.mdx",
+    "line": 361,
+    "code": "{\n  \"configVersion\": \"v2\",\n  \"app\": {\n    \"appId\": 1000000,\n    \"appName\": \"Calories\",\n    \"appType\": \"app\",\n    \"version\": {\n      \"code\": 1,\n      \"name\": \"1.0.0\"\n    },\n    \"icon\": \"icon.png\",\n    \"vender\": \"huami\",\n    \"description\": \"\"\n  },\n  \"permissions\": [],\n  \"runtime\": {\n    \"apiVersion\": {\n      \"compatible\": \"1.0.0\",\n      \"target\": \"1.0.1\",\n      \"minVersion\": \"1.0.0\"\n    }\n  },\n  \"targets\": {\n    \"gtr-3-pro\": {\n      \"module\": {\n        \"page\": {\n          \"pages\": [\n            \"page/gtr-3/index\",\n            \"page/gtr-3/foodList\"\n          ]\n        }\n      },\n      \"platforms\": [{\n        \"name\": \"gtr3pro\",\n        \"deviceSource\": 229\n      }, {\n        \"name\": \"gtr3pro\",\n        \"deviceSource\": 230\n      }],\n      \"designWidth\": 480\n    },\n    \"gtr-3\": {\n      \"module\": {\n        \"page\": {\n          \"pages\": [\n            \"page/gtr-3/index\",\n            \"page/gtr-3/foodList\"\n          ]\n        }\n      },\n      \"platforms\": [{\n        \"name\": \"gtr3\",\n        \"deviceSource\": 226\n      }, {\n        \"name\": \"gtr3\",\n        \"deviceSource\": 227\n      }],\n      \"designWidth\": 480\n    },\n    \"gts-3\": {\n      \"module\": {\n        \"page\": {\n          \"pages\": [\n            \"page/gts-3/index\",\n            \"page/gts-3/foodList\"\n          ]\n        }\n      },\n      \"platforms\": [{\n        \"name\": \"gts3\",\n        \"deviceSource\": 224\n      }, {\n        \"name\": \"gts3\",\n        \"deviceSource\": 225\n      }],\n      \"designWidth\": 390\n    }\n  },\n  \"i18n\": {\n    \"zh-CN\": {\n      \"appName\": \"卡路里\"\n    },\n    \"ar-EG\": {\n      \"appName\": \"السعرات الحرارية\"\n    },\n    \"ca-ES\": {\n      \"appName\": \"Calories\"\n    },\n    \"cs\": {\n      \"appName\": \"Kalorie\"\n    },\n    \"da-DK\": {\n      \"appName\": \"Kalorier\"\n    },\n    \"de-DE\": {\n      \"appName\": \"Kalorien\"\n    },\n    \"el\": {\n      \"appName\": \"Θερμίδες\"\n    },\n    \"en-US\": {\n      \"appName\": \"Calories\"\n    },\n    \"es-ES\": {\n      \"appName\": \"Calorías\"\n    },\n    \"fi\": {\n      \"appName\": \"Kalorit\"\n    },\n    \"fr-FR\": {\n      \"appName\": \"Calories\"\n    },\n    \"he\": {\n      \"appName\": \"קלוריות\"\n    },\n    \"hi\": {\n      \"appName\": \"कैलोरी\"\n    },\n    \"hu-HU\": {\n      \"appName\": \"Kalória\"\n    },\n    \"id-ID\": {\n      \"appName\": \"Kalori\"\n    },\n    \"it-IT\": {\n      \"appName\": \"Calorie\"\n    },\n    \"ja-JP\": {\n      \"appName\": \"カロリー\"\n    },\n    \"ko-KR\": {\n      \"appName\": \"칼로리\"\n    },\n    \"mr\": {\n      \"appName\": \"कॅलरीज\"\n    },\n    \"nb-NO\": {\n      \"appName\": \"Kalorier\"\n    },\n    \"nl\": {\n      \"appName\": \"Calorieën\"\n    },\n    \"pl-PL\": {\n      \"appName\": \"Kalorie\"\n    },\n    \"pt\": {\n      \"appName\": \"Calorias\"\n    },\n    \"pt-BR\": {\n      \"appName\": \"Calorias\"\n    },\n    \"ro\": {\n      \"appName\": \"Calorii\"\n    },\n    \"ru-RU\": {\n      \"appName\": \"Калории\"\n    },\n    \"sk\": {\n      \"appName\": \"Kalórie\"\n    },\n    \"sr\": {\n      \"appName\": \"Калорије\"\n    },\n    \"sv-SE\": {\n      \"appName\": \"Kalorier\"\n    },\n    \"th-TH\": {\n      \"appName\": \"แคลอรี\"\n    },\n    \"tr-TR\": {\n      \"appName\": \"Kalori\"\n    },\n    \"uk\": {\n      \"appName\": \"Калорії\"\n    },\n    \"vi\": {\n      \"appName\": \"Calo\"\n    },\n    \"zh-TW\": {\n      \"appName\": \"卡路里\"\n    }\n  },\n  \"defaultLanguage\": \"en-US\"\n}"
+  },
+  "source": "docs-app-json",
+  "confidence": "OFFICIAL",
+  "originalPath": "zeppos-docs/docs/reference/app-json.mdx",
+  "extractedAt": "2026-09-09"
+}

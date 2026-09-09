@@ -17,6 +17,40 @@
       "permissions",
       "runtime",
       "targets"
+    ],
+    "keyPaths": [
+      "app",
+      "app.appId",
+      "app.appName",
+      "app.appType",
+      "app.description",
+      "app.icon",
+      "app.vender",
+      "app.version",
+      "app.version.code",
+      "app.version.name",
+      "configVersion",
+      "defaultLanguage",
+      "i18n",
+      "i18n.en-US",
+      "i18n.en-US.appName",
+      "permissions",
+      "runtime",
+      "runtime.apiVersion",
+      "runtime.apiVersion.compatible",
+      "runtime.apiVersion.minVersion",
+      "runtime.apiVersion.target",
+      "targets",
+      "targets.*",
+      "targets.*.designWidth",
+      "targets.*.module",
+      "targets.*.module.app-side",
+      "targets.*.module.app-side.path",
+      "targets.*.module.page",
+      "targets.*.module.page.pages",
+      "targets.*.platforms",
+      "targets.*.platforms.deviceSource",
+      "targets.*.platforms.name"
     ]
   },
   "files": [
@@ -339,5 +373,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/1.0/fetch-api",
-  "extractedAt": "2026-09-08"
+  "extractedAt": "2026-09-09"
 }

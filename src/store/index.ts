@@ -1,6 +1,7 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type {
+  AppJsonRecord,
   DeviceRecord,
   ExampleRecord,
   PatternRecord,
@@ -119,4 +120,18 @@ export async function writeExamples(examples: ExampleRecord[], dataDir: string):
   }
 
   return examples.length;
+}
+
+/**
+ * Writes the `app.json` schema as one file. Like the device list there is no
+ * grouping decision: the source is a single page, and its whole value is that
+ * the keys are readable together as one tree. Written even when the page yields
+ * nothing, so an empty file is visible in a diff as the front having gone quiet
+ * — the failure mode a deleted file hides.
+ */
+export async function writeAppJson(pages: AppJsonRecord[], dataDir: string): Promise<number> {
+  await mkdir(dataDir, { recursive: true });
+  const page = pages[0];
+  await writeJson(path.join(dataDir, "app-json.json"), page ?? null);
+  return page ? page.sections.length : 0;
 }

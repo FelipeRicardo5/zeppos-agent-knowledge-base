@@ -270,6 +270,20 @@ export interface ExampleManifest {
   targets: string[];
   /** Keys present at the top level, so a reader sees the shape of a real file. */
   keys: string[];
+  /**
+   * Every key path in the file, dotted and sorted — `app.extType`,
+   * `targets.*.module.data-widget`.
+   *
+   * The top-level `keys` list stops exactly where `app.json` gets hard. The
+   * documented schema is a tree, so checking it against reality needs the tree:
+   * a workout extension declares `app.extType` and a `data-widget` module, and
+   * the reference page documents neither. Target names are arbitrary (`gtr-3`,
+   * `common`), so that one segment is collapsed to `*` — otherwise every sample
+   * would contribute paths nothing else can be compared with.
+   *
+   * Paths only; no values. An `appId` belongs to whoever registered it.
+   */
+  keyPaths: string[];
 }
 
 export interface RawExample {
@@ -300,6 +314,100 @@ export interface ExampleRecord extends Omit<RawExample, "sourceDir"> {
   symbols: string[];
   runtimes: Runtime[];
   source: "sample-app";
+  confidence: Confidence;
+  originalPath: string;
+  extractedAt: string;
+}
+
+// --- app.json -------------------------------------------------------------
+//
+// `reference/app-json.mdx` is one file the pipeline skipped for a mechanical
+// reason: it imports nothing and matches no runtime rule, so both symbol fronts
+// walked past it. It is also on the critical path of every Mini Program — a
+// wrong `targets`, a missing `module` entry point or an undeclared permission
+// breaks the build (or, worse, the install) before any API matters.
+//
+// It is not a symbol and cannot be forced into `SymbolRecord`: it is a tree of
+// configuration keys, each with its own property table.
+//
+// Two things the source does NOT do, which the parse has to get right:
+//
+//   nesting     heading depth does not encode it. `### module: object` is a
+//               child of `targets` at the same depth as `targets` itself, while
+//               `#### platforms` and `#### designWidth` are its siblings one
+//               level deeper. So the parent is derived from *membership* — a
+//               section is a child of the last table that has a row with its
+//               name — never from `#`.
+//   completeness three rows of the `module` table (`secondary-widget`,
+//               `app-service`, `app-event`) are typed `object` and given no
+//               section at all. Those are recorded as gaps rather than dropped:
+//               `app-service` is what turns on the Background Service.
+
+/**
+ * One row of an `app.json` property table.
+ *
+ * Deliberately not `PropSpec`: this table's last column is `Minimum Version`,
+ * whose values are `v2`/`v3` — the **configVersion of the file**, not an
+ * API_LEVEL. Reusing `PropSpec.apiLevel` would have filed `v3` as level 3.
+ */
+export interface ManifestProp {
+  name: string;
+  type?: string;
+  /** `true`/`false` only when the cell is exactly YES/NO. */
+  required?: boolean;
+  /**
+   * The cell verbatim when it is conditional — `"YES, required when appType is
+   * app."` is a real value, and reducing it to `true` would state that every
+   * Mini Program needs a `watchface` module.
+   */
+  requiredNote?: string;
+  description?: string;
+  /** The `Minimum Version` cell: an app.json configVersion such as `v2`. */
+  minConfigVersion?: string;
+}
+
+/** One documented object in `app.json` — `app`, `targets`, `targets.module`. */
+export interface ManifestSection {
+  /** Dotted key path from the file root, e.g. `targets.module.page`. */
+  path: string;
+  /** The key alone, e.g. `page`. Empty string for the file root. */
+  key: string;
+  /** Path of the section this one is a key of; absent for the root. */
+  parent?: string;
+  props: ManifestProp[];
+  /** The section's own example blocks, verbatim and cited to a line. */
+  examples: CodeSnippet[];
+  /**
+   * The runtime this key configures, where the source says so. Only `module`
+   * entry points have one; every other key is runtime-agnostic.
+   */
+  runtime?: Runtime;
+}
+
+/** A key typed as an object that the page never gives a section to. */
+export interface ManifestGap {
+  path: string;
+  type?: string;
+  description?: string;
+  /**
+   * Set for a `module` entry point whose runtime is known even though its shape
+   * is not — `secondary-widget` runs on the watch. Knowing which runtime a key
+   * turns on is useful without knowing what goes inside it, and dropping it
+   * would make the entry-point table read as though the runtime were unknown.
+   */
+  runtime?: Runtime;
+}
+
+export interface RawAppJson {
+  sections: ManifestSection[];
+  gaps: ManifestGap[];
+  /** The whole-file example the page closes with. */
+  completeExample?: CodeSnippet;
+  sourceFile: string;
+}
+
+export interface AppJsonRecord extends Omit<RawAppJson, "sourceFile"> {
+  source: "docs-app-json";
   confidence: Confidence;
   originalPath: string;
   extractedAt: string;

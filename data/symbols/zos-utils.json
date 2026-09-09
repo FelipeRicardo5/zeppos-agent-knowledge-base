@@ -15,7 +15,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/assets.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/utils.bufferToString",
@@ -31,7 +31,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/bufferToString.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/utils.EventBus",
@@ -46,7 +46,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/EventBus.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/utils.log",
@@ -62,7 +62,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/log.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/utils.px",
@@ -79,7 +79,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/px.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/utils.stringToBuffer",
@@ -95,7 +95,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/stringToBuffer.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     }
   ]
 }

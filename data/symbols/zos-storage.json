@@ -14,7 +14,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/localStorage.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/storage.LocalStorage",
@@ -29,7 +29,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-storage.md",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/storage.localStorage-instance",
@@ -44,7 +44,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/localStorage-instance.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/storage.sessionStorage",
@@ -59,7 +59,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/sessionStorage.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/storage.SessionStorage",
@@ -74,7 +74,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-storage.md",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/storage.sessionStorage-instance",
@@ -89,7 +89,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/sessionStorage-instance.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/storage.ShareLocalStorage",
@@ -104,7 +104,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/ShareLocalStorage.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/storage.ShareTypedStorage",
@@ -119,7 +119,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/ShareTypedStorage.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/storage.TypedStorage",
@@ -134,7 +134,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/TypedStorage.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     }
   ]
 }

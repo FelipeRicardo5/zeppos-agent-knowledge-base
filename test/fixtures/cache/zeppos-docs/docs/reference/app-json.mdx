@@ -1,0 +1,146 @@
+---
+title: Mini Program Configuration
+sidebar_label: Mini Program Configuration
+---
+
+The `app.json` file in the root of the Mini Program provides global configuration of the whole program.
+
+## Configuration items
+
+| Properties    | Type            | Required | Description                             | Minimum Version |
+| ------------- | --------------- | -------- | --------------------------------------- | --------------- |
+| configVersion | `string`        | YES      | Configuration file version number.      | -               |
+| app           | `object`        | YES      | Mini Program configuration information. | -               |
+| permissions   | `Array<string>` | YES      | List of Mini Program permissions.       | -               |
+| targets       | `object`        | YES      | Build Mini Program installer setup.     | -               |
+| debug         | `boolean`       | NO       | Mini Program debugging function.        | -               |
+
+### configVersion
+
+Examples are as follows：
+
+```js
+{
+  "configVersion": "v3"
+}
+```
+
+### app
+
+| Properties | Type     | Required | Description               | Minimum Version |
+| ---------- | -------- | -------- | ------------------------- | --------------- |
+| appId      | `number` | YES      | The Mini Program "id".    | v2              |
+| version    | `object` | YES      | Version information.      | v2              |
+| venderId   | `number` | NO       | Developer id.             | -               |
+
+#### version: object
+
+| Properties | Type     | Required | Description                  | Minimum Version |
+| ---------- | -------- | -------- | ---------------------------- | --------------- |
+| code       | `number` | YES      | Program version number.      | -               |
+| name       | `string` | YES      | Semantic version.            | -               |
+
+Examples are as follows:
+
+```js
+{
+  "app": {
+    "appId": 1000089,
+    "version": {
+      "code": 5,
+      "name": "0.0.5"
+    }
+  }
+}
+```
+
+### permissions: Array
+
+```js
+{
+  "permissions": []
+}
+```
+
+### targets: object
+
+| Properties  | Type            | Required | Description                        | Minimum Version |
+| ----------- | --------------- | -------- | ---------------------------------- | --------------- |
+| module      | `object`        | YES      | Function module configuration.     | v2              |
+| platforms   | `Array<object>` | YES      | Running platform device selection. | v2              |
+| designWidth | `number`        | YES      | The design width of the view.      | v2              |
+
+### module: object
+
+| Properties  | Type     | Required                                     | Description                             | Minimum Version |
+| ----------- | -------- | -------------------------------------------- | --------------------------------------- | --------------- |
+| page        | `object` | YES, required when `appType` is `app`.       | The configuration of page in Device App module . | v2       |
+| app-side    | `object` | NO                                           | The configuration of companion module.  | v2              |
+| setting     | `object` | NO                                           | The configuration of Settings App module. | v2            |
+| app-service | `object` | NO                                           | The configuration of Background Service. | v3             |
+
+#### page: object
+
+| Properties | Type            | Required | Description               | Minimum Version |
+| ---------- | --------------- | -------- | ------------------------- | --------------- |
+| pages      | `Array<string>` | YES      | Page path, at least one.  | v2              |
+
+#### app-side: object
+
+| Properties | Type     | Required | Description               | Minimum Version |
+| ---------- | -------- | -------- | ------------------------- | --------------- |
+| path       | `string` | NO       | The path of Side Service. | v2              |
+
+#### setting: object
+
+| Properties | Type     | Required | Description               | Minimum Version |
+| ---------- | -------- | -------- | ------------------------- | --------------- |
+| path       | `string` | YES      | The path of Settings App. | v2              |
+
+#### platforms: object
+
+| Properties   | Type     | Required   | Description               | Minimum Version |
+| ------------ | -------- | ---------- | ------------------------- | --------------- |
+| name         | `string` | NO         | Device description.       | v2              |
+| deviceSource | `number` | YES, v3 NO | Number of the equipment.  | v2              |
+
+Examples are as follows：
+
+```js
+{
+  "platforms": [{
+    "name": "gts-3",
+    "deviceSource": 229
+  }]
+}
+```
+
+#### designWidth
+
+```js
+{
+  "designWidth": 390
+}
+```
+
+## Complete app.json example
+
+```js
+{
+  "configVersion": "v2",
+  "app": {
+    "appId": 1000000
+  },
+  "permissions": [],
+  "targets": {
+    "gtr-3": {
+      "module": {
+        "page": {
+          "pages": ["page/gtr-3/index"]
+        }
+      },
+      "designWidth": 480
+    }
+  }
+}
+```

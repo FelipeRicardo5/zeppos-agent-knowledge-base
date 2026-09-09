@@ -14,9 +14,13 @@ below, which is written for *may I use symbol X here*:
    to end. Its **Methods called on a value** section is where the call shapes are, and
    many of them appear nowhere else in the base.
 2. That sample's modern siblings, for the current idiom rather than a 2.0-era one.
-3. `../../patterns/` for the cross-cutting mechanics — persistence, screen
-   adaptation, `app.json` targets, logging, i18n.
-4. `../../api/` and `../../compatibility/` **last**, as a verification pass over a
+3. `../../manifest/index.md` for the `app.json` the design needs — the module
+   keys that turn on the runtimes you picked in step 1, and the permissions the
+   symbols you picked will need. Getting this wrong breaks the build before any
+   API runs.
+4. `../../patterns/` for the cross-cutting mechanics — persistence, screen
+   adaptation, logging, i18n.
+5. `../../api/` and `../../compatibility/` **last**, as a verification pass over a
    design you already drafted.
 
 `api/` is where a question ends, not where it starts. The steps below are that
@@ -92,16 +96,38 @@ Where a description and a sample disagree about a call — one showing a module
 function, the other an instance method — the sample is code that runs. Prefer
 it, and flag the conflict.
 
-## Where `app.json` comes from
+## `app.json`
 
-The base does not document `app.json` as a reference page, but
-`../../examples/index.md` ends with what 33 working manifests contain: which
-top-level keys appear in how many of them, and every permission they declare. A
-key present in 33 of 33 is not optional. Each example page also shows that app's
-own `permissions` and `targets`.
+`../../manifest/index.md` is the manifest, and it is where a build question is
+answered before an API question is asked. Four things live there and nowhere
+else:
 
-A permission a symbol needs but `app.json` omits fails at **runtime**, not at
-build. Cross-check the two before saying a project is complete.
+- **Which key turns on which runtime.** `targets.<target>.module.app-side` ships
+  the Side Service, `.setting` the Settings App, `.page` the Device App. Nothing
+  upstream connects a manifest key to a runtime, so this is the answer to *"what
+  do I add to give this app a settings screen"*.
+- **What the documentation omits.** The documented key tree is diffed against
+  every key path in the 33 working sample manifests, both ways. That is how
+  `app.extType` and the `data-widget` module surface — real workout extensions
+  declare them and the reference page never mentions either. **No documented
+  `module` key reaches the Workout Extension runtime at all**; the observed table
+  is the only route to one.
+- **Which permission string to write.** Every permission code, joined to the
+  symbols whose own documentation states it and to how many samples declare it.
+  A permission a symbol needs and `app.json` omits fails at **runtime**, not at
+  build — cross-check before calling a project complete.
+- **Keys named but never described.** `app-service` (Background Service) and
+  `app-event` (System Event Listening) are typed `object` upstream and given no
+  shape. Where a sample declares one, its real shape is in the observed table;
+  otherwise say the shape is undocumented rather than inventing it.
+
+`../../manifest/app.md`, `runtime.md` and `targets.md` carry the full property
+tables. The documented tables are `OFFICIAL`; the observed key paths are
+`OBSERVED` — files that build, not a contract. Say which is which.
+
+`../../examples/index.md` still holds the per-app view: each sample's own
+`permissions`, `targets` and top-level keys, and a count of how many of the 33
+use each key.
 
 ## What absence means here
 

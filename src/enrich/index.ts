@@ -1,10 +1,12 @@
 import path from "node:path";
 import { deviceSlug } from "../parse/devices.js";
 import type {
+  AppJsonRecord,
   Confidence,
   DeviceRecord,
   ExampleRecord,
   PatternRecord,
+  RawAppJson,
   RawExample,
   RawDevice,
   RawPattern,
@@ -200,4 +202,26 @@ export function enrichExamples(rawExamples: RawExample[], symbols: SymbolRecord[
       extractedAt,
     }))
     .sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/**
+ * app.json enrich: one page in, one record out.
+ *
+ * Nothing to reconcile — the manifest has exactly one source, and unlike a
+ * symbol it is never observed a second way — so this only stamps the metadata.
+ * The confidence is OFFICIAL for the same reason `docs-reference` is: it is what
+ * the official documentation declares. The `gaps` it carries are the opposite
+ * claim, and the render has to say so: an entry there means the documentation
+ * names a key and never describes it, not that this base failed to read it.
+ */
+export function enrichAppJson(rawPages: RawAppJson[]): AppJsonRecord[] {
+  const extractedAt = new Date().toISOString().slice(0, 10);
+
+  return rawPages.map(({ sourceFile, ...page }) => ({
+    ...page,
+    source: "docs-app-json" as const,
+    confidence: "OFFICIAL" as Confidence,
+    originalPath: toPosixPath(sourceFile),
+    extractedAt,
+  }));
 }

@@ -37,8 +37,16 @@ const COLUMNS: Record<string, keyof PropSpec> = {
   api_level: "apiLevel",
 };
 
-/** A markdown table row split into trimmed cells, or undefined if not a row. */
-function cells(line: string): string[] | undefined {
+/**
+ * A markdown table row split into trimmed cells, or undefined if not a row.
+ *
+ * Exported because the `app.json` front reads the same markdown tables with a
+ * different column vocabulary — its `Minimum Version` column is a configVersion,
+ * not an API_LEVEL, so it cannot share `toProp` — and a second hand-rolled row
+ * splitter is exactly the kind of drift that made a CRLF checkout parse smaller
+ * than an LF one.
+ */
+export function cells(line: string): string[] | undefined {
   const trimmed = line.trim();
   if (!trimmed.startsWith("|")) return undefined;
   return trimmed
@@ -48,12 +56,12 @@ function cells(line: string): string[] | undefined {
     .map((cell) => cell.trim());
 }
 
-function isSeparator(row: string[]): boolean {
+export function isSeparator(row: string[]): boolean {
   return row.every((cell) => /^:?-{3,}:?$/.test(cell));
 }
 
 /** `` `string` `` -> `string`; `<code>object</code>` -> `object`; `-` -> undefined. */
-function clean(value: string | undefined): string | undefined {
+export function clean(value: string | undefined): string | undefined {
   if (value === undefined) return undefined;
   const text = value
     .replace(/<\/?code>/g, "")

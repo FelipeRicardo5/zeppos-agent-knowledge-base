@@ -34,7 +34,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/emitCustomSystemEvent.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.getPackageInfo",
@@ -50,7 +50,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPackageInfo.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.getPackageInfoById",
@@ -79,7 +79,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPackageInfoById.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.getPerformance",
@@ -281,7 +281,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPerformance.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.getScene",
@@ -298,7 +298,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getScene.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.queryPermission",
@@ -327,7 +327,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/queryPermission.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.requestPermission",
@@ -362,7 +362,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/requestPermission.mdx",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.SCENE_AOD",
@@ -378,7 +378,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-app.md",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.SCENE_APP",
@@ -393,7 +393,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-app.md",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.SCENE_SETTINGS",
@@ -408,7 +408,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-app.md",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     },
     {
       "id": "@zos/app.SCENE_WATCHFACE",
@@ -423,7 +423,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-app.md",
-      "extractedAt": "2026-09-08"
+      "extractedAt": "2026-09-09"
     }
   ]
 }

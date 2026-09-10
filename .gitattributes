@@ -1,0 +1,25 @@
+# Line endings are pinned here rather than left to each machine's
+# `core.autocrlf`, because this project has already lost data to them twice.
+#
+# The first time was the upstream cache: a `git clone` on Windows produced CRLF,
+# regexes anchored with `$` stopped matching without erroring, and a sync
+# produced a materially smaller knowledge base than the same commit synced on
+# Linux. That is fixed at the read boundary in `src/parse/util.ts`.
+#
+# The second is this repository's own tree, and it is why this file exists. The
+# rendered Markdown is committed and CI re-renders it to prove the output is
+# reproducible from `data/`. With no attributes, a fresh clone on a machine with
+# `core.autocrlf=true` checks the tree out as CRLF, the renderer writes LF, and
+# every one of the 160 generated pages reads as modified.
+* text=auto eol=lf
+
+# Two exceptions, and they are the point of a test rather than an oversight.
+# `test/parse.test.ts` asserts the parser survives a CRLF checkout. Both
+# fixtures are stored LF in the index, so on any machine that checks out LF —
+# every Linux CI runner — that test passed without testing anything. These two
+# must arrive CRLF in the working tree for it to mean what it says.
+test/fixtures/cache/zeppos-docs/docs/reference/related-resources/device-list.mdx eol=crlf
+test/fixtures/cache/zeppos-docs/static/llms/@zos-interaction.md eol=crlf
+
+# Binary, so never touched.
+assets/logo.png -text

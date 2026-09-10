@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `device:os.local_storage`
 
 Targets: `gtr`, `gts` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `7930112`, `7930113`, `7995648`, `7995649` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `page/gtr/home/index.page.js`, `page/gtr/home/index.style.js`, `page/gts/home/index.page.js`, `page/gts/home/index.style.js`, `utils/index.js`

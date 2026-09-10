@@ -5,10 +5,12 @@
   "platformVersion": "1.0",
   "manifest": {
     "appType": "watchface",
+    "configVersion": "v2",
     "permissions": [
       "gps"
     ],
     "targets": [],
+    "platforms": [],
     "keys": [
       "app",
       "configVersion",

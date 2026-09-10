@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `data:user.hd.calorie`, `device:os.local_sto
 
 Targets: `gts` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `7995648`, `7995649` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app-widget/index.js`, `app.js`, `page/gts/food-list.js`, `page/gts/index.js`, `secondary-widget/index.js`, `utils/constants.js`, `utils/styles-gts-3.js`, `utils/styles.js`

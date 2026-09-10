@@ -5,9 +5,42 @@
   "platformVersion": "1.0",
   "manifest": {
     "appType": "app",
+    "configVersion": "v2",
     "permissions": [],
     "targets": [
       "common"
+    ],
+    "platforms": [
+      {
+        "deviceSource": 224
+      },
+      {
+        "deviceSource": 225
+      },
+      {
+        "deviceSource": 226
+      },
+      {
+        "deviceSource": 227
+      },
+      {
+        "deviceSource": 229
+      },
+      {
+        "deviceSource": 230
+      },
+      {
+        "deviceSource": 418
+      },
+      {
+        "deviceSource": 419
+      },
+      {
+        "deviceSource": 7995648
+      },
+      {
+        "deviceSource": 7995649
+      }
     ],
     "keys": [
       "app",

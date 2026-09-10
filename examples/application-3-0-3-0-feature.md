@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `data:user.hd.heart_rate`, `data:user.hd.sle
 
 Targets: `common` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app-service/system_event_service.js`, `app-service/time_service.js`, `app.js`, `components/empty-space/index.js`, `components/empty-space/index.r.layout.js`, `libs/ble.js`, `libs/index.js`, `libs/utils.js`, `pages/acc.js`, `pages/alarm.js`, `pages/bgService.js`, `pages/ble.js`, `pages/canvas.js`, `pages/compass.js`, `pages/gps.js`, `pages/gyro.js`, `pages/heart.js`, `pages/index.js`, `pages/newAlarm.js`, `pages/notification.js`, `pages/screen.js`, `pages/sensor.js`, `pages/sleep.js`, `pages/spo2.js`, `pages/stress.js`, `pages/style.r.layout.js`, `pages/systemEvent.js`, `pages/target.js`, `pages/workout.js`

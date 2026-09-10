@@ -242,6 +242,7 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
     appType: "app",
     permissions: ["device:os.alarm"],
     targets: ["gt.r"],
+    platforms: [],
     keys: ["app", "permissions"],
     keyPaths: ["app", "app.appType", "permissions"],
   },

@@ -20,7 +20,7 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/, examples/, manifest/) |
 
-Fixture-based tests cover all eight parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (188 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all eight parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (194 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
@@ -31,6 +31,7 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 - **every runtime is covered**: 375 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
+- **how to target each of them**: the `st`/`sr` screen selectors a v3 manifest needs, derived from the device's own screen, beside the `deviceSource` numbers a v2 one needs — plus the reverse index, and a two-way diff against what the 33 samples actually build for
 - **33 sample apps** read as code, yielding 592 cited excerpts and the shape of 33 working `app.json` files
 - **the `app.json` schema**: 20 documented keys with their property tables, 3 keys the reference page names and never describes, and a two-way diff against the 33 working manifests — 48 key paths real apps use that the page never mentions, 12 documented keys no sample uses, and 38 permission strings joined to the symbols that state them
 
@@ -51,6 +52,8 @@ Read this before trusting an answer that came out of this KB.
 - **Parser bugs are the main risk, and every one so far was the same failure**: a source format that looked regular in the first file and wasn't. Each is now pinned by a fixture test built from the real file that broke it, so a regression fails the suite instead of quietly producing wrong records.
 - **Fixtures pin regressions; they don't prove coverage.** Two bugs survived a green suite because the fixtures were written from the files already read. Both were found by running the real pipeline and looking at the aggregate counts: a CRLF checkout (see below) silently dropped 188 documented constants, and a path rule mis-filed 10 symbols under a runtime because a docs directory shares a name with an app directory. Aggregate the output of a new front before believing it.
 - **The documented `app.json` is incomplete, and the base says where.** The reference page names no `module` key that reaches the Workout Extension runtime, yet six samples are one — they use a `data-widget` key the page never mentions. `manifest/index.md` reports the diff in both directions rather than presenting the documented tree as the whole schema. Documented rows are `OFFICIAL`; observed key paths are `OBSERVED`, and 33 apps are not the whole surface either way.
+- **The `targets` key in `app.json` is not a device identifier, and the base says so.** Upstream calls it "named arbitrarily" — it only has to match a subdirectory of `assets/`. Hardware is selected by `targets.*.platforms[]`: `deviceSource` numbers under configVersion v2, screen shape and width (`st`, `sr`) under v3. The 33 samples split exactly on that line, 14 to 19, and none mixes the two.
+- **A device's `st` and `sr` are derived here, not quoted.** No source states them per device; they are the device list's own screen shape and width rewritten in the form `platforms[]` takes. `deviceSource` is verbatim.
 - **The device list is a snapshot of *latest* levels, not a history.** It states the highest `API_LEVEL` each device reaches today, so a symbols-available count assumes the device is updated. It says nothing about which firmware a given user is actually on.
 - **Line endings are normalized at the read boundary.** `git clone` gives a CRLF cache on Windows and an LF one elsewhere, and regexes anchored with `$` stopped matching without erroring — a sync on Windows produced a materially smaller KB than the same commit synced on Linux. `readSource` in `src/parse/util.ts` normalizes to LF so the parse output depends only on the commit.
 

@@ -20,7 +20,7 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/, runtimes/, patterns/, examples/, manifest/) |
 
-Testes baseados em fixtures cobrem as oito frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (188 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
+Testes baseados em fixtures cobrem as oito frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (194 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
@@ -31,6 +31,7 @@ Retrato do último sync (números atualizados em [`data/manifest.json`](data/man
 - **todo runtime está coberto**: 375 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 símbolos válidos em mais de um
 - **11 patterns** vindos dos guias de boas práticas, 32 abordagens, usando 17 símbolos distintos — todos os 17 cobertos pelos registros de símbolo
 - **41 dispositivos**: 29 rodando Zepp OS com `API_LEVEL` declarado, 5 em Zepp OS 1.0 sem nenhum, 7 que não rodam Mini Program
+- **como fazer o build para cada um deles**: os seletores de tela `st`/`sr` que um manifest v3 exige, derivados da tela do próprio dispositivo, ao lado dos números `deviceSource` que um v2 exige — mais o índice reverso e um diff nos dois sentidos contra o que os 33 samples de fato constroem
 - **33 apps de exemplo** lidos como código, rendendo 592 excertos citados e a forma de 33 `app.json` que funcionam
 - **o schema do `app.json`**: 20 chaves documentadas com suas tabelas de propriedades, 3 chaves que a página de referência nomeia e nunca descreve, e um diff nos dois sentidos contra os 33 manifests reais — 48 caminhos de chave que apps reais usam e a página jamais menciona, 12 chaves documentadas que nenhum sample usa, e 38 strings de permissão ligadas aos símbolos que as declaram
 
@@ -51,6 +52,8 @@ Leia isto antes de confiar em qualquer resposta saída desta base.
 - **Membros lidos de código de sample são escopados ao que o arquivo importa.** `align.CENTER_H` conta porque o arquivo diz `import { align } from '@zos/ui'` acima. É também por isso que samples de watchface não contribuem nenhum: eles usam os globais `hm*`, então o `widget.X` deles é outro `widget`.
 - **Bugs de parser são o principal risco, e todos até agora foram a mesma falha**: um formato de origem que parecia regular no primeiro arquivo e não era. Cada um está agora fixado por um teste de fixture construído a partir do arquivo real que o quebrou, então uma regressão falha a suíte em vez de produzir registros errados silenciosamente.
 - **Fixtures fixam regressões; não provam cobertura.** Dois bugs sobreviveram a uma suíte verde porque as fixtures foram escritas a partir dos arquivos já lidos. Os dois foram achados rodando o pipeline real e olhando as contagens agregadas: um checkout CRLF (ver abaixo) descartou silenciosamente 188 constantes documentadas, e uma regra de caminho arquivou 10 símbolos no runtime errado porque um diretório da documentação tem o mesmo nome de um diretório de app. Agregue a saída de uma frente nova antes de acreditar nela.
+- **A chave `targets` do `app.json` não é um identificador de dispositivo, e a base diz isso.** O upstream a chama de "nomeada arbitrariamente" — ela só precisa casar com um subdiretório de `assets/`. Quem seleciona hardware é `targets.*.platforms[]`: números `deviceSource` sob configVersion v2, forma e largura de tela (`st`, `sr`) sob v3. Os 33 samples se dividem exatamente nessa linha, 14 contra 19, e nenhum mistura os dois.
+- **O `st` e o `sr` de um dispositivo são derivados aqui, não citados.** Nenhuma fonte os declara por dispositivo; são a forma e a largura de tela da própria lista, reescritas no formato que `platforms[]` usa. O `deviceSource` é literal.
 - **A lista de dispositivos é um retrato dos níveis *mais recentes*, não um histórico.** Ela declara o maior `API_LEVEL` que cada dispositivo alcança hoje, então a contagem de símbolos disponíveis pressupõe o dispositivo atualizado. Não diz nada sobre qual firmware um usuário específico está rodando.
 - **As quebras de linha são normalizadas na leitura.** `git clone` entrega um cache CRLF no Windows e LF nos outros sistemas, e regexes ancoradas com `$` pararam de casar sem gerar erro — um sync no Windows produzia uma base materialmente menor que o mesmo commit sincronizado no Linux. `readSource` em `src/parse/util.ts` normaliza para LF, então a saída do parse depende apenas do commit.
 

@@ -45,6 +45,26 @@ verification pass.
 
 The list records each device's *latest* level, so an answer assumes the device is updated. It says nothing about the firmware a given user is on — flag that when it matters.
 
+### Making an app build for a device
+
+Same page, section *How to target a device*. **Do not answer this with a
+`targets` key.** That key is named arbitrarily and only has to match a
+subdirectory of `assets/`, so there is no "the `targets` key for a Bip 6" to
+look up — inventing one by analogy with `gtr-3-pro` is the failure mode here.
+
+What selects hardware is `targets.<key>.platforms[]`, and the form depends on
+the manifest's `configVersion`:
+
+- **v3** — `st` (screen shape, `r`/`s`/`b`) and `sr` (`w` + width). Selects a
+  class of device, so a new watch of a shape already supported needs no change.
+- **v2** — `deviceSource`, one numeric entry per device.
+
+The page gives all three values for every device. `st` and `sr` are **derived**
+from the device's screen, not quoted from a source — say so if it matters. Its
+last subsection names the devices no official sample has ever targeted; read it
+off the page. That means there is no worked example to copy a `platforms` entry
+from, never that the device is unsupported.
+
 ## The gap that will bite you first
 
 **A symbol with no stated `API_LEVEL` cannot be certified for any device**, and

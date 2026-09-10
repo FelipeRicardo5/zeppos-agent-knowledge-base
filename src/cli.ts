@@ -120,6 +120,7 @@ switch (command) {
       symbolsDir,
       OUT_DIR,
       path.join(DATA_DIR, "devices.json"),
+      path.join(DATA_DIR, "examples"),
     );
     const { patterns } = await renderPatterns(path.join(DATA_DIR, "patterns"), symbolsDir, OUT_DIR);
     const { examples } = await renderExamples(path.join(DATA_DIR, "examples"), symbolsDir, OUT_DIR);

@@ -1,6 +1,12 @@
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
-import type { CodeSnippet, ExampleRecord, Runtime, SymbolRecord } from "../types.js";
+import type {
+  CodeSnippet,
+  ExampleRecord,
+  PlatformSelector,
+  Runtime,
+  SymbolRecord,
+} from "../types.js";
 import { INDEX_FILE, cell, indexSymbols, prepareOutDir, readModuleFiles, writePage } from "./shared.js";
 
 // The `examples/` view: the sample apps, read as answers to "how do I call this".
@@ -21,6 +27,34 @@ import { INDEX_FILE, cell, indexSymbols, prepareOutDir, readModuleFiles, writePa
 //                       Upstream documents the file; these show working ones.
 
 const EXAMPLES_DIR = "examples";
+
+/**
+ * What a sample's `platforms[]` entries build for, in one line.
+ *
+ * The two generations stay apart because they are not interchangeable: a v2
+ * manifest names `deviceSource` numbers and a v3 one names a screen shape, and
+ * copying one form into a project using the other silently builds for nothing.
+ * The numbers are grouped rather than repeated per entry — one sample lists 27.
+ */
+function buildsFor(selectors: PlatformSelector[]): string {
+  const sources = selectors
+    .map((s) => s.deviceSource)
+    .filter((id): id is number => id !== undefined)
+    .map((id) => `\`${id}\``);
+  const screens = selectors
+    .filter((s) => s.st !== undefined || s.sr !== undefined)
+    .map((s) =>
+      [
+        ...(s.st === undefined ? [] : [`\`st: "${s.st}"\``]),
+        ...(s.sr === undefined ? [] : [`\`sr: "${s.sr}"\``]),
+      ].join(" + "),
+    );
+
+  return [
+    ...(sources.length === 0 ? [] : [`\`deviceSource\` ${sources.join(", ")}`]),
+    ...(screens.length === 0 ? [] : [screens.join(", ")]),
+  ].join("; ");
+}
 
 const RUNTIME_LABELS: Record<Runtime, string> = {
   "device-app": "Device App",
@@ -98,6 +132,19 @@ function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord
     if (manifest.targets.length > 0) {
       lines.push(
         `Targets: ${manifest.targets.map((t) => `\`${t}\``).join(", ")} — these key the \`assets/\` subdirectories.`,
+        "",
+      );
+    }
+    // Named right after the target keys, because a key like
+    // `320x380-amazfit-bip-5` reads as a device identifier and is not one:
+    // upstream calls these names arbitrary. This is the line that says which
+    // hardware the sample actually builds for.
+    if (manifest.platforms.length > 0) {
+      const version = manifest.configVersion;
+      lines.push(
+        `Builds for: ${buildsFor(manifest.platforms)}` +
+          (version === undefined ? "" : ` (\`configVersion\` \`${version}\`)`) +
+          ". See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.",
         "",
       );
     }

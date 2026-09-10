@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `device:os.input.method`
 
 Targets: `default` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `data-widget/index.layout.js`, `data-widget/index.page.js`, `data-widget/index.r.layout.js`, `data-widget/index.s.layout.js`, `data-widget/input-method-engine.js`, `data-widget/pinyin-dict.js`, `page/index.js`

@@ -5,6 +5,7 @@
   "platformVersion": "4.0",
   "manifest": {
     "appType": "app",
+    "configVersion": "v3",
     "permissions": [
       "data:os.device.info",
       "data:user.hd.calorie",
@@ -12,6 +13,14 @@
     ],
     "targets": [
       "gt"
+    ],
+    "platforms": [
+      {
+        "st": "r"
+      },
+      {
+        "st": "s"
+      }
     ],
     "keys": [
       "app",

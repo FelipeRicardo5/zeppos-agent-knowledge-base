@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `device:os.ble`
 
 Targets: `gt` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `components/mask/index.js`, `components/pressed-btn/index.js`, `page/index.js`, `page/index.r.layout.js`, `utils/constants.js`, `utils/index.js`

@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `device:os.local_storage`
 
 Targets: `gt` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `.prettierrc.js`, `app.js`, `page/home/index.page.js`, `page/home/index.page.r.layout.js`, `page/home/index.page.s.layout.js`, `utils/constants.js`, `utils/fs.js`, `utils/index.js`

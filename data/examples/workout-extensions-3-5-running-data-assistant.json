@@ -5,9 +5,18 @@
   "platformVersion": "3.5",
   "manifest": {
     "appType": "app",
+    "configVersion": "v3",
     "permissions": [],
     "targets": [
       "common"
+    ],
+    "platforms": [
+      {
+        "st": "r"
+      },
+      {
+        "st": "s"
+      }
     ],
     "keys": [
       "app",

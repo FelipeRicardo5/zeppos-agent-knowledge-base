@@ -19,6 +19,8 @@ Declares no permissions.
 
 Targets: `common` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `224`, `225`, `226`, `227`, `229`, `230`, `418`, `419`, `7995648`, `7995649` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `pages/index.js`, `shared/buffer.js`, `shared/data.js`, `shared/defer.js`, `shared/device-polyfill.js`, `shared/event.js`, `shared/fs.js`, `shared/global.js`, `shared/js-module.js`, `shared/logger.js`, `shared/message.js`, `shared/promise.js`, `shared/setTimeout.js`, `utils/config/constants.js`, `utils/config/device.js`

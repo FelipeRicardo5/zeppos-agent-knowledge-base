@@ -5,9 +5,15 @@
   "platformVersion": "3.0",
   "manifest": {
     "appType": "watchface",
+    "configVersion": "v3",
     "permissions": [],
     "targets": [
       "gtr-3-pro"
+    ],
+    "platforms": [
+      {
+        "st": "r"
+      }
     ],
     "keys": [
       "app",

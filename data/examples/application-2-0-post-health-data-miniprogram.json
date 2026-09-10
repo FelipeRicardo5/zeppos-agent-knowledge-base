@@ -5,6 +5,7 @@
   "platformVersion": "2.0",
   "manifest": {
     "appType": "app",
+    "configVersion": "v2",
     "permissions": [
       "data:os.device.info",
       "data:user.hd.sleep"
@@ -25,6 +26,89 @@
       "480x480-amazfit-cheetah-pro",
       "480x480-amazfit-gtr-4-limited-edition",
       "480x480-runner-pro"
+    ],
+    "platforms": [
+      {
+        "deviceSource": 251
+      },
+      {
+        "deviceSource": 414
+      },
+      {
+        "deviceSource": 415
+      },
+      {
+        "deviceSource": 418
+      },
+      {
+        "deviceSource": 419
+      },
+      {
+        "deviceSource": 6553856
+      },
+      {
+        "deviceSource": 6553857
+      },
+      {
+        "deviceSource": 7864576
+      },
+      {
+        "deviceSource": 7864577
+      },
+      {
+        "deviceSource": 7930112
+      },
+      {
+        "deviceSource": 7930113
+      },
+      {
+        "deviceSource": 7995648
+      },
+      {
+        "deviceSource": 7995649
+      },
+      {
+        "deviceSource": 8126720
+      },
+      {
+        "deviceSource": 8126721
+      },
+      {
+        "deviceSource": 8192256
+      },
+      {
+        "deviceSource": 8192257
+      },
+      {
+        "deviceSource": 8257793
+      },
+      {
+        "deviceSource": 8323328
+      },
+      {
+        "deviceSource": 8323329
+      },
+      {
+        "deviceSource": 8388864
+      },
+      {
+        "deviceSource": 8388865
+      },
+      {
+        "deviceSource": 8454400
+      },
+      {
+        "deviceSource": 8454401
+      },
+      {
+        "deviceSource": 8519936
+      },
+      {
+        "deviceSource": 8519937
+      },
+      {
+        "deviceSource": 8519939
+      }
     ],
     "keys": [
       "app",

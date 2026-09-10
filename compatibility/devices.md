@@ -46,6 +46,109 @@ vouched for on any device, and some of them are needed by every UI.
 
 A `\*` on a `deviceSource` marks the Mainland China version of that device.
 
+## How to target a device
+
+The `targets` key is **not** a device identifier. Both the reference page and the
+new-device guide say it is named arbitrarily and only has to match a subdirectory
+of `assets/`, so `gtr-3-pro`, `common` and `480x480-amazfit-balance` are all valid
+names for the same build. What selects hardware is `targets.<key>.platforms[]`,
+and it works two different ways:
+
+| configVersion | Select with | Selects |
+| --- | --- | --- |
+| `v2` | `deviceSource` | One device, by number — one entry each |
+| `v3` | `st` and `sr` | A screen shape and width, so a whole class of device |
+
+Across the 33 sample manifests the split is exact — 14 at `v2`, 19 at `v3` — and no manifest mixes the two mechanisms.
+
+### What to write, per device
+
+`st` and `sr` are **derived** from the screen columns above, not quoted: `st` is
+the shape as `r`/`s`/`b`, `sr` is `w` + the width. `deviceSource` is verbatim.
+
+| Device | `st` (v3) | `sr` (v3) | `deviceSource` (v2) |
+| --- | --- | --- | --- |
+| Active 2 (Round) | `r` | `w466` | `8913152`\*, `8913153`, `8913155`, `8913159`, `10092800`\*, `10092801`, `10092803`, `10092807` |
+| Active 3 Premium | `r` | `w466` | `10944768`\*, `10944769`, `10944771`, `10948867` |
+| Amazfit Active | `s` | `w390` | `8323328`\*, `8323329` |
+| Amazfit Active 2 (Square) | `s` | `w390` | `10223872`\*, `10223873`, `10223875` |
+| Amazfit Active Edge | `r` | `w360` | `8388864`\*, `8388865` |
+| Amazfit Active Max | `r` | `w480` | `10813697`, `10813699` |
+| Amazfit Balance | `r` | `w480` | `8519936`\*, `8519937`, `8519939` |
+| Amazfit Balance 2 | `r` | `w480` | `9568512`\*, `9568513`, `9568515` |
+| Amazfit Balance 3 | `r` | `w480` | `11141376`\*, `11141377`, `11141379` |
+| Amazfit Balance Ultra | `r` | `w480` | `11075840`\*, `11075841` |
+| Amazfit Band 7 | `b` | `w194` | `252`, `253`, `254` |
+| Amazfit Bip 5 | `s` | `w320` | `8454400`\*, `8454401` |
+| Amazfit Bip 5 Unity | `s` | `w320` | `8782081`, `8782088`, `8782089` |
+| Amazfit Bip 6 | `s` | `w390` | `9765120`\*, `9765121`, `10158337` |
+| Amazfit Bip Max | `s` | `w432` | `11206915` |
+| Amazfit Cheetah (Round) | `r` | `w454` | `8192256`\*, `8192257` |
+| Amazfit Cheetah (Square) | `s` | `w390` | `8257793` |
+| Amazfit Cheetah 2 Ultra | `r` | `w480` | `9961728`\*, `9961729` |
+| Amazfit Cheetah Pro | `r` | `w480` | `8126720`\*, `8126721` |
+| Amazfit Falcon | `r` | `w416` | `414`\*, `415` |
+| Amazfit GTR 3 | `r` | `w454` | `226`\*, `227` |
+| Amazfit GTR 3 Pro | `r` | `w480` | `229`\*, `230`, `242`\*, `6095106`\* |
+| Amazfit GTR 4 | `r` | `w466` | `7930112`\*, `7930113`, `7864577` |
+| Amazfit GTR Mini | `r` | `w416` | `250`, `251` |
+| Amazfit GTS 3 | `s` | `w390` | `224`\*, `225` |
+| Amazfit GTS 4 | `s` | `w390` | `7995648`\*, `7995649` |
+| Amazfit GTS 4 mini | `s` | `w336` | `246`\*, `247` |
+| Amazfit T-Rex 2 | `r` | `w454` | `418`\*, `419` |
+| Amazfit T-Rex 3 | `r` | `w480` | `8716544`\*, `8716545`, `8716547` |
+| Amazfit T-Rex 3 Pro (44mm) | `r` | `w466` | `10682624`\*, `10682625`, `10682627` |
+| Amazfit T-Rex 3 Pro (48mm) | `r` | `w480` | `10551552`\*, `10551553`, `10551555` |
+| Amazfit T-Rex Ultra | `r` | `w454` | `6553856`\*, `6553857` |
+| Amazfit T-Rex Ultra 2 | `r` | `w480` | `10879232`\*, `10879233`, `10879235` |
+| Cheetah 2 Pro | `r` | `w466` | `11010304`\*, `11010305`, `11010307` |
+
+### Which devices a screen selector reaches
+
+The reverse of the table above, and the reason to prefer `v3`: one `st` covers a
+whole class of hardware, so a new watch of a shape already supported needs no
+manifest change at all.
+
+| Selector | Devices reached | Widths among them |
+| --- | --- | --- |
+| `st: "r"` — round | 23 | `w360`, `w416`, `w454`, `w466`, `w480` |
+| `st: "s"` — square | 10 | `w320`, `w336`, `w390`, `w432` |
+| `st: "b"` — band | 1 | `w194` |
+
+Sample manifests declare `st: "r"` 19 times and `st: "s"` 11 times, and never narrow one with `sr`.
+
+### Where the samples and the device list disagree
+
+The 33 sample manifests name 33 distinct `deviceSource` values between them. 32 match a device below.
+
+**1 does not.** A shipped sample builds for `7864576`, and no row of the device list declares
+that number. Either the list is behind the samples or the sample targets hardware
+that was never published. This base cannot tell which, and neither source admits
+the gap exists.
+
+**18 devices no sample targets.** Nothing is wrong with them — it means
+there is no worked example to copy a `platforms` entry from, so the derived row
+above is the only evidence this base has for them:
+
+- Active 2 (Round)
+- Active 3 Premium
+- Amazfit Active 2 (Square)
+- Amazfit Active Max
+- Amazfit Balance 2
+- Amazfit Balance 3
+- Amazfit Balance Ultra
+- Amazfit Band 7
+- Amazfit Bip 5 Unity
+- Amazfit Bip 6
+- Amazfit Bip Max
+- Amazfit Cheetah 2 Ultra
+- Amazfit GTS 4 mini
+- Amazfit T-Rex 3
+- Amazfit T-Rex 3 Pro (44mm)
+- Amazfit T-Rex 3 Pro (48mm)
+- Amazfit T-Rex Ultra 2
+- Cheetah 2 Pro
+
 ## Zepp OS 1.0 devices — no API_LEVEL
 
 The device list states no `Latest API_LEVEL` for these. That is not level 0: the

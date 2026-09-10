@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `device:os.local_storage`
 
 Targets: `gts` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `7930112`, `7930113`, `7995648`, `7995649` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `.prettierrc.js`, `app.js`, `page/home/index.page.js`, `page/home/index.style.js`, `secondary-widget/index.js`, `shared/data.js`, `shared/defer.js`, `shared/device-polyfill.js`, `shared/es6-promise.js`, `shared/event.js`, `shared/message-side.js`, `shared/message.js`, `utils/constants.js`, `utils/index.js`

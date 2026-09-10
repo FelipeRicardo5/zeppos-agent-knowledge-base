@@ -19,6 +19,8 @@ Declares no permissions.
 
 Targets: `gtr-3`, `gtr-3-pro`, `gts-3` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `224`, `225`, `226`, `227`, `229`, `230`, `418`, `419` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `.prettierrc.js`, `app.js`, `page/gtr-3/home/index.page.js`, `page/gtr-3/home/index.style.js`, `shared/buffer.js`, `shared/data.js`, `shared/defer.js`, `shared/device-polyfill.js`, `shared/event.js`, `shared/fs.js`, `shared/global.js`, `shared/js-module.js`, `shared/logger.js`, `shared/message.js`, `shared/promise.js`, `shared/setTimeout.js`, `utils/constants.js`, `utils/fs.js`, `utils/index.js`

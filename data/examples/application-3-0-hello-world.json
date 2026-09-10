@@ -5,12 +5,21 @@
   "platformVersion": "3.0",
   "manifest": {
     "appType": "app",
+    "configVersion": "v3",
     "permissions": [
       "data:os.device.info",
       "device:os.local_storage"
     ],
     "targets": [
       "gt"
+    ],
+    "platforms": [
+      {
+        "st": "r"
+      },
+      {
+        "st": "s"
+      }
     ],
     "keys": [
       "app",

@@ -19,6 +19,8 @@ Declares no permissions.
 
 Targets: `common` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Workout Extension** — `app.js`, `data-widget/common/index.js`, `data-widget/common/index.r.layout.js`, `data-widget/common/index.s.layout.js`

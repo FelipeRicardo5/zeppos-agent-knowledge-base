@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `data:user.hd.sleep`
 
 Targets: `320x380-amazfit-bip-5`, `360x360-amazfit-active-edge`, `390x450-amazfit-active`, `390x450-amazfit-cheetah-square`, `390x450-amazfit-gts-4`, `416x416-amazfit-falcon`, `416x416-amazfit-gtr-mini`, `454x454-amazfit-cheetah-round`, `454x454-amazfit-t-rex-2`, `454x454-amazfit-t-rex-ultra`, `466x466-amazfit-gtr-4`, `480x480-amazfit-balance`, `480x480-amazfit-cheetah-pro`, `480x480-amazfit-gtr-4-limited-edition`, `480x480-runner-pro` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `251`, `414`, `415`, `418`, `419`, `6553856`, `6553857`, `7864576`, `7864577`, `7930112`, `7930113`, `7995648`, `7995649`, `8126720`, `8126721`, `8192256`, `8192257`, `8257793`, `8323328`, `8323329`, `8388864`, `8388865`, `8454400`, `8454401`, `8519936`, `8519937`, `8519939` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `page/index.js`, `utils/config.js`

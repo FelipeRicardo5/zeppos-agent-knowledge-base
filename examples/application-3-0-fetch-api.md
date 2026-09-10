@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `device:os.local_storage`
 
 Targets: `common` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `page/index.js`, `page/index.r.layout.js`, `page/index.s.layout.js`, `utils/config/constants.js`, `utils/config/device.js`

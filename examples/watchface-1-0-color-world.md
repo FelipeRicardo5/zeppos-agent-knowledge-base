@@ -19,6 +19,8 @@ Permissions: `gps`
 
 Targets: `gts-3` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `224`, `225` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Watchface** — `app.js`, `shared/buffer.js`, `shared/device-polyfill.js`, `shared/global.js`, `shared/js-module.js`, `shared/logger.js`, `shared/setTimeout.js`, `watchface/gts-3/index.js`, `watchface/square/index.js`

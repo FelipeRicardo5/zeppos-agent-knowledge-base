@@ -5,11 +5,20 @@
   "platformVersion": "1.0",
   "manifest": {
     "appType": "watchface",
+    "configVersion": "v2",
     "permissions": [
       "gps"
     ],
     "targets": [
       "gtr-3-pro"
+    ],
+    "platforms": [
+      {
+        "deviceSource": 229
+      },
+      {
+        "deviceSource": 230
+      }
     ],
     "keys": [
       "app",

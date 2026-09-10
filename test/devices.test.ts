@@ -330,3 +330,136 @@ describe("render devices", () => {
     await assert.rejects(render(symbolsDir, out, devicesFile), /not a device list/);
   });
 });
+
+// --- Targeting --------------------------------------------------------------
+//
+// Both eval runs asked what the `targets` key for a given watch is, went silent,
+// and invented one. The key is the wrong thing to ask for — upstream calls it
+// arbitrary — so these pin the answer that does exist.
+
+const exampleApp = (id: string, manifest: Record<string, unknown>) => ({
+  id,
+  name: id,
+  tree: "application",
+  platformVersion: "4.2",
+  manifest: { appType: "app", permissions: [], targets: [], platforms: [], keys: [], keyPaths: [], ...manifest },
+  files: [],
+  usages: [],
+  memberCalls: [],
+  globalCalls: [],
+  symbols: [],
+  runtimes: [],
+  source: "sample-app",
+  confidence: "OBSERVED",
+  originalPath: `zeppos-samples/application/4.2/${id}`,
+  extractedAt: "2026-09-10",
+});
+
+async function targetingFixture(devices: DeviceRecord[], examples: Record<string, unknown>[]) {
+  const base = await fixture(devices, twoSymbols);
+  const examplesDir = path.join(path.dirname(base.devicesFile), "examples");
+  await mkdir(examplesDir, { recursive: true });
+  for (const example of examples) {
+    await writeFile(path.join(examplesDir, `${example.id as string}.json`), JSON.stringify(example));
+  }
+  return { ...base, examplesDir };
+}
+
+describe("render device targeting", () => {
+  it("derives the v3 screen selectors a device needs, and says they are derived", async () => {
+    // The question both eval runs asked and neither could answer. `st` and `sr`
+    // are not in any source: they are the device's own screen shape and width
+    // rewritten in the form `platforms[]` takes.
+    const { symbolsDir, devicesFile, examplesDir, out } = await targetingFixture(
+      [device({ screen: { shape: "square", width: 390, height: 450 } })],
+      [exampleApp("demo", { configVersion: "v3", platforms: [{ st: "s" }] })],
+    );
+
+    await render(symbolsDir, out, devicesFile, examplesDir);
+    const page = await readFile(path.join(out, "compatibility", "devices.md"), "utf-8");
+
+    assert.match(page, /\| Amazfit Bip 6 \| `s` \| `w390` \|/);
+    assert.match(page, /\*\*derived\*\* from the screen columns/);
+  });
+
+  it("states that the targets key is not a device identifier", async () => {
+    // The correction that makes the rest of the section worth reading. Left
+    // implicit, a reader takes `gtr-3-pro` for an identifier and looks for the
+    // one belonging to their watch — which is what both runs did.
+    const { symbolsDir, devicesFile, examplesDir, out } = await targetingFixture(
+      [device()],
+      [exampleApp("demo", { configVersion: "v2", platforms: [{ deviceSource: 1 }] })],
+    );
+
+    await render(symbolsDir, out, devicesFile, examplesDir);
+    const page = await readFile(path.join(out, "compatibility", "devices.md"), "utf-8");
+
+    assert.match(page, /The `targets` key is \*\*not\*\* a device identifier/);
+    assert.match(page, /named arbitrarily/);
+  });
+
+  it("reports a deviceSource a sample builds for that no device declares", async () => {
+    // A real finding, not a hypothetical: one sample targets `7864576` and the
+    // device list has only `7864577`. Either the list is behind or the hardware
+    // was never published, and neither source admits the gap.
+    const { symbolsDir, devicesFile, examplesDir, out } = await targetingFixture(
+      [device({ deviceSources: [{ id: "7864577", mainlandChina: false }] })],
+      [exampleApp("demo", { configVersion: "v2", platforms: [{ deviceSource: 7864576 }] })],
+    );
+
+    await render(symbolsDir, out, devicesFile, examplesDir);
+    const page = await readFile(path.join(out, "compatibility", "devices.md"), "utf-8");
+
+    assert.match(page, /\*\*1 does not\.\*\* A shipped sample builds for `7864576`/);
+  });
+
+  it("names the devices no sample has ever targeted", async () => {
+    // The other direction of the diff. A device absent from every sample is not
+    // unsupported — it means there is no worked example to copy, which is a
+    // different claim and the one the page has to make.
+    const { symbolsDir, devicesFile, examplesDir, out } = await targetingFixture(
+      [
+        device({ name: "Targeted", slug: "targeted", deviceSources: [{ id: "42", mainlandChina: false }] }),
+        device({ name: "Untargeted", slug: "untargeted", deviceSources: [{ id: "99", mainlandChina: false }] }),
+      ],
+      [exampleApp("demo", { configVersion: "v2", platforms: [{ deviceSource: 42 }] })],
+    );
+
+    await render(symbolsDir, out, devicesFile, examplesDir);
+    const page = await readFile(path.join(out, "compatibility", "devices.md"), "utf-8");
+
+    assert.match(page, /\*\*1 devices? no sample targets\.\*\*/);
+    assert.match(page, /^- Untargeted$/m);
+    assert.doesNotMatch(page, /^- Targeted$/m);
+  });
+
+  it("counts the devices each screen selector reaches", async () => {
+    // The reverse index, and the reason v3 is worth preferring: one `st` covers
+    // a class of hardware, so a new watch of a known shape needs no change.
+    const { symbolsDir, devicesFile, examplesDir, out } = await targetingFixture(
+      [
+        device({ name: "R1", slug: "r1", screen: { shape: "round", width: 480, height: 480 } }),
+        device({ name: "R2", slug: "r2", screen: { shape: "round", width: 466, height: 466 } }),
+        device({ name: "S1", slug: "s1", screen: { shape: "square", width: 390, height: 450 } }),
+      ],
+      [exampleApp("demo", { configVersion: "v3", platforms: [{ st: "r" }] })],
+    );
+
+    await render(symbolsDir, out, devicesFile, examplesDir);
+    const page = await readFile(path.join(out, "compatibility", "devices.md"), "utf-8");
+
+    assert.match(page, /\| `st: "r"` — round \| 2 \| `w466`, `w480` \|/);
+    assert.match(page, /\| `st: "s"` — square \| 1 \| `w390` \|/);
+  });
+
+  it("omits the whole section when no sample manifest is available", async () => {
+    // Every claim in it is a join against the samples. With nothing to join,
+    // rendering the derived columns alone would present them as documented.
+    const { symbolsDir, devicesFile, out } = await fixture([device()], twoSymbols);
+
+    await render(symbolsDir, out, devicesFile);
+    const page = await readFile(path.join(out, "compatibility", "devices.md"), "utf-8");
+
+    assert.doesNotMatch(page, /How to target a device/);
+  });
+});

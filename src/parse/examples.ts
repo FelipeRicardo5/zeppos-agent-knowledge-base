@@ -4,6 +4,7 @@ import type {
   CodeSnippet,
   ExampleFile,
   ExampleManifest,
+  PlatformSelector,
   MemberCallUsage,
   RawExample,
   SymbolUsage,
@@ -247,19 +248,58 @@ async function readManifest(appJson: string): Promise<ExampleManifest | undefine
   const manifest = parsed as Record<string, unknown>;
   const app = (manifest.app ?? {}) as Record<string, unknown>;
   const targets = manifest.targets;
+  const isObject = typeof targets === "object" && targets !== null && !Array.isArray(targets);
 
   return {
     appType: typeof app.appType === "string" ? app.appType : undefined,
+    configVersion: typeof manifest.configVersion === "string" ? manifest.configVersion : undefined,
     permissions: Array.isArray(manifest.permissions)
       ? manifest.permissions.filter((p): p is string => typeof p === "string").sort()
       : [],
-    targets:
-      typeof targets === "object" && targets !== null && !Array.isArray(targets)
-        ? Object.keys(targets).sort()
-        : [],
+    targets: isObject ? Object.keys(targets as object).sort() : [],
+    platforms: isObject ? platformSelectors(targets as Record<string, unknown>) : [],
     keys: Object.keys(manifest).sort(),
     keyPaths: keyPaths(manifest).sort(),
   };
+}
+
+/**
+ * Every distinct `targets.*.platforms[]` entry in the manifest.
+ *
+ * This is the field that says which hardware a sample builds for, and the
+ * `targets` key above it is not: the reference page calls that key "named
+ * arbitrarily" and requires only that it match an `assets/` subdirectory. Both
+ * eval runs asked what the `targets` key for a given watch is and invented one,
+ * because the base offered nothing better to look at.
+ *
+ * Kept verbatim and unmerged across the two generations, because they are not
+ * interchangeable: a v2 manifest names `deviceSource` numbers and a v3 one
+ * names a screen shape instead.
+ */
+function platformSelectors(targets: Record<string, unknown>): PlatformSelector[] {
+  const seen = new Map<string, PlatformSelector>();
+
+  for (const target of Object.values(targets)) {
+    const platforms = (target as Record<string, unknown> | null)?.platforms;
+    if (!Array.isArray(platforms)) continue;
+
+    for (const entry of platforms) {
+      if (typeof entry !== "object" || entry === null) continue;
+      const { deviceSource, st, sr } = entry as Record<string, unknown>;
+
+      const selector: PlatformSelector = {
+        ...(typeof deviceSource === "number" ? { deviceSource } : {}),
+        ...(typeof st === "string" ? { st } : {}),
+        ...(typeof sr === "string" ? { sr } : {}),
+      };
+      // `name` is dropped on purpose: the page calls it a "device description,
+      // named by the developer", so it is a label like the target key, not an
+      // identifier anything can be joined on.
+      if (Object.keys(selector).length > 0) seen.set(JSON.stringify(selector), selector);
+    }
+  }
+
+  return [...seen.values()].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
 }
 
 /** Every directory holding an `app.json` — one sample app each. */

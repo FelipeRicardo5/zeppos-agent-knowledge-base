@@ -19,6 +19,8 @@ Declares no permissions.
 
 Targets: `gtr-3`, `gtr-3-pro`, `gts-3` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `224`, `225`, `226`, `227`, `229`, `230`, `418`, `419` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `page/gtr-3/food-list.js`, `page/gtr-3/index.js`, `page/gts-3/food-list.js`, `page/gts-3/index.js`, `utils/constants.js`, `utils/storage.js`, `utils/styles-gts-3.js`, `utils/styles.js`

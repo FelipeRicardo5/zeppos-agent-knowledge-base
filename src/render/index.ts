@@ -1,6 +1,7 @@
 import path from "node:path";
+import { readExampleFiles } from "./examples.js";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
-import type { DeviceRecord, EnumSpec, Runtime, SymbolRecord } from "../types.js";
+import type { DeviceRecord, EnumSpec, ExampleRecord, Runtime, SymbolRecord } from "../types.js";
 import {
   INDEX_FILE,
   NOT_STATED,
@@ -379,6 +380,196 @@ function yesNo(value: boolean | undefined): string {
   return value === undefined ? NOT_STATED : value ? "yes" : "no";
 }
 
+// --- Targeting --------------------------------------------------------------
+//
+// The join that answers "how do I ship to this watch". Both eval runs asked it,
+// both went silent, and both invented a `targets` key — which is the wrong shape
+// of answer, because `guides/best-practice/code-adaptations-for-new-devices.mdx`
+// says that key "can be named arbitrarily" and only has to match an `assets/`
+// subdirectory. What selects hardware is `targets.*.platforms[]`, and it does so
+// two different ways depending on the manifest's configVersion.
+//
+// Neither side of this is new data. The device list carries each device's screen
+// and its `deviceSource` numbers; the sample manifests carry the selectors real
+// apps ship. Nothing upstream puts the two together.
+
+/** `ScreenSpec.shape` in the letter `platforms[].st` uses. */
+const SCREEN_TYPE: Record<string, string> = { round: "r", square: "s", band: "b" };
+
+function screenType(device: DeviceRecord): string | undefined {
+  const shape = device.screen.shape;
+  return shape === undefined ? undefined : SCREEN_TYPE[shape];
+}
+
+/** `platforms[].sr` for a device: the format is `w` + screen width. */
+function screenResolution(device: DeviceRecord): string | undefined {
+  return device.screen.width === undefined ? undefined : `w${device.screen.width}`;
+}
+
+/** What the sample manifests actually declare, as opposed to what is documented. */
+interface TargetingEvidence {
+  deviceSources: Set<string>;
+  screenTypes: Map<string, number>;
+  usesResolution: boolean;
+  byConfigVersion: Map<string, number>;
+  manifests: number;
+}
+
+function targetingEvidence(examples: ExampleRecord[]): TargetingEvidence {
+  const evidence: TargetingEvidence = {
+    deviceSources: new Set(),
+    screenTypes: new Map(),
+    usesResolution: false,
+    byConfigVersion: new Map(),
+    manifests: 0,
+  };
+
+  for (const example of examples) {
+    const manifest = example.manifest;
+    if (manifest === undefined) continue;
+    evidence.manifests += 1;
+
+    const version = manifest.configVersion ?? NOT_STATED;
+    evidence.byConfigVersion.set(version, (evidence.byConfigVersion.get(version) ?? 0) + 1);
+
+    for (const selector of manifest.platforms) {
+      if (selector.deviceSource !== undefined) {
+        evidence.deviceSources.add(String(selector.deviceSource));
+      }
+      if (selector.sr !== undefined) evidence.usesResolution = true;
+      if (selector.st !== undefined) {
+        evidence.screenTypes.set(selector.st, (evidence.screenTypes.get(selector.st) ?? 0) + 1);
+      }
+    }
+  }
+
+  return evidence;
+}
+
+function targetingMarkdown(devices: DeviceRecord[], examples: ExampleRecord[]): string[] {
+  const evidence = targetingEvidence(examples);
+  const zeppOs = devices.filter((d) => d.runsZeppOs).sort((a, b) => a.name.localeCompare(b.name));
+
+  const lines = ["## How to target a device", ""];
+  lines.push(
+    "The `targets` key is **not** a device identifier. Both the reference page and the",
+    "new-device guide say it is named arbitrarily and only has to match a subdirectory",
+    "of `assets/`, so `gtr-3-pro`, `common` and `480x480-amazfit-balance` are all valid",
+    "names for the same build. What selects hardware is `targets.<key>.platforms[]`,",
+    "and it works two different ways:",
+    "",
+    "| configVersion | Select with | Selects |",
+    "| --- | --- | --- |",
+    "| `v2` | `deviceSource` | One device, by number — one entry each |",
+    "| `v3` | `st` and `sr` | A screen shape and width, so a whole class of device |",
+    "",
+  );
+
+  const versions = [...evidence.byConfigVersion].sort(([a], [b]) => a.localeCompare(b));
+  lines.push(
+    `Across the ${evidence.manifests} sample manifests the split is exact — ` +
+      versions.map(([version, count]) => `${count} at \`${version}\``).join(", ") +
+      " — and no manifest mixes the two mechanisms.",
+    "",
+  );
+
+  lines.push("### What to write, per device", "");
+  lines.push(
+    "`st` and `sr` are **derived** from the screen columns above, not quoted: `st` is",
+    "the shape as `r`/`s`/`b`, `sr` is `w` + the width. `deviceSource` is verbatim.",
+    "",
+  );
+  lines.push("| Device | `st` (v3) | `sr` (v3) | `deviceSource` (v2) |");
+  lines.push("| --- | --- | --- | --- |");
+  for (const device of zeppOs) {
+    const st = screenType(device);
+    const sr = screenResolution(device);
+    lines.push(
+      `| ${cell(device.name)} | ${st === undefined ? NOT_STATED : `\`${st}\``} | ${sr === undefined ? NOT_STATED : `\`${sr}\``} | ${deviceSourceLabel(device)} |`,
+    );
+  }
+  lines.push("");
+
+  lines.push("### Which devices a screen selector reaches", "");
+  lines.push(
+    "The reverse of the table above, and the reason to prefer `v3`: one `st` covers a",
+    "whole class of hardware, so a new watch of a shape already supported needs no",
+    "manifest change at all.",
+    "",
+  );
+  lines.push("| Selector | Devices reached | Widths among them |");
+  lines.push("| --- | --- | --- |");
+  for (const [shape, st] of Object.entries(SCREEN_TYPE)) {
+    const reached = zeppOs.filter((d) => d.screen.shape === shape);
+    if (reached.length === 0) continue;
+    const widths = [...new Set(reached.map((d) => d.screen.width))]
+      .filter((w): w is number => w !== undefined)
+      .sort((a, b) => a - b);
+    lines.push(
+      `| \`st: "${st}"\` — ${shape} | ${reached.length} | ${widths.map((w) => `\`w${w}\``).join(", ")} |`,
+    );
+  }
+  lines.push("");
+
+  const declared = [...evidence.screenTypes].sort(([a], [b]) => a.localeCompare(b));
+  if (declared.length > 0) {
+    lines.push(
+      "Sample manifests declare " +
+        declared.map(([st, count]) => `\`st: "${st}"\` ${count} times`).join(" and ") +
+        (evidence.usesResolution ? "." : ", and never narrow one with `sr`."),
+      "",
+    );
+  }
+
+  lines.push(...targetingDiff(zeppOs, evidence));
+  return lines;
+}
+
+/**
+ * The two-way diff, which is where the findings are: what the samples target
+ * and this list does not have, and what this list has that no sample targets.
+ */
+function targetingDiff(zeppOs: DeviceRecord[], evidence: TargetingEvidence): string[] {
+  const known = new Set(zeppOs.flatMap((d) => d.deviceSources.map((s) => s.id)));
+
+  const unknown = [...evidence.deviceSources].filter((id) => !known.has(id)).sort();
+  const untargeted = zeppOs
+    .filter((d) => !d.deviceSources.some((s) => evidence.deviceSources.has(s.id)))
+    .map((d) => d.name);
+  const matched = evidence.deviceSources.size - unknown.length;
+
+  const lines = ["### Where the samples and the device list disagree", ""];
+  lines.push(
+    `The ${evidence.manifests} sample manifests name ${evidence.deviceSources.size} distinct ` +
+      `\`deviceSource\` values between them. ${matched} match a device below.`,
+    "",
+  );
+
+  if (unknown.length > 0) {
+    lines.push(
+      `**${unknown.length} ${unknown.length === 1 ? "does" : "do"} not.** A shipped sample builds for ` +
+        `${unknown.map((id) => `\`${id}\``).join(", ")}, and no row of the device list declares`,
+      "that number. Either the list is behind the samples or the sample targets hardware",
+      "that was never published. This base cannot tell which, and neither source admits",
+      "the gap exists.",
+      "",
+    );
+  }
+
+  if (untargeted.length > 0) {
+    lines.push(
+      `**${untargeted.length} devices no sample targets.** Nothing is wrong with them — it means`,
+      "there is no worked example to copy a `platforms` entry from, so the derived row",
+      "above is the only evidence this base has for them:",
+      "",
+    );
+    for (const name of untargeted) lines.push(`- ${cell(name)}`);
+    lines.push("");
+  }
+
+  return lines;
+}
+
 /** Devices that reach `level`, highest-capability first. */
 function devicesAtLevel(devices: DeviceRecord[], level: number): DeviceRecord[] {
   return devices
@@ -386,7 +577,11 @@ function devicesAtLevel(devices: DeviceRecord[], level: number): DeviceRecord[] 
     .sort((a, b) => (b.latestApiLevel ?? 0) - (a.latestApiLevel ?? 0) || a.name.localeCompare(b.name));
 }
 
-function devicesMarkdown(devices: DeviceRecord[], modules: ModuleFile[]): string {
+function devicesMarkdown(
+  devices: DeviceRecord[],
+  modules: ModuleFile[],
+  examples: ExampleRecord[],
+): string {
   const symbols = modules.flatMap((m) => m.symbols);
   const stated = symbols.filter((r) => r.minApiLevel !== undefined).length;
   const zeppOs = devices
@@ -430,6 +625,11 @@ function devicesMarkdown(devices: DeviceRecord[], modules: ModuleFile[]): string
     "A `\\*` on a `deviceSource` marks the Mainland China version of that device.",
     "",
   );
+
+  // Placed against the table it depends on: every column it derives from is
+  // above, and the two sections below are caveats about hardware this cannot
+  // target at all.
+  if (examples.length > 0) lines.push(...targetingMarkdown(devices, examples));
 
   if (noLevel.length > 0) {
     lines.push("## Zepp OS 1.0 devices — no API_LEVEL", "");
@@ -590,6 +790,7 @@ export async function render(
   symbolsDir: string,
   outDir: string,
   devicesFile?: string,
+  examplesDir?: string,
 ): Promise<{ modules: number; runtimes: number; devices: number }> {
   const modules = await readModuleFiles(symbolsDir);
   // `compatibility/` has one owner, because `prepareOutDir` clears the dir: a
@@ -597,6 +798,11 @@ export async function render(
   // whichever ran second. The device join also feeds the compatibility index, so
   // this stage needs the records regardless.
   const devices = devicesFile === undefined ? [] : await readDeviceFile(devicesFile);
+  // Read here rather than in the examples renderer because the targeting join
+  // lives on `devices.md`, and `compatibility/` has one owner — see above. The
+  // sample manifests are the only evidence of which `platforms` selectors real
+  // apps ship, and the device list is the only evidence of what they select.
+  const examples = examplesDir === undefined ? [] : await readExampleFiles(examplesDir);
 
   // `index.md` is generated, so no module may claim that slug — nor `devices.md`
   // in the compatibility dir. Resolved before any write so a collision fails
@@ -635,7 +841,7 @@ export async function render(
   }
 
   if (devices.length > 0) {
-    await writePage(path.join(compatDir, DEVICES_FILE), devicesMarkdown(devices, modules));
+    await writePage(path.join(compatDir, DEVICES_FILE), devicesMarkdown(devices, modules, examples));
   }
 
   await writePage(path.join(apiDir, INDEX_FILE), apiIndexMarkdown(modules));

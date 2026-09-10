@@ -5,11 +5,38 @@
   "platformVersion": "1.0",
   "manifest": {
     "appType": "app",
+    "configVersion": "v2",
     "permissions": [],
     "targets": [
       "gtr-3",
       "gtr-3-pro",
       "gts-3"
+    ],
+    "platforms": [
+      {
+        "deviceSource": 224
+      },
+      {
+        "deviceSource": 225
+      },
+      {
+        "deviceSource": 226
+      },
+      {
+        "deviceSource": 227
+      },
+      {
+        "deviceSource": 229
+      },
+      {
+        "deviceSource": 230
+      },
+      {
+        "deviceSource": 418
+      },
+      {
+        "deviceSource": 419
+      }
     ],
     "keys": [
       "app",

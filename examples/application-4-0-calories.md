@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `data:user.hd.calorie`, `device:os.local_sto
 
 Targets: `gt` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `page/gt/food-list.js`, `page/gt/food-list.r.layout.js`, `page/gt/food-list.s.layout.js`, `page/gt/index.js`, `page/gt/index.r.layout.js`, `page/gt/index.s.layout.js`, `utils/constants.js`, `utils/storage.js`

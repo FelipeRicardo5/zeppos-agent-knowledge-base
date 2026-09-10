@@ -19,6 +19,8 @@ Declares no permissions.
 
 Targets: `gtr-3-pro` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Watchface** — `app.js`, `watchface/gtr-3-pro/index.js`, `watchface/round/index.js`

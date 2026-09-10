@@ -19,6 +19,8 @@ Permissions: `gps`
 
 Targets: `gtr-3-pro` — these key the `assets/` subdirectories.
 
+Builds for: `deviceSource` `229`, `230` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Watchface** — `app.js`, `shared/buffer.js`, `shared/device-polyfill.js`, `shared/global.js`, `shared/js-module.js`, `shared/logger.js`, `shared/setTimeout.js`, `watchface/gtr-3-pro/index.js`, `watchface/round/index.js`

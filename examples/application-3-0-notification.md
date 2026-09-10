@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `device:os.alarm`, `device:os.notification`
 
 Targets: `gt` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app-service/delay.js`, `app-service/index.js`, `app.js`, `page/index.js`, `page/index.r.layout.js`, `utils/constants.js`

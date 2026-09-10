@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `device:os.input.method`
 
 Targets: `default` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `data-widget/engine/dictionary.js`, `data-widget/engine/t9-engine.js`, `data-widget/index.js`, `data-widget/index.r.layout.js`, `data-widget/index.s.layout.js`, `data-widget/modules/font-atlas.js`, `data-widget/modules/input-field-manager.js`, `data-widget/modules/keyboard-config.js`, `data-widget/modules/keyboard-handlers.js`, `data-widget/modules/keyboard-renderer.js`, `data-widget/modules/multitap-handler.js`, `data-widget/modules/preloader.js`, `data-widget/modules/safe-keyboard.js`, `helpers/required.js`, `pages/guidelines.js`

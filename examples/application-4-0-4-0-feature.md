@@ -19,6 +19,8 @@ Permissions: `data:os.device.info`, `data:user.hd.heart_rate`, `data:user.hd.sle
 
 Targets: `default` — these key the `assets/` subdirectories.
 
+Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
 ## Files
 
 **Device App** — `app.js`, `page/index.js`, `page/index.r.layout.js`, `page/TC/TC_01/index.js`, `page/TC/TC_01/index.r.layout.js`, `page/TC/TC_02/index.js`, `page/TC/TC_02/index.r.layout.js`, `page/TC/TC_03/index.js`, `page/TC/TC_03/index.r.layout.js`

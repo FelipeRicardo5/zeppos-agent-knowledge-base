@@ -61,7 +61,7 @@ export interface EnumMember {
   apiLevel?: number;
   /**
    * Per member, because one enum routinely mixes the two. `widget` documents a
-   * single value in a table that then says "the rest are not listed"; 41 more
+   * single value in a table that then says "the rest are not listed"; 24 more
    * are written in sample code the docs point at.
    */
   confidence: Confidence;
@@ -313,13 +313,43 @@ export interface ExampleFile {
   symbols: string[];
 }
 
+/**
+ * How one `targets.*.platforms[]` entry picks the hardware it builds for.
+ *
+ * The two forms are generations, not alternatives, and the samples split on it
+ * exactly: every v2 manifest selects by `deviceSource`, every v3 one by screen
+ * shape. This is the field that answers "how do I ship to this watch" — the
+ * `targets` key above it cannot, because the documentation says that key is
+ * "named arbitrarily" and only has to match an `assets/` subdirectory.
+ */
+export interface PlatformSelector {
+  /** v2: the device's own number, joinable to `DeviceRecord.deviceSources`. */
+  deviceSource?: number;
+  /** v3: screen shape — `r`, `s` or `b`, the same axis as `ScreenSpec.shape`. */
+  st?: string;
+  /** v3: screen resolution as `w<width>`, e.g. `w480`. */
+  sr?: string;
+}
+
 /** The parts of a sample's `app.json` that generalize to another project. */
 export interface ExampleManifest {
   appType?: string;
+  /**
+   * `v2` or `v3`. Kept because it decides how `platforms` selects hardware, and
+   * a reader copying a v2 sample into a v3 project gets neither form right.
+   */
+  configVersion?: string;
   /** Declared permission codes — the list to cross-check against symbols used. */
   permissions: string[];
-  /** Target keys (`gt.r`, `gt.s`), which name the `assets/` subdirectories. */
+  /**
+   * Target keys (`gt.r`, `gt.s`). These name the `assets/` subdirectories and
+   * nothing else — upstream calls them arbitrary — so they are evidence about
+   * this sample's layout, never about which device it runs on. For that, read
+   * `platforms`.
+   */
   targets: string[];
+  /** Every distinct selector the manifest's targets declare, deduplicated. */
+  platforms: PlatformSelector[];
   /** Keys present at the top level, so a reader sees the shape of a real file. */
   keys: string[];
   /**

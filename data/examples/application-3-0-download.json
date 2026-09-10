@@ -5,12 +5,18 @@
   "platformVersion": "3.0",
   "manifest": {
     "appType": "app",
+    "configVersion": "v3",
     "permissions": [
       "data:os.device.info",
       "device:os.ble"
     ],
     "targets": [
       "gt"
+    ],
+    "platforms": [
+      {
+        "st": "r"
+      }
     ],
     "keys": [
       "app",

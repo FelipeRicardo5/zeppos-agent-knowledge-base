@@ -220,6 +220,24 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 - The Side Service and Settings App **are** covered: see `../../runtimes/side-service.md` and `../../runtimes/settings.md`, plus `../../api/fetch.md` and `../../api/settings-storage.md`. What is missing there is narrower than the runtime: the Settings App's **entry point** (the function that registers a settings page) and the **props of its `ui.*` components`. Answer that one from the official docs and say so; everything else in those runtimes, answer from here.
 - A watchface symbol is written as a global path, not imported: `hmUI.createWidget`, `hmUI.widget.TEXT`, `hmSensor.id.HEART`, `hmFS.open`. Never suggest `import { createWidget } from 'hmUI'` — that is the Device App idiom and it is a different API.
 
+## Permissions
+
+An undeclared permission fails at **runtime**, not at build — the worst error
+to hand a user, because the app installs and then dies on the feature it was
+written for. Check it every time you recommend a sensor or a background service.
+
+- Each symbol's entry in `../../api/` states its own, as **Requires in
+  `app.json`**. Union those over every symbol the app uses.
+- Each pattern page in `../../patterns/` states the union for that whole task,
+  **derived** — the upstream guide names none.
+- `../../manifest/index.md` joins every code to the symbols that need it and to
+  how many of the 33 sample manifests declare it.
+
+Only 24 codes are documented anywhere, and the samples declare 34. `event:os.*`,
+`device:os.ble` and `gps` appear in shipped manifests and in no symbol's record.
+So a symbol with no permission listed is **not covered**, never **needs none** —
+say that rather than implying the app is safe to ship without checking.
+
 ## When the sources disagree
 
 `../../conflicts/index.md` is the list of everywhere they do, and it is short

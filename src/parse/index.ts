@@ -93,8 +93,16 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
     if (!module) continue;
 
     const apiLevelMatch = content.match(API_LEVEL_RE);
-    const description = extractDescription(content);
     const runtimeHint = runtimeForPath(sourceFile);
+
+    // Taken out of the prose rather than left in it. As a phrase in a
+    // description the code was only reachable by a regex at render time, and
+    // it was the single largest source of false disagreement between the two
+    // documented fronts: the reference page carries the note and the llms dump
+    // does not, so 35 symbols "differed" for that reason alone.
+    const described = extractDescription(content);
+    const permissions = [...new Set([...(described ?? "").matchAll(PERMISSION_RE)].map((m) => m[1]))];
+    const description = permissions.length > 0 ? stripPermissions(described) : described;
 
     // What you call on a value this symbol produces: `new HeartRate()` then
     // `.getCurrent()`. Taken out of the page before the shape and enum passes
@@ -123,6 +131,7 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
       shapes: shapes.length > 0 ? shapes : undefined,
       enums: own.length > 0 ? own : undefined,
       members: members.length > 0 ? members : undefined,
+      permissions: permissions.length > 0 ? permissions.sort() : undefined,
       runtimeHint,
       sourceFile,
       sourceKind: "docs-reference",
@@ -163,6 +172,11 @@ const IMAGE_ONLY_RE = /^!\[[^\]]*\]\([^)]*\)$/;
  * `[^>]` matches newlines, which is what makes that work.
  */
 const MARKUP_TAG_RE = /<\/?[A-Za-z][^>]*>/g;
+/**
+ * `permission code: \`device:os.alarm\`` — stated inside a `:::info` block on
+ * 35 reference pages, in exactly this wording every time.
+ */
+const PERMISSION_RE = /permission code:\s*`([^`]+)`/gi;
 /** A self-closing tag's tail, left behind once the tag itself is stripped. */
 const MARKUP_TAIL_RE = /^\/?>$/;
 /** Docusaurus admonition fences: `:::info`, `:::caution`, and the bare closer. */
@@ -224,6 +238,17 @@ function extractDescription(content: string): string | undefined {
     .filter((line) => !ADMONITION_RE.test(line));
 
   return body.length > 0 ? body.join(" ") : undefined;
+}
+
+/** The description without its permission note, which is a field of its own now. */
+function stripPermissions(description: string | undefined): string | undefined {
+  if (description === undefined) return undefined;
+  const text = description
+    .replace(PERMISSION_RE, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([.,;])/g, "$1")
+    .trim();
+  return text.length > 0 ? text : undefined;
 }
 
 /**

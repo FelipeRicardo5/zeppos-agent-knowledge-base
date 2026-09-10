@@ -41,7 +41,9 @@
 
 ### `@zos/sensor.Accelerometer`
 
-accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward. permission code: `device:os.accelerometer`
+accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward.
+
+**Requires in `app.json`**: `device:os.accelerometer` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Accelerometer` value** — 7 members
 
@@ -125,7 +127,9 @@ getFreqMode(): number
 
 ### `@zos/sensor.Barometer`
 
-Barometer Sensor. permission code: `device:os.barometer`
+Barometer Sensor.
+
+**Requires in `app.json`**: `device:os.barometer` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Barometer` value** — 4 members
 
@@ -206,7 +210,9 @@ offChange(callback: () => void): void
 
 ### `@zos/sensor.BloodOxygen`
 
-Blood oxygen Sensor. permission code: `data:user.hd.spo2`
+Blood oxygen Sensor.
+
+**Requires in `app.json`**: `data:user.hd.spo2` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `BloodOxygen` value** — 7 members
 
@@ -313,7 +319,9 @@ getLastFewHour(hour: number): Array<Data>
 
 ### `@zos/sensor.BodyTemperature`
 
-Body surface temperature sensor. permission code: `data:user.hd.body_temp`
+Body surface temperature sensor.
+
+**Requires in `app.json`**: `data:user.hd.body_temp` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `BodyTemperature` value** — 2 members
 
@@ -412,7 +420,9 @@ stop(): void
 
 ### `@zos/sensor.Calorie`
 
-Calorie Sensor. permission code: `data:user.hd.calorie`
+Calorie Sensor.
+
+**Requires in `app.json`**: `data:user.hd.calorie` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Calorie` value** — 4 members
 
@@ -465,7 +475,9 @@ function checkSensor(sensor: Sensor): Result
 
 ### `@zos/sensor.Compass`
 
-compass. permission code: `device:os.compass`
+compass.
+
+**Requires in `app.json`**: `device:os.compass` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Compass` value** — 9 members
 
@@ -572,7 +584,9 @@ getFreqMode(): number
 
 ### `@zos/sensor.Distance`
 
-Distance Sensor. permission code: `data:user.hd.distance`
+Distance Sensor.
+
+**Requires in `app.json`**: `data:user.hd.distance` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Distance` value** — 3 members
 
@@ -608,7 +622,9 @@ offChange(callback: () => void): void
 
 ### `@zos/sensor.FatBurning`
 
-FatBurning Sensor. permission code: `data:user.hd.fat_burning`
+FatBurning Sensor.
+
+**Requires in `app.json`**: `data:user.hd.fat_burning` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `FatBurning` value** — 4 members
 
@@ -665,7 +681,9 @@ Normal power consumption mode, medium trigger frequency
 
 ### `@zos/sensor.Geolocation`
 
-Geolocation Sensor. permission code: `device:os.geolocation`
+Geolocation Sensor.
+
+**Requires in `app.json`**: `device:os.geolocation` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Geolocation` value** — 13 members
 
@@ -883,7 +901,9 @@ offEnableChange(callback: () => void): void
 
 ### `@zos/sensor.Gyroscope`
 
-Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction. permission code: `device:os.gyroscope`
+Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction.
+
+**Requires in `app.json`**: `device:os.gyroscope` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Gyroscope` value** — 7 members
 
@@ -967,7 +987,9 @@ getFreqMode(): number
 
 ### `@zos/sensor.HeartRate`
 
-HeartRate Sensor. permission code: `data:user.hd.heart_rate`
+HeartRate Sensor.
+
+**Requires in `app.json`**: `data:user.hd.heart_rate` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `HeartRate` value** — 12 members
 
@@ -1112,7 +1134,9 @@ offRestingChange(callback: () => void): void
 
 ### `@zos/sensor.Pai`
 
-PAI Sensor. permission code: `data:user.hd.pai`
+PAI Sensor.
+
+**Requires in `app.json`**: `data:user.hd.pai` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Pai` value** — 3 members
 
@@ -1206,7 +1230,9 @@ offChange(callback: (status: number) => void): void
 
 ### `@zos/sensor.Sleep`
 
-Sleep Sensor. permission code: `data:user.hd.sleep`
+Sleep Sensor.
+
+**Requires in `app.json`**: `data:user.hd.sleep` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Sleep` value** — 6 members
 
@@ -1308,7 +1334,9 @@ getNap(): Array<NapInfo>
 
 ### `@zos/sensor.Stand`
 
-Standing behavior Sensor. permission code: `data:user.hd.stand`
+Standing behavior Sensor.
+
+**Requires in `app.json`**: `data:user.hd.stand` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Stand` value** — 4 members
 
@@ -1353,7 +1381,9 @@ offChange(callback: () => void): void
 
 ### `@zos/sensor.Step`
 
-Step Sensor. permission code: `data:user.hd.step`
+Step Sensor.
+
+**Requires in `app.json`**: `data:user.hd.step` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Step` value** — 4 members
 
@@ -1398,7 +1428,9 @@ offChange(callback: () => void): void
 
 ### `@zos/sensor.Stress`
 
-Stress Sensor. permission code: `data:user.hd.stress`
+Stress Sensor.
+
+**Requires in `app.json`**: `data:user.hd.stress` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Stress` value** — 7 members
 
@@ -2034,7 +2066,9 @@ getForecastWeather(): ForecastWeather
 
 ### `@zos/sensor.Workout`
 
-Workout Sensor. permission code: `data:user.hd.workout`
+Workout Sensor.
+
+**Requires in `app.json`**: `data:user.hd.workout` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `Workout` value** — 4 members
 

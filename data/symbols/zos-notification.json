@@ -6,9 +6,12 @@
       "module": "@zos/notification",
       "symbol": "cancel",
       "type": "function",
-      "description": "Delete the notification message identified by the specified ID in the notification center. permission code: `device:os.notification`",
+      "description": "Delete the notification message identified by the specified ID in the notification center.",
       "minApiLevel": 3,
       "signature": "function cancel(alarmId: number | Array<number>): void",
+      "permissions": [
+        "device:os.notification"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -22,9 +25,12 @@
       "module": "@zos/notification",
       "symbol": "getAllNotifications",
       "type": "function",
-      "description": "Get the notification IDs that have been sent by the current app and are still in the notification center. permission code: `device:os.notification`",
+      "description": "Get the notification IDs that have been sent by the current app and are still in the notification center.",
       "minApiLevel": 3,
       "signature": "function getAllNotifications(): Array<number>",
+      "permissions": [
+        "device:os.notification"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -38,7 +44,7 @@
       "module": "@zos/notification",
       "symbol": "notify",
       "type": "function",
-      "description": "Send notifications to the Watch Notification Center. permission code: `device:os.notification`",
+      "description": "Send notifications to the Watch Notification Center.",
       "minApiLevel": 3,
       "signature": "function notify(option: Option): Result",
       "shapes": [
@@ -95,6 +101,9 @@
             }
           ]
         }
+      ],
+      "permissions": [
+        "device:os.notification"
       ],
       "runtimes": [
         "device-app"

@@ -98,6 +98,19 @@ function requiredApiLevel(resolved: ResolvedSymbol[]): number | undefined {
   return levels.length > 0 ? Math.max(...levels) : undefined;
 }
 
+/**
+ * Every permission the symbols a pattern uses require, unioned.
+ *
+ * Derived the same way `requiredApiLevel` is, and for the same reason: no
+ * upstream guide states it. A best-practice guide shows the code and says
+ * nothing about `app.json`, so following one to the letter and shipping it
+ * produces an app that builds and then fails at runtime on a permission
+ * nobody mentioned.
+ */
+function requiredPermissions(resolved: ResolvedSymbol[]): string[] {
+  return [...new Set(resolved.flatMap(({ record }) => record?.permissions ?? []))].sort();
+}
+
 function symbolTable(resolved: ResolvedSymbol[]): string[] {
   const lines = ["| Symbol | Min API_LEVEL | Runtimes | In this KB |", "| --- | --- | --- | --- |"];
 
@@ -125,6 +138,15 @@ function patternMarkdown(pattern: PatternRecord, known: Map<string, SymbolRecord
       : `**Minimum API_LEVEL: >= ${required}.** The highest minimum among the ${resolved.length} symbols this pattern's code uses — every one of them has to be available.`,
     "",
   );
+
+  const permissions = requiredPermissions(resolved);
+  if (permissions.length > 0) {
+    lines.push(
+      `**Requires in \`app.json\`**: ${permissions.map((p) => `\`${p}\``).join(", ")}. Unioned` +
+        " over the symbols this pattern's code uses; the guide itself names none.",
+      "",
+    );
+  }
 
   if (pattern.runtimes.length > 0) {
     lines.push(`Runtimes the guide's own file names state: ${runtimeLabels(pattern.runtimes)}.`, "");

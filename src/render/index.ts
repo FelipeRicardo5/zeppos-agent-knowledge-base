@@ -112,13 +112,24 @@ function apiMarkdown(module: ModuleFile): string {
       r.description !== undefined ||
       r.signature !== undefined ||
       r.shapes !== undefined ||
-      r.enums !== undefined,
+      r.enums !== undefined ||
+      r.permissions !== undefined,
   );
   if (detailed.length > 0) {
     lines.push("", "## Symbols in detail", "");
     for (const record of detailed) {
       lines.push(`### \`${module.module}.${record.symbol}\``, "");
       if (record.description !== undefined) lines.push(record.description, "");
+
+      // Before the signature, because it is the thing that breaks an app that
+      // otherwise compiles: an undeclared permission fails at runtime.
+      if (record.permissions !== undefined) {
+        lines.push(
+          `**Requires in \`app.json\`**: ${record.permissions.map((p) => `\`${p}\``).join(", ")}` +
+            " — see [`../manifest/index.md`](../manifest/index.md).",
+          "",
+        );
+      }
 
       if (record.signature !== undefined) {
         // Verbatim: `(props: Props) => result: RenderFunc` is not valid

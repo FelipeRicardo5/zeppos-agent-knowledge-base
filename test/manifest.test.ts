@@ -162,7 +162,10 @@ const symbol = (overrides: Partial<SymbolRecord> = {}): SymbolRecord => ({
   module: "@zos/alarm",
   symbol: "set",
   type: "function",
-  description: "Sets an alarm. permission code: `device:os.alarm`",
+  description: "Sets an alarm.",
+  // A field, not a phrase in the prose: the join below is a lookup rather
+  // than a regex over rendered text.
+  permissions: ["device:os.alarm"],
   runtimes: ["device-app"],
   source: "docs-reference",
   confidence: "OFFICIAL",

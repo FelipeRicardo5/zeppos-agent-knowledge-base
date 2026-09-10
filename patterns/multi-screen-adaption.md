@@ -4,6 +4,8 @@ The screen shape and size of each device can be found in the Device Basic Inform
 
 **Minimum API_LEVEL: >= 2.** The highest minimum among the 8 symbols this pattern's code uses — every one of them has to be available.
 
+**Requires in `app.json`**: `data:os.device.info`. Unioned over the symbols this pattern's code uses; the guide itself names none.
+
 Runtimes the guide's own file names state: Device App.
 
 Source: `zeppos-docs/docs/guides/best-practice/multi-screen-adaption.mdx`

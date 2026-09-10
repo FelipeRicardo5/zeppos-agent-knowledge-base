@@ -6,7 +6,7 @@
       "module": "@zos/device",
       "symbol": "getDeviceInfo",
       "type": "function",
-      "description": "Gets device information. permission code: `data:os.device.info`",
+      "description": "Gets device information.",
       "minApiLevel": 2,
       "signature": "function getDeviceInfo(): Result",
       "shapes": [
@@ -69,6 +69,9 @@
             }
           ]
         }
+      ],
+      "permissions": [
+        "data:os.device.info"
       ],
       "runtimes": [
         "device-app"

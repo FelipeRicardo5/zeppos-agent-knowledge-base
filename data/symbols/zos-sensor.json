@@ -6,7 +6,7 @@
       "module": "@zos/sensor",
       "symbol": "Accelerometer",
       "type": "value",
-      "description": "accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward. permission code: `device:os.accelerometer`",
+      "description": "accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward.",
       "minApiLevel": 3,
       "members": [
         {
@@ -72,6 +72,9 @@
           "apiLevel": 3
         }
       ],
+      "permissions": [
+        "device:os.accelerometer"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -85,7 +88,7 @@
       "module": "@zos/sensor",
       "symbol": "Barometer",
       "type": "value",
-      "description": "Barometer Sensor. permission code: `device:os.barometer`",
+      "description": "Barometer Sensor.",
       "minApiLevel": 2.1,
       "members": [
         {
@@ -108,6 +111,9 @@
           "description": "Cancel the air pressure and altitude change event callback function",
           "signature": "offChange(callback: () => void): void"
         }
+      ],
+      "permissions": [
+        "device:os.barometer"
       ],
       "runtimes": [
         "device-app"
@@ -154,7 +160,7 @@
       "module": "@zos/sensor",
       "symbol": "BloodOxygen",
       "type": "value",
-      "description": "Blood oxygen Sensor. permission code: `data:user.hd.spo2`",
+      "description": "Blood oxygen Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -325,6 +331,9 @@
           ]
         }
       ],
+      "permissions": [
+        "data:user.hd.spo2"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -338,7 +347,7 @@
       "module": "@zos/sensor",
       "symbol": "BodyTemperature",
       "type": "value",
-      "description": "Body surface temperature sensor. permission code: `data:user.hd.body_temp`",
+      "description": "Body surface temperature sensor.",
       "minApiLevel": 3,
       "members": [
         {
@@ -370,6 +379,9 @@
           "description": "Get the body surface temperature measurement values for 24 hours a day. The array length is 24 \\* 60 / 5 = 288, with an average measurement value every five minutes. The unit is Celsius, such as `35.2`. Data without measurement values is `-1000`",
           "signature": "getToday(): Array<number>"
         }
+      ],
+      "permissions": [
+        "data:user.hd.body_temp"
       ],
       "runtimes": [
         "device-app"
@@ -476,7 +488,7 @@
       "module": "@zos/sensor",
       "symbol": "Calorie",
       "type": "value",
-      "description": "Calorie Sensor. permission code: `data:user.hd.calorie`",
+      "description": "Calorie Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -499,6 +511,9 @@
           "description": "Cancel the calories change event callback function",
           "signature": "offChange(callback: () => void): void"
         }
+      ],
+      "permissions": [
+        "data:user.hd.calorie"
       ],
       "runtimes": [
         "device-app"
@@ -529,7 +544,7 @@
       "module": "@zos/sensor",
       "symbol": "Compass",
       "type": "value",
-      "description": "compass. permission code: `device:os.compass`",
+      "description": "compass.",
       "minApiLevel": 3,
       "members": [
         {
@@ -644,6 +659,9 @@
           "apiLevel": 4
         }
       ],
+      "permissions": [
+        "device:os.compass"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -657,7 +675,7 @@
       "module": "@zos/sensor",
       "symbol": "Distance",
       "type": "value",
-      "description": "Distance Sensor. permission code: `data:user.hd.distance`",
+      "description": "Distance Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -676,6 +694,9 @@
           "signature": "offChange(callback: () => void): void"
         }
       ],
+      "permissions": [
+        "data:user.hd.distance"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -689,7 +710,7 @@
       "module": "@zos/sensor",
       "symbol": "FatBurning",
       "type": "value",
-      "description": "FatBurning Sensor. permission code: `data:user.hd.fat_burning`",
+      "description": "FatBurning Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -712,6 +733,9 @@
           "description": "Cancel a callback function to listen to the fat burning minutes change event",
           "signature": "offChange(callback: () => void): void"
         }
+      ],
+      "permissions": [
+        "data:user.hd.fat_burning"
       ],
       "runtimes": [
         "device-app"
@@ -771,7 +795,7 @@
       "module": "@zos/sensor",
       "symbol": "Geolocation",
       "type": "value",
-      "description": "Geolocation Sensor. permission code: `device:os.geolocation`",
+      "description": "Geolocation Sensor.",
       "minApiLevel": 2.1,
       "members": [
         {
@@ -1152,6 +1176,9 @@
           "apiLevel": 4
         }
       ],
+      "permissions": [
+        "device:os.geolocation"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1165,7 +1192,7 @@
       "module": "@zos/sensor",
       "symbol": "Gyroscope",
       "type": "value",
-      "description": "Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction. permission code: `device:os.gyroscope`",
+      "description": "Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction.",
       "minApiLevel": 3,
       "members": [
         {
@@ -1231,6 +1258,9 @@
           "apiLevel": 3
         }
       ],
+      "permissions": [
+        "device:os.gyroscope"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1244,7 +1274,7 @@
       "module": "@zos/sensor",
       "symbol": "HeartRate",
       "type": "value",
-      "description": "HeartRate Sensor. permission code: `data:user.hd.heart_rate`",
+      "description": "HeartRate Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -1390,6 +1420,9 @@
           "apiLevel": 3
         }
       ],
+      "permissions": [
+        "data:user.hd.heart_rate"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1403,7 +1436,7 @@
       "module": "@zos/sensor",
       "symbol": "Pai",
       "type": "value",
-      "description": "PAI Sensor. permission code: `data:user.hd.pai`",
+      "description": "PAI Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -1421,6 +1454,9 @@
           "description": "Get the PAI data for the past 7 days, the return value is an array of length `7`, the position of index `0` is the PAI value of today, the position of index `1` is the PAI value of the previous day, and so on",
           "signature": "getLastWeek(): Array<number>"
         }
+      ],
+      "permissions": [
+        "data:user.hd.pai"
       ],
       "runtimes": [
         "device-app"
@@ -1478,7 +1514,7 @@
       "module": "@zos/sensor",
       "symbol": "Sleep",
       "type": "value",
-      "description": "Sleep Sensor. permission code: `data:user.hd.sleep`",
+      "description": "Sleep Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -1632,6 +1668,9 @@
           ]
         }
       ],
+      "permissions": [
+        "data:user.hd.sleep"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1645,7 +1684,7 @@
       "module": "@zos/sensor",
       "symbol": "Stand",
       "type": "value",
-      "description": "Standing behavior Sensor. permission code: `data:user.hd.stand`",
+      "description": "Standing behavior Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -1669,6 +1708,9 @@
           "signature": "offChange(callback: () => void): void"
         }
       ],
+      "permissions": [
+        "data:user.hd.stand"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1682,7 +1724,7 @@
       "module": "@zos/sensor",
       "symbol": "Step",
       "type": "value",
-      "description": "Step Sensor. permission code: `data:user.hd.step`",
+      "description": "Step Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -1706,6 +1748,9 @@
           "signature": "offChange(callback: () => void): void"
         }
       ],
+      "permissions": [
+        "data:user.hd.step"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1719,7 +1764,7 @@
       "module": "@zos/sensor",
       "symbol": "Stress",
       "type": "value",
-      "description": "Stress Sensor. permission code: `data:user.hd.stress`",
+      "description": "Stress Sensor.",
       "minApiLevel": 2,
       "members": [
         {
@@ -1818,6 +1863,9 @@
             }
           ]
         }
+      ],
+      "permissions": [
+        "data:user.hd.stress"
       ],
       "runtimes": [
         "device-app"
@@ -2701,7 +2749,7 @@
       "module": "@zos/sensor",
       "symbol": "Workout",
       "type": "value",
-      "description": "Workout Sensor. permission code: `data:user.hd.workout`",
+      "description": "Workout Sensor.",
       "minApiLevel": 3,
       "members": [
         {
@@ -2915,6 +2963,9 @@
             }
           ]
         }
+      ],
+      "permissions": [
+        "data:user.hd.workout"
       ],
       "runtimes": [
         "device-app"

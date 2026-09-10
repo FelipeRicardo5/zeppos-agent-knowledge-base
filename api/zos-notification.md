@@ -12,7 +12,9 @@
 
 ### `@zos/notification.cancel`
 
-Delete the notification message identified by the specified ID in the notification center. permission code: `device:os.notification`
+Delete the notification message identified by the specified ID in the notification center.
+
+**Requires in `app.json`**: `device:os.notification` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function cancel(alarmId: number | Array<number>): void
@@ -20,7 +22,9 @@ function cancel(alarmId: number | Array<number>): void
 
 ### `@zos/notification.getAllNotifications`
 
-Get the notification IDs that have been sent by the current app and are still in the notification center. permission code: `device:os.notification`
+Get the notification IDs that have been sent by the current app and are still in the notification center.
+
+**Requires in `app.json`**: `device:os.notification` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function getAllNotifications(): Array<number>
@@ -28,7 +32,9 @@ function getAllNotifications(): Array<number>
 
 ### `@zos/notification.notify`
 
-Send notifications to the Watch Notification Center. permission code: `device:os.notification`
+Send notifications to the Watch Notification Center.
+
+**Requires in `app.json`**: `device:os.notification` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function notify(option: Option): Result

@@ -18,7 +18,9 @@
 
 ### `@zos/storage.localStorage`
 
-Locally stored key-value pairs, data cleared after Mini Program uninstallation. An instance keeps loaded data in memory, making it suitable for repeated reads and writes by reducing repeated file reads. permission code: `device:os.local_storage`
+Locally stored key-value pairs, data cleared after Mini Program uninstallation. An instance keeps loaded data in memory, making it suitable for repeated reads and writes by reducing repeated file reads.
+
+**Requires in `app.json`**: `device:os.local_storage` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `localStorage` value** — 4 members
 
@@ -67,7 +69,9 @@ Locally stored key-value pairs, data cleared after Mini Program uninstallation
 
 ### `@zos/storage.localStorage-instance`
 
-Locally stored key-value pairs, data cleared after Mini Program uninstallation. permission code: `device:os.local_storage`
+Locally stored key-value pairs, data cleared after Mini Program uninstallation.
+
+**Requires in `app.json`**: `device:os.local_storage` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `localStorage-instance` value** — 4 members
 
@@ -206,7 +210,9 @@ clear(): void
 
 ### `@zos/storage.ShareLocalStorage`
 
-Shared JSON key-value storage for cross-application scenarios. Application A publishes data with this class, and application B reads it with `LocalStorage` from `@zos/share-storage` and application A's appId. When using a custom storagePath, both applications must use the same path. permission code: `device:os.local_storage`
+Shared JSON key-value storage for cross-application scenarios. Application A publishes data with this class, and application B reads it with `LocalStorage` from `@zos/share-storage` and application A's appId. When using a custom storagePath, both applications must use the same path.
+
+**Requires in `app.json`**: `device:os.local_storage` — see [`../manifest/index.md`](../manifest/index.md).
 
 **Called on a `ShareLocalStorage` value** — 4 members
 

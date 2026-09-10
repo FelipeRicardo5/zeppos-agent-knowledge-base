@@ -6,7 +6,7 @@
       "module": "@zos/alarm",
       "symbol": "cancel",
       "type": "function",
-      "description": "Cancels the set timer, if the timer is set to persist and also cancels the persistence. permission code: `device:os.alarm`",
+      "description": "Cancels the set timer, if the timer is set to persist and also cancels the persistence.",
       "minApiLevel": 3,
       "signature": "function cancel(option: Option): Result",
       "shapes": [
@@ -22,6 +22,9 @@
           ]
         }
       ],
+      "permissions": [
+        "device:os.alarm"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -35,9 +38,12 @@
       "module": "@zos/alarm",
       "symbol": "getAllAlarms",
       "type": "function",
-      "description": "Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence. permission code: `device:os.alarm`",
+      "description": "Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence.",
       "minApiLevel": 3,
       "signature": "function getAllAlarms(): Array<number>",
+      "permissions": [
+        "device:os.alarm"
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -156,7 +162,7 @@
       "module": "@zos/alarm",
       "symbol": "set",
       "type": "function",
-      "description": "Support for persistent timers to wake up pages of Mini Program. permission code: `device:os.alarm`",
+      "description": "Support for persistent timers to wake up pages of Mini Program.",
       "minApiLevel": 3,
       "signature": "function set(option: Option): Result",
       "shapes": [
@@ -240,6 +246,9 @@
             }
           ]
         }
+      ],
+      "permissions": [
+        "device:os.alarm"
       ],
       "runtimes": [
         "device-app"

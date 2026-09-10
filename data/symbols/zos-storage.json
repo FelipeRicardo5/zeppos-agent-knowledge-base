@@ -6,7 +6,7 @@
       "module": "@zos/storage",
       "symbol": "localStorage",
       "type": "value",
-      "description": "Locally stored key-value pairs, data cleared after Mini Program uninstallation. An instance keeps loaded data in memory, making it suitable for repeated reads and writes by reducing repeated file reads. permission code: `device:os.local_storage`",
+      "description": "Locally stored key-value pairs, data cleared after Mini Program uninstallation. An instance keeps loaded data in memory, making it suitable for repeated reads and writes by reducing repeated file reads.",
       "minApiLevel": 3,
       "members": [
         {
@@ -29,6 +29,9 @@
           "description": "Clear all data in localStorage",
           "signature": "clear(): void"
         }
+      ],
+      "permissions": [
+        "device:os.local_storage"
       ],
       "runtimes": [
         "device-app"
@@ -58,7 +61,7 @@
       "module": "@zos/storage",
       "symbol": "localStorage-instance",
       "type": "value",
-      "description": "Locally stored key-value pairs, data cleared after Mini Program uninstallation. permission code: `device:os.local_storage`",
+      "description": "Locally stored key-value pairs, data cleared after Mini Program uninstallation.",
       "minApiLevel": 2,
       "members": [
         {
@@ -81,6 +84,9 @@
           "description": "Clear all data in localStorage",
           "signature": "clear(): void"
         }
+      ],
+      "permissions": [
+        "device:os.local_storage"
       ],
       "runtimes": [
         "device-app"
@@ -184,7 +190,7 @@
       "module": "@zos/storage",
       "symbol": "ShareLocalStorage",
       "type": "value",
-      "description": "Shared JSON key-value storage for cross-application scenarios. Application A publishes data with this class, and application B reads it with `LocalStorage` from `@zos/share-storage` and application A's appId. When using a custom storagePath, both applications must use the same path. permission code: `device:os.local_storage`",
+      "description": "Shared JSON key-value storage for cross-application scenarios. Application A publishes data with this class, and application B reads it with `LocalStorage` from `@zos/share-storage` and application A's appId. When using a custom storagePath, both applications must use the same path.",
       "minApiLevel": 3,
       "members": [
         {
@@ -207,6 +213,9 @@
           "description": "Clear all shared storage data",
           "signature": "clear(): void"
         }
+      ],
+      "permissions": [
+        "device:os.local_storage"
       ],
       "runtimes": [
         "device-app"

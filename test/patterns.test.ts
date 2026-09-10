@@ -321,3 +321,43 @@ describe("renderPatterns", () => {
     await assert.rejects(renderPatterns(patternsDir, symbolsDir, out), /junk\.json: not a pattern file/);
   });
 });
+
+describe("pattern permissions", () => {
+  it("unions the permissions the symbols a pattern uses require", async () => {
+    // Derived the way the minimum API_LEVEL is, and for the same reason: a
+    // best-practice guide shows the code and says nothing about `app.json`, so
+    // following one to the letter ships an app that builds and then fails at
+    // runtime on a permission nobody mentioned. In the real corpus
+    // `multi-screen-adaption` needs `data:os.device.info` and its guide never
+    // says so.
+    const { patternsDir, symbolsDir, out } = await fixture(
+      [pattern({ symbols: ["@zos/device.getDeviceInfo", "@zos/router.push"] })],
+      {
+        "zos-device": {
+          module: "@zos/device",
+          symbols: [
+            { ...symbolRecord("@zos/device.getDeviceInfo", 2), permissions: ["data:os.device.info"] },
+          ],
+        },
+        "zos-router": { module: "@zos/router", symbols: [symbolRecord("@zos/router.push", 2)] },
+      },
+    );
+
+    await renderPatterns(patternsDir, symbolsDir, out);
+    const page = await readFile(path.join(out, "patterns", "demo.md"), "utf-8");
+
+    assert.match(page, /\*\*Requires in `app\.json`\*\*: `data:os\.device\.info`/);
+    assert.match(page, /the guide itself names none/);
+  });
+
+  it("says nothing when no symbol the pattern uses requires one", async () => {
+    const { patternsDir, symbolsDir, out } = await fixture([pattern()], {
+      "zos-router": { module: "@zos/router", symbols: [symbolRecord("@zos/router.push", 2)] },
+    });
+
+    await renderPatterns(patternsDir, symbolsDir, out);
+    const page = await readFile(path.join(out, "patterns", "demo.md"), "utf-8");
+
+    assert.doesNotMatch(page, /Requires in/);
+  });
+});

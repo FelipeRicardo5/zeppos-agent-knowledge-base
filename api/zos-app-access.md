@@ -10,7 +10,9 @@
 
 ### `@zos/app-access.getSportData`
 
-By default, the system will off the screen in one page of the Mini Program, and the system will exit the Mini Program after 10s, and enter the dial page when the watch is woken up again. If `relaunch` is set to `true`, the Mini Program will reopen and enter the corresponding page when the watch is woken up again. permission code: `data:user.hd.workout`
+By default, the system will off the screen in one page of the Mini Program, and the system will exit the Mini Program after 10s, and enter the dial page when the watch is woken up again. If `relaunch` is set to `true`, the Mini Program will reopen and enter the corresponding page when the watch is woken up again.
+
+**Requires in `app.json`**: `data:user.hd.workout` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function getSportData(options: Options, callback: (callbackResult: CallbackResult) => void): Result

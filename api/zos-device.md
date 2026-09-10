@@ -13,7 +13,9 @@
 
 ### `@zos/device.getDeviceInfo`
 
-Gets device information. permission code: `data:os.device.info`
+Gets device information.
+
+**Requires in `app.json`**: `data:os.device.info` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function getDeviceInfo(): Result

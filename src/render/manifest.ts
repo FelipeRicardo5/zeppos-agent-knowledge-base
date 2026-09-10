@@ -35,9 +35,6 @@ import { INDEX_FILE, cell, indexSymbols, prepareOutDir, readModuleFiles, writePa
 
 const MANIFEST_DIR = "manifest";
 
-/** The permission code a symbol's description states, e.g. `device:os.alarm`. */
-const PERMISSION_IN_DESCRIPTION_RE = /permission code:\s*`([^`]+)`/gi;
-
 const RUNTIME_LABELS: Record<Runtime, string> = {
   "device-app": "Device App",
   "side-service": "Side Service",
@@ -365,9 +362,12 @@ function indexMarkdown(
   }
 
   // --- permissions --------------------------------------------------------
+  // Read off the record's own field. It used to be a regex over the
+  // description here, which meant this join depended on the exact wording of
+  // upstream prose surviving into the rendered text.
   const needs = new Map<string, string[]>();
   for (const symbol of symbols.values()) {
-    for (const [, code] of (symbol.description ?? "").matchAll(PERMISSION_IN_DESCRIPTION_RE)) {
+    for (const code of symbol.permissions ?? []) {
       needs.set(code, [...(needs.get(code) ?? []), symbol.id]);
     }
   }

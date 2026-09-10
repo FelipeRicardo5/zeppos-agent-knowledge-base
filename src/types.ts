@@ -177,6 +177,13 @@ export interface SymbolRecord {
    * for why these are a field rather than symbols of their own.
    */
   members?: MemberSpec[];
+  /**
+   * Permission codes `app.json` must declare for this symbol to work, e.g.
+   * `device:os.alarm`. A field rather than a phrase inside `description`,
+   * because the question it answers is a lookup: an app that calls a sensor
+   * without declaring it fails at runtime, not at build.
+   */
+  permissions?: string[];
   /** Fields whose sources disagree. Absent when they agree, which is the norm. */
   conflicts?: ConflictSpec[];
   runtimes: Runtime[];
@@ -208,6 +215,7 @@ export interface RawUnit {
   shapes?: ShapeSpec[];
   enums?: EnumSpec[];
   members?: MemberSpec[];
+  permissions?: string[];
   runtimeHint?: Runtime;
   sourceFile: string; // path relative to the cache dir
   sourceKind: RawSourceKind;

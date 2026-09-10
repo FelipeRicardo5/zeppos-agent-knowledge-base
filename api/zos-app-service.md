@@ -13,7 +13,9 @@
 
 ### `@zos/app-service.exit`
 
-Called in The App Service, it will exit the service and will not affect the foreground page. permission code: `device:os.bg_service`
+Called in The App Service, it will exit the service and will not affect the foreground page.
+
+**Requires in `app.json`**: `device:os.bg_service` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function exit(): void
@@ -21,7 +23,9 @@ function exit(): void
 
 ### `@zos/app-service.getAllAppServices`
 
-Get the list of running App services, used to query the service status. permission code: `device:os.bg_service`
+Get the list of running App services, used to query the service status.
+
+**Requires in `app.json`**: `device:os.bg_service` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function getAllAppServices(): Result
@@ -29,7 +33,9 @@ function getAllAppServices(): Result
 
 ### `@zos/app-service.start`
 
-Start the specified App service, return the result through the callback function. permission code: `device:os.bg_service`
+Start the specified App service, return the result through the callback function.
+
+**Requires in `app.json`**: `device:os.bg_service` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function start(option: Option): Result
@@ -67,7 +73,9 @@ function start(option: Option): Result
 
 ### `@zos/app-service.stop`
 
-Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function. permission code: `device:os.bg_service`
+Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function.
+
+**Requires in `app.json`**: `device:os.bg_service` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function stop(option: Option): Result

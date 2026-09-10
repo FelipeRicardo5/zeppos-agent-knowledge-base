@@ -39,7 +39,9 @@ function App(option: Option): Result
 
 ### `@zos/global.AppService`
 
-Register an App Service in the Mini Program, specify the lifecycle callback for the current App Service, etc. Each App Service file must call the `AppService()` constructor only once. permission code: `device:os.bg_service`
+Register an App Service in the Mini Program, specify the lifecycle callback for the current App Service, etc. Each App Service file must call the `AppService()` constructor only once.
+
+**Requires in `app.json`**: `device:os.bg_service` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function AppService(option: Option): Result

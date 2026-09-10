@@ -14,7 +14,9 @@
 
 ### `@zos/user.addHealthData`
 
-Set user health data information. permission code: `data:user.health`
+Set user health data information.
+
+**Requires in `app.json`**: `data:user.health` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function addHealthData(option: Option): Result
@@ -41,7 +43,9 @@ User not specified
 
 ### `@zos/user.getProfile`
 
-Get user information. permission code: `data:user.info`
+Get user information.
+
+**Requires in `app.json`**: `data:user.info` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function getProfile(): Result

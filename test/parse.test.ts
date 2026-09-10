@@ -70,11 +70,23 @@ describe("parseMarkdown (docs-reference front)", () => {
   });
 
   it("drops the admonition markers but keeps what is inside them", async () => {
-    // The permission code a symbol needs is stated inside a `:::info` block.
+    // The permission a symbol needs is stated inside a `:::info` block, so the
+    // markers have to go while the content survives.
     const unit = byId(await parseMarkdown(CACHE)).get("@zos/ui.openInspector");
 
     assert.doesNotMatch(unit?.description ?? "", /:::/);
-    assert.match(unit?.description ?? "", /permission code: `device:os.debug`/);
+    assert.ok(unit?.description, "the prose inside the block is the description");
+  });
+
+  it("lifts the permission code out of the prose into a field", async () => {
+    // An undeclared permission fails at runtime, not at build, so the answer
+    // has to be a lookup rather than a regex over a description — which is what
+    // the manifest join used to be. Leaving the note in the prose also made 35
+    // symbols read as disagreeing with `static/llms`, which omits it.
+    const unit = byId(await parseMarkdown(CACHE)).get("@zos/ui.openInspector");
+
+    assert.deepEqual(unit?.permissions, ["device:os.debug"]);
+    assert.doesNotMatch(unit?.description ?? "", /permission code/);
   });
 
   it("never lets the API_LEVEL badge into the description", async () => {

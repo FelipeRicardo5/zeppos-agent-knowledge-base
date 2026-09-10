@@ -26,7 +26,9 @@
 
 ### `@zos/alarm.cancel`
 
-Cancels the set timer, if the timer is set to persist and also cancels the persistence. permission code: `device:os.alarm`
+Cancels the set timer, if the timer is set to persist and also cancels the persistence.
+
+**Requires in `app.json`**: `device:os.alarm` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function cancel(option: Option): Result
@@ -40,7 +42,9 @@ function cancel(option: Option): Result
 
 ### `@zos/alarm.getAllAlarms`
 
-Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence. permission code: `device:os.alarm`
+Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence.
+
+**Requires in `app.json`**: `device:os.alarm` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function getAllAlarms(): Array<number>
@@ -76,7 +80,9 @@ Specify the repetition period as year
 
 ### `@zos/alarm.set`
 
-Support for persistent timers to wake up pages of Mini Program. permission code: `device:os.alarm`
+Support for persistent timers to wake up pages of Mini Program.
+
+**Requires in `app.json`**: `device:os.alarm` — see [`../manifest/index.md`](../manifest/index.md).
 
 ```ts
 function set(option: Option): Result

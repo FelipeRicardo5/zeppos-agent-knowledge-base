@@ -223,6 +223,7 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
     // the reference front produces these today, so there is nothing to
     // reconcile yet — this states the rule before a second source arrives.
     const withMembers = ranked.find((u) => u.members !== undefined);
+    const withPermissions = ranked.find((u) => u.permissions !== undefined);
     // Unioned, not prioritized: a symbol documented under the Device App API and
     // also seen in a watchface sample is valid in both, so both are evidence. The
     // sort keeps the persisted JSON identical whatever order the walk produced.
@@ -239,6 +240,7 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
       shapes: withShapes?.shapes,
       enums: mergeEnums(ranked),
       members: withMembers?.members,
+      permissions: withPermissions?.permissions,
       conflicts: detectConflicts(ranked),
       runtimes,
       source: primary.sourceKind,

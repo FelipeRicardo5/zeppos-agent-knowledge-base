@@ -55,7 +55,11 @@ const COLUMNS: Record<string, keyof PropSpec> = {
  */
 export function cells(line: string): string[] | undefined {
   const trimmed = line.trim();
-  if (!trimmed.startsWith("|")) return undefined;
+  // The outer pipes are optional in markdown and four upstream tables omit them
+  // — `hmSensor/createSensor.mdx` writes `Value|Description`, and
+  // `related-resources/physical-keys.mdx` does the same three times. Requiring a
+  // leading pipe dropped those tables without erroring.
+  if (!trimmed.includes("|")) return undefined;
   return trimmed
     .replace(/^\|/, "")
     .replace(/\|$/, "")
@@ -199,19 +203,26 @@ export function extractShapes(content: string): ShapeSpec[] {
 /** Column header -> the field it fills, for a `Value` table. */
 const ENUM_COLUMNS: Record<string, keyof EnumMember> = {
   value: "value",
+  // `hmFS/open.mdx` and `open_asset.mdx` head the column this way instead. The
+  // rows are the `FLAG` constants — `O_RDONLY`, `O_CREAT` — which is the one
+  // thing you cannot call `open` without.
+  optionalproperties: "value",
+  optionalproperty: "value",
   description: "description",
   type: "type",
   api_level: "apiLevel",
 };
 
 /**
- * `align.CENTER_H`, `text_style.WRAP`, `ecp_dp.SECP192K1` — a member written the
- * way code writes it. The prefix is the enum, the suffix the member.
+ * `align.CENTER_H`, `text_style.WRAP`, `hmUI.data_type.STEP` — a member written
+ * the way code writes it. Everything before the last dot is the enum, the
+ * suffix is the member; the prefix may itself be dotted, because the watchface
+ * API is reached through a global and writes `hmUI.align.LEFT`.
  *
  * The suffix must start uppercase. Every documented member does, and it keeps a
  * prose cell that happens to contain a dot from being read as a member.
  */
-const QUALIFIED_MEMBER_RE = /^([a-z_][A-Za-z0-9_]*)\.([A-Z][A-Za-z0-9_]*)$/;
+const QUALIFIED_MEMBER_RE = /^((?:[a-z_][A-Za-z0-9_]*\.)*[a-z_][A-Za-z0-9_]*)\.([A-Z][A-Za-z0-9_]*)$/;
 
 /** A row that says the list goes on rather than naming a value. */
 const CONTINUES_RE = /^(?:\.{2,}|…)$/;
@@ -277,7 +288,7 @@ function valueTables(content: string): ValueTable[] {
     if (isSeparator(row)) return;
 
     if (header === undefined) {
-      // A `Value` table is one whose *first* column is headed Value. Two checks,
+      // A value table is one whose *first* column names the value. Two checks,
       // and the second one is not optional: `sensor/BloodOxygen.mdx` documents a
       // `Result` shape whose first *data* row is `| value | number | ... |`, so
       // matching on the cell alone promoted a data row to a header and invented
@@ -285,7 +296,8 @@ function valueTables(content: string): ValueTable[] {
       // the line a separator follows — that is the only structural difference
       // between the two, and markdown guarantees it.
       const next = cells(lines[index + 1] ?? "");
-      if (normalizeHeader(row[0] ?? "") === "value" && next !== undefined && isSeparator(next)) {
+      const first = normalizeHeader(row[0] ?? "");
+      if (ENUM_COLUMNS[first] === "value" && next !== undefined && isSeparator(next)) {
         header = row;
       }
       return;
@@ -382,8 +394,12 @@ export function extractEnums(content: string): EnumSpec[] {
 //                 function that happens to be documented beside the widget. One
 //                 case in 257, and the page states the evidence to catch it.
 
-/** A `Methods` heading at any depth, capturing the depth. */
-const METHODS_HEADING_RE = /^(#{2,5})\s+Methods\s*$/;
+/**
+ * A `Methods` heading at any depth, capturing the depth. Singular too: one page
+ * in the whole corpus writes `## Method`, and it is `watchface/api/hmBle.mdx`,
+ * whose six functions are the watchface side of Bluetooth.
+ */
+const METHODS_HEADING_RE = /^(#{2,5})\s+Methods?\s*$/;
 
 /** Any ATX heading, capturing its depth and text. */
 const HEADING_RE = /^(#{1,6})\s+(.+?)\s*$/;
@@ -456,10 +472,13 @@ export function extractMembers(content: string): MemberSpec[] {
 
     starts.forEach((start, nth) => {
       const end = starts[nth + 1] ?? region.lines.length;
-      // `### deleteKeyboard()` — the parentheses are the page's, not the name's.
+      // The parentheses are the page's, not the name's, and they may hold an
+      // argument list: `### deleteKeyboard()` in the reference tree, but
+      // `### send(data, size)` on `watchface/api/hmBle.mdx`. Stripped before
+      // anything else, because the import check below matches on the name.
       const name = (region.lines[start].match(HEADING_RE) as RegExpMatchArray)[2]
         .replace(/`/g, "")
-        .replace(/\(\s*\)$/, "")
+        .replace(/\([^)]*\)\s*$/, "")
         .trim();
       const body = region.lines.slice(start + 1, end);
       const text = body.join("\n");

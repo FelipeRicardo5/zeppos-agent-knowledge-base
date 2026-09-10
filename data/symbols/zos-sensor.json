@@ -63,13 +63,65 @@
           "name": "setFreqMode",
           "description": "Set the mode of trigger frequency, `mode` value reference frequency mode constant",
           "signature": "setFreqMode(mode: number): void",
-          "apiLevel": 3
+          "apiLevel": 3,
+          "enums": [
+            {
+              "name": "Frequency Mode",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "FREQ_MODE_LOW",
+                  "description": "Low power mode with low trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_NORMAL",
+                  "description": "Normal power consumption mode, medium trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_HIGH",
+                  "description": "High power consumption mode with high trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "getFreqMode",
           "description": "Get the mode of trigger frequency, result value reference frequency mode constant",
           "signature": "getFreqMode(): number",
-          "apiLevel": 3
+          "apiLevel": 3,
+          "enums": [
+            {
+              "name": "Frequency Mode",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "FREQ_MODE_LOW",
+                  "description": "Low power mode with low trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_NORMAL",
+                  "description": "Normal power consumption mode, medium trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_HIGH",
+                  "description": "High power consumption mode with high trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
+            }
+          ]
         }
       ],
       "permissions": [
@@ -650,13 +702,65 @@
           "name": "setFreqMode",
           "description": "Set the mode of trigger frequency, `mode` value reference frequency mode constant",
           "signature": "setFreqMode(mode: number): void",
-          "apiLevel": 4
+          "apiLevel": 4,
+          "enums": [
+            {
+              "name": "Frequency Mode",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "FREQ_MODE_LOW",
+                  "description": "Low power mode with low trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_NORMAL",
+                  "description": "Normal power consumption mode, medium trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_HIGH",
+                  "description": "High power consumption mode with high trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "getFreqMode",
           "description": "Get the mode of trigger frequency, result value reference frequency mode constant",
           "signature": "getFreqMode(): number",
-          "apiLevel": 4
+          "apiLevel": 4,
+          "enums": [
+            {
+              "name": "Frequency Mode",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "FREQ_MODE_LOW",
+                  "description": "Low power mode with low trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_NORMAL",
+                  "description": "Normal power consumption mode, medium trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_HIGH",
+                  "description": "High power consumption mode with high trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
+            }
+          ]
         }
       ],
       "permissions": [
@@ -1249,13 +1353,65 @@
           "name": "setFreqMode",
           "description": "Set the mode of trigger frequency, `mode` value reference frequency mode constant",
           "signature": "setFreqMode(mode: number): void",
-          "apiLevel": 3
+          "apiLevel": 3,
+          "enums": [
+            {
+              "name": "Frequency Mode",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "FREQ_MODE_LOW",
+                  "description": "Low power mode with low trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_NORMAL",
+                  "description": "Normal power consumption mode, medium trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_HIGH",
+                  "description": "High power consumption mode with high trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "getFreqMode",
           "description": "Get the mode of trigger frequency, result value reference frequency mode constant",
           "signature": "getFreqMode(): number",
-          "apiLevel": 3
+          "apiLevel": 3,
+          "enums": [
+            {
+              "name": "Frequency Mode",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "FREQ_MODE_LOW",
+                  "description": "Low power mode with low trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_NORMAL",
+                  "description": "Normal power consumption mode, medium trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FREQ_MODE_HIGH",
+                  "description": "High power consumption mode with high trigger frequency",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
+            }
+          ]
         }
       ],
       "permissions": [
@@ -2019,7 +2175,27 @@
           "name": "getHourFormat",
           "description": "Get the current system time format, 12-hour format or 24-hour format，value reference hour format constants",
           "signature": "getHourFormat(): number",
-          "apiLevel": 2.1
+          "apiLevel": 2.1,
+          "enums": [
+            {
+              "name": "Hour format constants",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "TIME_HOUR_FORMAT_12",
+                  "description": "12-hour format",
+                  "apiLevel": 2.1,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "TIME_HOUR_FORMAT_24",
+                  "description": "24-hour format",
+                  "apiLevel": 2.1,
+                  "confidence": "OFFICIAL"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "getFormatHour",
@@ -2201,6 +2377,68 @@
                   "type": "number",
                   "description": "Duration of vibration",
                   "apiLevel": 3.6
+                }
+              ]
+            }
+          ],
+          "enums": [
+            {
+              "name": "Vibration motor mode constants",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "VIBRATOR_SCENE_SHORT_LIGHT",
+                  "description": "Light vibration intensity and short time (20ms)",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "VIBRATOR_SCENE_SHORT_MIDDLE",
+                  "description": "Medium vibration intensity, short time (20ms)",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "VIBRATOR_SCENE_SHORT_STRONG",
+                  "description": "High vibration intensity and short time (20ms)",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "VIBRATOR_SCENE_DURATION",
+                  "description": "High vibration intensity, lasting 600ms",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "VIBRATOR_SCENE_DURATION_LONG",
+                  "description": "High vibration intensity, lasting 1000ms",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "VIBRATOR_SCENE_STRONG_REMINDER",
+                  "description": "High vibration intensity, four vibrations in 1200ms, can be used for stronger reminders",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "VIBRATOR_SCENE_NOTIFICATION",
+                  "description": "Two short, continuous vibrations, consistent with the watch message notification vibration feedback",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "VIBRATOR_SCENE_CALL",
+                  "description": "High vibration intensity, single vibration twice in 500ms, continuous vibration, need to manually stop, consistent with the watch call vibration feedback",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "VIBRATOR_SCENE_TIMER",
+                  "description": "High vibration intensity, single long vibration 500ms, continuous vibration, need to manually stop, consistent with the watch alarm clock, countdown vibration feedback",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
                 }
               ]
             }

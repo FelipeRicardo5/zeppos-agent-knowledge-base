@@ -138,6 +138,14 @@ function setScrollMode(option: Option): Result
 | `on_page` | `(pageIndex: number) =&#62; void` | not stated | — | >= 3 | Callback function after page flipping, pageIndex is the page index after page flipping, and the index starts from 0 |
 | `crown_enable` | `boolean` | not stated | — | >= 3 | Whether to respond to crown events, the default response, you can use the crown to control page turning |
 
+**Page scroll mode constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `SCROLL_MODE_FREE` | >= 2 | Free scrolling mode, system default scrolling mode |
+| `SCROLL_MODE_SWIPER` | >= 2 | Swiper mode, vertical rotating map, walking lights, by configuring the height and number of individual pages can achieve the whole screen scrolling effect |
+| `SCROLL_MODE_SWIPER_HORIZONTAL` | >= 2.1 | Swiper mode, horizontal rotating map, walking lights, by configuring the width and number of individual pages can achieve the whole screen scrolling effect |
+
 ### `@zos/page.swipeToIndex`
 
 Scrolls the page to the Swiper's target item, only if the current page scroll mode is `SCROLL_MODE_SWIPER`.
@@ -152,3 +160,10 @@ function swipeToIndex(option: Option): void
 | --- | --- | --- | --- | --- | --- |
 | `index` | `number` | not stated | — | >= 2 | Index of the target project, starting from 0 |
 | `animation` | `string` | not stated | `SCROLL_ANIMATION_SMOOTH` | >= 2 | Scrolling animation, value reference page scrolling animation constants |
+
+**Page scroll mode constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `SCROLL_ANIMATION_NONE` | >= 2 | No animation, scroll directly to the corresponding position |
+| `SCROLL_ANIMATION_SMOOTH` | >= 2 | Scroll smoothly to the corresponding position |

@@ -247,6 +247,104 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "Timer repeats constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "REPEAT_DAY",
+              "description": "Specify the repetition period as day",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "REPEAT_HOUR",
+              "description": "Specify the repetition period as hour",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "REPEAT_MINUTE",
+              "description": "Specify the repetition period as minute",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "REPEAT_MONTH",
+              "description": "Specify the repetition period as month",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "REPEAT_ONCE",
+              "description": "Repeat once",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "REPEAT_WEEK",
+              "description": "Specify the repetition period as week",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "REPEAT_YEAR",
+              "description": "Specify the repetition period as year",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        },
+        {
+          "name": "Timer weekly constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "WEEK_FRI",
+              "description": "Friday",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEEK_MON",
+              "description": "Monday",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEEK_SAT",
+              "description": "Saturday",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEEK_SUN",
+              "description": "Sunday",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEEK_THU",
+              "description": "Thursday",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEEK_TUE",
+              "description": "Tuesday",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEEK_WED",
+              "description": "Wednesday",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "permissions": [
         "device:os.alarm"
       ],

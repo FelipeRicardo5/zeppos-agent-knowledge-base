@@ -208,6 +208,16 @@ const ENUM_COLUMNS: Record<string, keyof EnumMember> = {
   // thing you cannot call `open` without.
   optionalproperties: "value",
   optionalproperty: "value",
+  // A `#### Constants` table under a symbol: 32 of them across 26 pages, 130
+  // distinct names. Most are reachable anyway, because `static/llms` repeats
+  // them and the llms front reads module constants — but reading them here
+  // answers a different question. The 39 rows under `router/launchApp.mdx` are
+  // the values *that function accepts*, which is a call shape, not a list of
+  // things the module exports. The 9 `VIBRATOR_SCENE_*` on `sensor/Vibrator.mdx`
+  // were reachable nowhere at all; the `@zeppos/device-types` package declares
+  // them, which is how the gap surfaced.
+  constant: "value",
+  constants: "value",
   description: "description",
   type: "type",
   api_level: "apiLevel",

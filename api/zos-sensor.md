@@ -117,6 +117,14 @@ Set the mode of trigger frequency, `mode` value reference frequency mode constan
 setFreqMode(mode: number): void
 ```
 
+**Frequency Mode**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `FREQ_MODE_LOW` | >= 3 | Low power mode with low trigger frequency |
+| `FREQ_MODE_NORMAL` | >= 3 | Normal power consumption mode, medium trigger frequency |
+| `FREQ_MODE_HIGH` | >= 3 | High power consumption mode with high trigger frequency |
+
 #### `@zos/sensor.Accelerometer.getFreqMode`
 
 Get the mode of trigger frequency, result value reference frequency mode constant
@@ -124,6 +132,14 @@ Get the mode of trigger frequency, result value reference frequency mode constan
 ```ts
 getFreqMode(): number
 ```
+
+**Frequency Mode**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `FREQ_MODE_LOW` | >= 3 | Low power mode with low trigger frequency |
+| `FREQ_MODE_NORMAL` | >= 3 | Normal power consumption mode, medium trigger frequency |
+| `FREQ_MODE_HIGH` | >= 3 | High power consumption mode with high trigger frequency |
 
 ### `@zos/sensor.Barometer`
 
@@ -574,6 +590,14 @@ Set the mode of trigger frequency, `mode` value reference frequency mode constan
 setFreqMode(mode: number): void
 ```
 
+**Frequency Mode**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `FREQ_MODE_LOW` | >= 3 | Low power mode with low trigger frequency |
+| `FREQ_MODE_NORMAL` | >= 3 | Normal power consumption mode, medium trigger frequency |
+| `FREQ_MODE_HIGH` | >= 3 | High power consumption mode with high trigger frequency |
+
 #### `@zos/sensor.Compass.getFreqMode`
 
 Get the mode of trigger frequency, result value reference frequency mode constant
@@ -581,6 +605,14 @@ Get the mode of trigger frequency, result value reference frequency mode constan
 ```ts
 getFreqMode(): number
 ```
+
+**Frequency Mode**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `FREQ_MODE_LOW` | >= 3 | Low power mode with low trigger frequency |
+| `FREQ_MODE_NORMAL` | >= 3 | Normal power consumption mode, medium trigger frequency |
+| `FREQ_MODE_HIGH` | >= 3 | High power consumption mode with high trigger frequency |
 
 ### `@zos/sensor.Distance`
 
@@ -977,6 +1009,14 @@ Set the mode of trigger frequency, `mode` value reference frequency mode constan
 setFreqMode(mode: number): void
 ```
 
+**Frequency Mode**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `FREQ_MODE_LOW` | >= 3 | Low power mode with low trigger frequency |
+| `FREQ_MODE_NORMAL` | >= 3 | Normal power consumption mode, medium trigger frequency |
+| `FREQ_MODE_HIGH` | >= 3 | High power consumption mode with high trigger frequency |
+
 #### `@zos/sensor.Gyroscope.getFreqMode`
 
 Get the mode of trigger frequency, result value reference frequency mode constant
@@ -984,6 +1024,14 @@ Get the mode of trigger frequency, result value reference frequency mode constan
 ```ts
 getFreqMode(): number
 ```
+
+**Frequency Mode**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `FREQ_MODE_LOW` | >= 3 | Low power mode with low trigger frequency |
+| `FREQ_MODE_NORMAL` | >= 3 | Normal power consumption mode, medium trigger frequency |
+| `FREQ_MODE_HIGH` | >= 3 | High power consumption mode with high trigger frequency |
 
 ### `@zos/sensor.HeartRate`
 
@@ -1692,6 +1740,13 @@ Get the current system time format, 12-hour format or 24-hour format，value ref
 getHourFormat(): number
 ```
 
+**Hour format constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `TIME_HOUR_FORMAT_12` | >= 2.1 | 12-hour format |
+| `TIME_HOUR_FORMAT_24` | >= 2.1 | 24-hour format |
+
 #### `@zos/sensor.Time.getFormatHour`
 
 Get the number of hours in the current time format (12-hour format or 24-hour format)
@@ -1865,6 +1920,20 @@ start(option?: Option | Array<Action>): void
 | --- | --- | --- | --- | --- | --- |
 | `type` | `number` | not stated | — | >= 3.6 | Vibration Scene Type |
 | `duration` | `number` | not stated | — | >= 3.6 | Duration of vibration |
+
+**Vibration motor mode constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `VIBRATOR_SCENE_SHORT_LIGHT` | >= 2 | Light vibration intensity and short time (20ms) |
+| `VIBRATOR_SCENE_SHORT_MIDDLE` | >= 2 | Medium vibration intensity, short time (20ms) |
+| `VIBRATOR_SCENE_SHORT_STRONG` | >= 2 | High vibration intensity and short time (20ms) |
+| `VIBRATOR_SCENE_DURATION` | >= 2 | High vibration intensity, lasting 600ms |
+| `VIBRATOR_SCENE_DURATION_LONG` | >= 2 | High vibration intensity, lasting 1000ms |
+| `VIBRATOR_SCENE_STRONG_REMINDER` | >= 2 | High vibration intensity, four vibrations in 1200ms, can be used for stronger reminders |
+| `VIBRATOR_SCENE_NOTIFICATION` | >= 2 | Two short, continuous vibrations, consistent with the watch message notification vibration feedback |
+| `VIBRATOR_SCENE_CALL` | >= 2 | High vibration intensity, single vibration twice in 500ms, continuous vibration, need to manually stop, consistent with the watch call vibration feedback |
+| `VIBRATOR_SCENE_TIMER` | >= 2 | High vibration intensity, single long vibration 500ms, continuous vibration, need to manually stop, consistent with the watch alarm clock, countdown vibration feedback |
 
 #### `@zos/sensor.Vibrator.stop`
 

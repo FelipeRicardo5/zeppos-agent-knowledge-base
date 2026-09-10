@@ -84,6 +84,32 @@
       "description": "Get the current system date format.",
       "minApiLevel": 2,
       "signature": "function getDateFormat(): Result",
+      "enums": [
+        {
+          "name": "Date format constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "DATE_FORMAT_DMY",
+              "description": "day-month-year",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "DATE_FORMAT_MDY",
+              "description": "month-day-year",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "DATE_FORMAT_YMD",
+              "description": "year-month-day",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -100,6 +126,26 @@
       "description": "Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user, not to represent the units of the data, the data units refer to the interface description of the corresponding data.",
       "minApiLevel": 2,
       "signature": "function getDistanceUnit(): Result",
+      "enums": [
+        {
+          "name": "Distance unit constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "DISTANCE_UNIT_IMPERIAL",
+              "description": "imperial system",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "DISTANCE_UNIT_METRIC",
+              "description": "metric system",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -266,6 +312,26 @@
       "description": "Get the temperature units set by the user.",
       "minApiLevel": 2.1,
       "signature": "function getTemperatureUnit(): Result",
+      "enums": [
+        {
+          "name": "Temperature unit constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "TEMPERATURE_UNIT_CENTIGRADE",
+              "description": "Celsius temperature",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "TEMPERATURE_UNIT_FAHRENHEIT",
+              "description": "Fahrenheit temperature",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -282,6 +348,26 @@
       "description": "Get the current system time format, 12-hour format or 24-hour format.",
       "minApiLevel": 2.1,
       "signature": "function getTimeFormat(): Result",
+      "enums": [
+        {
+          "name": "Hour format constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "TIME_FORMAT_12",
+              "description": "12-hour format",
+              "apiLevel": 2.1,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "TIME_FORMAT_24",
+              "description": "24-hour format",
+              "apiLevel": 2.1,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -314,6 +400,38 @@
       "description": "Gets the weight unit set by the user.",
       "minApiLevel": 2,
       "signature": "function getWeightUnit(): Result",
+      "enums": [
+        {
+          "name": "Weight unit constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "WEIGHT_UNIT_JIN",
+              "description": "Jin",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEIGHT_UNIT_KILOGRAM",
+              "description": "Kilogram",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEIGHT_UNIT_POUND",
+              "description": "Pound",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEIGHT_UNIT_STONE",
+              "description": "Stone",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

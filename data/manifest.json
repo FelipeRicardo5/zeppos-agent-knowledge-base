@@ -1,5 +1,5 @@
 {
-  "lastSyncAt": "2026-09-10T18:16:27.664Z",
+  "lastSyncAt": "2026-09-10T18:27:01.279Z",
   "sources": {
     "zeppos-docs": {
       "commit": "c08725b2cfa3398d9e4da9379a2d83abaf3475a6"
@@ -9,7 +9,7 @@
     }
   },
   "recordCounts": {
-    "docs-reference": 251,
+    "docs-reference": 253,
     "docs-phone-api": 36,
     "docs-watchface": 105,
     "llms": 443,

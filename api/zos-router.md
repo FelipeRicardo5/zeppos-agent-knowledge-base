@@ -78,6 +78,50 @@ function checkSystemApp(option: Option): void
 | --- | --- | --- | --- | --- | --- |
 | `appId` | `number` | not stated | — | >= 3 | ID of the system App to be jumped to, value refers to the system App ID constant |
 
+**System App ID constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `SYSTEM_APP_ALARM` | >= 3 | Alarm |
+| `SYSTEM_APP_ALEAX` | >= 3 | Alexa |
+| `SYSTEM_APP_ALIPAY` | >= 3 | Alipay |
+| `SYSTEM_APP_ALTIMETER` | >= 3 | Barometer |
+| `SYSTEM_APP_BODY_COMPOSITION` | >= 3 | Body Composition |
+| `SYSTEM_APP_BREATH` | >= 3 | Breathe |
+| `SYSTEM_APP_CALENDAR` | >= 3 | Calendar |
+| `SYSTEM_APP_CAMERA` | >= 3 | Camera Remote |
+| `SYSTEM_APP_CARD` | >= 3 | Cards |
+| `SYSTEM_APP_CLUB_CARD` | >= 3 | Membership Card |
+| `SYSTEM_APP_COMPASS` | >= 3 | Compass |
+| `SYSTEM_APP_COUNTDOWN` | >= 3 | Timer |
+| `SYSTEM_APP_FINE_PHONE` | >= 3 | Find My Phone |
+| `SYSTEM_APP_HR` | >= 3 | Heart Rate |
+| `SYSTEM_APP_MEASUREMENT` | >= 3 | One-tap Measuring |
+| `SYSTEM_APP_MENSTRUAL` | >= 3 | Cycle Tracking |
+| `SYSTEM_APP_MUSIC` | >= 3 | Music |
+| `SYSTEM_APP_NETEASE_MUSIC` | >= 3 | NetEase Music |
+| `SYSTEM_APP_PAI` | >= 3 | PAI |
+| `SYSTEM_APP_PHONE` | >= 3 | Phone |
+| `SYSTEM_APP_POMODORO` | >= 3 | Pomodoro Timer |
+| `SYSTEM_APP_PRESSURE` | >= 3 | Stress |
+| `SYSTEM_APP_READINESS` | >= 3 | Readiness |
+| `SYSTEM_APP_SETTING` | >= 3 | Settings |
+| `SYSTEM_APP_SLEEP` | >= 3 | Sleep |
+| `SYSTEM_APP_SPO2` | >= 3 | Blood Oxygen |
+| `SYSTEM_APP_SPORT` | >= 3 | Workout |
+| `SYSTEM_APP_SPORT_HISTORY` | >= 3 | Workout History |
+| `SYSTEM_APP_SPORT_STATUS` | >= 3 | Workout Status |
+| `SYSTEM_APP_STATUS` | >= 3 | Activity |
+| `SYSTEM_APP_STOPWATCH` | >= 3 | Stopwatch |
+| `SYSTEM_APP_SUN_AND_MOON` | >= 3 | Sun & Moon |
+| `SYSTEM_APP_THERMOMETER` | >= 3 | Thermometer |
+| `SYSTEM_APP_TODO_LIST` | >= 3 | To Do |
+| `SYSTEM_APP_VOICE_MEMO` | >= 3 | Voice Memos |
+| `SYSTEM_APP_WEATHER` | >= 3 | Weather |
+| `SYSTEM_APP_WEPAY` | >= 3 | Weixin Pay |
+| `SYSTEM_APP_WORLD_CLOCK` | >= 3 | World Clock |
+| `SYSTEM_APP_ZEPP_COACH` | >= 3 | Zepp Coach |
+
 ### `@zos/router.clearLaunchAppTimeout`
 
 Cancel the wakeup Mini Program timer created by `setLaunchAppTimeout`.
@@ -132,6 +176,50 @@ function launchApp(option: Option): void
 | `url` | `string` | not stated | — | >= 2 | path |
 | `native` | `boolean` | not stated | `false` | >= 3 | Whether to jump to the system App |
 | `params` | `string&#124;object` | not stated | — | >= 2 | The argument passed to the app.js lifecycle onCreate supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string |
+
+**System App ID constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `SYSTEM_APP_ALARM` | >= 3 | Alarm |
+| `SYSTEM_APP_ALEAX` | >= 3 | Alexa |
+| `SYSTEM_APP_ALIPAY` | >= 3 | Alipay |
+| `SYSTEM_APP_ALTIMETER` | >= 3 | Barometer |
+| `SYSTEM_APP_BODY_COMPOSITION` | >= 3 | Body Composition |
+| `SYSTEM_APP_BREATH` | >= 3 | Breathe |
+| `SYSTEM_APP_CALENDAR` | >= 3 | Calendar |
+| `SYSTEM_APP_CAMERA` | >= 3 | Camera Remote |
+| `SYSTEM_APP_CARD` | >= 3 | Cards |
+| `SYSTEM_APP_CLUB_CARD` | >= 3 | Membership Card |
+| `SYSTEM_APP_COMPASS` | >= 3 | Compass |
+| `SYSTEM_APP_COUNTDOWN` | >= 3 | Timer |
+| `SYSTEM_APP_FINE_PHONE` | >= 3 | Find My Phone |
+| `SYSTEM_APP_HR` | >= 3 | Heart Rate |
+| `SYSTEM_APP_MEASUREMENT` | >= 3 | One-tap Measuring |
+| `SYSTEM_APP_MENSTRUAL` | >= 3 | Cycle Tracking |
+| `SYSTEM_APP_MUSIC` | >= 3 | Music |
+| `SYSTEM_APP_NETEASE_MUSIC` | >= 3 | NetEase Music |
+| `SYSTEM_APP_PAI` | >= 3 | PAI |
+| `SYSTEM_APP_PHONE` | >= 3 | Phone |
+| `SYSTEM_APP_POMODORO` | >= 3 | Pomodoro Timer |
+| `SYSTEM_APP_PRESSURE` | >= 3 | Stress |
+| `SYSTEM_APP_READINESS` | >= 3 | Readiness |
+| `SYSTEM_APP_SETTING` | >= 3 | Settings |
+| `SYSTEM_APP_SLEEP` | >= 3 | Sleep |
+| `SYSTEM_APP_SPO2` | >= 3 | Blood Oxygen |
+| `SYSTEM_APP_SPORT` | >= 3 | Workout |
+| `SYSTEM_APP_SPORT_HISTORY` | >= 3 | Workout History |
+| `SYSTEM_APP_SPORT_STATUS` | >= 3 | Workout Status |
+| `SYSTEM_APP_STATUS` | >= 3 | Activity |
+| `SYSTEM_APP_STOPWATCH` | >= 3 | Stopwatch |
+| `SYSTEM_APP_SUN_AND_MOON` | >= 3 | Sun & Moon |
+| `SYSTEM_APP_THERMOMETER` | >= 3 | Thermometer |
+| `SYSTEM_APP_TODO_LIST` | >= 3 | To Do |
+| `SYSTEM_APP_VOICE_MEMO` | >= 3 | Voice Memos |
+| `SYSTEM_APP_WEATHER` | >= 3 | Weather |
+| `SYSTEM_APP_WEPAY` | >= 3 | Weixin Pay |
+| `SYSTEM_APP_WORLD_CLOCK` | >= 3 | World Clock |
+| `SYSTEM_APP_ZEPP_COACH` | >= 3 | Zepp Coach |
 
 ### `@zos/router.push`
 

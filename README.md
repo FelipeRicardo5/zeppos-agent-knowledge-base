@@ -20,14 +20,14 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
 
-Fixture-based tests cover all nine parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (225 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all nine parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (226 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
 - **513 symbols** across **50 modules**, from all 241 reference pages + 36 phone-runtime entries + **89 watchface `hm*` pages** + 443 `static/llms` entries + 785 sample observations
 - 496 `OFFICIAL`, 17 `OBSERVED`
 - 353 symbols carry a minimum `API_LEVEL`; 367 carry a description; **178 carry a call signature and 147 carry property tables** — 1157 properties, 591 of them with their own minimum level
-- **27 value sets** on 24 symbols — 196 members, 124 of them stating their own minimum level. 146 come from a documented table and 50 from sample code, marked per member
+- **73 value sets** — 492 members, each stating its own minimum level where the table gives one. Some come from a documented table, some from sample code, marked per member
 - **257 instance members** on 46 symbols — what you call on a value rather than import: `new HeartRate().getCurrent()`, `localStorage.getItem(...)`. Every one carries a signature and prose, 44 state their own minimum level, and 60 of the shapes and 10 of the value sets above belong to a member rather than to the symbol
 - **every runtime is covered**: 375 Device App, **105 Watchface**, 21 Settings App, 20 Side Service, 12 Workout Extension — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records

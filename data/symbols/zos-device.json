@@ -70,6 +70,26 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "Screen shape",
+          "qualified": false,
+          "members": [
+            {
+              "value": "SCREEN_SHAPE_ROUND",
+              "description": "Round Screen",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SCREEN_SHAPE_SQUARE",
+              "description": "Square Screen",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "permissions": [
         "data:os.device.info"
       ],

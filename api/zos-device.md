@@ -35,6 +35,13 @@ function getDeviceInfo(): Result
 | `deviceColor` | `number` | not stated | — | >= 2 | Device color identification |
 | `uuid` | `string` | not stated | — | >= 4.2 | Device unique identifier, 32 bytes in length |
 
+**Screen shape**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `SCREEN_SHAPE_ROUND` | >= 2 | Round Screen |
+| `SCREEN_SHAPE_SQUARE` | >= 2 | Square Screen |
+
 ### `@zos/device.getDiskInfo`
 
 Gets disk information.

@@ -135,6 +135,15 @@ Get the current scene where the Mini Program is running.
 function getScene(): Result
 ```
 
+**Current scene running Mini Program constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `SCENE_AOD` | >= 2 | In the rest screen screen |
+| `SCENE_APP` | >= 2 | In Mini Program |
+| `SCENE_SETTINGS` | >= 2 | In the Mini Program configuration or dial edit page |
+| `SCENE_WATCHFACE` | >= 2 | In watchface interface |
+
 ### `@zos/app.queryPermission`
 
 Check the authorization status of Mini Program permissions.

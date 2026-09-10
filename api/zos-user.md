@@ -61,3 +61,11 @@ function getProfile(): Result
 | `gender` | `number` | not stated | — | >= 2 | User gender, value refer to user gender constants |
 | `nickName` | `string` | not stated | — | >= 2 | User's nickname |
 | `region` | `string` | not stated | — | >= 2 | ISO code of the country or region where the user account is registered |
+
+**User gender constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `GENDER_FEMALE` | >= 2 | Female |
+| `GENDER_MALE` | >= 2 | Male |
+| `GENDER_UNSPECIFIED` | >= 2 | User not specified |

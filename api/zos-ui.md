@@ -866,7 +866,7 @@ Play the pre-given image at the set frame rate to create an animation effect.
 | --- | --- | --- |
 | `inputType.CHAR` | >= 4 | Character keyboard |
 | `inputType.EMOJI` | >= 4 | Emoji keyboard |
-| `inputType.JSKB` | >= 4.2 | Custom Keyboard Widget |
+| `inputType.JSKB` | >= 4.2 | Custom keyboard |
 | `inputType.NUM` | >= 4 | Number keyboard |
 | `inputType.VOICE` | >= 4 | Voice input |
 
@@ -914,13 +914,13 @@ The keyboard API provides rich input interface capabilities, greatly simplifying
 
 **keyboard**
 
-| Value | Description |
-| --- | --- |
-| `keyboard.BACKSPACE` | — |
-| `keyboard.CANCEL` | — |
-| `keyboard.ENTER` | — |
-| `keyboard.SELECT` | — |
-| `keyboard.SWITCH` | — |
+| Value | Confidence | Description |
+| --- | --- | --- |
+| `keyboard.BACKSPACE` | OFFICIAL | Backspace delete |
+| `keyboard.CANCEL` | OBSERVED | — |
+| `keyboard.ENTER` | OFFICIAL | Confirm/submit input |
+| `keyboard.SELECT` | OFFICIAL | Enter keyboard selection |
+| `keyboard.SWITCH` | OFFICIAL | Switch keyboard input method |
 
 ### `@zos/ui.KEYBOARD`
 

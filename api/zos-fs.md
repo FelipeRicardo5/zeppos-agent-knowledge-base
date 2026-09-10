@@ -98,6 +98,18 @@ function openAssetsSync(option: Option): Result
 | `path` | `string` | not stated | — | >= 2 | path |
 | `flag` | `number` | not stated | `O_RDONLY` | >= 2 | Value refer to file open constants |
 
+**file open constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `O_APPEND` | >= 2 | Flag indicating that data will be appended to the end of the file |
+| `O_CREAT` | >= 2 | Flag indicating to create the file if it does not already exist |
+| `O_EXCL` | >= 2 | Flag indicating that opening a file should fail if the O_CREAT flag is set and the file already exists |
+| `O_RDONLY` | >= 2 | Flag indicating to open a file for read-only access |
+| `O_RDWR` | >= 2 | Flag indicating to open a file for read-write access |
+| `O_TRUNC` | >= 2 | Flag indicating that if the file exists and the file is opened successfully for write access, its length shall be truncated to zero |
+| `O_WRONLY` | >= 2 | Flag indicating to open a file for write-only access |
+
 ### `@zos/fs.openSync`
 
 Open the file in the `/data` directory of the Mini Program synchronously and get the file handle.
@@ -119,6 +131,18 @@ function openSync(option: Option): Result
 | Property | Type | Required | Default | Min API_LEVEL | Description |
 | --- | --- | --- | --- | --- | --- |
 | `appId` | `number` | not stated | — | >= 3 | Mini Program ID, you can open the file in the /data directory of the Mini Program with the corresponding ID |
+
+**file open constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `O_APPEND` | >= 2 | Flag indicating that data will be appended to the end of the file |
+| `O_CREAT` | >= 2 | Flag indicating to create the file if it does not already exist |
+| `O_EXCL` | >= 2 | Flag indicating that opening a file should fail if the O_CREAT flag is set and the file already exists |
+| `O_RDONLY` | >= 2 | Flag indicating to open a file for read-only access |
+| `O_RDWR` | >= 2 | Flag indicating to open a file for read-write access |
+| `O_TRUNC` | >= 2 | Flag indicating that if the file exists and the file is opened successfully for write access, its length shall be truncated to zero |
+| `O_WRONLY` | >= 2 | Flag indicating to open a file for write-only access |
 
 ### `@zos/fs.readdirSync`
 

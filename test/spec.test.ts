@@ -358,6 +358,33 @@ title: Multilingual Mapping
     assert.deepEqual(extractEnums(orphan), []);
   });
 
+  it("reads a `Constant` table as the values a symbol accepts", () => {
+    // `sensor/Vibrator.mdx`. 32 such tables across 26 pages; the llms front
+    // already reaches 121 of their 130 names as module constants, but that
+    // answers a different question — these 9 are the values `start` takes, and
+    // they were reachable nowhere at all. Surfaced by `@zeppos/device-types`
+    // declaring them when this base did not.
+    const vibrator = `##### Vibration motor mode constants
+
+| Constant                     | Description                        | API_LEVEL |
+| ---------------------------- | ---------------------------------- | --------- |
+| \`VIBRATOR_SCENE_SHORT_LIGHT\` | Light vibration, short time (20ms) | 2.0       |
+| \`VIBRATOR_SCENE_CALL\`        | Incoming call                      | 2.0       |
+`;
+
+    const [spec] = extractEnums(vibrator);
+
+    assert.equal(spec.name, "Vibration motor mode constants");
+    assert.equal(spec.qualified, false);
+    assert.deepEqual(
+      spec.members.map((m) => [m.value, m.apiLevel]),
+      [
+        ["VIBRATOR_SCENE_SHORT_LIGHT", 2],
+        ["VIBRATOR_SCENE_CALL", 2],
+      ],
+    );
+  });
+
   it("finds no enum on a page with no value table", () => {
     assert.deepEqual(extractEnums(SETTINGS_COMPONENT), []);
   });

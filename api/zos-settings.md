@@ -58,6 +58,14 @@ Get the current system date format.
 function getDateFormat(): Result
 ```
 
+**Date format constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `DATE_FORMAT_DMY` | >= 2 | day-month-year |
+| `DATE_FORMAT_MDY` | >= 2 | month-day-year |
+| `DATE_FORMAT_YMD` | >= 2 | year-month-day |
+
 ### `@zos/settings.getDistanceUnit`
 
 Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user, not to represent the units of the data, the data units refer to the interface description of the corresponding data.
@@ -65,6 +73,13 @@ Returns whether the current distance unit is metric or imperial. This method is 
 ```ts
 function getDistanceUnit(): Result
 ```
+
+**Distance unit constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `DISTANCE_UNIT_IMPERIAL` | >= 2 | imperial system |
+| `DISTANCE_UNIT_METRIC` | >= 2 | metric system |
 
 ### `@zos/settings.getLanguage`
 
@@ -128,6 +143,13 @@ Get the temperature units set by the user.
 function getTemperatureUnit(): Result
 ```
 
+**Temperature unit constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `TEMPERATURE_UNIT_CENTIGRADE` | >= 2 | Celsius temperature |
+| `TEMPERATURE_UNIT_FAHRENHEIT` | >= 2 | Fahrenheit temperature |
+
 ### `@zos/settings.getTimeFormat`
 
 Get the current system time format, 12-hour format or 24-hour format.
@@ -135,6 +157,13 @@ Get the current system time format, 12-hour format or 24-hour format.
 ```ts
 function getTimeFormat(): Result
 ```
+
+**Hour format constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `TIME_FORMAT_12` | >= 2.1 | 12-hour format |
+| `TIME_FORMAT_24` | >= 2.1 | 24-hour format |
 
 ### `@zos/settings.getWeightTarget`
 
@@ -151,6 +180,15 @@ Gets the weight unit set by the user.
 ```ts
 function getWeightUnit(): Result
 ```
+
+**Weight unit constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `WEIGHT_UNIT_JIN` | >= 2 | Jin |
+| `WEIGHT_UNIT_KILOGRAM` | >= 2 | Kilogram |
+| `WEIGHT_UNIT_POUND` | >= 2 | Pound |
+| `WEIGHT_UNIT_STONE` | >= 2 | Stone |
 
 ### `@zos/settings.TEMPERATURE_UNIT_CENTIGRADE`
 

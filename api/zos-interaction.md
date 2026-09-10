@@ -74,6 +74,13 @@ function createModal(option: Option): Modal
 | --- | --- | --- | --- | --- | --- |
 | `show` | `(isShow: boolean) =&#62; void` | not stated | — | >= 2 | Show or hide Modal |
 
+**Modal key name constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `MODAL_CANCEL` | >= 2 | Modal Cancel button |
+| `MODAL_CONFIRM` | >= 2 | Modal Confirm button |
+
 ### `@zos/interaction.GESTURE_DOWN`
 
 Gesture down slide
@@ -180,6 +187,17 @@ function onDigitalCrown(option: Option): void
 | --- | --- | --- | --- | --- | --- |
 | `callback` | `(key: Key, degree: Degree) =&#62; void` | not stated | — | >= 2 | Digital crown rotation event callback function |
 
+**Key name constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `KEY_BACK` | >= 2 | BACK KEY |
+| `KEY_DOWN` | >= 2 | SHORTCUT KEY |
+| `KEY_HOME` | >= 2 | HOME KEY |
+| `KEY_SELECT` | >= 2 | SELECT KEY |
+| `KEY_SHORTCUT` | >= 2 | SHORTCUT KEY |
+| `KEY_UP` | >= 2 | UP KEY |
+
 ### `@zos/interaction.onGesture`
 
 Listen to user gesture events, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.
@@ -194,6 +212,15 @@ function onGesture(option: Option): void
 | --- | --- | --- | --- | --- | --- |
 | `callback` | `(event: GestureEvent) =&#62; PreventDefault` | not stated | — | >= 2 | Gesture event callback function |
 
+**Gesture event constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `GESTURE_DOWN` | >= 2 | Gesture down slide |
+| `GESTURE_LEFT` | >= 2 | Gesture left slide |
+| `GESTURE_RIGHT` | >= 2 | Gesture right slide |
+| `GESTURE_UP` | >= 2 | Gesture up slide |
+
 ### `@zos/interaction.onKey`
 
 Listen to key events, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.
@@ -207,6 +234,27 @@ function onKey(option: Option): void
 | Property | Type | Required | Default | Min API_LEVEL | Description |
 | --- | --- | --- | --- | --- | --- |
 | `callback` | `(key: Key, event: KeyEvent) =&#62; PreventDefault` | not stated | — | >= 2 | Key event callback function |
+
+**Key event constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `KEY_EVENT_CLICK` | >= 2 | Key click event |
+| `KEY_EVENT_DOUBLE_CLICK` | >= 2 | Key double-click event |
+| `KEY_EVENT_LONG_PRESS` | >= 2 | Key long-press event |
+| `KEY_EVENT_PRESS` | >= 2 | Key press event |
+| `KEY_EVENT_RELEASE` | >= 2 | Key release event |
+
+**Key name constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `KEY_BACK` | >= 2 | BACK KEY |
+| `KEY_DOWN` | >= 2 | SHORTCUT KEY |
+| `KEY_HOME` | >= 2 | HOME KEY |
+| `KEY_SELECT` | >= 2 | SELECT KEY |
+| `KEY_SHORTCUT` | >= 2 | SHORTCUT KEY |
+| `KEY_UP` | >= 2 | UP KEY |
 
 ### `@zos/interaction.onWristMotion`
 
@@ -228,6 +276,14 @@ function onWristMotion(option: Option): void
 | --- | --- | --- | --- | --- | --- |
 | `type` | `number` | not stated | — | >= 3.6 | Action type, 0 - palm covering, 3 - wrist event |
 | `motion` | `number` | not stated | — | >= 3 | Action code, value reference hand motion constant |
+
+**Hand motion constant**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `WRIST_MOTION_FLIP` | >= 2 | Flip wrist movement |
+| `WRIST_MOTION_LIFT` | >= 2 | Wrist lift |
+| `WRIST_MOTION_LOWER` | >= 2 | Wrist down |
 
 ### `@zos/interaction.showToast`
 

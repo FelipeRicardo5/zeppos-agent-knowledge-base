@@ -135,6 +135,32 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "User gender constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "GENDER_FEMALE",
+              "description": "Female",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "GENDER_MALE",
+              "description": "Male",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "GENDER_UNSPECIFIED",
+              "description": "User not specified",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "permissions": [
         "data:user.info"
       ],

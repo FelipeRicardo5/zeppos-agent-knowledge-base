@@ -38,6 +38,248 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "System App ID constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "SYSTEM_APP_ALARM",
+              "description": "Alarm",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_ALEAX",
+              "description": "Alexa",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_ALIPAY",
+              "description": "Alipay",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_ALTIMETER",
+              "description": "Barometer",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_BODY_COMPOSITION",
+              "description": "Body Composition",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_BREATH",
+              "description": "Breathe",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_CALENDAR",
+              "description": "Calendar",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_CAMERA",
+              "description": "Camera Remote",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_CARD",
+              "description": "Cards",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_CLUB_CARD",
+              "description": "Membership Card",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_COMPASS",
+              "description": "Compass",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_COUNTDOWN",
+              "description": "Timer",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_FINE_PHONE",
+              "description": "Find My Phone",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_HR",
+              "description": "Heart Rate",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_MEASUREMENT",
+              "description": "One-tap Measuring",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_MENSTRUAL",
+              "description": "Cycle Tracking",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_MUSIC",
+              "description": "Music",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_NETEASE_MUSIC",
+              "description": "NetEase Music",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_PAI",
+              "description": "PAI",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_PHONE",
+              "description": "Phone",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_POMODORO",
+              "description": "Pomodoro Timer",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_PRESSURE",
+              "description": "Stress",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_READINESS",
+              "description": "Readiness",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SETTING",
+              "description": "Settings",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SLEEP",
+              "description": "Sleep",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SPO2",
+              "description": "Blood Oxygen",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SPORT",
+              "description": "Workout",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SPORT_HISTORY",
+              "description": "Workout History",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SPORT_STATUS",
+              "description": "Workout Status",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_STATUS",
+              "description": "Activity",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_STOPWATCH",
+              "description": "Stopwatch",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SUN_AND_MOON",
+              "description": "Sun & Moon",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_THERMOMETER",
+              "description": "Thermometer",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_TODO_LIST",
+              "description": "To Do",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_VOICE_MEMO",
+              "description": "Voice Memos",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_WEATHER",
+              "description": "Weather",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_WEPAY",
+              "description": "Weixin Pay",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_WORLD_CLOCK",
+              "description": "World Clock",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_ZEPP_COACH",
+              "description": "Zepp Coach",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -159,6 +401,248 @@
               "type": "string&#124;object",
               "description": "The argument passed to the app.js lifecycle onCreate supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string",
               "apiLevel": 2
+            }
+          ]
+        }
+      ],
+      "enums": [
+        {
+          "name": "System App ID constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "SYSTEM_APP_ALARM",
+              "description": "Alarm",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_ALEAX",
+              "description": "Alexa",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_ALIPAY",
+              "description": "Alipay",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_ALTIMETER",
+              "description": "Barometer",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_BODY_COMPOSITION",
+              "description": "Body Composition",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_BREATH",
+              "description": "Breathe",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_CALENDAR",
+              "description": "Calendar",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_CAMERA",
+              "description": "Camera Remote",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_CARD",
+              "description": "Cards",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_CLUB_CARD",
+              "description": "Membership Card",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_COMPASS",
+              "description": "Compass",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_COUNTDOWN",
+              "description": "Timer",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_FINE_PHONE",
+              "description": "Find My Phone",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_HR",
+              "description": "Heart Rate",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_MEASUREMENT",
+              "description": "One-tap Measuring",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_MENSTRUAL",
+              "description": "Cycle Tracking",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_MUSIC",
+              "description": "Music",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_NETEASE_MUSIC",
+              "description": "NetEase Music",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_PAI",
+              "description": "PAI",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_PHONE",
+              "description": "Phone",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_POMODORO",
+              "description": "Pomodoro Timer",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_PRESSURE",
+              "description": "Stress",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_READINESS",
+              "description": "Readiness",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SETTING",
+              "description": "Settings",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SLEEP",
+              "description": "Sleep",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SPO2",
+              "description": "Blood Oxygen",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SPORT",
+              "description": "Workout",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SPORT_HISTORY",
+              "description": "Workout History",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SPORT_STATUS",
+              "description": "Workout Status",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_STATUS",
+              "description": "Activity",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_STOPWATCH",
+              "description": "Stopwatch",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_SUN_AND_MOON",
+              "description": "Sun & Moon",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_THERMOMETER",
+              "description": "Thermometer",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_TODO_LIST",
+              "description": "To Do",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_VOICE_MEMO",
+              "description": "Voice Memos",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_WEATHER",
+              "description": "Weather",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_WEPAY",
+              "description": "Weixin Pay",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_WORLD_CLOCK",
+              "description": "World Clock",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SYSTEM_APP_ZEPP_COACH",
+              "description": "Zepp Coach",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
             }
           ]
         }

@@ -2815,7 +2815,7 @@
             },
             {
               "value": "JSKB",
-              "description": "Custom Keyboard Widget",
+              "description": "Custom keyboard",
               "apiLevel": 4.2,
               "confidence": "OFFICIAL"
             },
@@ -2839,7 +2839,7 @@
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/keyboard.mdx",
       "extractedAt": "2026-09-10"
     },
     {
@@ -2939,7 +2939,8 @@
           "members": [
             {
               "value": "BACKSPACE",
-              "confidence": "OBSERVED"
+              "confidence": "OFFICIAL",
+              "description": "Backspace delete"
             },
             {
               "value": "CANCEL",
@@ -2947,15 +2948,18 @@
             },
             {
               "value": "ENTER",
-              "confidence": "OBSERVED"
+              "confidence": "OFFICIAL",
+              "description": "Confirm/submit input"
             },
             {
               "value": "SELECT",
-              "confidence": "OBSERVED"
+              "confidence": "OFFICIAL",
+              "description": "Enter keyboard selection"
             },
             {
               "value": "SWITCH",
-              "confidence": "OBSERVED"
+              "confidence": "OFFICIAL",
+              "description": "Switch keyboard input method"
             }
           ]
         }

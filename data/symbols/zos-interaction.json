@@ -120,6 +120,26 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "Modal key name constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "MODAL_CANCEL",
+              "description": "Modal Cancel button",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "MODAL_CONFIRM",
+              "description": "Modal Confirm button",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -452,6 +472,50 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "Key name constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "KEY_BACK",
+              "description": "BACK KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_DOWN",
+              "description": "SHORTCUT KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_HOME",
+              "description": "HOME KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_SELECT",
+              "description": "SELECT KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_SHORTCUT",
+              "description": "SHORTCUT KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_UP",
+              "description": "UP KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -481,6 +545,38 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "Gesture event constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "GESTURE_DOWN",
+              "description": "Gesture down slide",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "GESTURE_LEFT",
+              "description": "Gesture left slide",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "GESTURE_RIGHT",
+              "description": "Gesture right slide",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "GESTURE_UP",
+              "description": "Gesture up slide",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -506,6 +602,86 @@
               "type": "(key: Key, event: KeyEvent) =&#62; PreventDefault",
               "description": "Key event callback function",
               "apiLevel": 2
+            }
+          ]
+        }
+      ],
+      "enums": [
+        {
+          "name": "Key event constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "KEY_EVENT_CLICK",
+              "description": "Key click event",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_EVENT_DOUBLE_CLICK",
+              "description": "Key double-click event",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_EVENT_LONG_PRESS",
+              "description": "Key long-press event",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_EVENT_PRESS",
+              "description": "Key press event",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_EVENT_RELEASE",
+              "description": "Key release event",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        },
+        {
+          "name": "Key name constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "KEY_BACK",
+              "description": "BACK KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_DOWN",
+              "description": "SHORTCUT KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_HOME",
+              "description": "HOME KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_SELECT",
+              "description": "SELECT KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_SHORTCUT",
+              "description": "SHORTCUT KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "KEY_UP",
+              "description": "UP KEY",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
             }
           ]
         }
@@ -552,6 +728,32 @@
               "type": "number",
               "description": "Action code, value reference hand motion constant",
               "apiLevel": 3
+            }
+          ]
+        }
+      ],
+      "enums": [
+        {
+          "name": "Hand motion constant",
+          "qualified": false,
+          "members": [
+            {
+              "value": "WRIST_MOTION_FLIP",
+              "description": "Flip wrist movement",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WRIST_MOTION_LIFT",
+              "description": "Wrist lift",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WRIST_MOTION_LOWER",
+              "description": "Wrist down",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
             }
           ]
         }

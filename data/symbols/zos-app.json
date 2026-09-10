@@ -291,6 +291,38 @@
       "description": "Get the current scene where the Mini Program is running.",
       "minApiLevel": 2,
       "signature": "function getScene(): Result",
+      "enums": [
+        {
+          "name": "Current scene running Mini Program constants",
+          "qualified": false,
+          "members": [
+            {
+              "value": "SCENE_AOD",
+              "description": "In the rest screen screen",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SCENE_APP",
+              "description": "In Mini Program",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SCENE_SETTINGS",
+              "description": "In the Mini Program configuration or dial edit page",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SCENE_WATCHFACE",
+              "description": "In watchface interface",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app",
         "watchface"

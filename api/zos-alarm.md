@@ -105,6 +105,30 @@ function set(option: Option): Result
 | `start_time` | `number` | not stated | — | >= 3 | The time when the repeat reminder starts, in UTC seconds, and the repeat reminder only takes effect during the repeat time period |
 | `end_time` | `number` | not stated | — | >= 3 | The time when the repeat reminder ends, in UTC seconds, and the repeat reminder only takes effect during the repeat time period |
 
+**Timer repeats constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `REPEAT_DAY` | >= 3 | Specify the repetition period as day |
+| `REPEAT_HOUR` | >= 3 | Specify the repetition period as hour |
+| `REPEAT_MINUTE` | >= 3 | Specify the repetition period as minute |
+| `REPEAT_MONTH` | >= 3 | Specify the repetition period as month |
+| `REPEAT_ONCE` | >= 3 | Repeat once |
+| `REPEAT_WEEK` | >= 3 | Specify the repetition period as week |
+| `REPEAT_YEAR` | >= 3 | Specify the repetition period as year |
+
+**Timer weekly constants**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `WEEK_FRI` | >= 3 | Friday |
+| `WEEK_MON` | >= 3 | Monday |
+| `WEEK_SAT` | >= 3 | Saturday |
+| `WEEK_SUN` | >= 3 | Sunday |
+| `WEEK_THU` | >= 3 | Thursday |
+| `WEEK_TUE` | >= 3 | Tuesday |
+| `WEEK_WED` | >= 3 | Wednesday |
+
 ### `@zos/alarm.WEEK_FRI`
 
 Friday

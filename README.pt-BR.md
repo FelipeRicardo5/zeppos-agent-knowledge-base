@@ -20,14 +20,14 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
 
-Testes baseados em fixtures cobrem as nove frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (225 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
+Testes baseados em fixtures cobrem as nove frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (226 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
 - **513 símbolos** em **50 módulos**, vindos de todas as 241 páginas de referência + 36 entradas dos runtimes do celular + **89 páginas `hm*` de watchface** + 443 de `static/llms` + 785 observações em samples
 - 496 `OFFICIAL`, 17 `OBSERVED`
 - 353 símbolos têm `API_LEVEL` mínimo; 367 têm descrição; **178 têm assinatura de chamada e 147 têm tabelas de propriedades** — 1157 propriedades, 591 delas com nível mínimo próprio
-- **27 conjuntos de valores** em 24 símbolos — 196 membros, 124 deles declarando nível mínimo próprio. 146 vêm de uma tabela documentada e 50 de código de sample, marcados membro a membro
+- **73 conjuntos de valores** — 492 membros, cada um declarando nível mínimo próprio quando a tabela dá um. Alguns vêm de tabela documentada, outros de código de sample, marcados membro a membro
 - **257 membros de instância** em 46 símbolos — o que se chama sobre um valor em vez de importar: `new HeartRate().getCurrent()`, `localStorage.getItem(...)`. Todos carregam assinatura e prosa, 44 declaram nível mínimo próprio, e 60 das shapes e 10 dos conjuntos de valores acima pertencem a um membro, não ao símbolo
 - **todo runtime está coberto**: 375 Device App, **105 Watchface**, 21 Settings App, 20 Side Service, 12 Workout Extension — 20 símbolos válidos em mais de um
 - **11 patterns** vindos dos guias de boas práticas, 32 abordagens, usando 17 símbolos distintos — todos os 17 cobertos pelos registros de símbolo

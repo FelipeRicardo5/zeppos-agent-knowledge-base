@@ -15,6 +15,7 @@ import { parsePhoneApis } from "./parse/phone.js";
 import { parseWatchface } from "./parse/watchface.js";
 import { render } from "./render/index.js";
 import { renderExamples } from "./render/examples.js";
+import { renderConflicts } from "./render/conflicts.js";
 import { renderManifest } from "./render/manifest.js";
 import { renderPatterns } from "./render/patterns.js";
 import {
@@ -127,6 +128,7 @@ switch (command) {
     );
     const { patterns } = await renderPatterns(path.join(DATA_DIR, "patterns"), symbolsDir, OUT_DIR);
     const { examples } = await renderExamples(path.join(DATA_DIR, "examples"), symbolsDir, OUT_DIR);
+    const { conflicts } = await renderConflicts(symbolsDir, path.join(DATA_DIR, "examples"), OUT_DIR);
     const { manifestKeys } = await renderManifest(
       path.join(DATA_DIR, "app-json.json"),
       path.join(DATA_DIR, "examples"),
@@ -134,7 +136,7 @@ switch (command) {
       OUT_DIR,
     );
     console.log(
-      `rendered: ${modules} modules, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys (plus an index in each)`,
+      `rendered: ${modules} modules, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts (plus an index in each)`,
     );
     break;
   }

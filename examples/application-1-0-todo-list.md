@@ -32,10 +32,12 @@ Builds for: `deviceSource` `224`, `225`, `226`, `227`, `229`, `230`, `418`, `419
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addListener()` — likely `@zos/ble.addListener` or `hmBle.addListener` or `messaging.addListener` or `settings-storage.addListener`
+### `.addListener()` — **ambiguous**: module `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
 settings.settingsStorage.addListener('change', ({ key, newValue, oldValue }) => {
@@ -53,7 +55,7 @@ messaging.peerSocket.addListener('message', (message) => {
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/message.js`, line 366
 
-### `.clear()` — likely `settings-storage.clear`
+### `.clear()` — **ambiguous**: module `settings-storage.clear`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
 
 ```js
 this.map.clear()
@@ -67,7 +69,7 @@ clear() {
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/message.js`, line 271
 
-### `.clearTimeout()` — likely `@zos/global.clearTimeout`
+### `.clearTimeout()` — `@zos/global.clearTimeout`
 
 ```js
 globalNS.clearTimeout = function clearTimeout(timerRef) {
@@ -81,7 +83,7 @@ globalNS.clearTimeout(timer1)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/setTimeout.js`, line 16
 
-### `.close()` — likely `hmFS.close`
+### `.close()` *(no record in this KB)*
 
 ```js
 hmFS.close(file)
@@ -93,7 +95,7 @@ hmFS.close(file)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 71
 
-### `.createConnect()` — likely `@zos/ble.createConnect` or `hmBle.createConnect`
+### `.createConnect()` — `@zos/ble.createConnect`
 
 ```js
 this.ble.createConnect((index, data, size) => {
@@ -104,7 +106,7 @@ this.ble.createConnect((index, data, size) => {
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/message.js`, line 345
 
-### `.createTimer()` — likely `timer.createTimer`
+### `.createTimer()` *(no record in this KB)*
 
 ```js
 const timer1 = timer.createTimer(
@@ -132,7 +134,7 @@ const timer1 = timer.createTimer(
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/setTimeout.js`, line 30
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 this.state.title = hmUI.createWidget(hmUI.widget.TEXT, {
@@ -151,7 +153,7 @@ this.state.addButton = hmUI.createWidget(hmUI.widget.BUTTON, {
 ```
 — `zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js`, line 29
 
-### `.disConnect()` — likely `@zos/ble.disConnect` or `hmBle.disConnect`
+### `.disConnect()` — `@zos/ble.disConnect`
 
 ```js
 this.globalData.messageBuilder.disConnect();
@@ -170,7 +172,7 @@ disConnect(cb) {
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/message.js`, line 355
 
-### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo` or `hmSetting.getDeviceInfo`
+### `.getDeviceInfo()` — `@zos/device.getDeviceInfo`
 
 ```js
 if (hmSetting.getDeviceInfo().screenShape !== 0) {
@@ -186,7 +188,7 @@ export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = hmSetting.getDevic
 ```
 — `zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.style.js`, line 3
 
-### `.getItem()` — likely `settings-storage.getItem`
+### `.getItem()` — **ambiguous**: module `settings-storage.getItem`; called on `@zos/share-storage.LocalStorage` or `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 return settings.settingsStorage.getItem('todoList')
@@ -198,7 +200,7 @@ return settings.settingsStorage.getItem('todoList')
 ```
 — `zeppos-samples/application/1.0/todo-list/app-side/index.js`, line 7
 
-### `.open()` — likely `hmFS.open`
+### `.open()` *(no record in this KB)*
 
 ```js
 const file = hmFS.open(filename, hmFS.O_CREAT | hmFS.O_RDWR | hmFS.O_TRUNC)
@@ -210,14 +212,14 @@ const file = hmFS.open(filename, hmFS.O_RDONLY)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 67
 
-### `.read()` — likely `hmFS.read`
+### `.read()` *(no record in this KB)*
 
 ```js
 hmFS.read(file, destination_buf.buffer, 0, fs_stat.size)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 70
 
-### `.readdirSync()` — likely `@zos/fs.readdirSync`
+### `.readdirSync()` — `@zos/fs.readdirSync`
 
 ```js
 export function readdirSync(path, options) {
@@ -233,7 +235,7 @@ hmFS.readdirSync(path)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 117
 
-### `.readFileSync()` — likely `@zos/fs.readFileSync`
+### `.readFileSync()` — **ambiguous**: module `@zos/fs.readFileSync`; called on `@zos/share-storage.FileSystem`
 
 ```js
 export function readFileSync() {
@@ -248,21 +250,21 @@ const resData = fs.readFileSync(TODO_FILE_NAME)
 ```
 — `zeppos-samples/application/1.0/todo-list/utils/fs.js`, line 5
 
-### `.remove()` — likely `hmFS.remove`
+### `.remove()` — **ambiguous**: called on `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage`
 
 ```js
 const result = hmFS.remove(filename)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 84
 
-### `.rename()` — likely `hmFS.rename`
+### `.rename()` *(no record in this KB)*
 
 ```js
 hmFS.rename(oldFilename, newFilename)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 95
 
-### `.seek()` — likely `hmFS.seek`
+### `.seek()` — `@zos/media.Player`
 
 ```js
 hmFS.seek(file, 0, hmFS.SEEK_SET)
@@ -274,7 +276,7 @@ hmFS.seek(file, 0, hmFS.SEEK_SET)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 69
 
-### `.send()` — likely `@zos/ble.send` or `hmBle.send` or `messaging.send`
+### `.send()` — **ambiguous**: module `@zos/ble.send` or `messaging.send`
 
 ```js
 const result = this.ble.send(buf.buffer, buf.byteLength)
@@ -286,7 +288,7 @@ messaging.peerSocket.send(buf.buffer)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/message.js`, line 519
 
-### `.set()` — likely `@zos/alarm.set`
+### `.set()` — `@zos/alarm.set`
 
 ```js
 this.map.set(type, [cb])
@@ -298,7 +300,7 @@ this.sessions.set(this.key(newSession), newSession)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/message.js`, line 244
 
-### `.setItem()` — likely `settings-storage.setItem`
+### `.setItem()` — **ambiguous**: module `settings-storage.setItem`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
@@ -310,7 +312,7 @@ settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
 ```
 — `zeppos-samples/application/1.0/todo-list/app-side/index.js`, line 35
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 this.state.refreshText && this.state.refreshText.setProperty(hmUI.prop.VISIBLE, false)
@@ -322,14 +324,14 @@ this.state.tipText && this.state.tipText.setProperty(hmUI.prop.VISIBLE, isTip)
 ```
 — `zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js`, line 99
 
-### `.stat()` — likely `hmFS.stat`
+### `.stat()` *(no record in this KB)*
 
 ```js
 const [fs_stat, err] = hmFS.stat(filename)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 23
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
+### `.stopTimer()` — `@zos/timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef)
@@ -341,14 +343,14 @@ timerRef && timer.stopTimer(timerRef)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/setTimeout.js`, line 26
 
-### `.write()` — likely `hmFS.write`
+### `.write()` *(no record in this KB)*
 
 ```js
 hmFS.write(file, source_buf.buffer, 0, source_buf.length)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 49
 
-### `.writeFileSync()` — likely `@zos/fs.writeFileSync`
+### `.writeFileSync()` — `@zos/fs.writeFileSync`
 
 ```js
 export function writeFileSync(data, merge = true) {

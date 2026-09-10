@@ -185,10 +185,12 @@ const baseY = px(48);
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — **ambiguous**: module `@zos/ui.addEventListener`; called on `@zos/media.Player` or `@zos/media.Recorder`
 
 ```js
 text.addEventListener(hmUI.event.SELECT, () => {
@@ -200,7 +202,7 @@ text.addEventListener(hmUI.event.SELECT, () => {
 ```
 — `zeppos-samples/application/2.0/calories/page/gts/food-list.js`, line 89
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {
@@ -228,14 +230,14 @@ hmUI.createWidget(hmUI.widget.FILL_RECT, {
 ```
 — `zeppos-samples/application/2.0/calories/page/gts/food-list.js`, line 60
 
-### `.getItem()` — likely `settings-storage.getItem`
+### `.getItem()` — **ambiguous**: called on `@zos/share-storage.LocalStorage` or `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 const { foodType = 'chocolate' } = localStorage.getItem('calorie', {})
 ```
 — `zeppos-samples/application/2.0/calories/app.js`, line 12
 
-### `.setItem()` — likely `settings-storage.setItem`
+### `.setItem()` — **ambiguous**: called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 localStorage.setItem("calorie", {
@@ -244,7 +246,7 @@ localStorage.setItem("calorie", {
 ```
 — `zeppos-samples/application/2.0/calories/page/gts/food-list.js`, line 32
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 this.state.radioGroup.setProperty(

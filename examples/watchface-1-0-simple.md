@@ -24,10 +24,12 @@ Permissions: `gps`
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — `hmSensor.addEventListener`
 
 ```js
 timeSensor.addEventListener(timeSensor.event.MINUTEEND, function () {
@@ -49,7 +51,7 @@ heartSensor.addEventListener(heartSensor.event.LAST, function () {
 ```
 — `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 85
 
-### `.App()` — likely `@zos/global.App`
+### `.App()` *(no record in this KB)*
 
 ```js
 __$$app$$__.app = DeviceRuntimeCore.App({
@@ -67,7 +69,7 @@ __$$app$$__.app = DeviceRuntimeCore.App({
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 81
 
-### `.clearTimeout()` — likely `@zos/global.clearTimeout`
+### `.clearTimeout()` *(no record in this KB)*
 
 ```js
 globalNS.clearTimeout = function clearTimeout(timerRef) {
@@ -81,7 +83,7 @@ globalNS.clearTimeout(timer1);
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 56
 
-### `.createSensor()` — likely `hmSensor.createSensor`
+### `.createSensor()` — `hmSensor.createSensor`
 
 ```js
 timeSensor = hmSensor.createSensor(hmSensor.id.TIME);
@@ -93,7 +95,7 @@ heartSensor = hmSensor.createSensor(hmSensor.id.HEART);
 ```
 — `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 70
 
-### `.createTimer()` — likely `timer.createTimer`
+### `.createTimer()` — `timer.createTimer`
 
 ```js
 const timer1 = timer.createTimer(ns || 1, Number.MAX_SAFE_INTEGER, function () {
@@ -111,7 +113,7 @@ const timer1 = timer.createTimer(1, Number.MAX_SAFE_INTEGER, function () {
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 65
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `hmUI.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.FILL_RECT, {
@@ -142,14 +144,14 @@ digitalTime = hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 23
 
-### `.getLanguage()` — likely `@zos/settings.getLanguage` or `hmSetting.getLanguage`
+### `.getLanguage()` — `hmSetting.getLanguage`
 
 ```js
 lang: new DeviceRuntimeCore.HmUtils.Lang(DeviceRuntimeCore.HmUtils.getLanguage()),
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 11
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `hmUI.setProperty`
 
 ```js
 digitalTime.setProperty(hmUI.prop.MORE, {
@@ -167,7 +169,7 @@ heartRate.setProperty(hmUI.prop.MORE, {
 ```
 — `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 86
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
+### `.stopTimer()` — `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef);

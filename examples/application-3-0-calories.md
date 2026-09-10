@@ -136,10 +136,12 @@ y: px(
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — **ambiguous**: module `@zos/ui.addEventListener`; called on `@zos/media.Player` or `@zos/media.Recorder`
 
 ```js
 text.addEventListener(hmUI.event.SELECT, () => {
@@ -151,7 +153,7 @@ text.addEventListener(hmUI.event.SELECT, () => {
 ```
 — `zeppos-samples/application/3.0/calories/page/gt/food-list.js`, line 79
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 !isSquare && hmUI.createWidget(hmUI.widget.TEXT, COMMON_TITLE_TEXT);
@@ -170,7 +172,7 @@ const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {
 ```
 — `zeppos-samples/application/3.0/calories/page/gt/food-list.js`, line 38
 
-### `.getTextLayout()` — likely `@zos/ui.getTextLayout`
+### `.getTextLayout()` — `@zos/ui.getTextLayout`
 
 ```js
 const { width: w1 } = hmUI.getTextLayout("" + calories, {
@@ -190,7 +192,7 @@ const { width: w2 } = hmUI.getTextLayout(getText("unit"), {
 ```
 — `zeppos-samples/application/3.0/calories/page/gt/index.js`, line 38
 
-### `.set()` — likely `@zos/alarm.set`
+### `.set()` — `@zos/alarm.set`
 
 ```js
 this.globalData.localStorage.set({
@@ -199,7 +201,7 @@ this.globalData.localStorage.set({
 ```
 — `zeppos-samples/application/3.0/calories/app.js`, line 23
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 this.state.radioGroup.setProperty(

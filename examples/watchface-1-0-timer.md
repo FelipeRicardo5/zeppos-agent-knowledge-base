@@ -28,10 +28,12 @@ Builds for: `deviceSource` `229`, `230` (`configVersion` `v2`). See [`../compati
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — `hmSensor.addEventListener`
 
 ```js
 secondImg.addEventListener(hmUI.event.CLICK_UP, function (info) {
@@ -65,7 +67,7 @@ backBtn.addEventListener(hmUI.event.CLICK_UP, function (info) {
 ```
 — `zeppos-samples/watchface/1.0/timer/watchface/round/index.js`, line 275
 
-### `.clearTimeout()` — likely `@zos/global.clearTimeout`
+### `.clearTimeout()` *(no record in this KB)*
 
 ```js
 globalNS.clearTimeout = function clearTimeout(timerRef) {
@@ -79,7 +81,7 @@ globalNS.clearTimeout(timer1)
 ```
 — `zeppos-samples/watchface/1.0/timer/shared/setTimeout.js`, line 16
 
-### `.createTimer()` — likely `timer.createTimer`
+### `.createTimer()` — `timer.createTimer`
 
 ```js
 const timer1 = timer.createTimer(
@@ -107,7 +109,7 @@ const timer1 = timer.createTimer(
 ```
 — `zeppos-samples/watchface/1.0/timer/shared/setTimeout.js`, line 30
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `hmUI.createWidget`
 
 ```js
 imgBg = hmUI.createWidget(hmUI.widget.FILL_RECT, {
@@ -132,14 +134,14 @@ imgBg = hmUI.createWidget(hmUI.widget.IMG, {
 ```
 — `zeppos-samples/watchface/1.0/timer/watchface/round/index.js`, line 99
 
-### `.getScreenType()` — likely `hmSetting.getScreenType`
+### `.getScreenType()` — `hmSetting.getScreenType`
 
 ```js
 var screenType = hmSetting.getScreenType()
 ```
 — `zeppos-samples/watchface/1.0/timer/watchface/round/index.js`, line 89
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `hmUI.setProperty`
 
 ```js
 bigNumObject[i].setProperty(hmUI.prop.VISIBLE, false)
@@ -151,7 +153,7 @@ smallNumObject[j].setProperty(hmUI.prop.VISIBLE, false)
 ```
 — `zeppos-samples/watchface/1.0/timer/watchface/round/index.js`, line 171
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
+### `.stopTimer()` — `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef)
@@ -163,7 +165,7 @@ timerRef && timer.stopTimer(timerRef)
 ```
 — `zeppos-samples/watchface/1.0/timer/shared/setTimeout.js`, line 26
 
-### `.SysProGetInt()` — likely `hmFS.SysProGetInt`
+### `.SysProGetInt()` — `hmFS.SysProGetInt`
 
 ```js
 rootPath + 'smallNum/' + hmFS.SysProGetInt('t0') + '.png',
@@ -175,7 +177,7 @@ rootPath + 'smallNum/' + hmFS.SysProGetInt('t1') + '.png',
 ```
 — `zeppos-samples/watchface/1.0/timer/watchface/round/index.js`, line 316
 
-### `.SysProSetInt()` — likely `hmFS.SysProSetInt`
+### `.SysProSetInt()` — `hmFS.SysProSetInt`
 
 ```js
 hmFS.SysProSetInt('t0', 0)

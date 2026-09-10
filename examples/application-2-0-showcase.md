@@ -282,10 +282,12 @@ x: px(80),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — **ambiguous**: module `@zos/ui.addEventListener`; called on `@zos/media.Player` or `@zos/media.Recorder`
 
 ```js
 this.state.titleWidget.addEventListener(event.CLICK_DOWN, () => {
@@ -303,7 +305,7 @@ this.state.titleWidget.addEventListener(event.CLICK_DOWN, () => {
 ```
 — `zeppos-samples/application/2.0/showcase/page/interaction/show_toast.js`, line 10
 
-### `.clear()` — likely `settings-storage.clear`
+### `.clear()` — **ambiguous**: called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
 
 ```js
 polyline.clear()
@@ -315,7 +317,7 @@ polyline.clear()
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/polyline.js`, line 33
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 const checkbox_group = createWidget(widget.CHECKBOX_GROUP, {
@@ -343,7 +345,7 @@ const button1 = checkbox_group.createWidget(widget.STATE_BUTTON, {
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/checkbox_group.js`, line 23
 
-### `.getProperty()` — likely `@zos/ui.getProperty` or `hmUI.getProperty`
+### `.getProperty()` — `@zos/ui.getProperty`
 
 ```js
 this.state.logger.log('property', cycle_image_text_list.getProperty(prop.MORE, {}))
@@ -355,7 +357,7 @@ const isRunning = imgAnimation.getProperty(prop.ANIM_IS_RUNINNG)
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/img_anim.js`, line 27
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 text.setProperty(prop.MORE, {
@@ -371,7 +373,7 @@ text.setProperty(prop.MORE, {
 ```
 — `zeppos-samples/application/2.0/showcase/page/interaction/on_key.js`, line 19
 
-### `.start()` — likely `@zos/app-service.start`
+### `.start()` — **ambiguous**: module `@zos/app-service.start`; called on `@zos/crypto.DigestCrypto` or `@zos/media.Player` or `@zos/media.Recorder` or `@zos/sensor.Accelerometer` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Buzzer` or `@zos/sensor.Compass` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.SystemSounds` or `@zos/sensor.Vibrator`
 
 ```js
 bloodOxygen.start();
@@ -383,7 +385,7 @@ geolocation.start();
 ```
 — `zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js`, line 21
 
-### `.stop()` — likely `@zos/app-service.stop`
+### `.stop()` — **ambiguous**: module `@zos/app-service.stop`; called on `@zos/media.Player` or `@zos/media.Recorder` or `@zos/sensor.Accelerometer` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Buzzer` or `@zos/sensor.Compass` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.SystemSounds` or `@zos/sensor.Vibrator`
 
 ```js
 bloodOxygen.stop();

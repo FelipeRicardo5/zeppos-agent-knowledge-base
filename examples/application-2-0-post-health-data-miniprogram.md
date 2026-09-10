@@ -177,10 +177,12 @@ y: px(260),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addListener()` — likely `@zos/ble.addListener` or `hmBle.addListener` or `messaging.addListener` or `settings-storage.addListener`
+### `.addListener()` — **ambiguous**: module `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
 settings.settingsStorage.addListener(
@@ -196,7 +198,7 @@ settings.settingsStorage.addListener(
 ```
 — `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 30
 
-### `.getItem()` — likely `settings-storage.getItem`
+### `.getItem()` — **ambiguous**: module `settings-storage.getItem`; called on `@zos/share-storage.LocalStorage` or `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 body: settings.settingsStorage.getItem("sleepData"),
@@ -208,7 +210,7 @@ const sleepData = JSON.parse(props.settingsStorage.getItem("sleepData"));
 ```
 — `zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js`, line 70
 
-### `.setItem()` — likely `settings-storage.setItem`
+### `.setItem()` — **ambiguous**: module `settings-storage.setItem`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
@@ -220,7 +222,7 @@ settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
 ```
 — `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 21
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 this.state.textWidget.setProperty(prop.TEXT, text);

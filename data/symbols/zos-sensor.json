@@ -2671,6 +2671,23 @@
           ]
         }
       ],
+      "conflicts": [
+        {
+          "field": "description",
+          "claims": [
+            {
+              "value": "This interface has been deprecated, please refer to https://github.com/orgs/zepp-health/discussions/83 Weather Forecasts sensor.",
+              "source": "docs-reference",
+              "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Weather.mdx"
+            },
+            {
+              "value": "Weather Forecasts sensor",
+              "source": "llms",
+              "originalPath": "zeppos-docs/static/llms/@zos-sensor.md"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

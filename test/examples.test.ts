@@ -318,14 +318,47 @@ describe("renderExamples", () => {
     assert.match(index, /- `@zos\/ui.createWidget` — \[demo\]\(demo\.md\)/);
   });
 
-  it("names the likely owner of a member call and says the match is by name", async () => {
+  it("names the owner of a member call and says the match is by name", async () => {
     const { examplesDir, symbolsDir, out } = await fixture([example()], [symbol("@zos/ui.setProperty")]);
 
     await renderExamples(examplesDir, symbolsDir, out);
     const page = await readFile(path.join(out, "examples", "demo.md"), "utf-8");
 
-    assert.match(page, /`\.setProperty\(\)` — likely `@zos\/ui.setProperty`/);
+    assert.match(page, /`\.setProperty\(\)` — `@zos\/ui.setProperty`/);
     assert.match(page, /receiver's type is \*\*not\*\* resolved/);
+  });
+
+  it("says a member call is ambiguous rather than naming one winner", async () => {
+    // What the base was getting wrong. With one candidate the row names it;
+    // with several it must not pick, because the receiver's type is never
+    // resolved and the wrong pick sends a reader to another runtime's API.
+    const { examplesDir, symbolsDir, out } = await fixture(
+      [example()],
+      [symbol("@zos/ui.setProperty"), symbol("@zos/page.setProperty")],
+    );
+
+    await renderExamples(examplesDir, symbolsDir, out);
+    const page = await readFile(path.join(out, "examples", "demo.md"), "utf-8");
+
+    assert.match(page, /`\.setProperty\(\)` — \*\*ambiguous\*\*/);
+    assert.match(page, /`@zos\/ui.setProperty`/);
+    assert.match(page, /`@zos\/page.setProperty`/);
+  });
+
+  it("drops a candidate from a runtime the sample does not use", async () => {
+    // The watchface front made `@zos/ui.setProperty` and `hmUI.setProperty`
+    // share a name. In a Device App sample only one of them is a reading of
+    // the call, and the sample's own runtimes say which.
+    const { examplesDir, symbolsDir, out } = await fixture(
+      [example()],
+      [symbol("@zos/ui.setProperty"), { ...symbol("hmUI.setProperty"), runtimes: ["watchface"] }],
+    );
+
+    await renderExamples(examplesDir, symbolsDir, out);
+    const page = await readFile(path.join(out, "examples", "demo.md"), "utf-8");
+
+    assert.match(page, /`\.setProperty\(\)` — `@zos\/ui.setProperty`/);
+    assert.doesNotMatch(page, /hmUI\.setProperty/);
   });
 
   it("counts how many manifests use each app.json key", async () => {

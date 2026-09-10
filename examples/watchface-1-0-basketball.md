@@ -28,10 +28,12 @@ Builds for: `deviceSource` `226`, `227` (`configVersion` `v2`). See [`../compati
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.clearTimeout()` — likely `@zos/global.clearTimeout`
+### `.clearTimeout()` *(no record in this KB)*
 
 ```js
 globalNS.clearTimeout = function clearTimeout(timerRef) {
@@ -45,7 +47,7 @@ globalNS.clearTimeout(timer1)
 ```
 — `zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js`, line 16
 
-### `.createTimer()` — likely `timer.createTimer`
+### `.createTimer()` — `timer.createTimer`
 
 ```js
 const timer1 = timer.createTimer(
@@ -73,7 +75,7 @@ const timer1 = timer.createTimer(
 ```
 — `zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js`, line 30
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `hmUI.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.IMG, {
@@ -103,7 +105,7 @@ let animA = hmUI.createWidget(hmUI.widget.IMG_ANIM, {
 ```
 — `zeppos-samples/watchface/1.0/basketball/watchface/round/index.js`, line 63
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `hmUI.setProperty`
 
 ```js
 animResident.setProperty(hmUI.prop.ANIM_STATUS, 1)
@@ -115,7 +117,7 @@ animCreate.setProperty(hmUI.prop.VISIBLE, false)
 ```
 — `zeppos-samples/watchface/1.0/basketball/watchface/round/index.js`, line 37
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
+### `.stopTimer()` — `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef)

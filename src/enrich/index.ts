@@ -3,6 +3,8 @@ import { deviceSlug } from "../parse/devices.js";
 import type {
   AppJsonRecord,
   Confidence,
+  ConflictClaim,
+  ConflictSpec,
   DeviceRecord,
   EnumMember,
   EnumSpec,
@@ -138,6 +140,64 @@ function sortMembers(members: EnumMember[]): EnumMember[] {
   );
 }
 
+/**
+ * Fields whose sources state different things.
+ *
+ * `enrich` resolves every field by source priority and has never said that the
+ * losing source claimed something else. Eval 01 named that as pure moat: the
+ * disagreement exists only because this base merges fronts, and no upstream
+ * page knows another contradicts it.
+ *
+ * The comparison is normalised, and that is the whole difficulty. Raw, 147 of
+ * 513 symbols "disagree" about their description and every one of them is a
+ * trailing full stop or a `permission code:` note the reference page carries
+ * and the llms dump does not. Exactly one survives normalisation, and it is
+ * worth the page it costs: `@zos/sensor.Weather` is marked deprecated by its
+ * reference page and described as current by `static/llms`.
+ *
+ * `kind` is deliberately not compared. The two fronts disagree about it 98
+ * times, but that is this extractor's own doing — `parseMarkdown` guesses from
+ * the page text and `parseLlmsContent` hardcodes `function` — so reporting it
+ * would dress a bug of ours as a claim of theirs.
+ */
+function detectConflicts(ranked: RawUnit[]): ConflictSpec[] | undefined {
+  const conflicts: ConflictSpec[] = [];
+
+  for (const field of ["description", "apiLevel", "signature"] as const) {
+    const claims: ConflictClaim[] = [];
+    const seen = new Set<string>();
+
+    for (const unit of ranked) {
+      const value = unit[field];
+      if (value === undefined) continue;
+
+      const key = normalizeClaim(String(value));
+      if (seen.has(key)) continue;
+      seen.add(key);
+      claims.push({
+        value: String(value),
+        source: unit.sourceKind,
+        originalPath: toPosixPath(unit.sourceFile),
+      });
+    }
+
+    if (claims.length > 1) conflicts.push({ field, claims });
+  }
+
+  return conflicts.length > 0 ? conflicts : undefined;
+}
+
+/** Punctuation, markup and the permission note removed — see `detectConflicts`. */
+function normalizeClaim(value: string): string {
+  return value
+    .replace(/permission code:.*$/i, "")
+    .replace(/[`*_]/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/[.,;:!?\s]+$/u, "")
+    .trim()
+    .toLowerCase();
+}
+
 export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
   const groups = new Map<string, RawUnit[]>();
 
@@ -179,6 +239,7 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
       shapes: withShapes?.shapes,
       enums: mergeEnums(ranked),
       members: withMembers?.members,
+      conflicts: detectConflicts(ranked),
       runtimes,
       source: primary.sourceKind,
       confidence: confidenceFor(units),

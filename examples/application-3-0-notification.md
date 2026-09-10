@@ -80,10 +80,12 @@ y: px(240),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.BUTTON, {
@@ -101,7 +103,7 @@ hmUI.createWidget(hmUI.widget.BUTTON, {
 ```
 — `zeppos-samples/application/3.0/notification/page/index.js`, line 8
 
-### `.notify()` — likely `@zos/notification.notify`
+### `.notify()` — `@zos/notification.notify`
 
 ```js
 notificationMgr.notify({
@@ -129,7 +131,7 @@ notificationMgr.notify({
 ```
 — `zeppos-samples/application/3.0/notification/page/index.js`, line 11
 
-### `.set()` — likely `@zos/alarm.set`
+### `.set()` — `@zos/alarm.set`
 
 ```js
 alarmMgr.set(alarm);

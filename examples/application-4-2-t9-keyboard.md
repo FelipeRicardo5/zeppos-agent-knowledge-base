@@ -175,10 +175,12 @@ x: px(70), y: px(70), w: px(350), h: px(40),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — **ambiguous**: module `@zos/ui.addEventListener`; called on `@zos/media.Player` or `@zos/media.Recorder`
 
 ```js
 this.keyboard.state.ui.input_overlay.addEventListener(event.CLICK_UP, (info) => {
@@ -203,28 +205,28 @@ key_data.touch_overlay.addEventListener(event.CLICK_DOWN, (info) => {
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-renderer.js`, line 179
 
-### `.cancel()` — likely `@zos/alarm.cancel` or `@zos/notification.cancel`
+### `.cancel()` — **ambiguous**: module `@zos/alarm.cancel` or `@zos/notification.cancel`
 
 ```js
 t9_engine.cancel();
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-handlers.js`, line 134
 
-### `.clear()` — likely `settings-storage.clear`
+### `.clear()` — **ambiguous**: called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
 
 ```js
 this.seq_cache.clear();
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 311
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 const ele = parent.createWidget(id, rest);
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 54
 
-### `.getType()` — likely `@zos/ui.getType`
+### `.getType()` — **ambiguous**: module `@zos/ui.getType`; called on `@zos/sensor.Vibrator`
 
 ```js
 if (ele.getType() === widget.VIRTUAL_CONTAINER) {
@@ -243,7 +245,7 @@ if (ele.getType() === widget.VIRTUAL_CONTAINER) {
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 66
 
-### `.keyboard()` — likely `@zos/ui.keyboard`
+### `.keyboard()` — `@zos/ui.keyboard`
 
 ```js
 this.keyboard(() => {
@@ -257,14 +259,14 @@ this.keyboard();
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 432
 
-### `.launchApp()` — likely `@zos/router.launchApp`
+### `.launchApp()` — `@zos/router.launchApp`
 
 ```js
 r.launchApp({ url: 'Settings_keyboardScreen', params: { native: true } });
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/safe-keyboard.js`, line 198
 
-### `.set()` — likely `@zos/alarm.set`
+### `.set()` — `@zos/alarm.set`
 
 ```js
 this.seq_map.set(seq, words_arr);
@@ -276,7 +278,7 @@ this.prefix_idx.set(prefix, prefix_arr);
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 93
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 this.keyboard.state.ui.cursor_widget.setProperty(prop.ALPHA, 255);
@@ -288,7 +290,7 @@ this.keyboard.state.ui.cursor_widget.setProperty(prop.ALPHA, 255);
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/input-field-manager.js`, line 144
 
-### `.start()` — likely `@zos/app-service.start`
+### `.start()` — **ambiguous**: module `@zos/app-service.start`; called on `@zos/crypto.DigestCrypto` or `@zos/media.Player` or `@zos/media.Recorder` or `@zos/sensor.Accelerometer` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Buzzer` or `@zos/sensor.Compass` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.SystemSounds` or `@zos/sensor.Vibrator`
 
 ```js
 vibro.start();

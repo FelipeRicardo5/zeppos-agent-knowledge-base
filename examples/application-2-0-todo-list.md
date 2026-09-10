@@ -112,10 +112,12 @@ y: px(65),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addListener()` — likely `@zos/ble.addListener` or `hmBle.addListener` or `messaging.addListener` or `settings-storage.addListener`
+### `.addListener()` — **ambiguous**: module `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
 settings.settingsStorage.addListener('change', ({ key, newValue, oldValue }) => {
@@ -133,7 +135,7 @@ messaging.peerSocket.addListener('message', (message) => {
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 306
 
-### `.clear()` — likely `settings-storage.clear`
+### `.clear()` — **ambiguous**: module `settings-storage.clear`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
 
 ```js
 this.map.clear()
@@ -147,7 +149,7 @@ clear() {
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 220
 
-### `.createConnect()` — likely `@zos/ble.createConnect` or `hmBle.createConnect`
+### `.createConnect()` — `@zos/ble.createConnect`
 
 ```js
 this.ble.createConnect((index, data, size) => {
@@ -167,7 +169,7 @@ this.ble.createConnect((index, data, size) => {
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message.js`, line 287
 
-### `.disConnect()` — likely `@zos/ble.disConnect` or `hmBle.disConnect`
+### `.disConnect()` — `@zos/ble.disConnect`
 
 ```js
 this.globalData.messageBuilder && this.globalData.messageBuilder.disConnect()
@@ -186,7 +188,7 @@ disConnect(cb) {
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 291
 
-### `.getItem()` — likely `settings-storage.getItem`
+### `.getItem()` — **ambiguous**: module `settings-storage.getItem`; called on `@zos/share-storage.LocalStorage` or `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 return settings.settingsStorage.getItem('todoList')
@@ -198,14 +200,14 @@ return settings.settingsStorage.getItem('todoList')
 ```
 — `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 7
 
-### `.open()` — likely `hmFS.open`
+### `.open()` *(no record in this KB)*
 
 ```js
 xhr.open('GET', url);
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 842
 
-### `.send()` — likely `@zos/ble.send` or `hmBle.send` or `messaging.send`
+### `.send()` — **ambiguous**: module `@zos/ble.send` or `messaging.send`
 
 ```js
 xhr.send();
@@ -217,7 +219,7 @@ const result = this.ble.send(buf.buffer, buf.byteLength)
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 449
 
-### `.set()` — likely `@zos/alarm.set`
+### `.set()` — `@zos/alarm.set`
 
 ```js
 this.map.set(type, [cb])
@@ -229,7 +231,7 @@ this.sessions.set(this.key(newSession), newSession)
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 193
 
-### `.setItem()` — likely `settings-storage.setItem`
+### `.setItem()` — **ambiguous**: module `settings-storage.setItem`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
@@ -241,7 +243,7 @@ settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
 ```
 — `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 35
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 this.state.refreshText && this.state.refreshText.setProperty(prop.VISIBLE, false)

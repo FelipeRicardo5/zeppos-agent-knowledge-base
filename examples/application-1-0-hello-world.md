@@ -28,10 +28,12 @@ Builds for: `deviceSource` `224`, `225`, `226`, `227`, `229`, `230`, `418`, `419
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.TEXT, {
@@ -47,7 +49,7 @@ hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/application/1.0/hello-world/page/gtr3-pro/home/index.page.js`, line 7
 
-### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo` or `hmSetting.getDeviceInfo`
+### `.getDeviceInfo()` — `@zos/device.getDeviceInfo`
 
 ```js
 hmSetting.getDeviceInfo();

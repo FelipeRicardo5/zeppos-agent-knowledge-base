@@ -134,10 +134,12 @@ y: px(100),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.convert()` — likely `image-convert.convert`
+### `.convert()` — `image-convert.convert`
 
 ```js
 async convert(filePath) {
@@ -160,7 +162,7 @@ const result = await convertLib.convert({
 ```
 — `zeppos-samples/application/3.0/download/app-side/image-convert-module.js`, line 10
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 const mask = parent.createWidget(hmUI.widget.FILL_RECT, {
@@ -188,14 +190,14 @@ const btn = parent.createWidget(hmUI.widget.BUTTON, {
 ```
 — `zeppos-samples/application/3.0/download/components/pressed-btn/index.js`, line 11
 
-### `.downloadFile()` — likely `download-file.downloadFile`
+### `.downloadFile()` — `download-file.downloadFile`
 
 ```js
 this.downloadFile(encodeURI(coverUrl));
 ```
 — `zeppos-samples/application/3.0/download/app-side/index.js`, line 34
 
-### `.fetch()` — likely `fetch.fetch`
+### `.fetch()` — `fetch.fetch`
 
 ```js
 const result = await this.fetch({
@@ -207,14 +209,14 @@ const result = await this.fetch({
 ```
 — `zeppos-samples/application/3.0/download/app-side/fetch-module.js`, line 8
 
-### `.setAlpha()` — likely `@zos/ui.setAlpha`
+### `.setAlpha()` — `@zos/ui.setAlpha`
 
 ```js
 mask.setAlpha(0x96);
 ```
 — `zeppos-samples/application/3.0/download/components/mask/index.js`, line 10
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 mask.setProperty(hmUI.prop.VISIBLE, isMaskActive);

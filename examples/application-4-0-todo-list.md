@@ -183,10 +183,12 @@ y: px(65),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 this.state.title = hmUI.createWidget(hmUI.widget.TEXT, {
@@ -205,7 +207,7 @@ this.state.addButton = hmUI.createWidget(hmUI.widget.BUTTON, {
 ```
 — `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 40
 
-### `.getItem()` — likely `settings-storage.getItem`
+### `.getItem()` — **ambiguous**: module `settings-storage.getItem`; called on `@zos/share-storage.LocalStorage` or `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 return settingsLib.getItem('todoList')
@@ -217,7 +219,7 @@ return settingsLib.getItem('todoList')
 ```
 — `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 8
 
-### `.setItem()` — likely `settings-storage.setItem`
+### `.setItem()` — **ambiguous**: module `settings-storage.setItem`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 settingsLib.setItem('todoList', JSON.stringify(newTodoList))
@@ -229,7 +231,7 @@ settingsLib.setItem('todoList', JSON.stringify(newTodoList))
 ```
 — `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 32
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 this.state.scrollList.setProperty(hmUI.prop.DELETE_ITEM, { index: index })
@@ -241,7 +243,7 @@ this.state.refreshText && this.state.refreshText.setProperty(hmUI.prop.VISIBLE, 
 ```
 — `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 117
 
-### `.showToast()` — likely `@zos/interaction.showToast`
+### `.showToast()` — `@zos/interaction.showToast`
 
 ```js
 hmUI.showToast({

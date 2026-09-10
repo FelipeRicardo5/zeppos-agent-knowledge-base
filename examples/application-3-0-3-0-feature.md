@@ -248,10 +248,12 @@ font_size: px(32),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — **ambiguous**: module `@zos/ui.addEventListener`; called on `@zos/media.Player` or `@zos/media.Recorder`
 
 ```js
 canvasIndex0.addEventListener(hmUI.event.CLICK_UP, btnUpCb);
@@ -263,7 +265,7 @@ canvasIndex0.addEventListener(hmUI.event.CLICK_DOWN, btnDnCb);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 79
 
-### `.cancel()` — likely `@zos/alarm.cancel` or `@zos/notification.cancel`
+### `.cancel()` — **ambiguous**: module `@zos/alarm.cancel` or `@zos/notification.cancel`
 
 ```js
 alarmMgr.cancel(b);
@@ -275,7 +277,7 @@ notificationMgr.cancel(b);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/notification.js`, line 70
 
-### `.clear()` — likely `settings-storage.clear`
+### `.clear()` — **ambiguous**: called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
 
 ```js
 canvasIndex2.clear(CANVAS_STYLE_2_CLEAR_1);
@@ -290,14 +292,14 @@ canvasIndex1.clear({
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 212
 
-### `.createTimer()` — likely `timer.createTimer`
+### `.createTimer()` *(no record in this KB)*
 
 ```js
 // animTimer = timer.createTimer(0, 100, timerCB, undefined);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 237
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 vc.createWidget(hmUI.widget.FILL_RECT, {
@@ -315,49 +317,49 @@ textWidget = hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/acc.js`, line 14
 
-### `.deleteWidget()` — likely `@zos/ui.deleteWidget` or `hmUI.deleteWidget`
+### `.deleteWidget()` — `@zos/ui.deleteWidget`
 
 ```js
 hmUI.deleteWidget(vc), (vc = null);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 83
 
-### `.exit()` — likely `@zos/app-service.exit` or `@zos/router.exit`
+### `.exit()` — **ambiguous**: module `@zos/app-service.exit` or `@zos/router.exit`
 
 ```js
 appServiceMgr.exit();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 37
 
-### `.getAllAlarms()` — likely `@zos/alarm.getAllAlarms`
+### `.getAllAlarms()` — `@zos/alarm.getAllAlarms`
 
 ```js
 let alarms = alarmMgr.getAllAlarms();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/alarm.js`, line 39
 
-### `.getAllAppServices()` — likely `@zos/app-service.getAllAppServices`
+### `.getAllAppServices()` — `@zos/app-service.getAllAppServices`
 
 ```js
 let services = appService.getAllAppServices();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/bgService.js`, line 119
 
-### `.getAllNotifications()` — likely `@zos/notification.getAllNotifications`
+### `.getAllNotifications()` — `@zos/notification.getAllNotifications`
 
 ```js
 let notifications = notificationMgr.getAllNotifications();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/notification.js`, line 52
 
-### `.mstBuildProfile()` — likely `@zos/ble.mstBuildProfile`
+### `.mstBuildProfile()` — `@zos/ble.mstBuildProfile`
 
 ```js
 hmBle.mstBuildProfile(profileObject);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 57
 
-### `.mstConnect()` — likely `@zos/ble.mstConnect`
+### `.mstConnect()` — `@zos/ble.mstConnect`
 
 ```js
 hmBle.mstConnect(mac, function (conParam) {
@@ -375,7 +377,7 @@ hmBle.mstConnect(mac, function (conParam) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 94
 
-### `.mstDisconnect()` — likely `@zos/ble.mstDisconnect`
+### `.mstDisconnect()` — `@zos/ble.mstDisconnect`
 
 ```js
 hmBle.mstDisconnect(() => {
@@ -390,14 +392,14 @@ hmBle.mstDisconnect(connectId);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 204
 
-### `.mstOffAllCb()` — likely `@zos/ble.mstOffAllCb`
+### `.mstOffAllCb()` — `@zos/ble.mstOffAllCb`
 
 ```js
 hmBle.mstOffAllCb();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 209
 
-### `.mstOnCharaNotification()` — likely `@zos/ble.mstOnCharaNotification`
+### `.mstOnCharaNotification()` — `@zos/ble.mstOnCharaNotification`
 
 ```js
 hmBle.mstOnCharaNotification(function (cnParam) {
@@ -415,7 +417,7 @@ hmBle.mstOnCharaNotification(function (cnParam) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 143
 
-### `.mstOnCharaValueArrived()` — likely `@zos/ble.mstOnCharaValueArrived`
+### `.mstOnCharaValueArrived()` — `@zos/ble.mstOnCharaValueArrived`
 
 ```js
 hmBle.mstOnCharaValueArrived(function (ccParam) {
@@ -431,7 +433,7 @@ hmBle.mstOnCharaValueArrived(function (ccParam) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 113
 
-### `.mstOnCharaWriteComplete()` — likely `@zos/ble.mstOnCharaWriteComplete`
+### `.mstOnCharaWriteComplete()` — `@zos/ble.mstOnCharaWriteComplete`
 
 ```js
 hmBle.mstOnCharaWriteComplete(function (ccParam) {
@@ -447,7 +449,7 @@ hmBle.mstOnCharaWriteComplete(function (ccParam) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 123
 
-### `.mstOnDescValueArrived()` — likely `@zos/ble.mstOnDescValueArrived`
+### `.mstOnDescValueArrived()` — `@zos/ble.mstOnDescValueArrived`
 
 ```js
 hmBle.mstOnDescValueArrived(function (param) {
@@ -456,7 +458,7 @@ hmBle.mstOnDescValueArrived(function (param) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 133
 
-### `.mstOnDescWriteComplete()` — likely `@zos/ble.mstOnDescWriteComplete`
+### `.mstOnDescWriteComplete()` — `@zos/ble.mstOnDescWriteComplete`
 
 ```js
 hmBle.mstOnDescWriteComplete(function (dwcParam) {
@@ -469,7 +471,7 @@ hmBle.mstOnDescWriteComplete(function (dwcParam) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 136
 
-### `.mstOnPrepare()` — likely `@zos/ble.mstOnPrepare`
+### `.mstOnPrepare()` — `@zos/ble.mstOnPrepare`
 
 ```js
 hmBle.mstOnPrepare(function (preParam) {
@@ -485,7 +487,7 @@ hmBle.mstOnPrepare(function (preParam) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 103
 
-### `.mstOnServiceChangeBegin()` — likely `@zos/ble.mstOnServiceChangeBegin`
+### `.mstOnServiceChangeBegin()` — `@zos/ble.mstOnServiceChangeBegin`
 
 ```js
 hmBle.mstOnServiceChangeBegin(function (param) {
@@ -494,7 +496,7 @@ hmBle.mstOnServiceChangeBegin(function (param) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 189
 
-### `.mstOnServiceChangeEnd()` — likely `@zos/ble.mstOnServiceChangeEnd`
+### `.mstOnServiceChangeEnd()` — `@zos/ble.mstOnServiceChangeEnd`
 
 ```js
 hmBle.mstOnServiceChangeEnd(function (param) {
@@ -503,7 +505,7 @@ hmBle.mstOnServiceChangeEnd(function (param) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 192
 
-### `.mstStartScan()` — likely `@zos/ble.mstStartScan`
+### `.mstStartScan()` — `@zos/ble.mstStartScan`
 
 ```js
 hmBle.mstStartScan(function (result) {
@@ -517,14 +519,14 @@ hmBle.mstStartScan(function (result) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 76
 
-### `.mstStopScan()` — likely `@zos/ble.mstStopScan`
+### `.mstStopScan()` — `@zos/ble.mstStopScan`
 
 ```js
 hmBle.mstStopScan();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 88
 
-### `.mstWriteDescriptor()` — likely `@zos/ble.mstWriteDescriptor`
+### `.mstWriteDescriptor()` — `@zos/ble.mstWriteDescriptor`
 
 ```js
 hmBle.mstWriteDescriptor(
@@ -537,7 +539,7 @@ hmBle.mstWriteDescriptor(
 ```
 — `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 65
 
-### `.notify()` — likely `@zos/notification.notify`
+### `.notify()` — `@zos/notification.notify`
 
 ```js
 notificationMgr.notify({
@@ -571,21 +573,21 @@ notificationMgr.notify({
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/notification.js`, line 29
 
-### `.redraw()` — likely `@zos/ui.redraw`
+### `.redraw()` — `@zos/ui.redraw`
 
 ```js
 hmUI.redraw();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 84
 
-### `.set()` — likely `@zos/alarm.set`
+### `.set()` — `@zos/alarm.set`
 
 ```js
 let id = alarmMgr.set(alarmObj);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 77
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 textWidget.setProperty(hmUI.prop.TEXT, show_text);
@@ -599,7 +601,7 @@ function setProperty(w, p, v) {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/bgService.js`, line 11
 
-### `.showToast()` — likely `@zos/interaction.showToast`
+### `.showToast()` — `@zos/interaction.showToast`
 
 ```js
 hmUI.showToast({ text: `start result: ${info.result}` });
@@ -611,7 +613,7 @@ hmUI.showToast({ text: `stop result: ${info.result}` });
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/bgService.js`, line 88
 
-### `.start()` — likely `@zos/app-service.start`
+### `.start()` — **ambiguous**: module `@zos/app-service.start`; called on `@zos/crypto.DigestCrypto` or `@zos/media.Player` or `@zos/media.Recorder` or `@zos/sensor.Accelerometer` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Buzzer` or `@zos/sensor.Compass` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.SystemSounds` or `@zos/sensor.Vibrator`
 
 ```js
 acc.start();
@@ -634,7 +636,7 @@ const result = appService.start({
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/bgService.js`, line 52
 
-### `.stop()` — likely `@zos/app-service.stop`
+### `.stop()` — **ambiguous**: module `@zos/app-service.stop`; called on `@zos/media.Player` or `@zos/media.Recorder` or `@zos/sensor.Accelerometer` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Buzzer` or `@zos/sensor.Compass` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.SystemSounds` or `@zos/sensor.Vibrator`
 
 ```js
 acc.stop();
@@ -646,7 +648,7 @@ acc && acc.stop();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/acc.js`, line 48
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
+### `.stopTimer()` — `@zos/timer.stopTimer`
 
 ```js
 // timer.stopTimer(animTimer);

@@ -134,10 +134,12 @@ logger.log("app onDestroy");
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 let root_container = createWidget(widget.VIRTUAL_CONTAINER, { layout: Styles.BUTTON_ROOT_CONTAINER_STYLE });
@@ -149,7 +151,7 @@ createWidget(widget.FILL_RECT, { parent: root_container, ...Styles.BACKGROUND_FI
 ```
 — `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 22
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 layout_show.setProperty(prop.TEXT, text_show);
@@ -161,7 +163,7 @@ layout_show.setProperty(prop.TEXT, "tags:newtrack");
 ```
 — `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 139
 
-### `.updateLayoutStyle()` — likely `@zos/ui.updateLayoutStyle`
+### `.updateLayoutStyle()` — `@zos/ui.updateLayoutStyle`
 
 ```js
 root_container.updateLayoutStyle({ x: "0", y: "9vh", width: "100vw", height: String(style_height) + "vh" });

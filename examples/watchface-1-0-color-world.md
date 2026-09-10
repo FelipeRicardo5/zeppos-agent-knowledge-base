@@ -28,10 +28,12 @@ Builds for: `deviceSource` `224`, `225` (`configVersion` `v2`). See [`../compati
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.clearTimeout()` — likely `@zos/global.clearTimeout`
+### `.clearTimeout()` *(no record in this KB)*
 
 ```js
 globalNS.clearTimeout = function clearTimeout(timerRef) {
@@ -45,7 +47,7 @@ globalNS.clearTimeout(timer1)
 ```
 — `zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js`, line 16
 
-### `.createTimer()` — likely `timer.createTimer`
+### `.createTimer()` — `timer.createTimer`
 
 ```js
 const timer1 = timer.createTimer(
@@ -73,7 +75,7 @@ const timer1 = timer.createTimer(
 ```
 — `zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js`, line 30
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `hmUI.createWidget`
 
 ```js
 config.iconPath = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {
@@ -103,7 +105,7 @@ hmUI.createWidget(hmUI.widget.TEXT_IMG, {
 ```
 — `zeppos-samples/watchface/1.0/color-world/watchface/square/index.js`, line 346
 
-### `.getProperty()` — likely `@zos/ui.getProperty` or `hmUI.getProperty`
+### `.getProperty()` — `hmUI.getProperty`
 
 ```js
 let type = editBg.getProperty(hmUI.prop.CURRENT_TYPE)
@@ -115,14 +117,14 @@ let item = editGroup.getProperty(hmUI.prop.CURRENT_TYPE)
 ```
 — `zeppos-samples/watchface/1.0/color-world/watchface/square/index.js`, line 731
 
-### `.getScreenType()` — likely `hmSetting.getScreenType`
+### `.getScreenType()` — `hmSetting.getScreenType`
 
 ```js
 const screenType = hmSetting.getScreenType()
 ```
 — `zeppos-samples/watchface/1.0/color-world/watchface/square/index.js`, line 827
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
+### `.stopTimer()` — `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef)

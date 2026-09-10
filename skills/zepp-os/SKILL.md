@@ -220,6 +220,23 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 - The Side Service and Settings App **are** covered: see `../../runtimes/side-service.md` and `../../runtimes/settings.md`, plus `../../api/fetch.md` and `../../api/settings-storage.md`. What is missing there is narrower than the runtime: the Settings App's **entry point** (the function that registers a settings page) and the **props of its `ui.*` components`. Answer that one from the official docs and say so; everything else in those runtimes, answer from here.
 - A watchface symbol is written as a global path, not imported: `hmUI.createWidget`, `hmUI.widget.TEXT`, `hmSensor.id.HEART`, `hmFS.open`. Never suggest `import { createWidget } from 'hmUI'` — that is the Device App idiom and it is a different API.
 
+## When the sources disagree
+
+`../../conflicts/index.md` is the list of everywhere they do, and it is short
+on purpose. Check it before repeating a claim that matters:
+
+- One symbol's description differs between two official pages. `@zos/sensor.Weather`
+  is marked **deprecated** by its reference page and described as current by
+  `static/llms` — say deprecated.
+- One widget id is written `GRADKIENT_POLYLINE` in code and documented
+  `GRADIENT_POLYLINE`. Both are official; one does not work.
+- 13 method calls seen in sample code resolve to more than one thing even after
+  narrowing to the sample's runtime. `examples/` marks those **ambiguous** and
+  names every candidate. Do not pick one for the user without saying you did.
+
+`API_LEVEL` and signatures never disagree anywhere, so a conflict is never a
+reason to doubt those.
+
 ## Where the numbers come from
 
 `../../data/manifest.json` records the exact upstream commit of each source repo and

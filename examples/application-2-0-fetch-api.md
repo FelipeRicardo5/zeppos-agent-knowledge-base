@@ -104,10 +104,12 @@ y: px(260),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addListener()` — likely `@zos/ble.addListener` or `hmBle.addListener` or `messaging.addListener` or `settings-storage.addListener`
+### `.addListener()` — **ambiguous**: module `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
 messaging.peerSocket.addListener('message', (message) => {
@@ -125,7 +127,7 @@ messaging.peerSocket.addListener('message', (message) => {
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message.js`, line 293
 
-### `.clear()` — likely `settings-storage.clear`
+### `.clear()` — **ambiguous**: module `settings-storage.clear`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
 
 ```js
 this.map.clear()
@@ -139,7 +141,7 @@ clear() {
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 202
 
-### `.createConnect()` — likely `@zos/ble.createConnect` or `hmBle.createConnect`
+### `.createConnect()` — `@zos/ble.createConnect`
 
 ```js
 this.ble.createConnect((index, data, size) => {
@@ -157,7 +159,7 @@ this.ble.createConnect((index, data, size) => {
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message.js`, line 269
 
-### `.disConnect()` — likely `@zos/ble.disConnect` or `hmBle.disConnect`
+### `.disConnect()` — `@zos/ble.disConnect`
 
 ```js
 this.globalData.messageBuilder.disConnect();
@@ -176,14 +178,14 @@ disConnect(cb) {
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 272
 
-### `.open()` — likely `hmFS.open`
+### `.open()` *(no record in this KB)*
 
 ```js
 xhr.open('GET', url);
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 810
 
-### `.send()` — likely `@zos/ble.send` or `hmBle.send` or `messaging.send`
+### `.send()` — **ambiguous**: module `@zos/ble.send` or `messaging.send`
 
 ```js
 xhr.send();
@@ -195,7 +197,7 @@ const result = this.ble.send(buf.buffer, buf.byteLength)
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 429
 
-### `.set()` — likely `@zos/alarm.set`
+### `.set()` — `@zos/alarm.set`
 
 ```js
 this.map.set(type, [cb])

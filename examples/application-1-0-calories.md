@@ -28,10 +28,12 @@ Builds for: `deviceSource` `224`, `225`, `226`, `227`, `229`, `230`, `418`, `419
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — **ambiguous**: module `@zos/ui.addEventListener`; called on `@zos/media.Player` or `@zos/media.Recorder`
 
 ```js
 text.addEventListener(hmUI.event.SELECT, () => {
@@ -53,7 +55,7 @@ text.addEventListener(hmUI.event.SELECT, () => {
 ```
 — `zeppos-samples/application/1.0/calories/page/gts-3/food-list.js`, line 81
 
-### `.close()` — likely `hmFS.close`
+### `.close()` *(no record in this KB)*
 
 ```js
 hmFS.close(file);
@@ -65,7 +67,7 @@ hmFS.close(file);
 ```
 — `zeppos-samples/application/1.0/calories/utils/storage.js`, line 32
 
-### `.createSensor()` — likely `hmSensor.createSensor`
+### `.createSensor()` *(no record in this KB)*
 
 ```js
 let calories = hmSensor.createSensor(hmSensor.id.CALORIE).current; // Math.floor(Math.random() * 1000)
@@ -77,7 +79,7 @@ let calories = hmSensor.createSensor(hmSensor.id.CALORIE).current; // Math.floor
 ```
 — `zeppos-samples/application/1.0/calories/page/gts-3/index.js`, line 64
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.TEXT, COMMON_TITLE_TEXT);
@@ -96,7 +98,7 @@ const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {
 ```
 — `zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js`, line 35
 
-### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo` or `hmSetting.getDeviceInfo`
+### `.getDeviceInfo()` — `@zos/device.getDeviceInfo`
 
 ```js
 hmSetting.getDeviceInfo();
@@ -108,7 +110,7 @@ hmSetting.getDeviceInfo();
 ```
 — `zeppos-samples/application/1.0/calories/utils/styles.js`, line 4
 
-### `.open()` — likely `hmFS.open`
+### `.open()` *(no record in this KB)*
 
 ```js
 const file = hmFS.open(this.fileName, hmFS.O_RDWR | hmFS.O_TRUNC);
@@ -120,21 +122,21 @@ const file = hmFS.open(this.fileName, hmFS.O_RDONLY | hmFS.O_CREAT);
 ```
 — `zeppos-samples/application/1.0/calories/utils/storage.js`, line 29
 
-### `.read()` — likely `hmFS.read`
+### `.read()` *(no record in this KB)*
 
 ```js
 hmFS.read(file, fileContentUnit.buffer, 0, size);
 ```
 — `zeppos-samples/application/1.0/calories/utils/storage.js`, line 31
 
-### `.seek()` — likely `hmFS.seek`
+### `.seek()` — `@zos/media.Player`
 
 ```js
 hmFS.seek(file, 0, hmFS.SEEK_SET);
 ```
 — `zeppos-samples/application/1.0/calories/utils/storage.js`, line 30
 
-### `.set()` — likely `@zos/alarm.set`
+### `.set()` — `@zos/alarm.set`
 
 ```js
 this.globalData.localStorage.set({
@@ -143,7 +145,7 @@ this.globalData.localStorage.set({
 ```
 — `zeppos-samples/application/1.0/calories/app.js`, line 22
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
 this.state.radioGroup.setProperty(
@@ -161,14 +163,14 @@ this.state.radioGroup.setProperty(
 ```
 — `zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js`, line 94
 
-### `.stat()` — likely `hmFS.stat`
+### `.stat()` *(no record in this KB)*
 
 ```js
 const [fsStat, err] = hmFS.stat(this.fileName);
 ```
 — `zeppos-samples/application/1.0/calories/utils/storage.js`, line 25
 
-### `.write()` — likely `hmFS.write`
+### `.write()` *(no record in this KB)*
 
 ```js
 hmFS.write(file, contentBuffer, 0, contentBuffer.byteLength);

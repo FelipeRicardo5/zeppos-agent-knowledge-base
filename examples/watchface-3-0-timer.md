@@ -49,10 +49,12 @@ logger.log('app on destroy invoke')
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
+### `.addEventListener()` — `hmSensor.addEventListener`
 
 ```js
 secondImg.addEventListener(ui.event.CLICK_UP, function (info) {
@@ -86,7 +88,7 @@ backBtn.addEventListener(ui.event.CLICK_UP, function (info) {
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 279
 
-### `.createTimer()` — likely `timer.createTimer`
+### `.createTimer()` — `timer.createTimer`
 
 ```js
 hsTimer = timer.createTimer(10, 10, setMilliseconds, {})
@@ -98,7 +100,7 @@ sTimer = timer.createTimer(1000, 1000, setSeconds, {})
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 422
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `hmUI.createWidget`
 
 ```js
 imgBg = ui.createWidget(ui.widget.FILL_RECT, {
@@ -123,7 +125,7 @@ imgBg = ui.createWidget(ui.widget.IMG, {
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 103
 
-### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
+### `.setProperty()` — `hmUI.setProperty`
 
 ```js
 bigNumObject[i].setProperty(ui.prop.VISIBLE, false)
@@ -135,7 +137,7 @@ smallNumObject[j].setProperty(ui.prop.VISIBLE, false)
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 175
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
+### `.stopTimer()` — `timer.stopTimer`
 
 ```js
 timer.stopTimer(hsTimer)
@@ -147,7 +149,7 @@ timer.stopTimer(sTimer)
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 281
 
-### `.SysProGetInt()` — likely `hmFS.SysProGetInt`
+### `.SysProGetInt()` — `hmFS.SysProGetInt`
 
 ```js
 rootPath + 'smallNum/' + hmFS.SysProGetInt('t0') + '.png',
@@ -159,7 +161,7 @@ rootPath + 'smallNum/' + hmFS.SysProGetInt('t1') + '.png',
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 320
 
-### `.SysProSetInt()` — likely `hmFS.SysProSetInt`
+### `.SysProSetInt()` — `hmFS.SysProSetInt`
 
 ```js
 hmFS.SysProSetInt('t0', 0)

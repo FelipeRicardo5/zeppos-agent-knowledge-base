@@ -126,6 +126,31 @@ export interface MemberSpec {
   enums?: EnumSpec[];
 }
 
+/** One source's version of a field the sources disagree about. */
+export interface ConflictClaim {
+  value: string;
+  source: RawSourceKind;
+  /** Where to go and check, posix-normalized. */
+  originalPath: string;
+}
+
+/**
+ * A field two official sources state differently.
+ *
+ * The purest thing this base can produce: the disagreement exists *only*
+ * because several fronts are merged, and no upstream page knows it contradicts
+ * another. `enrich` has always resolved these by source priority and said
+ * nothing, which eval 01 called out.
+ *
+ * Compared after normalising away punctuation, markup and the trailing
+ * permission note — without that, 147 of 513 symbols "disagree" and every one
+ * of them is a full stop. One survives.
+ */
+export interface ConflictSpec {
+  field: "description" | "apiLevel" | "signature";
+  claims: ConflictClaim[];
+}
+
 export interface SymbolRecord {
   id: string; // e.g. "@zos/router.launchApp"
   module: string; // e.g. "@zos/router"
@@ -152,6 +177,8 @@ export interface SymbolRecord {
    * for why these are a field rather than symbols of their own.
    */
   members?: MemberSpec[];
+  /** Fields whose sources disagree. Absent when they agree, which is the norm. */
+  conflicts?: ConflictSpec[];
   runtimes: Runtime[];
   source: RawSourceKind;
   confidence: Confidence;

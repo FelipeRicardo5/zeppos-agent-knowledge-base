@@ -100,6 +100,53 @@ export async function readExampleFiles(examplesDir: string): Promise<ExampleReco
   return examples.sort((a, b) => a.id.localeCompare(b.id));
 }
 
+/**
+ * What a bare method name could be, scoped to the runtimes it was seen in.
+ *
+ * The receiver's type is never resolved — that would need flow analysis — so
+ * this is a name match and the page says so. Two things make it less of a
+ * guess than it was. Instance members are candidates now, and they are usually
+ * the right answer: `.getItem()` was reported as `settings-storage.getItem`, a
+ * Settings App function, in six Device App samples where it is
+ * `localStorage.getItem`. And a candidate from another runtime is dropped,
+ * because `hmUI.setProperty` is not a reading of a call in a Device App.
+ *
+ * Where several survive, they are all listed. `../conflicts/index.md` collects
+ * those, because a page that names one winner is asserting something this base
+ * cannot check.
+ */
+function callCandidates(
+  method: string,
+  runtimes: Runtime[],
+  known: Map<string, SymbolRecord>,
+): { symbols: string[]; members: string[] } {
+  const inScope = (record: SymbolRecord) =>
+    record.runtimes.length === 0 || record.runtimes.some((r) => runtimes.includes(r));
+
+  const records = [...known.values()].filter(inScope);
+  return {
+    symbols: records.filter((r) => r.symbol === method).map((r) => `\`${r.id}\``),
+    members: records
+      .filter((r) => (r.members ?? []).some((m) => m.name === method))
+      .map((r) => `\`${r.id}\``),
+  };
+}
+
+/** How a member call is labelled: one candidate is a hint, several are a warning. */
+function callLabel(method: string, runtimes: Runtime[], known: Map<string, SymbolRecord>): string {
+  const { symbols, members } = callCandidates(method, runtimes, known);
+  const all = [...symbols, ...members];
+
+  if (all.length === 0) return " *(no record in this KB)*";
+  if (all.length === 1) return ` — ${all[0]}`;
+
+  const parts = [
+    ...(symbols.length > 0 ? [`module ${symbols.join(" or ")}`] : []),
+    ...(members.length > 0 ? [`called on ${members.join(" or ")}`] : []),
+  ];
+  return ` — **ambiguous**: ${parts.join("; ")}`;
+}
+
 function snippetBlock(snippet: CodeSnippet): string[] {
   return ["```js", snippet.code, "```", `— \`${snippet.file}\`, line ${snippet.line}`, ""];
 }
@@ -174,18 +221,14 @@ function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord
     lines.push("## Methods called on a value", "");
     lines.push(
       "These are never imported, so no import line names their module. The name is",
-      "matched against the symbol records; the receiver's type is **not** resolved,",
-      "so treat the module as a strong hint rather than a fact.",
+      "matched against the symbol records, narrowed to this sample's runtimes; the",
+      "receiver's type is **not** resolved, so treat the match as a hint rather than",
+      "a fact. Where several candidates survive the row says **ambiguous** and names",
+      "them all — see [`../conflicts/index.md`](../conflicts/index.md).",
       "",
     );
     for (const call of example.memberCalls) {
-      const owners = [...known.values()]
-        .filter((record) => record.symbol === call.method)
-        .map((record) => `\`${record.id}\``);
-      lines.push(
-        `### \`.${call.method}()\`${owners.length > 0 ? ` — likely ${owners.join(" or ")}` : ""}`,
-        "",
-      );
+      lines.push(`### \`.${call.method}()\`${callLabel(call.method, example.runtimes, known)}`, "");
       for (const snippet of call.snippets) lines.push(...snippetBlock(snippet));
     }
   }
@@ -267,16 +310,20 @@ function examplesIndexMarkdown(examples: ExampleRecord[], known: Map<string, Sym
     lines.push(
       "Never imported, so the samples front could not see them at all — `setProperty`",
       "is the one the eval run tripped over. Matched by name against the symbol",
-      "records, with the receiver's type unresolved.",
+      "records and narrowed to the runtimes the call was seen in, with the receiver's",
+      "type unresolved. **ambiguous** means several candidates survive that narrowing;",
+      "[`../conflicts/index.md`](../conflicts/index.md) collects them.",
       "",
     );
     for (const [method, ids] of [...methods].sort(([a], [b]) => a.localeCompare(b))) {
-      const owners = [...known.values()]
-        .filter((record) => record.symbol === method)
-        .map((record) => `\`${record.id}\``)
-        .join(" or ");
+      // Scoped to the runtimes of the samples this call was actually seen in,
+      // for the same reason the per-app pages are: a Device App's
+      // `.setProperty()` is not `hmUI.setProperty`.
+      const runtimes = [
+        ...new Set(examples.filter((e) => ids.includes(e.id)).flatMap((e) => e.runtimes)),
+      ];
       lines.push(
-        `- \`.${method}()\`${owners ? ` — likely ${owners}` : ""} — ${ids.map((e) => `[${e}](${e}.md)`).join(", ")}`,
+        `- \`.${method}()\`${callLabel(method, runtimes, known)} — ${ids.map((e) => `[${e}](${e}.md)`).join(", ")}`,
       );
     }
   }

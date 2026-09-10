@@ -197,10 +197,12 @@ padding_top: px(40),
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is
-matched against the symbol records; the receiver's type is **not** resolved,
-so treat the module as a strong hint rather than a fact.
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.Button()` — likely `ui.Button`
+### `.Button()` *(no record in this KB)*
 
 ```js
 widgets.Button({
@@ -218,7 +220,7 @@ widgets.Button({
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 362
 
-### `.cancel()` — likely `@zos/alarm.cancel` or `@zos/notification.cancel`
+### `.cancel()` — **ambiguous**: module `@zos/alarm.cancel` or `@zos/notification.cancel`
 
 ```js
 this.cancel();
@@ -232,14 +234,14 @@ cancel() {
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 258
 
-### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
+### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
 const ele = parent.createWidget(id, widget_props);
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 161
 
-### `.getType()` — likely `@zos/ui.getType`
+### `.getType()` — **ambiguous**: module `@zos/ui.getType`; called on `@zos/sensor.Vibrator`
 
 ```js
 if (ele.getType() === idOfWidget.VIRTUAL_CONTAINER) {
@@ -254,7 +256,7 @@ if (ele.getType() === idOfWidget.VIRTUAL_CONTAINER) {
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 211
 
-### `.keyboard()` — likely `@zos/ui.keyboard`
+### `.keyboard()` — `@zos/ui.keyboard`
 
 ```js
 this.keyboard(() => {
@@ -268,14 +270,14 @@ this.keyboard();
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 538
 
-### `.setAlpha()` — likely `@zos/ui.setAlpha`
+### `.setAlpha()` — `@zos/ui.setAlpha`
 
 ```js
 btn.setAlpha(0);
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 171
 
-### `.Text()` — likely `ui.Text`
+### `.Text()` *(no record in this KB)*
 
 ```js
 widgets.Text({

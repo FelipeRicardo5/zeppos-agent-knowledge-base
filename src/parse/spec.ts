@@ -1,4 +1,4 @@
-import type { PropSpec, ShapeSpec } from "../types.js";
+import type { EnumMember, EnumSpec, PropSpec, ShapeSpec } from "../types.js";
 
 // Call shapes: the signature a page states and the property tables under it.
 //
@@ -168,4 +168,190 @@ export function extractShapes(content: string): ShapeSpec[] {
 
   flush();
   return shapes;
+}
+
+// --- Enums ------------------------------------------------------------------
+//
+// A second kind of table the same pages carry, and the one thing a `createWidget`
+// call cannot be written without. `spec.ts` already opened `ui/widget/TEXT.mdx`
+// for its `Param` table and walked past the `ALIGN` and `TEXT_STYLE` tables
+// directly below it — the fourth time a gap turned out to be a source already
+// read for a fraction of what it holds.
+//
+// 19 reference pages carry 24 of these. Three things about them decide the shape
+// of this code, and none is visible in the first file you open:
+//
+//   two owners     `align.CENTER_H` names its own symbol; `retCode` 0..10 is the
+//                  domain of a value `BloodOxygen` returns and has no name you
+//                  can write. The first belongs on `@zos/ui.align`, the second
+//                  on the page's own symbol. The values say which — the heading
+//                  does not (`### ALIGN alignment`, `## createCrypto`).
+//   several owners per table
+//                  `crypto/ECDSACrypto.mdx` puts `alg.*` and `ecp_dp.*` in one
+//                  table, so a table maps to a list of enums, not to one.
+//   partial upstream
+//                  `ui/createWidget.mdx` lists one widget id, breaks the next
+//                  row's markup (`| IMG\` |`) and closes with "the rest of the
+//                  values are not listed". Reading that as three members would
+//                  state the enum has three values. It has 42 — the samples
+//                  front finds the rest, and `partial` says the table did not.
+
+/** Column header -> the field it fills, for a `Value` table. */
+const ENUM_COLUMNS: Record<string, keyof EnumMember> = {
+  value: "value",
+  description: "description",
+  type: "type",
+  api_level: "apiLevel",
+};
+
+/**
+ * `align.CENTER_H`, `text_style.WRAP`, `ecp_dp.SECP192K1` — a member written the
+ * way code writes it. The prefix is the enum, the suffix the member.
+ *
+ * The suffix must start uppercase. Every documented member does, and it keeps a
+ * prose cell that happens to contain a dot from being read as a member.
+ */
+const QUALIFIED_MEMBER_RE = /^([a-z_][A-Za-z0-9_]*)\.([A-Z][A-Za-z0-9_]*)$/;
+
+/** A row that says the list goes on rather than naming a value. */
+const CONTINUES_RE = /^(?:\.{2,}|…)$/;
+
+function normalizeHeader(cell: string): string {
+  return cell.toLowerCase().replace(/\s+/g, "");
+}
+
+function toMember(header: string[], row: string[]): Partial<EnumMember> {
+  const member: Partial<EnumMember> = {};
+
+  header.forEach((label, index) => {
+    const field = ENUM_COLUMNS[normalizeHeader(label)];
+    if (field === undefined) return;
+
+    const value = clean(row[index]);
+    if (value === undefined) return;
+
+    if (field === "apiLevel") {
+      const level = Number(value);
+      if (Number.isFinite(level)) member.apiLevel = level;
+    } else {
+      member[field] = value as never;
+    }
+  });
+
+  return member;
+}
+
+/** A `Value` table's rows, before they are split between owners. */
+interface ValueTable {
+  heading: string | undefined;
+  rows: Partial<EnumMember>[];
+}
+
+function valueTables(content: string): ValueTable[] {
+  const tables: ValueTable[] = [];
+  const lines = content.split("\n");
+
+  let heading: string | undefined;
+  let header: string[] | undefined;
+  let rows: Partial<EnumMember>[] = [];
+
+  const flush = () => {
+    if (header !== undefined && rows.length > 0) tables.push({ heading, rows });
+    header = undefined;
+    rows = [];
+  };
+
+  lines.forEach((line, index) => {
+    const headingMatch = line.match(SHAPE_HEADING_RE);
+    if (headingMatch && line.startsWith("#")) {
+      flush();
+      heading = headingMatch[1].replace(/`/g, "").trim();
+      return;
+    }
+
+    const row = cells(line);
+    if (row === undefined) {
+      if (header !== undefined) flush();
+      return;
+    }
+    if (isSeparator(row)) return;
+
+    if (header === undefined) {
+      // A `Value` table is one whose *first* column is headed Value. Two checks,
+      // and the second one is not optional: `sensor/BloodOxygen.mdx` documents a
+      // `Result` shape whose first *data* row is `| value | number | ... |`, so
+      // matching on the cell alone promoted a data row to a header and invented
+      // an enum named `Result` with members `time` and `retCode`. A header is
+      // the line a separator follows — that is the only structural difference
+      // between the two, and markdown guarantees it.
+      const next = cells(lines[index + 1] ?? "");
+      if (normalizeHeader(row[0] ?? "") === "value" && next !== undefined && isSeparator(next)) {
+        header = row;
+      }
+      return;
+    }
+
+    rows.push(toMember(header, row));
+  });
+
+  flush();
+  return tables;
+}
+
+/**
+ * Every value set the page declares.
+ *
+ * A table is *qualified* if any row writes its value as `enum.MEMBER`. In a
+ * qualified table the rows that do not are damage, not data — `createWidget`
+ * ends its widget-id table with a broken cell and a `...` — so they set
+ * `partial` rather than becoming a member named after the breakage. In a bare
+ * table (`retCode`, `TURN_TYPE`, weather `index`) every row is a member and the
+ * heading is the only name there is.
+ */
+export function extractEnums(content: string): EnumSpec[] {
+  const specs: EnumSpec[] = [];
+
+  for (const { heading, rows } of valueTables(content)) {
+    const named = rows.filter((row): row is Partial<EnumMember> & { value: string } =>
+      row.value !== undefined,
+    );
+    if (named.length === 0) continue;
+
+    const qualified = new Map<string, EnumMember[]>();
+    let partial = false;
+
+    for (const row of named) {
+      const match = row.value.match(QUALIFIED_MEMBER_RE);
+      if (!match) continue;
+      const [, owner, member] = match;
+      const members = qualified.get(owner) ?? [];
+      members.push({ ...row, value: member, confidence: "OFFICIAL" });
+      qualified.set(owner, members);
+    }
+
+    if (qualified.size > 0) {
+      // Anything unreadable in a qualified table means the documented list is
+      // shorter than the real one, which is the claim worth recording.
+      partial = named.some((row) => !QUALIFIED_MEMBER_RE.test(row.value));
+      for (const [name, members] of qualified) {
+        specs.push({ name, qualified: true, members, ...(partial ? { partial } : {}) });
+      }
+      continue;
+    }
+
+    // Bare table. A trailing `...` is still a continuation marker, not a value.
+    const members = named
+      .filter((row) => !CONTINUES_RE.test(row.value))
+      .map((row) => ({ ...row, confidence: "OFFICIAL" as const }));
+    partial = members.length < named.length;
+
+    // Nothing to key the set on. `related-resources/language-list.mdx` opens
+    // with one of these — a real value domain (`getLanguage`'s return) that
+    // belongs to a symbol on another page, which this front cannot resolve.
+    if (heading === undefined || members.length === 0) continue;
+
+    specs.push({ name: heading, qualified: false, members, ...(partial ? { partial } : {}) });
+  }
+
+  return specs;
 }

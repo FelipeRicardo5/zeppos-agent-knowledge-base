@@ -24,6 +24,17 @@ const SIGNATURE_RE = /^#{2,4}\s+Types?\s*$\n+```ts\n([\s\S]*?)```/m;
 /** `## Props: object`, `### SelectOption: object`, `#### Param` — a shape name. */
 const SHAPE_HEADING_RE = /^#{2,5}\s+(.+?)\s*$/;
 
+/**
+ * A heading read as a name, with the type annotation upstream appends to it
+ * removed: `Props: object`, `CallBack: function`, `result: number` all name a
+ * thing and then say what type it is. Stripping only `: object` left eight of
+ * them carrying the annotation into the id, where `result: number` is not a
+ * name anything can look up.
+ */
+function headingName(heading: string): string {
+  return heading.replace(/\s*:\s*[A-Za-z_][A-Za-z0-9_]*\s*$/, "").trim();
+}
+
 /** Column header -> the field it fills. Lower-cased before lookup. */
 const COLUMNS: Record<string, keyof PropSpec> = {
   name: "name",
@@ -135,8 +146,7 @@ export function extractShapes(content: string): ShapeSpec[] {
 
   const flush = () => {
     if (heading !== undefined && props.length > 0) {
-      // `Props: object` names the shape `Props`; the annotation is noise.
-      shapes.push({ name: heading.replace(/\s*:\s*object$/i, "").trim(), props });
+      shapes.push({ name: headingName(heading), props });
     }
     header = undefined;
     props = [];
@@ -372,7 +382,7 @@ export function extractEnums(content: string): EnumSpec[] {
     // belongs to a symbol on another page, which this front cannot resolve.
     if (heading === undefined || members.length === 0) continue;
 
-    specs.push({ name: heading, qualified: false, members, ...(partial ? { partial } : {}) });
+    specs.push({ name: headingName(heading), qualified: false, members, ...(partial ? { partial } : {}) });
   }
 
   return specs;

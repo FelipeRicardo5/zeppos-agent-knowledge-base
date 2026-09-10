@@ -44,7 +44,7 @@ Return the current year, month and day order.
 () => result
 ```
 
-**result: number**
+**result**
 
 | Value | Description |
 | --- | --- |
@@ -138,7 +138,7 @@ Returns the current system-set time system.
 () => result
 ```
 
-**result: number**
+**result**
 
 | Value | Description |
 | --- | --- |
@@ -180,7 +180,7 @@ Get the weight unit set by the user.
 () => weightUnit
 ```
 
-**weightUnit: number**
+**weightUnit**
 
 | Value | Description |
 | --- | --- |

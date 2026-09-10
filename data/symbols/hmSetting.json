@@ -25,7 +25,7 @@
       "signature": "() => result",
       "enums": [
         {
-          "name": "result: number",
+          "name": "result",
           "qualified": false,
           "members": [
             {
@@ -239,7 +239,7 @@
       "signature": "() => result",
       "enums": [
         {
-          "name": "result: number",
+          "name": "result",
           "qualified": false,
           "members": [
             {
@@ -337,7 +337,7 @@
       "signature": "() => weightUnit",
       "enums": [
         {
-          "name": "weightUnit: number",
+          "name": "weightUnit",
           "qualified": false,
           "members": [
             {

@@ -430,7 +430,7 @@ Create a list that can be scrolled in a loop, and each list item can be placed w
 | `src` | `string` | no | — | The path of image. |
 | `text` | `string` | yes | — | The content of text. |
 
-**ItemClickFunc: function**
+**ItemClickFunc**
 
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -470,7 +470,7 @@ Create a list that scrolls in a loop, which can be populated with images.
 | `item_click_func` | `ItemClickFunc` | no | — | Callback for item click. |
 | `item_focus_change_func` | `ItemFocusChangeFunc` | no | — | Item focus state callback. |
 
-**ItemClickFunc: function**
+**ItemClickFunc**
 
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -1083,7 +1083,7 @@ An universal selector, use to text and number list selection
 | `init_val_index` | `number` | no | — | Default selected index |
 | `col_width` | `number` | no | — | Column width, all columns need to be configured |
 
-**CallBack: function**
+**CallBack**
 
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -1545,7 +1545,7 @@ A full-screen widget that supports time and date selection.
 | `initDay` | `number` | no | — | Initial day, default is 1 |
 | `picker_cb` | `CallBack` | no | — | Callback function of picker |
 
-**CallBack: function**
+**CallBack**
 
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |

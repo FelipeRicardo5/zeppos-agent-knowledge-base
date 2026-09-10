@@ -200,7 +200,7 @@
 | --- | --- | --- | --- | --- |
 | `scene` | `number` | not stated | — | vibration scene setting |
 
-**scene: number**
+**scene**
 
 | Value | Description |
 | --- | --- |

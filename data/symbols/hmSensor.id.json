@@ -577,7 +577,7 @@
       ],
       "enums": [
         {
-          "name": "scene: number",
+          "name": "scene",
           "qualified": false,
           "members": [
             {

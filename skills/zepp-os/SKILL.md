@@ -48,16 +48,19 @@ The list records each device's *latest* level, so an answer assumes the device i
 ## The gap that will bite you first
 
 **A symbol with no stated `API_LEVEL` cannot be certified for any device**, and
-that includes `@zos/ui.widget`, `align`, `text_style` and `prop` — which no
-Device App UI compiles without. They are `OBSERVED`: seen in official sample
-code with no documentation entry, so they carry no level and no description.
+that still includes `@zos/ui.widget`, `align`, `text_style`, `prop` and `event`
+— which no Device App UI compiles without. You can now look up what each of
+them *accepts*, because the reference pages document their members and the base
+reads them. What no page anywhere states is when they appeared.
 
-When you build a UI, say plainly that the level cannot be verified for the
+So when you build a UI, say plainly that the level cannot be verified for the
 widget primitives, instead of reporting a device's *Symbols available* count as
-if it covered them. It does not.
+if it covered them. It does not: that count is over the 353 symbols with a
+stated minimum, and these are not among them.
 
-That holds for the whole `OBSERVED` tier: every symbol in it is name-only — no
-description, no level, no signature. Read it as "this exists" and nothing more.
+The `OBSERVED` tier is 17 symbols, and 14 of them are name-only — no
+description, no level, no signature. Read those as "this exists" and nothing
+more. 11 of the 14 are `@zeppos/zml`, a helper library rather than platform API.
 
 ## How to find out how a symbol is called
 
@@ -69,13 +72,28 @@ it refers to. `(props: Props) => RenderFunc` is unusable without its `Props`
 table, so both are there. Some property tables state their **own** minimum
 `API_LEVEL` — a symbol you may call can have a property you may not.
 
-178 of 409 symbols carry a signature and 147 carry shapes; the rest state none
-upstream. The `ui/widget/` tree — `TEXT`, `IMG`, `BUTTON`, `SCROLL_LIST` — now
+178 of 411 symbols carry a signature and 147 carry shapes; the rest state none
+upstream. The `ui/widget/` tree — `TEXT`, `IMG`, `BUTTON`, `SCROLL_LIST` —
 carries its full `Param` table, so the props to draw a widget are in `api/`.
-What is still missing there are the **enum members**: `align.CENTER_H`,
-`text_style.WRAP` and the rest are documented upstream in a `Value | Description`
-table no front reads. Take those from sample code in `../../examples/`. `type` still holds only `function`, `constant` or `value`, so a symbol
-with no signature tells you nothing about its call shape.
+`type` still holds only `function`, `constant` or `value`, so a symbol with no
+signature tells you nothing about its call shape.
+
+**The values a parameter accepts** are on the same page, under the symbol that
+owns them. `align`, `widget`, `text_style`, `prop`, `event` and `inputType` are
+symbols in their own right — look up `@zos/ui.align` and you get every member
+with the name you write in code, `align.CENTER_H`. Two things to read carefully:
+
+- A member can state its **own** minimum `API_LEVEL`. `inputType` is 4.0 except
+  `inputType.JSKB`, which is 4.2.
+- Where a table mixes `OFFICIAL` and `OBSERVED`, the base says so per member.
+  `widget` is the case that matters: the reference page documents **one** widget
+  id and then says the rest "are not listed", so the other 24 are there because
+  sample code writes them. The page states that the list is incomplete — neither
+  source is the whole set, and a widget id you cannot find here may still exist.
+
+For a value set that has no name you can write — `retCode` on a sensor's result,
+`ERROR_CODE`, the weather `index` — the table sits on the symbol that returns
+it, so `@zos/sensor.Weather` is where you learn that `index` 3 is Sunny.
 
 **What working code does** is in `../../examples/index.md`. Go there when the
 signature is absent, when it is too abstract to act on, or to check that your
@@ -139,7 +157,7 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 **not covered**, never **does not exist**. Report it that way.
 
 - `not stated` in an `API_LEVEL` column means no source documents a minimum. It does *not* mean the symbol works at any level.
-- The runtime axis is heavily skewed: 373 of 409 symbols are Device App. Every runtime is covered, but the Settings App's 21 and the Side Service's 20 carry **no `API_LEVEL`** — no page in either tree states one — so they answer "does this exist here" but not "since when".
+- The runtime axis is heavily skewed: 375 of 411 symbols are Device App. Every runtime is covered, but the Settings App's 21 and the Side Service's 20 carry **no `API_LEVEL`** — no page in either tree states one — so they answer "does this exist here" but not "since when".
 - The **watchface `hm*` API is not covered at all** (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`). The 3 Watchface symbols here are `@zos/*` calls seen in watchface samples. Answer a `hm*` question from the official docs and say so.
 - Methods reached through a returned object (`DownloadTask.cancel`, `Onbox.enqueFile`) are not recorded. Their parent function is.
 - A pattern's `Minimum API_LEVEL` is **derived**, not quoted: it is the highest minimum among the symbols the guide's code uses, and it skips symbols this KB has no record for. Treat it as a floor, and check the page's own "no record" flag before calling a pattern verified.

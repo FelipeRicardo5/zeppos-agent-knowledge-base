@@ -1,0 +1,41 @@
+---
+title: TEXT
+sidebar_label: TEXT
+---
+
+> Start from API_LEVEL `1.0`.
+
+Text widget.
+
+## Param: object
+
+| Properties | Description                 | Required | Type       |
+| ---------- | --------------------------- | -------- | ---------- |
+| x          | The x-axis coordinate       | YES      | `number`   |
+| align_h    | Alignment of the horizontal | NO       | `ALIGN`    |
+| text_style | Text layout                 | NO       | `TEXT_STYLE` |
+
+### ALIGN alignment
+
+| Value          | Description                   |
+| -------------- | ----------------------------- |
+| align.LEFT     | Horizontal axis-left aligned  |
+| align.CENTER_H | Horizontal axis-centered      |
+
+### TEXT_STYLE Text layout
+
+| Value               | Description    |
+| ------------------- | -------------- |
+| text_style.NONE     | Scrolling text |
+| text_style.WRAP     | Line wrap      |
+
+## Example
+
+```js
+import { createWidget, widget, align, text_style } from '@zos/ui'
+
+const text = createWidget(widget.TEXT, {
+  align_h: align.CENTER_H,
+  text_style: text_style.NONE,
+})
+```

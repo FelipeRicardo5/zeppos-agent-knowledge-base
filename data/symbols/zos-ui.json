@@ -32,7 +32,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/addEventListener.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.addLayoutChild",
@@ -67,34 +67,100 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/addLayoutChild.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.align",
       "module": "@zos/ui",
       "symbol": "align",
-      "type": "function",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "align",
+          "qualified": true,
+          "members": [
+            {
+              "value": "BOTTOM",
+              "description": "Vertical axis-bottom",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "CENTER_H",
+              "confidence": "OFFICIAL",
+              "description": "Horizontal axis-centered."
+            },
+            {
+              "value": "CENTER_V",
+              "confidence": "OFFICIAL",
+              "description": "Vertical axis-centered"
+            },
+            {
+              "value": "LEFT",
+              "confidence": "OFFICIAL",
+              "description": "Horizontal axis-left aligned."
+            },
+            {
+              "value": "RIGHT",
+              "description": "Horizontal axis-align right.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "TOP",
+              "confidence": "OFFICIAL",
+              "description": "Vertical axis-top"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app",
         "workout-extension"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/calories/utils/styles-gts-3.js",
-      "extractedAt": "2026-09-09"
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/PAGE_INDICATOR.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.anim_status",
       "module": "@zos/ui",
       "symbol": "anim_status",
-      "type": "function",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "anim_status",
+          "qualified": true,
+          "members": [
+            {
+              "value": "PAUSE",
+              "description": "Pause animation; can only be called after starting the animation and resuming it.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "RESUME",
+              "description": "Resume animation; can only be called after pausing the animation.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "START",
+              "confidence": "OFFICIAL",
+              "description": "Start animation; only pause stop is allowed to be called after starting the animation."
+            },
+            {
+              "value": "STOP",
+              "description": "Stop animation; can only be called after starting the animation and resuming it.",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/showcase/page/ui/widget/img_anim.js",
-      "extractedAt": "2026-09-09"
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/IMG_ANIM.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.ARC",
@@ -170,7 +236,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/ARC.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.BUTTON",
@@ -304,7 +370,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/BUTTON.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.Buzzer",
@@ -319,7 +385,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-sensor.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.CANVAS",
@@ -723,7 +789,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/CANVAS.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.CHECKBOX_GROUP",
@@ -879,7 +945,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/CHECKBOX_GROUP.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.CIRCLE",
@@ -931,7 +997,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/CIRCLE.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.createDialog",
@@ -978,7 +1044,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/createDialog.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.createKeyboard",
@@ -991,7 +1057,7 @@
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.createWidget",
@@ -1029,7 +1095,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/createWidget.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.CYCLE_IMAGE_TEXT_LIST",
@@ -1247,7 +1313,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/CYCLE_IMAGE_TEXT_LIST.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.CYCLE_LIST",
@@ -1342,20 +1408,32 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/CYCLE_LIST.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.data_type",
       "module": "@zos/ui",
       "symbol": "data_type",
       "type": "function",
+      "enums": [
+        {
+          "name": "data_type",
+          "qualified": true,
+          "members": [
+            {
+              "value": "BATTERY",
+              "confidence": "OBSERVED"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "workout-extension"
       ],
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.r.layout.js",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.deleteKeyboard",
@@ -1368,7 +1446,7 @@
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.deleteWidget",
@@ -1384,7 +1462,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/deleteWidget.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.DIALOG",
@@ -1561,7 +1639,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/DIALOG.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.dumpLayout",
@@ -1574,33 +1652,78 @@
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.edit_widget_group_type",
       "module": "@zos/ui",
       "symbol": "edit_widget_group_type",
       "type": "function",
+      "enums": [
+        {
+          "name": "edit_widget_group_type",
+          "qualified": true,
+          "members": [
+            {
+              "value": "SPORTS",
+              "confidence": "OBSERVED"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "workout-extension"
       ],
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.r.layout.js",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.event",
       "module": "@zos/ui",
       "symbol": "event",
-      "type": "function",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "event",
+          "qualified": true,
+          "members": [
+            {
+              "value": "CLICK_DOWN",
+              "confidence": "OFFICIAL",
+              "description": "Press"
+            },
+            {
+              "value": "CLICK_UP",
+              "confidence": "OFFICIAL",
+              "description": "Lift up"
+            },
+            {
+              "value": "MOVE",
+              "confidence": "OFFICIAL",
+              "description": "Slide"
+            },
+            {
+              "value": "MOVE_IN",
+              "description": "Move in",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "MOVE_OUT",
+              "description": "Move out",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/showcase/page/interaction/create_modal.js",
-      "extractedAt": "2026-09-09"
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/addEventListener.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.FILL_RECT",
@@ -1706,7 +1829,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/FILL_RECT.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.getAppWidgetSize",
@@ -1749,7 +1872,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getAppWidgetSize.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.getId",
@@ -1765,7 +1888,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getId.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.getImageInfo",
@@ -1809,7 +1932,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getImageInfo.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.getProperty",
@@ -1837,7 +1960,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getProperty.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.getRtlLayout",
@@ -1853,7 +1976,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getRtlLayout.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.gettersetter",
@@ -1868,7 +1991,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/gettersetter.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.getTextLayout",
@@ -1971,7 +2094,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getTextLayout.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.getType",
@@ -1987,7 +2110,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/getType.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.GRADIENT_POLYLINE",
@@ -2090,7 +2213,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/GRADIENT_POLYLINE.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.GROUP",
@@ -2136,7 +2259,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/GROUP.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.HISTOGRAM",
@@ -2472,7 +2595,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/HISTOGRAM.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.IMG",
@@ -2572,7 +2695,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/IMG.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.IMG_ANIM",
@@ -2666,20 +2789,58 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/IMG_ANIM.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.inputType",
       "module": "@zos/ui",
       "symbol": "inputType",
-      "type": "function",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "inputType",
+          "qualified": true,
+          "members": [
+            {
+              "value": "CHAR",
+              "description": "Character keyboard",
+              "apiLevel": 4,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "EMOJI",
+              "description": "Emoji keyboard",
+              "apiLevel": 4,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "JSKB",
+              "description": "Custom Keyboard Widget",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "NUM",
+              "description": "Number keyboard",
+              "apiLevel": 4,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "VOICE",
+              "confidence": "OFFICIAL",
+              "description": "Voice input",
+              "apiLevel": 4
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
-      "extractedAt": "2026-09-09"
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.keyboard",
@@ -2771,13 +2932,41 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "keyboard",
+          "qualified": true,
+          "members": [
+            {
+              "value": "BACKSPACE",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "CANCEL",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "ENTER",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "SELECT",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "SWITCH",
+              "confidence": "OBSERVED"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/keyboard.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.KEYBOARD",
@@ -2915,7 +3104,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/KEYBOARD.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.openInspector",
@@ -2968,7 +3157,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/openInspector.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.PAGE_INDICATOR",
@@ -3095,7 +3284,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/PAGE_INDICATOR.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.PAGE_SCROLLBAR",
@@ -3123,7 +3312,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/PAGE_SCROLLBAR.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.PICK_DATE",
@@ -3253,7 +3442,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/PICK_DATE.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.PICKER",
@@ -3421,7 +3610,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/PICKER.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.POLYLINE",
@@ -3435,21 +3624,96 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-ui-widget-basic.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.prop",
       "module": "@zos/ui",
       "symbol": "prop",
-      "type": "function",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "prop",
+          "qualified": true,
+          "members": [
+            {
+              "value": "ALPHA",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "ANGLE",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "ANIM_IS_PAUSE",
+              "description": "Whether the animation is paused.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "ANIM_IS_RUNINNG",
+              "confidence": "OFFICIAL",
+              "description": "Is the animation running."
+            },
+            {
+              "value": "ANIM_IS_STOP",
+              "description": "Whether the animation is stopped.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "ANIM_STATUS",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "CHECKED",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "INIT",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "LIST_TOP",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "MORE",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "SHOW",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "SRC",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "TEXT",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "UPDATE_DATA",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "VISIBLE",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "X",
+              "confidence": "OBSERVED"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app",
         "workout-extension"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
-      "extractedAt": "2026-09-09"
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/IMG_ANIM.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.QRCODE",
@@ -3511,7 +3775,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/QRCODE.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.RADIO_GROUP",
@@ -3667,7 +3931,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/RADIO_GROUP.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.redraw",
@@ -3683,7 +3947,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/redraw.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.relayoutRtl",
@@ -3699,7 +3963,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/relayoutRtl.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.removeEventListener",
@@ -3732,7 +3996,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/removeEventListener.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.removeLayoutChild",
@@ -3760,7 +4024,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/removeLayoutChild.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.SCROLL_LIST",
@@ -4106,7 +4370,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SCROLL_LIST.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.setAlpha",
@@ -4122,7 +4386,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setAlpha.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.setAppWidgetSize",
@@ -4151,7 +4415,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setAppWidgetSize.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.setEnable",
@@ -4167,7 +4431,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setEnable.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.setLayoutParent",
@@ -4195,7 +4459,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setLayoutParent.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.setProperty",
@@ -4263,7 +4527,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setProperty.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.setStatusBarVisible",
@@ -4291,7 +4555,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/setStatusBarVisible.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.SLIDE_SWITCH",
@@ -4394,20 +4658,48 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SLIDE_SWITCH.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.sport_data",
       "module": "@zos/ui",
       "symbol": "sport_data",
       "type": "function",
+      "enums": [
+        {
+          "name": "sport_data",
+          "qualified": true,
+          "members": [
+            {
+              "value": "CONSUME",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "DISTANCE_TOTAL",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "DURATION_NET",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "HR",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "PACE",
+              "confidence": "OBSERVED"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "workout-extension"
       ],
       "source": "sample",
       "confidence": "OBSERVED",
       "originalPath": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.r.layout.js",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.SPORT_DATA",
@@ -4567,7 +4859,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SPORT_DATA.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.STROKE_RECT",
@@ -4673,7 +4965,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/STROKE_RECT.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.SYSTEM_KEYBOARD",
@@ -4731,7 +5023,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.TEXT",
@@ -4861,21 +5153,48 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/TEXT.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.text_style",
       "module": "@zos/ui",
       "symbol": "text_style",
-      "type": "function",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "text_style",
+          "qualified": true,
+          "members": [
+            {
+              "value": "CHAR_WRAP",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "ELLIPSIS",
+              "description": "Single line overflow character display...",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "NONE",
+              "confidence": "OFFICIAL",
+              "description": "Scrolling text"
+            },
+            {
+              "value": "WRAP",
+              "confidence": "OFFICIAL",
+              "description": "Line wrap"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app",
         "workout-extension"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/calories/utils/styles-gts-3.js",
-      "extractedAt": "2026-09-09"
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/TEXT.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.TIME_PICKER",
@@ -5002,7 +5321,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/TIME_PICKER.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.updateLayout",
@@ -5018,7 +5337,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/updateLayout.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.updateLayoutStyle",
@@ -5046,7 +5365,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/updateLayoutStyle.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.updateStatusBarTitle",
@@ -5074,7 +5393,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/updateStatusBarTitle.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.VIEW_CONTAINER",
@@ -5190,7 +5509,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/VIEW_CONTAINER.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.VIRTUAL_CONTAINER",
@@ -5219,21 +5538,131 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/VIRTUAL_CONTAINER.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.widget",
       "module": "@zos/ui",
       "symbol": "widget",
-      "type": "function",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "widget",
+          "qualified": true,
+          "members": [
+            {
+              "value": "ARC",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "BUTTON",
+              "confidence": "OFFICIAL",
+              "description": "Button widget ID."
+            },
+            {
+              "value": "CHECKBOX_GROUP",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "CIRCLE",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "CYCLE_IMAGE_TEXT_LIST",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "CYCLE_LIST",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "DIALOG",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "FILL_RECT",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "GRADKIENT_POLYLINE",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "GROUP",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "HISTOGRAM",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "IMG",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "IMG_ANIM",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "IMG_LEVEL",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "PICK_DATE",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "QRCODE",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "RADIO_GROUP",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "SCROLL_LIST",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "SLIDE_SWITCH",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "SPORT_DATA",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "STATE_BUTTON",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "STROKE_RECT",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "TEXT",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "VIEW_CONTAINER",
+              "confidence": "OBSERVED"
+            },
+            {
+              "value": "VIRTUAL_CONTAINER",
+              "confidence": "OBSERVED"
+            }
+          ],
+          "partial": true
+        }
+      ],
       "runtimes": [
         "device-app",
         "workout-extension"
       ],
-      "source": "sample",
-      "confidence": "OBSERVED",
-      "originalPath": "zeppos-samples/application/2.0/calories/app-widget/index.js",
-      "extractedAt": "2026-09-09"
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/createWidget.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/ui.widgetAnimations",
@@ -5338,7 +5767,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widgetAnimations.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     }
   ]
 }

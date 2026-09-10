@@ -77,6 +77,15 @@ function getSettings(): Result
 | `startTime` | `number` | not stated | — | >= 3 | Start time, based on the number of minutes at 0:00 of the day |
 | `endTime` | `number` | not stated | — | >= 3 | End time, based on the number of minutes at 0:00 of the day |
 
+**mode**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `0` | `number` | >= 3 | Measurement invalid |
+| `1` | `number` | >= 3 | Measurement invalid |
+| `2` | `number` | >= 3 | Measurement invalid |
+| `3` | `number` | >= 3 | Measurement invalid |
+
 ### `@zos/display.pauseDropWristScreenOff`
 
 Suspension of wrist resting behavior.

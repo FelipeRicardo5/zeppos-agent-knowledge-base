@@ -6,8 +6,8 @@
 | --- | --- | --- | --- |
 | `addEventListener` | value | >= 2 | OFFICIAL |
 | `addLayoutChild` | value | >= 4 | OFFICIAL |
-| `align` | function | not stated | OBSERVED |
-| `anim_status` | function | not stated | OBSERVED |
+| `align` | constant | not stated | OFFICIAL |
+| `anim_status` | constant | not stated | OFFICIAL |
 | `ARC` | value | >= 2 | OFFICIAL |
 | `BUTTON` | value | >= 2 | OFFICIAL |
 | `Buzzer` | function | >= 3.6 | OFFICIAL |
@@ -25,7 +25,7 @@
 | `DIALOG` | value | >= 2 | OFFICIAL |
 | `dumpLayout` | function | not stated | OBSERVED |
 | `edit_widget_group_type` | function | not stated | OBSERVED |
-| `event` | function | not stated | OBSERVED |
+| `event` | constant | not stated | OFFICIAL |
 | `FILL_RECT` | value | >= 2 | OFFICIAL |
 | `getAppWidgetSize` | value | >= 2 | OFFICIAL |
 | `getId` | value | >= 2 | OFFICIAL |
@@ -40,7 +40,7 @@
 | `HISTOGRAM` | value | >= 2 | OFFICIAL |
 | `IMG` | value | >= 2 | OFFICIAL |
 | `IMG_ANIM` | value | >= 2 | OFFICIAL |
-| `inputType` | function | not stated | OBSERVED |
+| `inputType` | constant | not stated | OFFICIAL |
 | `keyboard` | value | >= 4.2 | OFFICIAL |
 | `KEYBOARD` | value | >= 3 | OFFICIAL |
 | `openInspector` | function | >= 4 | OFFICIAL |
@@ -49,7 +49,7 @@
 | `PICK_DATE` | value | >= 2 | OFFICIAL |
 | `PICKER` | value | >= 3 | OFFICIAL |
 | `POLYLINE` | function | >= 2 | OFFICIAL |
-| `prop` | function | not stated | OBSERVED |
+| `prop` | constant | not stated | OFFICIAL |
 | `QRCODE` | value | >= 2 | OFFICIAL |
 | `RADIO_GROUP` | value | >= 2 | OFFICIAL |
 | `redraw` | value | >= 2 | OFFICIAL |
@@ -69,14 +69,14 @@
 | `STROKE_RECT` | value | >= 2 | OFFICIAL |
 | `SYSTEM_KEYBOARD` | value | >= 4 | OFFICIAL |
 | `TEXT` | value | >= 2 | OFFICIAL |
-| `text_style` | function | not stated | OBSERVED |
+| `text_style` | constant | not stated | OFFICIAL |
 | `TIME_PICKER` | value | >= 3.6 | OFFICIAL |
 | `updateLayout` | value | >= 4 | OFFICIAL |
 | `updateLayoutStyle` | value | >= 4 | OFFICIAL |
 | `updateStatusBarTitle` | value | >= 2 | OFFICIAL |
 | `VIEW_CONTAINER` | value | >= 2 | OFFICIAL |
 | `VIRTUAL_CONTAINER` | value | >= 4 | OFFICIAL |
-| `widget` | function | not stated | OBSERVED |
+| `widget` | constant | not stated | OFFICIAL |
 | `widgetAnimations` | value | >= 2 | OFFICIAL |
 
 `not stated` means no source documents a minimum for that symbol — not that it works on any level.
@@ -112,6 +112,30 @@ Adds a child node to the current widget.
 | --- | --- | --- | --- | --- |
 | `child` | `UIWidget` | yes | — | Child widget instance to add |
 | `index` | `number` | no | — | Insertion position index |
+
+### `@zos/ui.align`
+
+**align**
+
+| Value | Description |
+| --- | --- |
+| `align.BOTTOM` | Vertical axis-bottom |
+| `align.CENTER_H` | Horizontal axis-centered. |
+| `align.CENTER_V` | Vertical axis-centered |
+| `align.LEFT` | Horizontal axis-left aligned. |
+| `align.RIGHT` | Horizontal axis-align right. |
+| `align.TOP` | Vertical axis-top |
+
+### `@zos/ui.anim_status`
+
+**anim_status**
+
+| Value | Description |
+| --- | --- |
+| `anim_status.PAUSE` | Pause animation; can only be called after starting the animation and resuming it. |
+| `anim_status.RESUME` | Resume animation; can only be called after pausing the animation. |
+| `anim_status.START` | Start animation; only pause stop is allowed to be called after starting the animation. |
+| `anim_status.STOP` | Stop animation; can only be called after starting the animation and resuming it. |
 
 ### `@zos/ui.ARC`
 
@@ -453,6 +477,14 @@ Create a list that scrolls in a loop, which can be populated with images.
 | `cycleList` | `object` | not stated | — | — |
 | `index` | `number` | not stated | — | — |
 
+### `@zos/ui.data_type`
+
+**data_type**
+
+| Value | Description |
+| --- | --- |
+| `data_type.BATTERY` | — |
+
 ### `@zos/ui.deleteWidget`
 
 Delete the UI widget.
@@ -504,6 +536,26 @@ This widget has been discontinued. It is recommended to replace it with the more
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `prop.SHOW` | `boolean` | not stated | — | — |
+
+### `@zos/ui.edit_widget_group_type`
+
+**edit_widget_group_type**
+
+| Value | Description |
+| --- | --- |
+| `edit_widget_group_type.SPORTS` | — |
+
+### `@zos/ui.event`
+
+**event**
+
+| Value | Description |
+| --- | --- |
+| `event.CLICK_DOWN` | Press |
+| `event.CLICK_UP` | Lift up |
+| `event.MOVE` | Slide |
+| `event.MOVE_IN` | Move in |
+| `event.MOVE_OUT` | Move out |
 
 ### `@zos/ui.FILL_RECT`
 
@@ -806,6 +858,18 @@ Play the pre-given image at the set frame rate to create an animation effect.
 | `anim_complete_call` | `function` | no | — | This function is callback when the animation is executed successfully. repeat_count is invalid if 0. Parameters anim is an instance to create the animation. |
 | `step` | `number` | no | — | Frame animation step size, more than '1' will jump frame |
 
+### `@zos/ui.inputType`
+
+**inputType**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `inputType.CHAR` | >= 4 | Character keyboard |
+| `inputType.EMOJI` | >= 4 | Emoji keyboard |
+| `inputType.JSKB` | >= 4.2 | Custom Keyboard Widget |
+| `inputType.NUM` | >= 4 | Number keyboard |
+| `inputType.VOICE` | >= 4 | Voice input |
+
 ### `@zos/ui.keyboard`
 
 The keyboard API provides rich input interface capabilities, greatly simplifying the development complexity of custom keyboards.
@@ -847,6 +911,16 @@ The keyboard API provides rich input interface capabilities, greatly simplifying
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `inputType` | `number` | yes | — | Input type constant |
+
+**keyboard**
+
+| Value | Description |
+| --- | --- |
+| `keyboard.BACKSPACE` | — |
+| `keyboard.CANCEL` | — |
+| `keyboard.ENTER` | — |
+| `keyboard.SELECT` | — |
+| `keyboard.SWITCH` | — |
 
 ### `@zos/ui.KEYBOARD`
 
@@ -1017,6 +1091,29 @@ An universal selector, use to text and number list selection
 | `event_type` | not stated | not stated | — | Event type of Picker, see EVENT_TYPE |
 | `column_index` | not stated | not stated | — | Column index for triggering Picker events |
 | `select_index` | not stated | not stated | — | The index of selected item |
+
+### `@zos/ui.prop`
+
+**prop**
+
+| Value | Confidence | Documented as | Description |
+| --- | --- | --- | --- |
+| `prop.ALPHA` | OBSERVED | — | — |
+| `prop.ANGLE` | OBSERVED | — | — |
+| `prop.ANIM_IS_PAUSE` | OFFICIAL | — | Whether the animation is paused. |
+| `prop.ANIM_IS_RUNINNG` | OFFICIAL | — | Is the animation running. |
+| `prop.ANIM_IS_STOP` | OFFICIAL | — | Whether the animation is stopped. |
+| `prop.ANIM_STATUS` | OBSERVED | — | — |
+| `prop.CHECKED` | OBSERVED | — | — |
+| `prop.INIT` | OBSERVED | — | — |
+| `prop.LIST_TOP` | OBSERVED | — | — |
+| `prop.MORE` | OBSERVED | — | — |
+| `prop.SHOW` | OBSERVED | — | — |
+| `prop.SRC` | OBSERVED | — | — |
+| `prop.TEXT` | OBSERVED | [`@zos/ui.TEXT`](#zosuitext) | — |
+| `prop.UPDATE_DATA` | OBSERVED | — | — |
+| `prop.VISIBLE` | OBSERVED | — | — |
+| `prop.X` | OBSERVED | — | — |
 
 ### `@zos/ui.QRCODE`
 
@@ -1307,6 +1404,18 @@ Used to switch between open and closed states.
 | --- | --- | --- | --- | --- |
 | `prop.CHECKED` | not stated | not stated | — | Set switch state.Get switch state |
 
+### `@zos/ui.sport_data`
+
+**sport_data**
+
+| Value | Description |
+| --- | --- |
+| `sport_data.CONSUME` | — |
+| `sport_data.DISTANCE_TOTAL` | — |
+| `sport_data.DURATION_NET` | — |
+| `sport_data.HR` | — |
+| `sport_data.PACE` | — |
+
 ### `@zos/ui.SPORT_DATA`
 
 Displaying workout data in the workout extension can display a rich variety of workouts data types.
@@ -1401,6 +1510,17 @@ Text widget for displaying text. Support setting text size, color, alignment, fo
 | `end_angle` | `number` | no | — | Arc layout ending angle (start_angle < end_angle) |
 | `mode` | `number` | no | — | Arc layout mode, default 0<br/>0: inner<br/>1: outer |
 | `radius` | `number` | no | — | Controls the arc layout radius, defaults to half of the widget's width and height |
+
+### `@zos/ui.text_style`
+
+**text_style**
+
+| Value | Confidence | Description |
+| --- | --- | --- |
+| `text_style.CHAR_WRAP` | OBSERVED | — |
+| `text_style.ELLIPSIS` | OFFICIAL | Single line overflow character display... |
+| `text_style.NONE` | OFFICIAL | Scrolling text |
+| `text_style.WRAP` | OFFICIAL | Line wrap |
 
 ### `@zos/ui.TIME_PICKER`
 
@@ -1506,6 +1626,40 @@ VIRTUAL_CONTAINER is a special container widget used to implement Flex layout. I
 | Property | Type | Required | Default | Min API_LEVEL | Description |
 | --- | --- | --- | --- | --- | --- |
 | `layout` | `object` | yes | — | >= 4 | Layout properties for Flex layout configuration |
+
+### `@zos/ui.widget`
+
+**widget**
+
+The documentation states this list is incomplete. Members below marked `OBSERVED` come from sample code, and neither source is the whole set.
+
+| Value | Confidence | Documented as | Description |
+| --- | --- | --- | --- |
+| `widget.ARC` | OBSERVED | [`@zos/ui.ARC`](#zosuiarc) | — |
+| `widget.BUTTON` | OFFICIAL | [`@zos/ui.BUTTON`](#zosuibutton) | Button widget ID. |
+| `widget.CHECKBOX_GROUP` | OBSERVED | [`@zos/ui.CHECKBOX_GROUP`](#zosuicheckbox_group) | — |
+| `widget.CIRCLE` | OBSERVED | [`@zos/ui.CIRCLE`](#zosuicircle) | — |
+| `widget.CYCLE_IMAGE_TEXT_LIST` | OBSERVED | [`@zos/ui.CYCLE_IMAGE_TEXT_LIST`](#zosuicycle_image_text_list) | — |
+| `widget.CYCLE_LIST` | OBSERVED | [`@zos/ui.CYCLE_LIST`](#zosuicycle_list) | — |
+| `widget.DIALOG` | OBSERVED | [`@zos/ui.DIALOG`](#zosuidialog) | — |
+| `widget.FILL_RECT` | OBSERVED | [`@zos/ui.FILL_RECT`](#zosuifill_rect) | — |
+| `widget.GRADKIENT_POLYLINE` | OBSERVED | — | — |
+| `widget.GROUP` | OBSERVED | [`@zos/ui.GROUP`](#zosuigroup) | — |
+| `widget.HISTOGRAM` | OBSERVED | [`@zos/ui.HISTOGRAM`](#zosuihistogram) | — |
+| `widget.IMG` | OBSERVED | [`@zos/ui.IMG`](#zosuiimg) | — |
+| `widget.IMG_ANIM` | OBSERVED | [`@zos/ui.IMG_ANIM`](#zosuiimg_anim) | — |
+| `widget.IMG_LEVEL` | OBSERVED | — | — |
+| `widget.PICK_DATE` | OBSERVED | [`@zos/ui.PICK_DATE`](#zosuipick_date) | — |
+| `widget.QRCODE` | OBSERVED | [`@zos/ui.QRCODE`](#zosuiqrcode) | — |
+| `widget.RADIO_GROUP` | OBSERVED | [`@zos/ui.RADIO_GROUP`](#zosuiradio_group) | — |
+| `widget.SCROLL_LIST` | OBSERVED | [`@zos/ui.SCROLL_LIST`](#zosuiscroll_list) | — |
+| `widget.SLIDE_SWITCH` | OBSERVED | [`@zos/ui.SLIDE_SWITCH`](#zosuislide_switch) | — |
+| `widget.SPORT_DATA` | OBSERVED | [`@zos/ui.SPORT_DATA`](#zosuisport_data) | — |
+| `widget.STATE_BUTTON` | OBSERVED | — | — |
+| `widget.STROKE_RECT` | OBSERVED | [`@zos/ui.STROKE_RECT`](#zosuistroke_rect) | — |
+| `widget.TEXT` | OBSERVED | [`@zos/ui.TEXT`](#zosuitext) | — |
+| `widget.VIEW_CONTAINER` | OBSERVED | [`@zos/ui.VIEW_CONTAINER`](#zosuiview_container) | — |
+| `widget.VIRTUAL_CONTAINER` | OBSERVED | [`@zos/ui.VIRTUAL_CONTAINER`](#zosuivirtual_container) | — |
 
 ### `@zos/ui.widgetAnimations`
 

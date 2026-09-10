@@ -219,7 +219,12 @@ describe("parseLlmsContent (llms front)", () => {
 describe("parseSamples (samples front)", () => {
   it("records every symbol of a multi-line import", async () => {
     const units = await parseSamples(CACHE);
-    const uiSymbols = units.filter((u) => u.module === "@zos/ui").map((u) => u.symbol);
+    // Distinct symbols, because one symbol can now be observed twice in a file:
+    // once for the import line and once for the enum members the code writes on
+    // it. Both are observations of the same id and enrich merges them.
+    const uiSymbols = [
+      ...new Set(units.filter((u) => u.module === "@zos/ui").map((u) => u.symbol)),
+    ];
 
     assert.deepEqual(uiSymbols.sort(), ["createWidget", "deleteWidget", "keyboard", "widget"]);
   });
@@ -252,5 +257,70 @@ describe("parseSamples (samples front)", () => {
 
     assert.equal(units.get("@zos/ui.createWidget")?.runtimeHint, "device-app"); // application/
     assert.equal(units.get("@zos/app.getScene")?.runtimeHint, "watchface"); // watchface/
+  });
+});
+
+describe("enum members", () => {
+  it("files a qualified enum under its own symbol, not the page that hosts it", async () => {
+    // `ui/widget/TEXT.mdx` documents the TEXT widget and, under two headings
+    // that name neither, the members of `align` and `text_style`. Those are
+    // separate importable symbols; the page is only where the docs put the
+    // table. Filing them on TEXT would mean no page in the base answers what
+    // `align_h` accepts.
+    const units = byId(await parseMarkdown(CACHE));
+
+    const align = units.get("@zos/ui.align");
+    assert.ok(align, "align should become a symbol of its own");
+    assert.deepEqual(
+      align.enums?.[0].members.map((m) => m.value),
+      ["LEFT", "CENTER_H"],
+    );
+
+    const text = units.get("@zos/ui.TEXT");
+    assert.ok(text);
+    // The page's own symbol keeps its shape and gets no enum: `align` is not a
+    // value domain of TEXT, it is a thing TEXT refers to.
+    assert.equal(text.enums, undefined);
+    assert.ok(text.shapes?.some((s) => s.name === "Param"));
+  });
+
+  it("gives the hosted enum nothing of the host page", async () => {
+    // The badge on `ui/widget/TEXT.mdx` states the minimum for TEXT. It says
+    // nothing about when `align` appeared, and the prose describes TEXT too, so
+    // copying either onto the enum would state a fact no source states.
+    const units = byId(await parseMarkdown(CACHE));
+
+    const text = units.get("@zos/ui.TEXT");
+    const align = units.get("@zos/ui.align");
+
+    assert.equal(text?.apiLevel, 1);
+    assert.equal(align?.apiLevel, undefined);
+    assert.equal(align?.description, undefined);
+  });
+
+  it("reads enum members through an aliased import", async () => {
+    // `simple-keyboard/page/index.js` writes `import { widget as idOfWidget }`
+    // and then `idOfWidget.TEXT`. Scoping the scan to the imported *symbol*
+    // rather than the name the code writes missed 7 members across the samples,
+    // and would keep missing whichever one first appears only in such a file.
+    const widget = byId(await parseSamples(CACHE)).get("@zos/ui.widget");
+
+    assert.ok(widget, "widget should be seen through its alias");
+    assert.deepEqual(
+      widget.enums?.[0].members.map((m) => m.value),
+      ["TEXT"],
+    );
+    assert.equal(widget.enums?.[0].members[0].confidence, "OBSERVED");
+  });
+
+  it("ignores a member access whose receiver is not an imported symbol", async () => {
+    // What keeps the scan from being a guess: `Math.PI`, `JSON.SOMETHING` and
+    // every receiver-specific name never match a name the file imports from a
+    // `@zos/*` module, so they never become an enum.
+    const units = await parseSamples(CACHE);
+    const owners = new Set(units.flatMap((u) => (u.enums ?? []).map((e) => e.name)));
+
+    assert.ok(!owners.has("Math"));
+    assert.ok(!owners.has("JSON"));
   });
 });

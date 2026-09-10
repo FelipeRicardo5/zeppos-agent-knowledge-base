@@ -4,6 +4,8 @@ import type {
   AppJsonRecord,
   Confidence,
   DeviceRecord,
+  EnumMember,
+  EnumSpec,
   ExampleRecord,
   PatternRecord,
   RawAppJson,
@@ -52,6 +54,77 @@ function confidenceFor(units: RawUnit[]): Confidence {
   return units.some((u) => DOCUMENTED.includes(u.sourceKind)) ? "OFFICIAL" : "OBSERVED";
 }
 
+/**
+ * Enums are unioned across sources, where every other field is resolved by
+ * priority. That difference is deliberate.
+ *
+ * Two sources naming a signature are competing claims about one thing, so the
+ * better source wins. Two sources naming enum members are each a partial view
+ * of one set: `align` is documented on `ui/widget/TEXT.mdx` with six members
+ * and on `ui/widget/PAGE_INDICATOR.mdx` with three, and `widget` is documented
+ * with one member and written in sample code with 24 more. Taking the
+ * highest-priority table would have returned three `align` members and called
+ * it the enum.
+ *
+ * Within a member, the first source in priority order that states a field wins,
+ * so a documented description survives an observed sighting of the same value
+ * and OFFICIAL is never downgraded by a later OBSERVED one. Where two documented
+ * tables describe the same member differently the first still wins silently —
+ * that is the general conflict-reporting gap, not one this can close.
+ */
+function mergeEnums(ranked: RawUnit[]): EnumSpec[] | undefined {
+  const byName = new Map<string, { spec: EnumSpec; members: Map<string, EnumMember> }>();
+
+  for (const unit of ranked) {
+    for (const spec of unit.enums ?? []) {
+      const entry = byName.get(spec.name) ?? {
+        spec: { name: spec.name, qualified: spec.qualified, members: [] },
+        members: new Map<string, EnumMember>(),
+      };
+      // Any source saying the list is short makes it short. A second source
+      // listing more members does not make the first table complete.
+      if (spec.partial) entry.spec.partial = true;
+
+      for (const member of spec.members) {
+        const existing = entry.members.get(member.value);
+        entry.members.set(member.value, {
+          ...member,
+          ...existing,
+          confidence: existing?.confidence === "OFFICIAL" ? "OFFICIAL" : member.confidence,
+        });
+      }
+
+      byName.set(spec.name, entry);
+    }
+  }
+
+  if (byName.size === 0) return undefined;
+
+  return [...byName.values()]
+    .map(({ spec, members }) => ({
+      ...spec,
+      members: sortMembers([...members.values()]),
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * Numerically when every value is a number, alphabetically otherwise.
+ *
+ * A value domain like the weather `index` or a sensor's `retCode` is a numeric
+ * sequence whose order carries the meaning; sorting it as text reads `0, 1, 10,
+ * 2` and makes a 29-row table unusable. Sorted rather than left in source order
+ * so the persisted JSON depends only on the source content — several pages can
+ * contribute to one enum, and walk order must not show up in the output.
+ */
+function sortMembers(members: EnumMember[]): EnumMember[] {
+  const numeric = members.every((m) => /^-?\d+(\.\d+)?$/.test(m.value));
+
+  return members.sort((a, b) =>
+    numeric ? Number(a.value) - Number(b.value) : a.value.localeCompare(b.value),
+  );
+}
+
 export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
   const groups = new Map<string, RawUnit[]>();
 
@@ -86,6 +159,7 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
       minApiLevel: withApiLevel?.apiLevel,
       signature: withSignature?.signature,
       shapes: withShapes?.shapes,
+      enums: mergeEnums(ranked),
       runtimes,
       source: primary.sourceKind,
       confidence: confidenceFor(units),

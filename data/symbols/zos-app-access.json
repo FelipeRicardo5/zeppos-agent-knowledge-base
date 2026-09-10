@@ -39,13 +39,126 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "SportType",
+          "qualified": false,
+          "members": [
+            {
+              "value": "altitude",
+              "type": "object",
+              "description": "Altitude, example return value {\"altitude\": \"9.99\", \"name\": \"Elevation\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "avg_cadence",
+              "type": "object",
+              "description": "Average cadence, example return value {\"avg_cadence\": \"9.99\", \"name\": \"Average Cadence\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "avg_pace",
+              "type": "object",
+              "description": "Average pace, example return value {\"avg_pace\": \"1'12'\", \"name\": \"Average Pace\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "avg_speed",
+              "type": "object",
+              "description": "Average speed, example return value {\"avg_speed\": \"9.99\", \"name\": \"Average Speed\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "cadence",
+              "type": "object",
+              "description": "Cadence/cadence, example return value {\"cadence\": \"9.99\", \"name\": \"Cadence\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "calories",
+              "type": "object",
+              "description": "Consumption, example return value {\"calories\": \"9.99\", \"name\": \"Calories\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "distance",
+              "type": "object",
+              "description": "Distance, example return value {\"distance\": \"9.99\", \"name\": \"Distance\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "downhill_count",
+              "type": "object",
+              "description": "Number of downhills, example return value {\"downhill_count\": \"9.99\", \"name\": \"Downhills\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "duration",
+              "type": "object",
+              "description": "Time duration of workout, example return value {\"duration\":\"1:15:15\", \"name\": \"Duration\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "pace",
+              "type": "object",
+              "description": "Pace, example return value {\"avg_pace\": \"1' 12\" \",\" name \":\" Average Pace \"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "speed",
+              "type": "object",
+              "description": "Speed, example return value {\"speed\": \"9.99\", \"name\": \"Speed\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "total_count",
+              "type": "object",
+              "description": "Total count, example return value {\"total_count\": \"9.99\", \"name\": \"Total count\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "total_downhill_distance",
+              "type": "object",
+              "description": "Cumulative downhill distance, example return value {\"total_downhill_distance\": \"9.99\", \"name\": \"Total Downhill Distance\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "total_up_altitude",
+              "type": "object",
+              "description": "Accumulated elevation, example return value {\"total_up_altitude\": \"9.99\", \"name\": \"Total Ascent\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "vertical_speed",
+              "type": "object",
+              "description": "Vertical Speed, example return value {\"vertical_speed\": \"9.99\", \"name\": \"Vertical Speed\"}",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-access/getSportData.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     }
   ]
 }

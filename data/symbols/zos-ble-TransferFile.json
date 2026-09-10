@@ -165,13 +165,96 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "FileEventName",
+          "qualified": false,
+          "members": [
+            {
+              "value": "change",
+              "type": "string",
+              "description": "The event name that occurs when readyState changes state, corresponding to the ChangeCallback callback function",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "progress",
+              "type": "string",
+              "description": "The event name when the file transfer progress changes, corresponding to the ProgressCallback callback function",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        },
+        {
+          "name": "InboxEventName",
+          "qualified": false,
+          "members": [
+            {
+              "value": "FILE",
+              "type": "string",
+              "description": "The event that completed receiving the file",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "NEWFILE",
+              "type": "string",
+              "description": "The event that just received the file",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        },
+        {
+          "name": "ReceiveFileState",
+          "qualified": false,
+          "members": [
+            {
+              "value": "canceled",
+              "type": "string",
+              "description": "Canceled",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "error",
+              "type": "string",
+              "description": "Error",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "pending",
+              "type": "string",
+              "description": "Pending",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "transferred",
+              "type": "string",
+              "description": "Transferred",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "transferring",
+              "type": "string",
+              "description": "Transferring",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/transfer-file/TransferFile.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     }
   ]
 }

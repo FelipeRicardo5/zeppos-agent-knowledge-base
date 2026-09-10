@@ -97,7 +97,7 @@ Symbols no source states a minimum for. Absence means *not stated*, not *any* le
 - `@zeppos/zml/base/base-app` — 1 symbols ([zeppos-zml-base-base-app.md](zeppos-zml-base-base-app.md))
 - `@zeppos/zml/base/base-page` — 1 symbols ([zeppos-zml-base-base-page.md](zeppos-zml-base-base-page.md))
 - `@zeppos/zml/base/base-side` — 1 symbols ([zeppos-zml-base-base-side.md](zeppos-zml-base-base-side.md))
-- `@zos/crypto` — 4 symbols ([zos-crypto.md](zos-crypto.md))
+- `@zos/crypto` — 6 symbols ([zos-crypto.md](zos-crypto.md))
 - `@zos/ui` — 13 symbols ([zos-ui.md](zos-ui.md))
 - `download-file` — 1 symbols ([download-file.md](download-file.md))
 - `fetch` — 1 symbols ([fetch.md](fetch.md))

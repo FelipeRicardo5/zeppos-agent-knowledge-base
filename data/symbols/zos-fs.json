@@ -28,7 +28,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/closeSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.mkdirSync",
@@ -57,7 +57,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/mkdirSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.O_APPEND",
@@ -72,7 +72,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.O_CREAT",
@@ -87,7 +87,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.O_EXCL",
@@ -102,7 +102,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.O_RDONLY",
@@ -117,7 +117,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.O_RDWR",
@@ -132,7 +132,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.O_TRUNC",
@@ -147,7 +147,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.O_WRONLY",
@@ -162,7 +162,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-fs.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.openAssetsSync",
@@ -198,7 +198,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/openAssetsSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.openSync",
@@ -251,7 +251,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/openSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.readdirSync",
@@ -280,7 +280,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/readdirSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.readFileSync",
@@ -326,7 +326,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/readFileSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.readSync",
@@ -393,7 +393,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/readSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.renameSync",
@@ -428,7 +428,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/renameSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.rmSync",
@@ -457,7 +457,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/rmSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.statAssetsSync",
@@ -497,7 +497,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/statAssetsSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.statSync",
@@ -537,7 +537,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/statSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.writeFileSync",
@@ -590,7 +590,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/writeFileSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/fs.writeSync",
@@ -657,7 +657,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/fs/writeSync.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     }
   ]
 }

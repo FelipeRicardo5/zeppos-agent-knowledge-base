@@ -51,6 +51,20 @@ function start(option: Option): Result
 | `file` | `string` | not stated | — | >= 3 | App service js file, same as start incoming parameters |
 | `result` | `boolean` | not stated | — | >= 3 | App service start result, true means success, false means failure |
 
+**ERROR_CODE**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `0` | `number` | >= 3 | Success |
+| `1` | `number` | >= 3 | Parameter error |
+| `2` | `number` | >= 3 | Service Status Error |
+| `3` | `number` | >= 3 | No Permission |
+| `4` | `number` | >= 3 | Out Of Memory |
+| `5` | `number` | >= 3 | Not Supported |
+| `6` | `number` | >= 3 | Prohibited |
+| `7` | `number` | >= 3 | The number of services has reached the system limit |
+| `255` | `number` | >= 3 | Unknown Error |
+
 ### `@zos/app-service.stop`
 
 Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function. permission code: `device:os.bg_service`

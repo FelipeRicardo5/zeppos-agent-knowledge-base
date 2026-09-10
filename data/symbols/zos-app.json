@@ -34,7 +34,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/emitCustomSystemEvent.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.getPackageInfo",
@@ -50,7 +50,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPackageInfo.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.getPackageInfoById",
@@ -79,7 +79,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPackageInfoById.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.getPerformance",
@@ -281,7 +281,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getPerformance.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.getScene",
@@ -298,7 +298,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/getScene.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.queryPermission",
@@ -327,7 +327,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/queryPermission.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.requestPermission",
@@ -356,13 +356,42 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "result",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "type": "number",
+              "description": "In authorization processing, user interaction will be triggered, and the user will be informed of the authorization result in the callback function",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "type": "number",
+              "description": "There are no authorization requests that can be made",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "type": "number",
+              "description": "The requested interface is authorized and can be called immediately",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app/requestPermission.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.SCENE_AOD",
@@ -378,7 +407,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-app.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.SCENE_APP",
@@ -393,7 +422,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-app.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.SCENE_SETTINGS",
@@ -408,7 +437,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-app.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app.SCENE_WATCHFACE",
@@ -423,7 +452,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-app.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     }
   ]
 }

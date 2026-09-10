@@ -78,6 +78,22 @@ Blood oxygen Sensor. permission code: `data:user.hd.spo2`
 | `spo2` | `number` | not stated | — | >= 3 | Blood oxygen measurement value |
 | `time` | `number` | not stated | — | >= 3 | Time of measurement of blood oxygen values, UTC time stamp in seconds |
 
+**retCode**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `0` | `number` | >= 2 | Measurement invalid |
+| `1` | `number` | >= 2 | Continue measuring |
+| `2` | `number` | >= 2 | Measurement success |
+| `3` | `number` | >= 2 | Measurement failure |
+| `4` | `number` | >= 2 | Not wearing |
+| `5` | `number` | >= 2 | Measurement timeout |
+| `6` | `number` | >= 2 | Invalid wearing |
+| `7` | `number` | >= 2 | Invalid signal |
+| `8` | `number` | >= 2 | Low blood oxygen value |
+| `9` | `number` | >= 2 | High blood oxygen value |
+| `10` | `number` | >= 2 | Measurement invalid |
+
 ### `@zos/sensor.BodyTemperature`
 
 Body surface temperature sensor. permission code: `data:user.hd.body_temp`
@@ -92,6 +108,17 @@ Body surface temperature sensor. permission code: `data:user.hd.body_temp`
 ### `@zos/sensor.Buzzer`
 
 Buzzer.
+
+**Type**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `ALARM` | `number` | >= 3.6 | Alarm clock |
+| `FAILURE` | `number` | >= 3.6 | Failure |
+| `OPERATE` | `number` | >= 3.6 | Operation |
+| `REMIND_1` | `number` | >= 3.6 | Reminder 1 |
+| `REMIND_2` | `number` | >= 3.6 | Reminder 2 |
+| `SUCCESS` | `number` | >= 3.6 | Success |
 
 ### `@zos/sensor.Calorie`
 
@@ -108,6 +135,19 @@ function checkSensor(sensor: Sensor): Result
 ### `@zos/sensor.Compass`
 
 compass. permission code: `device:os.compass`
+
+**direction**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `E` | `string` | >= 3 | East |
+| `N` | `string` | >= 3 | North |
+| `NE` | `string` | >= 3 | Northeast |
+| `NW` | `string` | >= 3 | Northwest |
+| `S` | `string` | >= 3 | South |
+| `SE` | `string` | >= 3 | Southeast |
+| `SW` | `string` | >= 3 | Southwest |
+| `W` | `string` | >= 3 | West |
 
 ### `@zos/sensor.Distance`
 
@@ -198,6 +238,28 @@ Geolocation Sensor. permission code: `device:os.geolocation`
 | `elevation` | `number` | not stated | — | >= 3.6 | Pitch angle |
 | `azimuth` | `number` | not stated | — | >= 3.6 | Azimuth |
 | `snr` | `number` | not stated | — | >= 3.6 | Signal-to-noise ratio |
+
+**gnss_id**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `0` | `number` | >= 3 | GPS |
+| `1` | `number` | >= 3 | BDS |
+| `2` | `number` | >= 3 | GLONASS |
+| `3` | `number` | >= 3 | GALILEO |
+| `4` | `number` | >= 3 | QZSS |
+| `5` | `number` | >= 3 | IRNSS |
+
+**mode**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `0` | `number` | >= 3 | Accuracy |
+| `1` | `number` | >= 3 | Automation |
+| `2` | `number` | >= 3 | Balance |
+| `3` | `number` | >= 3 | Power Saving |
+| `4` | `number` | >= 3 | Super Power Saving |
+| `5` | `number` | >= 3 | Custom |
 
 ### `@zos/sensor.Gyroscope`
 
@@ -458,6 +520,40 @@ This interface has been deprecated, please refer to https://github.com/orgs/zepp
 | `hour` | `number` | not stated | — | >= 2 | Sunrise time - hour |
 | `minute` | `number` | not stated | — | >= 2 | Sunrise time - minute |
 
+**index**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `0` | `number` | >= 2 | Cloudy |
+| `1` | `number` | >= 2 | Showers |
+| `2` | `number` | >= 2 | Snow Showers |
+| `3` | `number` | >= 2 | Sunny |
+| `4` | `number` | >= 2 | Overcast |
+| `5` | `number` | >= 2 | Light Rain |
+| `6` | `number` | >= 2 | Light Snow |
+| `7` | `number` | >= 2 | Moderate Rain |
+| `8` | `number` | >= 2 | Moderate Snow |
+| `9` | `number` | >= 2 | Heavy Snow |
+| `10` | `number` | >= 2 | Heavy Rain |
+| `11` | `number` | >= 2 | Sandstorm |
+| `12` | `number` | >= 2 | Rain and Snow |
+| `13` | `number` | >= 2 | Fog |
+| `14` | `number` | >= 2 | Hazy |
+| `15` | `number` | >= 2 | T-Storms |
+| `16` | `number` | >= 2 | Snowstorm |
+| `17` | `number` | >= 2 | Floating dust |
+| `18` | `number` | >= 2 | Very Heavy Rainstorm |
+| `19` | `number` | >= 2 | Rain and Hail |
+| `20` | `number` | >= 2 | T-Storms and Hail |
+| `21` | `number` | >= 2 | Heavy Rainstorm |
+| `22` | `number` | >= 2 | Dust |
+| `23` | `number` | >= 2 | Heavy sand storm |
+| `24` | `number` | >= 2 | Rainstorm |
+| `25` | `number` | >= 2 | Unknown |
+| `26` | `number` | >= 2 | Cloudy Nighttime |
+| `27` | `number` | >= 2 | Showers Nighttime |
+| `28` | `number` | >= 2 | Sunny Nighttime |
+
 ### `@zos/sensor.Workout`
 
 Workout Sensor. permission code: `data:user.hd.workout`
@@ -496,6 +592,20 @@ Workout Sensor. permission code: `data:user.hd.workout`
 | `remainDistance` | `number` | not stated | — | >= 4.2 | Remaining distance in meters |
 | `turnDistance` | `number` | not stated | — | >= 4.2 | Distance to next turn in meters |
 | `turnType` | `number` | not stated | — | >= 4.2 | The direction of the next turn, refer to TURN_TYPE for value meanings |
+
+**TURN_TYPE**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `1` | `number` | >= 4.2 | Turn right forward |
+| `2` | `number` | >= 4.2 | Turn right |
+| `3` | `number` | >= 4.2 | Turn right backward |
+| `4` | `number` | >= 4.2 | U-turn to the right |
+| `5` | `number` | >= 4.2 | U-turn |
+| `6` | `number` | >= 4.2 | U-turn to the left |
+| `7` | `number` | >= 4.2 | Turn left backward |
+| `8` | `number` | >= 4.2 | Turn left |
+| `9` | `number` | >= 4.2 | Turn left forward |
 
 ### `@zos/sensor.WorldClock`
 

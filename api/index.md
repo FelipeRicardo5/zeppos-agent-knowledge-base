@@ -1,6 +1,6 @@
 # API index
 
-**42 modules, 409 symbols**
+**42 modules, 411 symbols**
 
 | Module | Symbols | With stated API_LEVEL | Page |
 | --- | --- | --- | --- |
@@ -19,7 +19,7 @@
 | `@zos/app-service` | 4 | 4 | [zos-app-service.md](zos-app-service.md) |
 | `@zos/ble` | 30 | 30 | [zos-ble.md](zos-ble.md) |
 | `@zos/ble/TransferFile` | 1 | 1 | [zos-ble-TransferFile.md](zos-ble-TransferFile.md) |
-| `@zos/crypto` | 5 | 1 | [zos-crypto.md](zos-crypto.md) |
+| `@zos/crypto` | 7 | 1 | [zos-crypto.md](zos-crypto.md) |
 | `@zos/device` | 4 | 4 | [zos-device.md](zos-device.md) |
 | `@zos/display` | 13 | 13 | [zos-display.md](zos-display.md) |
 | `@zos/fs` | 20 | 20 | [zos-fs.md](zos-fs.md) |

@@ -4,10 +4,10 @@ The hardware side of the compatibility question. `API_LEVEL` on its own does not
 tell a developer whether an app ships — this does.
 
 **Symbols available** counts the 353 symbols that state a minimum and whose
-minimum the device reaches. It is a floor: the 56 symbols with no stated
+minimum the device reaches. It is a floor: the 58 symbols with no stated
 minimum are excluded from every count rather than assumed available, so a device
 showing "353 of 353" runs everything the base can vouch for — not
-everything the base lists. 56 of 409 symbols cannot be
+everything the base lists. 58 of 411 symbols cannot be
 vouched for on any device, and some of them are needed by every UI.
 
 ## Devices running Zepp OS

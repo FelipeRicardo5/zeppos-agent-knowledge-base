@@ -164,6 +164,14 @@ function requestPermission(option: Option): Result
 | `permissions` | `Array&#60;string&#62;` | not stated | — | >= 3 | An array of permission strings, with an array length of at least 1 |
 | `callback` | `(result: Array&#60;number&#62;) =&#62; void` | not stated | — | >= 3 | Permission request result callback function |
 
+**result**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `0` | `number` | >= 3 | In authorization processing, user interaction will be triggered, and the user will be informed of the authorization result in the callback function |
+| `1` | `number` | >= 3 | There are no authorization requests that can be made |
+| `2` | `number` | >= 3 | The requested interface is authorized and can be called immediately |
+
 ### `@zos/app.SCENE_AOD`
 
 In the rest screen screen

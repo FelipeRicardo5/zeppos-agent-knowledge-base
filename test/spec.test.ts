@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { extractShapes, extractSignature } from "../src/parse/spec.js";
+import { extractEnums, extractShapes, extractSignature } from "../src/parse/spec.js";
 
 // Both eval runs found the same root gap: the base recorded that a symbol exists
 // and never how to call it. The documentation did state it — 182 of 269 reference
@@ -175,5 +175,184 @@ describe("extractShapes", () => {
       type: "object",
       description: "an option",
     });
+  });
+});
+
+// --- Enums ------------------------------------------------------------------
+//
+// Every fixture below is a real page, trimmed. The last three are the ones that
+// mattered: a table with two enums in it, a table upstream broke, and a property
+// table that is not an enum at all but read as one until the header check got
+// stricter.
+
+/** `ui/widget/TEXT.mdx` — two qualified tables under headings that do not name them. */
+const TEXT_WIDGET = `# TEXT
+
+### ALIGN alignment
+
+| Value          | Description                   |
+| -------------- | ----------------------------- |
+| align.LEFT     | Horizontal axis-left aligned  |
+| align.CENTER_H | Horizontal axis-centered      |
+
+### TEXT_STYLE Text layout
+
+| Value               | Description   |
+| ------------------- | ------------- |
+| text_style.NONE     | Scrolling text |
+| text_style.WRAP     | Line wrap     |
+`;
+
+describe("extractEnums", () => {
+  it("names a qualified enum after the value prefix, not the heading above it", () => {
+    // `### ALIGN alignment` and `### TEXT_STYLE Text layout` name neither enum
+    // in a form you could write in code. The values do: `align.LEFT` says the
+    // enum is `align`, which is a symbol of its own that this page merely hosts.
+    const [align, textStyle] = extractEnums(TEXT_WIDGET);
+
+    assert.equal(align.name, "align");
+    assert.equal(align.qualified, true);
+    assert.deepEqual(
+      align.members.map((m) => m.value),
+      ["LEFT", "CENTER_H"],
+    );
+    assert.equal(align.members[0].description, "Horizontal axis-left aligned");
+    assert.equal(textStyle.name, "text_style");
+    assert.equal(textStyle.partial, undefined);
+  });
+
+  it("splits one table into one enum per prefix", () => {
+    // `crypto/ECDSACrypto.mdx` puts two enums in a single table, so a table maps
+    // to a list of enums rather than to one. Reading the heading as the name
+    // would have filed both under `createCrypto`.
+    const ecdsa = `## createCrypto
+
+| Value              | Description              | API_LEVEL |
+| ------------------ | ------------------------ | --------- |
+| \`alg.ECDSA\`        | ECDSA digital signature  | \`3.0\`     |
+| \`ecp_dp.SECP192K1\` | SECP192K1 elliptic curve | \`3.0\`     |
+| \`ecp_dp.SECP224K1\` | SECP224K1 elliptic curve | \`3.0\`     |
+`;
+
+    const specs = extractEnums(ecdsa);
+
+    assert.deepEqual(
+      specs.map((s) => [s.name, s.members.map((m) => m.value)]),
+      [
+        ["alg", ["ECDSA"]],
+        ["ecp_dp", ["SECP192K1", "SECP224K1"]],
+      ],
+    );
+    assert.equal(specs[0].members[0].apiLevel, 3);
+  });
+
+  it("flags a qualified table as partial instead of inventing members from its damage", () => {
+    // `ui/createWidget.mdx` verbatim: one readable value, one whose markup
+    // upstream broke, and a row saying the rest are not listed. Reading three
+    // members would state that the most used enum in Zepp OS has three values.
+    const createWidget = `### WIDGET_ID
+
+| Value           | Description                                                             |
+| --------------- | ----------------------------------------------------------------------- |
+| \`widget.BUTTON\` | Button widget ID.                                                       |
+| IMG\`            | Image widget ID.                                                        |
+| ...             | The rest of the values are not listed, refer to the \`widget\` directory. |
+`;
+
+    const [widget] = extractEnums(createWidget);
+
+    assert.equal(widget.name, "widget");
+    assert.deepEqual(
+      widget.members.map((m) => m.value),
+      ["BUTTON"],
+    );
+    assert.equal(widget.partial, true);
+  });
+
+  it("reads a bare table as a value domain named by its heading", () => {
+    // `sensor/BloodOxygen.mdx`. `retCode` is not a name you can write in code —
+    // it is the domain of a value the page's symbol returns — so it stays on
+    // that symbol rather than becoming one.
+    const retCode = `#### retCode
+
+| Value | Type                | Description         | API_LEVEL |
+| ----- | ------------------- | ------------------- | --------- |
+| 0     | <code>number</code> | Measurement invalid | 2.0       |
+| 1     | <code>number</code> | Continue measuring  | 2.0       |
+`;
+
+    const [spec] = extractEnums(retCode);
+
+    assert.equal(spec.name, "retCode");
+    assert.equal(spec.qualified, false);
+    assert.deepEqual(spec.members, [
+      { value: "0", type: "number", description: "Measurement invalid", apiLevel: 2, confidence: "OFFICIAL" },
+      { value: "1", type: "number", description: "Continue measuring", apiLevel: 2, confidence: "OFFICIAL" },
+    ]);
+  });
+
+  it("keeps a per-member API_LEVEL, which the owning symbol's does not imply", () => {
+    // `ui/widget/SYSTEM_KEYBOARD.mdx`: the widget is 4.0 and so are four of the
+    // five input types, but `JSKB` is 4.2.
+    const keyboard = `### \`inputType\` Enum
+
+| Value           | Description        | API_LEVEL |
+| --------------- | ------------------ | --------- |
+| inputType.NUM   | Number keyboard    | 4.0       |
+| inputType.JSKB  | Custom Keyboard    | 4.2       |
+`;
+
+    const [spec] = extractEnums(keyboard);
+
+    assert.equal(spec.name, "inputType");
+    assert.deepEqual(
+      spec.members.map((m) => [m.value, m.apiLevel]),
+      [
+        ["NUM", 4],
+        ["JSKB", 4.2],
+      ],
+    );
+  });
+
+  it("does not read a property table whose first data row is named `value`", () => {
+    // The bug this check exists for, and it survived the first aggregate run.
+    // `sensor/BloodOxygen.mdx` documents a `Result` shape headed `| Property |`,
+    // whose first data row is `| value | number | ... |`. Matching a header on
+    // the cell alone promoted that data row to a header and invented an enum
+    // named `Result` with members `time` and `retCode`. A header is the row a
+    // separator follows; a data row is not.
+    const result = `#### Result
+
+| Property | Type                | Description                     | API_LEVEL |
+| -------- | ------------------- | ------------------------------- | --------- |
+| value    | <code>number</code> | Blood oxygen measurement values | 2.0       |
+| time     | <code>number</code> | Measurement time                | 2.0       |
+| retCode  | <code>number</code> | Result code                     | 2.0       |
+`;
+
+    assert.deepEqual(extractEnums(result), []);
+    // The same table is still a shape, which is what it always was.
+    assert.deepEqual(extractShapes(result)[0].props.map((p) => p.name), ["value", "time", "retCode"]);
+  });
+
+  it("skips a value table with no heading to name it", () => {
+    // `related-resources/language-list.mdx` opens with one: a real value domain
+    // (what `getLanguage` returns) belonging to a symbol on another page, which
+    // this front has no way to resolve. Naming it after the file would attach 34
+    // members to a symbol that does not exist.
+    const orphan = `---
+title: Multilingual Mapping
+---
+
+| Value | Code Abbreviation | Language / Country |
+| ----- | ----------------- | ------------------ |
+| 0     | zh-CN             | Simplified Chinese |
+`;
+
+    assert.deepEqual(extractEnums(orphan), []);
+  });
+
+  it("finds no enum on a page with no value table", () => {
+    assert.deepEqual(extractEnums(SETTINGS_COMPONENT), []);
   });
 });

@@ -74,12 +74,37 @@ diz nada sem a tabela `Props`. Por isso `shapes` guarda cada tabela de proprieda
 nomeada da página, com o nome do cabeçalho acima dela — 147 símbolos carregam
 shapes, 1157 propriedades no total.
 
-O que ainda falta aí são os **membros de enum**: `align.CENTER_H`, `text_style.WRAP`
-e afins estão documentados upstream numa tabela `Value | Description` que nenhuma
-frente lê. Código de sample é a única fonte deles hoje.
-
-No último sync, **178 de 409 símbolos têm assinatura**. O resto não declara nenhuma
+No último sync, **178 de 411 símbolos têm assinatura**. O resto não declara nenhuma
 upstream. Para esses, código de sample é a única resposta que existe.
+
+## Enum: o terceiro campo, e por que ele não é um shape
+
+Uma assinatura diz que o parâmetro é um `ALIGN`. Um shape diz quais chaves um
+objeto tem. Nenhum dos dois diz **quais valores** um `ALIGN` aceita, e é isso que
+falta para escrever `createWidget(widget.TEXT, { align_h: align.CENTER_H })` —
+duas enums e um shape numa linha só.
+
+`enums` guarda esses conjuntos: 27 conjuntos em 24 símbolos, 196 membros. Três
+decisões que a fonte impôs, nenhuma visível no primeiro arquivo que se abre:
+
+- **O dono vem do valor, não do cabeçalho.** A tabela de `align` mora em
+  `ui/widget/TEXT.mdx`, sob um cabeçalho `### ALIGN alignment` que não é um nome
+  que se escreva em código. Já o valor `align.LEFT` diz tudo: o enum é `align`,
+  um símbolo próprio que a página apenas hospeda. Uma tabela pode conter mais de
+  um enum — `ECDSACrypto.mdx` mistura `alg.*` e `ecp_dp.*` na mesma.
+- **Nada da página hospedeira é herdado.** O badge de `TEXT.mdx` declara o
+  mínimo de `TEXT`, não de `align`. Copiá-lo afirmaria um fato que fonte nenhuma
+  declara.
+- **União, não prioridade.** É o único campo fundido por união. `align` é
+  documentado em duas páginas, com 6 membros numa e 3 na outra: são duas visões
+  parciais de um conjunto só, não duas afirmações concorrentes. Pegar a página de
+  maior prioridade devolveria 3 membros e chamaria isso de enum.
+
+E o caso que resume o valor da frente: `createWidget` documenta **um** id de
+widget e então escreve que "o resto dos valores não está listado". A base marca
+o conjunto como `partial` e completa os outros 24 com código de sample, marcado
+`OBSERVED` membro a membro — dizendo que nenhuma das duas fontes é o conjunto
+inteiro, em vez de apresentar 25 como resposta.
 
 ## Como um símbolo chega até aqui
 

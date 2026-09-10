@@ -15,7 +15,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/exit.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app-service.getAllAppServices",
@@ -31,7 +31,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/getAllAppServices.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app-service.start",
@@ -90,13 +90,84 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "ERROR_CODE",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "type": "number",
+              "description": "Success",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "type": "number",
+              "description": "Parameter error",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "type": "number",
+              "description": "Service Status Error",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "3",
+              "type": "number",
+              "description": "No Permission",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "4",
+              "type": "number",
+              "description": "Out Of Memory",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "5",
+              "type": "number",
+              "description": "Not Supported",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "6",
+              "type": "number",
+              "description": "Prohibited",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "7",
+              "type": "number",
+              "description": "The number of services has reached the system limit",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "255",
+              "type": "number",
+              "description": "Unknown Error",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/start.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/app-service.stop",
@@ -148,7 +219,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/app-service/stop.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     }
   ]
 }

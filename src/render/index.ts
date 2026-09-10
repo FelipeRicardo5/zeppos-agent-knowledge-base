@@ -1,6 +1,6 @@
 import path from "node:path";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
-import type { DeviceRecord, Runtime, SymbolRecord } from "../types.js";
+import type { DeviceRecord, EnumSpec, Runtime, SymbolRecord } from "../types.js";
 import {
   INDEX_FILE,
   NOT_STATED,
@@ -100,7 +100,11 @@ function apiMarkdown(module: ModuleFile): string {
   }
 
   const detailed = module.symbols.filter(
-    (r) => r.description !== undefined || r.signature !== undefined || r.shapes !== undefined,
+    (r) =>
+      r.description !== undefined ||
+      r.signature !== undefined ||
+      r.shapes !== undefined ||
+      r.enums !== undefined,
   );
   if (detailed.length > 0) {
     lines.push("", "## Symbols in detail", "");
@@ -140,10 +144,92 @@ function apiMarkdown(module: ModuleFile): string {
         }
         lines.push("");
       }
+
+      for (const spec of record.enums ?? []) {
+        lines.push(...enumLines(spec, module));
+      }
     }
   }
 
   return lines.join("\n");
+}
+
+/**
+ * A `### ` heading's in-page anchor. Punctuation is dropped and the rest
+ * lower-cased, so `@zos/ui.TEXT` links as `#zosuitext`.
+ */
+function anchor(heading: string): string {
+  return heading.toLowerCase().replace(/[^a-z0-9 _-]/g, "").replace(/ /g, "-");
+}
+
+/**
+ * One value set, written the way code writes it.
+ *
+ * A qualified enum renders `align.CENTER_H`, because that is the whole point of
+ * having it — the value a developer types. A bare one renders `4`, and its
+ * heading says which value it is the domain of.
+ *
+ * The confidence column only appears when the set mixes the two, which is where
+ * it carries information: `widget` has one documented member and 24 seen only
+ * in sample code, and a reader has to be able to tell which is which.
+ *
+ * The `Documented as` column is the join that makes the biggest of these usable.
+ * `widget.TEXT` is the id you pass to `createWidget`, and the props it then
+ * accepts are on `@zos/ui.TEXT` — a separate symbol, on this same page, that
+ * nothing upstream connects to the enum member. It is a name match within one
+ * module, which is why the column says "documented as" rather than presenting
+ * that symbol's description as the member's own.
+ */
+function enumLines(spec: EnumSpec, module: ModuleFile): string[] {
+  const lines: string[] = [];
+  const write = (value: string) => `\`${spec.qualified ? `${spec.name}.${value}` : value}\``;
+
+  const siblings = new Set(module.symbols.map((r) => r.symbol));
+  const documented = (value: string) =>
+    spec.qualified && value !== spec.name && siblings.has(value)
+      ? `[\`${module.module}.${value}\`](#${anchor(`${module.module}.${value}`)})`
+      : "—";
+
+  lines.push(`**${cell(spec.name)}**`, "");
+
+  if (spec.partial) {
+    lines.push(
+      "The documentation states this list is incomplete. Members below marked" +
+        " `OBSERVED` come from sample code, and neither source is the whole set.",
+      "",
+    );
+  }
+
+  const levelled = spec.members.some((m) => m.apiLevel !== undefined);
+  const typed = spec.members.some((m) => m.type !== undefined);
+  const mixed = new Set(spec.members.map((m) => m.confidence)).size > 1;
+  const joined = spec.members.some((m) => documented(m.value) !== "—");
+
+  const header = [
+    "Value",
+    ...(typed ? ["Type"] : []),
+    ...(levelled ? ["Min API_LEVEL"] : []),
+    ...(mixed ? ["Confidence"] : []),
+    ...(joined ? ["Documented as"] : []),
+    "Description",
+  ];
+  lines.push(`| ${header.join(" | ")} |`);
+  lines.push(`| ${header.map(() => "---").join(" | ")} |`);
+
+  for (const member of spec.members) {
+    const columns = [
+      write(member.value),
+      ...(typed ? [member.type === undefined ? NOT_STATED : `\`${cell(member.type)}\``] : []),
+      ...(levelled ? [member.apiLevel === undefined ? NOT_STATED : `>= ${member.apiLevel}`] : []),
+      ...(mixed ? [member.confidence] : []),
+      ...(joined ? [documented(member.value)] : []),
+      member.description === undefined ? "—" : cell(member.description),
+    ];
+    lines.push(`| ${columns.join(" | ")} |`);
+  }
+  lines.push("");
+
+  return lines;
 }
 
 function compatMarkdown(module: ModuleFile): string {

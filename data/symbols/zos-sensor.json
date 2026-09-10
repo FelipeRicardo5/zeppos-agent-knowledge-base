@@ -39,7 +39,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Accelerometer.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Barometer",
@@ -54,7 +54,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Barometer.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Battery",
@@ -69,7 +69,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Battery.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.BloodOxygen",
@@ -120,13 +120,98 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "retCode",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "type": "number",
+              "description": "Measurement invalid",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "type": "number",
+              "description": "Continue measuring",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "type": "number",
+              "description": "Measurement success",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "3",
+              "type": "number",
+              "description": "Measurement failure",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "4",
+              "type": "number",
+              "description": "Not wearing",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "5",
+              "type": "number",
+              "description": "Measurement timeout",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "6",
+              "type": "number",
+              "description": "Invalid wearing",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "7",
+              "type": "number",
+              "description": "Invalid signal",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "8",
+              "type": "number",
+              "description": "Low blood oxygen value",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "9",
+              "type": "number",
+              "description": "High blood oxygen value",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "10",
+              "type": "number",
+              "description": "Measurement invalid",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/BloodOxygen.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.BodyTemperature",
@@ -160,7 +245,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/BodyTemperature.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Buzzer",
@@ -169,13 +254,63 @@
       "type": "value",
       "description": "Buzzer.",
       "minApiLevel": 3.6,
+      "enums": [
+        {
+          "name": "Type",
+          "qualified": false,
+          "members": [
+            {
+              "value": "ALARM",
+              "type": "number",
+              "description": "Alarm clock",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "FAILURE",
+              "type": "number",
+              "description": "Failure",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "OPERATE",
+              "type": "number",
+              "description": "Operation",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "REMIND_1",
+              "type": "number",
+              "description": "Reminder 1",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "REMIND_2",
+              "type": "number",
+              "description": "Reminder 2",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SUCCESS",
+              "type": "number",
+              "description": "Success",
+              "apiLevel": 3.6,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Buzzer.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Calorie",
@@ -190,7 +325,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Calorie.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.checkSensor",
@@ -206,7 +341,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/checkSensor.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Compass",
@@ -215,13 +350,77 @@
       "type": "value",
       "description": "compass. permission code: `device:os.compass`",
       "minApiLevel": 3,
+      "enums": [
+        {
+          "name": "direction",
+          "qualified": false,
+          "members": [
+            {
+              "value": "E",
+              "type": "string",
+              "description": "East",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "N",
+              "type": "string",
+              "description": "North",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "NE",
+              "type": "string",
+              "description": "Northeast",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "NW",
+              "type": "string",
+              "description": "Northwest",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "S",
+              "type": "string",
+              "description": "South",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SE",
+              "type": "string",
+              "description": "Southeast",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SW",
+              "type": "string",
+              "description": "Southwest",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "W",
+              "type": "string",
+              "description": "West",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Compass.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Distance",
@@ -236,7 +435,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Distance.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.FatBurning",
@@ -251,7 +450,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/FatBurning.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.FREQ_MODE_HIGH",
@@ -266,7 +465,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-sensor.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.FREQ_MODE_LOW",
@@ -281,7 +480,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-sensor.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.FREQ_MODE_NORMAL",
@@ -296,7 +495,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-sensor.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Geolocation",
@@ -505,13 +704,111 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "gnss_id",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "type": "number",
+              "description": "GPS",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "type": "number",
+              "description": "BDS",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "type": "number",
+              "description": "GLONASS",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "3",
+              "type": "number",
+              "description": "GALILEO",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "4",
+              "type": "number",
+              "description": "QZSS",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "5",
+              "type": "number",
+              "description": "IRNSS",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        },
+        {
+          "name": "mode",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "type": "number",
+              "description": "Accuracy",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "type": "number",
+              "description": "Automation",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "type": "number",
+              "description": "Balance",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "3",
+              "type": "number",
+              "description": "Power Saving",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "4",
+              "type": "number",
+              "description": "Super Power Saving",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "5",
+              "type": "number",
+              "description": "Custom",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Geolocation.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Gyroscope",
@@ -551,7 +848,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Gyroscope.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.HeartRate",
@@ -637,7 +934,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/HeartRate.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Pai",
@@ -652,7 +949,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Pai.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Screen",
@@ -667,7 +964,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Screen.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Sleep",
@@ -794,7 +1091,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Sleep.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Stand",
@@ -809,7 +1106,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Stand.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Step",
@@ -824,7 +1121,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Step.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Stress",
@@ -892,7 +1189,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Stress.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.SystemSounds",
@@ -962,7 +1259,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/SystemSounds.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Time",
@@ -997,7 +1294,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Time.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.TIME_HOUR_FORMAT_12",
@@ -1012,7 +1309,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-sensor.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.TIME_HOUR_FORMAT_24",
@@ -1027,7 +1324,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-sensor.md",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Vibrator",
@@ -1160,7 +1457,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Vibrator.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Wear",
@@ -1175,7 +1472,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Wear.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Weather",
@@ -1317,13 +1614,224 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "index",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "type": "number",
+              "description": "Cloudy",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "type": "number",
+              "description": "Showers",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "type": "number",
+              "description": "Snow Showers",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "3",
+              "type": "number",
+              "description": "Sunny",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "4",
+              "type": "number",
+              "description": "Overcast",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "5",
+              "type": "number",
+              "description": "Light Rain",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "6",
+              "type": "number",
+              "description": "Light Snow",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "7",
+              "type": "number",
+              "description": "Moderate Rain",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "8",
+              "type": "number",
+              "description": "Moderate Snow",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "9",
+              "type": "number",
+              "description": "Heavy Snow",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "10",
+              "type": "number",
+              "description": "Heavy Rain",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "11",
+              "type": "number",
+              "description": "Sandstorm",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "12",
+              "type": "number",
+              "description": "Rain and Snow",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "13",
+              "type": "number",
+              "description": "Fog",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "14",
+              "type": "number",
+              "description": "Hazy",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "15",
+              "type": "number",
+              "description": "T-Storms",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "16",
+              "type": "number",
+              "description": "Snowstorm",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "17",
+              "type": "number",
+              "description": "Floating dust",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "18",
+              "type": "number",
+              "description": "Very Heavy Rainstorm",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "19",
+              "type": "number",
+              "description": "Rain and Hail",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "20",
+              "type": "number",
+              "description": "T-Storms and Hail",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "21",
+              "type": "number",
+              "description": "Heavy Rainstorm",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "22",
+              "type": "number",
+              "description": "Dust",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "23",
+              "type": "number",
+              "description": "Heavy sand storm",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "24",
+              "type": "number",
+              "description": "Rainstorm",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "25",
+              "type": "number",
+              "description": "Unknown",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "26",
+              "type": "number",
+              "description": "Cloudy Nighttime",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "27",
+              "type": "number",
+              "description": "Showers Nighttime",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "28",
+              "type": "number",
+              "description": "Sunny Nighttime",
+              "apiLevel": 2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Weather.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.Workout",
@@ -1444,13 +1952,84 @@
           ]
         }
       ],
+      "enums": [
+        {
+          "name": "TURN_TYPE",
+          "qualified": false,
+          "members": [
+            {
+              "value": "1",
+              "type": "number",
+              "description": "Turn right forward",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "type": "number",
+              "description": "Turn right",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "3",
+              "type": "number",
+              "description": "Turn right backward",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "4",
+              "type": "number",
+              "description": "U-turn to the right",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "5",
+              "type": "number",
+              "description": "U-turn",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "6",
+              "type": "number",
+              "description": "U-turn to the left",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "7",
+              "type": "number",
+              "description": "Turn left backward",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "8",
+              "type": "number",
+              "description": "Turn left",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "9",
+              "type": "number",
+              "description": "Turn left forward",
+              "apiLevel": 4.2,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/Workout.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/sensor.WorldClock",
@@ -1508,7 +2087,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/sensor/WorldClock.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     }
   ]
 }

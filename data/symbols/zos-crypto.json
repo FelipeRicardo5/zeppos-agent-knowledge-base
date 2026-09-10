@@ -80,7 +80,34 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/AESCrypto.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "@zos/crypto.alg",
+      "module": "@zos/crypto",
+      "symbol": "alg",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "alg",
+          "qualified": true,
+          "members": [
+            {
+              "value": "ECDSA",
+              "description": "ECDSA digital signature",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/ECDSACrypto.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/crypto.CRCCrypto",
@@ -111,7 +138,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/CRCCrypto.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/crypto.DigestCrypto",
@@ -182,7 +209,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/DigestCrypto.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/crypto.ECDSACrypto",
@@ -298,7 +325,46 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/ECDSACrypto.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "@zos/crypto.ecp_dp",
+      "module": "@zos/crypto",
+      "symbol": "ecp_dp",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "ecp_dp",
+          "qualified": true,
+          "members": [
+            {
+              "value": "SECP192K1",
+              "description": "SECP192K1 elliptic curve",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SECP224K1",
+              "description": "SECP224K1 elliptic curve",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SECP256K1",
+              "description": "SECP256K1 elliptic curve; default",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/ECDSACrypto.mdx",
+      "extractedAt": "2026-09-10"
     },
     {
       "id": "@zos/crypto.encryptKey",
@@ -314,7 +380,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/encryptKey.mdx",
-      "extractedAt": "2026-09-09"
+      "extractedAt": "2026-09-10"
     }
   ]
 }

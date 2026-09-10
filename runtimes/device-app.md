@@ -1,6 +1,6 @@
 # Device App — runtime
 
-**373 symbols across 31 modules.**
+**375 symbols across 31 modules.**
 
 A symbol is attributed to a runtime by the source path it was extracted from,
 not by any statement in its own text. Absence is *not covered*, not *invalid here*.
@@ -140,9 +140,11 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | Symbol | Min API_LEVEL | Also valid in |
 | --- | --- | --- |
 | `AESCrypto` | not stated | — |
+| `alg` | not stated | — |
 | `CRCCrypto` | not stated | — |
 | `DigestCrypto` | not stated | — |
 | `ECDSACrypto` | not stated | — |
+| `ecp_dp` | not stated | — |
 | `encryptKey` | >= 3 | — |
 
 ## `@zos/device`

@@ -6,7 +6,7 @@
 import path from "node:path";
 import type { RawUnit } from "../types.js";
 import { runtimeForPath } from "./runtime.js";
-import { extractShapes, extractSignature } from "./spec.js";
+import { extractEnums, extractShapes, extractSignature } from "./spec.js";
 import { readSource, walkFiles } from "./util.js";
 
 const IMPORT_RE = /import\s*(?:\{([^}]*)\})?[^'"]*from\s+['"](@[^'"]+)['"]/g;
@@ -89,6 +89,15 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
     const apiLevelMatch = content.match(API_LEVEL_RE);
     const description = extractDescription(content);
     const shapes = extractShapes(content);
+    const runtimeHint = runtimeForPath(sourceFile);
+
+    // A page declares two kinds of value set, and they belong to two different
+    // symbols. `ui/widget/TEXT.mdx` documents the members of `align`, which is
+    // its own importable symbol — the page is only where the docs happened to
+    // put the table. `sensor/BloodOxygen.mdx` documents `retCode`, which is the
+    // domain of a value that page's symbol returns and belongs to it.
+    const enums = extractEnums(content);
+    const own = enums.filter((spec) => !spec.qualified);
 
     units.push({
       module,
@@ -98,10 +107,28 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
       apiLevel: apiLevelMatch ? Number(apiLevelMatch[1]) : undefined,
       signature: extractSignature(content),
       shapes: shapes.length > 0 ? shapes : undefined,
-      runtimeHint: runtimeForPath(sourceFile),
+      enums: own.length > 0 ? own : undefined,
+      runtimeHint,
       sourceFile,
       sourceKind: "docs-reference",
     });
+
+    for (const spec of enums) {
+      if (!spec.qualified) continue;
+      // Nothing of the host page carries over. The badge blockquote states the
+      // minimum for *its* symbol — `SYSTEM_KEYBOARD` is 4.0, which says nothing
+      // about when `align` appeared — and the prose describes that symbol too.
+      // Only what the table itself states belongs to the enum.
+      units.push({
+        module,
+        symbol: spec.name,
+        kind: "constant",
+        enums: [spec],
+        runtimeHint,
+        sourceFile,
+        sourceKind: "docs-reference",
+      });
+    }
   }
 
   return units;
@@ -363,6 +390,45 @@ export async function parseLlmsContent(cacheDir: string): Promise<RawUnit[]> {
 
 const MULTI_IMPORT_RE = /import\s*\{([^}]*)\}\s*from\s*['"](@[^'"]+)['"]/g;
 
+/** `widget.TEXT`, `align.CENTER_H` — an enum member as code writes it. */
+const MEMBER_USE_RE = /\b([a-z_][A-Za-z0-9_]*)\.([A-Z][A-Za-z0-9_]*)\b/g;
+
+/** A name a sample file imports: the symbol, and the module it came from. */
+interface ImportedName {
+  symbol: string;
+  module: string;
+}
+
+/**
+ * Enum members read off a sample file, keyed by the enum they belong to.
+ *
+ * Scoped to what this file imports from a `@zos/*` module, which is what makes
+ * the read safe rather than a guess: `align.CENTER_H` counts because the file
+ * says `import { align } from '@zos/ui'` above it, while `Math.PI` and
+ * `JSON.SOMETHING` never match an imported name and never appear.
+ *
+ * The docs need this. `ui/createWidget.mdx` documents one widget id and then
+ * says the rest "are not listed, refer to the `widget` directory" — so the most
+ * used enum in Zepp OS has, upstream, one member. Sample code writes 41 more.
+ */
+function memberUses(
+  content: string,
+  imported: Map<string, ImportedName[]>,
+): Map<string, { symbol: string; module: string; members: Set<string> }> {
+  const uses = new Map<string, { symbol: string; module: string; members: Set<string> }>();
+
+  for (const [, local, member] of content.matchAll(MEMBER_USE_RE)) {
+    for (const { symbol, module } of imported.get(local) ?? []) {
+      const key = `${module}.${symbol}`;
+      const entry = uses.get(key) ?? { symbol, module, members: new Set<string>() };
+      entry.members.add(member);
+      uses.set(key, entry);
+    }
+  }
+
+  return uses;
+}
+
 /**
  * Front 3: samples/**\/*.js — real usage of `@zos/*` symbols in shipped example apps.
  * These are OBSERVED (not documented) confidence signals, resolved at enrich time.
@@ -377,14 +443,30 @@ export async function parseSamples(cacheDir: string): Promise<RawUnit[]> {
     const sourceFile = path.relative(cacheDir, file);
     const runtimeHint = runtimeForPath(sourceFile);
 
+    // Keyed by the name the *code* writes, which an alias makes different from
+    // the symbol: `import { widget as idOfWidget }` is written `idOfWidget.TEXT`
+    // seven times in the samples. Keying on the symbol missed those, and it
+    // would keep missing whichever member first appears only in an aliased file.
+    //
+    // Built alongside the units rather than replacing them: one unit per import
+    // occurrence is what the sample count means, and a name imported from two
+    // modules is two claims, not one.
+    const imported = new Map<string, ImportedName[]>();
+
     for (const match of content.matchAll(MULTI_IMPORT_RE)) {
       const [, namedImports, module] = match;
-      const symbols = namedImports
-        .split(",")
-        .map((s) => s.trim().split(/\s+as\s+/)[0].trim())
-        .filter(Boolean);
 
-      for (const symbol of symbols) {
+      for (const entry of namedImports.split(",")) {
+        const [symbol, alias] = entry.trim().split(/\s+as\s+/).map((s) => s.trim());
+        if (!symbol) continue;
+
+        const local = alias || symbol;
+        const names = imported.get(local) ?? [];
+        if (!names.some((n) => n.symbol === symbol && n.module === module)) {
+          names.push({ symbol, module });
+        }
+        imported.set(local, names);
+
         units.push({
           module,
           symbol,
@@ -394,6 +476,24 @@ export async function parseSamples(cacheDir: string): Promise<RawUnit[]> {
           sourceKind: "sample",
         });
       }
+    }
+
+    for (const { symbol, module, members } of memberUses(content, imported).values()) {
+      units.push({
+        module,
+        symbol,
+        kind: "constant",
+        enums: [
+          {
+            name: symbol,
+            qualified: true,
+            members: [...members].sort().map((value) => ({ value, confidence: "OBSERVED" as const })),
+          },
+        ],
+        runtimeHint,
+        sourceFile,
+        sourceKind: "sample",
+      });
     }
   }
 

@@ -117,3 +117,135 @@ describe("enrich", () => {
     );
   });
 });
+
+describe("enrich enums", () => {
+  const align = (members: [string, string][], source: RawUnit["sourceKind"], confidence: "OFFICIAL" | "OBSERVED") =>
+    unit({
+      module: "@zos/ui",
+      symbol: "align",
+      kind: "constant",
+      sourceKind: source,
+      enums: [
+        {
+          name: "align",
+          qualified: true,
+          members: members.map(([value, description]) => ({
+            value,
+            ...(description ? { description } : {}),
+            confidence,
+          })),
+        },
+      ],
+    });
+
+  it("unions members across sources instead of letting one source win", () => {
+    // The reason this field is not resolved by priority like every other one.
+    // `align` is documented on `ui/widget/TEXT.mdx` with six members and on
+    // `ui/widget/PAGE_INDICATOR.mdx` with three: two partial views of one set,
+    // not two competing claims. Taking the higher-priority page would have
+    // returned three members and called that the enum.
+    const [record] = enrich([
+      align([["LEFT", "left"], ["RIGHT", "right"]], "docs-reference", "OFFICIAL"),
+      align([["TOP", "top"], ["LEFT", "left again"]], "docs-reference", "OFFICIAL"),
+    ]);
+
+    assert.deepEqual(
+      record.enums?.[0].members.map((m) => m.value),
+      ["LEFT", "RIGHT", "TOP"],
+    );
+    // First source in priority order wins the field, as everywhere else.
+    assert.equal(record.enums?.[0].members[0].description, "left");
+  });
+
+  it("keeps a documented member OFFICIAL when sample code writes it too", () => {
+    const [record] = enrich([
+      align([["LEFT", "left"]], "docs-reference", "OFFICIAL"),
+      align([["LEFT", ""], ["CENTER_H", ""]], "sample", "OBSERVED"),
+    ]);
+
+    const members = new Map(record.enums?.[0].members.map((m) => [m.value, m]));
+    assert.equal(members.get("LEFT")?.confidence, "OFFICIAL");
+    assert.equal(members.get("LEFT")?.description, "left");
+    // Sample code is evidence a value exists, never evidence it is documented.
+    assert.equal(members.get("CENTER_H")?.confidence, "OBSERVED");
+  });
+
+  it("keeps a list partial even when another source adds members to it", () => {
+    // `createWidget`'s widget-id table says the rest are not listed. 24 more
+    // values in sample code do not make that table complete, and the page has
+    // to keep saying so — neither source is the whole set.
+    const documented = align([["LEFT", "left"]], "docs-reference", "OFFICIAL");
+    documented.enums![0].partial = true;
+
+    const [record] = enrich([documented, align([["TOP", ""]], "sample", "OBSERVED")]);
+
+    assert.equal(record.enums?.[0].partial, true);
+    assert.equal(record.enums?.[0].members.length, 2);
+  });
+
+  it("upgrades a symbol seen only in samples to OFFICIAL once a page documents its members", () => {
+    // What this front changed about the OBSERVED tier: `align`, `widget`,
+    // `text_style` and `prop` were name-only sightings in sample code, with no
+    // description and no level, which by the base's own absence-of-evidence
+    // rule left every Device App UI uncertifiable.
+    const [record] = enrich([
+      unit({ module: "@zos/ui", symbol: "align", sourceKind: "sample" }),
+      align([["LEFT", "left"]], "docs-reference", "OFFICIAL"),
+    ]);
+
+    assert.equal(record.confidence, "OFFICIAL");
+    assert.equal(record.enums?.[0].members.length, 1);
+  });
+});
+
+describe("enum member order", () => {
+  it("sorts a numeric value domain numerically, not as text", () => {
+    // The weather `index` runs 0..28 and `ERROR_CODE` ends at 255. Sorted as
+    // text they read `0, 1, 10, 2`, which makes a 29-row lookup table unusable
+    // for the one thing it is for.
+    const [record] = enrich([
+      unit({
+        module: "@zos/sensor",
+        symbol: "Weather",
+        sourceKind: "docs-reference",
+        enums: [
+          {
+            name: "index",
+            qualified: false,
+            members: ["10", "2", "0", "255"].map((value) => ({ value, confidence: "OFFICIAL" as const })),
+          },
+        ],
+      }),
+    ]);
+
+    assert.deepEqual(
+      record.enums?.[0].members.map((m) => m.value),
+      ["0", "2", "10", "255"],
+    );
+  });
+
+  it("sorts a named value set alphabetically", () => {
+    const [record] = enrich([
+      unit({
+        module: "@zos/ui",
+        symbol: "align",
+        sourceKind: "docs-reference",
+        enums: [
+          {
+            name: "align",
+            qualified: true,
+            members: ["TOP", "BOTTOM", "CENTER_H"].map((value) => ({
+              value,
+              confidence: "OFFICIAL" as const,
+            })),
+          },
+        ],
+      }),
+    ]);
+
+    assert.deepEqual(
+      record.enums?.[0].members.map((m) => m.value),
+      ["BOTTOM", "CENTER_H", "TOP"],
+    );
+  });
+});

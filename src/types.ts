@@ -48,6 +48,52 @@ export interface ShapeSpec {
   props: PropSpec[];
 }
 
+/** One row of a `Value | Description` table: a value the API accepts or returns. */
+export interface EnumMember {
+  /** The member alone — `CENTER_H` for `align.CENTER_H`, `4` for a bare `retCode`. */
+  value: string;
+  description?: string;
+  type?: string;
+  /**
+   * Some tables state a minimum per member: `inputType` is 4.0 except `JSKB`,
+   * which is 4.2. Absent is absent, never the owning symbol's level.
+   */
+  apiLevel?: number;
+  /**
+   * Per member, because one enum routinely mixes the two. `widget` documents a
+   * single value in a table that then says "the rest are not listed"; 41 more
+   * are written in sample code the docs point at.
+   */
+  confidence: Confidence;
+}
+
+/**
+ * A set of values the API accepts or returns, from a `Value | Description`
+ * table.
+ *
+ * Not a `ShapeSpec`: a shape says what an object's keys are, an enum says what
+ * one value may be. `createWidget(widget.TEXT, { align_h: align.CENTER_H })` is
+ * two enums and a shape, and the shapes front already had the shape.
+ */
+export interface EnumSpec {
+  /** `align`, `text_style`, `retCode`, `TURN_TYPE`. */
+  name: string;
+  /**
+   * True when the table's values are written `name.MEMBER` in code, which makes
+   * `name` a symbol of its own — `align`, `widget`, `alg`. False for a bare
+   * domain like `retCode` 0..10: it has no name you can write, and it belongs
+   * to the symbol whose page declares it.
+   */
+  qualified: boolean;
+  members: EnumMember[];
+  /**
+   * Upstream states the list is incomplete, or wrote a row this cannot read.
+   * `createWidget`'s `WIDGET_ID` table lists one value, breaks the next one's
+   * markup, and closes with "the rest of the values are not listed".
+   */
+  partial?: boolean;
+}
+
 export interface SymbolRecord {
   id: string; // e.g. "@zos/router.launchApp"
   module: string; // e.g. "@zos/router"
@@ -64,6 +110,11 @@ export interface SymbolRecord {
   signature?: string;
   /** The object shapes the signature refers to, `Props` first where present. */
   shapes?: ShapeSpec[];
+  /**
+   * The value sets this symbol is. `@zos/ui.align` holds its own members;
+   * `@zos/sensor.BloodOxygen` holds `retCode`, the domain of a value it returns.
+   */
+  enums?: EnumSpec[];
   runtimes: Runtime[];
   source: RawSourceKind;
   confidence: Confidence;
@@ -84,6 +135,7 @@ export interface RawUnit {
   apiLevel?: number;
   signature?: string;
   shapes?: ShapeSpec[];
+  enums?: EnumSpec[];
   runtimeHint?: Runtime;
   sourceFile: string; // path relative to the cache dir
   sourceKind: RawSourceKind;

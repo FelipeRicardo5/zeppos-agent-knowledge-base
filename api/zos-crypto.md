@@ -1,13 +1,15 @@
 # @zos/crypto
 
-**5 symbols**
+**7 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
 | `AESCrypto` | value | not stated | OFFICIAL |
+| `alg` | constant | not stated | OFFICIAL |
 | `CRCCrypto` | value | not stated | OFFICIAL |
 | `DigestCrypto` | value | not stated | OFFICIAL |
 | `ECDSACrypto` | value | not stated | OFFICIAL |
+| `ecp_dp` | constant | not stated | OFFICIAL |
 | `encryptKey` | function | >= 3 | OFFICIAL |
 
 `not stated` means no source documents a minimum for that symbol — not that it works on any level.
@@ -48,6 +50,14 @@ function createCrypto(algorithmId: typeof alg.AES_CBC, option: AESOptions): AESC
 | --- | --- | --- | --- | --- |
 | `data` | `ArrayBuffer` | not stated | — | Decrypted data |
 | `length` | `number` | not stated | — | Data length |
+
+### `@zos/crypto.alg`
+
+**alg**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `alg.ECDSA` | >= 3 | ECDSA digital signature |
 
 ### `@zos/crypto.CRCCrypto`
 
@@ -151,6 +161,16 @@ function createCrypto(algorithmId: typeof alg.ECDSA, option?: ECDSAOptions): ECD
 | --- | --- | --- | --- | --- |
 | `data` | `ArrayBuffer` | not stated | — | Signature verification result data |
 | `length` | `number` | not stated | — | Data length |
+
+### `@zos/crypto.ecp_dp`
+
+**ecp_dp**
+
+| Value | Min API_LEVEL | Description |
+| --- | --- | --- |
+| `ecp_dp.SECP192K1` | >= 3 | SECP192K1 elliptic curve |
+| `ecp_dp.SECP224K1` | >= 3 | SECP224K1 elliptic curve |
+| `ecp_dp.SECP256K1` | >= 3 | SECP256K1 elliptic curve; default |
 
 ### `@zos/crypto.encryptKey`
 

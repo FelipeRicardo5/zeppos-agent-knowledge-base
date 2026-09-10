@@ -66,3 +66,27 @@ File Transfer.
 | Property | Type | Required | Default | Min API_LEVEL | Description |
 | --- | --- | --- | --- | --- | --- |
 | `enqueueFile` | `(fileName: string, params?: object) =&#62; getInbox.FileObject` | not stated | — | >= 3 | Returns FileObject, fileName is the path to the file, and params is a customized file transfer object, retrieved from FileObject on the receiving end. The getInbox.FileObject type is referenced above |
+
+**FileEventName**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `change` | `string` | >= 3 | The event name that occurs when readyState changes state, corresponding to the ChangeCallback callback function |
+| `progress` | `string` | >= 3 | The event name when the file transfer progress changes, corresponding to the ProgressCallback callback function |
+
+**InboxEventName**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `FILE` | `string` | >= 3 | The event that completed receiving the file |
+| `NEWFILE` | `string` | >= 3 | The event that just received the file |
+
+**ReceiveFileState**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `canceled` | `string` | >= 3 | Canceled |
+| `error` | `string` | >= 3 | Error |
+| `pending` | `string` | >= 3 | Pending |
+| `transferred` | `string` | >= 3 | Transferred |
+| `transferring` | `string` | >= 3 | Transferring |

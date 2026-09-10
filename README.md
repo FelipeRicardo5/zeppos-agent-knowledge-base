@@ -20,14 +20,15 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/, examples/, manifest/) |
 
-Fixture-based tests cover all eight parse fronts, runtime attribution, call-shape extraction, the enrich merge and every render view: `npm test` (168 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all eight parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (188 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
-- **409 symbols** across **42 modules**, from all 241 reference pages + 36 phone-runtime entries + 443 `static/llms` entries + 622 sample imports
-- 385 `OFFICIAL`, 24 `OBSERVED`
+- **411 symbols** across **42 modules**, from all 241 reference pages + 36 phone-runtime entries + 443 `static/llms` entries + 785 sample observations
+- 394 `OFFICIAL`, 17 `OBSERVED`
 - 353 symbols carry a minimum `API_LEVEL`; 367 carry a description; **178 carry a call signature and 147 carry property tables** — 1157 properties, 591 of them with their own minimum level
-- **every runtime is covered**: 373 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
+- **27 value sets** on 24 symbols — 196 members, 124 of them stating their own minimum level. 146 come from a documented table and 50 from sample code, marked per member
+- **every runtime is covered**: 375 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
 - **33 sample apps** read as code, yielding 592 cited excerpts and the shape of 33 working `app.json` files
@@ -38,12 +39,15 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 Read this before trusting an answer that came out of this KB.
 
 - **The watchface API is not covered.** `hmUI`, `hmFS`, `hmSensor` and `hmSetting` live under `docs/watchface/**` — 93 pages, a separate tree with its own format, none of them parsed. The 3 Watchface symbols in the KB are `@zos/*` calls seen in watchface sample code, not the `hm*` API.
-- **The runtime axis is populated, unevenly.** Every runtime now has symbols, but 373 of 409 are Device App. The Settings App's 21 and the Side Service's 20 have **no `API_LEVEL` at all** — no page in either tree states one — so they answer "does this exist here" but not "since when".
+- **The runtime axis is populated, unevenly.** Every runtime now has symbols, but 375 of 411 are Device App. The Settings App's 21 and the Side Service's 20 have **no `API_LEVEL` at all** — no page in either tree states one — so they answer "does this exist here" but not "since when".
 - **`####` methods on returned objects are skipped.** `DownloadTask.cancel`, `Onbox.enqueFile` and similar are real API, but reached through an instance a function returns rather than named at module level, so filing them beside module symbols would misstate how they are called.
 - **A missing symbol means "not covered", not "does not exist."** This holds hardest on the runtime axis: a symbol absent from `runtimes/settings.md` says nothing about whether the Settings App can use it, because nothing has been extracted for that runtime at all.
 - **Runtime is inferred from the source path, never from a page's text.** No page or sample states its runtime; both official repos separate the runtimes by directory, so the directory is the evidence. The rules and the doc that anchors each one live in [`src/parse/runtime.ts`](src/parse/runtime.ts). This is the axis most exposed to an upstream reorganization, and the reason it has its own test file.
 - **`API_LEVEL` is the one axis that works today.** It is read verbatim from the badge blockquote on each page (`Start from API_LEVEL`, or `Supported since API_LEVEL` — both wordings occur), never inferred.
-- **30 of 381 symbols have no description.** 24 are `OBSERVED` — seen only in sample code, which carries no prose. The other 6 are pages that genuinely have none between title and first section (`@zos/crypto`, two `@zos/ui` widgets).
+- **44 of 411 symbols have no description.** 14 are name-only `OBSERVED` sightings in sample code, which carries no prose — 11 of those are `@zeppos/zml`, a helper library rather than platform API. The rest are pages with nothing between title and first section, plus the enum symbols whose pages document their members and never describe the set.
+- **An enum's members are documented on the pages that use it, not on its own.** `align` is defined across `ui/widget/TEXT.mdx` and `ui/widget/PAGE_INDICATOR.mdx`, so its members are the *union* of what several pages state — the one field this base merges by union rather than by source priority. A member missing from every page that happened to mention the enum is missing here too.
+- **`widget` is the one value set the documentation calls incomplete, and it says so.** The reference page lists a single widget id and then says "the rest of the values are not listed"; the other 24 are `OBSERVED`, read off sample code. Neither source is the whole set, and `api/zos-ui.md` states that rather than presenting 25 as the answer.
+- **Members read from sample code are scoped to what the file imports.** `align.CENTER_H` counts because the file says `import { align } from '@zos/ui'` above it. That is also why watchface samples contribute none: they use the `hm*` globals, so their `widget.X` is a different `widget`.
 - **Parser bugs are the main risk, and every one so far was the same failure**: a source format that looked regular in the first file and wasn't. Each is now pinned by a fixture test built from the real file that broke it, so a regression fails the suite instead of quietly producing wrong records.
 - **Fixtures pin regressions; they don't prove coverage.** Two bugs survived a green suite because the fixtures were written from the files already read. Both were found by running the real pipeline and looking at the aggregate counts: a CRLF checkout (see below) silently dropped 188 documented constants, and a path rule mis-filed 10 symbols under a runtime because a docs directory shares a name with an app directory. Aggregate the output of a new front before believing it.
 - **The documented `app.json` is incomplete, and the base says where.** The reference page names no `module` key that reaches the Workout Extension runtime, yet six samples are one — they use a `data-widget` key the page never mentions. `manifest/index.md` reports the diff in both directions rather than presenting the documented tree as the whole schema. Documented rows are `OFFICIAL`; observed key paths are `OBSERVED`, and 33 apps are not the whole surface either way.
@@ -149,6 +153,7 @@ Both eval runs found the same root gap — the base recorded that a symbol exist
 | --- | --- |
 | `signature` | The call signature the page states, **verbatim**. `(props: Props) => result: RenderFunc` is not valid TypeScript, so normalising it would either lose information or invent a shape the docs never stated |
 | `shapes` | Every named property table on the page, keyed by the heading above it — `Props`, `SelectOption`, `Options`, `DownloadTask`. A signature is unusable without them, and `Select`'s `options` is unusable without `SelectOption`. `Props` sorts first |
+| `enums` | The value sets this symbol *is* or *returns*. `@zos/ui.align` holds its own members, written as code writes them; `@zos/sensor.BloodOxygen` holds `retCode`, the domain of a value it returns. Each member may state its own `API_LEVEL` and its own confidence, and `partial` marks a set the documentation itself calls incomplete. The one field merged by **union** across sources rather than by priority — see *Coverage and limits* |
 
 Each property carries `type`, `required`, `default`, `description`, and sometimes its **own** minimum `API_LEVEL`: a symbol you may call can have a property you may not. 484 of the 643 properties state one.
 

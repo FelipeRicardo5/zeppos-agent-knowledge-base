@@ -46,13 +46,19 @@ import { Time } from '@zos/sensor' // api/zos-sensor.md — Time, >= 2, Device A
 
 You may read:
 
-- `api/` — symbols per module, with descriptions
+- `api/` — symbols per module, with descriptions, and `api/lookup.md`
 - `compatibility/` — minimum `API_LEVEL` per symbol, and `compatibility/devices.md`
 - `runtimes/` — which runtime each symbol is valid in
 - `patterns/` — task-shaped guides extracted from official best practice
 - `examples/` — the official sample apps indexed by symbol, with verbatim code
+- `manifest/` — the `app.json` schema, and what real manifests do
+- `conflicts/` — where the sources contradict each other
 - `data/` — the JSON these are generated from, if a Markdown page is ambiguous
 - `skills/zepp-os/SKILL.md` — how this base is meant to be used
+
+That list is every output directory. It is given in full **on purpose**: an
+earlier run reported a whole subject as uncovered when the pages existed, and a
+list that omits a directory cannot tell that failure apart from a real gap.
 
 Read `skills/zepp-os/SKILL.md` first. It states the order the base expects to be
 read in and the limits it knows about itself; whether that order matches the

@@ -20,6 +20,17 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
 | `verify` — ask the rendered base 17 real questions and check the answers | implemented |
+| CI — typecheck, tests, render reproducibility, `verify`; plus a weekly sync that opens a PR | implemented |
+
+CI proves the whole chain from JSON to Markdown **without touching the
+network**, because `data/` and the 160 rendered pages are both committed: it
+re-renders and fails if the result differs from what is in the tree, which is
+the "JSON is the source of truth" rule made enforceable. A separate weekly job
+does the part that needs the network — re-run `sync` against upstream and open a
+PR when the base moves, with a table of record counts before and after. **A
+count that went down is the thing to look at**: every parser bug here has been
+an upstream format change that made an extraction silently smaller, and a
+reviewable diff is the only form in which those have ever been caught.
 
 `npm run verify` asks the **rendered** base 17 questions a developer would
 actually ask — *where does `setInterval` live*, *what values may `align_h` take*,

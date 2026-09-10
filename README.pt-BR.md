@@ -20,6 +20,17 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | implementado (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
 | `verify` — fazer 17 perguntas reais à base renderizada e checar as respostas | implementado |
+| CI — typecheck, testes, reprodutibilidade do render, `verify`; mais um sync semanal que abre PR | implementado |
+
+O CI prova a cadeia inteira de JSON a Markdown **sem tocar na rede**, porque
+`data/` e as 160 páginas renderizadas estão ambas commitadas: ele re-renderiza e
+falha se o resultado diferir do que está na árvore, o que torna a regra "JSON é
+a fonte de verdade" verificável. Um job semanal separado faz a parte que precisa
+de rede — rodar `sync` contra o upstream e abrir PR quando a base se move, com
+uma tabela de contagens antes e depois. **Contagem que caiu é o que se olha**:
+todo bug de parser aqui foi uma mudança de formato upstream que deixou a
+extração silenciosamente menor, e um diff revisável é a única forma em que esses
+já foram pegos.
 
 `npm run verify` faz à base **renderizada** 17 perguntas que um desenvolvedor
 faria de verdade — *onde vive `setInterval`*, *que valores `align_h` aceita*, *o

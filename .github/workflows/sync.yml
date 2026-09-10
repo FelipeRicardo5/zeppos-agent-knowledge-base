@@ -1,0 +1,114 @@
+# Freshness: re-run the pipeline against upstream and open a PR when the base
+# moves.
+#
+# The point is not automation for its own sake. Nothing in this repository
+# signals staleness — `data/manifest.json` records the source commits and no
+# more — and every upstream format change so far has arrived as a *silently
+# smaller* extraction rather than as an error. A scheduled sync turns the next
+# one into a reviewable diff, which is the only form in which those have ever
+# been caught.
+#
+# It deliberately does not push to main. A shrinking record count needs a human
+# to decide whether upstream deleted something or this parser stopped reading
+# it, and that judgement is the whole value of the run.
+name: sync
+
+on:
+  schedule:
+    # Weekly. The upstream docs move in bursts around releases, not daily.
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Recorded before the sync overwrites it, so the PR body can show what
+      # moved rather than only what the tree looks like now.
+      - name: Record the counts before
+        run: cp data/manifest.json /tmp/manifest-before.json
+
+      # The only step that needs the network: it clones the two official repos.
+      - name: Sync
+        run: npm run sync
+
+      - name: Render
+        run: npm run render
+
+      # A sync that changes nothing is the normal outcome, and there is nothing
+      # to review in it.
+      - name: Anything to report?
+        id: changed
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Upstream has not moved since the last sync."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Runs even when nothing changed: a passing verify on an unchanged tree
+      # is the cheapest possible confirmation that the base is still whole.
+      - name: Verify the answers
+        run: npm run verify
+
+      - name: Build the PR body
+        if: steps.changed.outputs.changed == 'true'
+        run: |
+          {
+            echo "Upstream moved. This is a re-run of \`sync\` and \`render\`, not a hand edit."
+            echo
+            echo "## Record counts"
+            echo
+            echo '| Front | Before | After |'
+            echo '| --- | --- | --- |'
+            node -e '
+              const before = require("/tmp/manifest-before.json").recordCounts;
+              const after = require("./data/manifest.json").recordCounts;
+              for (const key of new Set([...Object.keys(before), ...Object.keys(after)])) {
+                const b = before[key] ?? 0, a = after[key] ?? 0;
+                const flag = a < b ? " :warning:" : "";
+                if (a !== b) console.log(`| \`${key}\` | ${b} | ${a}${flag} |`);
+              }
+            '
+            echo
+            echo "**A count that went down is the thing to look at.** Upstream may have"
+            echo "deleted something, or a format may have changed and a parse front stopped"
+            echo "reading it — every parser bug in this project has been the second kind,"
+            echo "and each one was silent. \`npm run verify\` passed, so no indexed answer"
+            echo "was lost, but it only asks 17 questions."
+            echo
+            echo "## Source commits"
+            echo
+            node -e '
+              const before = require("/tmp/manifest-before.json").sources;
+              const after = require("./data/manifest.json").sources;
+              for (const [name, { commit }] of Object.entries(after)) {
+                console.log(`- \`${name}\`: ${before[name]?.commit ?? "(new)"} -> ${commit}`);
+              }
+            '
+          } > /tmp/pr-body.md
+          cat /tmp/pr-body.md
+
+      - name: Open a PR
+        if: steps.changed.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: sync/upstream
+          title: "chore(sync): re-run against upstream"
+          body-path: /tmp/pr-body.md
+          commit-message: "chore(sync): re-run against upstream"
+          delete-branch: true

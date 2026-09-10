@@ -1,0 +1,52 @@
+# What CI can prove without touching the network.
+#
+# `data/` and the 160 rendered pages are both committed, so the whole chain from
+# JSON to Markdown is checkable from a plain checkout. That matters more here
+# than the test suite does: every parser bug this project has had was silent —
+# a source format that looked regular in the first file and was not — and the
+# way each one was caught was running the pipeline and looking at the output.
+# Steps 2 and 3 are that check, automated.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # Hermetic: fixtures only, no cache, no network.
+      - name: Test
+        run: npm test
+
+      # 1. The rendered tree must be reproducible from the committed `data/`.
+      #    A diff here means someone edited generated Markdown by hand, or
+      #    changed the renderer and did not re-run it. Both are the failure the
+      #    "JSON is the source of truth" rule exists to prevent.
+      - name: Render is reproducible
+        run: |
+          npm run render
+          if ! git diff --exit-code --stat -- api compatibility runtimes patterns examples manifest conflicts; then
+            echo "::error::The rendered tree does not match what this code renders from data/. Run 'npm run render' and commit the result."
+            exit 1
+          fi
+
+      # 2. The base must still answer real questions. Reads the rendered
+      #    Markdown, because that is what an agent reads.
+      - name: Verify the answers
+        run: npm run verify

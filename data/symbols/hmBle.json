@@ -1,0 +1,95 @@
+{
+  "module": "hmBle",
+  "symbols": [
+    {
+      "id": "hmBle.addListener",
+      "module": "hmBle",
+      "symbol": "addListener",
+      "type": "function",
+      "description": "Register a connection status listener",
+      "signature": "(callback: (status: boolean) => void) => void",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmBle.connectStatus",
+      "module": "hmBle",
+      "symbol": "connectStatus",
+      "type": "function",
+      "description": "Query connection status",
+      "signature": "() => Result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmBle.createConnect",
+      "module": "hmBle",
+      "symbol": "createConnect",
+      "type": "function",
+      "description": "Create connection",
+      "signature": "(callback: (index: number, data: object, size: number) => void) => void",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmBle.disConnect",
+      "module": "hmBle",
+      "symbol": "disConnect",
+      "type": "function",
+      "description": "Disconnects",
+      "signature": "() => void",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmBle.removeListener",
+      "module": "hmBle",
+      "symbol": "removeListener",
+      "type": "function",
+      "description": "Cancel the connection status listener",
+      "signature": "() => void",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmBle.send",
+      "module": "hmBle",
+      "symbol": "send",
+      "type": "function",
+      "description": "Send a message",
+      "signature": "(data: object, size: number) => void",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
+      "extractedAt": "2026-09-10"
+    }
+  ]
+}

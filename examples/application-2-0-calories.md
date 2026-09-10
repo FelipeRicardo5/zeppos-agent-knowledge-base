@@ -188,7 +188,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener`
+### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
 
 ```js
 text.addEventListener(hmUI.event.SELECT, () => {
@@ -200,7 +200,7 @@ text.addEventListener(hmUI.event.SELECT, () => {
 ```
 — `zeppos-samples/application/2.0/calories/page/gts/food-list.js`, line 89
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {
@@ -244,7 +244,7 @@ localStorage.setItem("calorie", {
 ```
 — `zeppos-samples/application/2.0/calories/page/gts/food-list.js`, line 32
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 this.state.radioGroup.setProperty(

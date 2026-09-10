@@ -31,7 +31,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener`
+### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
 
 ```js
 text.addEventListener(hmUI.event.SELECT, () => {
@@ -53,7 +53,31 @@ text.addEventListener(hmUI.event.SELECT, () => {
 ```
 — `zeppos-samples/application/1.0/calories/page/gts-3/food-list.js`, line 81
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.close()` — likely `hmFS.close`
+
+```js
+hmFS.close(file);
+```
+— `zeppos-samples/application/1.0/calories/utils/storage.js`, line 21
+
+```js
+hmFS.close(file);
+```
+— `zeppos-samples/application/1.0/calories/utils/storage.js`, line 32
+
+### `.createSensor()` — likely `hmSensor.createSensor`
+
+```js
+let calories = hmSensor.createSensor(hmSensor.id.CALORIE).current; // Math.floor(Math.random() * 1000)
+```
+— `zeppos-samples/application/1.0/calories/page/gtr-3/index.js`, line 65
+
+```js
+let calories = hmSensor.createSensor(hmSensor.id.CALORIE).current; // Math.floor(Math.random() * 1000)
+```
+— `zeppos-samples/application/1.0/calories/page/gts-3/index.js`, line 64
+
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.TEXT, COMMON_TITLE_TEXT);
@@ -72,7 +96,7 @@ const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {
 ```
 — `zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js`, line 35
 
-### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo`
+### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo` or `hmSetting.getDeviceInfo`
 
 ```js
 hmSetting.getDeviceInfo();
@@ -84,6 +108,32 @@ hmSetting.getDeviceInfo();
 ```
 — `zeppos-samples/application/1.0/calories/utils/styles.js`, line 4
 
+### `.open()` — likely `hmFS.open`
+
+```js
+const file = hmFS.open(this.fileName, hmFS.O_RDWR | hmFS.O_TRUNC);
+```
+— `zeppos-samples/application/1.0/calories/utils/storage.js`, line 17
+
+```js
+const file = hmFS.open(this.fileName, hmFS.O_RDONLY | hmFS.O_CREAT);
+```
+— `zeppos-samples/application/1.0/calories/utils/storage.js`, line 29
+
+### `.read()` — likely `hmFS.read`
+
+```js
+hmFS.read(file, fileContentUnit.buffer, 0, size);
+```
+— `zeppos-samples/application/1.0/calories/utils/storage.js`, line 31
+
+### `.seek()` — likely `hmFS.seek`
+
+```js
+hmFS.seek(file, 0, hmFS.SEEK_SET);
+```
+— `zeppos-samples/application/1.0/calories/utils/storage.js`, line 30
+
 ### `.set()` — likely `@zos/alarm.set`
 
 ```js
@@ -93,7 +143,7 @@ this.globalData.localStorage.set({
 ```
 — `zeppos-samples/application/1.0/calories/app.js`, line 22
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 this.state.radioGroup.setProperty(
@@ -110,3 +160,17 @@ this.state.radioGroup.setProperty(
 );
 ```
 — `zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js`, line 94
+
+### `.stat()` — likely `hmFS.stat`
+
+```js
+const [fsStat, err] = hmFS.stat(this.fileName);
+```
+— `zeppos-samples/application/1.0/calories/utils/storage.js`, line 25
+
+### `.write()` — likely `hmFS.write`
+
+```js
+hmFS.write(file, contentBuffer, 0, contentBuffer.byteLength);
+```
+— `zeppos-samples/application/1.0/calories/utils/storage.js`, line 20

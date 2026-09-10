@@ -137,7 +137,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 let root_container = createWidget(widget.VIRTUAL_CONTAINER, { layout: Styles.BUTTON_ROOT_CONTAINER_STYLE });
@@ -149,7 +149,7 @@ createWidget(widget.FILL_RECT, { parent: root_container, ...Styles.BACKGROUND_FI
 ```
 — `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 22
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 layout_show.setProperty(prop.TEXT, text_show);

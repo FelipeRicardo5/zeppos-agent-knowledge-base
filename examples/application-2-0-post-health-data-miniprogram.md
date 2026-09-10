@@ -180,7 +180,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addListener()` — likely `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
+### `.addListener()` — likely `@zos/ble.addListener` or `hmBle.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
 settings.settingsStorage.addListener(
@@ -220,7 +220,7 @@ settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
 ```
 — `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 21
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 this.state.textWidget.setProperty(prop.TEXT, text);

@@ -15,21 +15,21 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | Stage | State |
 | --- | --- |
 | `fetch` — clone/update official repos into a local cache | implemented |
-| `parse` — eight fronts: reference pages, the phone runtimes, `static/llms`, sample imports, sample apps, guides, the device list, `app.json` | implemented |
+| `parse` — nine fronts: reference pages, the phone runtimes, the watchface `hm*` tree, `static/llms`, sample imports, sample apps, guides, the device list, `app.json` | implemented |
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/, examples/, manifest/) |
 
-Fixture-based tests cover all eight parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (204 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all nine parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (211 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
-- **411 symbols** across **42 modules**, from all 241 reference pages + 36 phone-runtime entries + 443 `static/llms` entries + 785 sample observations
-- 394 `OFFICIAL`, 17 `OBSERVED`
+- **513 symbols** across **50 modules**, from all 241 reference pages + 36 phone-runtime entries + **89 watchface `hm*` pages** + 443 `static/llms` entries + 785 sample observations
+- 496 `OFFICIAL`, 17 `OBSERVED`
 - 353 symbols carry a minimum `API_LEVEL`; 367 carry a description; **178 carry a call signature and 147 carry property tables** — 1157 properties, 591 of them with their own minimum level
 - **27 value sets** on 24 symbols — 196 members, 124 of them stating their own minimum level. 146 come from a documented table and 50 from sample code, marked per member
 - **257 instance members** on 46 symbols — what you call on a value rather than import: `new HeartRate().getCurrent()`, `localStorage.getItem(...)`. Every one carries a signature and prose, 44 state their own minimum level, and 60 of the shapes and 10 of the value sets above belong to a member rather than to the symbol
-- **every runtime is covered**: 375 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
+- **every runtime is covered**: 375 Device App, **105 Watchface**, 21 Settings App, 20 Side Service, 12 Workout Extension — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
 - **how to target each of them**: the `st`/`sr` screen selectors a v3 manifest needs, derived from the device's own screen, beside the `deviceSource` numbers a v2 one needs — plus the reverse index, and a two-way diff against what the 33 samples actually build for
@@ -40,7 +40,8 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 
 Read this before trusting an answer that came out of this KB.
 
-- **The watchface API is not covered.** `hmUI`, `hmFS`, `hmSensor` and `hmSetting` live under `docs/watchface/**` — 93 pages, a separate tree with its own format, none of them parsed. The 3 Watchface symbols in the KB are `@zos/*` calls seen in watchface sample code, not the `hm*` API.
+- **The watchface `hm*` API states no `API_LEVEL` anywhere.** Not one of its 89 reference pages carries a badge, so its 102 symbols answer "does this exist" and never "since when" — the same shape of gap the Settings App and the Side Service have. Nothing in `compatibility/` can vouch for a watchface symbol on a given device.
+- **A watchface symbol's id is a global path, not an import.** `hmUI.widget.TEXT`, `hmSensor.id.HEART`, `hmFS.open` — that is how the code writes them, and there is no `import` line anywhere in the tree. The module is read from the page's own example, with the directory as fallback: `hmUI/widget/data_type.mdx` is in the widget directory and the code writes `hmUI.data_type`.
 - **The runtime axis is populated, unevenly.** Every runtime now has symbols, but 375 of 411 are Device App. The Settings App's 21 and the Side Service's 20 have **no `API_LEVEL` at all** — no page in either tree states one — so they answer "does this exist here" but not "since when".
 - **Instance members are a field, never a symbol.** `getCurrent` is reached through a value (`new BloodOxygen().getCurrent()`), so it lives on the owning record rather than as `@zos/sensor.getCurrent`, an id nothing can import. 12 sensors document a `getCurrent` and they return 12 different shapes, which is why the owner is part of the identity. A member states its own minimum `API_LEVEL` and the symbol's does not imply it: `BloodOxygen` is 2.0 while its `start` and `stop` are 2.1.
 - **A heading under `Methods` is not always a member.** `ui/widget/SYSTEM_KEYBOARD.mdx` lists `deleteKeyboard()` there and its own example imports it — a module function documented beside the widget. One case in 257, caught by that import rather than by a rule about names.

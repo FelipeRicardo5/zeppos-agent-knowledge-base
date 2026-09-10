@@ -117,7 +117,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.BUTTON, {
@@ -138,7 +138,7 @@ textWidget = hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/application/3.0/fetch-api/page/index.js`, line 34
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 textWidget.setProperty(hmUI.prop.TEXT, text);

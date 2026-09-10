@@ -146,6 +146,36 @@
       ]
     },
     {
+      "method": "close",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/storage.js",
+          "line": 21,
+          "code": "hmFS.close(file);"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/storage.js",
+          "line": 32,
+          "code": "hmFS.close(file);"
+        }
+      ]
+    },
+    {
+      "method": "createSensor",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/index.js",
+          "line": 65,
+          "code": "let calories = hmSensor.createSensor(hmSensor.id.CALORIE).current; // Math.floor(Math.random() * 1000)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gts-3/index.js",
+          "line": 64,
+          "code": "let calories = hmSensor.createSensor(hmSensor.id.CALORIE).current; // Math.floor(Math.random() * 1000)"
+        }
+      ]
+    },
+    {
       "method": "createWidget",
       "snippets": [
         {
@@ -176,6 +206,41 @@
       ]
     },
     {
+      "method": "open",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/storage.js",
+          "line": 17,
+          "code": "const file = hmFS.open(this.fileName, hmFS.O_RDWR | hmFS.O_TRUNC);"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/storage.js",
+          "line": 29,
+          "code": "const file = hmFS.open(this.fileName, hmFS.O_RDONLY | hmFS.O_CREAT);"
+        }
+      ]
+    },
+    {
+      "method": "read",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/storage.js",
+          "line": 31,
+          "code": "hmFS.read(file, fileContentUnit.buffer, 0, size);"
+        }
+      ]
+    },
+    {
+      "method": "seek",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/storage.js",
+          "line": 30,
+          "code": "hmFS.seek(file, 0, hmFS.SEEK_SET);"
+        }
+      ]
+    },
+    {
       "method": "set",
       "snippets": [
         {
@@ -197,6 +262,26 @@
           "file": "zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js",
           "line": 94,
           "code": "this.state.radioGroup.setProperty(\n  hmUI.prop.INIT,\n  this.state.radioButtonsArray[0]\n);"
+        }
+      ]
+    },
+    {
+      "method": "stat",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/storage.js",
+          "line": 25,
+          "code": "const [fsStat, err] = hmFS.stat(this.fileName);"
+        }
+      ]
+    },
+    {
+      "method": "write",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/utils/storage.js",
+          "line": 20,
+          "code": "hmFS.write(file, contentBuffer, 0, contentBuffer.byteLength);"
         }
       ]
     }

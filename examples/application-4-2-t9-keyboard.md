@@ -178,7 +178,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener`
+### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
 
 ```js
 this.keyboard.state.ui.input_overlay.addEventListener(event.CLICK_UP, (info) => {
@@ -217,7 +217,7 @@ this.seq_cache.clear();
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 311
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 const ele = parent.createWidget(id, rest);
@@ -276,7 +276,7 @@ this.prefix_idx.set(prefix, prefix_arr);
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 93
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 this.keyboard.state.ui.cursor_widget.setProperty(prop.ALPHA, 255);

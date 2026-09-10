@@ -1,0 +1,666 @@
+{
+  "module": "hmUI",
+  "symbols": [
+    {
+      "id": "hmUI.align",
+      "module": "hmUI",
+      "symbol": "align",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "align",
+          "qualified": true,
+          "members": [
+            {
+              "value": "BOTTOM",
+              "description": "Vertical axis-bottommost.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "CENTER_H",
+              "description": "Horizontal axis-centered.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "CENTER_V",
+              "description": "Vertical axis-centered.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "LEFT",
+              "description": "Horizontal axis-left aligned.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "RIGHT",
+              "description": "Horizontal axis-align right.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "TOP",
+              "description": "Vertical axis-top.",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/TEXT.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.anim_status",
+      "module": "hmUI",
+      "symbol": "anim_status",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "anim_status",
+          "qualified": true,
+          "members": [
+            {
+              "value": "PAUSE",
+              "description": "Pause animation; can only be called after starting the animation and resuming it.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "RESUME",
+              "description": "Resume animation; can only be called after pausing the animation.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "START",
+              "description": "Start animation; only pause stop is allowed to be called after starting the animation.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "STOP",
+              "description": "Stop animation; can only be called after starting the animation and resuming it.",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_ANIM.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.createWidget",
+      "module": "hmUI",
+      "symbol": "createWidget",
+      "type": "function",
+      "description": "Create UI widgets.",
+      "signature": "(widgetId: WIDGET_ID, option?: Option) => widget: WIDGET",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "widgetId",
+              "description": "The ID of the component to be created. (Reference WIDGET_ID)",
+              "required": true
+            },
+            {
+              "name": "option",
+              "description": "Parameters.",
+              "required": false
+            },
+            {
+              "name": "widget",
+              "description": "The instance of component."
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/createWidget.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.data_type",
+      "module": "hmUI",
+      "symbol": "data_type",
+      "type": "function",
+      "description": "| Value                              | Description                                            | Data Range                                                   | | ---------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------ | | hmUI.data_type.BATTERY             | Battery level                                          | `[0, 100]`                                                   | | hmUI.data_type.STEP                | Current step count                                     | `[0, 99999]`                                                 | | hmUI.data_type.STEP_TARGET         | Target step count                                      | `[0, 99999]`                                                 | | hmUI.data_type.CAL                 | Current calories                                       | `[0, 9999]`                                                  | | hmUI.data_type.CAL_TARGET          | Target calories                                        | `[0, 9999]`                                                  | | hmUI.data_type.HEART               | Current heart rate                                     | `[min, 220-age]`, `age` represents age                       | | hmUI.data_type.PAI_DAILY           | PAI obtained today                                     | `[0, 75]`                                                    | | hmUI.data_type.PAI_WEEKLY          | Current accumulated PAI                                | `[0, 525]`                                                   | | hmUI.data_type.DISTANCE            | Distance                                               | `[0, 99]`                                                    | | hmUI.data_type.STAND               | Current standing count                                 | `[0, 12]`                                                    | | hmUI.data_type.STAND_TARGET        | Target standing count                                  | `12`                                                         | | hmUI.data_type.WEATHER_CURRENT     | Current temperature                                    | Up to `3` digits                                             | | hmUI.data_type.WEATHER_LOW         | Current low temperature                                | Up to `3` digits                                             | | hmUI.data_type.WEATHER_HIGH        | Current high temperature                               | Up to `3` digits                                             | | hmUI.data_type.UVI                 | Ultraviolet index                                      | `[1, 5]`                                                     | | hmUI.data_type.AQI                 | Air Quality (only available in Chinese mainland)                                            | `(0, 999]`                                                   | | hmUI.data_type.HUMIDITY            | Humidity                                               | `[0, 100]`                                                   | | hmUI.data_type.FAT_BURNING         | Fat burning time (minutes)                             | `[0, 999]`                                                   | | hmUI.data_type.FAT_BURNING_TARGET  | Fat burning target time (minutes)                      | `[0, 999]`                                                   | | hmUI.data_type.SUN_CURRENT         | Time until sunrise/sunset                              | `HH:MM`                                                      | | hmUI.data_type.SUN_RISE            | Sunrise time                                           | `HH:MM`                                                      | | hmUI.data_type.SUN_SET             | Sunset time                                            | `HH:MM`                                                      | | hmUI.data_type.WIND                | Wind force level                                       | `[0, 12]`                                                    | | hmUI.data_type.STRESS              | Physical stress level                                  | `[0, 100]`                                                   | | hmUI.data_type.SPO2                | Blood oxygen level                                     | `(50, 100]`                                                  | | hmUI.data_type.ALTIMETER           | Air pressure                                           | `(0, 1200]`                                                  | | hmUI.data_type.FLOOR               | Floor climbing (number of floors)                      | `[0, 999]`                                                   | | hmUI.data_type.ALARM_CLOCK         | Alarm                                                  | `HH:MM`                                                      | | hmUI.data_type.COUNT_DOWN          | Countdown, number of minutes or seconds                | `2` digits                                                   | | hmUI.data_type.STOP_WATCH          | Stopwatch, number of minutes or seconds                | `2` digits                                                   | | hmUI.data_type.SLEEP               | Sleep                                                  | `HH:MM`                                                       | | hmUI.data_type.TRAINING_LOAD       | Training load                                          | Up to `3` digits                                             | | hmUI.data_type.VO2MAX              | Maximum oxygen uptake                                  | `[15, 65]`                                                   | | hmUI.data_type.RECOVERY_TIME       | Full recovery time                                     | `[0, 97]`                                                    | | hmUI.data_type.MONTH_RUN_TIMES     | Monthly outdoor run times                              | `[0, 100]`                                                   | | hmUI.data_type.MONTH_RUN_DISTANCE  | Monthly outdoor run distance                           | Up to `4` integer digits, `2` decimal places, e.g., `150.98` | | hmUI.data_type.ALTITUDE            | Altitude                                               | Up to `5` digits                                             | | hmUI.data_type.READINESS           | Physical and mental readiness                          | `[0, 100]`                                                   | | hmUI.data_type.MOON                | Moon phase, can only be used with `IMG_CLICK`          | -                                                            | | hmUI.data_type.OUTDOOR_RUNNING     | Outdoor running, can only be used with `IMG_CLICK`     | -                                                            | | hmUI.data_type.WALKING             | Walking, can only be used with `IMG_CLICK`             | -                                                            | | hmUI.data_type.OUTDOOR_CYCLING     | Outdoor cycling, can only be used with `IMG_CLICK`     | -                                                            | | hmUI.data_type.FREE_TRAINING       | Free training, can only be used with `IMG_CLICK`       | -                                                            | | hmUI.data_type.POOL_SWIMMING       | Pool swimming, can only be used with `IMG_CLICK`       | -                                                            | | hmUI.data_type.OPEN_WATER_SWIMMING | Open water swimming, can only be used with `IMG_CLICK` | -                                                            | | hmUI.data_type.PHN                 | Sports coach, can only be used with `IMG_CLICK`        | -                                                            | | hmUI.data_type.BREATH_TRAIN        | Breath training, can only be used with `IMG_CLICK`     | -                                                            |",
+      "enums": [
+        {
+          "name": "data_type",
+          "qualified": true,
+          "members": [
+            {
+              "value": "ALARM_CLOCK",
+              "description": "Alarm",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "ALTIMETER",
+              "description": "Air pressure",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "ALTITUDE",
+              "description": "Altitude",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "AQI",
+              "description": "Air Quality (only available in Chinese mainland)",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "BATTERY",
+              "description": "Battery level",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "BODY_TEMP",
+              "description": "Temperature",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "BREATH_TRAIN",
+              "description": "Breath training, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "CAL",
+              "description": "Current calories",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "CAL_TARGET",
+              "description": "Target calories",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "COUNT_DOWN",
+              "description": "Countdown, number of minutes or seconds",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "DISTANCE",
+              "description": "Distance",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "FAT_BURNING",
+              "description": "Fat burning time (minutes)",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "FAT_BURNING_TARGET",
+              "description": "Fat burning target time (minutes)",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "FLOOR",
+              "description": "Floor climbing (number of floors)",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "FREE_TRAINING",
+              "description": "Free training, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "HEART",
+              "description": "Current heart rate",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "HUMIDITY",
+              "description": "Humidity",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "MONTH_RUN_DISTANCE",
+              "description": "Monthly outdoor run distance",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "MONTH_RUN_TIMES",
+              "description": "Monthly outdoor run times",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "MOON",
+              "description": "Moon phase, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "OPEN_WATER_SWIMMING",
+              "description": "Open water swimming, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "OUTDOOR_CYCLING",
+              "description": "Outdoor cycling, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "OUTDOOR_RUNNING",
+              "description": "Outdoor running, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "PAI_DAILY",
+              "description": "PAI obtained today",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "PAI_WEEKLY",
+              "description": "Current accumulated PAI",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "PHN",
+              "description": "Sports coach, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "POOL_SWIMMING",
+              "description": "Pool swimming, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "READINESS",
+              "description": "Physical and mental readiness",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "RECOVERY_TIME",
+              "description": "Full recovery time",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SLEEP",
+              "description": "Sleep",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SPO2",
+              "description": "Blood oxygen level",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "STAND",
+              "description": "Current standing count",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "STAND_TARGET",
+              "description": "Target standing count",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "STEP",
+              "description": "Current step count",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "STEP_TARGET",
+              "description": "Target step count",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "STOP_WATCH",
+              "description": "Stopwatch, number of minutes or seconds",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "STRESS",
+              "description": "Physical stress level",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SUN_CURRENT",
+              "description": "Time until sunrise/sunset",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SUN_RISE",
+              "description": "Sunrise time",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SUN_SET",
+              "description": "Sunset time",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "TRAINING_LOAD",
+              "description": "Training load",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "UVI",
+              "description": "Ultraviolet index",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "VO2MAX",
+              "description": "Maximum oxygen uptake",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WALKING",
+              "description": "Walking, can only be used with IMG_CLICK",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEATHER_CURRENT",
+              "description": "Current temperature",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEATHER_HIGH",
+              "description": "Current high temperature",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEATHER_LOW",
+              "description": "Current low temperature",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WIND",
+              "description": "Wind force level",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/data_type.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.date",
+      "module": "hmUI",
+      "symbol": "date",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "date",
+          "qualified": true,
+          "members": [
+            {
+              "value": "DAY",
+              "description": "day",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "MONTH",
+              "description": "month",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WEEK",
+              "description": "Day of the week",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/DATE_POINTER.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.deleteWidget",
+      "module": "hmUI",
+      "symbol": "deleteWidget",
+      "type": "function",
+      "description": "Delete the UI widget.",
+      "signature": "(widget: WIDGET) => void",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/deleteWidget.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.getProperty",
+      "module": "hmUI",
+      "symbol": "getProperty",
+      "type": "function",
+      "description": "Get the UI widget properties, use `widget.getProperty(hmUI.prop.MORE, {})` to get all the properties of the widget.",
+      "signature": "(key: any) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "key",
+              "description": "The value of property.",
+              "type": "any"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/getProperty.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.prop",
+      "module": "hmUI",
+      "symbol": "prop",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "prop",
+          "qualified": true,
+          "members": [
+            {
+              "value": "ANIM_IS_PAUSE",
+              "description": "Whether the animation is paused.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "ANIM_IS_RUNINNG",
+              "description": "Is the animation running.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "ANIM_IS_STOP",
+              "description": "Whether the animation is stopped.",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_ANIM.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.setProperty",
+      "module": "hmUI",
+      "symbol": "setProperty",
+      "type": "function",
+      "description": "Set the properties of the UI widget.",
+      "signature": "(propertyId: string, val: any) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "propertyId",
+              "description": "The property of ID.",
+              "type": "PropertyId"
+            },
+            {
+              "name": "val",
+              "description": "Set the value. (when property is hmUI.prop.MORE, val is used in the same way as createWidget's option, which can set multiple parameters.)",
+              "type": "any"
+            }
+          ]
+        },
+        {
+          "name": "PropertyId",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the component.",
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the component.",
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the component.",
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the component.",
+              "type": "number"
+            },
+            {
+              "name": "VISIBLE",
+              "description": "Whether the widget is visible or not, true is visible, false is not, this property does not support setProperty(hmUI.prop.MORE, {}), only setProperty sets the VISIBLE property alone",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/setProperty.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.system_status",
+      "module": "hmUI",
+      "symbol": "system_status",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "system_status",
+          "qualified": true,
+          "members": [
+            {
+              "value": "CLOCK",
+              "description": "Alarm clock on",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "DISTURB",
+              "description": "Do not disturb",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "LOCK",
+              "description": "Lock screen on",
+              "confidence": "OFFICIAL"
+            }
+          ],
+          "partial": true
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_STATUS.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.text_style",
+      "module": "hmUI",
+      "symbol": "text_style",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "text_style",
+          "qualified": true,
+          "members": [
+            {
+              "value": "ELLIPSIS",
+              "description": "Single line overflow character display...",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "NONE",
+              "description": "Keep scrolling.",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/TEXT.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget",
+      "module": "hmUI",
+      "symbol": "widget",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "widget",
+          "qualified": true,
+          "members": [
+            {
+              "value": "BUTTON",
+              "description": "Button widget ID.",
+              "confidence": "OFFICIAL"
+            }
+          ],
+          "partial": true
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/createWidget.mdx",
+      "extractedAt": "2026-09-10"
+    }
+  ]
+}

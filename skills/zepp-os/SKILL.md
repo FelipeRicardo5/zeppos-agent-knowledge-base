@@ -65,6 +65,25 @@ last subsection names the devices no official sample has ever targeted; read it
 off the page. That means there is no worked example to copy a `platforms` entry
 from, never that the device is unsupported.
 
+## Writing a watchface
+
+A watchface is not a Mini Program page and does not use `@zos/*`. It is written
+against the `hm*` globals, and mixing the two is the first mistake to avoid:
+
+- `../../runtimes/watchface.md` lists everything attributed to this runtime.
+- `../../api/hmUI.md`, `hmUI.widget.md`, `hmSensor.md`, `hmSensor.id.md`,
+  `hmFS.md`, `hmSetting.md`, `hmBle.md` and `timer.md` are the modules.
+- Nothing is imported. You write `hmUI.createWidget(hmUI.widget.TEXT, {...})`,
+  `hmSensor.createSensor(hmSensor.id.HEART)`, `hmFS.open(path, hmFS.O_RDWR)`.
+  Suggesting an `import` for any of these is the Device App idiom applied to
+  the wrong API.
+- **No page in that tree states an `API_LEVEL`.** So `compatibility/` cannot
+  vouch for a watchface symbol on any device. Say that; do not read the blank
+  as *available everywhere*.
+- For working code, `../../examples/index.md` has the watchface samples. Their
+  entry point is `WatchFace({ ... })`, which appears in code and in no
+  reference page — treat it as `OBSERVED`.
+
 ## The gap that will bite you first
 
 **A symbol with no stated `API_LEVEL` cannot be certified for any device**, and
@@ -193,13 +212,13 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 **not covered**, never **does not exist**. Report it that way.
 
 - `not stated` in an `API_LEVEL` column means no source documents a minimum. It does *not* mean the symbol works at any level.
-- The runtime axis is heavily skewed: 375 of 411 symbols are Device App. Every runtime is covered, but the Settings App's 21 and the Side Service's 20 carry **no `API_LEVEL`** — no page in either tree states one — so they answer "does this exist here" but not "since when".
-- The **watchface `hm*` API is not covered at all** (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`). The 3 Watchface symbols here are `@zos/*` calls seen in watchface samples. Answer a `hm*` question from the official docs and say so.
+- The runtime axis is skewed: 375 of 513 symbols are Device App, 105 Watchface. Every runtime is covered, but the Settings App's 21 and the Side Service's 20 carry **no `API_LEVEL`** — no page in either tree states one — so they answer "does this exist here" but not "since when".
+- The **watchface `hm*` API is covered**, but with **no `API_LEVEL` anywhere** — no page in that tree states one. So `runtimes/watchface.md` and `api/hmUI.md` answer "does this exist", and nothing answers "does it run on this watch". Say that rather than reading a blank level as *any level*.
 - Members are recorded only where a page declares a `Methods` section — 46 symbols carry them. A value whose page has no such section answers nothing about what can be called on it, which is *not covered* rather than *nothing can*.
 - A pattern's `Minimum API_LEVEL` is **derived**, not quoted: it is the highest minimum among the symbols the guide's code uses, and it skips symbols this KB has no record for. Treat it as a floor, and check the page's own "no record" flag before calling a pattern verified.
 - The Settings App's 13 `ui.*` components now carry a signature and a full property table each (74 properties in total), so they are no longer bare names. What is still missing there is the **entry point** — `AppSettingsPage`, which registers a settings page, has no symbol record; it appears only as code, under *Global calls in the phone runtimes* in `../../examples/index.md`.
 - The Side Service and Settings App **are** covered: see `../../runtimes/side-service.md` and `../../runtimes/settings.md`, plus `../../api/fetch.md` and `../../api/settings-storage.md`. What is missing there is narrower than the runtime: the Settings App's **entry point** (the function that registers a settings page) and the **props of its `ui.*` components`. Answer that one from the official docs and say so; everything else in those runtimes, answer from here.
-- The watchface `hm*` API (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`) is genuinely not extracted — 93 upstream pages, none of them parsed. The Watchface symbols here are `@zos/*` calls seen in watchface samples.
+- A watchface symbol is written as a global path, not imported: `hmUI.createWidget`, `hmUI.widget.TEXT`, `hmSensor.id.HEART`, `hmFS.open`. Never suggest `import { createWidget } from 'hmUI'` — that is the Device App idiom and it is a different API.
 
 ## Where the numbers come from
 

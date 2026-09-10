@@ -1,0 +1,450 @@
+{
+  "module": "hmFS",
+  "symbols": [
+    {
+      "id": "hmFS.close",
+      "module": "hmFS",
+      "symbol": "close",
+      "type": "function",
+      "description": "Close file",
+      "signature": "(fileId: number) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/close.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.open",
+      "module": "hmFS",
+      "symbol": "open",
+      "type": "function",
+      "description": "Open file",
+      "signature": "(path: string, flag: FLAG) => fileId",
+      "enums": [
+        {
+          "name": "FLAG",
+          "qualified": false,
+          "members": [
+            {
+              "value": "O_APPEND",
+              "description": "Append mode on.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_CREAT",
+              "description": "If file does not exist, create and open.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_EXCL",
+              "description": "Used in conjunction with O_CREAT. If it does not exist, create and open it, if it does exist, return an error.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_RDONLY",
+              "description": "read-only",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_RDWR",
+              "description": "read-write",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_TRUNC",
+              "description": "If the file exists, the length is truncated to 0.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_WRONLY",
+              "description": "write-only",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/open.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.open_asset",
+      "module": "hmFS",
+      "symbol": "open_asset",
+      "type": "function",
+      "description": "Open the file in the application assets directory.",
+      "signature": "(path: string, flag: FLAG) => fileId",
+      "enums": [
+        {
+          "name": "FLAG",
+          "qualified": false,
+          "members": [
+            {
+              "value": "O_APPEND",
+              "description": "Append mode on",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_CREAT",
+              "description": "If file does not exist, create and open",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_EXCL",
+              "description": "Used in conjunction with O_CREAT. If it does not exist, create and open it, if it does exist, return an error.",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_RDONLY",
+              "description": "read-only",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_RDWR",
+              "description": "read-write",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_TRUNC",
+              "description": "If the file exists, the length is truncated to 0",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "O_WRONLY",
+              "description": "write-only",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/open_asset.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.read",
+      "module": "hmFS",
+      "symbol": "read",
+      "type": "function",
+      "description": "Read file",
+      "signature": "(fileId: number, buffer: ArrayBuffer, position: number, length: number) => [fileList, err]",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/read.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.remove",
+      "module": "hmFS",
+      "symbol": "remove",
+      "type": "function",
+      "description": "Delete file",
+      "signature": "(path: string) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/remove.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.rename",
+      "module": "hmFS",
+      "symbol": "rename",
+      "type": "function",
+      "description": "Rename file",
+      "signature": "(oldPath: string, newPath: string) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/rename.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.seek",
+      "module": "hmFS",
+      "symbol": "seek",
+      "type": "function",
+      "description": "Move file pointer",
+      "signature": "(fileId: number, position: number, whence: number) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "fileId",
+              "description": "file handle",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "position",
+              "description": "Offset based on whence",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "whence",
+              "description": "file location",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/seek.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.stat",
+      "module": "hmFS",
+      "symbol": "stat",
+      "type": "function",
+      "description": "Get file information",
+      "signature": "(path: string) => [stat, err]",
+      "shapes": [
+        {
+          "name": "stat",
+          "props": [
+            {
+              "name": "size",
+              "description": "Number of bytes of the file",
+              "type": "number"
+            },
+            {
+              "name": "mtime",
+              "description": "File last modified time in UTC seconds",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/stat.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.stat_asset",
+      "module": "hmFS",
+      "symbol": "stat_asset",
+      "type": "function",
+      "description": "Get information about the files in the application assets directory.",
+      "signature": "(path: string) => [stat, err]",
+      "shapes": [
+        {
+          "name": "stat",
+          "props": [
+            {
+              "name": "size",
+              "description": "Number of bytes of the file",
+              "type": "number"
+            },
+            {
+              "name": "mtime",
+              "description": "File last modified time in UTC seconds",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/stat_asset.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProGetBool",
+      "module": "hmFS",
+      "symbol": "SysProGetBool",
+      "type": "function",
+      "description": "Get the temporarily stored boolean value, which will be cleared by system reboot.",
+      "signature": "(key: string) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetBool.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProGetChars",
+      "module": "hmFS",
+      "symbol": "SysProGetChars",
+      "type": "function",
+      "description": "Get the temporarily stored string, system reboot will clear it.",
+      "signature": "(key: string) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetChars.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProGetDouble",
+      "module": "hmFS",
+      "symbol": "SysProGetDouble",
+      "type": "function",
+      "description": "Get the temporarily stored double precision character points, system reboot will clear.",
+      "signature": "(key: string) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetDouble.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProGetInt",
+      "module": "hmFS",
+      "symbol": "SysProGetInt",
+      "type": "function",
+      "description": "Get the temporarily stored integer that will be cleared by system reboot.",
+      "signature": "(key: string) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetInt.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProGetInt64",
+      "module": "hmFS",
+      "symbol": "SysProGetInt64",
+      "type": "function",
+      "description": "Get a 64-bit integer for temporary storage, which will be cleared by system reboot.",
+      "signature": "(key: string) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetInt64.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProSetBool",
+      "module": "hmFS",
+      "symbol": "SysProSetBool",
+      "type": "function",
+      "description": "Store temporary boolean value, system reboot will clear it.",
+      "signature": "(key: string, val: boolean) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetBool.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProSetChars",
+      "module": "hmFS",
+      "symbol": "SysProSetChars",
+      "type": "function",
+      "description": "Store temporary string, system reboot will clear.",
+      "signature": "(key: string, val: string) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetChars.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProSetDouble",
+      "module": "hmFS",
+      "symbol": "SysProSetDouble",
+      "type": "function",
+      "description": "Store temporary double precision floating point numbers, system reboot will clear.",
+      "signature": "(key: string, val: number) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetDouble.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProSetInt",
+      "module": "hmFS",
+      "symbol": "SysProSetInt",
+      "type": "function",
+      "description": "Store temporary integer, system reboot will clear.",
+      "signature": "(key: string, val: number) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetInt.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.SysProSetInt64",
+      "module": "hmFS",
+      "symbol": "SysProSetInt64",
+      "type": "function",
+      "description": "Stores a temporary 64-bit integer that will be cleared by system reboot.",
+      "signature": "(key: string, val: number) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetInt64.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmFS.write",
+      "module": "hmFS",
+      "symbol": "write",
+      "type": "function",
+      "description": "Write to file",
+      "signature": "(fileId: number, buff: ArrayBuffer, pos: number, len: number) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmFS/write.mdx",
+      "extractedAt": "2026-09-10"
+    }
+  ]
+}

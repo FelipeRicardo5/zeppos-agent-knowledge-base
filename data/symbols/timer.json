@@ -1,0 +1,66 @@
+{
+  "module": "timer",
+  "symbols": [
+    {
+      "id": "timer.createTimer",
+      "module": "timer",
+      "symbol": "createTimer",
+      "type": "function",
+      "description": "Create Timer",
+      "signature": "(delay: number, repeat: number, callback: (option: any) => void, option: any) => timerId",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "delay",
+              "description": "delay (milliseconds)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "repeat",
+              "description": "period (milliseconds)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "callback",
+              "description": "callback function",
+              "required": true,
+              "type": "(option: any) => void"
+            },
+            {
+              "name": "option",
+              "description": "callback parameters",
+              "required": true,
+              "type": "any"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/timer/createTimer.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "timer.stopTimer",
+      "module": "timer",
+      "symbol": "stopTimer",
+      "type": "function",
+      "description": "Delete Timer",
+      "signature": "(timerId: number) => void",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/timer/stopTimer.mdx",
+      "extractedAt": "2026-09-10"
+    }
+  ]
+}

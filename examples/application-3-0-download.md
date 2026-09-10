@@ -160,7 +160,7 @@ const result = await convertLib.convert({
 ```
 — `zeppos-samples/application/3.0/download/app-side/image-convert-module.js`, line 10
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 const mask = parent.createWidget(hmUI.widget.FILL_RECT, {
@@ -214,7 +214,7 @@ mask.setAlpha(0x96);
 ```
 — `zeppos-samples/application/3.0/download/components/mask/index.js`, line 10
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 mask.setProperty(hmUI.prop.VISIBLE, isMaskActive);

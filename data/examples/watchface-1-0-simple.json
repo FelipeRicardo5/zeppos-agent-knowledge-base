@@ -127,6 +127,36 @@
       ]
     },
     {
+      "method": "createSensor",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 66,
+          "code": "timeSensor = hmSensor.createSensor(hmSensor.id.TIME);"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 70,
+          "code": "heartSensor = hmSensor.createSensor(hmSensor.id.HEART);"
+        }
+      ]
+    },
+    {
+      "method": "createTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 55,
+          "code": "const timer1 = timer.createTimer(ns || 1, Number.MAX_SAFE_INTEGER, function () {\n    globalNS.clearTimeout(timer1);\n    func && func();\n}, {});"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 65,
+          "code": "const timer1 = timer.createTimer(1, Number.MAX_SAFE_INTEGER, function () {\n    globalNS.clearImmediate(timer1);\n    func && func();\n}, {});"
+        }
+      ]
+    },
+    {
       "method": "createWidget",
       "snippets": [
         {

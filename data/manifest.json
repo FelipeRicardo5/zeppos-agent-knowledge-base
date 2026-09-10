@@ -1,5 +1,5 @@
 {
-  "lastSyncAt": "2026-09-10T17:21:21.498Z",
+  "lastSyncAt": "2026-09-10T17:41:08.240Z",
   "sources": {
     "zeppos-docs": {
       "commit": "c08725b2cfa3398d9e4da9379a2d83abaf3475a6"
@@ -11,11 +11,12 @@
   "recordCounts": {
     "docs-reference": 251,
     "docs-phone-api": 36,
+    "docs-watchface": 105,
     "llms": 443,
     "sample": 785,
     "guide": 11,
-    "symbols": 411,
-    "modules": 42,
+    "symbols": 513,
+    "modules": 50,
     "patterns": 11,
     "devices": 41,
     "examples": 33,

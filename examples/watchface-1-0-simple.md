@@ -27,7 +27,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener`
+### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
 
 ```js
 timeSensor.addEventListener(timeSensor.event.MINUTEEND, function () {
@@ -81,7 +81,37 @@ globalNS.clearTimeout(timer1);
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 56
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createSensor()` — likely `hmSensor.createSensor`
+
+```js
+timeSensor = hmSensor.createSensor(hmSensor.id.TIME);
+```
+— `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 66
+
+```js
+heartSensor = hmSensor.createSensor(hmSensor.id.HEART);
+```
+— `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 70
+
+### `.createTimer()` — likely `timer.createTimer`
+
+```js
+const timer1 = timer.createTimer(ns || 1, Number.MAX_SAFE_INTEGER, function () {
+    globalNS.clearTimeout(timer1);
+    func && func();
+}, {});
+```
+— `zeppos-samples/watchface/1.0/simple/app.js`, line 55
+
+```js
+const timer1 = timer.createTimer(1, Number.MAX_SAFE_INTEGER, function () {
+    globalNS.clearImmediate(timer1);
+    func && func();
+}, {});
+```
+— `zeppos-samples/watchface/1.0/simple/app.js`, line 65
+
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.FILL_RECT, {
@@ -112,14 +142,14 @@ digitalTime = hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 23
 
-### `.getLanguage()` — likely `@zos/settings.getLanguage`
+### `.getLanguage()` — likely `@zos/settings.getLanguage` or `hmSetting.getLanguage`
 
 ```js
 lang: new DeviceRuntimeCore.HmUtils.Lang(DeviceRuntimeCore.HmUtils.getLanguage()),
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 11
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 digitalTime.setProperty(hmUI.prop.MORE, {
@@ -137,7 +167,7 @@ heartRate.setProperty(hmUI.prop.MORE, {
 ```
 — `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 86
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer`
+### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef);

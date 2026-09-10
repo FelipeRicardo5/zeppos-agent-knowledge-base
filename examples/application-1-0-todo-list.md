@@ -35,7 +35,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addListener()` — likely `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
+### `.addListener()` — likely `@zos/ble.addListener` or `hmBle.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
 settings.settingsStorage.addListener('change', ({ key, newValue, oldValue }) => {
@@ -81,7 +81,19 @@ globalNS.clearTimeout(timer1)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/setTimeout.js`, line 16
 
-### `.createConnect()` — likely `@zos/ble.createConnect`
+### `.close()` — likely `hmFS.close`
+
+```js
+hmFS.close(file)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 50
+
+```js
+hmFS.close(file)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 71
+
+### `.createConnect()` — likely `@zos/ble.createConnect` or `hmBle.createConnect`
 
 ```js
 this.ble.createConnect((index, data, size) => {
@@ -92,7 +104,35 @@ this.ble.createConnect((index, data, size) => {
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/message.js`, line 345
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createTimer()` — likely `timer.createTimer`
+
+```js
+const timer1 = timer.createTimer(
+  ns || 1,
+  Number.MAX_SAFE_INTEGER,
+  function () {
+    globalNS.clearTimeout(timer1)
+    func && func()
+  },
+  {}
+)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/setTimeout.js`, line 12
+
+```js
+const timer1 = timer.createTimer(
+  1,
+  Number.MAX_SAFE_INTEGER,
+  function () {
+    globalNS.clearImmediate(timer1)
+    func && func()
+  },
+  {}
+)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/setTimeout.js`, line 30
+
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 this.state.title = hmUI.createWidget(hmUI.widget.TEXT, {
@@ -111,7 +151,7 @@ this.state.addButton = hmUI.createWidget(hmUI.widget.BUTTON, {
 ```
 — `zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js`, line 29
 
-### `.disConnect()` — likely `@zos/ble.disConnect`
+### `.disConnect()` — likely `@zos/ble.disConnect` or `hmBle.disConnect`
 
 ```js
 this.globalData.messageBuilder.disConnect();
@@ -130,7 +170,7 @@ disConnect(cb) {
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/message.js`, line 355
 
-### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo`
+### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo` or `hmSetting.getDeviceInfo`
 
 ```js
 if (hmSetting.getDeviceInfo().screenShape !== 0) {
@@ -157,6 +197,25 @@ return settings.settingsStorage.getItem('todoList')
 ? JSON.parse(settings.settingsStorage.getItem('todoList'))
 ```
 — `zeppos-samples/application/1.0/todo-list/app-side/index.js`, line 7
+
+### `.open()` — likely `hmFS.open`
+
+```js
+const file = hmFS.open(filename, hmFS.O_CREAT | hmFS.O_RDWR | hmFS.O_TRUNC)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 46
+
+```js
+const file = hmFS.open(filename, hmFS.O_RDONLY)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 67
+
+### `.read()` — likely `hmFS.read`
+
+```js
+hmFS.read(file, destination_buf.buffer, 0, fs_stat.size)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 70
 
 ### `.readdirSync()` — likely `@zos/fs.readdirSync`
 
@@ -189,7 +248,33 @@ const resData = fs.readFileSync(TODO_FILE_NAME)
 ```
 — `zeppos-samples/application/1.0/todo-list/utils/fs.js`, line 5
 
-### `.send()` — likely `@zos/ble.send` or `messaging.send`
+### `.remove()` — likely `hmFS.remove`
+
+```js
+const result = hmFS.remove(filename)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 84
+
+### `.rename()` — likely `hmFS.rename`
+
+```js
+hmFS.rename(oldFilename, newFilename)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 95
+
+### `.seek()` — likely `hmFS.seek`
+
+```js
+hmFS.seek(file, 0, hmFS.SEEK_SET)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 48
+
+```js
+hmFS.seek(file, 0, hmFS.SEEK_SET)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 69
+
+### `.send()` — likely `@zos/ble.send` or `hmBle.send` or `messaging.send`
 
 ```js
 const result = this.ble.send(buf.buffer, buf.byteLength)
@@ -225,7 +310,7 @@ settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
 ```
 — `zeppos-samples/application/1.0/todo-list/app-side/index.js`, line 35
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 this.state.refreshText && this.state.refreshText.setProperty(hmUI.prop.VISIBLE, false)
@@ -237,7 +322,14 @@ this.state.tipText && this.state.tipText.setProperty(hmUI.prop.VISIBLE, isTip)
 ```
 — `zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js`, line 99
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer`
+### `.stat()` — likely `hmFS.stat`
+
+```js
+const [fs_stat, err] = hmFS.stat(filename)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 23
+
+### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef)
@@ -248,6 +340,13 @@ timerRef && timer.stopTimer(timerRef)
 timerRef && timer.stopTimer(timerRef)
 ```
 — `zeppos-samples/application/1.0/todo-list/shared/setTimeout.js`, line 26
+
+### `.write()` — likely `hmFS.write`
+
+```js
+hmFS.write(file, source_buf.buffer, 0, source_buf.length)
+```
+— `zeppos-samples/application/1.0/todo-list/shared/fs.js`, line 49
 
 ### `.writeFileSync()` — likely `@zos/fs.writeFileSync`
 

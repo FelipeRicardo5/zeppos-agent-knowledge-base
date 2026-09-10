@@ -45,7 +45,35 @@ globalNS.clearTimeout(timer1)
 ```
 — `zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js`, line 16
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createTimer()` — likely `timer.createTimer`
+
+```js
+const timer1 = timer.createTimer(
+  ns || 1,
+  Number.MAX_SAFE_INTEGER,
+  function () {
+    globalNS.clearTimeout(timer1)
+    func && func()
+  },
+  {},
+)
+```
+— `zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js`, line 12
+
+```js
+const timer1 = timer.createTimer(
+  1,
+  Number.MAX_SAFE_INTEGER,
+  function () {
+    globalNS.clearImmediate(timer1)
+    func && func()
+  },
+  {},
+)
+```
+— `zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js`, line 30
+
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 config.iconPath = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {
@@ -75,7 +103,7 @@ hmUI.createWidget(hmUI.widget.TEXT_IMG, {
 ```
 — `zeppos-samples/watchface/1.0/color-world/watchface/square/index.js`, line 346
 
-### `.getProperty()` — likely `@zos/ui.getProperty`
+### `.getProperty()` — likely `@zos/ui.getProperty` or `hmUI.getProperty`
 
 ```js
 let type = editBg.getProperty(hmUI.prop.CURRENT_TYPE)
@@ -87,7 +115,14 @@ let item = editGroup.getProperty(hmUI.prop.CURRENT_TYPE)
 ```
 — `zeppos-samples/watchface/1.0/color-world/watchface/square/index.js`, line 731
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer`
+### `.getScreenType()` — likely `hmSetting.getScreenType`
+
+```js
+const screenType = hmSetting.getScreenType()
+```
+— `zeppos-samples/watchface/1.0/color-world/watchface/square/index.js`, line 827
+
+### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef)

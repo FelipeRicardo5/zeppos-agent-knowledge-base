@@ -470,6 +470,16 @@
       ]
     },
     {
+      "method": "open",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 842,
+          "code": "xhr.open('GET', url);"
+        }
+      ]
+    },
+    {
       "method": "send",
       "snippets": [
         {

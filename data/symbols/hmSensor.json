@@ -1,0 +1,67 @@
+{
+  "module": "hmSensor",
+  "symbols": [
+    {
+      "id": "hmSensor.addEventListener",
+      "module": "hmSensor",
+      "symbol": "addEventListener",
+      "type": "function",
+      "description": "Register sensor callback events Each sensor is used in a different way, please refer to the specific sensor usage",
+      "signature": "(eventId: EventId, callback: (event: Event) => void) => void",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/addEventListener.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.createSensor",
+      "module": "hmSensor",
+      "symbol": "createSensor",
+      "type": "function",
+      "description": "Create the sensor.",
+      "signature": "(sensor_id: SENSOR_ID) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/createSensor.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id",
+      "module": "hmSensor",
+      "symbol": "id",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "id",
+          "qualified": true,
+          "members": [
+            {
+              "value": "BATTERY",
+              "description": "power sensor",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "TIME",
+              "description": "time sensor",
+              "confidence": "OFFICIAL"
+            }
+          ],
+          "partial": true
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/createSensor.mdx",
+      "extractedAt": "2026-09-10"
+    }
+  ]
+}

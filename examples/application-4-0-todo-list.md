@@ -186,7 +186,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 this.state.title = hmUI.createWidget(hmUI.widget.TEXT, {
@@ -229,7 +229,7 @@ settingsLib.setItem('todoList', JSON.stringify(newTodoList))
 ```
 — `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 32
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 this.state.scrollList.setProperty(hmUI.prop.DELETE_ITEM, { index: index })

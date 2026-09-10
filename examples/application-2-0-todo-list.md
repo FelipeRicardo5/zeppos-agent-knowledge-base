@@ -115,7 +115,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addListener()` — likely `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
+### `.addListener()` — likely `@zos/ble.addListener` or `hmBle.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
 settings.settingsStorage.addListener('change', ({ key, newValue, oldValue }) => {
@@ -147,7 +147,7 @@ clear() {
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 220
 
-### `.createConnect()` — likely `@zos/ble.createConnect`
+### `.createConnect()` — likely `@zos/ble.createConnect` or `hmBle.createConnect`
 
 ```js
 this.ble.createConnect((index, data, size) => {
@@ -167,7 +167,7 @@ this.ble.createConnect((index, data, size) => {
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message.js`, line 287
 
-### `.disConnect()` — likely `@zos/ble.disConnect`
+### `.disConnect()` — likely `@zos/ble.disConnect` or `hmBle.disConnect`
 
 ```js
 this.globalData.messageBuilder && this.globalData.messageBuilder.disConnect()
@@ -198,7 +198,14 @@ return settings.settingsStorage.getItem('todoList')
 ```
 — `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 7
 
-### `.send()` — likely `@zos/ble.send` or `messaging.send`
+### `.open()` — likely `hmFS.open`
+
+```js
+xhr.open('GET', url);
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 842
+
+### `.send()` — likely `@zos/ble.send` or `hmBle.send` or `messaging.send`
 
 ```js
 xhr.send();
@@ -234,7 +241,7 @@ settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
 ```
 — `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 35
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 this.state.refreshText && this.state.refreshText.setProperty(prop.VISIBLE, false)

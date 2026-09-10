@@ -12,6 +12,7 @@ import { parseAppJson } from "./parse/manifest.js";
 import { parseLlmsContent, parseMarkdown, parseSamples } from "./parse/index.js";
 import { parsePatterns } from "./parse/patterns.js";
 import { parsePhoneApis } from "./parse/phone.js";
+import { parseWatchface } from "./parse/watchface.js";
 import { render } from "./render/index.js";
 import { renderExamples } from "./render/examples.js";
 import { renderManifest } from "./render/manifest.js";
@@ -39,9 +40,10 @@ switch (command) {
       console.log(`${name}: ${commit}`);
     }
 
-    const [docs, phone, llms, samples, guides, hardware, apps, appJson] = await Promise.all([
+    const [docs, phone, watch, llms, samples, guides, hardware, apps, appJson] = await Promise.all([
       parseMarkdown(CACHE_DIR),
       parsePhoneApis(CACHE_DIR),
+      parseWatchface(CACHE_DIR),
       parseLlmsContent(CACHE_DIR),
       parseSamples(CACHE_DIR),
       parsePatterns(CACHE_DIR),
@@ -50,10 +52,10 @@ switch (command) {
       parseAppJson(CACHE_DIR),
     ]);
     console.log(
-      `parsed: ${docs.length} docs-reference, ${phone.length} phone-api, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices, ${apps.length} sample apps, ${appJson[0]?.sections.length ?? 0} app.json keys`,
+      `parsed: ${docs.length} docs-reference, ${phone.length} phone-api, ${watch.length} watchface, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices, ${apps.length} sample apps, ${appJson[0]?.sections.length ?? 0} app.json keys`,
     );
 
-    const records = enrich([...docs, ...phone, ...llms, ...samples]);
+    const records = enrich([...docs, ...phone, ...watch, ...llms, ...samples]);
     const official = records.filter((r) => r.confidence === "OFFICIAL").length;
     const observed = records.filter((r) => r.confidence === "OBSERVED").length;
     console.log(`enriched: ${records.length} symbols (${official} OFFICIAL, ${observed} OBSERVED)`);
@@ -96,6 +98,7 @@ switch (command) {
         recordCounts: {
           "docs-reference": docs.length,
           "docs-phone-api": phone.length,
+          "docs-watchface": watch.length,
           llms: llms.length,
           sample: samples.length,
           guide: guides.length,

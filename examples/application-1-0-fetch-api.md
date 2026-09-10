@@ -33,7 +33,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addListener()` — likely `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
+### `.addListener()` — likely `@zos/ble.addListener` or `hmBle.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
 messaging.peerSocket.addListener('message', (message) => {
@@ -71,7 +71,19 @@ globalNS.clearTimeout(timer1)
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js`, line 16
 
-### `.createConnect()` — likely `@zos/ble.createConnect`
+### `.close()` — likely `hmFS.close`
+
+```js
+hmFS.close(file)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 55
+
+```js
+hmFS.close(file)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 79
+
+### `.createConnect()` — likely `@zos/ble.createConnect` or `hmBle.createConnect`
 
 ```js
 hmBle.createConnect((index, data, size) => {
@@ -82,7 +94,35 @@ hmBle.createConnect((index, data, size) => {
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 208
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createTimer()` — likely `timer.createTimer`
+
+```js
+const timer1 = timer.createTimer(
+  ns || 1,
+  Number.MAX_SAFE_INTEGER,
+  function () {
+    globalNS.clearTimeout(timer1)
+    func && func()
+  },
+  {},
+)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js`, line 12
+
+```js
+const timer1 = timer.createTimer(
+  1,
+  Number.MAX_SAFE_INTEGER,
+  function () {
+    globalNS.clearImmediate(timer1)
+    func && func()
+  },
+  {},
+)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js`, line 30
+
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.BUTTON, {
@@ -116,7 +156,7 @@ hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/application/1.0/fetch-api/pages/index.js`, line 39
 
-### `.disConnect()` — likely `@zos/ble.disConnect`
+### `.disConnect()` — likely `@zos/ble.disConnect` or `hmBle.disConnect`
 
 ```js
 this.globalData.messageBuilder.disConnect();
@@ -135,12 +175,31 @@ disConnect(cb) {
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 218
 
-### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo`
+### `.getDeviceInfo()` — likely `@zos/device.getDeviceInfo` or `hmSetting.getDeviceInfo`
 
 ```js
 hmSetting.getDeviceInfo();
 ```
 — `zeppos-samples/application/1.0/fetch-api/utils/config/device.js`, line 2
+
+### `.open()` — likely `hmFS.open`
+
+```js
+const file = hmFS.open(filename, hmFS.O_CREAT | hmFS.O_RDWR | hmFS.O_TRUNC)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 48
+
+```js
+const file = hmFS.open(filename, hmFS.O_RDONLY)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 73
+
+### `.read()` — likely `hmFS.read`
+
+```js
+hmFS.read(file, destination_buf.buffer, 0, fs_stat.size)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 77
 
 ### `.readdirSync()` — likely `@zos/fs.readdirSync`
 
@@ -158,7 +217,33 @@ hmFS.readdirSync(path)
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 126
 
-### `.send()` — likely `@zos/ble.send` or `messaging.send`
+### `.remove()` — likely `hmFS.remove`
+
+```js
+const result = hmFS.remove(filename)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 93
+
+### `.rename()` — likely `hmFS.rename`
+
+```js
+hmFS.rename(oldFilename, newFilename)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 104
+
+### `.seek()` — likely `hmFS.seek`
+
+```js
+hmFS.seek(file, 0, hmFS.SEEK_SET)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 51
+
+```js
+hmFS.seek(file, 0, hmFS.SEEK_SET)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 75
+
+### `.send()` — likely `@zos/ble.send` or `hmBle.send` or `messaging.send`
 
 ```js
 hmBle.send(buf.buffer, buf.byteLength)
@@ -182,7 +267,14 @@ this.sessions.set(this.key(newSession), newSession)
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 142
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer`
+### `.stat()` — likely `hmFS.stat`
+
+```js
+const [fs_stat, err] = hmFS.stat(filename)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 24
+
+### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef)
@@ -193,6 +285,13 @@ timerRef && timer.stopTimer(timerRef)
 timerRef && timer.stopTimer(timerRef)
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js`, line 26
+
+### `.write()` — likely `hmFS.write`
+
+```js
+hmFS.write(file, source_buf.buffer, 0, source_buf.length)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 53
 
 ## Global calls in the phone runtimes
 

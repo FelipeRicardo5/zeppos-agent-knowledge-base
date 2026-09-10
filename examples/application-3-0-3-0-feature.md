@@ -251,7 +251,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener`
+### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
 
 ```js
 canvasIndex0.addEventListener(hmUI.event.CLICK_UP, btnUpCb);
@@ -290,7 +290,14 @@ canvasIndex1.clear({
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 212
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createTimer()` — likely `timer.createTimer`
+
+```js
+// animTimer = timer.createTimer(0, 100, timerCB, undefined);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 237
+
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 vc.createWidget(hmUI.widget.FILL_RECT, {
@@ -308,7 +315,7 @@ textWidget = hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/acc.js`, line 14
 
-### `.deleteWidget()` — likely `@zos/ui.deleteWidget`
+### `.deleteWidget()` — likely `@zos/ui.deleteWidget` or `hmUI.deleteWidget`
 
 ```js
 hmUI.deleteWidget(vc), (vc = null);
@@ -578,7 +585,7 @@ let id = alarmMgr.set(alarmObj);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 77
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 textWidget.setProperty(hmUI.prop.TEXT, show_text);
@@ -639,7 +646,7 @@ acc && acc.stop();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/acc.js`, line 48
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer`
+### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
 
 ```js
 // timer.stopTimer(animTimer);

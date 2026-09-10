@@ -134,6 +134,21 @@
       ]
     },
     {
+      "method": "createTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js",
+          "line": 12,
+          "code": "const timer1 = timer.createTimer(\n  ns || 1,\n  Number.MAX_SAFE_INTEGER,\n  function () {\n    globalNS.clearTimeout(timer1)\n    func && func()\n  },\n  {},\n)"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js",
+          "line": 30,
+          "code": "const timer1 = timer.createTimer(\n  1,\n  Number.MAX_SAFE_INTEGER,\n  function () {\n    globalNS.clearImmediate(timer1)\n    func && func()\n  },\n  {},\n)"
+        }
+      ]
+    },
+    {
       "method": "createWidget",
       "snippets": [
         {

@@ -348,6 +348,16 @@
       ]
     },
     {
+      "method": "open",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 810,
+          "code": "xhr.open('GET', url);"
+        }
+      ]
+    },
+    {
       "method": "send",
       "snippets": [
         {

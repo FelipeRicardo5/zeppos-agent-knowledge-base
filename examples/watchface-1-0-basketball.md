@@ -45,7 +45,35 @@ globalNS.clearTimeout(timer1)
 ```
 — `zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js`, line 16
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createTimer()` — likely `timer.createTimer`
+
+```js
+const timer1 = timer.createTimer(
+  ns || 1,
+  Number.MAX_SAFE_INTEGER,
+  function () {
+    globalNS.clearTimeout(timer1)
+    func && func()
+  },
+  {},
+)
+```
+— `zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js`, line 12
+
+```js
+const timer1 = timer.createTimer(
+  1,
+  Number.MAX_SAFE_INTEGER,
+  function () {
+    globalNS.clearImmediate(timer1)
+    func && func()
+  },
+  {},
+)
+```
+— `zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js`, line 30
+
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 hmUI.createWidget(hmUI.widget.IMG, {
@@ -75,7 +103,7 @@ let animA = hmUI.createWidget(hmUI.widget.IMG_ANIM, {
 ```
 — `zeppos-samples/watchface/1.0/basketball/watchface/round/index.js`, line 63
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 animResident.setProperty(hmUI.prop.ANIM_STATUS, 1)
@@ -87,7 +115,7 @@ animCreate.setProperty(hmUI.prop.VISIBLE, false)
 ```
 — `zeppos-samples/watchface/1.0/basketball/watchface/round/index.js`, line 37
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer`
+### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
 
 ```js
 timerRef && timer.stopTimer(timerRef)

@@ -285,7 +285,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener`
+### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
 
 ```js
 this.state.titleWidget.addEventListener(event.CLICK_DOWN, () => {
@@ -315,7 +315,7 @@ polyline.clear()
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/polyline.js`, line 33
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 const checkbox_group = createWidget(widget.CHECKBOX_GROUP, {
@@ -343,7 +343,7 @@ const button1 = checkbox_group.createWidget(widget.STATE_BUTTON, {
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/checkbox_group.js`, line 23
 
-### `.getProperty()` — likely `@zos/ui.getProperty`
+### `.getProperty()` — likely `@zos/ui.getProperty` or `hmUI.getProperty`
 
 ```js
 this.state.logger.log('property', cycle_image_text_list.getProperty(prop.MORE, {}))
@@ -355,7 +355,7 @@ const isRunning = imgAnimation.getProperty(prop.ANIM_IS_RUNINNG)
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/img_anim.js`, line 27
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 text.setProperty(prop.MORE, {

@@ -1,0 +1,491 @@
+{
+  "module": "hmSetting",
+  "symbols": [
+    {
+      "id": "hmSetting.getBrightness",
+      "module": "hmSetting",
+      "symbol": "getBrightness",
+      "type": "function",
+      "description": "Returns the screen brightness of the current device.",
+      "signature": "() => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getBrightness.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getDateFormat",
+      "module": "hmSetting",
+      "symbol": "getDateFormat",
+      "type": "function",
+      "description": "Return the current year, month and day order.",
+      "signature": "() => result",
+      "enums": [
+        {
+          "name": "result: number",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getDateFormat.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getDeviceInfo",
+      "module": "hmSetting",
+      "symbol": "getDeviceInfo",
+      "type": "function",
+      "description": "Gets the device information.",
+      "signature": "() => deviceInfo",
+      "shapes": [
+        {
+          "name": "deviceInfo",
+          "props": [
+            {
+              "name": "width",
+              "description": "width of the device screen",
+              "type": "number"
+            },
+            {
+              "name": "height",
+              "description": "device screen height",
+              "type": "number"
+            },
+            {
+              "name": "screenShape",
+              "description": "Screen shape, 0-square screen, 1-round screen",
+              "type": "number"
+            },
+            {
+              "name": "deviceName",
+              "description": "device name",
+              "type": "string"
+            },
+            {
+              "name": "keyNumber",
+              "description": "number of keys",
+              "type": "number"
+            },
+            {
+              "name": "deviceSource",
+              "description": "device code",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getDeviceInfo.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getDiskInfo",
+      "module": "hmSetting",
+      "symbol": "getDiskInfo",
+      "type": "function",
+      "description": "Get disk information.",
+      "signature": "() => diskInfo",
+      "shapes": [
+        {
+          "name": "diskInfo",
+          "props": [
+            {
+              "name": "total",
+              "description": "total space",
+              "type": "number"
+            },
+            {
+              "name": "free",
+              "description": "free space",
+              "type": "number"
+            },
+            {
+              "name": "app",
+              "description": "js application space used",
+              "type": "number"
+            },
+            {
+              "name": "watchface",
+              "description": "watchface",
+              "type": "number"
+            },
+            {
+              "name": "music",
+              "description": "space used for music",
+              "type": "number"
+            },
+            {
+              "name": "system",
+              "description": "system used space",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getDiskInfo.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getLanguage",
+      "module": "hmSetting",
+      "symbol": "getLanguage",
+      "type": "function",
+      "description": "Returns the current language serial number.",
+      "signature": "() => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getLanguage.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getMileageUnit",
+      "module": "hmSetting",
+      "symbol": "getMileageUnit",
+      "type": "function",
+      "description": "Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user and does not represent the units of the data. The units of the data refer to the interface description of the corresponding data.",
+      "signature": "() => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getMileageUnit.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getScreenAutoBright",
+      "module": "hmSetting",
+      "symbol": "getScreenAutoBright",
+      "type": "function",
+      "description": "Returns whether the current device has auto-brightness enabled. If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect.",
+      "signature": "() => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getScreenAutoBright.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getScreenType",
+      "module": "hmSetting",
+      "symbol": "getScreenType",
+      "type": "function",
+      "description": "Get the current screen Screen information.",
+      "signature": "() => screenType",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getScreenType.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getSleepTarget",
+      "module": "hmSetting",
+      "symbol": "getSleepTarget",
+      "type": "function",
+      "description": "Get the user sleep target.",
+      "signature": "() => sleepTarget",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getSleepTarget.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getTimeFormat",
+      "module": "hmSetting",
+      "symbol": "getTimeFormat",
+      "type": "function",
+      "description": "Returns the current system-set time system.",
+      "signature": "() => result",
+      "enums": [
+        {
+          "name": "result: number",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getTimeFormat.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getUserData",
+      "module": "hmSetting",
+      "symbol": "getUserData",
+      "type": "function",
+      "description": "Gets the user data. All properties are `0` when no data is fetched.",
+      "signature": "() => userData",
+      "shapes": [
+        {
+          "name": "userData",
+          "props": [
+            {
+              "name": "age",
+              "description": "The user's age, or 0 when there is no data",
+              "type": "number"
+            },
+            {
+              "name": "height",
+              "description": "The user's height, a floating-point number, or 0 when there is no data",
+              "type": "number"
+            },
+            {
+              "name": "weight",
+              "description": "The user's weight, in floating point numbers, or 0 when there is no data",
+              "type": "number"
+            },
+            {
+              "name": "gender",
+              "description": "0: MALE, 1: FEMALE, 2: UNSPECIFIED",
+              "type": "boolean"
+            },
+            {
+              "name": "nickName",
+              "description": "user nickname",
+              "type": "string"
+            },
+            {
+              "name": "region",
+              "description": "User registration area (ISO standard)",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getUserData.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getWeightTarget",
+      "module": "hmSetting",
+      "symbol": "getWeightTarget",
+      "type": "function",
+      "description": "Get the user's weight target.",
+      "signature": "() => weightTarget",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getWeightTarget.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.getWeightUnit",
+      "module": "hmSetting",
+      "symbol": "getWeightUnit",
+      "type": "function",
+      "description": "Get the weight unit set by the user.",
+      "signature": "() => weightUnit",
+      "enums": [
+        {
+          "name": "weightUnit: number",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "description": "Kilogram",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "description": "Jin",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "2",
+              "description": "Pound",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "3",
+              "description": "Stone",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getWeightUnit.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.screen_type",
+      "module": "hmSetting",
+      "symbol": "screen_type",
+      "type": "constant",
+      "enums": [
+        {
+          "name": "screen_type",
+          "qualified": true,
+          "members": [
+            {
+              "value": "AOD",
+              "description": "In the hibernation screen",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "APP",
+              "description": "Within the js application",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SETTINGS",
+              "description": "In the js application configuration or Watchface edit page",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "WATCHFACE",
+              "description": "In the js table main screen",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getScreenType.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.setBrightness",
+      "module": "hmSetting",
+      "symbol": "setBrightness",
+      "type": "function",
+      "description": "Sets the screen brightness of the current device, in the range [0, 100]. If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect. You need to turn off auto-brightness first and then set the screen brightness. If you exit the page, you need to consider whether you need to set the brightness back to the original one.",
+      "signature": "(brightness: number) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setBrightness.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.setBrightScreen",
+      "module": "hmSetting",
+      "symbol": "setBrightScreen",
+      "type": "function",
+      "description": "Set the bright screen time. When you need the screen to be always on, you can set a larger bright screen time.",
+      "signature": "(brightTime: number) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setBrightScreen.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.setBrightScreenCancel",
+      "module": "hmSetting",
+      "symbol": "setBrightScreenCancel",
+      "type": "function",
+      "description": "Cancel the bright screen time. You need to call `setBrightScreenCancel` method in the app destroy function after you have called `setBrightScreen` method to set the bright screen time.",
+      "signature": "() => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setBrightScreenCancel.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.setScreenAutoBright",
+      "module": "hmSetting",
+      "symbol": "setScreenAutoBright",
+      "type": "function",
+      "description": "Set whether auto-brightness is enabled or not. If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect.",
+      "signature": "(isAutoBright: boolean) => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setScreenAutoBright.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSetting.setScreenOff",
+      "module": "hmSetting",
+      "symbol": "setScreenOff",
+      "type": "function",
+      "description": "Call `setScreenOff` to rest the screen.",
+      "signature": "() => result",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setScreenOff.mdx",
+      "extractedAt": "2026-09-10"
+    }
+  ]
+}

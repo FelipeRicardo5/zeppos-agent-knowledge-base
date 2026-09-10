@@ -1,6 +1,6 @@
 # API index
 
-**42 modules, 411 symbols**
+**50 modules, 513 symbols**
 
 | Module | Symbols | With stated API_LEVEL | Page |
 | --- | --- | --- | --- |
@@ -41,8 +41,16 @@
 | `download-file` | 1 | 0 | [download-file.md](download-file.md) |
 | `fetch` | 1 | 0 | [fetch.md](fetch.md) |
 | `global` | 1 | 0 | [global.md](global.md) |
+| `hmBle` | 6 | 0 | [hmBle.md](hmBle.md) |
+| `hmFS` | 20 | 0 | [hmFS.md](hmFS.md) |
+| `hmSensor` | 3 | 0 | [hmSensor.md](hmSensor.md) |
+| `hmSensor.id` | 18 | 0 | [hmSensor.id.md](hmSensor.id.md) |
+| `hmSetting` | 19 | 0 | [hmSetting.md](hmSetting.md) |
+| `hmUI` | 12 | 0 | [hmUI.md](hmUI.md) |
+| `hmUI.widget` | 22 | 0 | [hmUI.widget.md](hmUI.widget.md) |
 | `image-convert` | 1 | 0 | [image-convert.md](image-convert.md) |
 | `messaging` | 2 | 0 | [messaging.md](messaging.md) |
 | `settings-storage` | 7 | 0 | [settings-storage.md](settings-storage.md) |
+| `timer` | 2 | 0 | [timer.md](timer.md) |
 | `transfer-file` | 2 | 0 | [transfer-file.md](transfer-file.md) |
 | `ui` | 13 | 0 | [ui.md](ui.md) |

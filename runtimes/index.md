@@ -9,7 +9,7 @@ is not thereby available in the Settings App or a Watchface.
 | Device App | 375 | 31 | [device-app.md](device-app.md) |
 | Side Service | 20 | 10 | [side-service.md](side-service.md) |
 | Settings App | 21 | 3 | [settings.md](settings.md) |
-| Watchface | 3 | 2 | [watchface.md](watchface.md) |
+| Watchface | 105 | 10 | [watchface.md](watchface.md) |
 | Workout Extension | 12 | 5 | [workout-extension.md](workout-extension.md) |
 
 ## Valid in more than one runtime

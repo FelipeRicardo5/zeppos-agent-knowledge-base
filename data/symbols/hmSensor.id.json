@@ -1,0 +1,842 @@
+{
+  "module": "hmSensor.id",
+  "symbols": [
+    {
+      "id": "hmSensor.id.BATTERY",
+      "module": "hmSensor.id",
+      "symbol": "BATTERY",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "battery",
+          "props": [
+            {
+              "name": "current",
+              "description": "current power",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/BATTERY.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.BODY_TEMP",
+      "module": "hmSensor.id",
+      "symbol": "BODY_TEMP",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "thermometer",
+          "props": [
+            {
+              "name": "current",
+              "description": "current temperature",
+              "type": "number"
+            },
+            {
+              "name": "timeinterval",
+              "description": "time elapsed since the value was set",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/BODY_TEMP.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.CALORIE",
+      "module": "hmSensor.id",
+      "symbol": "CALORIE",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "calorie",
+          "props": [
+            {
+              "name": "current",
+              "description": "Current calorie consumption in kcal",
+              "type": "number"
+            },
+            {
+              "name": "target",
+              "description": "Target calorie consumption in kcal",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/CALORIE.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.DISTANCE",
+      "module": "hmSensor.id",
+      "symbol": "DISTANCE",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "distance",
+          "props": [
+            {
+              "name": "current",
+              "description": "current mileage",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/DISTANCE.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.FAT_BURRING",
+      "module": "hmSensor.id",
+      "symbol": "FAT_BURRING",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "fatburn",
+          "props": [
+            {
+              "name": "current",
+              "description": "Current fat burning minutes",
+              "type": "number"
+            },
+            {
+              "name": "target",
+              "description": "Fat burning target in minutes",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/FAT_BURRING.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.HEART",
+      "module": "hmSensor.id",
+      "symbol": "HEART",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "heart",
+          "props": [
+            {
+              "name": "last",
+              "description": "last successful heart rate measurement",
+              "type": "number"
+            },
+            {
+              "name": "current",
+              "description": "current heart rate",
+              "type": "number"
+            },
+            {
+              "name": "today",
+              "description": "The current day's heart rate in minutes from 0:00 to the current moment, returning an array of js up to 60\\*24",
+              "type": "Array<number>"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/HEART.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.MUSIC",
+      "module": "hmSensor.id",
+      "symbol": "MUSIC",
+      "type": "constant",
+      "signature": "() => void",
+      "shapes": [
+        {
+          "name": "music",
+          "props": [
+            {
+              "name": "artist",
+              "description": "artist name",
+              "type": "string"
+            },
+            {
+              "name": "title",
+              "description": "music name",
+              "type": "string"
+            },
+            {
+              "name": "isPlaying",
+              "description": "Play status true: playing, false: not playing",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/MUSIC.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.PAI",
+      "module": "hmSensor.id",
+      "symbol": "PAI",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "pai",
+          "props": [
+            {
+              "name": "dailypai",
+              "description": "PAI values for today",
+              "type": "number"
+            },
+            {
+              "name": "totalpai",
+              "description": "Current cumulative PAI values",
+              "type": "number"
+            },
+            {
+              "name": "prepai0",
+              "description": "PAI values were obtained the six days before today",
+              "type": "number"
+            },
+            {
+              "name": "prepai1",
+              "description": "PAI values were obtained the five days before today",
+              "type": "number"
+            },
+            {
+              "name": "prepai2",
+              "description": "PAI values were obtained the four days before today",
+              "type": "number"
+            },
+            {
+              "name": "prepai3",
+              "description": "PAI values were obtained the three days before today",
+              "type": "number"
+            },
+            {
+              "name": "prepai4",
+              "description": "PAI values were obtained the day before yesterday",
+              "type": "number"
+            },
+            {
+              "name": "prepai5",
+              "description": "PAI values were obtained yesterday",
+              "type": "number"
+            },
+            {
+              "name": "prepai6",
+              "description": "PAI values obtained on the same day",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/PAI.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.SLEEP",
+      "module": "hmSensor.id",
+      "symbol": "SLEEP",
+      "type": "constant",
+      "signature": "() => void",
+      "shapes": [
+        {
+          "name": "SleepInfo",
+          "props": [
+            {
+              "name": "model",
+              "description": "model",
+              "type": "number"
+            },
+            {
+              "name": "start",
+              "description": "start time, based on the number of minutes at 0:00 on the day",
+              "type": "number"
+            },
+            {
+              "name": "stop",
+              "description": "The end event, based on the number of minutes at 0:00 on the day",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "BasicInfo",
+          "props": [
+            {
+              "name": "score",
+              "description": "sleep score",
+              "type": "number"
+            },
+            {
+              "name": "deepMin",
+              "description": "Deep sleep time in minutes",
+              "type": "number"
+            },
+            {
+              "name": "startTime",
+              "description": "Sleep start time, based on the number of minutes at 0:00 on the day",
+              "type": "number"
+            },
+            {
+              "name": "endTime",
+              "description": "Sleep end time, the number of minutes from the same base point as the start time",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/SLEEP.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.SPO2",
+      "module": "hmSensor.id",
+      "symbol": "SPO2",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "spo2",
+          "props": [
+            {
+              "name": "current",
+              "description": "Blood oxygen measurement values",
+              "type": "number"
+            },
+            {
+              "name": "time",
+              "description": "time when the result was generated",
+              "type": "number"
+            },
+            {
+              "name": "retcode",
+              "description": "result return code",
+              "type": "number"
+            },
+            {
+              "name": "hourAvgofDay",
+              "description": "Returns the hourly average blood sample data, length 24",
+              "type": "Array<number>"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/SPO2.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.STAND",
+      "module": "hmSensor.id",
+      "symbol": "STAND",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "stand",
+          "props": [
+            {
+              "name": "current",
+              "description": "current standing hours",
+              "type": "number"
+            },
+            {
+              "name": "target",
+              "description": "standing hours target",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/STAND.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.STEP",
+      "module": "hmSensor.id",
+      "symbol": "STEP",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "step",
+          "props": [
+            {
+              "name": "current",
+              "description": "current step number",
+              "type": "number"
+            },
+            {
+              "name": "target",
+              "description": "target step",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/STEP.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.STRESS",
+      "module": "hmSensor.id",
+      "symbol": "STRESS",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "stress",
+          "props": [
+            {
+              "name": "current",
+              "description": "current pressure value",
+              "type": "number"
+            },
+            {
+              "name": "time",
+              "description": "time when the pressure value was generated",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/STRESS.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.TIME",
+      "module": "hmSensor.id",
+      "symbol": "TIME",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "time",
+          "props": [
+            {
+              "name": "utc",
+              "description": "Timestamp, milliseconds from January 1, 1970 to present",
+              "type": "number"
+            },
+            {
+              "name": "year",
+              "description": "year",
+              "type": "number"
+            },
+            {
+              "name": "month",
+              "description": "month",
+              "type": "number"
+            },
+            {
+              "name": "day",
+              "description": "day",
+              "type": "number"
+            },
+            {
+              "name": "hour",
+              "description": "hour",
+              "type": "number"
+            },
+            {
+              "name": "minute",
+              "description": "minute",
+              "type": "number"
+            },
+            {
+              "name": "second",
+              "description": "second",
+              "type": "number"
+            },
+            {
+              "name": "week",
+              "description": "week 1 - 7",
+              "type": "number"
+            },
+            {
+              "name": "lunar_year",
+              "description": "Traditional Chinese Calendar Year",
+              "type": "number"
+            },
+            {
+              "name": "lunar_month",
+              "description": "Traditional Chinese Calendar Month",
+              "type": "number"
+            },
+            {
+              "name": "lunar_day",
+              "description": "Traditional Chinese Calendar Day",
+              "type": "number"
+            },
+            {
+              "name": "lunar_festival",
+              "description": "Traditional Chinese Festival",
+              "type": "string"
+            },
+            {
+              "name": "lunar_solar_term",
+              "description": "Traditional Chinese Solar Terms",
+              "type": "string"
+            },
+            {
+              "name": "solar_festival",
+              "description": "Gregorian Holidays",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/TIME.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.VIBRATE",
+      "module": "hmSensor.id",
+      "symbol": "VIBRATE",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "vibrate",
+          "props": [
+            {
+              "name": "scene",
+              "description": "vibration scene setting",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "enums": [
+        {
+          "name": "scene: number",
+          "qualified": false,
+          "members": [
+            {
+              "value": "0",
+              "description": "Two short, continuous vibrations, consistent with the watch message notification vibration feedback",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "1",
+              "description": "High vibration intensity, single vibration twice in 500ms, continuous vibration, need to manually stop before it will stop, consistent with the watch call vibration feedback",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "5",
+              "description": "High vibration intensity, single long vibration 500ms, continuous vibration, need to manually stop before stopping, consistent with the watch alarm clock, countdown vibration feedback",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "9",
+              "description": "High vibration intensity, four vibrations in 1200ms, can be used for stronger reminders",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "23",
+              "description": "Light vibration intensity and short time (20ms)",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "24",
+              "description": "Medium vibration intensity, short time (20ms)",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "25",
+              "description": "High vibration intensity and short time (20ms)",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "27",
+              "description": "High vibration intensity, lasting 1000ms",
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "28",
+              "description": "High vibration intensity, lasting 600ms",
+              "confidence": "OFFICIAL"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/VIBRATE.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.WEAR",
+      "module": "hmSensor.id",
+      "symbol": "WEAR",
+      "type": "constant",
+      "shapes": [
+        {
+          "name": "wear",
+          "props": [
+            {
+              "name": "current",
+              "description": "Current wear status, see table below",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/WEAR.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.WEATHER",
+      "module": "hmSensor.id",
+      "symbol": "WEATHER",
+      "type": "constant",
+      "signature": "() => ForecastWeather",
+      "shapes": [
+        {
+          "name": "ForecastWeather",
+          "props": [
+            {
+              "name": "cityName",
+              "description": "City Name",
+              "type": "string"
+            },
+            {
+              "name": "forecastData",
+              "description": "Weather Data",
+              "type": "ForecastData"
+            },
+            {
+              "name": "tideData",
+              "description": "Tide Data",
+              "type": "TideData"
+            }
+          ]
+        },
+        {
+          "name": "ForecastData",
+          "props": [
+            {
+              "name": "data",
+              "description": "ForecastData array",
+              "type": "Array<ForecastDataItem>"
+            },
+            {
+              "name": "count",
+              "description": "Length of the ForecastData array",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "ForecastDataItem",
+          "props": [
+            {
+              "name": "high",
+              "description": "Highest temperature",
+              "type": "number"
+            },
+            {
+              "name": "low",
+              "description": "Lowest temperature",
+              "type": "number"
+            },
+            {
+              "name": "index",
+              "description": "index",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "TideData",
+          "props": [
+            {
+              "name": "data",
+              "description": "TideData array",
+              "type": "Array<TideDataItem>"
+            },
+            {
+              "name": "count",
+              "description": "Length of the TideData array",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "TideDataItem",
+          "props": [
+            {
+              "name": "sunrise",
+              "description": "Sunrise data",
+              "type": "Sunrise"
+            },
+            {
+              "name": "sunset",
+              "description": "Sunset data",
+              "type": "Sunset"
+            }
+          ]
+        },
+        {
+          "name": "Sunrise",
+          "props": [
+            {
+              "name": "hour",
+              "description": "Hour",
+              "type": "number"
+            },
+            {
+              "name": "minute",
+              "description": "Minute",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Sunset",
+          "props": [
+            {
+              "name": "hour",
+              "description": "Hour",
+              "type": "number"
+            },
+            {
+              "name": "minute",
+              "description": "Minute",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/WEATHER.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmSensor.id.WORLD_CLOCK",
+      "module": "hmSensor.id",
+      "symbol": "WORLD_CLOCK",
+      "type": "constant",
+      "signature": "() => void",
+      "shapes": [
+        {
+          "name": "wordInfo",
+          "props": [
+            {
+              "name": "city",
+              "description": "city",
+              "type": "string"
+            },
+            {
+              "name": "hour",
+              "description": "hour",
+              "type": "number"
+            },
+            {
+              "name": "minute",
+              "description": "minute",
+              "type": "number"
+            },
+            {
+              "name": "timeZoneHour",
+              "description": "Time Zone Hours",
+              "type": "number"
+            },
+            {
+              "name": "timeZoneMinute",
+              "description": "Time zone minutes",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/WORLD_CLOCK.mdx",
+      "extractedAt": "2026-09-10"
+    }
+  ]
+}

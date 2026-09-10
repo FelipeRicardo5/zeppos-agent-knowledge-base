@@ -288,12 +288,42 @@
       ]
     },
     {
+      "method": "close",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 55,
+          "code": "hmFS.close(file)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 79,
+          "code": "hmFS.close(file)"
+        }
+      ]
+    },
+    {
       "method": "createConnect",
       "snippets": [
         {
           "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
           "line": 208,
           "code": "hmBle.createConnect((index, data, size) => {\n  // logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, this.bin2hex(data))\n  console.log('createConnect-------', size)\n  this.onFragmentData(data)\n})"
+        }
+      ]
+    },
+    {
+      "method": "createTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
+          "line": 12,
+          "code": "const timer1 = timer.createTimer(\n  ns || 1,\n  Number.MAX_SAFE_INTEGER,\n  function () {\n    globalNS.clearTimeout(timer1)\n    func && func()\n  },\n  {},\n)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
+          "line": 30,
+          "code": "const timer1 = timer.createTimer(\n  1,\n  Number.MAX_SAFE_INTEGER,\n  function () {\n    globalNS.clearImmediate(timer1)\n    func && func()\n  },\n  {},\n)"
         }
       ]
     },
@@ -338,6 +368,31 @@
       ]
     },
     {
+      "method": "open",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 48,
+          "code": "const file = hmFS.open(filename, hmFS.O_CREAT | hmFS.O_RDWR | hmFS.O_TRUNC)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 73,
+          "code": "const file = hmFS.open(filename, hmFS.O_RDONLY)"
+        }
+      ]
+    },
+    {
+      "method": "read",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 77,
+          "code": "hmFS.read(file, destination_buf.buffer, 0, fs_stat.size)"
+        }
+      ]
+    },
+    {
       "method": "readdirSync",
       "snippets": [
         {
@@ -349,6 +404,41 @@
           "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
           "line": 126,
           "code": "hmFS.readdirSync(path)"
+        }
+      ]
+    },
+    {
+      "method": "remove",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 93,
+          "code": "const result = hmFS.remove(filename)"
+        }
+      ]
+    },
+    {
+      "method": "rename",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 104,
+          "code": "hmFS.rename(oldFilename, newFilename)"
+        }
+      ]
+    },
+    {
+      "method": "seek",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 51,
+          "code": "hmFS.seek(file, 0, hmFS.SEEK_SET)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 75,
+          "code": "hmFS.seek(file, 0, hmFS.SEEK_SET)"
         }
       ]
     },
@@ -383,6 +473,16 @@
       ]
     },
     {
+      "method": "stat",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 24,
+          "code": "const [fs_stat, err] = hmFS.stat(filename)"
+        }
+      ]
+    },
+    {
       "method": "stopTimer",
       "snippets": [
         {
@@ -394,6 +494,16 @@
           "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
           "line": 26,
           "code": "timerRef && timer.stopTimer(timerRef)"
+        }
+      ]
+    },
+    {
+      "method": "write",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 53,
+          "code": "hmFS.write(file, source_buf.buffer, 0, source_buf.length)"
         }
       ]
     }

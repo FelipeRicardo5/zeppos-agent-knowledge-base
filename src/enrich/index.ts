@@ -33,9 +33,16 @@ import type {
 // because each front observes a different runtime rather than a competing claim
 // about the same one. See src/parse/runtime.ts for where the hints come from.
 
-// docs-phone-api sits beside docs-reference: both are official reference pages,
-// just for runtimes whose API has no import line to key on.
-const SOURCE_PRIORITY = ["docs-reference", "docs-phone-api", "llms", "sample"] as const;
+// docs-phone-api and docs-watchface sit beside docs-reference: all three are
+// official reference pages, just for runtimes whose API has no import line to
+// key on.
+const SOURCE_PRIORITY = [
+  "docs-reference",
+  "docs-phone-api",
+  "docs-watchface",
+  "llms",
+  "sample",
+] as const;
 
 function bestOf<T extends RawUnit>(units: T[]): T[] {
   return [...units].sort(
@@ -49,7 +56,12 @@ function toPosixPath(file: string): string {
 }
 
 /** Every front but `sample` reads official documentation. */
-const DOCUMENTED: RawSourceKind[] = ["docs-reference", "docs-phone-api", "llms"];
+const DOCUMENTED: RawSourceKind[] = [
+  "docs-reference",
+  "docs-phone-api",
+  "docs-watchface",
+  "llms",
+];
 
 function confidenceFor(units: RawUnit[]): Confidence {
   return units.some((u) => DOCUMENTED.includes(u.sourceKind)) ? "OFFICIAL" : "OBSERVED";

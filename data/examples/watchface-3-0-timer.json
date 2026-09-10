@@ -129,6 +129,21 @@
       ]
     },
     {
+      "method": "createTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 421,
+          "code": "hsTimer = timer.createTimer(10, 10, setMilliseconds, {})"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 422,
+          "code": "sTimer = timer.createTimer(1000, 1000, setSeconds, {})"
+        }
+      ]
+    },
+    {
       "method": "createWidget",
       "snippets": [
         {
@@ -170,6 +185,36 @@
           "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
           "line": 281,
           "code": "timer.stopTimer(sTimer)"
+        }
+      ]
+    },
+    {
+      "method": "SysProGetInt",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 316,
+          "code": "rootPath + 'smallNum/' + hmFS.SysProGetInt('t0') + '.png',"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 320,
+          "code": "rootPath + 'smallNum/' + hmFS.SysProGetInt('t1') + '.png',"
+        }
+      ]
+    },
+    {
+      "method": "SysProSetInt",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 340,
+          "code": "hmFS.SysProSetInt('t0', 0)"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 341,
+          "code": "hmFS.SysProSetInt('t1', 0)"
         }
       ]
     }

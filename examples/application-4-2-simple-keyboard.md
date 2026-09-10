@@ -232,7 +232,7 @@ cancel() {
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 258
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 const ele = parent.createWidget(id, widget_props);

@@ -52,7 +52,7 @@ These are never imported, so no import line names their module. The name is
 matched against the symbol records; the receiver's type is **not** resolved,
 so treat the module as a strong hint rather than a fact.
 
-### `.addEventListener()` — likely `@zos/ui.addEventListener`
+### `.addEventListener()` — likely `@zos/ui.addEventListener` or `hmSensor.addEventListener`
 
 ```js
 secondImg.addEventListener(ui.event.CLICK_UP, function (info) {
@@ -86,7 +86,19 @@ backBtn.addEventListener(ui.event.CLICK_UP, function (info) {
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 279
 
-### `.createWidget()` — likely `@zos/ui.createWidget`
+### `.createTimer()` — likely `timer.createTimer`
+
+```js
+hsTimer = timer.createTimer(10, 10, setMilliseconds, {})
+```
+— `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 421
+
+```js
+sTimer = timer.createTimer(1000, 1000, setSeconds, {})
+```
+— `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 422
+
+### `.createWidget()` — likely `@zos/ui.createWidget` or `hmUI.createWidget`
 
 ```js
 imgBg = ui.createWidget(ui.widget.FILL_RECT, {
@@ -111,7 +123,7 @@ imgBg = ui.createWidget(ui.widget.IMG, {
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 103
 
-### `.setProperty()` — likely `@zos/ui.setProperty`
+### `.setProperty()` — likely `@zos/ui.setProperty` or `hmUI.setProperty`
 
 ```js
 bigNumObject[i].setProperty(ui.prop.VISIBLE, false)
@@ -123,7 +135,7 @@ smallNumObject[j].setProperty(ui.prop.VISIBLE, false)
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 175
 
-### `.stopTimer()` — likely `@zos/timer.stopTimer`
+### `.stopTimer()` — likely `@zos/timer.stopTimer` or `timer.stopTimer`
 
 ```js
 timer.stopTimer(hsTimer)
@@ -134,3 +146,27 @@ timer.stopTimer(hsTimer)
 timer.stopTimer(sTimer)
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 281
+
+### `.SysProGetInt()` — likely `hmFS.SysProGetInt`
+
+```js
+rootPath + 'smallNum/' + hmFS.SysProGetInt('t0') + '.png',
+```
+— `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 316
+
+```js
+rootPath + 'smallNum/' + hmFS.SysProGetInt('t1') + '.png',
+```
+— `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 320
+
+### `.SysProSetInt()` — likely `hmFS.SysProSetInt`
+
+```js
+hmFS.SysProSetInt('t0', 0)
+```
+— `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 340
+
+```js
+hmFS.SysProSetInt('t1', 0)
+```
+— `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 341

@@ -160,7 +160,14 @@ export interface SymbolRecord {
 }
 
 export type RawUnitKind = "function" | "constant" | "value";
-export type RawSourceKind = "docs-reference" | "llms" | "sample" | "docs-phone-api";
+export type RawSourceKind =
+  | "docs-reference"
+  | "llms"
+  | "sample"
+  | "docs-phone-api"
+  // The `hm*` tree. Beside docs-reference in trust: official reference pages
+  // for a runtime whose API is global and so has no import line to key on.
+  | "docs-watchface";
 
 // Output of the parse stage — pre-enrichment, one entry per observation.
 // Enrich merges/reconciles observations of the same symbol across sources.

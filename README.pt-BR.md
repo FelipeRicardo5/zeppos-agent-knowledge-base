@@ -15,21 +15,21 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | Estágio | Situação |
 | --- | --- |
 | `fetch` — clonar/atualizar os repositórios oficiais em um cache local | implementado |
-| `parse` — oito frentes: páginas de referência, os runtimes do celular, `static/llms`, imports dos samples, apps de exemplo, guias, lista de dispositivos, `app.json` | implementado |
+| `parse` — nove frentes: páginas de referência, os runtimes do celular, a árvore `hm*` de watchface, `static/llms`, imports dos samples, apps de exemplo, guias, lista de dispositivos, `app.json` | implementado |
 | `enrich` — fundir as frentes de símbolo em um registro por símbolo | implementado |
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/, runtimes/, patterns/, examples/, manifest/) |
 
-Testes baseados em fixtures cobrem as oito frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (204 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
+Testes baseados em fixtures cobrem as nove frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (211 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
-- **411 símbolos** em **42 módulos**, vindos de todas as 241 páginas de referência + 36 entradas dos runtimes do celular + 443 de `static/llms` + 785 observações em samples
-- 394 `OFFICIAL`, 17 `OBSERVED`
+- **513 símbolos** em **50 módulos**, vindos de todas as 241 páginas de referência + 36 entradas dos runtimes do celular + **89 páginas `hm*` de watchface** + 443 de `static/llms` + 785 observações em samples
+- 496 `OFFICIAL`, 17 `OBSERVED`
 - 353 símbolos têm `API_LEVEL` mínimo; 367 têm descrição; **178 têm assinatura de chamada e 147 têm tabelas de propriedades** — 1157 propriedades, 591 delas com nível mínimo próprio
 - **27 conjuntos de valores** em 24 símbolos — 196 membros, 124 deles declarando nível mínimo próprio. 146 vêm de uma tabela documentada e 50 de código de sample, marcados membro a membro
 - **257 membros de instância** em 46 símbolos — o que se chama sobre um valor em vez de importar: `new HeartRate().getCurrent()`, `localStorage.getItem(...)`. Todos carregam assinatura e prosa, 44 declaram nível mínimo próprio, e 60 das shapes e 10 dos conjuntos de valores acima pertencem a um membro, não ao símbolo
-- **todo runtime está coberto**: 375 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 símbolos válidos em mais de um
+- **todo runtime está coberto**: 375 Device App, **105 Watchface**, 21 Settings App, 20 Side Service, 12 Workout Extension — 20 símbolos válidos em mais de um
 - **11 patterns** vindos dos guias de boas práticas, 32 abordagens, usando 17 símbolos distintos — todos os 17 cobertos pelos registros de símbolo
 - **41 dispositivos**: 29 rodando Zepp OS com `API_LEVEL` declarado, 5 em Zepp OS 1.0 sem nenhum, 7 que não rodam Mini Program
 - **como fazer o build para cada um deles**: os seletores de tela `st`/`sr` que um manifest v3 exige, derivados da tela do próprio dispositivo, ao lado dos números `deviceSource` que um v2 exige — mais o índice reverso e um diff nos dois sentidos contra o que os 33 samples de fato constroem
@@ -40,7 +40,8 @@ Retrato do último sync (números atualizados em [`data/manifest.json`](data/man
 
 Leia isto antes de confiar em qualquer resposta saída desta base.
 
-- **A API de watchface não está coberta.** `hmUI`, `hmFS`, `hmSensor` e `hmSetting` vivem em `docs/watchface/**` — 93 páginas, árvore separada com formato próprio, nenhuma parseada. Os 3 símbolos de Watchface na base são chamadas `@zos/*` vistas em código de sample de watchface, não a API `hm*`.
+- **A API `hm*` de watchface não declara `API_LEVEL` em lugar nenhum.** Nenhuma das suas 89 páginas de referência traz badge, então seus 102 símbolos respondem "isso existe" e nunca "desde quando" — a mesma forma de lacuna que o Settings App e o Side Service têm. Nada em `compatibility/` consegue atestar um símbolo de watchface num dispositivo específico.
+- **O id de um símbolo de watchface é um caminho global, não um import.** `hmUI.widget.TEXT`, `hmSensor.id.HEART`, `hmFS.open` — é assim que o código os escreve, e não há linha de `import` alguma na árvore. O módulo vem do exemplo da própria página, com o diretório como fallback: `hmUI/widget/data_type.mdx` está no diretório de widget e o código escreve `hmUI.data_type`.
 - **O `app.json` documentado é incompleto, e a base diz onde.** A página de referência não nomeia nenhuma chave de `module` que alcance o runtime Workout Extension, e mesmo assim seis samples são um — usam uma chave `data-widget` que a página nunca menciona. `manifest/index.md` reporta o diff nos dois sentidos em vez de apresentar a árvore documentada como se fosse o schema inteiro. Linhas documentadas são `OFFICIAL`; caminhos observados são `OBSERVED`, e 33 apps também não são a superfície inteira.
 - **Membro de instância é campo, nunca símbolo.** `getCurrent` é alcançado por um valor (`new BloodOxygen().getCurrent()`), então vive no registro dono e não como `@zos/sensor.getCurrent`, um id que nada importa. 12 sensores documentam um `getCurrent` e eles retornam 12 formas diferentes, e é por isso que o dono faz parte da identidade. Um membro declara `API_LEVEL` mínimo próprio, e o do símbolo não o implica: `BloodOxygen` é 2.0 enquanto seus `start` e `stop` são 2.1.
 - **Nem todo cabeçalho sob `Methods` é um membro.** `ui/widget/SYSTEM_KEYBOARD.mdx` lista `deleteKeyboard()` ali e o próprio exemplo o importa — é função de módulo documentada ao lado do widget. Um caso em 257, pego por esse import e não por uma regra sobre nomes.

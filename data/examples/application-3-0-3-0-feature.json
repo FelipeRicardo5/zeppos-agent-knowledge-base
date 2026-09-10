@@ -616,6 +616,16 @@
       ]
     },
     {
+      "method": "createTimer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 237,
+          "code": "// animTimer = timer.createTimer(0, 100, timerCB, undefined);"
+        }
+      ]
+    },
+    {
       "method": "createWidget",
       "snippets": [
         {

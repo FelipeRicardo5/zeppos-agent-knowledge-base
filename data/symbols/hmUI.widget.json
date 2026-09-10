@@ -1,0 +1,1159 @@
+{
+  "module": "hmUI.widget",
+  "symbols": [
+    {
+      "id": "hmUI.widget.ARC",
+      "module": "hmUI.widget",
+      "symbol": "ARC",
+      "type": "constant",
+      "description": "Arc widget to display arc progress. Support setting line width, color, start and end angle.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of components",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of components",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of components",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of components",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "start_angle",
+              "description": "The angle at the beginning of the arc. (0 degrees is the positive three o'clock direction)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "end_angle",
+              "description": "The angle at the end of the arc. (0 degrees is the positive three o'clock direction)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "line_width",
+              "description": "Width of circular arc.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color of circular arc.",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/ARC.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.ARC_PROGRESS",
+      "module": "hmUI.widget",
+      "symbol": "ARC_PROGRESS",
+      "type": "constant",
+      "description": "Arc progress widget draws arc progress, supports start angle, line width, end angle, color, progress scale.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "center_x",
+              "description": "Center of circle x",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "Center of circle y",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "start_angle",
+              "description": "The angle at the beginning of the arc. (0 degrees is the positive three o'clock direction)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "end_angle",
+              "description": "The angle at the end of the arc. (0 degrees is the positive three o'clock direction)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "line_width",
+              "description": "Width of circular arc.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color of circular arc.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "src_bg",
+              "description": "Background images.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "level",
+              "description": "The scale of arc progress. [0-100]",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/ARC_PROGRESS.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.BUTTON",
+      "module": "hmUI.widget",
+      "symbol": "BUTTON",
+      "type": "constant",
+      "description": "The button widget supports setting images and colors for normal and pressed states.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of components",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of components",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of components;If set to -1, the size of normal_src is preferred, otherwise the default is 100.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of components;If set to -1, the size of normal_src is preferred, otherwise the default is 40.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "text",
+              "description": "Text displayed on the button.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "color",
+              "description": "The color of the text.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_size",
+              "description": "The font size of the text.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "press_src",
+              "description": "The image of background displayed when pressed. Need to be used with normal_src.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "normal_src",
+              "description": "Normal state of the background image. Need to be used with press_src.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "press_color",
+              "description": "The color of background when pressed. Need to be used with normal_color.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "normal_color",
+              "description": "The color of normal state background. Need to be used with press_color.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Rounded corners when using color as button background.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "click_func",
+              "description": "Callbacks for button clicks.",
+              "required": false,
+              "type": "ClickFunc"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/BUTTON.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.CIRCLE",
+      "module": "hmUI.widget",
+      "symbol": "CIRCLE",
+      "type": "constant",
+      "description": "Draws a circle with support for color, transparency, and other properties.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "center_x",
+              "description": "Center of circle x.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "Center of circle y.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Radius.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color 16-increment value.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "alpha",
+              "description": "Transparency.[0-255] 0 for full transparency",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/CIRCLE.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.DATE_POINTER",
+      "module": "hmUI.widget",
+      "symbol": "DATE_POINTER",
+      "type": "constant",
+      "description": "| Value           | Description | | --------------- | ----------- | | hmUI.date.MONTH | month       | | hmUI.date.DAY   | day         | | hmUI.date.WEEK  | Day of the week |",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/DATE_POINTER.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.DELEGATE",
+      "module": "hmUI.widget",
+      "symbol": "DELEGATE",
+      "type": "constant",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/DELEGATE.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.FILL_RECT",
+      "module": "hmUI.widget",
+      "symbol": "FILL_RECT",
+      "type": "constant",
+      "description": "The Fill Rectangle widget is used to draw a solid color rectangular area. :::caution At this stage, if you change the properties of the widget by means of `setProperty(hmUI.prop.MORE, Params)`, you must pass `x`, `y`, `w`, `h` properties, see the sample code for details. :::",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "The color of component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "The radius of component.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "angle",
+              "description": "The angle of component.",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/FILL_RECT.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.GRADKIENT_POLYLINE",
+      "module": "hmUI.widget",
+      "symbol": "GRADKIENT_POLYLINE",
+      "type": "constant",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/GRADKIENT_POLYLINE.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG",
+      "module": "hmUI.widget",
+      "symbol": "IMG",
+      "type": "constant",
+      "description": "The image widget is used to display images and supports image rotation. :::tip 1. Recommend using 24-bit or 32-bit png format images with RGB or RGBA color scheme. 2. The parameters of the image widget are recommended to be understood in conjunction with the image example below. :::",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "src",
+              "description": "The path of the image. Reference [folder-structure structure](../../../../guides/architecture/folder-structure.mdx)",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "w",
+              "description": "The width of the component.If not passed then set the width of the image itself",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the component.If not passed then set the height of the image itself",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "pos_x",
+              "description": "Horizontal offset of the image relative to the widget coordinates.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "pos_y",
+              "description": "Vertical offset of the image relative to the widget coordinates.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "angle",
+              "description": "The rotation angle of the picture (the 12-point direction is 0 degrees).",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "center_x",
+              "description": "The rotation center of the picture.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "The rotation center of the picture.",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_ANIM",
+      "module": "hmUI.widget",
+      "symbol": "IMG_ANIM",
+      "type": "constant",
+      "description": "Play the pre-given image at the set frame rate to create an animation effect.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of animation.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of animation.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "anim_path",
+              "description": "The path to the image for animation.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "anim_prefix",
+              "description": "The name to the image for animation.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "anim_ext",
+              "description": "Image extensions.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "anim_fps",
+              "description": "Number of frames of animation.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "repeat_count",
+              "description": "Number of animation repetitions, can be set 0: infinite repetition, 1: single repetition.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "anim_repeat",
+              "description": "Whether to repeat the playback; this value is true if repeat_count is 0.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "anim_size",
+              "description": "The number of images.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "anim_status",
+              "description": "The status of animation; Reference hmUI.anim_status",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "anim_complete_call",
+              "description": "This function is callback when the animation is executed successfully. repeat_count is invalid if 0. Parameters anim is an instance to create the animation.",
+              "required": false,
+              "type": "function"
+            },
+            {
+              "name": "display_on_restart",
+              "description": "Whether to restart the animation when the dial resume triggers",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "anim_auto_resume_call",
+              "description": "When diaplay_on_restart is set to true, this callback function will be called before the animation is played automatically and then replayed",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "step",
+              "description": "Frame animation step, will skip frames when greater than 1.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "default_frame_index",
+              "description": "Index of displayed sequence frames in power saving mode",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_ANIM.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_CLICK",
+      "module": "hmUI.widget",
+      "symbol": "IMG_CLICK",
+      "type": "constant",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_CLICK.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_DATE",
+      "module": "hmUI.widget",
+      "symbol": "IMG_DATE",
+      "type": "constant",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_DATE.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_LEVEL",
+      "module": "hmUI.widget",
+      "symbol": "IMG_LEVEL",
+      "type": "constant",
+      "description": "Given an array of pictures, display the corresponding pictures according to the progress (the `level` property).",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "image_array",
+              "description": "Array of images.",
+              "required": true,
+              "type": "Array<string>"
+            },
+            {
+              "name": "image_length",
+              "description": "Size of array.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the component.(optional)",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the component.(optional)",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "level",
+              "description": "Picture drawn [0-image_length]",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_LEVEL.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_POINTER",
+      "module": "hmUI.widget",
+      "symbol": "IMG_POINTER",
+      "type": "constant",
+      "description": "The widget area is full screen. The widget uses a picture to achieve a pointer rotation effect by setting its rotation center and rotation angle. The data progress can be displayed by binding the data type `hmUI.data_type.*`.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "src",
+              "description": "Image path, the name of the file in the /assets directory (relative path)",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x",
+              "description": "Pointer to the image's own center of rotation x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of the center of rotation of the pointer image itself",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "center_x",
+              "description": "Widget rotation center x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "Widget rotation center y coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "angle",
+              "description": "Image rotation angle, 0 degrees in 12-point direction",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "start_angle",
+              "description": "Start angle of the rotation range, default 0",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "end_angle",
+              "description": "End angle of the rotation range, default 360",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "type",
+              "description": "Binding data type, see [hmUI.data_type](./data_type.mdx)",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "invalid_visible",
+              "description": "When setting type, whether or not to show the pointer if it is invalid data, default true",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_POINTER.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_PROGRESS",
+      "module": "hmUI.widget",
+      "symbol": "IMG_PROGRESS",
+      "type": "constant",
+      "description": "Display the images sequentially according to the given order.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "Array of x-coordinates of the images.",
+              "required": true,
+              "type": "array"
+            },
+            {
+              "name": "y",
+              "description": "Array of y-coordinates of the images.",
+              "required": true,
+              "type": "array"
+            },
+            {
+              "name": "image_array",
+              "description": "Array of images",
+              "required": true,
+              "type": "array"
+            },
+            {
+              "name": "image_length",
+              "description": "The length of the array.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "level",
+              "description": "Progress level [1-image_length].",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_PROGRESS.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_STATUS",
+      "module": "hmUI.widget",
+      "symbol": "IMG_STATUS",
+      "type": "constant",
+      "description": "| Value                             | Description           | | --------------------------------- | --------------------- | | hmUI.system_status.CLOCK          | Alarm clock on        | | DISCONNECT                        | Bluetooth Disconnect | | hmUI.system_status.DISTURB        | Do not disturb        | | hmUI.system_status.LOCK           | Lock screen on        |",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_STATUS.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_TIME",
+      "module": "hmUI.widget",
+      "symbol": "IMG_TIME",
+      "type": "constant",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_TIME.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.IMG_WEEK",
+      "module": "hmUI.widget",
+      "symbol": "IMG_WEEK",
+      "type": "constant",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_WEEK.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.STROKE_RECT",
+      "module": "hmUI.widget",
+      "symbol": "STROKE_RECT",
+      "type": "constant",
+      "description": "The stroked rectangle widget adds a stroke on the basis of the filled rectangle component.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "The component's color.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "The rectangle's rounded corners.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "line_width",
+              "description": "The width of stroke.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "angle",
+              "description": "Rotation angle.",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/STROKE_RECT.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.TEXT",
+      "module": "hmUI.widget",
+      "symbol": "TEXT",
+      "type": "constant",
+      "description": "Text component for displaying text. Support setting text size, color and alignment.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "The color of the text.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "align_h",
+              "description": "The alignment of the horizontal axis (see ALIGN for values).",
+              "required": false,
+              "type": "ALIGN"
+            },
+            {
+              "name": "align_v",
+              "description": "Alignment of the vertical axis (see ALIGN for values).",
+              "required": false,
+              "type": "ALIGN"
+            },
+            {
+              "name": "text",
+              "description": "Text",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "text_size",
+              "description": "The size of the font.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_style",
+              "description": "Text overlength handling, default is hmUI.text_style.NONE (see TEXT_STYLE for value).",
+              "required": false,
+              "type": "TEXT_STYLE"
+            },
+            {
+              "name": "line_space",
+              "description": "Row spacing.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "char_space",
+              "description": "Character Spacing.",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/TEXT.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.TEXT_IMG",
+      "module": "hmUI.widget",
+      "symbol": "TEXT_IMG",
+      "type": "constant",
+      "description": "Support displaying text as images, you need to pass in the image font array `font_array`.",
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the component.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the component.It will be calculated automatically according to the type if not written.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the component.It will be calculated automatically according to the type if not written.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "font_array",
+              "description": "Image font array.To sort by 0-9.",
+              "required": true,
+              "type": "array"
+            },
+            {
+              "name": "type",
+              "description": "The type of data. See the [data_type](../../../../watchface/api/hmUI/widget/data_type.mdx).",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text",
+              "description": "It is used to specify the text content to be displayed; the type attribute will be disabled when this field is specified; the content only supports 0-9.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "unit_sc",
+              "description": "Simplified Chinese Units.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "unit_en",
+              "description": "English Units.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "unit_tc",
+              "description": "Traditional Chinese Unit.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "imperial_unit_sc",
+              "description": "Chinese Simplified (English Units).",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "imperial_unit_en",
+              "description": "English imperial units.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "imperial_unit_tc",
+              "description": "Traditional Chinese (English Units).",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "negative_image",
+              "description": "Negative sign picture.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "dot_image",
+              "description": "Decimal-point-pictures can be used as separators.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "h_space",
+              "description": "The font of space.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "align_h",
+              "description": "Horizontal axis alignment (see ALIGN for values).",
+              "required": false,
+              "type": "ALIGN"
+            }
+          ]
+        }
+      ],
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/TEXT_IMG.mdx",
+      "extractedAt": "2026-09-10"
+    },
+    {
+      "id": "hmUI.widget.TIME_POINTER",
+      "module": "hmUI.widget",
+      "symbol": "TIME_POINTER",
+      "type": "constant",
+      "runtimes": [
+        "watchface"
+      ],
+      "source": "docs-watchface",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/TIME_POINTER.mdx",
+      "extractedAt": "2026-09-10"
+    }
+  ]
+}

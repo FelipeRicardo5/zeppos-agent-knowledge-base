@@ -28,6 +28,13 @@ const SHAPE_HEADING_RE = /^#{2,5}\s+(.+?)\s*$/;
 const COLUMNS: Record<string, keyof PropSpec> = {
   name: "name",
   property: "name",
+  // Plural. 32 reference pages head the column `Properties` and 101 head it
+  // `Property`, and the plural was missing here — so those 32 passed the header
+  // check on their other columns, then produced a row with no name and were
+  // dropped one by one, silently. That is the whole `ui/widget/` tree: `TEXT`,
+  // `IMG`, `BUTTON` and the rest carried a description and a level and no
+  // property table at all, which is the one thing needed to draw them.
+  properties: "name",
   parameter: "name",
   description: "description",
   type: "type",

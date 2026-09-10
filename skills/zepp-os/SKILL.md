@@ -69,8 +69,12 @@ it refers to. `(props: Props) => RenderFunc` is unusable without its `Props`
 table, so both are there. Some property tables state their **own** minimum
 `API_LEVEL` — a symbol you may call can have a property you may not.
 
-178 of 409 symbols carry a signature and 121 carry shapes; the rest state none
-upstream. `type` still holds only `function`, `constant` or `value`, so a symbol
+178 of 409 symbols carry a signature and 147 carry shapes; the rest state none
+upstream. The `ui/widget/` tree — `TEXT`, `IMG`, `BUTTON`, `SCROLL_LIST` — now
+carries its full `Param` table, so the props to draw a widget are in `api/`.
+What is still missing there are the **enum members**: `align.CENTER_H`,
+`text_style.WRAP` and the rest are documented upstream in a `Value | Description`
+table no front reads. Take those from sample code in `../../examples/`. `type` still holds only `function`, `constant` or `value`, so a symbol
 with no signature tells you nothing about its call shape.
 
 **What working code does** is in `../../examples/index.md`. Go there when the

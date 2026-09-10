@@ -103,6 +103,67 @@
       "type": "value",
       "description": "Arc widget to display arc progress. Support setting line width, color, start and end angle.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of widgets",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of widgets",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of widgets",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of widgets",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "start_angle",
+              "description": "The angle at the beginning of the arc. (0 degrees is the positive three o'clock direction)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "end_angle",
+              "description": "The angle at the end of the arc. (0 degrees is the positive three o'clock direction)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "line_width",
+              "description": "Width of circular arc.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color of circular arc.",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -118,6 +179,125 @@
       "type": "value",
       "description": "The button widget supports setting images and colors for normal and pressed states.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget. Note: If set to -1, it will prioritize adapting to normal_src size, default is 100",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget. Note: If set to -1, it will prioritize adapting to normal_src size, default is 40",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "text",
+              "description": "Text displayed on the button",
+              "required": false,
+              "type": "string",
+              "apiLevel": 2
+            },
+            {
+              "name": "color",
+              "description": "Text color",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "text_size",
+              "description": "Text font size",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "normal_color",
+              "description": "Background color in normal state, must be set together with press_color to take effect",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "press_color",
+              "description": "Background color when pressed, must be set together with normal_color to take effect",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "radius",
+              "description": "Corner radius when using color as button background",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "normal_src",
+              "description": "Background image in normal state, must be set together with press_src to take effect",
+              "required": false,
+              "type": "string",
+              "apiLevel": 2
+            },
+            {
+              "name": "press_src",
+              "description": "Background image when pressed, must be set together with normal_src to take effect",
+              "required": false,
+              "type": "string",
+              "apiLevel": 2
+            },
+            {
+              "name": "click_func",
+              "description": "Button click callback",
+              "required": false,
+              "type": "ClickFunc",
+              "apiLevel": 2
+            },
+            {
+              "name": "longpress_func",
+              "description": "Long press (700ms) button callback",
+              "required": false,
+              "type": "ClickFunc",
+              "apiLevel": 2
+            },
+            {
+              "name": "font",
+              "description": "Font path, refer to [Directory Structure](../../../../../guides/architecture/folder-structure.mdx)",
+              "required": false,
+              "type": "string",
+              "apiLevel": 3.6
+            },
+            {
+              "name": "text_w",
+              "description": "Button text width",
+              "required": false,
+              "type": "number",
+              "apiLevel": 3.6
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -148,6 +328,395 @@
       "type": "value",
       "description": "Canvas Current Canvas capabilities include 1. Basic drawing, line, point, rectangle, rectangle fill, ellipse, sector, polygon 1. Image drawing 1. Text drawing 1. Paint 1. The canvas is stacked vertically, up to three layers can be stacked 1. Clean up the canvas 1. Support `addEventListener` method to listen for user interaction events",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "Canvas x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "Canvas y coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "Canvas canvas width",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "Canvas canvas height",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "color",
+              "description": "Color",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "line_width",
+              "description": "Line Width",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "y coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x1",
+              "description": "Start point x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y1",
+              "description": "Start point y coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "x2",
+              "description": "End point x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y2",
+              "description": "End point y coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x1",
+              "description": "Start point x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y1",
+              "description": "Start point y coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "x2",
+              "description": "End point x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y2",
+              "description": "End point y coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "center_x",
+              "description": "Center x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "Center y coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "center_x",
+              "description": "Ellipse center x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "Ellipse center y-coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius_x",
+              "description": "x-directional axis radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius_y",
+              "description": "y-directional axis radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "center_x",
+              "description": "Ellipse center x coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "Ellipse center y-coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius_x",
+              "description": "x-directional axis radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius_y",
+              "description": "y-directional axis radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "start_angle",
+              "description": "Start angle (0 degrees in the 3 o'clock direction)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "end_angle",
+              "description": "Start angle (0 degrees in the 3 o'clock direction)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "data_array",
+              "description": "An array of coordinates of at least '3' length",
+              "required": true,
+              "type": "Coordinate"
+            },
+            {
+              "name": "color",
+              "description": "Color",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Coordinate",
+          "props": [
+            {
+              "name": "x",
+              "description": "x coordinates",
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "y coordinates",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "Text x Coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "Text y Coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "text",
+              "description": "Text Content",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "text_size",
+              "description": "Text Size",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "Image x Coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "Image y Coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "Image width",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "Image height",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "image",
+              "description": "Image path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "alpha",
+              "description": "Transparency [0-255], 0 for full transparency",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "Rectangle x Coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "Rectangle y Coordinates",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "Rectangle area width",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "Rectangle area height",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -163,6 +732,147 @@
       "type": "value",
       "description": "Used to select multiple options from a set of choices. Each option needs to be created using `STATE_BUTTON`.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "checkboxGroupParam",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "select_src",
+              "description": "Image displayed when selected",
+              "required": true,
+              "type": "string",
+              "apiLevel": 2
+            },
+            {
+              "name": "unselect_src",
+              "description": "Image displayed when unselected",
+              "required": true,
+              "type": "string",
+              "apiLevel": 2
+            },
+            {
+              "name": "check_func",
+              "description": "Callback when button state changes",
+              "required": false,
+              "type": "CheckFunc",
+              "apiLevel": 2
+            },
+            {
+              "name": "use_color",
+              "description": "Whether to display widget using colors",
+              "required": false,
+              "type": "boolean",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "StateButton",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate relative to radioGroup",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate relative to radioGroup",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "select_color",
+              "description": "Color when selected",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "unselect_color",
+              "description": "Color when unselected",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "fill_width",
+              "description": "Button color display area width",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "fill_height",
+              "description": "Button color display area height",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "Prop Properties",
+          "props": [
+            {
+              "name": "prop.INIT",
+              "type": "object"
+            },
+            {
+              "name": "prop.CHECKED",
+              "type": "object"
+            },
+            {
+              "name": "prop.UNCHECKED",
+              "type": "object"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -178,6 +888,43 @@
       "type": "value",
       "description": "Draws a circle with support for color, transparency, and other properties.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "center_x",
+              "description": "Center of circle x.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "Center of circle y.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Radius.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Color 16-increment value.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "alpha",
+              "description": "Transparency.[0-255] 0 for full transparency",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -194,6 +941,37 @@
       "description": "Create a Dialog.",
       "minApiLevel": 2,
       "signature": "(option: Option) => result",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "title",
+              "description": "The title of the widget.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "show",
+              "description": "Whether to display Dialog immediately after the creation is completed, default false.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "click_listener",
+              "description": "Callback function, type: 0 click to cancel, type: 1 click to confirm.",
+              "required": true,
+              "type": "({type: number}) => void"
+            },
+            {
+              "name": "auto_hide",
+              "description": "Whether the dialog disappears after clicking the \"Confirm\" or \"Cancel\" button, default true.",
+              "required": false,
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -262,6 +1040,196 @@
       "minApiLevel": 2,
       "shapes": [
         {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of widgets.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of widgets.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of widgets.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of widgets.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_image_x",
+              "description": "The x-coordinate of Image.(Relative coordinate)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_image_y",
+              "description": "The y-coordinate of Image.(Relative coordinate)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_text_x",
+              "description": "The x-coordinate of text.(Relative coordinate)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_text_y",
+              "description": "The y-coordinate of text.(Relative coordinate)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_text_size",
+              "description": "Font Size.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_text_color",
+              "description": "Font color.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_bg_color",
+              "description": "Background color.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_height",
+              "description": "The height of item.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "data_array",
+              "description": "Data arrays.",
+              "required": true,
+              "type": "Array<Data>"
+            },
+            {
+              "name": "data_size",
+              "description": "The length of the array.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_text_align_h",
+              "description": "Text horizontal orientation.Unfilled default horizontal centering.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_text_align_v",
+              "description": "Vertical orientation of text.Unfilled defaults to vertical centering.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_text_height",
+              "description": "Actual display area of text.Default to item_height if not filled.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_text_width",
+              "description": "The actual text display area.Default to the widget display width if not filled.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_image_x",
+              "description": "item Image x-coordinate, relative coordinates",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_image_y",
+              "description": "item Image y-coordinate, relative coordinates",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_click_func",
+              "description": "Callback for item click.",
+              "required": false,
+              "type": "ItemClickFunc"
+            },
+            {
+              "name": "item_focus_change_func",
+              "description": "Item focus state callback.",
+              "required": false,
+              "type": "ItemFocusChangeFunc"
+            }
+          ]
+        },
+        {
+          "name": "Data",
+          "props": [
+            {
+              "name": "src",
+              "description": "The path of image.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "text",
+              "description": "The content of text.",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "ItemClickFunc: function",
+          "props": [
+            {
+              "name": "cycleList",
+              "type": "object"
+            },
+            {
+              "name": "index",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Set the properties of a single item text",
+          "props": [
+            {
+              "name": "index",
+              "description": "The index of item.Starting from 0.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_text_color",
+              "description": "The color of the text.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_text_size",
+              "description": "The size of the text.",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
           "name": "Set the top item index of the list",
           "props": [
             {
@@ -288,6 +1256,86 @@
       "type": "value",
       "description": "Create a list that scrolls in a loop, which can be populated with images.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "item_bg_color",
+              "description": "Background color.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_height",
+              "description": "The height of item.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "x",
+              "description": "The x-coordinate of widgets.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of widgets.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of widgets.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of widgets.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "data_array",
+              "description": "Data arrays.",
+              "required": true,
+              "type": "Array<Data>"
+            },
+            {
+              "name": "data_size",
+              "description": "The length of the array.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_click_func",
+              "description": "Callback for item click.",
+              "required": false,
+              "type": "ItemClickFunc"
+            },
+            {
+              "name": "item_focus_change_func",
+              "description": "Item focus state callback.",
+              "required": false,
+              "type": "ItemFocusChangeFunc"
+            }
+          ]
+        },
+        {
+          "name": "ItemClickFunc: function",
+          "props": [
+            {
+              "name": "cycleList",
+              "type": "object"
+            },
+            {
+              "name": "index",
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -347,6 +1395,143 @@
       "minApiLevel": 2,
       "shapes": [
         {
+          "name": "Param",
+          "props": [
+            {
+              "name": "text",
+              "description": "Contents of dialog.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "content_text_size",
+              "description": "The text size of the dialog content.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "content_text_color",
+              "description": "The text color of the dialog content.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "content_bg_color",
+              "description": "The background color of the dialog content.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "content_text_align_h",
+              "description": "Alignment of dialog content text.(horizontal axis)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "content_text_align_v",
+              "description": "Alignment of dialog content text.(vertical axis)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "ok_text",
+              "description": "Text on the confirmed button.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "ok_text_color",
+              "description": "The color of the text on the confirmed button.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "ok_press_color",
+              "description": "The color when the confirmed button is pressed.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "ok_nomal_color",
+              "description": "The color when the confirmed button is normal.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "ok_press_src",
+              "description": "Background image when the confirmed button is pressed.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "ok_nomal_src",
+              "description": "Background image when the confirmed button is normal.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "cancel_text",
+              "description": "Text on the canceled button.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "cancel_text_color",
+              "description": "The color of the text on the canceled button.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "cancel_press_color",
+              "description": "The color when the canceled button is pressed.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "cancel_nomal_color",
+              "description": "The color when the canceled button is normal.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "cancel_press_src",
+              "description": "Background image when the canceled button is pressed.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "cancel_nomal_src",
+              "description": "Background image when the canceled button is normal.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "dialog_align_h",
+              "description": "The horizontal axis of the dialog.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "dialog_align_v",
+              "description": "The vertical axis of the dialog.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "ok_func",
+              "description": "Click the callback of the confirmed button.",
+              "required": false,
+              "type": "(dialog: Dialog) => void"
+            },
+            {
+              "name": "cancel_func",
+              "description": "Click the callback of the canceled button.",
+              "required": false,
+              "type": "(dialog: Dialog) => void"
+            }
+          ]
+        },
+        {
           "name": "Dialog",
           "props": [
             {
@@ -357,6 +1542,15 @@
             {
               "name": "... omitted",
               "description": "Refer to dialog related properties in the setting field"
+            }
+          ]
+        },
+        {
+          "name": "prop Properties",
+          "props": [
+            {
+              "name": "prop.SHOW",
+              "type": "boolean"
             }
           ]
         }
@@ -701,6 +1895,74 @@
               "type": "Options"
             }
           ]
+        },
+        {
+          "name": "Options",
+          "props": [
+            {
+              "name": "text_size",
+              "description": "Text size",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "text_width",
+              "description": "Width of a single line of text",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "wrapped",
+              "description": "whether the text is line feed, 0: no line feed; 1: line feed",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "rows_max",
+              "description": "Limit the maximum number of lines (when the given text exceeds the maximum number of lines, it will be truncated and followed by an ellipsis). The default value is 0, which means there is no limit",
+              "required": false,
+              "type": "number",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "result",
+          "props": [
+            {
+              "name": "width",
+              "description": "Width pixel value",
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "height",
+              "description": "Height pixel value",
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "rows",
+              "description": "The text displays the number of lines. When the wrapped field is false, the value of rows is 1.",
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "result",
+              "description": "Calculation result, -1 - error, 0 - success, 1 - success, characters truncated and ellipses added",
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "text",
+              "description": "When the calculation is successful, the truncated and ellipsed text content is returned, which can be used for the display of actual UI widgets",
+              "type": "string",
+              "apiLevel": 2
+            }
+          ]
         }
       ],
       "runtimes": [
@@ -734,6 +1996,94 @@
       "type": "value",
       "description": "Draws polylines that can be done on a line graph with multiple segments.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "Widget height, the maximum height on a circular screen with a screen height of 480 and a square device with a screen height of 390 is 150, and the maximum height of other models is scaled proportionally according to the screen height.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "line_color",
+              "description": "Line color, default 0xe60039",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "line_width",
+              "description": "Line width, default 2 px",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "data",
+              "description": "Coordinate arrays",
+              "type": "Array<AxisItem>"
+            },
+            {
+              "name": "count",
+              "description": "Coordinate array length",
+              "type": "number"
+            },
+            {
+              "name": "color_from",
+              "description": "Initial fill gradient color",
+              "type": "number"
+            },
+            {
+              "name": "color_to",
+              "description": "End fill gradient color",
+              "type": "number"
+            },
+            {
+              "name": "curve_style",
+              "description": "Whether to use interpolation, smoothing curve effect",
+              "type": "boolean"
+            }
+          ]
+        },
+        {
+          "name": "AxisItem",
+          "props": [
+            {
+              "name": "x",
+              "description": "Horizontal coordinates, relative coordinates, distance from the left side of the widget",
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "Vertical coordinates, relative coordinates, distance from the bottom of the widget",
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -749,6 +2099,37 @@
       "type": "value",
       "description": "GROUP group widget is used to group a series of widgets together for unified widget of show/hide, registering events, etc. The returned `group` instance has the method `createWidget`, which is used to Create UI widget belonging to the `group` group, and the sub-widgets need to use relative positions for layout. 1. The `group` instance of `createWidget` cannot create child `GROUP` components, i.e. `GROUP` components cannot be nested. 2. GROUP cannot be used in [SecondaryWidget](../../../newAPI/global/SecondaryWidget.mdx) and [Shorcut cards](../../../newAPI/global/AppWidget.mdx)",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget.",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -764,6 +2145,327 @@
       "type": "value",
       "description": "Draws a histogram.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_width",
+              "description": "Width of column.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_space",
+              "description": "Space of column.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_radius",
+              "description": "Radius of column.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_start_y",
+              "description": "The starting Y point of the column, relative coordinate, default is 0 if not filled.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_max_height",
+              "description": "Maximum height of column.If unfilled,default is widget height.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_color",
+              "description": "Column color. In API_LEVEL 3.5, supports passing an array Array<number> to specify the color of each column",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_alpha",
+              "description": "Column color transparency. In API_LEVEL 3.5, supports passing an array Array<number> to specify the transparency of each column",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "data_min_value",
+              "description": "Minimum value of the column.Used to calculate the actual height of the column.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "data_max_value",
+              "description": "Maximum value of the column.Used to calculate the actual height of the column.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "data_array",
+              "description": "Data array of columns.",
+              "required": true,
+              "type": "Array<number>"
+            },
+            {
+              "name": "data_count",
+              "description": "Length of data.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "xline",
+              "description": "Configuration objects for the x-axis.",
+              "required": true,
+              "type": "XLine"
+            },
+            {
+              "name": "xText",
+              "description": "Configuration object for x-axis text.",
+              "required": true,
+              "type": "XText"
+            },
+            {
+              "name": "yline",
+              "description": "Configuration objects for the y-axis.",
+              "required": true,
+              "type": "YLine"
+            },
+            {
+              "name": "yText",
+              "description": "Configuration object for y-axis text.",
+              "required": true,
+              "type": "YText"
+            }
+          ]
+        },
+        {
+          "name": "XLine",
+          "props": [
+            {
+              "name": "pading",
+              "description": "Margin of dividing line based on x-axis.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "space",
+              "description": "The interval of the dividing line.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "start",
+              "description": "The y-axis coordinates of the start of the divider.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "end",
+              "description": "The y-axis coordinate of the end of the divider end-start is the width of the divider.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "width",
+              "description": "The width of the line.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "count",
+              "description": "The number of dividers.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "The color of the dividing line.",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "YLine",
+          "props": [
+            {
+              "name": "pading",
+              "description": "Margin of dividing line based on y-axis.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "space",
+              "description": "The interval of the dividing line.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "start",
+              "description": "The x-axis coordinates of the start of the divider.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "end",
+              "description": "The x-axis coordinate of the end of the divider end-start is the width of the divider.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "width",
+              "description": "The width of the line.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "count",
+              "description": "The number of dividers.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "The color of the dividing line.",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "XText",
+          "props": [
+            {
+              "name": "x",
+              "description": "The initial x-coordinate of the text.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The initial y-coordinate of the text.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the text.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the text.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "space",
+              "description": "The spacing of the text.The x-coordinate of the nth text = x + (w + space)\\*(n - 1).",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "The color of the text",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "data_array",
+              "description": "The array of text.",
+              "required": true,
+              "type": "Array<string>"
+            },
+            {
+              "name": "count",
+              "description": "The length of the array.",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "yText",
+          "props": [
+            {
+              "name": "x",
+              "description": "The initial x-coordinate of the text.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The initial y-coordinate of the text.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the text.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the text.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "space",
+              "description": "The spacing of the text.The x-coordinate of the nth text = y + (h + space)\\*(n - 1).",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "The color of the text",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "data_array",
+              "description": "The array of text.",
+              "required": true,
+              "type": "Array<string>"
+            },
+            {
+              "name": "count",
+              "description": "The length of the array.",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -779,6 +2481,91 @@
       "type": "value",
       "description": "The image widget is used to display images and supports image rotation. 1. Recommend using 24-bit or 32-bit png format images with RGB or RGBA color scheme.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "src",
+              "description": "The path of the image. Reference [folder-structure structure](../../../../../guides/architecture/folder-structure.mdx)",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget.If not passed then set the width of the image itself",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget.If not passed then set the height of the image itself",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "pos_x",
+              "description": "Relative coordinates.Horizontal offset of the image relative to the widget coordinates.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "pos_y",
+              "description": "Relative coordinates.Vertical offset of the image relative to the widget coordinates.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "angle",
+              "description": "The rotation angle of the picture (the 12-point direction is 0 degrees).",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "center_x",
+              "description": "The rotation center of the picture.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "center_y",
+              "description": "The rotation center of the picture.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "alpha",
+              "description": "Transparency, 0 - 255, default value is 255 for opaque, 0 for full transparency",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "auto_scale",
+              "description": "Whether the image scales with the widget width and height, the default image area size is the size of the resource file itself",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "auto_scale_obj_fit",
+              "description": "This field takes effect only when auto_scale is true, indicating whether the image fills the entire widget area (without maintaining the image aspect ratio)",
+              "required": false,
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -794,6 +2581,85 @@
       "type": "value",
       "description": "Play the pre-given image at the set frame rate to create an animation effect.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of animation.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of animation.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "anim_path",
+              "description": "The path to the image for animation.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "anim_prefix",
+              "description": "The name to the image for animation.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "anim_ext",
+              "description": "Image extensions.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "anim_fps",
+              "description": "Number of frames of animation.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "repeat_count",
+              "description": "Number of animation repetitions, can be set 0: infinite repetition, 1: single repetition.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "anim_repeat",
+              "description": "Whether to repeat the playback; this value is true if repeat_count is 0.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "anim_size",
+              "description": "The number of images.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "anim_status",
+              "description": "The status of animation; Reference anim_status",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "anim_complete_call",
+              "description": "This function is callback when the animation is executed successfully. repeat_count is invalid if 0. Parameters anim is an instance to create the animation.",
+              "required": false,
+              "type": "function"
+            },
+            {
+              "name": "step",
+              "description": "Frame animation step size, more than '1' will jump frame",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -919,6 +2785,130 @@
       "symbol": "KEYBOARD",
       "type": "value",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "X position, default value is 0",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "Y position, default value is 0",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "click_func",
+              "description": "Callback function when Key clicked",
+              "required": true,
+              "type": "ClickFunc"
+            },
+            {
+              "name": "key_attr",
+              "description": "Key attributes, if no key attribute is passed in, the default configuration of numeric keyboard is used",
+              "required": false,
+              "type": "Array<KeyAttr>"
+            }
+          ]
+        },
+        {
+          "name": "KeyAttr",
+          "props": [
+            {
+              "name": "id",
+              "description": "Key id",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "x",
+              "description": "X position of key",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "Y position of key",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "text",
+              "description": "Key text, Only single ASCII characters are supported",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "image",
+              "description": "Key image path, recommended image size is 64 x 64 px",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "description": "Key value",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "id",
+              "description": "Key id",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "X position of text",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "Text width",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "align_h",
+              "description": "The alignment of the horizontal axis, alignment refer to TEXT",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "alpha",
+              "description": "Text alpha value [0-255], 0 for full transparency",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Text color",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "show",
+              "description": "Text showon",
+              "required": false,
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -987,6 +2977,118 @@
       "type": "value",
       "description": "When a page is set to Swiper scroll mode using the `@zos/page setScrollMode` method, an indicator control is created on the page to indicate the total number of pages and to indicate which page is currently stopped.",
       "minApiLevel": 2.1,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the widget.",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the widget.",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget.",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget.",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "align_h",
+              "description": "The alignment of the horizontal axis (see ALIGN for values).",
+              "required": false,
+              "type": "ALIGN",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "h_space",
+              "description": "Horizontal spacing",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "v_space",
+              "description": "Vertical spacing",
+              "required": false,
+              "type": "number",
+              "apiLevel": 3
+            },
+            {
+              "name": "select_src",
+              "description": "Indicator current page highlight image path, resource storage path reference [Folder Structure](../../../../../guides/architecture/folder-structure.mdx)",
+              "required": true,
+              "type": "string",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "unselect_src",
+              "description": "Indicator non-current page highlight image path, resource storage path reference [Folder Structure](../../../../../guides/architecture/folder-structure.mdx)",
+              "required": true,
+              "type": "string",
+              "apiLevel": 2.1
+            },
+            {
+              "name": "horizontal",
+              "description": "Horizontal or not, default is true, set false for vertical layout",
+              "required": false,
+              "type": "boolean",
+              "apiLevel": 3
+            },
+            {
+              "name": "use_color",
+              "description": "Whether to use colors to configure indicator dots",
+              "required": false,
+              "type": "boolean",
+              "apiLevel": 4
+            },
+            {
+              "name": "select_color",
+              "description": "Selected color configuration",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "unselect_color",
+              "description": "Unselected color configuration",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "element_height",
+              "description": "Width of the page indicator element",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "element_radius",
+              "description": "Height of the page indicator element",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1002,6 +3104,19 @@
       "type": "value",
       "description": "Page Scrollbar.",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "target",
+              "description": "The VIEW_CONTAINER widget that needs to be bound is the whole page scroll bar by default, and the VIEW_CONTAINER scroll bar is passed in",
+              "required": false,
+              "type": "object"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1017,6 +3132,121 @@
       "type": "value",
       "description": "After API_LEVEL 3.6, please use the [`TIME_PICKER`](./TIME_PICKER.mdx) widget. Time picker widget, providing user choice",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "x-coordinate (x \\<= 0 will be centered by default)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "y-coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "Width of the entire widget (width less than 1/2 of the device width will be determined as an exception, set to the default value of 300px)",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "padding_1",
+              "description": "padding between the first and second columns",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "padding_2",
+              "description": "padding between two and three columns",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "font_size",
+              "description": "The size of the text on the widget, default 36",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "startYear",
+              "description": "Start year",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "endYear",
+              "description": "End year",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initYear",
+              "description": "Initial year",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initMonth",
+              "description": "Initial month",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initDay",
+              "description": "Initial day",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initHour",
+              "description": "Initial hour",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initMin",
+              "description": "Initial minute",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "getProperty supported Fields",
+          "props": [
+            {
+              "name": "year",
+              "description": "Year",
+              "type": "number"
+            },
+            {
+              "name": "month",
+              "description": "Month",
+              "type": "number"
+            },
+            {
+              "name": "day",
+              "description": "Day",
+              "type": "number"
+            },
+            {
+              "name": "hour",
+              "description": "Hour",
+              "type": "number"
+            },
+            {
+              "name": "minute",
+              "description": "Minute",
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1032,6 +3262,159 @@
       "type": "value",
       "description": "An universal selector, use to text and number list selection",
       "minApiLevel": 3,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "nb_of_columns",
+              "description": "Maximum Picker columns (Maximum number is 5)",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "data_config",
+              "description": "Array of column configuration, refer to DataConfig",
+              "required": true,
+              "type": "Array<DataConfig>"
+            },
+            {
+              "name": "title",
+              "description": "Title of Picker",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "subtitle",
+              "description": "Subtitle of Picker",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "done_icon",
+              "description": "Resource path of icon about done status",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "picker_cb",
+              "description": "Callback function of Picker",
+              "required": false,
+              "type": "CallBack"
+            },
+            {
+              "name": "init_col_index",
+              "description": "Initialize the index of the focused column",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "normal_color",
+              "description": "Color value of unselected item",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "select_color",
+              "description": "Color value of selected item",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "DataConfig",
+          "props": [
+            {
+              "name": "data_array",
+              "description": "Data array of column",
+              "required": true,
+              "type": "Array\\<number&#124;string\\>"
+            },
+            {
+              "name": "support_loop",
+              "description": "support circular drag and drop",
+              "required": true,
+              "type": "boolean"
+            },
+            {
+              "name": "unit",
+              "description": "Unit",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "connector",
+              "description": "Data separator",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "font_name",
+              "description": "Path of font file, refer to TEXT",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "font_size",
+              "description": "Font size",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "select_font_size",
+              "description": "Font size of selected item",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "connector_font_size",
+              "description": "Font size of separator",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "unit_font_size",
+              "description": "Font size of unit",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "init_val_index",
+              "description": "Default selected index",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "col_width",
+              "description": "Column width, all columns need to be configured",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "CallBack: function",
+          "props": [
+            {
+              "name": "picker",
+              "description": "The Picker instance"
+            },
+            {
+              "name": "event_type",
+              "description": "Event type of Picker, see EVENT_TYPE"
+            },
+            {
+              "name": "column_index",
+              "description": "Column index for triggering Picker events"
+            },
+            {
+              "name": "select_index",
+              "description": "The index of selected item"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1075,6 +3458,53 @@
       "type": "value",
       "description": "The QRCODE widget consists of a QR code and a background (white).",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "content",
+              "description": "QR code content"
+            },
+            {
+              "name": "x",
+              "description": "QR Code x Coordinate"
+            },
+            {
+              "name": "y",
+              "description": "QR Code y Coordinate"
+            },
+            {
+              "name": "w",
+              "description": "QR code width"
+            },
+            {
+              "name": "h",
+              "description": "QR code height"
+            },
+            {
+              "name": "bg_x",
+              "description": "Background x coordinates"
+            },
+            {
+              "name": "bg_y",
+              "description": "Background y coordinates"
+            },
+            {
+              "name": "bg_w",
+              "description": "Background width"
+            },
+            {
+              "name": "bg_h",
+              "description": "Background height"
+            },
+            {
+              "name": "bg_radius",
+              "description": "Background area rounding radius"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1090,6 +3520,147 @@
       "type": "value",
       "description": "Used to select a single option among multiple options. Each individual option is a `STATE_BUTTON` widget that needs to be created separately.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "radioGroupParam",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "Width of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "Height of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "select_src",
+              "description": "Image displayed when widget is selected",
+              "required": true,
+              "type": "string",
+              "apiLevel": 2
+            },
+            {
+              "name": "unselect_src",
+              "description": "Image displayed when widget is unselected",
+              "required": true,
+              "type": "string",
+              "apiLevel": 2
+            },
+            {
+              "name": "check_func",
+              "description": "Callback when button state changes",
+              "required": false,
+              "type": "CheckFunc",
+              "apiLevel": 2
+            },
+            {
+              "name": "use_color",
+              "description": "Whether to display widget using colors",
+              "required": false,
+              "type": "boolean",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "StateButton",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate relative to radioGroup",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate relative to radioGroup",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "Width of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "Height of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "select_color",
+              "description": "Color when selected",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "unselect_color",
+              "description": "Color when unselected",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "fill_width",
+              "description": "Button color display area width",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "fill_height",
+              "description": "Button color display area height",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "Prop Properties",
+          "props": [
+            {
+              "name": "prop.INIT",
+              "type": "object"
+            },
+            {
+              "name": "prop.CHECKED",
+              "type": "object"
+            },
+            {
+              "name": "prop.UNCHECKED",
+              "type": "object"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1198,6 +3769,337 @@
       "type": "value",
       "description": "Create a list area with sliding support, where each list item can contain images and text, and supports horizontal sliding.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "Width of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "Height of the widget",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "item_space",
+              "description": "Space between items",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "item_config",
+              "description": "Item type configuration, see [ItemConfig](#itemconfig-object)",
+              "required": true,
+              "type": "Array<ItemConfig>",
+              "apiLevel": 2
+            },
+            {
+              "name": "item_config_count",
+              "description": "Length of the item_config array",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "data_array",
+              "description": "Data array",
+              "required": true,
+              "type": "DataArray",
+              "apiLevel": 2
+            },
+            {
+              "name": "data_count",
+              "description": "Length of the data array",
+              "required": true,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "item_click_func",
+              "description": "Item click callback function, where the item index corresponds to the data_array, see [ItemClickFunc](#itemclickfunc)",
+              "required": false,
+              "type": "ItemClickFunc",
+              "apiLevel": 2
+            },
+            {
+              "name": "data_type_config",
+              "description": "Item index type configuration array, see [DataTypeConfig](#datatypeconfig-object)",
+              "required": false,
+              "type": "Array<DataTypeConfig>",
+              "apiLevel": 2
+            },
+            {
+              "name": "data_type_config_count",
+              "description": "Length of the item index type configuration array",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "on_page",
+              "description": "Used when updating data, set to 1 to keep the list at current position after update, otherwise returns to list top",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "snap_to_center",
+              "description": "Whether the list should snap to the center height of SCROLL_LIST",
+              "required": false,
+              "type": "boolean",
+              "apiLevel": 2
+            },
+            {
+              "name": "item_focus_change_func",
+              "description": "List sliding focus change callback function, see [ItemFocusChangeFunc](#itemfocuschangefunc)",
+              "required": false,
+              "type": "ItemFocusChangeFunc",
+              "apiLevel": 2
+            },
+            {
+              "name": "item_enable_horizon_drag",
+              "description": "Whether items can be dragged horizontally",
+              "required": false,
+              "type": "boolean",
+              "apiLevel": 2
+            },
+            {
+              "name": "item_drag_max_distance",
+              "description": "Maximum horizontal drag distance, positive values for left drag, negative for right drag",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "snap_type",
+              "description": "Set snap mode (see snap_type snap mode)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            },
+            {
+              "name": "item_common_focus",
+              "description": "Whether to show common focus (effective in key mode)",
+              "required": false,
+              "type": "boolean",
+              "apiLevel": 4
+            },
+            {
+              "name": "item_key_focus_change_func",
+              "description": "Key event listener callback in key mode",
+              "required": false,
+              "type": "function",
+              "apiLevel": 4
+            },
+            {
+              "name": "enable_scroll_bar",
+              "description": "Create page indicator (arcScrollBar)",
+              "required": false,
+              "type": "boolean",
+              "apiLevel": 4
+            },
+            {
+              "name": "view_index",
+              "description": "Set list item to visible area (Note: Round screen: center screen, Square screen: top of screen)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 4
+            }
+          ]
+        },
+        {
+          "name": "ItemConfig",
+          "props": [
+            {
+              "name": "type_id",
+              "description": "Current item type ID, optional when item_config_count is 0, required otherwise",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "item_height",
+              "description": "Item height",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_bg_color",
+              "description": "Item background color",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "item_bg_radius",
+              "description": "Item background corner radius",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "text_view",
+              "description": "Array of textView structures, each item is a textView, see explanation below",
+              "required": false,
+              "type": "Array<TextView>"
+            },
+            {
+              "name": "text_view_count",
+              "description": "Length of text_view array",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "image_view",
+              "description": "Array of imageView, each item is an imageView, see explanation below",
+              "required": false,
+              "type": "Array<ImageView>"
+            },
+            {
+              "name": "image_view_count",
+              "description": "Length of image_view array",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "TextView",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate, relative coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate, relative coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "Widget width",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "Widget height",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "Text color",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_size",
+              "description": "Font size",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "key",
+              "description": "Data binding key, see examples and data_array description for details",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "action",
+              "description": "Whether to respond to click events, after response, the corresponding data key can be captured in item_click_func, default false",
+              "required": false,
+              "type": "boolean"
+            }
+          ]
+        },
+        {
+          "name": "ImageView",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-coordinate, relative coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-coordinate, relative coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "Widget width",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "Widget height",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "key",
+              "description": "Data binding key, see examples and data_array description for details",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "action",
+              "description": "Whether to respond to click events, after response, the corresponding data key can be captured in item_click_func, default false",
+              "required": false,
+              "type": "boolean"
+            }
+          ]
+        },
+        {
+          "name": "DataTypeConfig",
+          "props": [
+            {
+              "name": "start",
+              "description": "Starting index",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "end",
+              "description": "Ending index",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "type_id",
+              "description": "The type_id corresponding to the type configuration in item_config",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1230,6 +4132,19 @@
       "description": "Set the size of the Shortcut cards, currently only height adjustment is supported.",
       "minApiLevel": 2,
       "signature": "(option: Option) => undefined",
+      "shapes": [
+        {
+          "name": "Option",
+          "props": [
+            {
+              "name": "h",
+              "description": "Shortcut card height",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1305,6 +4220,41 @@
               "type": "any"
             }
           ]
+        },
+        {
+          "name": "PropertyId",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the widget.",
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the widget.",
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget.",
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget.",
+              "type": "number"
+            },
+            {
+              "name": "VISIBLE",
+              "description": "Whether the widget is visible or not, true is visible, false is not, this property does not support setProperty(prop.MORE, {}), only setProperty sets the VISIBLE property alone",
+              "type": "boolean"
+            },
+            {
+              "name": "DATASET",
+              "description": "Developer-defined properties of the widget, obtained via widget.getProperty(prop.DATASET)",
+              "type": "any"
+            }
+          ]
         }
       ],
       "runtimes": [
@@ -1350,6 +4300,94 @@
       "type": "value",
       "description": "Used to switch between open and closed states.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "select_bg",
+              "description": "The selected background.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "un_select_bg",
+              "description": "Unselected background.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "slide_src",
+              "description": "Switch button.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "slide_select_x",
+              "description": "Relative coordinates.The selected state of the switch button.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "slide_un_select_x",
+              "description": "Relative coordinates.The unselected state of the switch button.",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "slide_y",
+              "description": "Relative coordinates.The y-axis offset of the switch button.",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "checked_change_func",
+              "description": "Callback on state change.",
+              "required": false,
+              "type": "CheckedChangeFunc"
+            },
+            {
+              "name": "checked",
+              "description": "Default switch state.",
+              "required": false,
+              "type": "boolean"
+            }
+          ]
+        },
+        {
+          "name": "Prop Properties",
+          "props": [
+            {
+              "name": "prop.CHECKED",
+              "description": "Set switch state.Get switch state"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1378,6 +4416,151 @@
       "type": "value",
       "description": "Displaying workout data in the workout extension can display a rich variety of workouts data types.",
       "minApiLevel": 3.6,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "Widget x coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "Widget y coordinate",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "Widget display width",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "Widget display height",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "edit_id",
+              "description": "Widget ID, ensuring uniqueness of each instance",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "category",
+              "description": "Data type, currently only supports edit_widget_group_type.SPORTS",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "default_type",
+              "description": "Displayed data items, see supported data items below",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "text_size",
+              "description": "Text font size, default 36 px",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_color",
+              "description": "Text color, default 0x0000FF",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "sub_text_visible",
+              "description": "Whether to display subtext, default is false",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "sub_text_size",
+              "description": "Subtext font size, default 36 px",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "sub_text_color",
+              "description": "Subtext color, default 0x0000FF",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "rect_visible",
+              "description": "Whether to display the text box, default is false",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "line_color",
+              "description": "Text box color, default 0x0000FF",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_x",
+              "description": "Relative coordinates.Text box displays location x coordinates",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_y",
+              "description": "Relative coordinates.Text box displays position y coordinates",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_w",
+              "description": "Text box width",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_h",
+              "description": "Text box height",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "sub_text_x",
+              "description": "Relative coordinates.Subtext box displays position x coordinates",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "sub_text_y",
+              "description": "Relative coordinates.Subtext box displays position y coordinates",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "sub_text_w",
+              "description": "Secondary text box width",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "sub_text_h",
+              "description": "Secondary text box height",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "mock_data",
+              "description": "The simulated data only takes effect in the emulator, and the data items of the widget will display the incoming string",
+              "required": false,
+              "type": "string"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1557,6 +4740,121 @@
       "type": "value",
       "description": "Text widget for displaying text. Support setting text size, color, alignment, font.",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "The x-axis coordinate of the widget",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "description": "The y-axis coordinate of the widget",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "w",
+              "description": "The width of the widget",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "description": "The height of the widget",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "color",
+              "description": "The color of the text",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "align_h",
+              "description": "The alignment of the horizontal axis (see ALIGN for values)",
+              "required": false,
+              "type": "ALIGN"
+            },
+            {
+              "name": "align_v",
+              "description": "Alignment of the vertical axis (see ALIGN for values)",
+              "required": false,
+              "type": "ALIGN"
+            },
+            {
+              "name": "text",
+              "description": "Text",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "text_size",
+              "description": "The size of the font",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "text_style",
+              "description": "Text overlength handling, default is scrolling text (see TEXT_STYLE for values)",
+              "required": false,
+              "type": "TEXT_STYLE"
+            },
+            {
+              "name": "line_space",
+              "description": "Row spacing",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "char_space",
+              "description": "Character spacing",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "font",
+              "description": "Font path, resource storage path reference [Folder Structure](../../../../../guides/architecture/folder-structure.mdx)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "text_i18n",
+              "description": "Multi-language text support, refer to the code example, where the 'en-US' field is required. When the current country language is not configured, the value of 'en-US' will be used. When passed in this way, the text attribute is disabled",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "start_angle",
+              "description": "Arc layout starting angle",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "end_angle",
+              "description": "Arc layout ending angle (start_angle < end_angle)",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "mode",
+              "description": "Arc layout mode, default 0<br/>0: inner<br/>1: outer",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "radius",
+              "description": "Controls the arc layout radius, defaults to half of the widget's width and height",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1586,6 +4884,118 @@
       "type": "value",
       "description": "A full-screen widget that supports time and date selection.",
       "minApiLevel": 3.6,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "type",
+              "description": "Selector type, 0 time, 1 date",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "style",
+              "description": "Value must be 1",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "title",
+              "description": "Title of selector",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "done_icon",
+              "description": "Image path of done icon",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "font_size",
+              "description": "Font size setting",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "select_font_size",
+              "description": "Font size setting for selected item",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "initHour",
+              "description": "Initial hour, default is 12",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initMin",
+              "description": "Initial minute, default is 0",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "startYear",
+              "description": "Start year, default is 1970",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "endYear",
+              "description": "End year, default is 2100",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initYear",
+              "description": "Initial year, default is 2020",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initMonth",
+              "description": "Initial month, default is 1",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "initDay",
+              "description": "Initial day, default is 1",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "picker_cb",
+              "description": "Callback function of picker",
+              "required": false,
+              "type": "CallBack"
+            }
+          ]
+        },
+        {
+          "name": "CallBack: function",
+          "props": [
+            {
+              "name": "picker",
+              "description": "The time/date picker widget instance"
+            },
+            {
+              "name": "event_type",
+              "description": "Event type of picker, see EVENT_TYPE"
+            },
+            {
+              "name": "column",
+              "description": "Index of current focus column (only valid under UPDATE event type)"
+            },
+            {
+              "name": "value_index",
+              "description": "Current value of the column (only valid under UPDATE event type)"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1673,6 +5083,107 @@
       "type": "value",
       "description": "The `VIEW_CONTAINER` widget container is a very powerful layout widget with the following features. - It is a rectangular layout container that can create child widgets by its instance method - The `z_index` property controls the cascading order of the widget container, allowing for vertical cascading of widgets. And you can create multiple VIEW_CONTAINER widgets in the same page. In Zepp OS v3, you can create up to 7 - The VIEW_CONTAINER widget container itself supports scrolling and can be used as a scrolling container - Used with [`setScrollMode`](../../page/setScrollMode.mdx) Swiper mode to achieve the complex layout in the second GIF (full-screen scrolling, where each screen can also be viewed as a scrollable independent container)",
       "minApiLevel": 2,
+      "shapes": [
+        {
+          "name": "Param",
+          "props": [
+            {
+              "name": "x",
+              "description": "Widget x-coordinate, default 0",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "y",
+              "description": "Widget y-coordinate, default 0",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "w",
+              "description": "Widget width, default screen width",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "h",
+              "description": "Widget height, default screen height",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "scroll_enable",
+              "description": "When the layout of widgets in VIEW_CONTAINER exceeds the width/height, it is considered a long page. 0: disable scrolling, you can set container scroll position offset by pos_x or pos_y; 1: allow scrolling (default)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "pos_x",
+              "description": "When VIEW_CONTAINER is a long horizontal page layout, you can read/set the horizontal offset",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "pos_y",
+              "description": "When VIEW_CONTAINER is a long vertical page layout, you can read/set the vertical offset",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "z_index",
+              "description": "When using multiple VIEW_CONTAINER widgets, the cascading relationship can be controlled by this field, with 0 at the bottom by default",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "modal",
+              "description": "Modal layer switch. 0: disable; 1: enable (default). When enabled, it can be used to create a modal overlay/dialog inside a VIEW_CONTAINER and block the base layer from scrolling.",
+              "required": false,
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "bounce",
+              "description": "Rebound effect, 0: disabled, 1: enabled (default)",
+              "required": false,
+              "type": "number",
+              "apiLevel": 3
+            },
+            {
+              "name": "page",
+              "description": "Used with [setScrollMode](../../page/setScrollMode.mdx) Swiper mode. The entire screen uses Swiper mode, and each independent page is implemented using VIEW_CONTAINER. Marks the page index to coordinate with Swiper mode",
+              "required": false,
+              "type": "number",
+              "apiLevel": 3
+            }
+          ]
+        },
+        {
+          "name": "FrameParams",
+          "props": [
+            {
+              "name": "type",
+              "description": "0: the user is still touching the screen and dragging, 1: the user has let go and is in an inertial scrolling effect",
+              "type": "number",
+              "apiLevel": 2
+            },
+            {
+              "name": "yoffset",
+              "description": "y-axis offset pixels",
+              "type": "number",
+              "apiLevel": 3
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

@@ -26,7 +26,7 @@ Retrato do último sync (números atualizados em [`data/manifest.json`](data/man
 
 - **409 símbolos** em **42 módulos**, vindos de todas as 241 páginas de referência + 36 entradas dos runtimes do celular + 443 de `static/llms` + 622 imports em samples
 - 385 `OFFICIAL`, 24 `OBSERVED`
-- 353 símbolos têm `API_LEVEL` mínimo; 367 têm descrição; **178 têm assinatura de chamada e 121 têm tabelas de propriedades** — 643 propriedades, 484 delas com nível mínimo próprio
+- 353 símbolos têm `API_LEVEL` mínimo; 367 têm descrição; **178 têm assinatura de chamada e 147 têm tabelas de propriedades** — 1157 propriedades, 591 delas com nível mínimo próprio
 - **todo runtime está coberto**: 373 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 símbolos válidos em mais de um
 - **11 patterns** vindos dos guias de boas práticas, 32 abordagens, usando 17 símbolos distintos — todos os 17 cobertos pelos registros de símbolo
 - **41 dispositivos**: 29 rodando Zepp OS com `API_LEVEL` declarado, 5 em Zepp OS 1.0 sem nenhum, 7 que não rodam Mini Program

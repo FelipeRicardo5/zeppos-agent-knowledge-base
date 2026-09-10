@@ -109,6 +109,30 @@ describe("extractShapes", () => {
     });
   });
 
+  it("reads the name column whether it is headed `Property` or `Properties`", () => {
+    // The plural was missing from the column map, and the failure was silent:
+    // the header still passed on Description/Required/Type, then every row came
+    // back without a name and was dropped one at a time. 32 reference pages head
+    // the column that way — the whole `ui/widget/` tree — so `TEXT`, `IMG` and
+    // `BUTTON` carried a description and a level and no property table, which is
+    // the one thing needed to draw them.
+    const plural = `## Param: object
+
+| Properties | Description                    | Required | Type     |
+| ---------- | ------------------------------ | -------- | -------- |
+| x          | The x-axis coordinate          | YES      | \`number\` |
+| align_h    | Alignment of the horizontal    | NO       | \`ALIGN\`  |
+`;
+
+    const [shape] = extractShapes(plural);
+
+    assert.equal(shape.name, "Param");
+    assert.deepEqual(shape.props, [
+      { name: "x", description: "The x-axis coordinate", required: true, type: "number" },
+      { name: "align_h", description: "Alignment of the horizontal", required: false, type: "ALIGN" },
+    ]);
+  });
+
   it("reads YES and NO into a boolean and keeps a stated default", () => {
     const props = extractShapes(SETTINGS_COMPONENT)[0].props;
     const multiple = props.find((p) => p.name === "multiple");

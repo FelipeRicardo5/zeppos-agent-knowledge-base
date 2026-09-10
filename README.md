@@ -26,7 +26,7 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 
 - **409 symbols** across **42 modules**, from all 241 reference pages + 36 phone-runtime entries + 443 `static/llms` entries + 622 sample imports
 - 385 `OFFICIAL`, 24 `OBSERVED`
-- 353 symbols carry a minimum `API_LEVEL`; 367 carry a description; **178 carry a call signature and 121 carry property tables** — 643 properties, 484 of them with their own minimum level
+- 353 symbols carry a minimum `API_LEVEL`; 367 carry a description; **178 carry a call signature and 147 carry property tables** — 1157 properties, 591 of them with their own minimum level
 - **every runtime is covered**: 373 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all

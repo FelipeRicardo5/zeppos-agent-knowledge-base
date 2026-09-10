@@ -71,8 +71,12 @@ direções opostas:
 
 Uma assinatura sozinha muitas vezes não basta: `(props: Props) => RenderFunc` não
 diz nada sem a tabela `Props`. Por isso `shapes` guarda cada tabela de propriedade
-nomeada da página, com o nome do cabeçalho acima dela — 121 símbolos carregam
-shapes, 643 propriedades no total.
+nomeada da página, com o nome do cabeçalho acima dela — 147 símbolos carregam
+shapes, 1157 propriedades no total.
+
+O que ainda falta aí são os **membros de enum**: `align.CENTER_H`, `text_style.WRAP`
+e afins estão documentados upstream numa tabela `Value | Description` que nenhuma
+frente lê. Código de sample é a única fonte deles hoje.
 
 No último sync, **178 de 409 símbolos têm assinatura**. O resto não declara nenhuma
 upstream. Para esses, código de sample é a única resposta que existe.

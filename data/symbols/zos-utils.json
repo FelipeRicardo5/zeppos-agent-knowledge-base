@@ -40,6 +40,38 @@
       "type": "value",
       "description": "EventBus is a utility class that provides event publishing/subscribing, an implementation of the publish-subscribe pattern.",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "on",
+          "description": "Adds the listener function to the end of the listeners array for the event named eventName",
+          "signature": "on(eventName: string, listener: (...args: any[]) => void): void"
+        },
+        {
+          "name": "off",
+          "description": "Removes the specified listener from the listener array for the event named eventName",
+          "signature": "off(eventName: string, listener: (...args: any[]) => void): void"
+        },
+        {
+          "name": "emit",
+          "description": "Triggers the listener functions for the event named eventName",
+          "signature": "emit(eventName: string, ...args: any[]): void"
+        },
+        {
+          "name": "once",
+          "description": "Adds a one-time listener function for the event named eventName",
+          "signature": "once(eventName: string, listener: (...args: any[]) => void): void"
+        },
+        {
+          "name": "clear",
+          "description": "Removes all listeners, or those of the specified eventName",
+          "signature": "clear(): void"
+        },
+        {
+          "name": "count",
+          "description": "Gets the number of registered event listeners corresponding to `eventName`. If `eventName` is not passed, get the number of registered `eventName` types",
+          "signature": "count(eventName?: string): number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -55,6 +87,38 @@
       "type": "value",
       "description": "The `log` instance is used for log printing and has multiple levels of logging methods for easy filtering in the console.",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getLogger",
+          "description": "Returns a new `log` instance with the `name` tag, which is added when the print log method is executed to make it easier to distinguish",
+          "signature": "getLogger(name: string): log"
+        },
+        {
+          "name": "log",
+          "description": "Print log level logs",
+          "signature": "log(...args: string[]): void"
+        },
+        {
+          "name": "warn",
+          "description": "Print warn level logs",
+          "signature": "warn(...args: string[]): void"
+        },
+        {
+          "name": "debug",
+          "description": "Print debug level logs",
+          "signature": "debug(...args: string[]): void"
+        },
+        {
+          "name": "error",
+          "description": "Print error level logs",
+          "signature": "error(...args: string[]): void"
+        },
+        {
+          "name": "info",
+          "description": "Print info level logs",
+          "signature": "info(...args: string[]): void"
+        }
+      ],
       "runtimes": [
         "device-app",
         "watchface"

@@ -1,0 +1,55 @@
+---
+title: BloodOxygen
+sidebar_label: BloodOxygen
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Blood oxygen Sensor.
+
+:::info
+permission code: `data:user.hd.spo2`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current measured blood oxygen result
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| Property | Type                | Description                               | API_LEVEL |
+| -------- | ------------------- | ----------------------------------------- | --------- |
+| value    | <code>number</code> | Blood oxygen measurement values           | 2.0       |
+| retCode  | <code>number</code> | Result code, refer to retCode description | 2.0       |
+
+#### retCode
+
+| Value | Type                | Description         | API_LEVEL |
+| ----- | ------------------- | ------------------- | --------- |
+| 0     | <code>number</code> | Measurement invalid | 2.0       |
+| 2     | <code>number</code> | Measurement success | 2.0       |
+
+### start
+
+> Start from API_LEVEL `2.1`
+
+Start blood oxygen measurement
+
+```ts
+start(): void
+```
+
+## Example
+
+```js
+import { BloodOxygen } from '@zos/sensor'
+
+const bo = new BloodOxygen()
+bo.start()
+```

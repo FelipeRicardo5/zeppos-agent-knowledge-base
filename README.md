@@ -20,7 +20,7 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/, examples/, manifest/) |
 
-Fixture-based tests cover all eight parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (194 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all eight parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (204 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
@@ -28,6 +28,7 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 - 394 `OFFICIAL`, 17 `OBSERVED`
 - 353 symbols carry a minimum `API_LEVEL`; 367 carry a description; **178 carry a call signature and 147 carry property tables** — 1157 properties, 591 of them with their own minimum level
 - **27 value sets** on 24 symbols — 196 members, 124 of them stating their own minimum level. 146 come from a documented table and 50 from sample code, marked per member
+- **257 instance members** on 46 symbols — what you call on a value rather than import: `new HeartRate().getCurrent()`, `localStorage.getItem(...)`. Every one carries a signature and prose, 44 state their own minimum level, and 60 of the shapes and 10 of the value sets above belong to a member rather than to the symbol
 - **every runtime is covered**: 375 Device App, 21 Settings App, 20 Side Service, 12 Workout Extension, 3 Watchface — 20 symbols valid in more than one
 - **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
 - **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
@@ -41,7 +42,8 @@ Read this before trusting an answer that came out of this KB.
 
 - **The watchface API is not covered.** `hmUI`, `hmFS`, `hmSensor` and `hmSetting` live under `docs/watchface/**` — 93 pages, a separate tree with its own format, none of them parsed. The 3 Watchface symbols in the KB are `@zos/*` calls seen in watchface sample code, not the `hm*` API.
 - **The runtime axis is populated, unevenly.** Every runtime now has symbols, but 375 of 411 are Device App. The Settings App's 21 and the Side Service's 20 have **no `API_LEVEL` at all** — no page in either tree states one — so they answer "does this exist here" but not "since when".
-- **`####` methods on returned objects are skipped.** `DownloadTask.cancel`, `Onbox.enqueFile` and similar are real API, but reached through an instance a function returns rather than named at module level, so filing them beside module symbols would misstate how they are called.
+- **Instance members are a field, never a symbol.** `getCurrent` is reached through a value (`new BloodOxygen().getCurrent()`), so it lives on the owning record rather than as `@zos/sensor.getCurrent`, an id nothing can import. 12 sensors document a `getCurrent` and they return 12 different shapes, which is why the owner is part of the identity. A member states its own minimum `API_LEVEL` and the symbol's does not imply it: `BloodOxygen` is 2.0 while its `start` and `stop` are 2.1.
+- **A heading under `Methods` is not always a member.** `ui/widget/SYSTEM_KEYBOARD.mdx` lists `deleteKeyboard()` there and its own example imports it — a module function documented beside the widget. One case in 257, caught by that import rather than by a rule about names.
 - **A missing symbol means "not covered", not "does not exist."** This holds hardest on the runtime axis: a symbol absent from `runtimes/settings.md` says nothing about whether the Settings App can use it, because nothing has been extracted for that runtime at all.
 - **Runtime is inferred from the source path, never from a page's text.** No page or sample states its runtime; both official repos separate the runtimes by directory, so the directory is the evidence. The rules and the doc that anchors each one live in [`src/parse/runtime.ts`](src/parse/runtime.ts). This is the axis most exposed to an upstream reorganization, and the reason it has its own test file.
 - **`API_LEVEL` is the one axis that works today.** It is read verbatim from the badge blockquote on each page (`Start from API_LEVEL`, or `Supported since API_LEVEL` — both wordings occur), never inferred.
@@ -157,6 +159,7 @@ Both eval runs found the same root gap — the base recorded that a symbol exist
 | `signature` | The call signature the page states, **verbatim**. `(props: Props) => result: RenderFunc` is not valid TypeScript, so normalising it would either lose information or invent a shape the docs never stated |
 | `shapes` | Every named property table on the page, keyed by the heading above it — `Props`, `SelectOption`, `Options`, `DownloadTask`. A signature is unusable without them, and `Select`'s `options` is unusable without `SelectOption`. `Props` sorts first |
 | `enums` | The value sets this symbol *is* or *returns*. `@zos/ui.align` holds its own members, written as code writes them; `@zos/sensor.BloodOxygen` holds `retCode`, the domain of a value it returns. Each member may state its own `API_LEVEL` and its own confidence, and `partial` marks a set the documentation itself calls incomplete. The one field merged by **union** across sources rather than by priority — see *Coverage and limits* |
+| `members` | What can be called on a value this symbol produces or is — `getCurrent`, `getItem`, `setSource`. A field and not a record, because every id here is something you can import and `@zos/sensor.getCurrent` is not one. Each carries its own signature, prose, and optionally its own `API_LEVEL`, shapes and value sets |
 
 Each property carries `type`, `required`, `default`, `description`, and sometimes its **own** minimum `API_LEVEL`: a symbol you may call can have a property you may not. 484 of the 643 properties state one.
 

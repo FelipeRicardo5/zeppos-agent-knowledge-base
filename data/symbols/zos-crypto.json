@@ -27,49 +27,72 @@
               "description": "Existing private key; use it instead of generating a new key"
             }
           ]
-        },
+        }
+      ],
+      "members": [
         {
-          "name": "AESKeyResult",
-          "props": [
+          "name": "createChiper",
+          "description": "Create or return the AES private key; returns `undefined` on failure",
+          "signature": "createChiper(): AESKeyResult | undefined",
+          "shapes": [
             {
-              "name": "private_key_length",
-              "type": "number",
-              "description": "Private key length"
-            },
-            {
-              "name": "private_key",
-              "type": "ArrayBuffer",
-              "description": "Private key data"
+              "name": "AESKeyResult",
+              "props": [
+                {
+                  "name": "private_key_length",
+                  "type": "number",
+                  "description": "Private key length"
+                },
+                {
+                  "name": "private_key",
+                  "type": "ArrayBuffer",
+                  "description": "Private key data"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "AESCipherResult",
-          "props": [
+          "name": "encrypt",
+          "description": "Encrypt data whose length is a multiple of 16 bytes",
+          "signature": "encrypt(data: createCrypto.AESData): AESCipherResult | undefined",
+          "shapes": [
             {
-              "name": "data",
-              "type": "ArrayBuffer",
-              "description": "Encrypted data"
-            },
-            {
-              "name": "length",
-              "type": "number",
-              "description": "Data length"
+              "name": "AESCipherResult",
+              "props": [
+                {
+                  "name": "data",
+                  "type": "ArrayBuffer",
+                  "description": "Encrypted data"
+                },
+                {
+                  "name": "length",
+                  "type": "number",
+                  "description": "Data length"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "AESCipherResult",
-          "props": [
+          "name": "decrypt",
+          "description": "Decrypt AES-CBC data",
+          "signature": "decrypt(data: createCrypto.AESData): AESCipherResult | undefined",
+          "shapes": [
             {
-              "name": "data",
-              "type": "ArrayBuffer",
-              "description": "Decrypted data"
-            },
-            {
-              "name": "length",
-              "type": "number",
-              "description": "Data length"
+              "name": "AESCipherResult",
+              "props": [
+                {
+                  "name": "data",
+                  "type": "ArrayBuffer",
+                  "description": "Decrypted data"
+                },
+                {
+                  "name": "length",
+                  "type": "number",
+                  "description": "Data length"
+                }
+              ]
             }
           ]
         }
@@ -115,19 +138,26 @@
       "symbol": "CRCCrypto",
       "type": "value",
       "signature": "function createCrypto(algorithmId: typeof alg.CRC16 | typeof alg.CRC32): CRCCrypto | undefined",
-      "shapes": [
+      "members": [
         {
-          "name": "CRCResult",
-          "props": [
+          "name": "encrypt",
+          "description": "Calculate a CRC checksum in little-endian form",
+          "signature": "encrypt(data: createCrypto.CRCData): CRCResult | undefined",
+          "shapes": [
             {
-              "name": "data",
-              "type": "ArrayBuffer",
-              "description": "CRC checksum in little-endian form"
-            },
-            {
-              "name": "length",
-              "type": "number",
-              "description": "Data length"
+              "name": "CRCResult",
+              "props": [
+                {
+                  "name": "data",
+                  "type": "ArrayBuffer",
+                  "description": "CRC checksum in little-endian form"
+                },
+                {
+                  "name": "length",
+                  "type": "number",
+                  "description": "Data length"
+                }
+              ]
             }
           ]
         }
@@ -171,34 +201,60 @@
               "description": "Whether the key is encrypted again by the hardware key"
             }
           ]
-        },
+        }
+      ],
+      "members": [
         {
-          "name": "DigestResult",
-          "props": [
+          "name": "encrypt",
+          "description": "Calculate a digest in one call",
+          "signature": "encrypt(data: createCrypto.DigestData): DigestResult | undefined",
+          "shapes": [
             {
-              "name": "md_content",
-              "type": "ArrayBuffer",
-              "description": "Digest data"
-            },
-            {
-              "name": "length",
-              "type": "number",
-              "description": "Digest length"
+              "name": "DigestResult",
+              "props": [
+                {
+                  "name": "md_content",
+                  "type": "ArrayBuffer",
+                  "description": "Digest data"
+                },
+                {
+                  "name": "length",
+                  "type": "number",
+                  "description": "Digest length"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "DigestResult",
-          "props": [
+          "name": "start",
+          "description": "Start streaming digest calculation",
+          "signature": "start(): void"
+        },
+        {
+          "name": "update",
+          "description": "Append a data chunk",
+          "signature": "update(data: createCrypto.DigestData): void"
+        },
+        {
+          "name": "finish",
+          "description": "Finish streaming calculation and return the digest",
+          "signature": "finish(): DigestResult | undefined",
+          "shapes": [
             {
-              "name": "md_content",
-              "type": "ArrayBuffer",
-              "description": "Digest data"
-            },
-            {
-              "name": "length",
-              "type": "number",
-              "description": "Digest length"
+              "name": "DigestResult",
+              "props": [
+                {
+                  "name": "md_content",
+                  "type": "ArrayBuffer",
+                  "description": "Digest data"
+                },
+                {
+                  "name": "length",
+                  "type": "number",
+                  "description": "Digest length"
+                }
+              ]
             }
           ]
         }
@@ -242,79 +298,102 @@
               "description": "Existing public key"
             }
           ]
-        },
+        }
+      ],
+      "members": [
         {
-          "name": "ECDSAKeyResult",
-          "props": [
+          "name": "createChiper",
+          "description": "Create an ECDSA public/private key pair; returns `undefined` on failure",
+          "signature": "createChiper(): ECDSAKeyResult | undefined",
+          "shapes": [
             {
-              "name": "private_key_length",
-              "type": "number",
-              "description": "Private key length"
-            },
-            {
-              "name": "private_key",
-              "type": "ArrayBuffer",
-              "description": "Private key data"
-            },
-            {
-              "name": "pub_key_length",
-              "type": "number",
-              "description": "Public key length"
-            },
-            {
-              "name": "pub_key",
-              "type": "ArrayBuffer",
-              "description": "Public key data"
+              "name": "ECDSAKeyResult",
+              "props": [
+                {
+                  "name": "private_key_length",
+                  "type": "number",
+                  "description": "Private key length"
+                },
+                {
+                  "name": "private_key",
+                  "type": "ArrayBuffer",
+                  "description": "Private key data"
+                },
+                {
+                  "name": "pub_key_length",
+                  "type": "number",
+                  "description": "Public key length"
+                },
+                {
+                  "name": "pub_key",
+                  "type": "ArrayBuffer",
+                  "description": "Public key data"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Options",
-          "props": [
+          "name": "encrypt",
+          "description": "Generate a digital signature for data",
+          "signature": "encrypt(\n      data: createCrypto.ECDSAData,\n      option: Options,\n    ): ECDSACipherResult | undefined",
+          "shapes": [
             {
-              "name": "digest_type",
-              "type": "typeof alg.MD5&#124;typeof alg.HMACMD5",
-              "description": "Digest algorithm; supports alg.MD5 and alg.HMACMD5"
-            }
-          ]
-        },
-        {
-          "name": "ECDSACipherResult",
-          "props": [
-            {
-              "name": "data",
-              "type": "ArrayBuffer",
-              "description": "Digital signature data"
+              "name": "Options",
+              "props": [
+                {
+                  "name": "digest_type",
+                  "type": "typeof alg.MD5&#124;typeof alg.HMACMD5",
+                  "description": "Digest algorithm; supports alg.MD5 and alg.HMACMD5"
+                }
+              ]
             },
             {
-              "name": "length",
-              "type": "number",
-              "description": "Data length"
+              "name": "ECDSACipherResult",
+              "props": [
+                {
+                  "name": "data",
+                  "type": "ArrayBuffer",
+                  "description": "Digital signature data"
+                },
+                {
+                  "name": "length",
+                  "type": "number",
+                  "description": "Data length"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Options",
-          "props": [
+          "name": "decrypt",
+          "description": "Verify source data with signature data",
+          "signature": "decrypt(\n      data: createCrypto.ECDSAData,\n      option: Options,\n    ): ECDSACipherResult | undefined",
+          "shapes": [
             {
-              "name": "sig_data",
-              "type": "createCrypto.ECDSAData",
-              "description": "Digital signature to verify"
-            }
-          ]
-        },
-        {
-          "name": "ECDSACipherResult",
-          "props": [
-            {
-              "name": "data",
-              "type": "ArrayBuffer",
-              "description": "Signature verification result data"
+              "name": "Options",
+              "props": [
+                {
+                  "name": "sig_data",
+                  "type": "createCrypto.ECDSAData",
+                  "description": "Digital signature to verify"
+                }
+              ]
             },
             {
-              "name": "length",
-              "type": "number",
-              "description": "Data length"
+              "name": "ECDSACipherResult",
+              "props": [
+                {
+                  "name": "data",
+                  "type": "ArrayBuffer",
+                  "description": "Signature verification result data"
+                },
+                {
+                  "name": "length",
+                  "type": "number",
+                  "description": "Data length"
+                }
+              ]
             }
           ]
         }

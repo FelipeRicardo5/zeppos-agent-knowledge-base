@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { extractEnums, extractShapes, extractSignature } from "../src/parse/spec.js";
+import {
+  extractEnums,
+  extractMembers,
+  extractShapes,
+  extractSignature,
+  withoutMembers,
+} from "../src/parse/spec.js";
 
 // Both eval runs found the same root gap: the base recorded that a symbol exists
 // and never how to call it. The documentation did state it — 182 of 269 reference
@@ -354,5 +360,172 @@ title: Multilingual Mapping
 
   it("finds no enum on a page with no value table", () => {
     assert.deepEqual(extractEnums(SETTINGS_COMPONENT), []);
+  });
+});
+
+// --- Members ----------------------------------------------------------------
+//
+// What you call on a value rather than on a module. The base had none of these:
+// eval 02 listed "a sensor instance's accessors" as an open gap, and `examples/`
+// could only reach them by matching a bare method name against the symbol table.
+
+/** `sensor/BloodOxygen.mdx`, trimmed. Two methods, one with its own level. */
+const SENSOR_PAGE = `---
+title: BloodOxygen
+---
+
+> Start from API_LEVEL \`2.0\`.
+
+Blood oxygen Sensor.
+
+## Methods
+
+### getCurrent
+
+Get the current measured blood oxygen result
+
+\`\`\`ts
+getCurrent(): Result
+\`\`\`
+
+#### Result
+
+| Property | Type                | Description       | API_LEVEL |
+| -------- | ------------------- | ----------------- | --------- |
+| value    | <code>number</code> | Measurement value | 2.0       |
+
+#### retCode
+
+| Value | Type                | Description         | API_LEVEL |
+| ----- | ------------------- | ------------------- | --------- |
+| 0     | <code>number</code> | Measurement invalid | 2.0       |
+
+### start
+
+> Start from API_LEVEL \`2.1\`
+
+Start blood oxygen measurement
+
+\`\`\`ts
+start(): void
+\`\`\`
+
+## Example
+
+\`\`\`js
+import { BloodOxygen } from '@zos/sensor'
+\`\`\`
+`;
+
+describe("extractMembers", () => {
+  it("reads each method under `## Methods` with its signature and prose", () => {
+    const members = extractMembers(SENSOR_PAGE);
+
+    assert.deepEqual(
+      members.map((m) => [m.name, m.signature]),
+      [
+        ["getCurrent", "getCurrent(): Result"],
+        ["start", "start(): void"],
+      ],
+    );
+    assert.equal(members[0].description, "Get the current measured blood oxygen result");
+  });
+
+  it("keeps a member's own API_LEVEL, which the symbol's does not imply", () => {
+    // `BloodOxygen` is 2.0 and its `start` is 2.1, so an app targeting 2.0 can
+    // construct the sensor and not drive it. Taking the page badge for both
+    // would state that it can.
+    const [getCurrent, start] = extractMembers(SENSOR_PAGE);
+
+    assert.equal(getCurrent.apiLevel, undefined);
+    assert.equal(start.apiLevel, 2.1);
+    // The badge is a claim about the level, never part of the prose.
+    assert.equal(start.description, "Start blood oxygen measurement");
+  });
+
+  it("files a member's tables on the member, not on the page", () => {
+    // 72 of the 84 property and value tables on these pages sit inside a
+    // `Methods` section. `retCode` is what `getCurrent` returns; filing it on
+    // the page said the sensor itself had a result code.
+    const [getCurrent] = extractMembers(SENSOR_PAGE);
+
+    assert.deepEqual(getCurrent.shapes?.map((s) => s.name), ["Result"]);
+    assert.deepEqual(getCurrent.enums?.map((e) => e.name), ["retCode"]);
+    assert.deepEqual(extractShapes(withoutMembers(SENSOR_PAGE)), []);
+    assert.deepEqual(extractEnums(withoutMembers(SENSOR_PAGE)), []);
+  });
+
+  it("reads the deeper nesting the crypto pages use", () => {
+    // `crypto/AESCrypto.mdx`: `## AESCrypto` then `### Methods` then `####`.
+    // The depth is read off the heading rather than assumed, because assuming
+    // `###` would have found nothing on all four crypto pages.
+    const crypto = `## AESCrypto
+
+AES-CBC symmetric encryption instance.
+
+### Methods
+
+#### encrypt
+
+Encrypt data whose length is a multiple of 16 bytes
+
+\`\`\`ts
+encrypt(data: createCrypto.AESData): AESCipherResult | undefined
+\`\`\`
+
+##### AESCipherResult
+
+| Property | Type                     | Description    |
+| -------- | ------------------------ | -------------- |
+| data     | <code>ArrayBuffer</code> | Encrypted data |
+`;
+
+    const [encrypt] = extractMembers(crypto);
+
+    assert.equal(encrypt.name, "encrypt");
+    assert.equal(encrypt.signature, "encrypt(data: createCrypto.AESData): AESCipherResult | undefined");
+    assert.deepEqual(encrypt.shapes?.map((s) => s.name), ["AESCipherResult"]);
+  });
+
+  it("leaves out a heading whose own example imports it", () => {
+    // `ui/widget/SYSTEM_KEYBOARD.mdx` lists `deleteKeyboard()` under `## Methods`
+    // and imports it — a module function documented beside the widget, not a
+    // member of it. One case in 257, and filing it here would both invent a
+    // member and shadow a symbol that already has a record.
+    const keyboard = `## Methods
+
+### deleteKeyboard()
+
+Exit and destroy the current keyboard input interface
+
+\`\`\`js
+import { deleteKeyboard } from '@zos/ui'
+\`\`\`
+`;
+
+    assert.deepEqual(extractMembers(keyboard), []);
+  });
+
+  it("strips the empty parentheses a heading writes after a member name", () => {
+    // The parentheses are the page's, not the name's. They also have to go
+    // before the import check runs, or `deleteKeyboard()` never matches
+    // `import { deleteKeyboard }` and gets filed as a member of the widget.
+    const page = `## Methods
+
+### clear()
+
+Empty the store
+
+\`\`\`ts
+clear(): void
+\`\`\`
+`;
+
+    assert.equal(extractMembers(page)[0].name, "clear");
+  });
+
+  it("finds no members on a page with no Methods section", () => {
+    assert.deepEqual(extractMembers(SETTINGS_COMPONENT), []);
+    assert.equal(withoutMembers(SETTINGS_COMPONENT), SETTINGS_COMPONENT);
   });
 });

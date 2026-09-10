@@ -6,7 +6,13 @@
 import path from "node:path";
 import type { RawUnit } from "../types.js";
 import { runtimeForPath } from "./runtime.js";
-import { extractEnums, extractShapes, extractSignature } from "./spec.js";
+import {
+  extractEnums,
+  extractMembers,
+  extractShapes,
+  extractSignature,
+  withoutMembers,
+} from "./spec.js";
 import { readSource, walkFiles } from "./util.js";
 
 const IMPORT_RE = /import\s*(?:\{([^}]*)\})?[^'"]*from\s+['"](@[^'"]+)['"]/g;
@@ -88,15 +94,23 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
 
     const apiLevelMatch = content.match(API_LEVEL_RE);
     const description = extractDescription(content);
-    const shapes = extractShapes(content);
     const runtimeHint = runtimeForPath(sourceFile);
+
+    // What you call on a value this symbol produces: `new HeartRate()` then
+    // `.getCurrent()`. Taken out of the page before the shape and enum passes
+    // run, because a table under a `Methods` heading belongs to the method
+    // above it — 72 of the 84 such tables on these pages are inside one, and
+    // leaving them in filed `getCurrent`'s `retCode` on the sensor itself.
+    const members = extractMembers(content);
+    const pageOnly = members.length > 0 ? withoutMembers(content) : content;
+    const shapes = extractShapes(pageOnly);
 
     // A page declares two kinds of value set, and they belong to two different
     // symbols. `ui/widget/TEXT.mdx` documents the members of `align`, which is
     // its own importable symbol — the page is only where the docs happened to
     // put the table. `sensor/BloodOxygen.mdx` documents `retCode`, which is the
     // domain of a value that page's symbol returns and belongs to it.
-    const enums = extractEnums(content);
+    const enums = extractEnums(pageOnly);
     const own = enums.filter((spec) => !spec.qualified);
 
     units.push({
@@ -105,9 +119,10 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
       kind: content.includes("function " + symbol) ? "function" : "value",
       description,
       apiLevel: apiLevelMatch ? Number(apiLevelMatch[1]) : undefined,
-      signature: extractSignature(content),
+      signature: extractSignature(pageOnly),
       shapes: shapes.length > 0 ? shapes : undefined,
       enums: own.length > 0 ? own : undefined,
+      members: members.length > 0 ? members : undefined,
       runtimeHint,
       sourceFile,
       sourceKind: "docs-reference",

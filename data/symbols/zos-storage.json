@@ -8,6 +8,28 @@
       "type": "value",
       "description": "Locally stored key-value pairs, data cleared after Mini Program uninstallation. An instance keeps loaded data in memory, making it suitable for repeated reads and writes by reducing repeated file reads. permission code: `device:os.local_storage`",
       "minApiLevel": 3,
+      "members": [
+        {
+          "name": "setItem",
+          "description": "Save data",
+          "signature": "setItem(key: string, value: any): void"
+        },
+        {
+          "name": "getItem",
+          "description": "Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.",
+          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+        },
+        {
+          "name": "removeItem",
+          "description": "Delete the data of the specified `key`",
+          "signature": "removeItem(key: string): boolean"
+        },
+        {
+          "name": "clear",
+          "description": "Clear all data in localStorage",
+          "signature": "clear(): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +60,28 @@
       "type": "value",
       "description": "Locally stored key-value pairs, data cleared after Mini Program uninstallation. permission code: `device:os.local_storage`",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "setItem",
+          "description": "Save data",
+          "signature": "setItem(key: string, value: any): void"
+        },
+        {
+          "name": "getItem",
+          "description": "Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.",
+          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+        },
+        {
+          "name": "removeItem",
+          "description": "Delete the data of the specified `key`",
+          "signature": "removeItem(key: string): boolean"
+        },
+        {
+          "name": "clear",
+          "description": "Clear all data in localStorage",
+          "signature": "clear(): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -53,6 +97,28 @@
       "type": "value",
       "description": "Key-value pairs are stored and data is cleared after exiting the Mini Program. Each instance has independent temporary in-memory storage, suitable for isolated session data.",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "setItem",
+          "description": "Save data",
+          "signature": "setItem(key: string, value: any): void"
+        },
+        {
+          "name": "getItem",
+          "description": "Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.",
+          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+        },
+        {
+          "name": "removeItem",
+          "description": "Delete the data of the specified `key`",
+          "signature": "removeItem(key: string): boolean"
+        },
+        {
+          "name": "clear",
+          "description": "Clear all data in sessionStorage",
+          "signature": "clear(): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -83,6 +149,28 @@
       "type": "value",
       "description": "Key-value pairs are stored and data is cleared after exiting the Mini Program.",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "setItem",
+          "description": "Save data",
+          "signature": "setItem(key: string, value: any): void"
+        },
+        {
+          "name": "getItem",
+          "description": "Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.",
+          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+        },
+        {
+          "name": "removeItem",
+          "description": "Delete the data of the specified `key`",
+          "signature": "removeItem(key: string): boolean"
+        },
+        {
+          "name": "clear",
+          "description": "Clear all data in sessionStorage",
+          "signature": "clear(): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -98,6 +186,28 @@
       "type": "value",
       "description": "Shared JSON key-value storage for cross-application scenarios. Application A publishes data with this class, and application B reads it with `LocalStorage` from `@zos/share-storage` and application A's appId. When using a custom storagePath, both applications must use the same path. permission code: `device:os.local_storage`",
       "minApiLevel": 3,
+      "members": [
+        {
+          "name": "setItem",
+          "description": "Set a value",
+          "signature": "setItem(key: string, value: any): void"
+        },
+        {
+          "name": "getItem",
+          "description": "Get a value, or return the default value when not found",
+          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+        },
+        {
+          "name": "removeItem",
+          "description": "Delete a value by key",
+          "signature": "removeItem(key: string): boolean"
+        },
+        {
+          "name": "clear",
+          "description": "Clear all shared storage data",
+          "signature": "clear(): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -113,6 +223,73 @@
       "type": "value",
       "description": "Shared typed key-value storage for cross-application scenarios. Application A publishes system properties with this class, and application B reads them with `TypedStorage` from `@zos/share-storage` and application A's appId. When using a custom scope, both applications must use the same scope.",
       "minApiLevel": 3,
+      "members": [
+        {
+          "name": "getBool",
+          "description": "Get a boolean value",
+          "signature": "getBool(key: string, defaultValue: boolean): boolean"
+        },
+        {
+          "name": "getInt",
+          "description": "Get an integer value",
+          "signature": "getInt(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getInt64",
+          "description": "Get a 64-bit integer value",
+          "signature": "getInt64(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getDouble",
+          "description": "Get a double value",
+          "signature": "getDouble(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getString",
+          "description": "Get a string value",
+          "signature": "getString(key: string, defaultValue: string): string"
+        },
+        {
+          "name": "putBool",
+          "description": "Set a boolean value",
+          "signature": "putBool(key: string, value: boolean): number"
+        },
+        {
+          "name": "putInt",
+          "description": "Set an integer value",
+          "signature": "putInt(key: string, value: number): number"
+        },
+        {
+          "name": "putInt64",
+          "description": "Set a 64-bit integer value",
+          "signature": "putInt64(key: string, value: number): number"
+        },
+        {
+          "name": "putDouble",
+          "description": "Set a double value",
+          "signature": "putDouble(key: string, value: number): number"
+        },
+        {
+          "name": "putString",
+          "description": "Set a string value",
+          "signature": "putString(key: string, value: string): number"
+        },
+        {
+          "name": "has",
+          "description": "Check whether a key exists",
+          "signature": "has(key: string): boolean"
+        },
+        {
+          "name": "clear",
+          "description": "Clear all shared typed storage data",
+          "signature": "clear(): void"
+        },
+        {
+          "name": "remove",
+          "description": "Delete a value by key",
+          "signature": "remove(key: string): boolean"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -128,6 +305,73 @@
       "type": "value",
       "description": "Typed key-value storage backed by system properties. Suitable for primitive values such as booleans, numbers and strings..",
       "minApiLevel": 3,
+      "members": [
+        {
+          "name": "getBool",
+          "description": "Get a boolean value",
+          "signature": "getBool(key: string, defaultValue: boolean): boolean"
+        },
+        {
+          "name": "getInt",
+          "description": "Get an integer value",
+          "signature": "getInt(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getInt64",
+          "description": "Get a 64-bit integer value",
+          "signature": "getInt64(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getDouble",
+          "description": "Get a double value",
+          "signature": "getDouble(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getString",
+          "description": "Get a string value",
+          "signature": "getString(key: string, defaultValue: string): string"
+        },
+        {
+          "name": "putBool",
+          "description": "Set a boolean value",
+          "signature": "putBool(key: string, value: boolean): number"
+        },
+        {
+          "name": "putInt",
+          "description": "Set an integer value",
+          "signature": "putInt(key: string, value: number): number"
+        },
+        {
+          "name": "putInt64",
+          "description": "Set a 64-bit integer value",
+          "signature": "putInt64(key: string, value: number): number"
+        },
+        {
+          "name": "putDouble",
+          "description": "Set a double value",
+          "signature": "putDouble(key: string, value: number): number"
+        },
+        {
+          "name": "putString",
+          "description": "Set a string value",
+          "signature": "putString(key: string, value: string): number"
+        },
+        {
+          "name": "has",
+          "description": "Check whether a key exists",
+          "signature": "has(key: string): boolean"
+        },
+        {
+          "name": "clear",
+          "description": "Clear all typed storage data",
+          "signature": "clear(): void"
+        },
+        {
+          "name": "remove",
+          "description": "Delete a value by key",
+          "signature": "remove(key: string): boolean"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

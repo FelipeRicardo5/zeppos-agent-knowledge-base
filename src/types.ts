@@ -94,6 +94,38 @@ export interface EnumSpec {
   partial?: boolean;
 }
 
+/**
+ * Something reached through a value rather than through an import.
+ *
+ * `new HeartRate().getCurrent()`, `localStorage.getItem(...)`,
+ * `player.setSource(...)`. Deliberately a field on the owning record and not a
+ * record of its own: every id in this base is something you can import, and
+ * `@zos/sensor.getCurrent` would be an id nothing can. It is also not a symbol
+ * in any useful sense — 12 different sensors document a `getCurrent`, and they
+ * are 12 different methods with 12 different return shapes.
+ *
+ * The reference pages state these under a `Methods` heading, one per `###`
+ * below it, and the extractor walked past all of them: eval 02 recorded "a
+ * sensor instance's accessors" as an open gap, and `examples/` could only reach
+ * them by matching a method name against the symbol table.
+ */
+export interface MemberSpec {
+  name: string;
+  description?: string;
+  /** The fenced `ts` signature the page states, verbatim. */
+  signature?: string;
+  /**
+   * Its own minimum, which the owning symbol's does not imply — `BloodOxygen`
+   * is 2.0 and its `start` method is 2.1. Absent means no badge, never the
+   * owner's level.
+   */
+  apiLevel?: number;
+  /** Shapes declared under this member, such as what it returns. */
+  shapes?: ShapeSpec[];
+  /** Value sets declared under this member, such as a `retCode` domain. */
+  enums?: EnumSpec[];
+}
+
 export interface SymbolRecord {
   id: string; // e.g. "@zos/router.launchApp"
   module: string; // e.g. "@zos/router"
@@ -115,6 +147,11 @@ export interface SymbolRecord {
    * `@zos/sensor.BloodOxygen` holds `retCode`, the domain of a value it returns.
    */
   enums?: EnumSpec[];
+  /**
+   * What can be called on a value this symbol produces or is. See `MemberSpec`
+   * for why these are a field rather than symbols of their own.
+   */
+  members?: MemberSpec[];
   runtimes: Runtime[];
   source: RawSourceKind;
   confidence: Confidence;
@@ -136,6 +173,7 @@ export interface RawUnit {
   signature?: string;
   shapes?: ShapeSpec[];
   enums?: EnumSpec[];
+  members?: MemberSpec[];
   runtimeHint?: Runtime;
   sourceFile: string; // path relative to the cache dir
   sourceKind: RawSourceKind;

@@ -12,6 +12,21 @@
 
 File Transfer.
 
+**Called on a `TransferFile` value** — 2 members
+
+| Member | Signature |
+| --- | --- |
+| [`getInbox`](#zosbletransferfiletransferfilegetinbox) | `getInbox(): Inbox` |
+| [`getOutbox`](#zosbletransferfiletransferfilegetoutbox) | `getOutbox(): Outbox` |
+
+#### `@zos/ble/TransferFile.TransferFile.getInbox`
+
+Get the receiving file object
+
+```ts
+getInbox(): Inbox
+```
+
 **Inbox**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -61,11 +76,22 @@ File Transfer.
 | `fileSize` | `number` | not stated | — | >= 3 | File size in bytes |
 | `loadedSize` | `number` | not stated | — | >= 3 | The size of the transferred file in bytes |
 
-**Outbox**
+**InboxEventName**
 
-| Property | Type | Required | Default | Min API_LEVEL | Description |
-| --- | --- | --- | --- | --- | --- |
-| `enqueueFile` | `(fileName: string, params?: object) =&#62; getInbox.FileObject` | not stated | — | >= 3 | Returns FileObject, fileName is the path to the file, and params is a customized file transfer object, retrieved from FileObject on the receiving end. The getInbox.FileObject type is referenced above |
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `NEWFILE` | `string` | >= 3 | The event that just received the file |
+| `FILE` | `string` | >= 3 | The event that completed receiving the file |
+
+**ReceiveFileState**
+
+| Value | Type | Min API_LEVEL | Description |
+| --- | --- | --- | --- |
+| `pending` | `string` | >= 3 | Pending |
+| `transferring` | `string` | >= 3 | Transferring |
+| `transferred` | `string` | >= 3 | Transferred |
+| `error` | `string` | >= 3 | Error |
+| `canceled` | `string` | >= 3 | Canceled |
 
 **FileEventName**
 
@@ -74,19 +100,16 @@ File Transfer.
 | `change` | `string` | >= 3 | The event name that occurs when readyState changes state, corresponding to the ChangeCallback callback function |
 | `progress` | `string` | >= 3 | The event name when the file transfer progress changes, corresponding to the ProgressCallback callback function |
 
-**InboxEventName**
+#### `@zos/ble/TransferFile.TransferFile.getOutbox`
 
-| Value | Type | Min API_LEVEL | Description |
-| --- | --- | --- | --- |
-| `FILE` | `string` | >= 3 | The event that completed receiving the file |
-| `NEWFILE` | `string` | >= 3 | The event that just received the file |
+Get the sending file object
 
-**ReceiveFileState**
+```ts
+getOutbox(): Outbox
+```
 
-| Value | Type | Min API_LEVEL | Description |
-| --- | --- | --- | --- |
-| `canceled` | `string` | >= 3 | Canceled |
-| `error` | `string` | >= 3 | Error |
-| `pending` | `string` | >= 3 | Pending |
-| `transferred` | `string` | >= 3 | Transferred |
-| `transferring` | `string` | >= 3 | Transferring |
+**Outbox**
+
+| Property | Type | Required | Default | Min API_LEVEL | Description |
+| --- | --- | --- | --- | --- | --- |
+| `enqueueFile` | `(fileName: string, params?: object) =&#62; getInbox.FileObject` | not stated | — | >= 3 | Returns FileObject, fileName is the path to the file, and params is a customized file transfer object, retrieved from FileObject on the receiving end. The getInbox.FileObject type is referenced above |

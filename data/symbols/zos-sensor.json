@@ -8,29 +8,68 @@
       "type": "value",
       "description": "accelerometer. Measure the acceleration of the device along three orthogonal axes (x, y, z). The x and y axes are parallel to the screen, with the positive direction referring to the diagram. The z-axis is perpendicular to the device's screen, with the positive direction pointing upward. permission code: `device:os.accelerometer`",
       "minApiLevel": 3,
-      "shapes": [
+      "members": [
         {
-          "name": "Result",
-          "props": [
+          "name": "start",
+          "description": "Start listening to accelerometer data",
+          "signature": "start(): void"
+        },
+        {
+          "name": "stop",
+          "description": "Stop listening to accelerometer data",
+          "signature": "stop(): void"
+        },
+        {
+          "name": "getCurrent",
+          "description": "Get current accelerometer data",
+          "signature": "getCurrent(): Result",
+          "shapes": [
             {
-              "name": "x",
-              "type": "number",
-              "description": "Acceleration of x-axis in cm/s^2",
-              "apiLevel": 3
-            },
-            {
-              "name": "y",
-              "type": "number",
-              "description": "Acceleration of y-axis in cm/s^2",
-              "apiLevel": 3
-            },
-            {
-              "name": "z",
-              "type": "number",
-              "description": "Acceleration of z-axis in cm/s^2",
-              "apiLevel": 3
+              "name": "Result",
+              "props": [
+                {
+                  "name": "x",
+                  "type": "number",
+                  "description": "Acceleration of x-axis in cm/s^2",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "y",
+                  "type": "number",
+                  "description": "Acceleration of y-axis in cm/s^2",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "z",
+                  "type": "number",
+                  "description": "Acceleration of z-axis in cm/s^2",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
+        },
+        {
+          "name": "onChange",
+          "description": "Register the accelerometer data change event listener callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the accelerometer data change event listener callback function",
+          "signature": "offChange(callback: () => void): void"
+        },
+        {
+          "name": "setFreqMode",
+          "description": "Set the mode of trigger frequency, `mode` value reference frequency mode constant",
+          "signature": "setFreqMode(mode: number): void",
+          "apiLevel": 3
+        },
+        {
+          "name": "getFreqMode",
+          "description": "Get the mode of trigger frequency, result value reference frequency mode constant",
+          "signature": "getFreqMode(): number",
+          "apiLevel": 3
         }
       ],
       "runtimes": [
@@ -48,6 +87,28 @@
       "type": "value",
       "description": "Barometer Sensor. permission code: `device:os.barometer`",
       "minApiLevel": 2.1,
+      "members": [
+        {
+          "name": "getAirPressure",
+          "description": "Get air pressure value in hPa",
+          "signature": "getAirPressure(): number"
+        },
+        {
+          "name": "getAltitude",
+          "description": "Get altitude value in meters",
+          "signature": "getAltitude(): number"
+        },
+        {
+          "name": "onChange",
+          "description": "Register the air pressure and altitude change event callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the air pressure and altitude change event callback function",
+          "signature": "offChange(callback: () => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -63,6 +124,23 @@
       "type": "value",
       "description": "Battery Sensor.",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getCurrent",
+          "description": "Get the current device power percentage, range 0 - 100",
+          "signature": "getCurrent(): number"
+        },
+        {
+          "name": "onChange",
+          "description": "Register the power change event callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the power change event callback function",
+          "signature": "offChange(callback: () => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -78,129 +156,171 @@
       "type": "value",
       "description": "Blood oxygen Sensor. permission code: `data:user.hd.spo2`",
       "minApiLevel": 2,
-      "shapes": [
+      "members": [
         {
-          "name": "Result",
-          "props": [
+          "name": "getCurrent",
+          "description": "Get the current measured blood oxygen result",
+          "signature": "getCurrent(): Result",
+          "shapes": [
             {
-              "name": "value",
-              "type": "number",
-              "description": "Blood oxygen measurement values",
-              "apiLevel": 2
-            },
-            {
-              "name": "time",
-              "type": "number",
-              "description": "Measurement time",
-              "apiLevel": 2
-            },
+              "name": "Result",
+              "props": [
+                {
+                  "name": "value",
+                  "type": "number",
+                  "description": "Blood oxygen measurement values",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "time",
+                  "type": "number",
+                  "description": "Measurement time",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "retCode",
+                  "type": "number",
+                  "description": "Result code, refer to retCode description",
+                  "apiLevel": 2
+                }
+              ]
+            }
+          ],
+          "enums": [
             {
               "name": "retCode",
-              "type": "number",
-              "description": "Result code, refer to retCode description",
-              "apiLevel": 2
+              "qualified": false,
+              "members": [
+                {
+                  "value": "0",
+                  "type": "number",
+                  "description": "Measurement invalid",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "1",
+                  "type": "number",
+                  "description": "Continue measuring",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "2",
+                  "type": "number",
+                  "description": "Measurement success",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "3",
+                  "type": "number",
+                  "description": "Measurement failure",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "4",
+                  "type": "number",
+                  "description": "Not wearing",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "5",
+                  "type": "number",
+                  "description": "Measurement timeout",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "6",
+                  "type": "number",
+                  "description": "Invalid wearing",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "7",
+                  "type": "number",
+                  "description": "Invalid signal",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "8",
+                  "type": "number",
+                  "description": "Low blood oxygen value",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "9",
+                  "type": "number",
+                  "description": "High blood oxygen value",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "10",
+                  "type": "number",
+                  "description": "Measurement invalid",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Data",
-          "props": [
-            {
-              "name": "spo2",
-              "type": "number",
-              "description": "Blood oxygen measurement value",
-              "apiLevel": 3
-            },
-            {
-              "name": "time",
-              "type": "number",
-              "description": "Time of measurement of blood oxygen values, UTC time stamp in seconds",
-              "apiLevel": 3
-            }
-          ]
-        }
-      ],
-      "enums": [
+          "name": "getLastDay",
+          "description": "Returns the average blood sample data for the past 24 hours, with an array length of 24",
+          "signature": "getLastDay(): Array<number>"
+        },
         {
-          "name": "retCode",
-          "qualified": false,
-          "members": [
+          "name": "start",
+          "description": "Start blood oxygen measurement, it is recommended to call `stop` to stop the last measurement before calling the `start` method",
+          "signature": "start(): void",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "stop",
+          "description": "Cancel blood oxygen measurement",
+          "signature": "stop(): void",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "onChange",
+          "description": "Register a callback function to listen for blood oxygen measurement change events",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel a callback function to listen for blood oxygen measurement change events",
+          "signature": "offChange(callback: () => void): void"
+        },
+        {
+          "name": "getLastFewHour",
+          "description": "Obtain blood oxygen measurements for the last `hour` and sort the results in chronological order",
+          "signature": "getLastFewHour(hour: number): Array<Data>",
+          "apiLevel": 3,
+          "shapes": [
             {
-              "value": "0",
-              "type": "number",
-              "description": "Measurement invalid",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "1",
-              "type": "number",
-              "description": "Continue measuring",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "2",
-              "type": "number",
-              "description": "Measurement success",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "3",
-              "type": "number",
-              "description": "Measurement failure",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "4",
-              "type": "number",
-              "description": "Not wearing",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "5",
-              "type": "number",
-              "description": "Measurement timeout",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "6",
-              "type": "number",
-              "description": "Invalid wearing",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "7",
-              "type": "number",
-              "description": "Invalid signal",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "8",
-              "type": "number",
-              "description": "Low blood oxygen value",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "9",
-              "type": "number",
-              "description": "High blood oxygen value",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "10",
-              "type": "number",
-              "description": "Measurement invalid",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
+              "name": "Data",
+              "props": [
+                {
+                  "name": "spo2",
+                  "type": "number",
+                  "description": "Blood oxygen measurement value",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "time",
+                  "type": "number",
+                  "description": "Time of measurement of blood oxygen values, UTC time stamp in seconds",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         }
@@ -220,23 +340,35 @@
       "type": "value",
       "description": "Body surface temperature sensor. permission code: `data:user.hd.body_temp`",
       "minApiLevel": 3,
-      "shapes": [
+      "members": [
         {
-          "name": "Result",
-          "props": [
+          "name": "getCurrent",
+          "description": "Get the latest measurement of body surface temperature",
+          "signature": "getCurrent(): Result",
+          "shapes": [
             {
-              "name": "current",
-              "type": "number",
-              "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
-              "apiLevel": 3
-            },
-            {
-              "name": "time",
-              "type": "number",
-              "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
-              "apiLevel": 3
+              "name": "Result",
+              "props": [
+                {
+                  "name": "current",
+                  "type": "number",
+                  "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "time",
+                  "type": "number",
+                  "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
+        },
+        {
+          "name": "getToday",
+          "description": "Get the body surface temperature measurement values for 24 hours a day. The array length is 24 \\* 60 / 5 = 288, with an average measurement value every five minutes. The unit is Celsius, such as `35.2`. Data without measurement values is `-1000`",
+          "signature": "getToday(): Array<number>"
         }
       ],
       "runtimes": [
@@ -254,54 +386,81 @@
       "type": "value",
       "description": "Buzzer.",
       "minApiLevel": 3.6,
-      "enums": [
+      "members": [
         {
-          "name": "Type",
-          "qualified": false,
-          "members": [
+          "name": "isEnabled",
+          "description": "Get whether other options in the system buzzer scene settings are turned on, Settings - > Sound & Vibration - > Buzzer Scene - > Other",
+          "signature": "isEnabled(): boolean"
+        },
+        {
+          "name": "getSourceType",
+          "description": "Get buzzer mode",
+          "signature": "getSourceType(): Type",
+          "enums": [
             {
-              "value": "ALARM",
-              "type": "number",
-              "description": "Alarm clock",
-              "apiLevel": 3.6,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "FAILURE",
-              "type": "number",
-              "description": "Failure",
-              "apiLevel": 3.6,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "OPERATE",
-              "type": "number",
-              "description": "Operation",
-              "apiLevel": 3.6,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "REMIND_1",
-              "type": "number",
-              "description": "Reminder 1",
-              "apiLevel": 3.6,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "REMIND_2",
-              "type": "number",
-              "description": "Reminder 2",
-              "apiLevel": 3.6,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "SUCCESS",
-              "type": "number",
-              "description": "Success",
-              "apiLevel": 3.6,
-              "confidence": "OFFICIAL"
+              "name": "Type",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "ALARM",
+                  "type": "number",
+                  "description": "Alarm clock",
+                  "apiLevel": 3.6,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "REMIND_1",
+                  "type": "number",
+                  "description": "Reminder 1",
+                  "apiLevel": 3.6,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "REMIND_2",
+                  "type": "number",
+                  "description": "Reminder 2",
+                  "apiLevel": 3.6,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "OPERATE",
+                  "type": "number",
+                  "description": "Operation",
+                  "apiLevel": 3.6,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "SUCCESS",
+                  "type": "number",
+                  "description": "Success",
+                  "apiLevel": 3.6,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "FAILURE",
+                  "type": "number",
+                  "description": "Failure",
+                  "apiLevel": 3.6,
+                  "confidence": "OFFICIAL"
+                }
+              ]
             }
           ]
+        },
+        {
+          "name": "getStrength",
+          "description": "Get buzzer strength, '0' - weak, '1' - medium, '2' - high",
+          "signature": "getStrength(): number"
+        },
+        {
+          "name": "start",
+          "description": "Start beeping, you can pass in `type` to specify the built-in beeping mode of the system,`repeatCount` is the number of repetitions, default `0`, do not repeat",
+          "signature": "start(type: number, repeatCount: 0): void"
+        },
+        {
+          "name": "stop",
+          "description": "Stop buzzer",
+          "signature": "stop(): void"
         }
       ],
       "runtimes": [
@@ -319,6 +478,28 @@
       "type": "value",
       "description": "Calorie Sensor. permission code: `data:user.hd.calorie`",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getCurrent",
+          "description": "Get the current calorie consumption in kcal",
+          "signature": "getCurrent(): number"
+        },
+        {
+          "name": "getTarget",
+          "description": "Get the target calorie consumption in kcal",
+          "signature": "getTarget(): number"
+        },
+        {
+          "name": "onChange",
+          "description": "Register the calories change event callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the calories change event callback function",
+          "signature": "offChange(callback: () => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -350,68 +531,117 @@
       "type": "value",
       "description": "compass. permission code: `device:os.compass`",
       "minApiLevel": 3,
-      "enums": [
+      "members": [
         {
-          "name": "direction",
-          "qualified": false,
-          "members": [
+          "name": "start",
+          "description": "Start listening to compass data",
+          "signature": "start(): void"
+        },
+        {
+          "name": "stop",
+          "description": "Stop listening to compass data",
+          "signature": "stop(): void"
+        },
+        {
+          "name": "getStatus",
+          "description": "Get the compass calibration status, `true` means calibrated",
+          "signature": "getStatus(): boolean"
+        },
+        {
+          "name": "getDirection",
+          "description": "Get the direction of the current watch's 12-point scale, divided into eight directions, refer to `direction`",
+          "signature": "getDirection(): string",
+          "enums": [
             {
-              "value": "E",
-              "type": "string",
-              "description": "East",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "N",
-              "type": "string",
-              "description": "North",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "NE",
-              "type": "string",
-              "description": "Northeast",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "NW",
-              "type": "string",
-              "description": "Northwest",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "S",
-              "type": "string",
-              "description": "South",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "SE",
-              "type": "string",
-              "description": "Southeast",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "SW",
-              "type": "string",
-              "description": "Southwest",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "W",
-              "type": "string",
-              "description": "West",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
+              "name": "direction",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "N",
+                  "type": "string",
+                  "description": "North",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "NE",
+                  "type": "string",
+                  "description": "Northeast",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "E",
+                  "type": "string",
+                  "description": "East",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "SE",
+                  "type": "string",
+                  "description": "Southeast",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "S",
+                  "type": "string",
+                  "description": "South",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "SW",
+                  "type": "string",
+                  "description": "Southwest",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "W",
+                  "type": "string",
+                  "description": "West",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "NW",
+                  "type": "string",
+                  "description": "Northwest",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
             }
           ]
+        },
+        {
+          "name": "getDirectionAngle",
+          "description": "Get the current direction angle, the clockwise rotation angle of the watch's 12 o'clock scale direction relative to due north, takes the values 0 - 360, if the compass is not calibrated, returns the `INVALID` string",
+          "signature": "getDirectionAngle(): number | 'INVALID'"
+        },
+        {
+          "name": "onChange",
+          "description": "Register the compass direction change event listener callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the compass direction change event listener callback function",
+          "signature": "offChange(callback: () => void): void"
+        },
+        {
+          "name": "setFreqMode",
+          "description": "Set the mode of trigger frequency, `mode` value reference frequency mode constant",
+          "signature": "setFreqMode(mode: number): void",
+          "apiLevel": 4
+        },
+        {
+          "name": "getFreqMode",
+          "description": "Get the mode of trigger frequency, result value reference frequency mode constant",
+          "signature": "getFreqMode(): number",
+          "apiLevel": 4
         }
       ],
       "runtimes": [
@@ -429,6 +659,23 @@
       "type": "value",
       "description": "Distance Sensor. permission code: `data:user.hd.distance`",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getCurrent",
+          "description": "Get the current distance",
+          "signature": "getCurrent(): number"
+        },
+        {
+          "name": "onChange",
+          "description": "Register the distance change event callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the distance change event callback function",
+          "signature": "offChange(callback: () => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -444,6 +691,28 @@
       "type": "value",
       "description": "FatBurning Sensor. permission code: `data:user.hd.fat_burning`",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getCurrent",
+          "description": "Get current fat burning minutes",
+          "signature": "getCurrent(): number"
+        },
+        {
+          "name": "getTarget",
+          "description": "Get current fat burning target minutes",
+          "signature": "getTarget(): number"
+        },
+        {
+          "name": "onChange",
+          "description": "Register a callback function to listen to the fat burning minutes change event",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel a callback function to listen to the fat burning minutes change event",
+          "signature": "offChange(callback: () => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -504,302 +773,383 @@
       "type": "value",
       "description": "Geolocation Sensor. permission code: `device:os.geolocation`",
       "minApiLevel": 2.1,
-      "shapes": [
+      "members": [
         {
-          "name": "Option",
-          "props": [
+          "name": "start",
+          "description": "Start listening to location data",
+          "signature": "start(): void"
+        },
+        {
+          "name": "stop",
+          "description": "Stop listening to location data",
+          "signature": "stop(): void"
+        },
+        {
+          "name": "getStatus",
+          "description": "Get the positioning status, return `A` for positioning in progress, return `V` for invalid positioning",
+          "signature": "getStatus(): string"
+        },
+        {
+          "name": "getLatitude",
+          "description": "Get Latitude",
+          "signature": "getLatitude(option: Option): Result",
+          "shapes": [
             {
-              "name": "format",
-              "type": "string",
-              "default": "DD",
-              "description": "Coordinate format, optionally DD for decimal or DMS in degrees, minutes and seconds",
-              "apiLevel": 2.1
+              "name": "Option",
+              "props": [
+                {
+                  "name": "format",
+                  "type": "string",
+                  "default": "DD",
+                  "description": "Coordinate format, optionally DD for decimal or DMS in degrees, minutes and seconds",
+                  "apiLevel": 2.1
+                }
+              ]
+            },
+            {
+              "name": "DMS",
+              "props": [
+                {
+                  "name": "direction",
+                  "type": "string",
+                  "description": "Direction, N for north latitude, S for south latitude",
+                  "apiLevel": 2.1
+                },
+                {
+                  "name": "degrees",
+                  "type": "number",
+                  "description": "degree",
+                  "apiLevel": 2.1
+                },
+                {
+                  "name": "minutes",
+                  "type": "number",
+                  "description": "minute",
+                  "apiLevel": 2.1
+                },
+                {
+                  "name": "seconds",
+                  "type": "number",
+                  "description": "second",
+                  "apiLevel": 2.1
+                }
+              ]
             }
           ]
         },
         {
-          "name": "DMS",
-          "props": [
+          "name": "getLongitude",
+          "description": "Get Longitude",
+          "signature": "getLongitude(option: Option): Result",
+          "shapes": [
             {
-              "name": "direction",
-              "type": "string",
-              "description": "Direction, N for north latitude, S for south latitude",
-              "apiLevel": 2.1
+              "name": "Option",
+              "props": [
+                {
+                  "name": "format",
+                  "type": "string",
+                  "default": "DD",
+                  "description": "Coordinate format, optionally DD for decimal or DMS in degrees, minutes and seconds",
+                  "apiLevel": 2.1
+                }
+              ]
             },
             {
-              "name": "degrees",
-              "type": "number",
-              "description": "degree",
-              "apiLevel": 2.1
-            },
-            {
-              "name": "minutes",
-              "type": "number",
-              "description": "minute",
-              "apiLevel": 2.1
-            },
-            {
-              "name": "seconds",
-              "type": "number",
-              "description": "second",
-              "apiLevel": 2.1
+              "name": "DMS",
+              "props": [
+                {
+                  "name": "direction",
+                  "type": "string",
+                  "description": "Direction, E for east longitude, W for west longitude",
+                  "apiLevel": 2.1
+                },
+                {
+                  "name": "degrees",
+                  "type": "number",
+                  "description": "degree",
+                  "apiLevel": 2.1
+                },
+                {
+                  "name": "minutes",
+                  "type": "number",
+                  "description": "minute",
+                  "apiLevel": 2.1
+                },
+                {
+                  "name": "seconds",
+                  "type": "number",
+                  "description": "second",
+                  "apiLevel": 2.1
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Option",
-          "props": [
+          "name": "getSetting",
+          "description": "Get the positioning settings",
+          "signature": "getSetting(): Result",
+          "apiLevel": 3,
+          "shapes": [
             {
-              "name": "format",
-              "type": "string",
-              "default": "DD",
-              "description": "Coordinate format, optionally DD for decimal or DMS in degrees, minutes and seconds",
-              "apiLevel": 2.1
+              "name": "Result",
+              "props": [
+                {
+                  "name": "mode",
+                  "type": "number",
+                  "description": "Positioning settings, see mode below for value descriptions",
+                  "apiLevel": 3
+                }
+              ]
             }
-          ]
-        },
-        {
-          "name": "DMS",
-          "props": [
-            {
-              "name": "direction",
-              "type": "string",
-              "description": "Direction, E for east longitude, W for west longitude",
-              "apiLevel": 2.1
-            },
-            {
-              "name": "degrees",
-              "type": "number",
-              "description": "degree",
-              "apiLevel": 2.1
-            },
-            {
-              "name": "minutes",
-              "type": "number",
-              "description": "minute",
-              "apiLevel": 2.1
-            },
-            {
-              "name": "seconds",
-              "type": "number",
-              "description": "second",
-              "apiLevel": 2.1
-            }
-          ]
-        },
-        {
-          "name": "Result",
-          "props": [
+          ],
+          "enums": [
             {
               "name": "mode",
-              "type": "number",
-              "description": "Positioning settings, see mode below for value descriptions",
-              "apiLevel": 3
+              "qualified": false,
+              "members": [
+                {
+                  "value": "0",
+                  "type": "number",
+                  "description": "Accuracy",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "1",
+                  "type": "number",
+                  "description": "Automation",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "2",
+                  "type": "number",
+                  "description": "Balance",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "3",
+                  "type": "number",
+                  "description": "Power Saving",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "4",
+                  "type": "number",
+                  "description": "Super Power Saving",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "5",
+                  "type": "number",
+                  "description": "Custom",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Info",
-          "props": [
-            {
-              "name": "agps_inject_time",
-              "type": "number",
-              "description": "AGPS update time UTC timestamp in milliseconds",
-              "apiLevel": 3
-            },
-            {
-              "name": "top4_cn_val",
-              "type": "number",
-              "description": "Signal strength value of the positioning satellite",
-              "apiLevel": 3
-            },
-            {
-              "name": "is_dualband",
-              "type": "number",
-              "description": "Whether dual-band",
-              "apiLevel": 3
-            },
-            {
-              "name": "nb_valid_satellite",
-              "type": "number",
-              "description": "Number of available satellites",
-              "apiLevel": 3
-            },
-            {
-              "name": "nb_used_satellite",
-              "type": "number",
-              "description": "Number of satellites used",
-              "apiLevel": 3
-            },
-            {
-              "name": "elapsed_time",
-              "type": "number",
-              "description": "Time consumed from the start of satellite search to successful positioning, in seconds",
-              "apiLevel": 3
-            },
-            {
-              "name": "satellite_data",
-              "type": "Array&#60;SatelliteSystem&#62;",
-              "description": "Satellite data arrays",
-              "apiLevel": 3
-            }
-          ]
+          "name": "onChange",
+          "description": "Register a callback function to listen for location information change events",
+          "signature": "onChange(callback: () => void): void"
         },
         {
-          "name": "SatelliteSystem",
-          "props": [
+          "name": "offChange",
+          "description": "Cancel the callback function for listening to the location information change event",
+          "signature": "offChange(callback: () => void): void"
+        },
+        {
+          "name": "onGnssChange",
+          "description": "Register a callback function to listen for GNSS information change events",
+          "signature": "onGnssChange(callback: (info: Info) => void): void",
+          "apiLevel": 3,
+          "shapes": [
+            {
+              "name": "Info",
+              "props": [
+                {
+                  "name": "agps_inject_time",
+                  "type": "number",
+                  "description": "AGPS update time UTC timestamp in milliseconds",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "top4_cn_val",
+                  "type": "number",
+                  "description": "Signal strength value of the positioning satellite",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "is_dualband",
+                  "type": "number",
+                  "description": "Whether dual-band",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "nb_valid_satellite",
+                  "type": "number",
+                  "description": "Number of available satellites",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "nb_used_satellite",
+                  "type": "number",
+                  "description": "Number of satellites used",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "elapsed_time",
+                  "type": "number",
+                  "description": "Time consumed from the start of satellite search to successful positioning, in seconds",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "satellite_data",
+                  "type": "Array&#60;SatelliteSystem&#62;",
+                  "description": "Satellite data arrays",
+                  "apiLevel": 3
+                }
+              ]
+            },
+            {
+              "name": "SatelliteSystem",
+              "props": [
+                {
+                  "name": "gnss_id",
+                  "type": "number",
+                  "description": "Satellite ID, see gnss_id below for value descriptions",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "sub_top4_cn_val",
+                  "type": "number",
+                  "description": "The strongest signal value of this satellite system",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "nb_valid_satellite",
+                  "type": "number",
+                  "description": "Number of available satellites that can be searched",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "gsv_data",
+                  "type": "Array&#60;Satellite&#62;",
+                  "description": "Single satellite data array, maximum length 32",
+                  "apiLevel": 3.6
+                }
+              ]
+            },
+            {
+              "name": "Satellite",
+              "props": [
+                {
+                  "name": "id",
+                  "type": "number",
+                  "description": "Satellite ID",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "elevation",
+                  "type": "number",
+                  "description": "Pitch angle",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "azimuth",
+                  "type": "number",
+                  "description": "Azimuth",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "snr",
+                  "type": "number",
+                  "description": "Signal-to-noise ratio",
+                  "apiLevel": 3.6
+                }
+              ]
+            }
+          ],
+          "enums": [
             {
               "name": "gnss_id",
-              "type": "number",
-              "description": "Satellite ID, see gnss_id below for value descriptions",
-              "apiLevel": 3
-            },
-            {
-              "name": "sub_top4_cn_val",
-              "type": "number",
-              "description": "The strongest signal value of this satellite system",
-              "apiLevel": 3
-            },
-            {
-              "name": "nb_valid_satellite",
-              "type": "number",
-              "description": "Number of available satellites that can be searched",
-              "apiLevel": 3
-            },
-            {
-              "name": "gsv_data",
-              "type": "Array&#60;Satellite&#62;",
-              "description": "Single satellite data array, maximum length 32",
-              "apiLevel": 3.6
+              "qualified": false,
+              "members": [
+                {
+                  "value": "0",
+                  "type": "number",
+                  "description": "GPS",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "1",
+                  "type": "number",
+                  "description": "BDS",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "2",
+                  "type": "number",
+                  "description": "GLONASS",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "3",
+                  "type": "number",
+                  "description": "GALILEO",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "4",
+                  "type": "number",
+                  "description": "QZSS",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "5",
+                  "type": "number",
+                  "description": "IRNSS",
+                  "apiLevel": 3,
+                  "confidence": "OFFICIAL"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Satellite",
-          "props": [
-            {
-              "name": "id",
-              "type": "number",
-              "description": "Satellite ID",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "elevation",
-              "type": "number",
-              "description": "Pitch angle",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "azimuth",
-              "type": "number",
-              "description": "Azimuth",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "snr",
-              "type": "number",
-              "description": "Signal-to-noise ratio",
-              "apiLevel": 3.6
-            }
-          ]
-        }
-      ],
-      "enums": [
-        {
-          "name": "gnss_id",
-          "qualified": false,
-          "members": [
-            {
-              "value": "0",
-              "type": "number",
-              "description": "GPS",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "1",
-              "type": "number",
-              "description": "BDS",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "2",
-              "type": "number",
-              "description": "GLONASS",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "3",
-              "type": "number",
-              "description": "GALILEO",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "4",
-              "type": "number",
-              "description": "QZSS",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "5",
-              "type": "number",
-              "description": "IRNSS",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            }
-          ]
+          "name": "offGnssChange",
+          "description": "Cancel the callback function for listening to the GNSS information change event",
+          "signature": "offGnssChange(callback: (info: Geolocation.onGnssChange.Info) => void): void",
+          "apiLevel": 3
         },
         {
-          "name": "mode",
-          "qualified": false,
-          "members": [
-            {
-              "value": "0",
-              "type": "number",
-              "description": "Accuracy",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "1",
-              "type": "number",
-              "description": "Automation",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "2",
-              "type": "number",
-              "description": "Balance",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "3",
-              "type": "number",
-              "description": "Power Saving",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "4",
-              "type": "number",
-              "description": "Super Power Saving",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "5",
-              "type": "number",
-              "description": "Custom",
-              "apiLevel": 3,
-              "confidence": "OFFICIAL"
-            }
-          ]
+          "name": "getEnabled",
+          "description": "Get whether the user allows the Mini Program to use location features",
+          "signature": "getEnabled(): boolean",
+          "apiLevel": 4
+        },
+        {
+          "name": "onEnableChange",
+          "description": "Register a callback function to listen for user location permission change events",
+          "signature": "onEnableChange(callback: () => void): void",
+          "apiLevel": 4
+        },
+        {
+          "name": "offEnableChange",
+          "description": "Cancel the callback function for listening to user location permission change events",
+          "signature": "offEnableChange(callback: () => void): void",
+          "apiLevel": 4
         }
       ],
       "runtimes": [
@@ -817,29 +1167,68 @@
       "type": "value",
       "description": "Gyroscope. Measuring the angular velocity of the device rotating along three orthogonal axes (x, y, z), the x and y axes are parallel to the screen, the positive direction refers to the figure, the z axis is perpendicular to the device's screen, the positive direction points upward, and the direction of the rotational angular velocity is determined using the [Right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule). The direction of the rotation arrow in the figure is the positive direction. permission code: `device:os.gyroscope`",
       "minApiLevel": 3,
-      "shapes": [
+      "members": [
         {
-          "name": "Result",
-          "props": [
+          "name": "start",
+          "description": "Start listening to gyroscope data",
+          "signature": "start(): void"
+        },
+        {
+          "name": "stop",
+          "description": "Stop listening to gyroscope data",
+          "signature": "stop(): void"
+        },
+        {
+          "name": "getCurrent",
+          "description": "Get current gyroscope data",
+          "signature": "getCurrent(): Result",
+          "shapes": [
             {
-              "name": "x",
-              "type": "number",
-              "description": "Angular velocity of x-axis in DPS, degrees per second",
-              "apiLevel": 3
-            },
-            {
-              "name": "y",
-              "type": "number",
-              "description": "Angular velocity of y-axis in DPS, degrees per second",
-              "apiLevel": 3
-            },
-            {
-              "name": "z",
-              "type": "number",
-              "description": "Angular velocity of z-axis in DPS, degrees per second",
-              "apiLevel": 3
+              "name": "Result",
+              "props": [
+                {
+                  "name": "x",
+                  "type": "number",
+                  "description": "Angular velocity of x-axis in DPS, degrees per second",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "y",
+                  "type": "number",
+                  "description": "Angular velocity of y-axis in DPS, degrees per second",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "z",
+                  "type": "number",
+                  "description": "Angular velocity of z-axis in DPS, degrees per second",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
+        },
+        {
+          "name": "onChange",
+          "description": "Register the gyroscope data change event listener callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the gyroscope data change event listener callback function",
+          "signature": "offChange(callback: () => void): void"
+        },
+        {
+          "name": "setFreqMode",
+          "description": "Set the mode of trigger frequency, `mode` value reference frequency mode constant",
+          "signature": "setFreqMode(mode: number): void",
+          "apiLevel": 3
+        },
+        {
+          "name": "getFreqMode",
+          "description": "Get the mode of trigger frequency, result value reference frequency mode constant",
+          "signature": "getFreqMode(): number",
+          "apiLevel": 3
         }
       ],
       "runtimes": [
@@ -857,75 +1246,148 @@
       "type": "value",
       "description": "HeartRate Sensor. permission code: `data:user.hd.heart_rate`",
       "minApiLevel": 2,
-      "shapes": [
+      "members": [
         {
-          "name": "Result",
-          "props": [
+          "name": "getCurrent",
+          "description": "Get the current heart rate measurement, this method needs to be used in the `onCurrentChange` callback function",
+          "signature": "getCurrent(): number"
+        },
+        {
+          "name": "getLast",
+          "description": "Get the most recent heart rate measurement (single measurement or heart rate monitoring measurement, continuous heart rate measurement `onCurrentChange` results are not counted)",
+          "signature": "getLast(): number"
+        },
+        {
+          "name": "getToday",
+          "description": "Get the heart rate measurement data in minutes from 0:00 to the current moment of the day, the longest array is 60\\*24",
+          "signature": "getToday(): Array<number>"
+        },
+        {
+          "name": "onCurrentChange",
+          "description": "Call this method and start measuring heart rate continuously, call the callback function when there is a measurement result, call the `getCurrent` method in the callback function to get the heart rate measurement value, if you want to stop the heart rate measurement, you need to call the `offCurrentChange` method",
+          "signature": "onCurrentChange(callback: () => void): void",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "offCurrentChange",
+          "description": "Cancel continuous heart rate measurement and cancel callback function listeners",
+          "signature": "offCurrentChange(callback: () => void): void",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "onLastChange",
+          "description": "Register the heart rate single measurement change event callback function",
+          "signature": "onLastChange(callback: () => void): void",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "offLastChange",
+          "description": "Cancel the heart rate single measurement change event callback function",
+          "signature": "offLastChange(callback: () => void): void",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "getDailySummary",
+          "description": "Get daily heart rate statistics",
+          "signature": "getDailySummary(): Result",
+          "apiLevel": 3,
+          "shapes": [
             {
-              "name": "maximum",
-              "type": "Maximum",
-              "description": "Maximum heart rate information",
-              "apiLevel": 3
+              "name": "Result",
+              "props": [
+                {
+                  "name": "maximum",
+                  "type": "Maximum",
+                  "description": "Maximum heart rate information",
+                  "apiLevel": 3
+                }
+              ]
+            },
+            {
+              "name": "Maximum",
+              "props": [
+                {
+                  "name": "hr_value",
+                  "type": "number",
+                  "description": "Maximum heart rate value",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "time",
+                  "type": "number",
+                  "description": "Measurement time of maximum heart rate",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Maximum",
-          "props": [
+          "name": "getResting",
+          "description": "Get current resting heart rate",
+          "signature": "getResting(): number",
+          "apiLevel": 3
+        },
+        {
+          "name": "getAFibRecord",
+          "description": "Get Atrial Fibrillation Data Array",
+          "signature": "getAFibRecord(): Result",
+          "apiLevel": 3,
+          "shapes": [
             {
-              "name": "hr_value",
-              "type": "number",
-              "description": "Maximum heart rate value",
-              "apiLevel": 3
-            },
-            {
-              "name": "time",
-              "type": "number",
-              "description": "Measurement time of maximum heart rate",
-              "apiLevel": 3
+              "name": "AfibInfo",
+              "props": [
+                {
+                  "name": "flag",
+                  "type": "number",
+                  "description": "Atrial fibrillation test results, 0 - normal, 1 - high alert, 2 - low alert, 3 - atrial fibrillation",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "val",
+                  "type": "number",
+                  "description": "Atrial fibrillation data value, integer value 0 - 255",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "maxValue",
+                  "type": "number",
+                  "description": "Atrial fibrillation data maximum value, integer value 0 - 255",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "minValue",
+                  "type": "number",
+                  "description": "Atrial fibrillation data minimum value, integer value 0 - 255",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "time",
+                  "type": "number",
+                  "description": "Time of Atrial fibrillation data acquisition, UTC seconds",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "duration",
+                  "type": "number",
+                  "description": "Duration in seconds",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         },
         {
-          "name": "AfibInfo",
-          "props": [
-            {
-              "name": "flag",
-              "type": "number",
-              "description": "Atrial fibrillation test results, 0 - normal, 1 - high alert, 2 - low alert, 3 - atrial fibrillation",
-              "apiLevel": 3
-            },
-            {
-              "name": "val",
-              "type": "number",
-              "description": "Atrial fibrillation data value, integer value 0 - 255",
-              "apiLevel": 3
-            },
-            {
-              "name": "maxValue",
-              "type": "number",
-              "description": "Atrial fibrillation data maximum value, integer value 0 - 255",
-              "apiLevel": 3
-            },
-            {
-              "name": "minValue",
-              "type": "number",
-              "description": "Atrial fibrillation data minimum value, integer value 0 - 255",
-              "apiLevel": 3
-            },
-            {
-              "name": "time",
-              "type": "number",
-              "description": "Time of Atrial fibrillation data acquisition, UTC seconds",
-              "apiLevel": 3
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "description": "Duration in seconds",
-              "apiLevel": 3
-            }
-          ]
+          "name": "onRestingChange",
+          "description": "After calling this method, the device starts real-time resting heart rate measurement and registers a callback function, which is called when there is a measurement result, in which the `getResting` method can be called to get the resting heart rate measurement value, and if you need to stop the resting heart rate measurement, you need to call the `offRestingChange` method",
+          "signature": "onRestingChange(callback: () => void): void",
+          "apiLevel": 3
+        },
+        {
+          "name": "offRestingChange",
+          "description": "Cancel continuous resting heart rate measurement and cancel callback function listeners",
+          "signature": "offRestingChange(callback: () => void): void",
+          "apiLevel": 3
         }
       ],
       "runtimes": [
@@ -943,6 +1405,23 @@
       "type": "value",
       "description": "PAI Sensor. permission code: `data:user.hd.pai`",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getTotal",
+          "description": "Get the current cumulative PAI value",
+          "signature": "getTotal(): number"
+        },
+        {
+          "name": "getToday",
+          "description": "Get the PAI values obtained today",
+          "signature": "getToday(): number"
+        },
+        {
+          "name": "getLastWeek",
+          "description": "Get the PAI data for the past 7 days, the return value is an array of length `7`, the position of index `0` is the PAI value of today, the position of index `1` is the PAI value of the previous day, and so on",
+          "signature": "getLastWeek(): Array<number>"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -958,6 +1437,34 @@
       "type": "value",
       "description": "Screen Status Sensor.",
       "minApiLevel": 3,
+      "members": [
+        {
+          "name": "getStatus",
+          "description": "Get the screen status, `1`: On, `2`: Off",
+          "signature": "getStatus(): number"
+        },
+        {
+          "name": "getAodMode",
+          "description": "Whether to turn on the AOD rest screen display function",
+          "signature": "getAodMode(): boolean"
+        },
+        {
+          "name": "getLight",
+          "description": "Light intensity, unit lux",
+          "signature": "getLight(): number",
+          "apiLevel": 3.6
+        },
+        {
+          "name": "onChange",
+          "description": "Register a callback function to listen to screen display change events",
+          "signature": "onChange(callback: (status: number) => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel a callback function to listen to screen display change events",
+          "signature": "offChange(callback: (status: number) => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -973,114 +1480,154 @@
       "type": "value",
       "description": "Sleep Sensor. permission code: `data:user.hd.sleep`",
       "minApiLevel": 2,
-      "shapes": [
+      "members": [
         {
-          "name": "SleepInfo",
-          "props": [
+          "name": "updateInfo",
+          "description": "By default, the system updates the sleep data every `30` minutes, the `updateInfo` method is used to actively trigger the update of the sleep data",
+          "signature": "updateInfo(): void"
+        },
+        {
+          "name": "getInfo",
+          "description": "Get sleep information",
+          "signature": "getInfo(): SleepInfo",
+          "shapes": [
             {
-              "name": "score",
-              "type": "number",
-              "description": "Sleep score",
-              "apiLevel": 2
-            },
-            {
-              "name": "deepTime",
-              "type": "number",
-              "description": "Deep sleep time (minutes)",
-              "apiLevel": 2
-            },
-            {
-              "name": "startTime",
-              "type": "number",
-              "description": "Sleep onset time, based on the number of minutes at 0:00 of the day",
-              "apiLevel": 2
-            },
-            {
-              "name": "endTime",
-              "type": "number",
-              "description": "Sleep end time, based on the number of minutes at 0:00 of the day",
-              "apiLevel": 2
-            },
-            {
-              "name": "totalTime",
-              "type": "number",
-              "description": "Get total sleep time (minutes)",
-              "apiLevel": 2
+              "name": "SleepInfo",
+              "props": [
+                {
+                  "name": "score",
+                  "type": "number",
+                  "description": "Sleep score",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "deepTime",
+                  "type": "number",
+                  "description": "Deep sleep time (minutes)",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "startTime",
+                  "type": "number",
+                  "description": "Sleep onset time, based on the number of minutes at 0:00 of the day",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "endTime",
+                  "type": "number",
+                  "description": "Sleep end time, based on the number of minutes at 0:00 of the day",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "totalTime",
+                  "type": "number",
+                  "description": "Get total sleep time (minutes)",
+                  "apiLevel": 2
+                }
+              ]
             }
           ]
         },
         {
-          "name": "StageConstants",
-          "props": [
+          "name": "getStageConstantObj",
+          "description": "Get the constant value of the sleep stage, used to determine the sleep stage in the `getStage` return value",
+          "signature": "getStageConstantObj(): StageConstants",
+          "shapes": [
             {
-              "name": "WAKE_STAGE",
-              "type": "number",
-              "description": "Awake stage",
-              "apiLevel": 2
-            },
-            {
-              "name": "REM_STAGE",
-              "type": "number",
-              "description": "Deep sleep time (minutes)",
-              "apiLevel": 2
-            },
-            {
-              "name": "LIGHT_STAGE",
-              "type": "number",
-              "description": "Light Sleep stage",
-              "apiLevel": 2
-            },
-            {
-              "name": "DEEP_STAGE",
-              "type": "number",
-              "description": "Deep Sleep stage",
-              "apiLevel": 2
+              "name": "StageConstants",
+              "props": [
+                {
+                  "name": "WAKE_STAGE",
+                  "type": "number",
+                  "description": "Awake stage",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "REM_STAGE",
+                  "type": "number",
+                  "description": "Deep sleep time (minutes)",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "LIGHT_STAGE",
+                  "type": "number",
+                  "description": "Light Sleep stage",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "DEEP_STAGE",
+                  "type": "number",
+                  "description": "Deep Sleep stage",
+                  "apiLevel": 2
+                }
+              ]
             }
           ]
         },
         {
-          "name": "StageInfo",
-          "props": [
+          "name": "getStage",
+          "description": "Get Sleep Staging Data",
+          "signature": "getStage(): Array<StageInfo>",
+          "shapes": [
             {
-              "name": "model",
-              "type": "number",
-              "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
-              "apiLevel": 2
-            },
-            {
-              "name": "start",
-              "type": "number",
-              "description": "Sleep stage onset time, based on the number of minutes at 0:00 of the day",
-              "apiLevel": 2
-            },
-            {
-              "name": "stop",
-              "type": "number",
-              "description": "Sleep stage end time, based on the number of minutes at 0:00 of the day",
-              "apiLevel": 2
+              "name": "StageInfo",
+              "props": [
+                {
+                  "name": "model",
+                  "type": "number",
+                  "description": "Sleep stage type, refer to the constants returned by getStageConstantObj for the meaning of the value",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "start",
+                  "type": "number",
+                  "description": "Sleep stage onset time, based on the number of minutes at 0:00 of the day",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "stop",
+                  "type": "number",
+                  "description": "Sleep stage end time, based on the number of minutes at 0:00 of the day",
+                  "apiLevel": 2
+                }
+              ]
             }
           ]
         },
         {
-          "name": "NapInfo",
-          "props": [
+          "name": "getSleepingStatus",
+          "description": "Get the current sleep state, 0 'awake, 1' sleeping",
+          "signature": "getSleepingStatus(): number",
+          "apiLevel": 3
+        },
+        {
+          "name": "getNap",
+          "description": "Get nap data",
+          "signature": "getNap(): Array<NapInfo>",
+          "apiLevel": 3,
+          "shapes": [
             {
-              "name": "length",
-              "type": "number",
-              "description": "Nap duration (minutes)",
-              "apiLevel": 3
-            },
-            {
-              "name": "start",
-              "type": "number",
-              "description": "Nap start time, based on the number of minutes at 0:00 of the day",
-              "apiLevel": 3
-            },
-            {
-              "name": "stop",
-              "type": "number",
-              "description": "Nap end time, based on the number of minutes at 0:00 of the day",
-              "apiLevel": 3
+              "name": "NapInfo",
+              "props": [
+                {
+                  "name": "length",
+                  "type": "number",
+                  "description": "Nap duration (minutes)",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "start",
+                  "type": "number",
+                  "description": "Nap start time, based on the number of minutes at 0:00 of the day",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "stop",
+                  "type": "number",
+                  "description": "Nap end time, based on the number of minutes at 0:00 of the day",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         }
@@ -1100,6 +1647,28 @@
       "type": "value",
       "description": "Standing behavior Sensor. permission code: `data:user.hd.stand`",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getCurrent",
+          "description": "Get the current number of hours with standing behavior",
+          "signature": "getCurrent(): number"
+        },
+        {
+          "name": "getTarget",
+          "description": "Get the number of hours with standing behavior targets",
+          "signature": "getTarget(): number"
+        },
+        {
+          "name": "onChange",
+          "description": "Register a callback function to listen for changes in the number of hours of standing behavior",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel a callback function to listen for changes in the number of hours of standing behavior",
+          "signature": "offChange(callback: () => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1115,6 +1684,28 @@
       "type": "value",
       "description": "Step Sensor. permission code: `data:user.hd.step`",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getCurrent",
+          "description": "Get the current step count",
+          "signature": "getCurrent(): number"
+        },
+        {
+          "name": "getTarget",
+          "description": "Get step goal",
+          "signature": "getTarget(): number"
+        },
+        {
+          "name": "onChange",
+          "description": "Register the step change event callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the step change event callback function",
+          "signature": "offChange(callback: () => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1130,55 +1721,100 @@
       "type": "value",
       "description": "Stress Sensor. permission code: `data:user.hd.stress`",
       "minApiLevel": 2,
-      "shapes": [
+      "members": [
         {
-          "name": "Result",
-          "props": [
+          "name": "getCurrent",
+          "description": "Get the current pressure measurement",
+          "signature": "getCurrent(): Result",
+          "shapes": [
             {
-              "name": "value",
-              "type": "number",
-              "description": "Stress measurement values",
-              "apiLevel": 2
-            },
-            {
-              "name": "time",
-              "type": "number",
-              "description": "Time to obtain the measured value",
-              "apiLevel": 2
+              "name": "Result",
+              "props": [
+                {
+                  "name": "value",
+                  "type": "number",
+                  "description": "Stress measurement values",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "time",
+                  "type": "number",
+                  "description": "Time to obtain the measured value",
+                  "apiLevel": 2
+                }
+              ]
             }
           ]
         },
         {
-          "name": "StressInfo",
-          "props": [
+          "name": "onChange",
+          "description": "Register a callback function to listen for stress measurement change events",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel a callback function to listen for stress measurement change events",
+          "signature": "offChange(callback: () => void): void"
+        },
+        {
+          "name": "getToday",
+          "description": "Get the pressure measurements for the whole day, recorded every minute, the return value is an array of variable length, the maximum length of the array is 24 \\* 60",
+          "signature": "getToday(): Array<number>",
+          "apiLevel": 3,
+          "shapes": [
             {
-              "name": "second",
-              "type": "number",
-              "description": "Pressure value measurement time, UTC time stamp, in seconds",
-              "apiLevel": 3
-            },
-            {
-              "name": "stress",
-              "type": "number",
-              "description": "Pressure value, 0 means invalid",
-              "apiLevel": 3
+              "name": "StressInfo",
+              "props": [
+                {
+                  "name": "second",
+                  "type": "number",
+                  "description": "Pressure value measurement time, UTC time stamp, in seconds",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "stress",
+                  "type": "number",
+                  "description": "Pressure value, 0 means invalid",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         },
         {
-          "name": "StressInfo",
-          "props": [
+          "name": "getTodayByHour",
+          "description": "Get the average pressure value for the whole day, the return value is a fixed-length array, the average pressure for each hour, the length of the array is 24",
+          "signature": "getTodayByHour(): Array<number>",
+          "apiLevel": 3
+        },
+        {
+          "name": "getLastWeek",
+          "description": "Get the average pressure value for each day of the past 7 days, the return value is a fixed-length array, the average pressure per day, the length of the array is 7, the position of index 0 represents six days ago, the position of index 6 represents today",
+          "signature": "getLastWeek(): Array<number>",
+          "apiLevel": 3
+        },
+        {
+          "name": "getLastWeekByHour",
+          "description": "Get the hourly pressure average for the past 7 days, the return value is a fixed-length array, the length of the array is 7 \\* 24",
+          "signature": "getLastWeekByHour(): Array<StressInfo>",
+          "apiLevel": 3,
+          "shapes": [
             {
-              "name": "second",
-              "type": "number",
-              "description": "Pressure value measurement time, UTC time stamp, in seconds",
-              "apiLevel": 3
-            },
-            {
-              "name": "stress",
-              "type": "number",
-              "description": "Pressure value, 0 means invalid",
-              "apiLevel": 3
+              "name": "StressInfo",
+              "props": [
+                {
+                  "name": "second",
+                  "type": "number",
+                  "description": "Pressure value measurement time, UTC time stamp, in seconds",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "stress",
+                  "type": "number",
+                  "description": "Pressure value, 0 means invalid",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         }
@@ -1198,59 +1834,81 @@
       "type": "value",
       "description": "System Sounds.",
       "minApiLevel": 3.6,
-      "shapes": [
+      "members": [
         {
-          "name": "Type",
-          "props": [
+          "name": "getEnabled",
+          "description": "Get whether the system ringtone function is turned on, and it can only be played after it is turned on",
+          "signature": "getEnabled(): boolean"
+        },
+        {
+          "name": "getSourceType",
+          "description": "Get built-in system ringtone type",
+          "signature": "getSourceType(): Type",
+          "shapes": [
             {
-              "name": "ALARM",
-              "type": "number",
-              "description": "Alarm clock reminder",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "MESSAGE",
-              "type": "number",
-              "description": "Notification sound when receiving text messages or emails",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "REGULAR",
-              "type": "number",
-              "description": "TingTing sound",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "ACHIEVE",
-              "type": "number",
-              "description": "Goals achieved",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "CAMERA",
-              "type": "number",
-              "description": "Camera shutter",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "ABN_HIGH",
-              "type": "number",
-              "description": "Health data measurement abnormalities (high values)",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "ABN_LOW",
-              "type": "number",
-              "description": "Health data measurement abnormalities (low values)",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "SOS",
-              "type": "number",
-              "description": "SOS for help",
-              "apiLevel": 3.6
+              "name": "Type",
+              "props": [
+                {
+                  "name": "ALARM",
+                  "type": "number",
+                  "description": "Alarm clock reminder",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "MESSAGE",
+                  "type": "number",
+                  "description": "Notification sound when receiving text messages or emails",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "REGULAR",
+                  "type": "number",
+                  "description": "TingTing sound",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "ACHIEVE",
+                  "type": "number",
+                  "description": "Goals achieved",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "CAMERA",
+                  "type": "number",
+                  "description": "Camera shutter",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "ABN_HIGH",
+                  "type": "number",
+                  "description": "Health data measurement abnormalities (high values)",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "ABN_LOW",
+                  "type": "number",
+                  "description": "Health data measurement abnormalities (low values)",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "SOS",
+                  "type": "number",
+                  "description": "SOS for help",
+                  "apiLevel": 3.6
+                }
+              ]
             }
           ]
+        },
+        {
+          "name": "start",
+          "description": "Start playing the sound, you can pass in `type` to specify the ringtone type, `repeatCount` is the number of audio repetitions, default is `0`, do not repeat playback",
+          "signature": "start(sourceType: number, repeatCount: 0): void"
+        },
+        {
+          "name": "stop",
+          "description": "Stop sound playback",
+          "signature": "stop(): void"
         }
       ],
       "runtimes": [
@@ -1268,23 +1926,153 @@
       "type": "value",
       "description": "Time/Date Sensor.",
       "minApiLevel": 2,
-      "shapes": [
+      "members": [
         {
-          "name": "LunarMonthCalendar",
-          "props": [
+          "name": "getTime",
+          "description": "Gets the UTC timestamp in milliseconds",
+          "signature": "getTime(): number"
+        },
+        {
+          "name": "getFullYear",
+          "description": "Get the year of the current date",
+          "signature": "getFullYear(): number"
+        },
+        {
+          "name": "getMonth",
+          "description": "Get the month of the current date, range 1 - 12, return `1` for January",
+          "signature": "getMonth(): number"
+        },
+        {
+          "name": "getDate",
+          "description": "Get the number of days of the current date, i.e. the day of the month, in the range 1 - 31",
+          "signature": "getDate(): number"
+        },
+        {
+          "name": "getHours",
+          "description": "Get the number of hours of the current time",
+          "signature": "getHours(): number"
+        },
+        {
+          "name": "getMinutes",
+          "description": "Get the number of minutes of the current time",
+          "signature": "getMinutes(): number"
+        },
+        {
+          "name": "getSeconds",
+          "description": "Get the number of seconds of the current time",
+          "signature": "getSeconds(): number"
+        },
+        {
+          "name": "getDay",
+          "description": "Get the current time corresponding to the day of the week, range 1 - 7, return `1` for Monday",
+          "signature": "getDay(): number"
+        },
+        {
+          "name": "getHourFormat",
+          "description": "Get the current system time format, 12-hour format or 24-hour format，value reference hour format constants",
+          "signature": "getHourFormat(): number",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "getFormatHour",
+          "description": "Get the number of hours in the current time format (12-hour format or 24-hour format)",
+          "signature": "getFormatHour(): number",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "onPerMinute",
+          "description": "Register end-of-minute event listener callback function",
+          "signature": "onPerMinute(callback: () => void): void",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "onPerDay",
+          "description": "Register the end-of-day event listener callback function",
+          "signature": "onPerDay(callback: () => void): void",
+          "apiLevel": 2.1
+        },
+        {
+          "name": "onPerHourEnd",
+          "description": "Register the end-of-hour event listener callback function",
+          "signature": "onPerHourEnd(callback: () => void): void",
+          "apiLevel": 3.6
+        },
+        {
+          "name": "getFestival",
+          "description": "Get gregorian holidays, or return the string `'INVALID'` if there is no holiday",
+          "signature": "getFestival(): string"
+        },
+        {
+          "name": "getLunarYear",
+          "description": "Get Chinese lunar year, only works when system language is set to Chinese",
+          "signature": "getLunarYear(): number"
+        },
+        {
+          "name": "getLunarMonth",
+          "description": "Get Chinese lunar month, only works when system language is set to Chinese",
+          "signature": "getLunarMonth(): number"
+        },
+        {
+          "name": "getLunarDay",
+          "description": "Get Chinese lunar day, only works when system language is set to Chinese",
+          "signature": "getLunarDay(): number"
+        },
+        {
+          "name": "getLunarFestival",
+          "description": "Get Chinese lunar holidays, only works when system language is set to Chinese, or return the string `'INVALID'` if there is no holiday",
+          "signature": "getLunarFestival(): string"
+        },
+        {
+          "name": "getSolarTerm",
+          "description": "Get Traditional Chinese Solar Terms, only works when system language is set to Chinese, or return the string `'INVALID'` if there is no Solar Term",
+          "signature": "getSolarTerm(): string"
+        },
+        {
+          "name": "getShowFestival",
+          "description": "Get the holiday strings displayed on that day, the priority is Gregorian holidays, Chinese lunar holidays, Chinese lunar festivals in that order, only when the system language is set to Chinese",
+          "signature": "getShowFestival(): string"
+        },
+        {
+          "name": "getLunarMonthCalendar",
+          "description": "Get the monthly calendar information of the current month of Chinese lunar calendar, only works when the system language is set to Chinese",
+          "signature": "getLunarMonthCalendar(): LunarMonthCalendar",
+          "shapes": [
             {
-              "name": "day_count",
-              "type": "number",
-              "description": "Number of days in the current month",
-              "apiLevel": 2
-            },
-            {
-              "name": "lunar_days_array",
-              "type": "Array&#60;string&#62;",
-              "description": "Array of display content for each day of the current month, display content priority for holidays, Solar Term, date",
-              "apiLevel": 2
+              "name": "LunarMonthCalendar",
+              "props": [
+                {
+                  "name": "day_count",
+                  "type": "number",
+                  "description": "Number of days in the current month",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "lunar_days_array",
+                  "type": "Array&#60;string&#62;",
+                  "description": "Array of display content for each day of the current month, display content priority for holidays, Solar Term, date",
+                  "apiLevel": 2
+                }
+              ]
             }
           ]
+        },
+        {
+          "name": "onSunrise",
+          "description": "Register the Sunrise event listener callback function to take effect only when the device weather information",
+          "signature": "onSunrise(callback: () => void): void",
+          "apiLevel": 3
+        },
+        {
+          "name": "onSunset",
+          "description": "Register the Sunset event listener callback function to take effect only when the device weather information",
+          "signature": "onSunset(callback: () => void): void",
+          "apiLevel": 3
+        },
+        {
+          "name": "onPhoneTimeSetting",
+          "description": "Register the phone modify time event listening callback function",
+          "signature": "onPhoneTimeSetting(callback: () => void): void",
+          "apiLevel": 3
         }
       ],
       "runtimes": [
@@ -1333,120 +2121,154 @@
       "type": "value",
       "description": "Vibrator.",
       "minApiLevel": 2,
-      "shapes": [
+      "members": [
         {
-          "name": "Option",
-          "props": [
+          "name": "start",
+          "description": "Start vibration, the'option 'parameter passed in only takes effect for this vibration, and supports passing in vibration scene arrays after API_LEVEL 3.6",
+          "signature": "start(option?: Option | Array<Action>): void",
+          "shapes": [
             {
-              "name": "mode",
-              "type": "number",
-              "default": "VIBRATOR_SCENE_SHORT_MIDDLE",
-              "description": "Vibration mode, Value refer to Vibration motor mode constants",
-              "apiLevel": 2
+              "name": "Option",
+              "props": [
+                {
+                  "name": "mode",
+                  "type": "number",
+                  "default": "VIBRATOR_SCENE_SHORT_MIDDLE",
+                  "description": "Vibration mode, Value refer to Vibration motor mode constants",
+                  "apiLevel": 2
+                }
+              ]
+            },
+            {
+              "name": "Action",
+              "props": [
+                {
+                  "name": "type",
+                  "type": "number",
+                  "description": "Vibration Scene Type",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "duration",
+                  "type": "number",
+                  "description": "Duration of vibration",
+                  "apiLevel": 3.6
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Action",
-          "props": [
+          "name": "stop",
+          "description": "Stop vibration",
+          "signature": "stop(): void"
+        },
+        {
+          "name": "setMode",
+          "description": "Set the vibration mode, call `start()` after successful setting, it will vibrate according to the set mode",
+          "signature": "setMode(option: Option): void",
+          "shapes": [
             {
-              "name": "type",
-              "type": "number",
-              "description": "Vibration Scene Type",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "description": "Duration of vibration",
-              "apiLevel": 3.6
+              "name": "Option",
+              "props": [
+                {
+                  "name": "mode",
+                  "type": "number",
+                  "description": "Vibration mode, Value refer to Vibration motor mode constants",
+                  "apiLevel": 2
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Option",
-          "props": [
+          "name": "getConfig",
+          "description": "Get Vibration Motor Configuration",
+          "signature": "getConfig(): Option",
+          "shapes": [
             {
-              "name": "mode",
-              "type": "number",
-              "description": "Vibration mode, Value refer to Vibration motor mode constants",
-              "apiLevel": 2
+              "name": "Option",
+              "props": [
+                {
+                  "name": "mode",
+                  "type": "number",
+                  "description": "Vibration mode, Value refer to Vibration motor mode constants",
+                  "apiLevel": 2
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Option",
-          "props": [
+          "name": "getType",
+          "description": "Get Vibration Scene Type",
+          "signature": "getType(): Type",
+          "apiLevel": 3.6,
+          "shapes": [
             {
-              "name": "mode",
-              "type": "number",
-              "description": "Vibration mode, Value refer to Vibration motor mode constants",
-              "apiLevel": 2
-            }
-          ]
-        },
-        {
-          "name": "Type",
-          "props": [
-            {
-              "name": "GENTLE_SHORT",
-              "type": "number",
-              "description": "Vibration scene, light short vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "STRONG_SHORT",
-              "type": "number",
-              "description": "Vibration scene, strong and short vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "STANDARD_CROWN",
-              "type": "number",
-              "description": "Vibration scene, standard crown vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "STRONG_CROWN",
-              "type": "number",
-              "description": "Vibration scene, strong crown vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "SPULSE_CROWN",
-              "type": "number",
-              "description": "Vibration scene, single-pulse crown vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "DIPULSE_CROWN",
-              "type": "number",
-              "description": "Vibration scene, dual-pulse crown vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "KEYCODE_CLICK",
-              "type": "number",
-              "description": "Vibration scene, password button vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "URGENT",
-              "type": "number",
-              "description": "Vibration scene, urgent vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "CONTINUOUS",
-              "type": "number",
-              "description": "Vibration scene, continuous vibration",
-              "apiLevel": 3.6
-            },
-            {
-              "name": "PAUSE",
-              "type": "number",
-              "description": "Vibration scene, stop vibration",
-              "apiLevel": 3.6
+              "name": "Type",
+              "props": [
+                {
+                  "name": "GENTLE_SHORT",
+                  "type": "number",
+                  "description": "Vibration scene, light short vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "STRONG_SHORT",
+                  "type": "number",
+                  "description": "Vibration scene, strong and short vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "STANDARD_CROWN",
+                  "type": "number",
+                  "description": "Vibration scene, standard crown vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "STRONG_CROWN",
+                  "type": "number",
+                  "description": "Vibration scene, strong crown vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "SPULSE_CROWN",
+                  "type": "number",
+                  "description": "Vibration scene, single-pulse crown vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "DIPULSE_CROWN",
+                  "type": "number",
+                  "description": "Vibration scene, dual-pulse crown vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "KEYCODE_CLICK",
+                  "type": "number",
+                  "description": "Vibration scene, password button vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "URGENT",
+                  "type": "number",
+                  "description": "Vibration scene, urgent vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "CONTINUOUS",
+                  "type": "number",
+                  "description": "Vibration scene, continuous vibration",
+                  "apiLevel": 3.6
+                },
+                {
+                  "name": "PAUSE",
+                  "type": "number",
+                  "description": "Vibration scene, stop vibration",
+                  "apiLevel": 3.6
+                }
+              ]
             }
           ]
         }
@@ -1466,6 +2288,23 @@
       "type": "value",
       "description": "Wearing status sensor.",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "getStatus",
+          "description": "Get the current device wearing status, `0`: not wearing, `1`: wearing, `2`: in motion, `3`: not sure",
+          "signature": "getStatus(): number"
+        },
+        {
+          "name": "onChange",
+          "description": "Register the device wear status change event listening callback function",
+          "signature": "onChange(callback: () => void): void"
+        },
+        {
+          "name": "offChange",
+          "description": "Cancel the device wear status change event listening callback function",
+          "signature": "offChange(callback: () => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1481,346 +2320,353 @@
       "type": "value",
       "description": "This interface has been deprecated, please refer to https://github.com/orgs/zepp-health/discussions/83 Weather Forecasts sensor.",
       "minApiLevel": 2,
-      "shapes": [
+      "members": [
         {
-          "name": "ForecastWeather",
-          "props": [
+          "name": "getForecastWeather",
+          "description": "Get weather forecast data",
+          "signature": "getForecastWeather(): ForecastWeather",
+          "shapes": [
             {
-              "name": "cityName",
-              "type": "string",
-              "description": "City Name",
-              "apiLevel": 2
+              "name": "ForecastWeather",
+              "props": [
+                {
+                  "name": "cityName",
+                  "type": "string",
+                  "description": "City Name",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "forecastData",
+                  "type": "ForecastData",
+                  "description": "Weather Information",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "tideData",
+                  "type": "TideData",
+                  "description": "Tide Information",
+                  "apiLevel": 2
+                }
+              ]
             },
             {
-              "name": "forecastData",
-              "type": "ForecastData",
-              "description": "Weather Information",
-              "apiLevel": 2
+              "name": "ForecastData",
+              "props": [
+                {
+                  "name": "data",
+                  "type": "Array&#60;ForecastDataItem&#62;",
+                  "description": "Weather Information Array, index 0 position represents the day",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "count",
+                  "type": "number",
+                  "description": "The length of Weather Information Array",
+                  "apiLevel": 2
+                }
+              ]
             },
             {
-              "name": "tideData",
-              "type": "TideData",
-              "description": "Tide Information",
-              "apiLevel": 2
+              "name": "ForecastDataItem",
+              "props": [
+                {
+                  "name": "high",
+                  "type": "number",
+                  "description": "Maximum temperature",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "low",
+                  "type": "number",
+                  "description": "Lowest temperature",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "index",
+                  "type": "number",
+                  "description": "The index value of the weather, see index below for a description of the value",
+                  "apiLevel": 2
+                }
+              ]
+            },
+            {
+              "name": "TideData",
+              "props": [
+                {
+                  "name": "data",
+                  "type": "Array&#60;TideDataItem&#62;",
+                  "description": "Tide Information Array, index 0 position represents the day",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "count",
+                  "type": "number",
+                  "description": "The length of Tide Information Array",
+                  "apiLevel": 2
+                }
+              ]
+            },
+            {
+              "name": "TideDataItem",
+              "props": [
+                {
+                  "name": "sunrise",
+                  "type": "Sunrise",
+                  "description": "Sunrise time",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "sunset",
+                  "type": "Sunset",
+                  "description": "Sunset time",
+                  "apiLevel": 2
+                }
+              ]
+            },
+            {
+              "name": "Sunrise",
+              "props": [
+                {
+                  "name": "hour",
+                  "type": "number",
+                  "description": "Sunrise time - hour",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "minute",
+                  "type": "number",
+                  "description": "Sunrise time - minute",
+                  "apiLevel": 2
+                }
+              ]
+            },
+            {
+              "name": "Sunset",
+              "props": [
+                {
+                  "name": "hour",
+                  "type": "number",
+                  "description": "Sunrise time - hour",
+                  "apiLevel": 2
+                },
+                {
+                  "name": "minute",
+                  "type": "number",
+                  "description": "Sunrise time - minute",
+                  "apiLevel": 2
+                }
+              ]
             }
-          ]
-        },
-        {
-          "name": "ForecastData",
-          "props": [
-            {
-              "name": "data",
-              "type": "Array&#60;ForecastDataItem&#62;",
-              "description": "Weather Information Array, index 0 position represents the day",
-              "apiLevel": 2
-            },
-            {
-              "name": "count",
-              "type": "number",
-              "description": "The length of Weather Information Array",
-              "apiLevel": 2
-            }
-          ]
-        },
-        {
-          "name": "ForecastDataItem",
-          "props": [
-            {
-              "name": "high",
-              "type": "number",
-              "description": "Maximum temperature",
-              "apiLevel": 2
-            },
-            {
-              "name": "low",
-              "type": "number",
-              "description": "Lowest temperature",
-              "apiLevel": 2
-            },
+          ],
+          "enums": [
             {
               "name": "index",
-              "type": "number",
-              "description": "The index value of the weather, see index below for a description of the value",
-              "apiLevel": 2
-            }
-          ]
-        },
-        {
-          "name": "TideData",
-          "props": [
-            {
-              "name": "data",
-              "type": "Array&#60;TideDataItem&#62;",
-              "description": "Tide Information Array, index 0 position represents the day",
-              "apiLevel": 2
-            },
-            {
-              "name": "count",
-              "type": "number",
-              "description": "The length of Tide Information Array",
-              "apiLevel": 2
-            }
-          ]
-        },
-        {
-          "name": "TideDataItem",
-          "props": [
-            {
-              "name": "sunrise",
-              "type": "Sunrise",
-              "description": "Sunrise time",
-              "apiLevel": 2
-            },
-            {
-              "name": "sunset",
-              "type": "Sunset",
-              "description": "Sunset time",
-              "apiLevel": 2
-            }
-          ]
-        },
-        {
-          "name": "Sunrise",
-          "props": [
-            {
-              "name": "hour",
-              "type": "number",
-              "description": "Sunrise time - hour",
-              "apiLevel": 2
-            },
-            {
-              "name": "minute",
-              "type": "number",
-              "description": "Sunrise time - minute",
-              "apiLevel": 2
-            }
-          ]
-        },
-        {
-          "name": "Sunset",
-          "props": [
-            {
-              "name": "hour",
-              "type": "number",
-              "description": "Sunrise time - hour",
-              "apiLevel": 2
-            },
-            {
-              "name": "minute",
-              "type": "number",
-              "description": "Sunrise time - minute",
-              "apiLevel": 2
-            }
-          ]
-        }
-      ],
-      "enums": [
-        {
-          "name": "index",
-          "qualified": false,
-          "members": [
-            {
-              "value": "0",
-              "type": "number",
-              "description": "Cloudy",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "1",
-              "type": "number",
-              "description": "Showers",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "2",
-              "type": "number",
-              "description": "Snow Showers",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "3",
-              "type": "number",
-              "description": "Sunny",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "4",
-              "type": "number",
-              "description": "Overcast",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "5",
-              "type": "number",
-              "description": "Light Rain",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "6",
-              "type": "number",
-              "description": "Light Snow",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "7",
-              "type": "number",
-              "description": "Moderate Rain",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "8",
-              "type": "number",
-              "description": "Moderate Snow",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "9",
-              "type": "number",
-              "description": "Heavy Snow",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "10",
-              "type": "number",
-              "description": "Heavy Rain",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "11",
-              "type": "number",
-              "description": "Sandstorm",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "12",
-              "type": "number",
-              "description": "Rain and Snow",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "13",
-              "type": "number",
-              "description": "Fog",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "14",
-              "type": "number",
-              "description": "Hazy",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "15",
-              "type": "number",
-              "description": "T-Storms",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "16",
-              "type": "number",
-              "description": "Snowstorm",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "17",
-              "type": "number",
-              "description": "Floating dust",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "18",
-              "type": "number",
-              "description": "Very Heavy Rainstorm",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "19",
-              "type": "number",
-              "description": "Rain and Hail",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "20",
-              "type": "number",
-              "description": "T-Storms and Hail",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "21",
-              "type": "number",
-              "description": "Heavy Rainstorm",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "22",
-              "type": "number",
-              "description": "Dust",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "23",
-              "type": "number",
-              "description": "Heavy sand storm",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "24",
-              "type": "number",
-              "description": "Rainstorm",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "25",
-              "type": "number",
-              "description": "Unknown",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "26",
-              "type": "number",
-              "description": "Cloudy Nighttime",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "27",
-              "type": "number",
-              "description": "Showers Nighttime",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "28",
-              "type": "number",
-              "description": "Sunny Nighttime",
-              "apiLevel": 2,
-              "confidence": "OFFICIAL"
+              "qualified": false,
+              "members": [
+                {
+                  "value": "0",
+                  "type": "number",
+                  "description": "Cloudy",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "1",
+                  "type": "number",
+                  "description": "Showers",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "2",
+                  "type": "number",
+                  "description": "Snow Showers",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "3",
+                  "type": "number",
+                  "description": "Sunny",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "4",
+                  "type": "number",
+                  "description": "Overcast",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "5",
+                  "type": "number",
+                  "description": "Light Rain",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "6",
+                  "type": "number",
+                  "description": "Light Snow",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "7",
+                  "type": "number",
+                  "description": "Moderate Rain",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "8",
+                  "type": "number",
+                  "description": "Moderate Snow",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "9",
+                  "type": "number",
+                  "description": "Heavy Snow",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "10",
+                  "type": "number",
+                  "description": "Heavy Rain",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "11",
+                  "type": "number",
+                  "description": "Sandstorm",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "12",
+                  "type": "number",
+                  "description": "Rain and Snow",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "13",
+                  "type": "number",
+                  "description": "Fog",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "14",
+                  "type": "number",
+                  "description": "Hazy",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "15",
+                  "type": "number",
+                  "description": "T-Storms",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "16",
+                  "type": "number",
+                  "description": "Snowstorm",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "17",
+                  "type": "number",
+                  "description": "Floating dust",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "18",
+                  "type": "number",
+                  "description": "Very Heavy Rainstorm",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "19",
+                  "type": "number",
+                  "description": "Rain and Hail",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "20",
+                  "type": "number",
+                  "description": "T-Storms and Hail",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "21",
+                  "type": "number",
+                  "description": "Heavy Rainstorm",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "22",
+                  "type": "number",
+                  "description": "Dust",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "23",
+                  "type": "number",
+                  "description": "Heavy sand storm",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "24",
+                  "type": "number",
+                  "description": "Rainstorm",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "25",
+                  "type": "number",
+                  "description": "Unknown",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "26",
+                  "type": "number",
+                  "description": "Cloudy Nighttime",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "27",
+                  "type": "number",
+                  "description": "Showers Nighttime",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "28",
+                  "type": "number",
+                  "description": "Sunny Nighttime",
+                  "apiLevel": 2,
+                  "confidence": "OFFICIAL"
+                }
+              ]
             }
           ]
         }
@@ -1840,185 +2686,215 @@
       "type": "value",
       "description": "Workout Sensor. permission code: `data:user.hd.workout`",
       "minApiLevel": 3,
-      "shapes": [
+      "members": [
         {
-          "name": "Status",
-          "props": [
+          "name": "getStatus",
+          "description": "Get altitude value in meters",
+          "signature": "getStatus(): Status",
+          "shapes": [
             {
-              "name": "vo2Max",
-              "type": "number",
-              "description": "VO2 Max",
-              "apiLevel": 3
-            },
-            {
-              "name": "trainingLoad",
-              "type": "number",
-              "description": "Training Load",
-              "apiLevel": 3
-            },
-            {
-              "name": "fullRecoveryTime",
-              "type": "number",
-              "description": "Full Recovery Time",
-              "apiLevel": 3
+              "name": "Status",
+              "props": [
+                {
+                  "name": "vo2Max",
+                  "type": "number",
+                  "description": "VO2 Max",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "trainingLoad",
+                  "type": "number",
+                  "description": "Training Load",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "fullRecoveryTime",
+                  "type": "number",
+                  "description": "Full Recovery Time",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         },
         {
-          "name": "History",
-          "props": [
+          "name": "getHistory",
+          "description": "Get the duration of the workout record",
+          "signature": "getHistory(): Array<History>",
+          "shapes": [
             {
-              "name": "startTime",
-              "type": "number",
-              "description": "Workout start time",
-              "apiLevel": 3
-            },
-            {
-              "name": "duration",
-              "type": "number",
-              "description": "Duration of workout in seconds",
-              "apiLevel": 3
+              "name": "History",
+              "props": [
+                {
+                  "name": "startTime",
+                  "type": "number",
+                  "description": "Workout start time",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "duration",
+                  "type": "number",
+                  "description": "Duration of workout in seconds",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         },
         {
-          "name": "HrZoneSettings",
-          "props": [
+          "name": "getUserHrZoneSettings",
+          "description": "Get user heart rate zone settings",
+          "signature": "getUserHrZoneSettings(): HrZoneSettings",
+          "apiLevel": 4.2,
+          "shapes": [
             {
-              "name": "type",
-              "type": "number",
-              "description": "Heart rate zone type, 0: by heart rate reserve, 1: by maximum heart rate",
-              "apiLevel": 4.2
-            },
-            {
-              "name": "rest",
-              "type": "number",
-              "description": "Resting heart rate value",
-              "apiLevel": 4.2
-            },
-            {
-              "name": "range",
-              "type": "number[]",
-              "description": "Heart rate zone value array with 6 values, corresponding to: Ligit, Intensive, Aerobic, Anaerobic, VO2 max and maximum heart rate",
-              "apiLevel": 4.2
+              "name": "HrZoneSettings",
+              "props": [
+                {
+                  "name": "type",
+                  "type": "number",
+                  "description": "Heart rate zone type, 0: by heart rate reserve, 1: by maximum heart rate",
+                  "apiLevel": 4.2
+                },
+                {
+                  "name": "rest",
+                  "type": "number",
+                  "description": "Resting heart rate value",
+                  "apiLevel": 4.2
+                },
+                {
+                  "name": "range",
+                  "type": "number[]",
+                  "description": "Heart rate zone value array with 6 values, corresponding to: Ligit, Intensive, Aerobic, Anaerobic, VO2 max and maximum heart rate",
+                  "apiLevel": 4.2
+                }
+              ]
             }
           ]
         },
         {
-          "name": "WorkoutTrackNavInfo",
-          "props": [
+          "name": "getWorkoutTrackNavInfo",
+          "description": "Get workout track navigation information, returns navigation info object when navigation is enabled, returns `undefined` when navigation is not enabled",
+          "signature": "getWorkoutTrackNavInfo(): WorkoutTrackNavInfo | undefined",
+          "apiLevel": 4.2,
+          "shapes": [
             {
-              "name": "update",
-              "type": "number",
-              "description": "Data update status, true: need update, false: no need to update",
-              "apiLevel": 4.2
-            },
-            {
-              "name": "isYaw",
-              "type": "number",
-              "description": "Whether off course, true: off course, false: on course",
-              "apiLevel": 4.2
-            },
-            {
-              "name": "yawAngle",
-              "type": "number",
-              "description": "Yaw angle",
-              "apiLevel": 4.2
-            },
-            {
-              "name": "yawDistance",
-              "type": "number",
-              "description": "Yaw distance in meters",
-              "apiLevel": 4.2
-            },
-            {
-              "name": "remainDistance",
-              "type": "number",
-              "description": "Remaining distance in meters",
-              "apiLevel": 4.2
-            },
-            {
-              "name": "turnDistance",
-              "type": "number",
-              "description": "Distance to next turn in meters",
-              "apiLevel": 4.2
-            },
-            {
-              "name": "turnType",
-              "type": "number",
-              "description": "The direction of the next turn, refer to TURN_TYPE for value meanings",
-              "apiLevel": 4.2
+              "name": "WorkoutTrackNavInfo",
+              "props": [
+                {
+                  "name": "update",
+                  "type": "number",
+                  "description": "Data update status, true: need update, false: no need to update",
+                  "apiLevel": 4.2
+                },
+                {
+                  "name": "isYaw",
+                  "type": "number",
+                  "description": "Whether off course, true: off course, false: on course",
+                  "apiLevel": 4.2
+                },
+                {
+                  "name": "yawAngle",
+                  "type": "number",
+                  "description": "Yaw angle",
+                  "apiLevel": 4.2
+                },
+                {
+                  "name": "yawDistance",
+                  "type": "number",
+                  "description": "Yaw distance in meters",
+                  "apiLevel": 4.2
+                },
+                {
+                  "name": "remainDistance",
+                  "type": "number",
+                  "description": "Remaining distance in meters",
+                  "apiLevel": 4.2
+                },
+                {
+                  "name": "turnDistance",
+                  "type": "number",
+                  "description": "Distance to next turn in meters",
+                  "apiLevel": 4.2
+                },
+                {
+                  "name": "turnType",
+                  "type": "number",
+                  "description": "The direction of the next turn, refer to TURN_TYPE for value meanings",
+                  "apiLevel": 4.2
+                }
+              ]
             }
-          ]
-        }
-      ],
-      "enums": [
-        {
-          "name": "TURN_TYPE",
-          "qualified": false,
-          "members": [
+          ],
+          "enums": [
             {
-              "value": "1",
-              "type": "number",
-              "description": "Turn right forward",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "2",
-              "type": "number",
-              "description": "Turn right",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "3",
-              "type": "number",
-              "description": "Turn right backward",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "4",
-              "type": "number",
-              "description": "U-turn to the right",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "5",
-              "type": "number",
-              "description": "U-turn",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "6",
-              "type": "number",
-              "description": "U-turn to the left",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "7",
-              "type": "number",
-              "description": "Turn left backward",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "8",
-              "type": "number",
-              "description": "Turn left",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
-            },
-            {
-              "value": "9",
-              "type": "number",
-              "description": "Turn left forward",
-              "apiLevel": 4.2,
-              "confidence": "OFFICIAL"
+              "name": "TURN_TYPE",
+              "qualified": false,
+              "members": [
+                {
+                  "value": "1",
+                  "type": "number",
+                  "description": "Turn right forward",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "2",
+                  "type": "number",
+                  "description": "Turn right",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "3",
+                  "type": "number",
+                  "description": "Turn right backward",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "4",
+                  "type": "number",
+                  "description": "U-turn to the right",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "5",
+                  "type": "number",
+                  "description": "U-turn",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "6",
+                  "type": "number",
+                  "description": "U-turn to the left",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "7",
+                  "type": "number",
+                  "description": "Turn left backward",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "8",
+                  "type": "number",
+                  "description": "Turn left",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                },
+                {
+                  "value": "9",
+                  "type": "number",
+                  "description": "Turn left forward",
+                  "apiLevel": 4.2,
+                  "confidence": "OFFICIAL"
+                }
+              ]
             }
           ]
         }
@@ -2038,45 +2914,57 @@
       "type": "value",
       "description": "World Clock Sensor.",
       "minApiLevel": 3,
-      "shapes": [
+      "members": [
         {
-          "name": "WorldClockInfo",
-          "props": [
+          "name": "getCount",
+          "description": "Get the number of configured world clocks",
+          "signature": "getCount(): number"
+        },
+        {
+          "name": "getInfo",
+          "description": "Get the configured world clock information according to the index",
+          "signature": "getInfo(index: number): WorldClockInfo",
+          "shapes": [
             {
-              "name": "city",
-              "type": "string",
-              "description": "City Name",
-              "apiLevel": 3
-            },
-            {
-              "name": "cityCode",
-              "type": "string",
-              "description": "City code, e.g. San Francisco SFO",
-              "apiLevel": 3
-            },
-            {
-              "name": "hour",
-              "type": "number",
-              "description": "Hour",
-              "apiLevel": 3
-            },
-            {
-              "name": "minute",
-              "type": "number",
-              "description": "Minute",
-              "apiLevel": 3
-            },
-            {
-              "name": "timeZoneHour",
-              "type": "number",
-              "description": "Time Zone hours",
-              "apiLevel": 3
-            },
-            {
-              "name": "timeZoneMinute",
-              "type": "number",
-              "description": "Time zone minutes",
-              "apiLevel": 3
+              "name": "WorldClockInfo",
+              "props": [
+                {
+                  "name": "city",
+                  "type": "string",
+                  "description": "City Name",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "cityCode",
+                  "type": "string",
+                  "description": "City code, e.g. San Francisco SFO",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "hour",
+                  "type": "number",
+                  "description": "Hour",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "minute",
+                  "type": "number",
+                  "description": "Minute",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "timeZoneHour",
+                  "type": "number",
+                  "description": "Time Zone hours",
+                  "apiLevel": 3
+                },
+                {
+                  "name": "timeZoneMinute",
+                  "type": "number",
+                  "description": "Time zone minutes",
+                  "apiLevel": 3
+                }
+              ]
             }
           ]
         }

@@ -324,3 +324,43 @@ describe("enum members", () => {
     assert.ok(!owners.has("JSON"));
   });
 });
+
+describe("instance members", () => {
+  it("attaches a page's methods to the symbol they are called on", async () => {
+    // The gap eval 02 recorded as "a sensor instance's accessors". `getCurrent`
+    // is not importable — `new BloodOxygen().getCurrent()` — so it is a field on
+    // the sensor's record rather than a symbol of its own. 12 sensors document a
+    // `getCurrent` and they return 12 different shapes.
+    const sensor = byId(await parseMarkdown(CACHE)).get("@zos/sensor.BloodOxygen");
+
+    assert.ok(sensor);
+    assert.deepEqual(
+      sensor.members?.map((m) => m.name),
+      ["getCurrent", "start"],
+    );
+    assert.equal(sensor.members?.[0].signature, "getCurrent(): Result");
+  });
+
+  it("does not let the page's badge stand in for a member's own level", async () => {
+    // The sensor is 2.0 and `start` is 2.1: an app targeting 2.0 can construct
+    // it and not drive it.
+    const sensor = byId(await parseMarkdown(CACHE)).get("@zos/sensor.BloodOxygen");
+    const start = sensor?.members?.find((m) => m.name === "start");
+
+    assert.equal(sensor?.apiLevel, 2);
+    assert.equal(start?.apiLevel, 2.1);
+  });
+
+  it("moves the tables inside a Methods section off the page symbol", async () => {
+    // `retCode` is the domain of what `getCurrent` returns. Filing it on the
+    // page — which is what happened before members existed — stated that the
+    // sensor itself has a result code.
+    const sensor = byId(await parseMarkdown(CACHE)).get("@zos/sensor.BloodOxygen");
+    const getCurrent = sensor?.members?.find((m) => m.name === "getCurrent");
+
+    assert.equal(sensor?.shapes, undefined);
+    assert.equal(sensor?.enums, undefined);
+    assert.deepEqual(getCurrent?.shapes?.map((s) => s.name), ["Result"]);
+    assert.deepEqual(getCurrent?.enums?.map((e) => e.name), ["retCode"]);
+  });
+});

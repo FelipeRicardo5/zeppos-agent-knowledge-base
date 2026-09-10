@@ -7,6 +7,7 @@ import type {
   EnumMember,
   EnumSpec,
   ExampleRecord,
+  MemberSpec,
   PatternRecord,
   RawAppJson,
   RawExample,
@@ -145,6 +146,11 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
     const withDescription = ranked.find((u) => u.description !== undefined);
     const withSignature = ranked.find((u) => u.signature !== undefined);
     const withShapes = ranked.find((u) => u.shapes !== undefined);
+    // Priority, not union: unlike an enum, two sources listing methods are two
+    // claims about one interface rather than two partial views of a set. Only
+    // the reference front produces these today, so there is nothing to
+    // reconcile yet — this states the rule before a second source arrives.
+    const withMembers = ranked.find((u) => u.members !== undefined);
     // Unioned, not prioritized: a symbol documented under the Device App API and
     // also seen in a watchface sample is valid in both, so both are evidence. The
     // sort keeps the persisted JSON identical whatever order the walk produced.
@@ -160,6 +166,7 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
       signature: withSignature?.signature,
       shapes: withShapes?.shapes,
       enums: mergeEnums(ranked),
+      members: withMembers?.members,
       runtimes,
       source: primary.sourceKind,
       confidence: confidenceFor(units),

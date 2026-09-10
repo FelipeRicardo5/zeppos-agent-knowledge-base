@@ -137,6 +137,90 @@
           ]
         }
       ],
+      "members": [
+        {
+          "name": "setSource",
+          "description": "Set playback parameters and specify the audio file path before playback starts. `player.source.FILE` supports MP3 files and OPUS files recorded with the audio API. `options.file` is relative to the mini program `assets` directory by default; use `data://` to access the `data` directory.",
+          "signature": "setSource(source: Player['source']['FILE'], options: { file: string }): void"
+        },
+        {
+          "name": "prepare",
+          "description": "Prepare the player by checking the path, file format, and supported bitrate. On success, the player changes state and starts buffering media data; use the event listener to get the result.",
+          "signature": "prepare(): void"
+        },
+        {
+          "name": "start",
+          "description": "Start playback",
+          "signature": "start(): void"
+        },
+        {
+          "name": "pause",
+          "description": "Pause playback",
+          "signature": "pause(): void"
+        },
+        {
+          "name": "resume",
+          "description": "Resume playback; has the same effect as calling `start()`",
+          "signature": "resume(): void"
+        },
+        {
+          "name": "stop",
+          "description": "Stop playback",
+          "signature": "stop(): void"
+        },
+        {
+          "name": "seek",
+          "description": "Set the playback position as a percentage of the total duration. `percentage` must be in [0 - 100]; the return value indicates whether the position was set successfully. - In `PREPARED`, playback starts automatically after `seek()` - In `PAUSED` or `PLAY`, the current state is preserved after `seek()`",
+          "signature": "seek(percentage: number): boolean",
+          "apiLevel": 4.2
+        },
+        {
+          "name": "seekTo",
+          "description": "Set the playback position in seconds; equivalent to `seek()`",
+          "signature": "seekTo(seconds: number): boolean",
+          "apiLevel": 4.3
+        },
+        {
+          "name": "getDuration",
+          "description": "Get the total duration of the current media file in seconds. A return value of `0` is invalid; the player must be in `PREPARED` to get the duration",
+          "signature": "getDuration(): number"
+        },
+        {
+          "name": "getVolume",
+          "description": "Get the current system volume in the range [0 - 100]",
+          "signature": "getVolume(): number"
+        },
+        {
+          "name": "setVolume",
+          "description": "Set the system volume in the range [0 - 100]. The return value indicates whether the setting succeeded; `true` means success",
+          "signature": "setVolume(volume: number): boolean"
+        },
+        {
+          "name": "getTitle",
+          "description": "Get the title of the current media file; returns `undefined` on failure",
+          "signature": "getTitle(): string | undefined"
+        },
+        {
+          "name": "getArtist",
+          "description": "Get the artist of the current media file; returns `undefined` on failure",
+          "signature": "getArtist(): string | undefined"
+        },
+        {
+          "name": "getMediaInfo",
+          "description": "Get the title, artist, and duration of the current media file. `title` and `artist` are available after `setSource()`; `duration` requires the player to be in `PREPARED`",
+          "signature": "getMediaInfo(): {\n      title: string | undefined\n      artist: string | undefined\n      duration: number\n    }"
+        },
+        {
+          "name": "getStatus",
+          "description": "Get the player state; see `player.state` for the meanings",
+          "signature": "getStatus(): number"
+        },
+        {
+          "name": "addEventListener",
+          "description": "Listen for playback state changes; `callback` is triggered when the state changes",
+          "signature": "addEventListener(event: number, callback: (result: boolean | number | undefined) => void): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -198,6 +282,33 @@
               "apiLevel": 3
             }
           ]
+        }
+      ],
+      "members": [
+        {
+          "name": "setFormat",
+          "description": "Set the recording format and output file. Use a value from `codec`; `codec.OPUS` is currently supported. `options.target_file` specifies the output path in the mini program `data` directory, for example `data://record_file.opus`",
+          "signature": "setFormat(codecValue: typeof codec.OPUS, options: { target_file: string }): void"
+        },
+        {
+          "name": "start",
+          "description": "Start recording",
+          "signature": "start(): void"
+        },
+        {
+          "name": "stop",
+          "description": "Stop recording",
+          "signature": "stop(): void"
+        },
+        {
+          "name": "getStatus",
+          "description": "Get the recorder state; see `recorder.state` for the meanings",
+          "signature": "getStatus(): number"
+        },
+        {
+          "name": "addEventListener",
+          "description": "Listen for recorder state changes; `callback` is triggered when the state changes",
+          "signature": "addEventListener(event: number, callback: (result: boolean | undefined) => void): void"
         }
       ],
       "runtimes": [

@@ -96,6 +96,20 @@ function clearTimeout(timeoutID: TimeoutID): void
 
 Console Print Log.
 
+**Called on a `console` value** — 1 members
+
+| Member | Signature |
+| --- | --- |
+| [`log`](#zosglobalconsolelog) | `log(...data: any[]): void` |
+
+#### `@zos/global.console.log`
+
+Print log level logs with any number of parameters. Each log is limited in length and will be truncated if it is exceeded. To print the full content, the developer needs to print the content in multiple times
+
+```ts
+log(...data: any[]): void
+```
+
 ### `@zos/global.DataWidget`
 
 Register DataWidget, specify the lifecycle callback for the current DataWidget, etc. Each DataWidget file must call the `DataWidget()` constructor only once.

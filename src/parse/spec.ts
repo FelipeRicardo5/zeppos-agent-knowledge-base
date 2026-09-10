@@ -1,4 +1,4 @@
-import type { EnumMember, EnumSpec, PropSpec, ShapeSpec } from "../types.js";
+import type { EnumMember, EnumSpec, MemberSpec, PropSpec, ShapeSpec } from "../types.js";
 
 // Call shapes: the signature a page states and the property tables under it.
 //
@@ -354,4 +354,165 @@ export function extractEnums(content: string): EnumSpec[] {
   }
 
   return specs;
+}
+
+// --- Members ----------------------------------------------------------------
+//
+// What you call on a value rather than on a module. `new HeartRate().getCurrent()`,
+// `localStorage.getItem(...)`, `player.setSource(...)`.
+//
+// 43 reference pages declare these under a `Methods` heading, 257 of them, and
+// every one states a `ts` signature and prose. The base had none: eval 02 listed
+// "a sensor instance's accessors" as open, and `examples/` could only reach them
+// by matching a bare method name against the symbol table, receiver unresolved.
+//
+// Three things the source does that this has to get right:
+//
+//   two depths    42 pages put `## Methods` with the members at `###`. The four
+//                 crypto pages nest a level deeper — `## AESCrypto` then
+//                 `### Methods` then `#### encrypt` — so the depth is read off
+//                 the heading rather than assumed.
+//   owned tables  72 of the 84 property and value tables on these pages sit
+//                 *inside* a Methods section. They belong to the member, not to
+//                 the page: `retCode` is what `getCurrent` returns, and filing
+//                 it on `BloodOxygen` said the sensor itself had a `retCode`.
+//   not all of them are members
+//                 `ui/widget/SYSTEM_KEYBOARD.mdx` lists `deleteKeyboard()` under
+//                 `## Methods`, and its own example imports it — it is a module
+//                 function that happens to be documented beside the widget. One
+//                 case in 257, and the page states the evidence to catch it.
+
+/** A `Methods` heading at any depth, capturing the depth. */
+const METHODS_HEADING_RE = /^(#{2,5})\s+Methods\s*$/;
+
+/** Any ATX heading, capturing its depth and text. */
+const HEADING_RE = /^(#{1,6})\s+(.+?)\s*$/;
+
+/** A fenced `ts` block: the form every member signature takes. */
+const TS_FENCE_RE = /^```ts\n([\s\S]*?)```/m;
+
+/** The `API_LEVEL` badge blockquote, in either of the two wordings upstream uses. */
+const MEMBER_LEVEL_RE = /^>.*API_LEVEL\s+`(\d+(?:\.\d+)?)`/m;
+
+interface Region {
+  /** Lines of the section, excluding the `Methods` heading itself. */
+  lines: string[];
+  /** Depth the member headings sit at. */
+  depth: number;
+}
+
+/** Every `Methods` section, with the depth its members are written at. */
+function methodsRegions(lines: string[]): Region[] {
+  const regions: Region[] = [];
+
+  lines.forEach((line, index) => {
+    const heading = line.match(METHODS_HEADING_RE);
+    if (!heading) return;
+
+    const depth = heading[1].length;
+    let end = index + 1;
+    while (end < lines.length) {
+      const next = lines[end].match(HEADING_RE);
+      if (next && next[1].length <= depth) break;
+      end += 1;
+    }
+    regions.push({ lines: lines.slice(index + 1, end), depth: depth + 1 });
+  });
+
+  return regions;
+}
+
+/** The prose a member opens with: the lines before its first fence or table. */
+function memberDescription(body: string[]): string | undefined {
+  const prose: string[] = [];
+
+  for (const line of body) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("```") || trimmed.startsWith("|") || trimmed.startsWith("#")) break;
+    // The badge is a claim about the level, not a description of the method.
+    if (trimmed.startsWith(">") || trimmed.startsWith(":::")) continue;
+    if (trimmed.length > 0) prose.push(trimmed);
+  }
+
+  return prose.length > 0 ? prose.join(" ") : undefined;
+}
+
+/**
+ * Everything callable on a value the page's symbol produces.
+ *
+ * A heading under `Methods` whose own example *imports* it by name is left out:
+ * it is a module function documented beside the value, and filing it here would
+ * both invent a member and hide a symbol that already has a record of its own.
+ */
+export function extractMembers(content: string): MemberSpec[] {
+  const members: MemberSpec[] = [];
+
+  for (const region of methodsRegions(content.split("\n"))) {
+    const starts: number[] = [];
+    region.lines.forEach((line, index) => {
+      const heading = line.match(HEADING_RE);
+      if (heading && heading[1].length === region.depth) starts.push(index);
+    });
+
+    starts.forEach((start, nth) => {
+      const end = starts[nth + 1] ?? region.lines.length;
+      // `### deleteKeyboard()` — the parentheses are the page's, not the name's.
+      const name = (region.lines[start].match(HEADING_RE) as RegExpMatchArray)[2]
+        .replace(/`/g, "")
+        .replace(/\(\s*\)$/, "")
+        .trim();
+      const body = region.lines.slice(start + 1, end);
+      const text = body.join("\n");
+
+      const importsItself = new RegExp(
+        String.raw`import\s*\{[^}]*\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\b[^}]*\}`,
+      ).test(text);
+      if (importsItself) return;
+
+      const signature = text.match(TS_FENCE_RE);
+      const level = text.match(MEMBER_LEVEL_RE);
+      const shapes = extractShapes(text);
+      const enums = extractEnums(text);
+
+      members.push({
+        name,
+        description: memberDescription(body),
+        ...(signature ? { signature: signature[1].trim() } : {}),
+        ...(level ? { apiLevel: Number(level[1]) } : {}),
+        ...(shapes.length > 0 ? { shapes } : {}),
+        ...(enums.length > 0 ? { enums } : {}),
+      });
+    });
+  }
+
+  return members;
+}
+
+/**
+ * The page with its `Methods` sections removed.
+ *
+ * The page-level shape and enum passes run over this rather than the whole file,
+ * because a table inside a `Methods` section belongs to the member above it.
+ * Leaving them in filed `retCode` on `@zos/sensor.BloodOxygen` — stating that the
+ * sensor has a result code, when what has one is the value `getCurrent` returns.
+ */
+export function withoutMembers(content: string): string {
+  const lines = content.split("\n");
+  const drop = new Set<number>();
+
+  lines.forEach((line, index) => {
+    const heading = line.match(METHODS_HEADING_RE);
+    if (!heading) return;
+
+    const depth = heading[1].length;
+    let end = index + 1;
+    while (end < lines.length) {
+      const next = lines[end].match(HEADING_RE);
+      if (next && next[1].length <= depth) break;
+      end += 1;
+    }
+    for (let at = index; at < end; at += 1) drop.add(at);
+  });
+
+  return lines.filter((_, index) => !drop.has(index)).join("\n");
 }

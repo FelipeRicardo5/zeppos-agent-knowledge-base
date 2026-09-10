@@ -8,6 +8,33 @@
       "type": "value",
       "description": "Read-only file system across applications. Application B uses application A's appId to inspect, open and read a known file path from application A; this class does not provide write operations.",
       "minApiLevel": 3,
+      "members": [
+        {
+          "name": "openSync",
+          "description": "Open a file in read-only mode",
+          "signature": "openSync(options: { path: string }): number"
+        },
+        {
+          "name": "closeSync",
+          "description": "Close a file descriptor",
+          "signature": "closeSync(fd: number): number"
+        },
+        {
+          "name": "statSync",
+          "description": "Get file information, or undefined when the file does not exist",
+          "signature": "statSync(options: {\n      path: string\n    }): { size: number; mtimeMs: number; isDir: boolean; isFile: boolean } | undefined"
+        },
+        {
+          "name": "readSync",
+          "description": "Read file content into a buffer",
+          "signature": "readSync(options: {\n      fd: number\n      buffer: ArrayBuffer\n      options?: { offset?: number; length?: number; position?: number }\n    }): number"
+        },
+        {
+          "name": "readFileSync",
+          "description": "Read an entire file. Returns a string when encoding is specified, otherwise an ArrayBuffer.",
+          "signature": "readFileSync(options: {\n      path: string\n      options?: { encoding?: string }\n    }): string | ArrayBuffer"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -23,6 +50,18 @@
       "type": "value",
       "description": "Read-only JSON key-value storage across applications. Application A publishes data with `ShareLocalStorage` from `@zos/storage`, and application B reads it with application A's appId. When using a custom storagePath, both applications must use the same path.",
       "minApiLevel": 3,
+      "members": [
+        {
+          "name": "getItem",
+          "description": "Get a value, or return the default value when not found",
+          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+        },
+        {
+          "name": "isExisted",
+          "description": "Check whether the target shared storage file exists",
+          "signature": "isExisted(): boolean"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -38,6 +77,33 @@
       "type": "value",
       "description": "Read-only typed key-value storage across applications. Application A publishes system properties with `ShareTypedStorage` from `@zos/storage`, and application B reads them with application A's appId. When using a custom scope, both applications must use the same scope.",
       "minApiLevel": 3,
+      "members": [
+        {
+          "name": "getBool",
+          "description": "Get a boolean value from the target application",
+          "signature": "getBool(key: string, defaultValue: boolean): boolean"
+        },
+        {
+          "name": "getInt",
+          "description": "Get an integer value from the target application",
+          "signature": "getInt(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getInt64",
+          "description": "Get a 64-bit integer value from the target application",
+          "signature": "getInt64(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getDouble",
+          "description": "Get a double value from the target application",
+          "signature": "getDouble(key: string, defaultValue: number): number"
+        },
+        {
+          "name": "getString",
+          "description": "Get a string value from the target application",
+          "signature": "getString(key: string, defaultValue: string): string"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

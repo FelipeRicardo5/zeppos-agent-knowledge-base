@@ -196,6 +196,13 @@
       "type": "value",
       "description": "Console Print Log.",
       "minApiLevel": 2,
+      "members": [
+        {
+          "name": "log",
+          "description": "Print log level logs with any number of parameters. Each log is limited in length and will be truncated if it is exceeded. To print the full content, the developer needs to print the content in multiple times",
+          "signature": "log(...data: any[]): void"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

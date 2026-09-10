@@ -111,9 +111,25 @@ with the name you write in code, `align.CENTER_H`. Two things to read carefully:
   sample code writes them. The page states that the list is incomplete — neither
   source is the whole set, and a widget id you cannot find here may still exist.
 
-For a value set that has no name you can write — `retCode` on a sensor's result,
-`ERROR_CODE`, the weather `index` — the table sits on the symbol that returns
-it, so `@zos/sensor.Weather` is where you learn that `index` 3 is Sunny.
+For a value set that has no name you can write — `ERROR_CODE`, the weather
+`index` — the table sits on the symbol that returns it, so
+`@zos/sensor.Weather` is where you learn that `index` 3 is Sunny.
+
+**What to call on a value** is on the owning symbol too, under *Called on a
+`X` value*. `new HeartRate()` gives you something with `getCurrent`,
+`onCurrentChange` and nine more; `localStorage` has `getItem`/`setItem`;
+`Player` has sixteen. These are never importable — do not write
+`import { getCurrent }` — and the same name on two symbols is two different
+methods returning two different shapes, so always read the one under the
+symbol you actually have.
+
+Two traps there:
+
+- **A member states its own minimum `API_LEVEL`.** `BloodOxygen` is 2.0 and its
+  `start` and `stop` are 2.1: an app targeting 2.0 can construct the sensor and
+  not drive it. Check the member's row, not just the symbol.
+- **A member's return shape and value sets are under the member**, not under
+  the symbol. `retCode` belongs to `getCurrent`, not to the sensor.
 
 **What working code does** is in `../../examples/index.md`. Go there when the
 signature is absent, when it is too abstract to act on, or to check that your
@@ -179,7 +195,7 @@ This knowledge base is incomplete by construction, so a symbol you cannot find i
 - `not stated` in an `API_LEVEL` column means no source documents a minimum. It does *not* mean the symbol works at any level.
 - The runtime axis is heavily skewed: 375 of 411 symbols are Device App. Every runtime is covered, but the Settings App's 21 and the Side Service's 20 carry **no `API_LEVEL`** — no page in either tree states one — so they answer "does this exist here" but not "since when".
 - The **watchface `hm*` API is not covered at all** (`hmUI`, `hmFS`, `hmSensor`, `hmSetting`). The 3 Watchface symbols here are `@zos/*` calls seen in watchface samples. Answer a `hm*` question from the official docs and say so.
-- Methods reached through a returned object (`DownloadTask.cancel`, `Onbox.enqueFile`) are not recorded. Their parent function is.
+- Members are recorded only where a page declares a `Methods` section — 46 symbols carry them. A value whose page has no such section answers nothing about what can be called on it, which is *not covered* rather than *nothing can*.
 - A pattern's `Minimum API_LEVEL` is **derived**, not quoted: it is the highest minimum among the symbols the guide's code uses, and it skips symbols this KB has no record for. Treat it as a floor, and check the page's own "no record" flag before calling a pattern verified.
 - The Settings App's 13 `ui.*` components now carry a signature and a full property table each (74 properties in total), so they are no longer bare names. What is still missing there is the **entry point** — `AppSettingsPage`, which registers a settings page, has no symbol record; it appears only as code, under *Global calls in the phone runtimes* in `../../examples/index.md`.
 - The Side Service and Settings App **are** covered: see `../../runtimes/side-service.md` and `../../runtimes/settings.md`, plus `../../api/fetch.md` and `../../api/settings-storage.md`. What is missing there is narrower than the runtime: the Settings App's **entry point** (the function that registers a settings page) and the **props of its `ui.*` components`. Answer that one from the official docs and say so; everything else in those runtimes, answer from here.

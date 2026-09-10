@@ -1,7 +1,14 @@
 import path from "node:path";
 import { readExampleFiles } from "./examples.js";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
-import type { DeviceRecord, EnumSpec, ExampleRecord, Runtime, SymbolRecord } from "../types.js";
+import type {
+  DeviceRecord,
+  EnumSpec,
+  ExampleRecord,
+  Runtime,
+  ShapeSpec,
+  SymbolRecord,
+} from "../types.js";
 import {
   INDEX_FILE,
   NOT_STATED,
@@ -121,38 +128,111 @@ function apiMarkdown(module: ModuleFile): string {
       }
 
       for (const shape of record.shapes ?? []) {
-        lines.push(`**${cell(shape.name)}**`, "");
-        const levelled = shape.props.some((p) => p.apiLevel !== undefined);
-        lines.push(
-          levelled
-            ? "| Property | Type | Required | Default | Min API_LEVEL | Description |"
-            : "| Property | Type | Required | Default | Description |",
-        );
-        lines.push(levelled ? "| --- | --- | --- | --- | --- | --- |" : "| --- | --- | --- | --- | --- |");
-
-        for (const prop of shape.props) {
-          const required = prop.required === undefined ? NOT_STATED : prop.required ? "yes" : "no";
-          const level = prop.apiLevel === undefined ? NOT_STATED : `>= ${prop.apiLevel}`;
-          const columns = [
-            `\`${prop.name}\``,
-            prop.type === undefined ? NOT_STATED : `\`${cell(prop.type)}\``,
-            required,
-            prop.default === undefined ? "—" : `\`${cell(prop.default)}\``,
-            ...(levelled ? [level] : []),
-            prop.description === undefined ? "—" : cell(prop.description),
-          ];
-          lines.push(`| ${columns.join(" | ")} |`);
-        }
-        lines.push("");
+        lines.push(...shapeLines(shape));
       }
 
       for (const spec of record.enums ?? []) {
         lines.push(...enumLines(spec, module));
       }
+
+      lines.push(...memberLines(record, module));
     }
   }
 
   return lines.join("\n");
+}
+
+/**
+ * What can be called on a value the symbol produces or is.
+ *
+ * Rendered under the symbol rather than as entries of its own, because that is
+ * how they are reached: `new HeartRate().getCurrent()`, never an import. 12
+ * sensors document a `getCurrent` and they are 12 different methods returning
+ * 12 different shapes, so the owner is part of the identity.
+ *
+ * The level column is the reason this cannot be a plain list. A member states
+ * its own minimum and the symbol's does not imply it: `BloodOxygen` is 2.0
+ * while its `start` and `stop` are 2.1, so an app targeting 2.0 can construct
+ * the sensor and not drive it.
+ */
+function memberLines(record: SymbolRecord, module: ModuleFile): string[] {
+  const members = record.members ?? [];
+  if (members.length === 0) return [];
+
+  const lines: string[] = [];
+  const owner = `${module.module}.${record.symbol}`;
+  const levelled = members.some((m) => m.apiLevel !== undefined);
+
+  lines.push(`**Called on a \`${cell(record.symbol)}\` value** — ${members.length} members`, "");
+  if (levelled) {
+    lines.push(
+      "A member states its own minimum `API_LEVEL`, and the symbol's does not imply",
+      `it. \`${NOT_STATED}\` here means the page gives that member no badge — not that it`,
+      "is available wherever the symbol is.",
+      "",
+    );
+  }
+
+  lines.push(levelled ? "| Member | Min API_LEVEL | Signature |" : "| Member | Signature |");
+  lines.push(levelled ? "| --- | --- | --- |" : "| --- | --- |");
+  for (const member of members) {
+    const columns = [
+      `[\`${cell(member.name)}\`](#${anchor(`${owner}${member.name}`)})`,
+      ...(levelled ? [member.apiLevel === undefined ? NOT_STATED : `>= ${member.apiLevel}`] : []),
+      member.signature === undefined ? NOT_STATED : `\`${cell(member.signature)}\``,
+    ];
+    lines.push(`| ${columns.join(" | ")} |`);
+  }
+  lines.push("");
+
+  // A member gets its own heading only when it carries something the table
+  // above cannot hold: prose, a shape, or a value set.
+  for (const member of members) {
+    const detailed =
+      member.description !== undefined ||
+      (member.shapes?.length ?? 0) > 0 ||
+      (member.enums?.length ?? 0) > 0;
+    if (!detailed) continue;
+
+    lines.push(`#### \`${owner}.${member.name}\``, "");
+    if (member.description !== undefined) lines.push(member.description, "");
+    if (member.signature !== undefined) lines.push("```ts", member.signature, "```", "");
+
+    for (const shape of member.shapes ?? []) lines.push(...shapeLines(shape));
+    for (const spec of member.enums ?? []) lines.push(...enumLines(spec, module));
+  }
+
+  return lines;
+}
+
+/** One named property table. Shared: a shape can belong to a symbol or to a member. */
+function shapeLines(shape: ShapeSpec): string[] {
+  const lines = [`**${cell(shape.name)}**`, ""];
+  const levelled = shape.props.some((p) => p.apiLevel !== undefined);
+
+  lines.push(
+    levelled
+      ? "| Property | Type | Required | Default | Min API_LEVEL | Description |"
+      : "| Property | Type | Required | Default | Description |",
+  );
+  lines.push(levelled ? "| --- | --- | --- | --- | --- | --- |" : "| --- | --- | --- | --- | --- |");
+
+  for (const prop of shape.props) {
+    const required = prop.required === undefined ? NOT_STATED : prop.required ? "yes" : "no";
+    const level = prop.apiLevel === undefined ? NOT_STATED : `>= ${prop.apiLevel}`;
+    const columns = [
+      `\`${prop.name}\``,
+      prop.type === undefined ? NOT_STATED : `\`${cell(prop.type)}\``,
+      required,
+      prop.default === undefined ? "—" : `\`${cell(prop.default)}\``,
+      ...(levelled ? [level] : []),
+      prop.description === undefined ? "—" : cell(prop.description),
+    ];
+    lines.push(`| ${columns.join(" | ")} |`);
+  }
+  lines.push("");
+
+  return lines;
 }
 
 /**

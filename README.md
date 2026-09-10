@@ -19,6 +19,15 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
+| `verify` — ask the rendered base 17 real questions and check the answers | implemented |
+
+`npm run verify` asks the **rendered** base 17 questions a developer would
+actually ask — *where does `setInterval` live*, *what values may `align_h` take*,
+*what must `app.json` declare for `@zos/alarm.set`* — and fails, naming the
+question, when one stops being answerable. It reads the Markdown rather than the
+JSON, because a fact that survives into `data/` and dies in the render is still
+a wrong answer. Every question carries the reason it is in the set, which is
+usually an eval finding or a bug that shipped.
 
 Fixture-based tests cover all nine parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (230 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 

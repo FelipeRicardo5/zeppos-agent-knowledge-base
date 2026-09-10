@@ -7,7 +7,8 @@
     "sync": "tsx src/cli.ts sync",
     "render": "tsx src/cli.ts render",
     "test": "node --import tsx --test \"test/**/*.test.ts\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "verify": "tsx src/cli.ts verify"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

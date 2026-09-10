@@ -14,6 +14,7 @@ import { parsePatterns } from "./parse/patterns.js";
 import { parsePhoneApis } from "./parse/phone.js";
 import { parseWatchface } from "./parse/watchface.js";
 import { render } from "./render/index.js";
+import { verify } from "./verify/index.js";
 import { renderExamples } from "./render/examples.js";
 import { renderConflicts } from "./render/conflicts.js";
 import { renderManifest } from "./render/manifest.js";
@@ -140,7 +141,20 @@ switch (command) {
     );
     break;
   }
+  case "verify": {
+    const { total, failures } = await verify(path.join(DATA_DIR, "symbols"), OUT_DIR);
+
+    for (const { question, why, detail } of failures) {
+      console.error(`FAIL  ${question}`);
+      console.error(`      ${detail}`);
+      console.error(`      why this question is asked: ${why}`);
+    }
+
+    console.log(`verified: ${total - failures.length} of ${total} questions answered`);
+    if (failures.length > 0) process.exit(1);
+    break;
+  }
   default:
-    console.error(`Unknown command: ${command}. Use "sync" or "render".`);
+    console.error(`Unknown command: ${command}. Use "sync", "render" or "verify".`);
     process.exit(1);
 }

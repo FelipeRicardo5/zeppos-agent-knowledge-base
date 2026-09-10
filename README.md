@@ -18,9 +18,9 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `parse` — nine fronts: reference pages, the phone runtimes, the watchface `hm*` tree, `static/llms`, sample imports, sample apps, guides, the device list, `app.json` | implemented |
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
-| `render` — generate the final Markdown knowledge base | implemented (api/, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
+| `render` — generate the final Markdown knowledge base | implemented (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
 
-Fixture-based tests cover all nine parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (226 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all nine parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (230 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
@@ -36,6 +36,20 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 - **33 sample apps** read as code, yielding 592 cited excerpts and the shape of 33 working `app.json` files
 - **15 conflicts** the sources do not know they have: a description two official pages state differently, a widget id written one way in code and documented another, and 13 method calls whose name resolves to more than one thing inside the sample's own runtime. `conflicts/index.md` cites both sides of each
 - **the `app.json` schema**: 20 documented keys with their property tables, 3 keys the reference page names and never describes, and a two-way diff against the 33 working manifests — 48 key paths real apps use that the page never mentions, 12 documented keys no sample uses, and 38 permission strings joined to the symbols that state them
+
+### Looking a name up
+
+[`api/lookup.md`](api/lookup.md) indexes **733 names** — every symbol, every
+instance member, every enum value — against what owns it. Every other index
+here is keyed by module, `API_LEVEL` or runtime, which answers *what is in
+`@zos/ui`* and not *where does `setInterval` live*; the second eval run called
+that reverse index the most-wanted structural change, because the question cost
+three file reads.
+
+241 names have more than one owner, and that is not a duplicate: 12 sensors
+document a `getCurrent` returning 12 different shapes, and `CENTER_H` belongs
+to `@zos/ui.align` in a Device App and `hmUI.align` in a watchface. Bare numeric
+domains are excluded — `retCode` 0..10 is a set of values, not of names.
 
 ## Coverage and limits
 

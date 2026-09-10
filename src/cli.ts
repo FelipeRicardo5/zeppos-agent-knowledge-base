@@ -120,7 +120,7 @@ switch (command) {
   }
   case "render": {
     const symbolsDir = path.join(DATA_DIR, "symbols");
-    const { modules, runtimes, devices } = await render(
+    const { modules, runtimes, devices, names } = await render(
       symbolsDir,
       OUT_DIR,
       path.join(DATA_DIR, "devices.json"),
@@ -136,7 +136,7 @@ switch (command) {
       OUT_DIR,
     );
     console.log(
-      `rendered: ${modules} modules, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts (plus an index in each)`,
+      `rendered: ${modules} modules, ${names} indexed names, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts (plus an index in each)`,
     );
     break;
   }

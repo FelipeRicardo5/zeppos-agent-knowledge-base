@@ -44,11 +44,11 @@ describe("render", () => {
     const counts = await render(symbols, out);
 
     // `devices: 0` because no device file is passed; test/devices.test.ts covers that.
-    assert.deepEqual(counts, { modules: 1, runtimes: 5, devices: 0 });
+    assert.deepEqual(counts, { modules: 1, runtimes: 5, devices: 0, names: 1 });
 
     const apiFiles = await readdir(path.join(out, "api"));
     const compatFiles = await readdir(path.join(out, "compatibility"));
-    assert.deepEqual(apiFiles.sort(), ["index.md", "zos-router.md"]);
+    assert.deepEqual(apiFiles.sort(), ["index.md", "lookup.md", "zos-router.md"]);
     assert.deepEqual(compatFiles.sort(), ["index.md", "zos-router.md"]);
   });
 
@@ -247,7 +247,7 @@ describe("render", () => {
     await render(symbols, out);
 
     const apiFiles = (await readdir(path.join(out, "api"))).sort();
-    assert.deepEqual(apiFiles, ["README.md", "index.md", "zos-router.md"]);
+    assert.deepEqual(apiFiles, ["README.md", "index.md", "lookup.md", "zos-router.md"]);
     assert.equal(await readFile(path.join(out, "api", "README.md"), "utf-8"), "curated by hand\n");
   });
 
@@ -362,5 +362,103 @@ describe("render", () => {
     });
 
     await assert.rejects(render(symbols, out), /slug collision/);
+  });
+});
+
+describe("render lookup", () => {
+  it("answers a bare name with its owner, which is what the eval asked for", async () => {
+    // "Where does `setInterval` live?" cost three file reads: every other index
+    // here is keyed by module, level or runtime — by where a thing sits rather
+    // than by what it is called. An agent reading someone else's code arrives
+    // with a bare name and nothing else.
+    const { symbols, out } = await writeFixture({
+      "zos-global": { module: "@zos/global", symbols: [{ ...deviceRecord, id: "@zos/global.setInterval", module: "@zos/global", symbol: "setInterval" }] },
+    });
+
+    await render(symbols, out);
+    const page = await readFile(path.join(out, "api", "lookup.md"), "utf-8");
+
+    assert.match(page, /\| `setInterval` \| symbol \| `@zos\/global\.setInterval` \|/);
+  });
+
+  it("indexes an instance member and an enum value, not only symbols", async () => {
+    // The two kinds of name that were indexed nowhere. `getCurrent` is not
+    // importable and `CENTER_H` is not a symbol, and both are what a reader
+    // actually has in hand.
+    const { symbols, out } = await writeFixture({
+      "zos-ui": {
+        module: "@zos/ui",
+        symbols: [
+          {
+            ...deviceRecord,
+            id: "@zos/ui.align",
+            module: "@zos/ui",
+            symbol: "align",
+            enums: [
+              { name: "align", qualified: true, members: [{ value: "CENTER_H", confidence: "OFFICIAL" }] },
+            ],
+          },
+          {
+            ...deviceRecord,
+            id: "@zos/ui.Sensor",
+            module: "@zos/ui",
+            symbol: "Sensor",
+            members: [{ name: "getCurrent" }],
+          },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const page = await readFile(path.join(out, "api", "lookup.md"), "utf-8");
+
+    assert.match(page, /\| `CENTER_H` \| enum value \| `align\.CENTER_H` \|/);
+    assert.match(page, /\| `getCurrent` \| member \| `@zos\/ui\.Sensor\.getCurrent\(\)` \|/);
+  });
+
+  it("leaves a bare numeric domain out of the name index", async () => {
+    // `retCode` runs 0..10 and the weather `index` 0..28. Nobody looks up
+    // "where does `4` live", and indexing them put `0` in here with eleven
+    // owners.
+    const { symbols, out } = await writeFixture({
+      "zos-sensor": {
+        module: "@zos/sensor",
+        symbols: [
+          {
+            ...deviceRecord,
+            id: "@zos/sensor.BloodOxygen",
+            module: "@zos/sensor",
+            symbol: "BloodOxygen",
+            enums: [
+              {
+                name: "retCode",
+                qualified: false,
+                members: [{ value: "0", confidence: "OFFICIAL" }, { value: "1", confidence: "OFFICIAL" }],
+              },
+            ],
+          },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const page = await readFile(path.join(out, "api", "lookup.md"), "utf-8");
+
+    assert.doesNotMatch(page, /^\| `0` \|/m);
+    assert.match(page, /\| `BloodOxygen` \| symbol \|/);
+  });
+
+  it("indexes a dotted name under its last segment too", async () => {
+    // `console.log` is titled that way on the Side Service page because that is
+    // how it is written. Someone searching `log` has to find it.
+    const { symbols, out } = await writeFixture({
+      global: { module: "global", symbols: [{ ...deviceRecord, id: "global.console.log", module: "global", symbol: "console.log" }] },
+    });
+
+    await render(symbols, out);
+    const page = await readFile(path.join(out, "api", "lookup.md"), "utf-8");
+
+    assert.match(page, /\| `console\.log` \| symbol \|/);
+    assert.match(page, /\| `log` \| symbol \|/);
   });
 });

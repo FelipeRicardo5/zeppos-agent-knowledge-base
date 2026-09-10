@@ -18,9 +18,9 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `parse` — nove frentes: páginas de referência, os runtimes do celular, a árvore `hm*` de watchface, `static/llms`, imports dos samples, apps de exemplo, guias, lista de dispositivos, `app.json` | implementado |
 | `enrich` — fundir as frentes de símbolo em um registro por símbolo | implementado |
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
-| `render` — gerar o Markdown final da base de conhecimento | implementado (api/, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
+| `render` — gerar o Markdown final da base de conhecimento | implementado (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
 
-Testes baseados em fixtures cobrem as nove frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (226 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
+Testes baseados em fixtures cobrem as nove frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (230 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
@@ -36,6 +36,20 @@ Retrato do último sync (números atualizados em [`data/manifest.json`](data/man
 - **33 apps de exemplo** lidos como código, rendendo 592 excertos citados e a forma de 33 `app.json` que funcionam
 - **15 conflitos** que as fontes não sabem que têm: uma descrição que duas páginas oficiais declaram de formas diferentes, um id de widget escrito de um jeito no código e documentado de outro, e 13 chamadas de método cujo nome resolve para mais de uma coisa dentro do runtime do próprio sample. `conflicts/index.md` cita os dois lados de cada um
 - **o schema do `app.json`**: 20 chaves documentadas com suas tabelas de propriedades, 3 chaves que a página de referência nomeia e nunca descreve, e um diff nos dois sentidos contra os 33 manifests reais — 48 caminhos de chave que apps reais usam e a página jamais menciona, 12 chaves documentadas que nenhum sample usa, e 38 strings de permissão ligadas aos símbolos que as declaram
+
+### Procurar um nome
+
+[`api/lookup.md`](api/lookup.md) indexa **733 nomes** — todo símbolo, todo membro
+de instância, todo valor de enum — contra quem os possui. Todos os outros índices
+aqui são chaveados por módulo, `API_LEVEL` ou runtime, o que responde *o que tem
+em `@zos/ui`* e não *onde vive `setInterval`*; o segundo run de avaliação chamou
+esse índice reverso de a mudança estrutural mais desejada, porque a pergunta
+custava três leituras de arquivo.
+
+241 nomes têm mais de um dono, e isso não é duplicata: 12 sensores documentam um
+`getCurrent` que retorna 12 formas diferentes, e `CENTER_H` pertence a
+`@zos/ui.align` num Device App e a `hmUI.align` num watchface. Domínios numéricos
+puros ficam de fora — `retCode` 0..10 é um conjunto de valores, não de nomes.
 
 ## Cobertura e limites
 

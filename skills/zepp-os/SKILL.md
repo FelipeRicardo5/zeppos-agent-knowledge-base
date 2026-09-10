@@ -26,6 +26,16 @@ below, which is written for *may I use symbol X here*:
 `api/` is where a question ends, not where it starts. The steps below are that
 verification pass.
 
+**If you have a bare name and nothing else** — a symbol out of code you are
+reading, a method called on a value, a constant passed to a function — start at
+`../../api/lookup.md`. It indexes every name in the base against what owns it,
+with the runtime and the minimum level on the row. One read, not three.
+
+A name with several owners is not a duplicate: 12 sensors document a
+`getCurrent` and they return 12 different shapes; `CENTER_H` is `@zos/ui.align`
+in a Device App and `hmUI.align` in a watchface. Pick the row whose runtime
+matches what you are building, and say which one you picked.
+
 1. **Identify the target runtime**: Device App, Side Service, Settings App, Watchface or Workout Extension. A full Mini Program uses three of them — Device App on the watch, Settings App and Side Service in the Zepp App — and a symbol from one is not available in another. `../../runtimes/index.md` lists all five with their coverage; `../../runtimes/<runtime>.md` lists the symbols attributed to one.
 2. **Identify the target `API_LEVEL`** — or, better, the target *device*. `../../compatibility/devices.md` maps every device to the level it reaches, so "does this run on a Bip 6?" has a direct answer. A level alone is not one.
 3. **Check the symbol on both axes before recommending it** — `../../runtimes/` for the runtime, `../../compatibility/` for the minimum `API_LEVEL`, `../../api/` for the module's symbols and descriptions.

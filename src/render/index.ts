@@ -1,5 +1,6 @@
 import path from "node:path";
 import { readExampleFiles } from "./examples.js";
+import { LOOKUP_FILE, lookupMarkdown, lookupNameCount } from "./lookup.js";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
 import type {
   DeviceRecord,
@@ -882,7 +883,7 @@ export async function render(
   outDir: string,
   devicesFile?: string,
   examplesDir?: string,
-): Promise<{ modules: number; runtimes: number; devices: number }> {
+): Promise<{ modules: number; runtimes: number; devices: number; names: number }> {
   const modules = await readModuleFiles(symbolsDir);
   // `compatibility/` has one owner, because `prepareOutDir` clears the dir: a
   // second function writing `devices.md` there would have its page deleted by
@@ -901,6 +902,7 @@ export async function render(
   const slugs = new Map<string, string>([
     [path.parse(INDEX_FILE).name, "(the generated index)"],
     [path.parse(DEVICES_FILE).name, "(the generated device page)"],
+    [path.parse(LOOKUP_FILE).name, "(the generated name index)"],
   ]);
   const pages: { slug: string; module: ModuleFile }[] = [];
 
@@ -936,8 +938,16 @@ export async function render(
   }
 
   await writePage(path.join(apiDir, INDEX_FILE), apiIndexMarkdown(modules));
+  // Same dir, same owner: `prepareOutDir` clears `api/`, so a second function
+  // writing here would lose its page to whichever ran second.
+  await writePage(path.join(apiDir, LOOKUP_FILE), lookupMarkdown(modules));
   await writePage(path.join(compatDir, INDEX_FILE), compatIndexMarkdown(modules, devices));
   await writePage(path.join(runtimesDir, INDEX_FILE), runtimeIndexMarkdown(modules));
 
-  return { modules: modules.length, runtimes: RUNTIMES.length, devices: devices.length };
+  return {
+    modules: modules.length,
+    runtimes: RUNTIMES.length,
+    devices: devices.length,
+    names: lookupNameCount(modules),
+  };
 }

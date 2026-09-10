@@ -4,6 +4,7 @@ import {
   enrichDevices,
   enrichExamples,
   enrichPatterns,
+  enrichTools,
 } from "./enrich/index.js";
 import { fetchSources } from "./fetch/index.js";
 import { parseDevices } from "./parse/devices.js";
@@ -12,6 +13,7 @@ import { parseAppJson } from "./parse/manifest.js";
 import { parseLlmsContent, parseMarkdown, parseSamples } from "./parse/index.js";
 import { parsePatterns } from "./parse/patterns.js";
 import { parsePhoneApis } from "./parse/phone.js";
+import { parseTools } from "./parse/tools.js";
 import { parseWatchface } from "./parse/watchface.js";
 import { render } from "./render/index.js";
 import { verify } from "./verify/index.js";
@@ -19,12 +21,14 @@ import { renderExamples } from "./render/examples.js";
 import { renderConflicts } from "./render/conflicts.js";
 import { renderManifest } from "./render/manifest.js";
 import { renderPatterns } from "./render/patterns.js";
+import { renderTools } from "./render/tools.js";
 import {
   writeAppJson,
   writeDevices,
   writeExamples,
   writeManifest,
   writePatterns,
+  writeTools,
   writeSymbols,
 } from "./store/index.js";
 import path from "node:path";
@@ -42,7 +46,8 @@ switch (command) {
       console.log(`${name}: ${commit}`);
     }
 
-    const [docs, phone, watch, llms, samples, guides, hardware, apps, appJson] = await Promise.all([
+    const [docs, phone, watch, llms, samples, guides, hardware, apps, appJson, toolPages] =
+      await Promise.all([
       parseMarkdown(CACHE_DIR),
       parsePhoneApis(CACHE_DIR),
       parseWatchface(CACHE_DIR),
@@ -52,9 +57,10 @@ switch (command) {
       parseDevices(CACHE_DIR),
       parseExamples(CACHE_DIR),
       parseAppJson(CACHE_DIR),
+      parseTools(CACHE_DIR),
     ]);
     console.log(
-      `parsed: ${docs.length} docs-reference, ${phone.length} phone-api, ${watch.length} watchface, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices, ${apps.length} sample apps, ${appJson[0]?.sections.length ?? 0} app.json keys`,
+      `parsed: ${docs.length} docs-reference, ${phone.length} phone-api, ${watch.length} watchface, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices, ${apps.length} sample apps, ${appJson[0]?.sections.length ?? 0} app.json keys, ${toolPages[0]?.commands.length ?? 0} CLI commands`,
     );
 
     const records = enrich([...docs, ...phone, ...watch, ...llms, ...samples]);
@@ -84,6 +90,12 @@ switch (command) {
     );
     console.log(`enriched: ${examples.length} sample apps (${snippets} cited code excerpts)`);
 
+    const tools = enrichTools(toolPages);
+    const toolCount = await writeTools(tools, DATA_DIR);
+    console.log(
+      `enriched: ${toolCount} CLI commands (${tools[0]?.packages.length ?? 0} recommended packages)`,
+    );
+
     const manifestSchema = enrichAppJson(appJson);
     const gapCount = manifestSchema[0]?.gaps.length ?? 0;
     console.log(
@@ -110,6 +122,7 @@ switch (command) {
           devices: deviceCount,
           examples: exampleCount,
           "app-json": manifestKeyCount,
+          tools: toolCount,
         },
       },
       DATA_DIR,
@@ -130,6 +143,12 @@ switch (command) {
     const { patterns } = await renderPatterns(path.join(DATA_DIR, "patterns"), symbolsDir, OUT_DIR);
     const { examples } = await renderExamples(path.join(DATA_DIR, "examples"), symbolsDir, OUT_DIR);
     const { conflicts } = await renderConflicts(symbolsDir, path.join(DATA_DIR, "examples"), OUT_DIR);
+    const { commands } = await renderTools(
+      path.join(DATA_DIR, "tools.json"),
+      path.join(DATA_DIR, "app-json.json"),
+      symbolsDir,
+      OUT_DIR,
+    );
     const { manifestKeys } = await renderManifest(
       path.join(DATA_DIR, "app-json.json"),
       path.join(DATA_DIR, "examples"),
@@ -137,7 +156,7 @@ switch (command) {
       OUT_DIR,
     );
     console.log(
-      `rendered: ${modules} modules, ${names} indexed names, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts (plus an index in each)`,
+      `rendered: ${modules} modules, ${names} indexed names, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts, ${commands} CLI commands (plus an index in each)`,
     );
     break;
   }

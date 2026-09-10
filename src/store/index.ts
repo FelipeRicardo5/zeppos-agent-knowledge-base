@@ -2,6 +2,7 @@ import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type {
   AppJsonRecord,
+  ToolsRecord,
   DeviceRecord,
   ExampleRecord,
   PatternRecord,
@@ -129,6 +130,19 @@ export async function writeExamples(examples: ExampleRecord[], dataDir: string):
  * nothing, so an empty file is visible in a diff as the front having gone quiet
  * — the failure mode a deleted file hides.
  */
+/**
+ * One record, one file, like `app-json.json`. Written as `null` when the front
+ * produced nothing, so `render` can state the gap instead of the page vanishing
+ * — a missing page reads as "no tooling is needed", which is the one thing it
+ * must never read as.
+ */
+export async function writeTools(records: ToolsRecord[], dataDir: string): Promise<number> {
+  await mkdir(dataDir, { recursive: true });
+  const record = records[0];
+  await writeJson(path.join(dataDir, "tools.json"), record ?? null);
+  return record ? record.commands.length : 0;
+}
+
 export async function writeAppJson(pages: AppJsonRecord[], dataDir: string): Promise<number> {
   await mkdir(dataDir, { recursive: true });
   const page = pages[0];

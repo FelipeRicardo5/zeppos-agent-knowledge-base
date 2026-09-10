@@ -15,10 +15,10 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | Estágio | Situação |
 | --- | --- |
 | `fetch` — clonar/atualizar os repositórios oficiais em um cache local | implementado |
-| `parse` — nove frentes: páginas de referência, os runtimes do celular, a árvore `hm*` de watchface, `static/llms`, imports dos samples, apps de exemplo, guias, lista de dispositivos, `app.json` | implementado |
+| `parse` — dez frentes: páginas de referência, os runtimes do celular, a árvore `hm*` de watchface, `static/llms`, imports dos samples, apps de exemplo, guias, lista de dispositivos, `app.json`, o Zeus CLI | implementado |
 | `enrich` — fundir as frentes de símbolo em um registro por símbolo | implementado |
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
-| `render` — gerar o Markdown final da base de conhecimento | implementado (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
+| `render` — gerar o Markdown final da base de conhecimento | implementado (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/, tools/) |
 | `verify` — fazer 17 perguntas reais à base renderizada e checar as respostas | implementado |
 | CI — typecheck, testes, reprodutibilidade do render, `verify`; mais um sync semanal que abre PR | implementado |
 
@@ -40,7 +40,7 @@ JSON, porque um fato que sobrevive no `data/` e morre no render continua sendo
 resposta errada. Cada pergunta carrega o motivo de estar no conjunto, quase
 sempre um achado de avaliação ou um bug que passou.
 
-Testes baseados em fixtures cobrem as nove frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (230 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
+Testes baseados em fixtures cobrem as dez frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (243 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
@@ -55,6 +55,7 @@ Retrato do último sync (números atualizados em [`data/manifest.json`](data/man
 - **como fazer o build para cada um deles**: os seletores de tela `st`/`sr` que um manifest v3 exige, derivados da tela do próprio dispositivo, ao lado dos números `deviceSource` que um v2 exige — mais o índice reverso e um diff nos dois sentidos contra o que os 33 samples de fato constroem
 - **33 apps de exemplo** lidos como código, rendendo 592 excertos citados e a forma de 33 `app.json` que funcionam
 - **15 conflitos** que as fontes não sabem que têm: uma descrição que duas páginas oficiais declaram de formas diferentes, um id de widget escrito de um jeito no código e documentado de outro, e 13 chamadas de método cujo nome resolve para mais de uma coisa dentro do runtime do próprio sample. `conflicts/index.md` cita os dois lados de cada um
+- **o Zeus CLI**: 8 comandos, e o join que a página do CLI não faz — cada arquivo que o `zeus create` cria, o runtime a que pertence (derivado pela mesma regra que atribui todo símbolo) e a chave `module` que liga aquele runtime. Mais 7 pacotes recomendados, classificados `RECOMMENDED`/`COMMUNITY` pelos cabeçalhos sob os quais aparecem
 - **o schema do `app.json`**: 20 chaves documentadas com suas tabelas de propriedades, 3 chaves que a página de referência nomeia e nunca descreve, e um diff nos dois sentidos contra os 33 manifests reais — 48 caminhos de chave que apps reais usam e a página jamais menciona, 12 chaves documentadas que nenhum sample usa, e 38 strings de permissão ligadas aos símbolos que as declaram
 
 ### Procurar um nome

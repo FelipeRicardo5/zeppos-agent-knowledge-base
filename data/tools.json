@@ -1,0 +1,172 @@
+{
+  "commands": [
+    {
+      "name": "zeus create",
+      "summary": "Create project.",
+      "snippets": [
+        {
+          "file": "zeppos-docs/docs/guides/tools/cli/index.md",
+          "line": 43,
+          "code": "zeus create hello-world"
+        },
+        {
+          "file": "zeppos-docs/docs/guides/tools/cli/index.md",
+          "line": 53,
+          "code": "? Which kind of template application need to created? Empty\n? What type of application should be created? APP\n? Should this application contain a app-side component? Yes\n? Should this application contain a settings component? Yes\n? Which platforms should this application be built for? GTR3 Pro, GTR3"
+        }
+      ]
+    },
+    {
+      "name": "zeus dev",
+      "summary": "Execute `zeus dev` in the project root for a preview of the compilation. Preview requires launching the simulator and turning on \"Device Simulator:\" - For simulator installation and launch, please refer to [Simulator Installation and launch](../simulator/setup.md) - For downloading and opening \"Device Simulator\", please refer to [Installing and opening \"Device Simulator\"](../simulator/index.md#install-and-open-device-simulator) Zeus CLI connects to the simulator and automatically previews the project while listening for changes to the project code, automatically compiling and previewing the latest content.",
+      "snippets": [
+        {
+          "file": "zeppos-docs/docs/guides/tools/cli/index.md",
+          "line": 97,
+          "code": "# Enter the project root directory\ncd hello-world\n\n# Start compilation preview\nzeus dev"
+        }
+      ]
+    },
+    {
+      "name": "zeus login",
+      "summary": "Execute `zeus login` to automatically jump to the login screen, enter your Open Platform account/password to log in, after logging in you can use some of the features associated with your account, such as `zeus preview`. Some commands that require login are checked for login before execution, and if they are not logged in, they will be forced to log in.",
+      "snippets": []
+    },
+    {
+      "name": "zeus preview",
+      "summary": "Execute `zeus preview` in the project root for compilation preview (real machine).",
+      "snippets": [
+        {
+          "file": "zeppos-docs/docs/guides/tools/cli/index.md",
+          "line": 117,
+          "code": "# compilation preview (real machine)\nzeus preview"
+        },
+        {
+          "file": "zeppos-docs/docs/guides/tools/cli/index.md",
+          "line": 124,
+          "code": "? Which target would like you to build?\n> 480x480-gtr-3-pro\n  454x454-gtr-3\n\n\n? Which target would like you to build? 480x480-gtr-3-pro\nbegin generate qrcode"
+        }
+      ]
+    },
+    {
+      "name": "zeus build",
+      "summary": "Execute `zeus build` to build the application installation package.",
+      "snippets": [
+        {
+          "file": "zeppos-docs/docs/guides/tools/cli/index.md",
+          "line": 150,
+          "code": "zeus build"
+        }
+      ]
+    },
+    {
+      "name": "zeus config",
+      "summary": "- `zeus config list` - See all current configurations - `zeus config set <key>=<value>` - Add Configuration - Multiple configurations are separated by spaces - `zeus config get <key>` - View the configuration corresponding to `key` - `zeus config delete <key>` - Delete the configuration corresponding to `key`",
+      "snippets": []
+    },
+    {
+      "name": "zeus bridge",
+      "summary": "Execute `zeus bridge` in the project root directory to enter Developer Bridge mode. The Developer Bridge mode allows you to establish a connection with the runtime environment. For details, see [Developer Bridge Mode](guides/faq/developer-bridge-mode.md).",
+      "snippets": []
+    },
+    {
+      "name": "zeus status",
+      "summary": "Run `zeus status` to see the current login status and user information (nickname/userID), simulator connection status, and other information. User information can only be viewed if you are logged in",
+      "snippets": []
+    }
+  ],
+  "prompts": [
+    "Which kind of template application need to created? Empty",
+    "What type of application should be created? APP",
+    "Should this application contain a app-side component? Yes",
+    "Should this application contain a settings component? Yes",
+    "Which platforms should this application be built for? GTR3 Pro, GTR3",
+    "Which target would like you to build?",
+    "Which target would like you to build? 480x480-gtr-3-pro"
+  ],
+  "scaffold": [
+    {
+      "name": "app-side/i18n/en-US.po",
+      "runtime": "side-service"
+    },
+    {
+      "name": "app-side/index.js",
+      "runtime": "side-service"
+    },
+    {
+      "name": "app.js",
+      "runtime": "device-app"
+    },
+    {
+      "name": "pages/example/index.js",
+      "runtime": "device-app"
+    },
+    {
+      "name": "pages/i18n/en-US.po",
+      "runtime": "device-app"
+    },
+    {
+      "name": "pages/index.js",
+      "runtime": "device-app"
+    },
+    {
+      "name": "setting/i18n/en-US.po",
+      "runtime": "settings"
+    },
+    {
+      "name": "setting/index.js",
+      "runtime": "settings"
+    }
+  ],
+  "packages": [
+    {
+      "name": "ZML",
+      "url": "https://github.com/zepp-health/zml",
+      "description": "A mini development library for Zepp OS mini programs. Currently integrates network requests, communication and other functions.",
+      "confidence": "RECOMMENDED"
+    },
+    {
+      "name": "ZeppOS Visual Logger",
+      "url": "https://github.com/zepp-health/visual-logger",
+      "description": "On-Screen Logs on Your Device.",
+      "confidence": "RECOMMENDED"
+    },
+    {
+      "name": "AutoGUI",
+      "url": "https://github.com/zepp-health/autogui",
+      "description": "Rapid GUI Prototyping for ZeppOS.",
+      "confidence": "RECOMMENDED"
+    },
+    {
+      "name": "eazy-ble",
+      "url": "https://github.com/zepp-health/easy-ble",
+      "description": "The Easy BLE library is an advanced BLE management tool for Zepp OS 3.0 watches that features an automated profile generator, a hybrid asynchronous and sequential queue for efficient handling of all operations including writing and reading, user-friendly string-based interactions, seamless auto-conversions of data and addresses, support for multiple data types, and simplified device management through MAC address-centric commands, all designed to enhance usability and streamline BLE communications.",
+      "confidence": "RECOMMENDED"
+    },
+    {
+      "name": "eazy-draw",
+      "url": "https://github.com/zepp-health/easy-draw",
+      "description": "This library was mainly created to extend the main widgets and add functionality to draw arbitrary lines on ZeppOS 2.0+, which can currently be achieved only with a polyline widget. But that widget has its limitations - high memory consumption, very limited viewport of about 150px, all lines have to be the same color. In contrast, the draw.line() can essentially draw multicolor lines in any direction of hypothetically any reasonable length. This makes for a great tool to base your GPS apps on devices that don't support Canvas.",
+      "confidence": "RECOMMENDED"
+    },
+    {
+      "name": "eazy-storage",
+      "url": "https://github.com/zepp-health/easy-storage",
+      "description": "The `EasyStorage` suite is a handy set of tools for `ZeppOS` applications. It includes `EasyStorage`, `EasyFlashStorage`, and `EasyTempStorage`. These tools give developers a wide range of options for managing data, from storing it in memory or in files, to using temporary storage. Each tool is designed to meet specific storage needs, making it easier and more efficient to handle application data. Next to these the suite has a `Storage` utility library that offers static methods for direct file operations. This includes reading and writing JSON objects, text, and binary data directly to and from the filesystem.",
+      "confidence": "RECOMMENDED"
+    },
+    {
+      "name": "zeppos-fx",
+      "url": "https://github.com/XiaomaiTX/zeppos-fx",
+      "description": "This is a library for providing simple animations in Zepp OS. You can add various animation effects to existing UI widgets in a very simple way.",
+      "confidence": "COMMUNITY"
+    }
+  ],
+  "source": "docs-guide",
+  "confidence": "OFFICIAL",
+  "originalPaths": [
+    "zeppos-docs/docs/guides/tools/cli/index.md",
+    "zeppos-docs/docs/guides/tools/npm/officially-recommended.mdx"
+  ],
+  "extractedAt": "2026-09-10"
+}

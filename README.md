@@ -15,10 +15,10 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | Stage | State |
 | --- | --- |
 | `fetch` — clone/update official repos into a local cache | implemented |
-| `parse` — nine fronts: reference pages, the phone runtimes, the watchface `hm*` tree, `static/llms`, sample imports, sample apps, guides, the device list, `app.json` | implemented |
+| `parse` — ten fronts: reference pages, the phone runtimes, the watchface `hm*` tree, `static/llms`, sample imports, sample apps, guides, the device list, `app.json`, the Zeus CLI | implemented |
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
-| `render` — generate the final Markdown knowledge base | implemented (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/) |
+| `render` — generate the final Markdown knowledge base | implemented (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/, tools/) |
 | `verify` — ask the rendered base 17 real questions and check the answers | implemented |
 | CI — typecheck, tests, render reproducibility, `verify`; plus a weekly sync that opens a PR | implemented |
 
@@ -40,7 +40,7 @@ JSON, because a fact that survives into `data/` and dies in the render is still
 a wrong answer. Every question carries the reason it is in the set, which is
 usually an eval finding or a bug that shipped.
 
-Fixture-based tests cover all nine parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (230 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all ten parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (243 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
@@ -55,6 +55,7 @@ Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for li
 - **how to target each of them**: the `st`/`sr` screen selectors a v3 manifest needs, derived from the device's own screen, beside the `deviceSource` numbers a v2 one needs — plus the reverse index, and a two-way diff against what the 33 samples actually build for
 - **33 sample apps** read as code, yielding 592 cited excerpts and the shape of 33 working `app.json` files
 - **15 conflicts** the sources do not know they have: a description two official pages state differently, a widget id written one way in code and documented another, and 13 method calls whose name resolves to more than one thing inside the sample's own runtime. `conflicts/index.md` cites both sides of each
+- **the Zeus CLI**: 8 commands, and the join the CLI page does not make — each file `zeus create` scaffolds, the runtime it belongs to (derived by the same rule every symbol is attributed by) and the `module` key that turns that runtime on. Plus 7 recommended packages, tiered `RECOMMENDED`/`COMMUNITY` from the headings they sit under
 - **the `app.json` schema**: 20 documented keys with their property tables, 3 keys the reference page names and never describes, and a two-way diff against the 33 working manifests — 48 key paths real apps use that the page never mentions, 12 documented keys no sample uses, and 38 permission strings joined to the symbols that state them
 
 ### Looking a name up

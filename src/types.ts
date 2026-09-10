@@ -574,3 +574,86 @@ export interface AppJsonRecord extends Omit<RawAppJson, "sourceFile"> {
   originalPath: string;
   extractedAt: string;
 }
+
+// --- Tools ----------------------------------------------------------------
+//
+// `guides/tools/` — the last output directory with nothing in it, and the last
+// question of every task the base helps with: *how do I build and run this?*
+// Nothing here answers it, and an agent that has just written an app cannot
+// tell anyone how to see it on a watch.
+//
+// The item on the roadmap said "23 files". Reading them, **12 are walkthroughs
+// of the Watchface Maker**, a no-code web GUI: zero `hm*` references between
+// them and one code fence, which is a directory listing. They are documentation
+// for a different product and an agent cannot drive a web GUI, so they are out
+// of scope rather than merely low value. What is left is the CLI, the simulator
+// and the recommended packages.
+//
+// Three joins make this more than a copy of the CLI page, and each reuses
+// evidence the base already holds:
+//
+//   scaffold -> runtime   `zeus create` writes `app-side/`, `setting/`, `pages/`
+//                         and `assets/<target>/`. Those are the same directory
+//                         names `runtimeForAppFile` already reads to attribute a
+//                         runtime, so the tree the CLI produces can be labelled
+//                         without a new rule.
+//   scaffold -> app.json  the same directories are what the `module` keys in
+//                         `manifest/` turn on. Nothing upstream connects the
+//                         prompt the CLI asks to the key it writes.
+//   package -> symbols    `npm/officially-recommended.mdx` names ZML first, and
+//                         the base already holds 11 `@zeppos/zml` symbols with
+//                         no provenance at all.
+
+/** One `zeus` subcommand the CLI page documents. */
+export interface ToolCommand {
+  /** `zeus create`, `zeus dev` — the command as it is typed. */
+  name: string;
+  /** What the page says it is for. */
+  summary?: string;
+  /** The shell blocks under it, verbatim. */
+  snippets: CodeSnippet[];
+}
+
+/**
+ * A file or directory `zeus create` scaffolds, with the runtime it belongs to.
+ *
+ * The runtime is **derived** — `runtimeForAppFile` reads it off the directory
+ * name, the same rule the samples front uses — not stated by the CLI page,
+ * which only draws the tree.
+ */
+export interface ScaffoldEntry {
+  name: string;
+  runtime: Runtime;
+}
+
+/**
+ * An npm package the docs recommend.
+ *
+ * The confidence tier is read from the heading it sits under:
+ * `## Officially maintained npm package` and `## Community works`. Those are
+ * the first derivable uses of `RECOMMENDED` and `COMMUNITY`, which the v0
+ * design reserved and described as needing a manual curation pass.
+ */
+export interface ToolPackage {
+  name: string;
+  url?: string;
+  description?: string;
+  confidence: Extract<Confidence, "RECOMMENDED" | "COMMUNITY">;
+}
+
+export interface RawTools {
+  commands: ToolCommand[];
+  /** The answers `zeus create` prompts for, verbatim. */
+  prompts: string[];
+  scaffold: ScaffoldEntry[];
+  packages: ToolPackage[];
+  sourceFiles: string[];
+}
+
+export interface ToolsRecord extends Omit<RawTools, "sourceFiles"> {
+  source: "docs-guide";
+  confidence: Confidence;
+  /** Every page this was built from, posix-normalized. */
+  originalPaths: string[];
+  extractedAt: string;
+}

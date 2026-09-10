@@ -248,6 +248,25 @@ Only 24 codes are documented anywhere, and the samples declare 34. `event:os.*`,
 So a symbol with no permission listed is **not covered**, never **needs none** —
 say that rather than implying the app is safe to ship without checking.
 
+## Building and running what you wrote
+
+`../../tools/index.md`. The app is written; this is how it gets onto a watch —
+`zeus create`, `zeus dev` against the simulator, `zeus preview` on a real
+device, `zeus build` for an installer.
+
+Two things there worth using rather than restating:
+
+- **Each file the CLI scaffolds is mapped to its runtime and to the `app.json`
+  key that turns that runtime on.** The default template covers three of the
+  five runtimes; a watchface or a workout extension needs a different template
+  and a different `module` key.
+- **Recommended packages are tiered.** `RECOMMENDED` is what Zepp maintains,
+  `COMMUNITY` is contributed. A dash in the symbols column means this base
+  holds nothing for that package — not that it has no API.
+
+The Watchface Maker pages are deliberately not covered: they are a no-code web
+editor, and a watchface written as code is `../../runtimes/watchface.md`.
+
 ## When the sources disagree
 
 `../../conflicts/index.md` is the list of everywhere they do, and it is short

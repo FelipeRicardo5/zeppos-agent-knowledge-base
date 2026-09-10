@@ -15,10 +15,12 @@ import type {
   RawExample,
   RawDevice,
   RawPattern,
+  RawTools,
   RawSourceKind,
   RawUnit,
   Runtime,
   SymbolRecord,
+  ToolsRecord,
 } from "../types.js";
 
 // Stage 3: enrich — group the three fronts' observations by symbol id and
@@ -358,6 +360,29 @@ export function enrichExamples(rawExamples: RawExample[], symbols: SymbolRecord[
       extractedAt,
     }))
     .sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/**
+ * Tools enrich: one pass over the guides in, one record out.
+ *
+ * Nothing to reconcile — the CLI page and the package page each state their own
+ * thing and neither is observed a second way. `docs-guide` is the source, the
+ * same tier the best-practice guides get, because that is what these are.
+ *
+ * The per-package `RECOMMENDED` and `COMMUNITY` tiers stay on the packages
+ * rather than being rolled up: the record as a whole is `OFFICIAL`
+ * documentation, and the tier is a claim it makes *about* a package.
+ */
+export function enrichTools(rawTools: RawTools[]): ToolsRecord[] {
+  const extractedAt = new Date().toISOString().slice(0, 10);
+
+  return rawTools.map(({ sourceFiles, ...tools }) => ({
+    ...tools,
+    source: "docs-guide" as const,
+    confidence: "OFFICIAL" as Confidence,
+    originalPaths: sourceFiles.map(toPosixPath),
+    extractedAt,
+  }));
 }
 
 /**

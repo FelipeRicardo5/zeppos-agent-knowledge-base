@@ -1,5 +1,6 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import type { UnreadHeader } from "../parse/diagnostics.js";
 import type {
   AppJsonRecord,
   ToolsRecord,
@@ -136,6 +137,19 @@ export async function writeExamples(examples: ExampleRecord[], dataDir: string):
  * — a missing page reads as "no tooling is needed", which is the one thing it
  * must never read as.
  */
+/**
+ * The unread-header report. Written even when empty, so that the file's
+ * presence is not itself a signal and a diff shows a heading appearing.
+ */
+export async function writeDiagnostics(
+  headers: UnreadHeader[],
+  dataDir: string,
+): Promise<number> {
+  await mkdir(dataDir, { recursive: true });
+  await writeJson(path.join(dataDir, "diagnostics.json"), { unreadTableHeaders: headers });
+  return headers.length;
+}
+
 export async function writeTools(records: ToolsRecord[], dataDir: string): Promise<number> {
   await mkdir(dataDir, { recursive: true });
   const record = records[0];

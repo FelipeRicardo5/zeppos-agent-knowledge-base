@@ -47,6 +47,22 @@ const COLUMNS: Record<string, keyof PropSpec> = {
   // property table at all, which is the one thing needed to draw them.
   properties: "name",
   parameter: "name",
+  parameters: "name",
+  propertyname: "name",
+  // A callback's own name, and the parameters it is handed.
+  // `watchface/api/hmUI/widget/DELEGATE.mdx` heads its lifecycle table
+  // `| Callback Name |`, which is why an eval run found that widget empty and
+  // reported "no way to know when a watchface is hidden" as a hard gap —
+  // `resume_call` and `pause_call` were on the page the whole time.
+  callbackname: "name",
+  callbackparameter: "name",
+  // The same three columns in Chinese, on an English page.
+  // `ui/widget/CYCLE_IMAGE_TEXT_LIST.mdx` and its sibling head a callback's
+  // parameter table `参数 | 说明 | 类型`, and three parameters were dropped for
+  // it. Found by the unread-header diagnostic, which is the point of having one.
+  "参数": "name",
+  "说明": "description",
+  "类型": "type",
   description: "description",
   type: "type",
   required: "required",
@@ -54,6 +70,19 @@ const COLUMNS: Record<string, keyof PropSpec> = {
   defaultvalue: "default",
   api_level: "apiLevel",
 };
+
+/**
+ * Does any column map read this heading?
+ *
+ * Exported so the unread-header diagnostic asks the maps rather than keeping a
+ * copy of them. A copy drifts: the first version of that check held its own
+ * list, and the entry added the same hour to read a Chinese-headed table was
+ * reported as unread for it — noise that erodes the trust the report needs.
+ */
+export function readsHeader(header: string): boolean {
+  const key = header.toLowerCase().replace(/[*`\s]/g, "");
+  return key in COLUMNS || key in ENUM_COLUMNS;
+}
 
 /**
  * A markdown table row split into trimmed cells, or undefined if not a row.

@@ -7,6 +7,7 @@ import {
   enrichTools,
 } from "./enrich/index.js";
 import { fetchSources } from "./fetch/index.js";
+import { unreadHeaders } from "./parse/diagnostics.js";
 import { parseDevices } from "./parse/devices.js";
 import { parseExamples } from "./parse/examples.js";
 import { parseAppJson } from "./parse/manifest.js";
@@ -25,6 +26,7 @@ import { renderTools } from "./render/tools.js";
 import {
   writeAppJson,
   writeDevices,
+  writeDiagnostics,
   writeExamples,
   writeManifest,
   writePatterns,
@@ -101,6 +103,20 @@ switch (command) {
     console.log(
       `enriched: ${manifestSchema.length} app.json schema (${gapCount} keys named but never described)`,
     );
+
+    // What the extractors walked past. Every parser bug here has been a table
+    // heading no map recognised, dropped without an error, and every one was
+    // found by accident. Reported on every sync so the next arrives as a
+    // number that changed rather than as a silence.
+    const unread = await unreadHeaders(CACHE_DIR);
+    await writeDiagnostics(unread, DATA_DIR);
+    if (unread.length > 0) {
+      const tables = unread.reduce((n, h) => n + h.tables, 0);
+      console.log(
+        `unread: ${tables} tables under ${unread.length} headings no column map reads` +
+          ` (worst: ${unread.slice(0, 3).map((h) => `\`${h.header}\` x${h.tables}`).join(", ")})`,
+      );
+    }
 
     const deviceCount = await writeDevices(devices, DATA_DIR);
     const manifestKeyCount = await writeAppJson(manifestSchema, DATA_DIR);

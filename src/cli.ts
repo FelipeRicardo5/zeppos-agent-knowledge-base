@@ -33,12 +33,22 @@ import {
   writeTools,
   writeSymbols,
 } from "./store/index.js";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 const CACHE_DIR = ".cache";
 const DATA_DIR = "data";
 const OUT_DIR = ".";
 const ANNOTATIONS_DIR = "annotations";
+
+/**
+ * This base's own version, stamped into the manifest so a reader can cite what
+ * they read without needing a git checkout — see `SyncManifest.version`.
+ */
+async function baseVersion(): Promise<string> {
+  const pkg = JSON.parse(await readFile("package.json", "utf-8"));
+  return typeof pkg.version === "string" ? pkg.version : "0.0.0";
+}
 
 const command = process.argv[2];
 
@@ -124,6 +134,7 @@ switch (command) {
     const exampleCount = await writeExamples(examples, DATA_DIR);
     await writeManifest(
       {
+        version: await baseVersion(),
         lastSyncAt: new Date().toISOString(),
         sources: results,
         recordCounts: {

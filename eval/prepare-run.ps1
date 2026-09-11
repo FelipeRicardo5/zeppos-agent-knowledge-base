@@ -82,4 +82,11 @@ if ($leaked) { exit 1 }
 Write-Host "verified absent: eval/ .git/ .cache/ src/ test/ node_modules/"
 Write-Host ""
 Write-Host "next: start a new session in $full and give the agent the task text,"
-Write-Host "      telling it the commit is $resolved"
+$manifest = Join-Path $full "data\manifest.json"
+if (Test-Path $manifest) {
+  $baseVersion = (Get-Content $manifest -Raw | ConvertFrom-Json).version
+  Write-Host "      the copy reports version $baseVersion in data/manifest.json,"
+  Write-Host "      which is what the report cites - this copy has no .git ($resolved)"
+} else {
+  Write-Host "      telling it the commit is $resolved"
+}

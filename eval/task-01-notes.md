@@ -35,8 +35,11 @@ The findings that matter are the ones nobody predicted.
 1. **New session, new agent.** Not one that has read this repository before, and
    not one that ran an earlier task — it would go straight to the gaps it
    remembers instead of discovering what is there now.
-2. **Commit first**, so the report can name the commit it measured. The base
-   changes between runs; two reports without versions cannot be compared.
+2. **Commit first**, and bump `version` in `package.json` if the base changed
+   since the last tag — `sync` stamps it into `data/manifest.json`, and that is
+   what the report cites. The isolated copy has no `.git`, so the version in the
+   manifest is the only thing a run can name. Two reports without versions
+   cannot be compared.
 3. **Isolate by construction, not by instruction.** Give the agent a copy or a
    worktree with `eval/` removed, rather than trusting it to skip a directory
    that answers the exercise. The forbidden list is a backstop, not the fence.

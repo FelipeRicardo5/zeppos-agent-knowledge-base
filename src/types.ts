@@ -222,6 +222,17 @@ export interface RawUnit {
 }
 
 export interface SyncManifest {
+  /**
+   * This base's own version, from `package.json`.
+   *
+   * Not decoration. Every eval task asks the agent to state what it measured,
+   * and the isolated copy is built with `git archive`, which strips `.git` — so
+   * the run that found the most had to report "no commit available". A version
+   * inside the manifest is readable from the tree itself, which is the one
+   * thing an agent is already reading, and it is what a consumer cites when
+   * reporting a gap or when a served copy claims to be current.
+   */
+  version: string;
   lastSyncAt: string;
   sources: Record<string, { commit: string }>;
   recordCounts: Record<string, number>;

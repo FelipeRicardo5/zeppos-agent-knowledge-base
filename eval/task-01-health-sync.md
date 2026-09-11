@@ -94,9 +94,10 @@ deliverable.
 ### 0. What you were measuring
 
 The knowledge base changes between runs, so a report without a version cannot be
-compared with another. State the repository commit you read, and the
-`lastSyncAt` and `recordCounts` from `data/manifest.json`. If you cannot see the
-commit, say so — whoever ran you should supply it.
+compared with another. State the **`version`** from `data/manifest.json`, along
+with its `lastSyncAt`, `sources` and `recordCounts`. That file is in the tree you
+were given, so the version is always answerable — the repository commit usually
+is not, because the isolated copy is built without a `.git` directory.
 
 ### 1. Verdict
 

@@ -324,6 +324,14 @@ Used to select multiple options from a set of choices. Each option needs to be c
 | `check_func` | `CheckFunc` | no | — | >= 2 | Callback when button state changes |
 | `use_color` | `boolean` | no | — | >= 4 | Whether to display widget using colors |
 
+**CheckFunc**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `checkboxGroup` | `CheckboxGroup` | not stated | — | The checkboxGroup instance |
+| `index` | `number` | not stated | — | Index of the option |
+| `checked` | `boolean` | not stated | — | Whether selected |
+
 **StateButton**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -437,6 +445,14 @@ Create a list that can be scrolled in a loop, and each list item can be placed w
 | `cycleList` | `object` | not stated | — | — |
 | `index` | `number` | not stated | — | — |
 
+**ItemFocusChangeFunc**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `cycleList` | `object` | not stated | — | The instance of cycleList. |
+| `index` | `number` | not stated | — | Losing/getting the index of the focus item. |
+| `isFocus` | `boolean` | not stated | — | Whether to get the focus. |
+
 **Set the properties of a single item text**
 
 | Property | Type | Required | Default | Description |
@@ -476,6 +492,14 @@ Create a list that scrolls in a loop, which can be populated with images.
 | --- | --- | --- | --- | --- |
 | `cycleList` | `object` | not stated | — | — |
 | `index` | `number` | not stated | — | — |
+
+**ItemFocusChangeFunc**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `cycleList` | `object` | not stated | — | The instance of cycleList. |
+| `index` | `number` | not stated | — | Losing/getting the index of the focus item. |
+| `isFocus` | `boolean` | not stated | — | Whether to get the focus. |
 
 ### `@zos/ui.data_type`
 
@@ -1092,6 +1116,15 @@ An universal selector, use to text and number list selection
 | `column_index` | not stated | not stated | — | Column index for triggering Picker events |
 | `select_index` | not stated | not stated | — | The index of selected item |
 
+**Property Operations**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `prop.TITLE` | not stated | not stated | — | Update title |
+| `prop.SUBTITLE` | not stated | not stated | — | Update subtitle |
+| `prop.UPDATE_DATA` | not stated | not stated | — | Update data of a column |
+| `prop.CUR_COLUMN` | not stated | not stated | — | Update the current column |
+
 ### `@zos/ui.prop`
 
 **prop**
@@ -1150,6 +1183,14 @@ Used to select a single option among multiple options. Each individual option is
 | `unselect_src` | `string` | yes | — | >= 2 | Image displayed when widget is unselected |
 | `check_func` | `CheckFunc` | no | — | >= 2 | Callback when button state changes |
 | `use_color` | `boolean` | no | — | >= 4 | Whether to display widget using colors |
+
+**CheckFunc**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `radioGroup` | `RadioGroup` | not stated | — | The radioGroup instance |
+| `index` | `number` | not stated | — | Index of the option |
+| `checked` | `boolean` | not stated | — | Whether selected |
 
 **StateButton**
 
@@ -1293,6 +1334,22 @@ Create a list area with sliding support, where each list item can contain images
 | `end` | `number` | yes | — | Ending index |
 | `type_id` | `number` | yes | — | The type_id corresponding to the type configuration in item_config |
 
+**ItemClickFunc**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `list` | `any` | not stated | — | SCROLL_LIST widget |
+| `index` | `number` | not stated | — | Clicked item index |
+| `data_key` | `string` | not stated | — | Clicked data key name, can locate the clicked area through key |
+
+**ItemFocusChangeFunc**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `list` | `any` | not stated | — | SCROLL_LIST widget |
+| `index` | `number` | not stated | — | Item index |
+| `focus` | `boolean` | not stated | — | Whether the item is in focus state |
+
 ### `@zos/ui.setAlpha`
 
 Set the opacity of the widget. For widgets that do not support the `alpha` property, use `widget.setAlpha` to set opacity.
@@ -1397,6 +1454,13 @@ Used to switch between open and closed states.
 | `slide_y` | `number` | no | — | Relative coordinates.The y-axis offset of the switch button. |
 | `checked_change_func` | `CheckedChangeFunc` | no | — | Callback on state change. |
 | `checked` | `boolean` | no | — | Default switch state. |
+
+**CheckedChangeFunc**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `slideSwitch` | `SlideSwitch` | not stated | — | The instance of slideSwitch |
+| `checked` | `boolean` | not stated | — | checked or unchecked |
 
 **Prop Properties**
 
@@ -1553,6 +1617,30 @@ A full-screen widget that supports time and date selection.
 | `event_type` | not stated | not stated | — | Event type of picker, see EVENT_TYPE |
 | `column` | not stated | not stated | — | Index of current focus column (only valid under UPDATE event type) |
 | `value_index` | not stated | not stated | — | Current value of the column (only valid under UPDATE event type) |
+
+**Property Operations**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `prop.type` | not stated | not stated | — | — |
+| `prop.style` | not stated | not stated | — | — |
+| `prop.title` | not stated | not stated | — | — |
+| `prop.done_icon` | not stated | not stated | — | — |
+| `prop.font_size` | not stated | not stated | — | — |
+| `prop.select_font_size` | not stated | not stated | — | — |
+| `prop.initHour` | not stated | not stated | — | — |
+| `prop.initMin` | not stated | not stated | — | — |
+| `prop.startYear` | not stated | not stated | — | — |
+| `prop.endYear` | not stated | not stated | — | — |
+| `prop.initYear` | not stated | not stated | — | — |
+| `prop.initMonth` | not stated | not stated | — | — |
+| `prop.initDay` | not stated | not stated | — | — |
+| `prop.picker_cb` | not stated | not stated | — | — |
+| `prop.YEAR` | not stated | not stated | — | Get year |
+| `prop.MONTH` | not stated | not stated | — | Get month |
+| `prop.DAY` | not stated | not stated | — | Get day |
+| `prop.HOUR` | not stated | not stated | — | Get hour |
+| `prop.MINUTE` | not stated | not stated | — | Get minute |
 
 ### `@zos/ui.updateLayout`
 

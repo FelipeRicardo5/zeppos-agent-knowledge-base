@@ -14,7 +14,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getBrightness.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getDateFormat",
@@ -49,7 +49,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getDateFormat.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getDeviceInfo",
@@ -101,7 +101,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getDeviceInfo.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getDiskInfo",
@@ -153,7 +153,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getDiskInfo.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getLanguage",
@@ -168,7 +168,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getLanguage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getMileageUnit",
@@ -183,7 +183,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getMileageUnit.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getScreenAutoBright",
@@ -198,7 +198,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getScreenAutoBright.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getScreenType",
@@ -213,7 +213,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getScreenType.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getSleepTarget",
@@ -228,7 +228,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getSleepTarget.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getTimeFormat",
@@ -259,7 +259,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getTimeFormat.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getUserData",
@@ -311,7 +311,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getUserData.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getWeightTarget",
@@ -326,7 +326,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getWeightTarget.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.getWeightUnit",
@@ -369,7 +369,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getWeightUnit.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.screen_type",
@@ -410,7 +410,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/getScreenType.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.setBrightness",
@@ -425,7 +425,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setBrightness.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.setBrightScreen",
@@ -440,7 +440,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setBrightScreen.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.setBrightScreenCancel",
@@ -455,7 +455,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setBrightScreenCancel.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.setScreenAutoBright",
@@ -470,7 +470,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setScreenAutoBright.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSetting.setScreenOff",
@@ -485,7 +485,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSetting/setScreenOff.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

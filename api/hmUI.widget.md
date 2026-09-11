@@ -109,6 +109,15 @@ Draws a circle with support for color, transparency, and other properties.
 
 | Value           | Description | | --------------- | ----------- | | hmUI.date.MONTH | month       | | hmUI.date.DAY   | day         | | hmUI.date.WEEK  | Day of the week |
 
+### `hmUI.widget.DELEGATE`
+
+**Watchface Lifecycle**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `resume_call` | not stated | not stated | — | Triggered when Watchface first launches or returns from other screens |
+| `pause_call` | not stated | not stated | — | Triggered when sliding to secondary widget, notifications, shortcut cards, entering app list, or launching other apps from Watchface |
+
 ### `hmUI.widget.FILL_RECT`
 
 The Fill Rectangle widget is used to draw a solid color rectangular area. :::caution At this stage, if you change the properties of the widget by means of `setProperty(hmUI.prop.MORE, Params)`, you must pass `x`, `y`, `w`, `h` properties, see the sample code for details. :::

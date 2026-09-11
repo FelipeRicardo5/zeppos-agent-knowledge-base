@@ -146,7 +146,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/createModal.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.GESTURE_DOWN",
@@ -161,7 +161,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.GESTURE_LEFT",
@@ -176,7 +176,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.GESTURE_RIGHT",
@@ -191,7 +191,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.GESTURE_UP",
@@ -206,7 +206,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_BACK",
@@ -221,7 +221,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_DOWN",
@@ -236,7 +236,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_EVENT_CLICK",
@@ -251,7 +251,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_EVENT_DOUBLE_CLICK",
@@ -266,7 +266,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_EVENT_LONG_PRESS",
@@ -281,7 +281,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_EVENT_PRESS",
@@ -296,7 +296,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_EVENT_RELEASE",
@@ -311,7 +311,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_HOME",
@@ -326,7 +326,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_SELECT",
@@ -341,7 +341,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_SHORTCUT",
@@ -356,7 +356,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.KEY_UP",
@@ -371,7 +371,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.MODAL_CANCEL",
@@ -386,7 +386,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.MODAL_CONFIRM",
@@ -401,7 +401,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.offDigitalCrown",
@@ -417,7 +417,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/offDigitalCrown.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.offGesture",
@@ -433,7 +433,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/offGesture.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.offKey",
@@ -449,7 +449,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/offKey.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.onDigitalCrown",
@@ -522,7 +522,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/onDigitalCrown.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.onGesture",
@@ -583,7 +583,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/onGesture.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.onKey",
@@ -692,7 +692,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/onKey.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.onWristMotion",
@@ -764,7 +764,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/onWristMotion.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.showToast",
@@ -793,7 +793,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/interaction/showToast.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.WRIST_MOTION_FLIP",
@@ -808,7 +808,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.WRIST_MOTION_LIFT",
@@ -823,7 +823,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/interaction.WRIST_MOTION_LOWER",
@@ -838,7 +838,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-interaction.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

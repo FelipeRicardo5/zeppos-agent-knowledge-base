@@ -24,7 +24,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/BATTERY.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.BODY_TEMP",
@@ -54,7 +54,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/BODY_TEMP.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.CALORIE",
@@ -84,7 +84,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/CALORIE.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.DISTANCE",
@@ -109,7 +109,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/DISTANCE.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.FAT_BURRING",
@@ -139,7 +139,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/FAT_BURRING.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.HEART",
@@ -174,7 +174,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/HEART.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.MUSIC",
@@ -210,7 +210,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/MUSIC.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.PAI",
@@ -275,7 +275,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/PAI.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.SLEEP",
@@ -336,7 +336,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/SLEEP.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.SPO2",
@@ -376,7 +376,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/SPO2.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.STAND",
@@ -406,7 +406,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/STAND.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.STEP",
@@ -436,7 +436,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/STEP.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.STRESS",
@@ -466,7 +466,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/STRESS.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.TIME",
@@ -556,7 +556,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/TIME.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.VIBRATE",
@@ -634,7 +634,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/VIBRATE.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.WEAR",
@@ -659,7 +659,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/WEAR.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.WEATHER",
@@ -790,7 +790,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/WEATHER.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id.WORLD_CLOCK",
@@ -836,7 +836,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/sensorId/WORLD_CLOCK.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

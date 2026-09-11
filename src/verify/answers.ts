@@ -219,6 +219,17 @@ export const ANSWERS: Answer[] = [
     },
   },
   {
+    question: "How do I stop a watchface updating when the screen is off?",
+    why: "Task 02 called this a hard gap. The answer was on the DELEGATE page in a table headed `Callback Name`, which no column map read.",
+    check: (base) => {
+      const delegate = base.symbol("hmUI.widget.DELEGATE");
+      const props = (delegate?.shapes ?? []).flatMap((s) => s.props.map((p) => p.name));
+      return props.includes("resume_call") && props.includes("pause_call")
+        ? undefined
+        : `hmUI.widget.DELEGATE exposes ${props.join(", ") || "nothing"}`;
+    },
+  },
+  {
     question: "Does any symbol claim an API_LEVEL no source stated?",
     why: "The invariant the whole base rests on. Absence of a level must render as `not stated`, never as a level and never as `any`.",
     check: (base) => {

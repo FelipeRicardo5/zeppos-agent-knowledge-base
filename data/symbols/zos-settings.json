@@ -14,7 +14,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.DATE_FORMAT_MDY",
@@ -29,7 +29,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.DATE_FORMAT_YMD",
@@ -44,7 +44,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.DISTANCE_UNIT_IMPERIAL",
@@ -59,7 +59,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.DISTANCE_UNIT_METRIC",
@@ -74,7 +74,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getDateFormat",
@@ -116,7 +116,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getDateFormat.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getDistanceUnit",
@@ -152,7 +152,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getDistanceUnit.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getLanguage",
@@ -168,7 +168,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getLanguage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getSleepTarget",
@@ -184,7 +184,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getSleepTarget.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getSystemInfo",
@@ -225,7 +225,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getSystemInfo.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getSystemMode",
@@ -302,7 +302,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getSystemMode.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getTemperatureUnit",
@@ -338,7 +338,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getTemperatureUnit.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getTimeFormat",
@@ -374,7 +374,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getTimeFormat.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getWeightTarget",
@@ -390,7 +390,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getWeightTarget.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.getWeightUnit",
@@ -438,7 +438,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/settings/getWeightUnit.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.TEMPERATURE_UNIT_CENTIGRADE",
@@ -453,7 +453,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.TEMPERATURE_UNIT_FAHRENHEIT",
@@ -468,7 +468,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.TIME_FORMAT_12",
@@ -483,7 +483,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.TIME_FORMAT_24",
@@ -498,7 +498,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.WEIGHT_UNIT_JIN",
@@ -513,7 +513,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.WEIGHT_UNIT_KILOGRAM",
@@ -528,7 +528,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.WEIGHT_UNIT_POUND",
@@ -543,7 +543,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "@zos/settings.WEIGHT_UNIT_STONE",
@@ -558,7 +558,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-settings.md",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

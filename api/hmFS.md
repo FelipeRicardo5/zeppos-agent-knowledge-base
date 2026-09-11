@@ -85,6 +85,15 @@ Read file
 (fileId: number, buffer: ArrayBuffer, position: number, length: number) => [fileList, err]
 ```
 
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `fileId` | `number` | yes | — | file handle |
+| `buff` | `ArrayBuffer` | yes | — | The buffer that will be filled with the read file data |
+| `pos` | `number` | yes | — | Offset based on buff first address |
+| `len` | `number` | yes | — | the number of bytes to read |
+
 ### `hmFS.remove`
 
 Delete file
@@ -100,6 +109,13 @@ Rename file
 ```ts
 (oldPath: string, newPath: string) => result
 ```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `oldPath` | `string` | yes | — | old file path |
+| `newPath` | `string` | yes | — | new file path |
 
 ### `hmFS.seek`
 
@@ -195,6 +211,13 @@ Store temporary boolean value, system reboot will clear it.
 (key: string, val: boolean) => result
 ```
 
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `key` | `string` | yes | — | key string |
+| `val` | `boolean` | yes | — | Stored boolean value |
+
 ### `hmFS.SysProSetChars`
 
 Store temporary string, system reboot will clear.
@@ -202,6 +225,13 @@ Store temporary string, system reboot will clear.
 ```ts
 (key: string, val: string) => result
 ```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `key` | `string` | yes | — | key string |
+| `val` | `string` | yes | — | the stored string |
 
 ### `hmFS.SysProSetDouble`
 
@@ -211,6 +241,13 @@ Store temporary double precision floating point numbers, system reboot will clea
 (key: string, val: number) => result
 ```
 
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `key` | `string` | yes | — | key string |
+| `val` | `number` | yes | — | The double-precision floating point number to store |
+
 ### `hmFS.SysProSetInt`
 
 Store temporary integer, system reboot will clear.
@@ -218,6 +255,13 @@ Store temporary integer, system reboot will clear.
 ```ts
 (key: string, val: number) => result
 ```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `key` | `string` | yes | — | key string |
+| `val` | `number` | yes | — | the stored integer |
 
 ### `hmFS.SysProSetInt64`
 
@@ -227,6 +271,13 @@ Stores a temporary 64-bit integer that will be cleared by system reboot.
 (key: string, val: number) => result
 ```
 
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `key` | `string` | yes | — | key string |
+| `val` | `number` | yes | — | Stored 64-bit integer |
+
 ### `hmFS.write`
 
 Write to file
@@ -234,3 +285,18 @@ Write to file
 ```ts
 (fileId: number, buff: ArrayBuffer, pos: number, len: number) => result
 ```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `fileId` | `number` | yes | — | file handle |
+| `buff` | `ArrayBuffer` | yes | — | The buffer that will be filled with the read file data |
+| `pos` | `number` | yes | — | Offset based on buff first address |
+| `len` | `number` | yes | — | the number of bytes to write |
+
+**result**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `result` | `number` | not stated | — | The result of the operation, 0 means success |

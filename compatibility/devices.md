@@ -155,6 +155,18 @@ The device list states no `Latest API_LEVEL` for these. That is not level 0: the
 2.0 API this knowledge base documents does not run on them at all, so **no symbol
 here is available** on this hardware.
 
+**Official samples do target them, and that is not a contradiction.** The
+samples below use the pre-2.0 global API, which has no `import` line — so
+they contribute no symbol to this base and need none of the levels it
+documents. A sample targeting a device here is not evidence that a `@zos/*`
+call works on it.
+
+| Device | Targeted by | Symbols those samples import |
+| --- | --- | --- |
+| Amazfit GTR 3 | [application-1-0-calories](../examples/application-1-0-calories.md), [application-1-0-fetch-api](../examples/application-1-0-fetch-api.md), [application-1-0-hello-world](../examples/application-1-0-hello-world.md), [application-1-0-todo-list](../examples/application-1-0-todo-list.md), [watchface-1-0-basketball](../examples/watchface-1-0-basketball.md) | 0 |
+| Amazfit GTR 3 Pro | [application-1-0-calories](../examples/application-1-0-calories.md), [application-1-0-fetch-api](../examples/application-1-0-fetch-api.md), [application-1-0-hello-world](../examples/application-1-0-hello-world.md), [application-1-0-todo-list](../examples/application-1-0-todo-list.md), [watchface-1-0-timer](../examples/watchface-1-0-timer.md) | 0 |
+| Amazfit GTS 3 | [application-1-0-calories](../examples/application-1-0-calories.md), [application-1-0-fetch-api](../examples/application-1-0-fetch-api.md), [application-1-0-hello-world](../examples/application-1-0-hello-world.md), [application-1-0-todo-list](../examples/application-1-0-todo-list.md), [watchface-1-0-color-world](../examples/watchface-1-0-color-world.md) | 0 |
+
 | Device | Zepp OS | Screen | Keys | deviceSource |
 | --- | --- | --- | --- | --- |
 | Amazfit Band 7 | 1.0 | band, 194 x 368 | not stated | `252`, `253`, `254` |

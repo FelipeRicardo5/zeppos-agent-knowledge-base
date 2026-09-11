@@ -8,13 +8,25 @@
       "type": "function",
       "description": "Register a connection status listener",
       "signature": "(callback: (status: boolean) => void) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "status",
+              "description": "connection status",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmBle.connectStatus",
@@ -29,7 +41,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmBle.createConnect",
@@ -38,13 +50,38 @@
       "type": "function",
       "description": "Create connection",
       "signature": "(callback: (index: number, data: object, size: number) => void) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "index",
+              "description": "subpackage number",
+              "required": false,
+              "type": "number"
+            },
+            {
+              "name": "data",
+              "description": "received data",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "size",
+              "description": "length of data received",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmBle.disConnect",
@@ -59,7 +96,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmBle.removeListener",
@@ -74,7 +111,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmBle.send",
@@ -83,13 +120,32 @@
       "type": "function",
       "description": "Send a message",
       "signature": "(data: object, size: number) => void",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "data",
+              "description": "data to be sent",
+              "required": false,
+              "type": "object"
+            },
+            {
+              "name": "size",
+              "description": "length of data to be sent",
+              "required": false,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmBle.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

@@ -19,7 +19,7 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/, tools/) |
-| `verify` — ask the rendered base 18 real questions and check the answers | implemented |
+| `verify` — ask the rendered base 19 real questions and check the answers | implemented |
 | CI — typecheck, tests, render reproducibility, `verify`; plus a weekly sync that opens a PR | implemented |
 
 CI proves the whole chain from JSON to Markdown **without touching the
@@ -32,7 +32,7 @@ count that went down is the thing to look at**: every parser bug here has been
 an upstream format change that made an extraction silently smaller, and a
 reviewable diff is the only form in which those have ever been caught.
 
-`npm run verify` asks the **rendered** base 18 questions a developer would
+`npm run verify` asks the **rendered** base 19 questions a developer would
 actually ask — *where does `setInterval` live*, *what values may `align_h` take*,
 *what must `app.json` declare for `@zos/alarm.set`* — and fails, naming the
 question, when one stops being answerable. It reads the Markdown rather than the
@@ -40,7 +40,7 @@ JSON, because a fact that survives into `data/` and dies in the render is still
 a wrong answer. Every question carries the reason it is in the set, which is
 usually an eval finding or a bug that shipped.
 
-Fixture-based tests cover all ten parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (247 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all ten parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (253 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 

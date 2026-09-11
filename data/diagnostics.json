@@ -1,0 +1,242 @@
+{
+  "unreadTableHeaders": [
+    {
+      "header": "24-hour mode",
+      "tables": 2,
+      "files": [
+        "zeppos-docs/docs/designs/internationalization/regional-standards.md"
+      ]
+    },
+    {
+      "header": "operation",
+      "tables": 2,
+      "files": [
+        "zeppos-docs/docs/designs/interaction/physical-buttons.md"
+      ]
+    },
+    {
+      "header": "---",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/faq/paid-app.md"
+      ]
+    },
+    {
+      "header": "\"system events\"",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/framework/device/system-event.md"
+      ]
+    },
+    {
+      "header": "1.0 constants",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/version-info/migration-guide.md"
+      ]
+    },
+    {
+      "header": "anim_prop",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widgetAnimations.mdx"
+      ]
+    },
+    {
+      "header": "anim_status",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widgetAnimations.mdx"
+      ]
+    },
+    {
+      "header": "api module",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/framework/device/app-service.md"
+      ]
+    },
+    {
+      "header": "characters",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/watchface/api/hmUI/widget/TEXT_IMG.mdx"
+      ]
+    },
+    {
+      "header": "concept",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/version-info/version-choose.md"
+      ]
+    },
+    {
+      "header": "configuration",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/framework/device/screen-adaption.md"
+      ]
+    },
+    {
+      "header": "current value",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/watchface/api/hmSensor/sensorId/WEAR.mdx"
+      ]
+    },
+    {
+      "header": "data",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/designs/internationalization/languages.md"
+      ]
+    },
+    {
+      "header": "data item",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/tools/watchface/guides/editable-component.md"
+      ]
+    },
+    {
+      "header": "data item key",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SPORT_DATA.mdx"
+      ]
+    },
+    {
+      "header": "description-",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/watchface/api/hmFS/SysProGetInt.mdx"
+      ]
+    },
+    {
+      "header": "dimension",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/designs/self-checklist.md"
+      ]
+    },
+    {
+      "header": "dscription",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/watchface/api/hmSetting/setBrightScreen.mdx"
+      ]
+    },
+    {
+      "header": "english",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/designs/internationalization/regional-standards.md"
+      ]
+    },
+    {
+      "header": "isshow",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/createDialog.mdx"
+      ]
+    },
+    {
+      "header": "page type",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/designs/structure/page-types.md"
+      ]
+    },
+    {
+      "header": "param",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/KEYBOARD.mdx"
+      ]
+    },
+    {
+      "header": "resource directory",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/framework/device/fs.md"
+      ]
+    },
+    {
+      "header": "response action",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/designs/interaction/physical-buttons.md"
+      ]
+    },
+    {
+      "header": "snap mode enum value",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SCROLL_LIST.mdx"
+      ]
+    },
+    {
+      "header": "st value",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/framework/device/screen-adaption.md"
+      ]
+    },
+    {
+      "header": "standard type",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/designs/internationalization/regional-standards.md"
+      ]
+    },
+    {
+      "header": "state",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/watchface/api/hmUI/createWidget.mdx"
+      ]
+    },
+    {
+      "header": "subtype value",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/workout-extension/quick-start.mdx"
+      ]
+    },
+    {
+      "header": "symbol",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/framework/device/screen-adaption.md"
+      ]
+    },
+    {
+      "header": "unit",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/framework/device/layout.md"
+      ]
+    },
+    {
+      "header": "watch face    type",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/tools/watchface/guides/background.md"
+      ]
+    },
+    {
+      "header": "watch key name",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/guides/tools/simulator/index.md"
+      ]
+    },
+    {
+      "header": "属性名",
+      "tables": 1,
+      "files": [
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SCROLL_LIST.mdx"
+      ]
+    }
+  ]
+}

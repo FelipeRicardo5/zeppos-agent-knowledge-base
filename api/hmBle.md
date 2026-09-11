@@ -23,6 +23,12 @@ Register a connection status listener
 (callback: (status: boolean) => void) => void
 ```
 
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `status` | `boolean` | not stated | — | connection status |
+
 ### `hmBle.connectStatus`
 
 Query connection status
@@ -38,6 +44,14 @@ Create connection
 ```ts
 (callback: (index: number, data: object, size: number) => void) => void
 ```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `index` | `number` | no | — | subpackage number |
+| `data` | `object` | no | — | received data |
+| `size` | `number` | no | — | length of data received |
 
 ### `hmBle.disConnect`
 
@@ -62,3 +76,10 @@ Send a message
 ```ts
 (data: object, size: number) => void
 ```
+
+**Parameters**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `data` | `object` | no | — | data to be sent |
+| `size` | `number` | no | — | length of data to be sent |

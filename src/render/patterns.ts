@@ -227,14 +227,31 @@ function patternIndexMarkdown(patterns: PatternRecord[], known: Map<string, Symb
     "upstream page states.",
     "",
   );
-  lines.push("| Pattern | Approaches | Symbols | Minimum API_LEVEL | Page |");
-  lines.push("| --- | --- | --- | --- | --- |");
+  lines.push(
+    "**The runtimes column is the one to read first.** A task-shaped title says",
+    "nothing about which runtime its code is for, and an eval run building a",
+    "watchface called `Multi-screen Adaption` \"actively misleading\" for exactly",
+    "that reason: it is the obvious page for round-versus-square, its facts are",
+    "correct, and every symbol in it is Device App. The runtimes below are the",
+    "ones the symbols a pattern uses are attributed to — derived here, because a",
+    "guide states its own runtime only through a file name in a code fence.",
+    "",
+  );
+  lines.push("| Pattern | Runtimes | Approaches | Symbols | Minimum API_LEVEL | Page |");
+  lines.push("| --- | --- | --- | --- | --- | --- |");
 
   for (const pattern of patterns) {
     const resolved = resolve(pattern.symbols, known);
     const required = requiredApiLevel(resolved);
+    // Union over the symbols the guide's code uses, not the guide's own fence
+    // titles: a guide names a runtime only when a fence carries a file path,
+    // and most do not. Where no used symbol has a record, there is nothing to
+    // derive from and the cell says so rather than guessing "Device App".
+    const runtimes = [
+      ...new Set(resolved.flatMap(({ record }) => record?.runtimes ?? [])),
+    ].sort();
     lines.push(
-      `| ${cell(pattern.title)} | ${pattern.approaches.length} | ${pattern.symbols.length} | ${
+      `| ${cell(pattern.title)} | ${runtimes.length === 0 ? NOT_STATED : runtimeLabels(runtimes)} | ${pattern.approaches.length} | ${pattern.symbols.length} | ${
         required === undefined ? NOT_STATED : `>= ${required}`
       } | [${pattern.id}.md](${pattern.id}.md) |`,
     );

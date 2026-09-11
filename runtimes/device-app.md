@@ -5,6 +5,8 @@
 A symbol is attributed to a runtime by the source path it was extracted from,
 not by any statement in its own text. Absence is *not covered*, not *invalid here*.
 
+**35 of 375 symbols state a permission** `app.json` must declare. Absence on the rest is *not documented*, not *not needed* — see [`../manifest/index.md`](../manifest/index.md).
+
 ## `@zeppos/zml/2.0/module/messaging/plugin/app`
 
 | Symbol | Min API_LEVEL | Also valid in |

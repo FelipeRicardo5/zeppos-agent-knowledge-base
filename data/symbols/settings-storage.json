@@ -14,7 +14,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "settings-storage.clear",
@@ -29,7 +29,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "settings-storage.getItem",
@@ -44,7 +44,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "settings-storage.length",
@@ -59,7 +59,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "settings-storage.removeItem",
@@ -74,7 +74,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "settings-storage.setItem",
@@ -89,7 +89,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "settings-storage.toObject",
@@ -104,7 +104,7 @@
       "source": "docs-phone-api",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/side-service-api/settings-storage.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

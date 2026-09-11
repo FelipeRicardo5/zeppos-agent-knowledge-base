@@ -6,19 +6,27 @@ A pattern is a task, not a symbol. `Minimum API_LEVEL` is derived here: it is th
 highest minimum among the symbols the guide's own code uses, which no single
 upstream page states.
 
-| Pattern | Approaches | Symbols | Minimum API_LEVEL | Page |
-| --- | --- | --- | --- | --- |
-| Construction of basic environment | 3 | 0 | not stated | [basic-environment-construction.md](basic-environment-construction.md) |
-| MessageBuilder Bluetooth Communication | 1 | 2 | >= 2 | [bluetooth-communication.md](bluetooth-communication.md) |
-| Code adaptations for more Zepp OS devices | 3 | 0 | not stated | [code-adaptations-for-new-devices.md](code-adaptations-for-new-devices.md) |
-| Code Organization | 3 | 5 | >= 2 | [code-organization.md](code-organization.md) |
-| Cross-Page Communications | 3 | 3 | >= 2 | [cross-page-communications.md](cross-page-communications.md) |
-| Debug Mini Program | 4 | 1 | >= 2 | [debug.md](debug.md) |
-| Error Capture | 2 | 0 | not stated | [error-catch.md](error-catch.md) |
-| i18n | 5 | 1 | >= 2 | [i18n.md](i18n.md) |
-| Screen Adaptation | 4 | 8 | >= 2 | [multi-screen-adaption.md](multi-screen-adaption.md) |
-| Data Persistence | 2 | 1 | >= 3 | [persistence-storage.md](persistence-storage.md) |
-| Widgets Management by Group | 2 | 4 | >= 2 | [widget-group.md](widget-group.md) |
+**The runtimes column is the one to read first.** A task-shaped title says
+nothing about which runtime its code is for, and an eval run building a
+watchface called `Multi-screen Adaption` "actively misleading" for exactly
+that reason: it is the obvious page for round-versus-square, its facts are
+correct, and every symbol in it is Device App. The runtimes below are the
+ones the symbols a pattern uses are attributed to — derived here, because a
+guide states its own runtime only through a file name in a code fence.
+
+| Pattern | Runtimes | Approaches | Symbols | Minimum API_LEVEL | Page |
+| --- | --- | --- | --- | --- | --- |
+| Construction of basic environment | not stated | 3 | 0 | not stated | [basic-environment-construction.md](basic-environment-construction.md) |
+| MessageBuilder Bluetooth Communication | Device App, Watchface | 1 | 2 | >= 2 | [bluetooth-communication.md](bluetooth-communication.md) |
+| Code adaptations for more Zepp OS devices | not stated | 3 | 0 | not stated | [code-adaptations-for-new-devices.md](code-adaptations-for-new-devices.md) |
+| Code Organization | Device App, Workout Extension | 3 | 5 | >= 2 | [code-organization.md](code-organization.md) |
+| Cross-Page Communications | Device App | 3 | 3 | >= 2 | [cross-page-communications.md](cross-page-communications.md) |
+| Debug Mini Program | Device App, Watchface | 4 | 1 | >= 2 | [debug.md](debug.md) |
+| Error Capture | not stated | 2 | 0 | not stated | [error-catch.md](error-catch.md) |
+| i18n | Device App | 5 | 1 | >= 2 | [i18n.md](i18n.md) |
+| Screen Adaptation | Device App, Workout Extension | 4 | 8 | >= 2 | [multi-screen-adaption.md](multi-screen-adaption.md) |
+| Data Persistence | Device App | 2 | 1 | >= 3 | [persistence-storage.md](persistence-storage.md) |
+| Widgets Management by Group | Device App, Workout Extension | 2 | 4 | >= 2 | [widget-group.md](widget-group.md) |
 
 ## Which patterns use a symbol
 

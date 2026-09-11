@@ -14,7 +14,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/addEventListener.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.createSensor",
@@ -29,7 +29,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/createSensor.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmSensor.id",
@@ -61,7 +61,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmSensor/createSensor.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

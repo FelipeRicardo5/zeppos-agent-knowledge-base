@@ -50,7 +50,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/TEXT.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.anim_status",
@@ -91,7 +91,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_ANIM.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.createWidget",
@@ -127,7 +127,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/createWidget.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.data_type",
@@ -389,7 +389,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/data_type.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.date",
@@ -425,7 +425,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/DATE_POINTER.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.deleteWidget",
@@ -440,7 +440,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/deleteWidget.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.getProperty",
@@ -467,7 +467,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/getProperty.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.prop",
@@ -503,7 +503,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_ANIM.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.setProperty",
@@ -565,7 +565,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/setProperty.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.system_status",
@@ -602,7 +602,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/IMG_STATUS.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.text_style",
@@ -633,7 +633,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/widget/TEXT.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmUI.widget",
@@ -660,7 +660,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmUI/createWidget.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

@@ -361,3 +361,40 @@ describe("pattern permissions", () => {
     assert.doesNotMatch(page, /Requires in/);
   });
 });
+
+describe("pattern runtimes in the index", () => {
+  it("names the runtimes a pattern's symbols belong to", async () => {
+    // An eval run building a watchface called `Multi-screen Adaption` "actively
+    // misleading": it is the obvious page for round-versus-square, its facts
+    // are correct, and every symbol in it is Device App. The index is where the
+    // wrong turn is taken, so the runtime has to be on the row.
+    const { patternsDir, symbolsDir, out } = await fixture(
+      [pattern({ symbols: ["@zos/device.getDeviceInfo"] })],
+      {
+        "zos-device": {
+          module: "@zos/device",
+          symbols: [symbolRecord("@zos/device.getDeviceInfo", 2)],
+        },
+      },
+    );
+
+    await renderPatterns(patternsDir, symbolsDir, out);
+    const index = await readFile(path.join(out, "patterns", "index.md"), "utf-8");
+
+    assert.match(index, /\| Device App \|/);
+    assert.match(index, /actively misleading/);
+  });
+
+  it("states nothing rather than guessing when no used symbol has a record", async () => {
+    // Three of the eleven guides use no symbol this base holds. Defaulting
+    // those to Device App would be the invention the column exists to prevent.
+    const { patternsDir, symbolsDir, out } = await fixture([pattern({ symbols: [] })], {
+      "zos-router": { module: "@zos/router", symbols: [symbolRecord("@zos/router.push", 2)] },
+    });
+
+    await renderPatterns(patternsDir, symbolsDir, out);
+    const index = await readFile(path.join(out, "patterns", "index.md"), "utf-8");
+
+    assert.match(index, /\| Demo Pattern \| not stated \|/);
+  });
+});

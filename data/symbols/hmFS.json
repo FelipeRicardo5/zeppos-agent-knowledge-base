@@ -14,7 +14,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/close.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.open",
@@ -72,7 +72,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/open.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.open_asset",
@@ -130,7 +130,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/open_asset.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.read",
@@ -139,13 +139,44 @@
       "type": "function",
       "description": "Read file",
       "signature": "(fileId: number, buffer: ArrayBuffer, position: number, length: number) => [fileList, err]",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "fileId",
+              "description": "file handle",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "buff",
+              "description": "The buffer that will be filled with the read file data",
+              "required": true,
+              "type": "ArrayBuffer"
+            },
+            {
+              "name": "pos",
+              "description": "Offset based on buff first address",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "len",
+              "description": "the number of bytes to read",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/read.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.remove",
@@ -160,7 +191,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/remove.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.rename",
@@ -169,13 +200,32 @@
       "type": "function",
       "description": "Rename file",
       "signature": "(oldPath: string, newPath: string) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "oldPath",
+              "description": "old file path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "newPath",
+              "description": "new file path",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/rename.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.seek",
@@ -215,7 +265,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/seek.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.stat",
@@ -247,7 +297,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/stat.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.stat_asset",
@@ -279,7 +329,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/stat_asset.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProGetBool",
@@ -294,7 +344,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetBool.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProGetChars",
@@ -309,7 +359,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetChars.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProGetDouble",
@@ -324,7 +374,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetDouble.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProGetInt",
@@ -339,7 +389,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetInt.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProGetInt64",
@@ -354,7 +404,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetInt64.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProSetBool",
@@ -363,13 +413,32 @@
       "type": "function",
       "description": "Store temporary boolean value, system reboot will clear it.",
       "signature": "(key: string, val: boolean) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "key",
+              "description": "key string",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "val",
+              "description": "Stored boolean value",
+              "required": true,
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetBool.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProSetChars",
@@ -378,13 +447,32 @@
       "type": "function",
       "description": "Store temporary string, system reboot will clear.",
       "signature": "(key: string, val: string) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "key",
+              "description": "key string",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "val",
+              "description": "the stored string",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetChars.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProSetDouble",
@@ -393,13 +481,32 @@
       "type": "function",
       "description": "Store temporary double precision floating point numbers, system reboot will clear.",
       "signature": "(key: string, val: number) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "key",
+              "description": "key string",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "val",
+              "description": "The double-precision floating point number to store",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetDouble.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProSetInt",
@@ -408,13 +515,32 @@
       "type": "function",
       "description": "Store temporary integer, system reboot will clear.",
       "signature": "(key: string, val: number) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "key",
+              "description": "key string",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "val",
+              "description": "the stored integer",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetInt.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.SysProSetInt64",
@@ -423,13 +549,32 @@
       "type": "function",
       "description": "Stores a temporary 64-bit integer that will be cleared by system reboot.",
       "signature": "(key: string, val: number) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "key",
+              "description": "key string",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "val",
+              "description": "Stored 64-bit integer",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetInt64.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     },
     {
       "id": "hmFS.write",
@@ -438,13 +583,54 @@
       "type": "function",
       "description": "Write to file",
       "signature": "(fileId: number, buff: ArrayBuffer, pos: number, len: number) => result",
+      "shapes": [
+        {
+          "name": "Parameters",
+          "props": [
+            {
+              "name": "fileId",
+              "description": "file handle",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "buff",
+              "description": "The buffer that will be filled with the read file data",
+              "required": true,
+              "type": "ArrayBuffer"
+            },
+            {
+              "name": "pos",
+              "description": "Offset based on buff first address",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "len",
+              "description": "the number of bytes to write",
+              "required": true,
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "name": "result",
+          "props": [
+            {
+              "name": "result",
+              "description": "The result of the operation, 0 means success",
+              "type": "number"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/write.mdx",
-      "extractedAt": "2026-09-10"
+      "extractedAt": "2026-09-11"
     }
   ]
 }

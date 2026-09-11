@@ -727,6 +727,45 @@ function devicesAtLevel(devices: DeviceRecord[], level: number): DeviceRecord[] 
     .sort((a, b) => (b.latestApiLevel ?? 0) - (a.latestApiLevel ?? 0) || a.name.localeCompare(b.name));
 }
 
+/**
+ * Which samples build for a device, by `deviceSource` — an identifier, never a
+ * target key.
+ *
+ * The eval run read "the samples target GTR 3 Pro" together with "GTR 3 Pro
+ * states no API_LEVEL" and called it a contradiction. It is not: those samples
+ * are in the 1.0 trees and import nothing, so they use none of the API this
+ * base documents. Saying so on the page is cheaper than letting the next reader
+ * derive it, and honest in a way that reporting a conflict would not be.
+ *
+ * The join is on `deviceSource` and not on the target key, because a target key
+ * is named arbitrarily — matching `gtr-3-pro` to "Amazfit GTR 3 Pro" is the
+ * guess this base refuses everywhere else.
+ */
+function samplesTargeting(
+  devices: DeviceRecord[],
+  examples: ExampleRecord[],
+): { device: string; samples: string[]; symbols: number }[] {
+  const rows: { device: string; samples: string[]; symbols: number }[] = [];
+
+  for (const device of devices) {
+    const ids = new Set(device.deviceSources.map((source) => source.id));
+    const hits = examples.filter((example) =>
+      (example.manifest?.platforms ?? []).some(
+        (selector) => selector.deviceSource !== undefined && ids.has(String(selector.deviceSource)),
+      ),
+    );
+    if (hits.length === 0) continue;
+
+    rows.push({
+      device: device.name,
+      samples: hits.map((example) => example.id).sort(),
+      symbols: new Set(hits.flatMap((example) => example.symbols)).size,
+    });
+  }
+
+  return rows;
+}
+
 function devicesMarkdown(
   devices: DeviceRecord[],
   modules: ModuleFile[],
@@ -789,6 +828,31 @@ function devicesMarkdown(
       "here is available** on this hardware.",
       "",
     );
+
+    // Official samples do target these devices, and reading that as "so the
+    // API must run there" is the wrong conclusion an eval run drew — it went
+    // looking for the sample-precedented device and found a row saying nothing
+    // is available on it. The samples in question import nothing this base
+    // documents, which is the fact that reconciles the two.
+    const targeted = samplesTargeting(noLevel, examples);
+    if (targeted.length > 0) {
+      lines.push(
+        "**Official samples do target them, and that is not a contradiction.** The",
+        "samples below use the pre-2.0 global API, which has no `import` line — so",
+        "they contribute no symbol to this base and need none of the levels it",
+        "documents. A sample targeting a device here is not evidence that a `@zos/*`",
+        "call works on it.",
+        "",
+      );
+      lines.push("| Device | Targeted by | Symbols those samples import |");
+      lines.push("| --- | --- | --- |");
+      for (const { device, samples, symbols } of targeted) {
+        lines.push(
+          `| ${cell(device)} | ${samples.map((id) => `[${id}](../examples/${id}.md)`).join(", ")} | ${symbols} |`,
+        );
+      }
+      lines.push("");
+    }
     lines.push("| Device | Zepp OS | Screen | Keys | deviceSource |");
     lines.push("| --- | --- | --- | --- | --- |");
     for (const device of noLevel) {
@@ -858,6 +922,26 @@ function runtimeMarkdown(runtime: Runtime, label: string, modules: ModuleFile[])
   lines.push(
     "A symbol is attributed to a runtime by the source path it was extracted from,",
     "not by any statement in its own text. Absence is *not covered*, not *invalid here*.",
+    "",
+  );
+
+  // Permissions are documented in exactly one tree. Leaving that unsaid invites
+  // the reading an eval run took — it shipped `permissions: []` for a watchface
+  // and had to flag it as unverified, because the page it read gave it nothing
+  // either way. Derived, so it stays true when upstream starts documenting them.
+  const withPermission = present
+    .flatMap((m) => m.symbols)
+    .filter((record) => (record.permissions?.length ?? 0) > 0).length;
+  lines.push(
+    withPermission === 0
+      ? "**No symbol here states a permission**, and no page in this runtime's upstream " +
+        "tree mentions one. That is absence of evidence: it does **not** mean an app " +
+        "using this runtime needs none in `app.json`. Only the Device App tree documents " +
+        "permissions at all, so an empty `permissions` array here is the only citable " +
+        "choice rather than a verified one."
+      : `**${withPermission} of ${symbolCount} symbols state a permission** \`app.json\` must ` +
+        "declare. Absence on the rest is *not documented*, not *not needed* — see " +
+        "[`../manifest/index.md`](../manifest/index.md).",
     "",
   );
 

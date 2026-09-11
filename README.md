@@ -19,7 +19,7 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/, tools/) |
-| `verify` — ask the rendered base 19 real questions and check the answers | implemented |
+| `verify` — ask the rendered base 20 real questions and check the answers | implemented |
 | CI — typecheck, tests, render reproducibility, `verify`; plus a weekly sync that opens a PR | implemented |
 
 CI proves the whole chain from JSON to Markdown **without touching the
@@ -32,7 +32,7 @@ count that went down is the thing to look at**: every parser bug here has been
 an upstream format change that made an extraction silently smaller, and a
 reviewable diff is the only form in which those have ever been caught.
 
-`npm run verify` asks the **rendered** base 19 questions a developer would
+`npm run verify` asks the **rendered** base 20 questions a developer would
 actually ask — *where does `setInterval` live*, *what values may `align_h` take*,
 *what must `app.json` declare for `@zos/alarm.set`* — and fails, naming the
 question, when one stops being answerable. It reads the Markdown rather than the
@@ -40,7 +40,7 @@ JSON, because a fact that survives into `data/` and dies in the render is still
 a wrong answer. Every question carries the reason it is in the set, which is
 usually an eval finding or a bug that shipped.
 
-Fixture-based tests cover all ten parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (253 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover all ten parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (262 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
 Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
 
@@ -348,9 +348,54 @@ The generated Markdown lands in `api/`, `compatibility/`, `runtimes/`, `patterns
 
 14. **`app.json` gets its own dir, and its gaps are content.** It is neither a symbol nor a runtime, so it belongs in neither `api/` nor `runtimes/`; `manifest/` owns its own dir for the same reason `compatibility/` owns `devices.md` — `prepareOutDir` clears a directory, so two writers cannot share one. Its value is four joins the source cannot make: manifest key → runtime (nothing upstream connects them, so *"which key ships a Side Service"* is otherwise unanswerable), the documented key tree diffed **both ways** against 33 working manifests, permission string → the symbols whose docs state it, and the keys the page types as objects and never describes. A page rendering only the documented tree would be a copy of the upstream page.
 
+## Annotations — the one thing a human writes
+
+`render` overwrites every generated page, and CI fails if the result differs
+from what is committed. So a human judgement cannot live in the output: the only
+place it can live is an **input**.
+
+That input is [`annotations/symbols.json`](annotations/symbols.json). It is
+deliberately **not** under `data/`, which is the sync's output namespace —
+`writeSymbols` already deletes every JSON there before writing, and a
+hand-written file sitting beside `devices.json` would be indistinguishable from
+a generated one by inspection.
+
+Two rules make it safe, and both exist because this repository's own prose has
+gone stale three times:
+
+- **Never an override.** An annotation is rendered *beside* the extracted fact,
+  in its own block, tagged with its confidence tier and the date it was written.
+  It cannot change an extracted value. A page must not state something no source
+  says in a voice indistinguishable from extraction — that property is what the
+  whole base is for.
+- **Pinned to what it was written against.** `writtenAgainst` records the record
+  fields and values the note was true of. `npm run verify` fails when one has
+  moved, or when the symbol is gone entirely. A hand-written claim ages the
+  moment the data under it changes, and this is a machine for making
+  hand-written claims.
+
+```json
+{
+  "id": "@zos/ui.GRADIENT_POLYLINE",
+  "confidence": "INFERRED",
+  "note": "Every sample that draws one writes `widget.GRADKIENT_POLYLINE` …",
+  "writtenAgainst": { "symbol": "GRADIENT_POLYLINE" },
+  "date": "2026-09-11"
+}
+```
+
+**It is small on purpose.** Measured across a full session of work, almost
+everything worth annotating turned out to be extractable after all — a sensor's
+return shape, a widget's lifecycle, two reported "conflicts" that were not
+conflicts. What is left is narrow: upstream contradicting *itself*, where no
+source can be quoted because the sources disagree. There are two such notes
+today.
+
 ## Open questions
 
-1. **Generated vs. versioned Markdown** — should manual edits under the rendered Markdown directories always be overwritten by the next `render` (JSON as the single source of truth), or should there be an annotation mechanism that survives regeneration, to cover what the parser gets wrong?
+1. **A serving layer.** Using this base means cloning it. An MCP server would
+   let an agent query it by name instead of reading a 187 KB index — the
+   question is retrieval cost, not access.
 
 ## Agent Skill
 

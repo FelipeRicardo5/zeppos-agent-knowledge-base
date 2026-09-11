@@ -657,3 +657,47 @@ export interface ToolsRecord extends Omit<RawTools, "sourceFiles"> {
   originalPaths: string[];
   extractedAt: string;
 }
+
+// --- Annotations ----------------------------------------------------------
+//
+// The one thing in this repository a human writes and `render` reads.
+//
+// `render` overwrites every generated page and CI fails if the result differs
+// from what is committed, so the only place a human judgement can live is an
+// *input*. It is not under `data/`, which is the sync's output namespace —
+// `writeSymbols` already deletes every JSON there before writing, and a
+// hand-written file beside `devices.json` would be indistinguishable from a
+// generated one by inspection. It lives in `annotations/`, beside `src/`.
+//
+// Two rules make it safe, and both exist because this project's own prose has
+// gone stale three times:
+//
+//   never an override   an annotation is shown *beside* the extracted fact,
+//                       tagged with its confidence and date, never merged into
+//                       it. A page must not state something no source says in a
+//                       voice indistinguishable from extraction — that is the
+//                       property the whole base is for.
+//   pinned              `writtenAgainst` records the field values the note was
+//                       written against. When one moves, the annotation is
+//                       reported as stale rather than left to rot: a
+//                       hand-written claim ages the moment the data changes,
+//                       and this is a machine for making hand-written claims.
+
+export interface Annotation {
+  /** The symbol id this is about. An id nothing resolves is itself stale. */
+  id: string;
+  /**
+   * Always a human tier. `INFERRED` is a conclusion drawn from the records;
+   * `COMMUNITY` and `RECOMMENDED` are claims about who vouches for something.
+   */
+  confidence: Extract<Confidence, "INFERRED" | "COMMUNITY" | "RECOMMENDED">;
+  /** What the human is telling a reader, in full sentences. */
+  note: string;
+  /**
+   * Record fields, and the values they had when the note was written. Any
+   * mismatch means the ground moved and the note needs re-reading.
+   */
+  writtenAgainst?: Record<string, string>;
+  /** ISO date, so a reader can weigh how old the judgement is. */
+  date: string;
+}

@@ -720,6 +720,12 @@ Get the UI widget type.
 
 Draws polylines that can be done on a line graph with multiple segments.
 
+> **Note — `INFERRED`, written 2026-09-11.** Not extracted from any
+> source: a human judgement about what the sources say, kept here because they
+> disagree and none of them can be quoted for it.
+>
+> Every sample that draws one writes `widget.GRADKIENT_POLYLINE`, and the watchface reference spells it that way too. This page is the only place the name appears without the `K`. Passing the documented spelling to `createWidget` is very likely to yield `undefined`.
+
 **Param**
 
 | Property | Type | Required | Default | Description |

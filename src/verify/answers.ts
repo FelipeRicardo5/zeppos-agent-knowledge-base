@@ -230,6 +230,16 @@ export const ANSWERS: Answer[] = [
     },
   },
   {
+    question: "Does any hand-written note still hold?",
+    why: "An annotation is the one thing here a human writes, and a hand-written claim ages the moment the data under it changes — it has done so three times in this repository already.",
+    check: (base) => {
+      const stale = base.stale();
+      return stale.length === 0
+        ? undefined
+        : stale.map(({ id, reason }) => `${id}: ${reason}`).join("; ");
+    },
+  },
+  {
     question: "Does any symbol claim an API_LEVEL no source stated?",
     why: "The invariant the whole base rests on. Absence of a level must render as `not stated`, never as a level and never as `any`.",
     check: (base) => {

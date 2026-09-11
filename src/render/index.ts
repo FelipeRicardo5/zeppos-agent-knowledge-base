@@ -1,8 +1,10 @@
 import path from "node:path";
+import { annotationLines, annotationsFor, readAnnotations } from "./annotations.js";
 import { readExampleFiles } from "./examples.js";
 import { LOOKUP_FILE, lookupMarkdown, lookupNameCount } from "./lookup.js";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
 import type {
+  Annotation,
   DeviceRecord,
   EnumSpec,
   ExampleRecord,
@@ -133,7 +135,7 @@ function relativeLines(module: ModuleFile, all: ModuleFile[], dir: string): stri
   return lines;
 }
 
-function apiMarkdown(module: ModuleFile, all: ModuleFile[]): string {
+function apiMarkdown(module: ModuleFile, all: ModuleFile[], notes: Annotation[]): string {
   const lines = [`# ${module.module}`, ""];
   lines.push(...relativeLines(module, all, ""));
   lines.push(`**${module.symbols.length} symbols**`, "");
@@ -166,6 +168,10 @@ function apiMarkdown(module: ModuleFile, all: ModuleFile[]): string {
     for (const record of detailed) {
       lines.push(`### \`${module.module}.${record.symbol}\``, "");
       if (record.description !== undefined) lines.push(record.description, "");
+
+      // Beside the extracted fact, never merged into it. A page must not state
+      // something no source says in a voice indistinguishable from extraction.
+      for (const note of annotationsFor(notes, record.id)) lines.push(...annotationLines(note));
 
       // The symbol *is* a namespace: `hmSensor.id` is both a constant here and
       // a module of its own holding the 18 ids. This is the row an eval run
@@ -1025,7 +1031,14 @@ export async function render(
   outDir: string,
   devicesFile?: string,
   examplesDir?: string,
-): Promise<{ modules: number; runtimes: number; devices: number; names: number }> {
+  annotationsDir?: string,
+): Promise<{
+  modules: number;
+  runtimes: number;
+  devices: number;
+  names: number;
+  annotations: number;
+}> {
   const modules = await readModuleFiles(symbolsDir);
   // `compatibility/` has one owner, because `prepareOutDir` clears the dir: a
   // second function writing `devices.md` there would have its page deleted by
@@ -1037,6 +1050,9 @@ export async function render(
   // sample manifests are the only evidence of which `platforms` selectors real
   // apps ship, and the device list is the only evidence of what they select.
   const examples = examplesDir === undefined ? [] : await readExampleFiles(examplesDir);
+  // The one input a human writes. Absent is the normal state; malformed throws,
+  // because silently dropping a human judgement is worse than failing here.
+  const notes = annotationsDir === undefined ? [] : await readAnnotations(annotationsDir);
 
   // `index.md` is generated, so no module may claim that slug — nor `devices.md`
   // in the compatibility dir. Resolved before any write so a collision fails
@@ -1067,7 +1083,7 @@ export async function render(
   }
 
   for (const { slug, module } of pages) {
-    await writePage(path.join(apiDir, `${slug}.md`), apiMarkdown(module, modules));
+    await writePage(path.join(apiDir, `${slug}.md`), apiMarkdown(module, modules, notes));
     await writePage(path.join(compatDir, `${slug}.md`), compatMarkdown(module, modules));
   }
 
@@ -1091,5 +1107,6 @@ export async function render(
     runtimes: RUNTIMES.length,
     devices: devices.length,
     names: lookupNameCount(modules),
+    annotations: notes.length,
   };
 }

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "@zos/ui.GRADIENT_POLYLINE",
+    "confidence": "INFERRED",
+    "note": "Every sample that draws one writes `widget.GRADKIENT_POLYLINE`, and the watchface reference spells it that way too. This page is the only place the name appears without the `K`. Passing the documented spelling to `createWidget` is very likely to yield `undefined`.",
+    "writtenAgainst": { "symbol": "GRADIENT_POLYLINE" },
+    "date": "2026-09-11"
+  },
+  {
+    "id": "hmUI.widget.DELEGATE",
+    "confidence": "INFERRED",
+    "note": "Sample code creates this widget as `hmUI.widget.WIDGET_DELEGATE`, not `DELEGATE`. The page title is the shorter name and the code in its own example is the longer one, so the page contradicts itself.",
+    "writtenAgainst": { "symbol": "DELEGATE" },
+    "date": "2026-09-11"
+  }
+]

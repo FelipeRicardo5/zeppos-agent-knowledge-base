@@ -38,6 +38,7 @@ import path from "node:path";
 const CACHE_DIR = ".cache";
 const DATA_DIR = "data";
 const OUT_DIR = ".";
+const ANNOTATIONS_DIR = "annotations";
 
 const command = process.argv[2];
 
@@ -150,11 +151,12 @@ switch (command) {
   }
   case "render": {
     const symbolsDir = path.join(DATA_DIR, "symbols");
-    const { modules, runtimes, devices, names } = await render(
+    const { modules, runtimes, devices, names, annotations } = await render(
       symbolsDir,
       OUT_DIR,
       path.join(DATA_DIR, "devices.json"),
       path.join(DATA_DIR, "examples"),
+      ANNOTATIONS_DIR,
     );
     const { patterns } = await renderPatterns(path.join(DATA_DIR, "patterns"), symbolsDir, OUT_DIR);
     const { examples } = await renderExamples(path.join(DATA_DIR, "examples"), symbolsDir, OUT_DIR);
@@ -172,12 +174,12 @@ switch (command) {
       OUT_DIR,
     );
     console.log(
-      `rendered: ${modules} modules, ${names} indexed names, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts, ${commands} CLI commands (plus an index in each)`,
+      `rendered: ${modules} modules, ${names} indexed names, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts, ${commands} CLI commands, ${annotations} annotations (plus an index in each)`,
     );
     break;
   }
   case "verify": {
-    const { total, failures } = await verify(path.join(DATA_DIR, "symbols"), OUT_DIR);
+    const { total, failures } = await verify(path.join(DATA_DIR, "symbols"), OUT_DIR, ANNOTATIONS_DIR);
 
     for (const { question, why, detail } of failures) {
       console.error(`FAIL  ${question}`);

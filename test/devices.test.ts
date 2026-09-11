@@ -208,7 +208,7 @@ describe("render devices", () => {
     );
 
     const counts = await render(symbolsDir, out, devicesFile);
-    assert.deepEqual(counts, { modules: 1, runtimes: 5, devices: 2, names: 2 });
+    assert.deepEqual(counts, { modules: 1, runtimes: 5, devices: 2, names: 2, annotations: 0 });
 
     const page = await readFile(path.join(out, "compatibility", "devices.md"), "utf-8");
     assert.match(page, /\| Amazfit Bip 6 \| 4\.2 \| 5\.0 \| 2 of 2 \|/);
@@ -305,7 +305,7 @@ describe("render devices", () => {
 
     const counts = await render(symbolsDir, out);
 
-    assert.deepEqual(counts, { modules: 1, runtimes: 5, devices: 0, names: 2 });
+    assert.deepEqual(counts, { modules: 1, runtimes: 5, devices: 0, names: 2, annotations: 0 });
     const index = await readFile(path.join(out, "compatibility", "index.md"), "utf-8");
     assert.doesNotMatch(index, /Reached by/);
     assert.doesNotMatch(index, /devices\.md/);

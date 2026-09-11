@@ -111,6 +111,12 @@ Draws a circle with support for color, transparency, and other properties.
 
 ### `hmUI.widget.DELEGATE`
 
+> **Note — `INFERRED`, written 2026-09-11.** Not extracted from any
+> source: a human judgement about what the sources say, kept here because they
+> disagree and none of them can be quoted for it.
+>
+> Sample code creates this widget as `hmUI.widget.WIDGET_DELEGATE`, not `DELEGATE`. The page title is the shorter name and the code in its own example is the longer one, so the page contradicts itself.
+
 **Watchface Lifecycle**
 
 | Property | Type | Required | Default | Description |

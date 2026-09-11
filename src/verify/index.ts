@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { SymbolRecord } from "../types.js";
+import { readAnnotations, staleAnnotations } from "../render/annotations.js";
 import { readModuleFiles } from "../render/shared.js";
 import { ANSWERS } from "./answers.js";
 
@@ -22,6 +23,8 @@ import { ANSWERS } from "./answers.js";
 // command and says plainly when it cannot run.
 
 export interface Base {
+  /** Annotations whose pinned values no longer match the records. */
+  stale: () => { id: string; reason: string }[];
   /** Every symbol record, across every module. */
   symbols: () => SymbolRecord[];
   /** One record by id, or undefined. */
@@ -35,10 +38,16 @@ export interface VerifyResult {
   failures: { question: string; why: string; detail: string }[];
 }
 
-async function loadBase(symbolsDir: string, outDir: string, pages: string[]): Promise<Base> {
+async function loadBase(
+  symbolsDir: string,
+  outDir: string,
+  pages: string[],
+  annotationsDir: string,
+): Promise<Base> {
   const modules = await readModuleFiles(symbolsDir);
   const records = modules.flatMap((m) => m.symbols);
   const byId = new Map(records.map((r) => [r.id, r]));
+  const notes = await readAnnotations(annotationsDir);
 
   const text = new Map<string, string>();
   for (const relative of pages) {
@@ -52,6 +61,11 @@ async function loadBase(symbolsDir: string, outDir: string, pages: string[]): Pr
   }
 
   return {
+    stale: () =>
+      staleAnnotations(notes, byId).map(({ annotation, reason }) => ({
+        id: annotation.id,
+        reason,
+      })),
     symbols: () => records,
     symbol: (id) => byId.get(id),
     page: (relative) => text.get(relative) ?? "",
@@ -74,8 +88,12 @@ const PAGES = [
   "runtimes/watchface.md",
 ];
 
-export async function verify(symbolsDir: string, outDir: string): Promise<VerifyResult> {
-  const base = await loadBase(symbolsDir, outDir, PAGES);
+export async function verify(
+  symbolsDir: string,
+  outDir: string,
+  annotationsDir: string,
+): Promise<VerifyResult> {
+  const base = await loadBase(symbolsDir, outDir, PAGES, annotationsDir);
   const failures: VerifyResult["failures"] = [];
 
   for (const answer of ANSWERS) {

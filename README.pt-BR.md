@@ -19,7 +19,7 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `enrich` — fundir as frentes de símbolo em um registro por símbolo | implementado |
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | implementado (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/, tools/) |
-| `verify` — fazer 19 perguntas reais à base renderizada e checar as respostas | implementado |
+| `verify` — fazer 20 perguntas reais à base renderizada e checar as respostas | implementado |
 | CI — typecheck, testes, reprodutibilidade do render, `verify`; mais um sync semanal que abre PR | implementado |
 
 O CI prova a cadeia inteira de JSON a Markdown **sem tocar na rede**, porque
@@ -32,7 +32,7 @@ todo bug de parser aqui foi uma mudança de formato upstream que deixou a
 extração silenciosamente menor, e um diff revisável é a única forma em que esses
 já foram pegos.
 
-`npm run verify` faz à base **renderizada** 19 perguntas que um desenvolvedor
+`npm run verify` faz à base **renderizada** 20 perguntas que um desenvolvedor
 faria de verdade — *onde vive `setInterval`*, *que valores `align_h` aceita*, *o
 que o `app.json` precisa declarar para `@zos/alarm.set`* — e falha, nomeando a
 pergunta, quando uma delas deixa de ter resposta. Ele lê o Markdown e não o
@@ -40,7 +40,7 @@ JSON, porque um fato que sobrevive no `data/` e morre no render continua sendo
 resposta errada. Cada pergunta carrega o motivo de estar no conjunto, quase
 sempre um achado de avaliação ou um bug que passou.
 
-Testes baseados em fixtures cobrem as dez frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (253 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
+Testes baseados em fixtures cobrem as dez frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (262 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 
@@ -321,6 +321,54 @@ então é trabalho de parsing, não de curadoria.
 ## Pontos em aberto
 
 1. **Markdown gerado vs. versionado** — edições manuais nos diretórios de Markdown renderizado devem ser sempre sobrescritas no próximo `render` (JSON como única fonte de verdade), ou deve existir um mecanismo de anotação que sobrevive à regeneração, para cobrir o que o parser não capturou corretamente?
+
+## Anotações — a única coisa que um humano escreve
+
+O `render` sobrescreve toda página gerada, e o CI falha se o resultado diferir do
+que está commitado. Então um julgamento humano não pode viver na saída: o único
+lugar onde ele cabe é uma **entrada**.
+
+Essa entrada é [`annotations/symbols.json`](annotations/symbols.json). Ela
+**não** fica em `data/`, que é o namespace de saída do sync — o `writeSymbols` já
+apaga todo JSON de lá antes de escrever, e um arquivo escrito à mão ao lado de
+`devices.json` seria indistinguível de um gerado por inspeção.
+
+Duas regras a tornam segura, e as duas existem porque a prosa deste repositório
+já envelheceu três vezes:
+
+- **Nunca substitui.** Uma anotação é renderizada *ao lado* do fato extraído, em
+  bloco próprio, marcada com sua camada de confiança e a data em que foi escrita.
+  Ela não pode alterar um valor extraído. Uma página não pode afirmar algo que
+  fonte nenhuma diz numa voz indistinguível da extração — essa propriedade é a
+  razão de existir da base inteira.
+- **Presa ao que era verdade quando foi escrita.** O `writtenAgainst` registra os
+  campos e valores do registro contra os quais a nota vale. O `npm run verify`
+  falha quando um deles se move, ou quando o símbolo sumiu. Uma afirmação escrita
+  à mão envelhece no instante em que o dado sob ela muda, e isto é uma máquina de
+  produzir afirmações escritas à mão.
+
+```json
+{
+  "id": "@zos/ui.GRADIENT_POLYLINE",
+  "confidence": "INFERRED",
+  "note": "Todo sample que desenha um escreve `widget.GRADKIENT_POLYLINE` …",
+  "writtenAgainst": { "symbol": "GRADIENT_POLYLINE" },
+  "date": "2026-09-11"
+}
+```
+
+**É pequena de propósito.** Medido ao longo de uma sessão inteira de trabalho,
+quase tudo que valeria anotar acabou sendo extraível — a forma de retorno de um
+sensor, o ciclo de vida de um widget, dois "conflitos" reportados que não eram
+conflitos. O que sobra é estreito: o upstream se contradizendo a *si mesmo*, onde
+nenhuma fonte pode ser citada porque as fontes discordam. Hoje há duas notas
+assim.
+
+## Perguntas em aberto
+
+1. **Uma camada de serviço.** Usar esta base significa cloná-la. Um servidor MCP
+   deixaria um agente consultá-la por nome em vez de ler um índice de 187 KB — a
+   questão é custo de recuperação, não acesso.
 
 ## Agent Skill
 

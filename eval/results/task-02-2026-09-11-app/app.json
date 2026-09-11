@@ -1,0 +1,62 @@
+{
+  "app": {
+    "appId": 1000101,
+    "appName": "PulseFace",
+    "appType": "watchface",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "vender": "example-dev",
+    "description": "Digital watchface with heart rate, steps and one editable data slot."
+  },
+  "configVersion": "v3",
+  "defaultLanguage": "en-US",
+  "i18n": {
+    "en-US": {
+      "appName": "PulseFace"
+    }
+  },
+  "permissions": [],
+  "runtime": {
+    "apiVersion": {
+      "compatible": "1.0.0",
+      "target": "1.0.1",
+      "minVersion": "1.0.0"
+    }
+  },
+  "targets": {
+    "round": {
+      "module": {
+        "watchface": {
+          "path": "watchface/round",
+          "main": 1,
+          "editable": 1
+        }
+      },
+      "platforms": [
+        {
+          "st": "r",
+          "sr": "w480"
+        }
+      ],
+      "designWidth": 480
+    },
+    "square": {
+      "module": {
+        "watchface": {
+          "path": "watchface/square",
+          "main": 1,
+          "editable": 1
+        }
+      },
+      "platforms": [
+        {
+          "st": "s",
+          "sr": "w390"
+        }
+      ],
+      "designWidth": 390
+    }
+  }
+}

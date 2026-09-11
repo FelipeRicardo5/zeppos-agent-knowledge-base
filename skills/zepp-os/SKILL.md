@@ -77,8 +77,11 @@ from, never that the device is unsupported.
 
 ## Writing a watchface
 
-A watchface is not a Mini Program page and does not use `@zos/*`. It is written
-against the `hm*` globals, and mixing the two is the first mistake to avoid:
+A watchface is not a Mini Program page. It is written against the `hm*`
+globals, and mixing the two is the first mistake to avoid — but the boundary is
+not absolute, and an earlier version of this file said it was. Three `@zos/*`
+symbols are attributed to this runtime (`getScene`, `SCENE_AOD`, `log`); check
+`../../runtimes/watchface.md` rather than assuming either way.
 
 - `../../runtimes/watchface.md` lists everything attributed to this runtime.
 - `../../api/hmUI.md`, `hmUI.widget.md`, `hmSensor.md`, `hmSensor.id.md`,
@@ -90,9 +93,16 @@ against the `hm*` globals, and mixing the two is the first mistake to avoid:
 - **No page in that tree states an `API_LEVEL`.** So `compatibility/` cannot
   vouch for a watchface symbol on any device. Say that; do not read the blank
   as *available everywhere*.
-- For working code, `../../examples/index.md` has the watchface samples. Their
-  entry point is `WatchFace({ ... })`, which appears in code and in no
-  reference page — treat it as `OBSERVED`.
+- **The sensor ids and what they return are on a different page.**
+  `api/hmSensor.md` holds three symbols and one of them is `id`; the 18 sensor
+  ids live in `api/hmSensor.id.md`, each with the shape of the value it gives
+  you — `hmSensor.id.STEP` documents `current` and `target`. An eval run missed
+  that and reported it as the base's worst gap. `api/lookup.md` answers it in
+  one line.
+- For working code, `../../examples/index.md` has the watchface samples. The
+  entry point they show is `DeviceRuntimeCore.App({ ... })`, `OBSERVED` and only
+  in the 1.0 samples. **No reference page in the base names an entry point at
+  all** — say that rather than supplying one from memory.
 
 ## The gap that will bite you first
 

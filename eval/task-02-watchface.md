@@ -48,7 +48,7 @@ written inline as a comment or noted beside the code — the file and the line o
 row you read it from. For example:
 
 ```js
-const time = hmSensor.createSensor(hmSensor.id.TIME) // api/hmSensor.md — createSensor
+const time = hmSensor.createSensor(hmSensor.id.TIME); // api/hmSensor.md — createSensor
 ```
 
 You may read:
@@ -120,8 +120,8 @@ Then: would you ship this?
 
 Every question you had while building, in the order you had them. One row each:
 
-| # | Question | Where you looked | Outcome | What you did |
-|---|---|---|---|---|
+| #   | Question | Where you looked | Outcome | What you did |
+| --- | -------- | ---------------- | ------- | ------------ |
 
 `Outcome` is exactly one of:
 

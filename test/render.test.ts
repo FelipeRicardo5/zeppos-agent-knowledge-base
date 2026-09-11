@@ -462,3 +462,99 @@ describe("render lookup", () => {
     assert.match(page, /\| `log` \| symbol \|/);
   });
 });
+
+describe("render module relatives", () => {
+  it("points a module at the namespace that continues it, and back", async () => {
+    // What an eval run cost: it opened `api/hmSensor.md`, saw `id` as a bare
+    // constant, and reported "nothing documents what a Step sensor returns" as
+    // the base's worst gap — while `api/hmSensor.id.md` stated `current` and
+    // `target` one file away, with no link between them. Two requirements were
+    // downgraded over a missing cross-reference.
+    const { symbols, out } = await writeFixture({
+      hmSensor: {
+        module: "hmSensor",
+        symbols: [{ ...deviceRecord, id: "hmSensor.id", module: "hmSensor", symbol: "id" }],
+      },
+      "hmSensor.id": {
+        module: "hmSensor.id",
+        symbols: [
+          { ...deviceRecord, id: "hmSensor.id.STEP", module: "hmSensor.id", symbol: "STEP" },
+          { ...deviceRecord, id: "hmSensor.id.HEART", module: "hmSensor.id", symbol: "HEART" },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const parent = await readFile(path.join(out, "api", "hmSensor.md"), "utf-8");
+    const child = await readFile(path.join(out, "api", "hmSensor.id.md"), "utf-8");
+
+    assert.match(parent, /\*\*Also in this namespace:\*\* \[`hmSensor\.id`\]\(hmSensor\.id\.md\) \(2 symbols\)/);
+    assert.match(child, /Part of \[`hmSensor`\]\(hmSensor\.md\)/);
+  });
+
+  it("links the symbol that is itself the namespace", async () => {
+    // The precise row the run stopped at. The module-level line at the top is
+    // not enough: a reader who has scrolled to the symbol needs it there.
+    const { symbols, out } = await writeFixture({
+      hmSensor: {
+        module: "hmSensor",
+        symbols: [
+          {
+            ...deviceRecord,
+            id: "hmSensor.id",
+            module: "hmSensor",
+            symbol: "id",
+            description: "Sensor ids.",
+          },
+        ],
+      },
+      "hmSensor.id": {
+        module: "hmSensor.id",
+        symbols: [{ ...deviceRecord, id: "hmSensor.id.STEP", module: "hmSensor.id", symbol: "STEP" }],
+      },
+    });
+
+    await render(symbols, out);
+    const page = await readFile(path.join(out, "api", "hmSensor.md"), "utf-8");
+
+    assert.match(page, /Its 1 values, and the shape each one returns, are in \[`hmSensor\.id`\]/);
+  });
+
+  it("recognises a slash as a namespace separator too", async () => {
+    // `@zos/ble/TransferFile` is an importable submodule, where `hmSensor.id`
+    // is a global namespace. Both continue a module's name.
+    const { symbols, out } = await writeFixture({
+      "zos-ble": {
+        module: "@zos/ble",
+        symbols: [{ ...deviceRecord, id: "@zos/ble.send", module: "@zos/ble", symbol: "send" }],
+      },
+      "zos-ble-TransferFile": {
+        module: "@zos/ble/TransferFile",
+        symbols: [
+          {
+            ...deviceRecord,
+            id: "@zos/ble/TransferFile.getInbox",
+            module: "@zos/ble/TransferFile",
+            symbol: "getInbox",
+          },
+        ],
+      },
+    });
+
+    await render(symbols, out);
+    const parent = await readFile(path.join(out, "api", "zos-ble.md"), "utf-8");
+
+    assert.match(parent, /Also in this namespace:.*zos-ble-TransferFile\.md/);
+  });
+
+  it("says nothing on a module with no relatives", async () => {
+    const { symbols, out } = await writeFixture({
+      "zos-router": { module: "@zos/router", symbols: [deviceRecord] },
+    });
+
+    await render(symbols, out);
+    const page = await readFile(path.join(out, "api", "zos-router.md"), "utf-8");
+
+    assert.doesNotMatch(page, /Also in this namespace|Part of/);
+  });
+});

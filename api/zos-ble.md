@@ -1,5 +1,7 @@
 # @zos/ble
 
+**Also in this namespace:** [`@zos/ble/TransferFile`](zos-ble-TransferFile.md) (1 symbols).
+
 **30 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |

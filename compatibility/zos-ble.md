@@ -1,5 +1,7 @@
 # @zos/ble — compatibility
 
+**Also in this namespace:** [`@zos/ble/TransferFile`](zos-ble-TransferFile.md) (1 symbols).
+
 **30 of 30 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2

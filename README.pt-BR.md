@@ -19,7 +19,7 @@ Fontes: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs) 
 | `enrich` — fundir as frentes de símbolo em um registro por símbolo | implementado |
 | `store` — gravar o JSON fonte de verdade, um arquivo por módulo | implementado |
 | `render` — gerar o Markdown final da base de conhecimento | implementado (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/, tools/) |
-| `verify` — fazer 17 perguntas reais à base renderizada e checar as respostas | implementado |
+| `verify` — fazer 18 perguntas reais à base renderizada e checar as respostas | implementado |
 | CI — typecheck, testes, reprodutibilidade do render, `verify`; mais um sync semanal que abre PR | implementado |
 
 O CI prova a cadeia inteira de JSON a Markdown **sem tocar na rede**, porque
@@ -32,7 +32,7 @@ todo bug de parser aqui foi uma mudança de formato upstream que deixou a
 extração silenciosamente menor, e um diff revisável é a única forma em que esses
 já foram pegos.
 
-`npm run verify` faz à base **renderizada** 17 perguntas que um desenvolvedor
+`npm run verify` faz à base **renderizada** 18 perguntas que um desenvolvedor
 faria de verdade — *onde vive `setInterval`*, *que valores `align_h` aceita*, *o
 que o `app.json` precisa declarar para `@zos/alarm.set`* — e falha, nomeando a
 pergunta, quando uma delas deixa de ter resposta. Ele lê o Markdown e não o
@@ -40,7 +40,7 @@ JSON, porque um fato que sobrevive no `data/` e morre no render continua sendo
 resposta errada. Cada pergunta carrega o motivo de estar no conjunto, quase
 sempre um achado de avaliação ou um bug que passou.
 
-Testes baseados em fixtures cobrem as dez frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (243 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
+Testes baseados em fixtures cobrem as dez frentes de parse, a atribuição de runtime, a extração de forma de chamada e de conjuntos de valores, a fusão do enrich e todas as visões do render: `npm test` (247 passando, nenhum `todo`). Eles provam que o extrator não regride; não provam que a base *responde bem*, e é para isso que existe [`eval/`](eval/README.md).
 
 Retrato do último sync (números atualizados em [`data/manifest.json`](data/manifest.json)):
 

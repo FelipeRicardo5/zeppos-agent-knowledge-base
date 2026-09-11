@@ -1,5 +1,7 @@
 # hmUI.widget — compatibility
 
+Part of [`hmUI`](hmUI.md).
+
 **0 of 22 symbols state a minimum API_LEVEL**
 
 ## No stated API_LEVEL

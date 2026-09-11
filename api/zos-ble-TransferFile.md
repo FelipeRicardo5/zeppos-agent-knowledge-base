@@ -1,5 +1,7 @@
 # @zos/ble/TransferFile
 
+Part of [`@zos/ble`](zos-ble.md).
+
 **1 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |

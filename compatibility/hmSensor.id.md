@@ -1,5 +1,7 @@
 # hmSensor.id — compatibility
 
+Part of [`hmSensor`](hmSensor.md).
+
 **0 of 18 symbols state a minimum API_LEVEL**
 
 ## No stated API_LEVEL

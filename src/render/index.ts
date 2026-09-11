@@ -89,8 +89,53 @@ function groupByLevel(symbols: SymbolRecord[]): Map<number, SymbolRecord[]> {
   return new Map([...groups].sort(([a], [b]) => a - b));
 }
 
-function apiMarkdown(module: ModuleFile): string {
+/**
+ * Modules whose name is this one's plus a separator, and the one it extends.
+ *
+ * `hmSensor` holds three symbols and one of them is `id`; the 18 sensor ids and
+ * the shape each returns are in `hmSensor.id`, a module of its own. An eval run
+ * opened `api/hmSensor.md`, found a bare constant, and reported "nothing
+ * documents what a Step sensor returns" as the base's worst gap — while
+ * `api/hmSensor.id.md` stated `current` and `target` with types one file away.
+ * Two requirements were downgraded over a missing link.
+ *
+ * Three pairs exist: `hmSensor`/`hmSensor.id`, `hmUI`/`hmUI.widget` and
+ * `@zos/ble`/`@zos/ble/TransferFile`. Both separators occur, because a dotted
+ * name is a global namespace and a slashed one is an importable submodule.
+ */
+function relatives(module: string, all: ModuleFile[]): { parent?: string; children: string[] } {
+  const names = all.map((m) => m.module);
+  return {
+    parent: names.find((name) => module.startsWith(`${name}.`) || module.startsWith(`${name}/`)),
+    children: names
+      .filter((name) => name.startsWith(`${module}.`) || name.startsWith(`${module}/`))
+      .sort(),
+  };
+}
+
+/** The cross-reference lines, for whichever view is rendering. */
+function relativeLines(module: ModuleFile, all: ModuleFile[], dir: string): string[] {
+  const { parent, children } = relatives(module.module, all);
+  const lines: string[] = [];
+  const link = (name: string) => `[\`${name}\`](${dir}${moduleSlug(name)}.md)`;
+  const count = (name: string) => all.find((m) => m.module === name)?.symbols.length ?? 0;
+
+  if (parent !== undefined) lines.push(`Part of ${link(parent)}.`, "");
+  if (children.length > 0) {
+    lines.push(
+      `**Also in this namespace:** ` +
+        children.map((name) => `${link(name)} (${count(name)} symbols)`).join(", ") +
+        ".",
+      "",
+    );
+  }
+
+  return lines;
+}
+
+function apiMarkdown(module: ModuleFile, all: ModuleFile[]): string {
   const lines = [`# ${module.module}`, ""];
+  lines.push(...relativeLines(module, all, ""));
   lines.push(`**${module.symbols.length} symbols**`, "");
   lines.push("| Symbol | Type | Min API_LEVEL | Confidence |");
   lines.push("| --- | --- | --- | --- |");
@@ -121,6 +166,18 @@ function apiMarkdown(module: ModuleFile): string {
     for (const record of detailed) {
       lines.push(`### \`${module.module}.${record.symbol}\``, "");
       if (record.description !== undefined) lines.push(record.description, "");
+
+      // The symbol *is* a namespace: `hmSensor.id` is both a constant here and
+      // a module of its own holding the 18 ids. This is the row an eval run
+      // stopped at before reporting the contents of that module as missing.
+      const namespaced = all.find((m) => m.module === `${module.module}.${record.symbol}`);
+      if (namespaced !== undefined) {
+        lines.push(
+          `Its ${namespaced.symbols.length} values, and the shape each one returns, are in ` +
+            `[\`${namespaced.module}\`](${moduleSlug(namespaced.module)}.md).`,
+          "",
+        );
+      }
 
       // Before the signature, because it is the thing that breaks an app that
       // otherwise compiles: an undeclared permission fails at runtime.
@@ -325,8 +382,9 @@ function enumLines(spec: EnumSpec, module: ModuleFile): string[] {
   return lines;
 }
 
-function compatMarkdown(module: ModuleFile): string {
+function compatMarkdown(module: ModuleFile, all: ModuleFile[]): string {
   const lines = [`# ${module.module} — compatibility`, ""];
+  lines.push(...relativeLines(module, all, ""));
   const byLevel = groupByLevel(module.symbols);
   const withoutLevel = module.symbols.filter((r) => r.minApiLevel === undefined);
 
@@ -925,8 +983,8 @@ export async function render(
   }
 
   for (const { slug, module } of pages) {
-    await writePage(path.join(apiDir, `${slug}.md`), apiMarkdown(module));
-    await writePage(path.join(compatDir, `${slug}.md`), compatMarkdown(module));
+    await writePage(path.join(apiDir, `${slug}.md`), apiMarkdown(module, modules));
+    await writePage(path.join(compatDir, `${slug}.md`), compatMarkdown(module, modules));
   }
 
   for (const [runtime, label] of RUNTIMES) {

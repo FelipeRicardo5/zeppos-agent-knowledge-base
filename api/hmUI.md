@@ -1,5 +1,7 @@
 # hmUI
 
+**Also in this namespace:** [`hmUI.widget`](hmUI.widget.md) (22 symbols).
+
 **12 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |
@@ -207,6 +209,8 @@ The documentation states this list is incomplete. Members below marked `OBSERVED
 | `text_style.NONE` | Keep scrolling. |
 
 ### `hmUI.widget`
+
+Its 22 values, and the shape each one returns, are in [`hmUI.widget`](hmUI.widget.md).
 
 **widget**
 

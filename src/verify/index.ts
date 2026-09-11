@@ -62,6 +62,7 @@ async function loadBase(symbolsDir: string, outDir: string, pages: string[]): Pr
 const PAGES = [
   "api/index.md",
   "api/lookup.md",
+  "api/hmSensor.md",
   "api/zos-alarm.md",
   "api/zos-sensor.md",
   "api/zos-ui.md",

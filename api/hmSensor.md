@@ -1,5 +1,7 @@
 # hmSensor
 
+**Also in this namespace:** [`hmSensor.id`](hmSensor.id.md) (18 symbols).
+
 **3 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |
@@ -29,6 +31,8 @@ Create the sensor.
 ```
 
 ### `hmSensor.id`
+
+Its 18 values, and the shape each one returns, are in [`hmSensor.id`](hmSensor.id.md).
 
 **id**
 

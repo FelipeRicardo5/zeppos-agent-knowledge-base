@@ -1,5 +1,7 @@
 # hmSensor — compatibility
 
+**Also in this namespace:** [`hmSensor.id`](hmSensor.id.md) (18 symbols).
+
 **0 of 3 symbols state a minimum API_LEVEL**
 
 ## No stated API_LEVEL

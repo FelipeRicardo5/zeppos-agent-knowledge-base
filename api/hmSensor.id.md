@@ -1,5 +1,7 @@
 # hmSensor.id
 
+Part of [`hmSensor`](hmSensor.md).
+
 **18 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |

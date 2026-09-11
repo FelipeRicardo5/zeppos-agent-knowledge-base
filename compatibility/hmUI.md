@@ -1,5 +1,7 @@
 # hmUI — compatibility
 
+**Also in this namespace:** [`hmUI.widget`](hmUI.widget.md) (22 symbols).
+
 **0 of 12 symbols state a minimum API_LEVEL**
 
 ## No stated API_LEVEL

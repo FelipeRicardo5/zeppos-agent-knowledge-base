@@ -205,6 +205,20 @@ export const ANSWERS: Answer[] = [
     },
   },
   {
+    question: "What does a Step sensor give me on a watchface?",
+    why: "Task 02 reported this as the base's worst gap and the base had it — in `api/hmSensor.id.md`, which `api/hmSensor.md` did not link to.",
+    check: (base) => {
+      const step = base.symbol("hmSensor.id.STEP");
+      const props = (step?.shapes ?? []).flatMap((s) => s.props.map((p) => p.name));
+      if (!props.includes("current") || !props.includes("target")) {
+        return `hmSensor.id.STEP exposes ${props.join(", ") || "nothing"}`;
+      }
+      // The fact existing is not enough: it was unreachable from the page a
+      // reader opens. The link is the half that failed.
+      return has(base.page("api/hmSensor.md"), "hmSensor.id.md", "api/hmSensor.md");
+    },
+  },
+  {
     question: "Does any symbol claim an API_LEVEL no source stated?",
     why: "The invariant the whole base rests on. Absence of a level must render as `not stated`, never as a level and never as `any`.",
     check: (base) => {

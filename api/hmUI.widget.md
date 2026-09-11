@@ -1,5 +1,7 @@
 # hmUI.widget
 
+Part of [`hmUI`](hmUI.md).
+
 **22 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |

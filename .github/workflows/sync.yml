@@ -29,9 +29,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 24, not an older LTS. `npm test` passes a quoted glob to the test
+      # runner and lets *Node* expand it — the shell must not, or the pattern
+      # would be resolved before `tsx` is in play. Node 20's runner takes paths
+      # only and fails with "Could not find 'test/**/*.test.ts'", which is
+      # exactly what a first pin to 20 produced.
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - run: npm ci

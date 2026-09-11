@@ -8,8 +8,9 @@ import type {
   Runtime,
   SymbolRecord,
 } from "../types.js";
-import { readExampleFiles } from "./examples.js";
-import { INDEX_FILE, cell, indexSymbols, prepareOutDir, readModuleFiles, writePage } from "./shared.js";
+
+import { INDEX_FILE, cell, prepareOutDir, writePage } from "./shared.js";
+import { indexSymbols, readAppJsonFile, readExampleFiles, readModuleFiles } from "../store/read.js";
 
 // The `manifest/` view: `app.json`, the one file every Mini Program must get
 // right before an API call matters.
@@ -44,28 +45,6 @@ const RUNTIME_LABELS: Record<Runtime, string> = {
 };
 
 const ALL_RUNTIMES = Object.keys(RUNTIME_LABELS) as Runtime[];
-
-function isAppJsonRecord(value: unknown): value is AppJsonRecord {
-  if (typeof value !== "object" || value === null) return false;
-  const candidate = value as Partial<AppJsonRecord>;
-  return Array.isArray(candidate.sections) && Array.isArray(candidate.gaps);
-}
-
-/** `null` when the front produced nothing — see `writeAppJson`. */
-export async function readAppJsonFile(file: string): Promise<AppJsonRecord | undefined> {
-  const raw = await readFile(file, "utf-8");
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(raw);
-  } catch (error) {
-    throw new Error(`${file}: invalid JSON (${(error as Error).message})`);
-  }
-  if (parsed === null) return undefined;
-  if (!isAppJsonRecord(parsed)) {
-    throw new Error(`${file}: not an app.json record — expected { sections, gaps }`);
-  }
-  return parsed;
-}
 
 /**
  * A documented path in the shape a real file has.

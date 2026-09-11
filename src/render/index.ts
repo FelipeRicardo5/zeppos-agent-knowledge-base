@@ -1,7 +1,14 @@
 import path from "node:path";
 import { annotationLines, annotationsFor, readAnnotations } from "./annotations.js";
-import { readExampleFiles } from "./examples.js";
+
 import { LOOKUP_FILE, lookupMarkdown, lookupNameCount } from "./lookup.js";
+import {
+  type Census,
+  type CensusField,
+  censusOf,
+  coverageOf,
+} from "../index/census.js";
+import { relatives } from "../index/modules.js";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
 import type {
   Annotation,
@@ -12,16 +19,8 @@ import type {
   ShapeSpec,
   SymbolRecord,
 } from "../types.js";
-import {
-  INDEX_FILE,
-  NOT_STATED,
-  apiLevelLabel as apiLevelLabelFor,
-  cell,
-  prepareOutDir,
-  readDeviceFile,
-  readModuleFiles,
-  writePage,
-} from "./shared.js";
+import { INDEX_FILE, NOT_STATED, apiLevelLabel as apiLevelLabelFor, cell, prepareOutDir, writePage } from "./shared.js";
+import { readDeviceFile, readExampleFiles, readModuleFiles } from "../store/read.js";
 
 // Stage 4: render — generate the final Markdown from the JSON source of truth.
 //
@@ -89,30 +88,6 @@ function groupByLevel(symbols: SymbolRecord[]): Map<number, SymbolRecord[]> {
     else groups.set(record.minApiLevel, [record]);
   }
   return new Map([...groups].sort(([a], [b]) => a - b));
-}
-
-/**
- * Modules whose name is this one's plus a separator, and the one it extends.
- *
- * `hmSensor` holds three symbols and one of them is `id`; the 18 sensor ids and
- * the shape each returns are in `hmSensor.id`, a module of its own. An eval run
- * opened `api/hmSensor.md`, found a bare constant, and reported "nothing
- * documents what a Step sensor returns" as the base's worst gap — while
- * `api/hmSensor.id.md` stated `current` and `target` with types one file away.
- * Two requirements were downgraded over a missing link.
- *
- * Three pairs exist: `hmSensor`/`hmSensor.id`, `hmUI`/`hmUI.widget` and
- * `@zos/ble`/`@zos/ble/TransferFile`. Both separators occur, because a dotted
- * name is a global namespace and a slashed one is an importable submodule.
- */
-function relatives(module: string, all: ModuleFile[]): { parent?: string; children: string[] } {
-  const names = all.map((m) => m.module);
-  return {
-    parent: names.find((name) => module.startsWith(`${name}.`) || module.startsWith(`${name}/`)),
-    children: names
-      .filter((name) => name.startsWith(`${module}.`) || name.startsWith(`${module}/`))
-      .sort(),
-  };
 }
 
 /** The cross-reference lines, for whichever view is rendering. */
@@ -908,7 +883,39 @@ function alsoValidIn(record: SymbolRecord, runtime: Runtime): string {
   return others.length > 0 ? others.join(", ") : "—";
 }
 
-function runtimeMarkdown(runtime: Runtime, label: string, modules: ModuleFile[]): string {
+/** The census axes, named the way the rest of the base names them. */
+const CENSUS_LABELS: Record<CensusField, string> = {
+  minApiLevel: "Minimum `API_LEVEL`",
+  signature: "Call signature",
+  members: "Instance members",
+  permissions: "Permission",
+};
+
+/**
+ * The same axes mid-sentence.
+ *
+ * Separate from the labels because lower-casing a heading is not a way to get
+ * prose: it turned `API_LEVEL` into `api_level`, which names nothing.
+ */
+const CENSUS_PHRASES: Record<CensusField, string> = {
+  minApiLevel: "a minimum `API_LEVEL`",
+  signature: "a call signature",
+  members: "instance members",
+  permissions: "a permission",
+};
+
+/** `a`, `a or b`, `a, b or c` — an English list, not a join. */
+function orList(parts: string[]): string {
+  if (parts.length <= 1) return parts[0] ?? "";
+  return `${parts.slice(0, -1).join(", ")} or ${parts[parts.length - 1]}`;
+}
+
+function runtimeMarkdown(
+  runtime: Runtime,
+  label: string,
+  modules: ModuleFile[],
+  census: Census,
+): string {
   const present = modulesForRuntime(modules, runtime);
   const symbolCount = present.reduce((sum, m) => sum + m.symbols.length, 0);
   const lines = [`# ${label} — runtime`, ""];
@@ -931,13 +938,48 @@ function runtimeMarkdown(runtime: Runtime, label: string, modules: ModuleFile[])
     "",
   );
 
-  // Permissions are documented in exactly one tree. Leaving that unsaid invites
-  // the reading an eval run took — it shipped `permissions: []` for a watchface
-  // and had to flag it as unverified, because the page it read gave it nothing
-  // either way. Derived, so it stays true when upstream starts documenting them.
-  const withPermission = present
-    .flatMap((m) => m.symbols)
-    .filter((record) => (record.permissions?.length ?? 0) > 0).length;
+  // What this runtime actually states, counted. The permission line below was
+  // the only axis ever derived, and it is the one that stopped an eval run from
+  // reading an empty `permissions` array as "none needed". The other three were
+  // left to changelog prose, which is the form that goes stale — the Side
+  // Service turns out to state *nothing but a description* on all four, and no
+  // page said so.
+  const coverage = coverageOf(census, runtime);
+  const silent = coverage.filter((c) => c.stated === 0);
+
+  lines.push("## What this base states here", "");
+  lines.push("| Axis | Symbols stating it |");
+  lines.push("| --- | --- |");
+  for (const c of coverage) {
+    lines.push(`| ${CENSUS_LABELS[c.field]} | ${c.stated} of ${c.total} |`);
+  }
+  lines.push("");
+
+  if (silent.length === coverage.length) {
+    lines.push(
+      "**Every axis is at zero.** This base can say these symbols exist and name",
+      "what they are for, and nothing else — not how to call them, not what they",
+      "return, not what they cost in `app.json`, not which devices run them. Code",
+      "written against this runtime from this base alone is unverifiable here.",
+      "",
+    );
+  } else {
+    // Permissions get their own paragraph below, so a zero there is already
+    // said; repeating it here would put the same fact twice on every page.
+    const unsaid = silent.filter((c) => c.field !== "permissions");
+    if (unsaid.length > 0) {
+      lines.push(
+        "An axis at zero is an upstream silence, not an extraction failure: no page " +
+          `in this runtime's tree states ${orList(unsaid.map((c) => CENSUS_PHRASES[c.field]))}. ` +
+          "Absence is *not documented*, never *not needed*.",
+        "",
+      );
+    }
+  }
+
+  // Permissions carry a sentence of their own because the wrong reading of a
+  // zero here is the one an eval run actually took.
+  const withPermission = coverage.find((c) => c.field === "permissions")?.stated ?? 0;
   lines.push(
     withPermission === 0
       ? "**No symbol here states a permission**, and no page in this runtime's upstream " +
@@ -1087,8 +1129,12 @@ export async function render(
     await writePage(path.join(compatDir, `${slug}.md`), compatMarkdown(module, modules));
   }
 
+  const census = censusOf(modules);
   for (const [runtime, label] of RUNTIMES) {
-    await writePage(path.join(runtimesDir, `${runtime}.md`), runtimeMarkdown(runtime, label, modules));
+    await writePage(
+      path.join(runtimesDir, `${runtime}.md`),
+      runtimeMarkdown(runtime, label, modules, census),
+    );
   }
 
   if (devices.length > 0) {

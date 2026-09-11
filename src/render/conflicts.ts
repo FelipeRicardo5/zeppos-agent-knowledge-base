@@ -1,8 +1,9 @@
 import path from "node:path";
 import type { ModuleFile } from "../store/index.js";
 import type { ExampleRecord, Runtime, SymbolRecord } from "../types.js";
-import { readExampleFiles } from "./examples.js";
-import { INDEX_FILE, cell, prepareOutDir, readModuleFiles, writePage } from "./shared.js";
+
+import { INDEX_FILE, cell, prepareOutDir, writePage } from "./shared.js";
+import { readExampleFiles, readModuleFiles } from "../store/read.js";
 
 // The `conflicts/` view: everywhere the sources contradict each other.
 //

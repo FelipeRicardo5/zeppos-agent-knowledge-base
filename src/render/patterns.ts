@@ -2,16 +2,8 @@ import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { moduleSlug } from "../store/index.js";
 import type { PatternRecord, Runtime, SymbolRecord } from "../types.js";
-import {
-  INDEX_FILE,
-  NOT_STATED,
-  apiLevelLabel,
-  cell,
-  indexSymbols,
-  prepareOutDir,
-  readModuleFiles,
-  writePage,
-} from "./shared.js";
+import { INDEX_FILE, NOT_STATED, apiLevelLabel, cell, prepareOutDir, writePage } from "./shared.js";
+import { indexSymbols, readModuleFiles, readPatternFiles } from "../store/read.js";
 
 // The `patterns/` view: one page per best-practice guide.
 //
@@ -39,38 +31,6 @@ const RUNTIME_LABELS: Record<Runtime, string> = {
 
 function runtimeLabels(runtimes: Runtime[]): string {
   return runtimes.map((runtime) => RUNTIME_LABELS[runtime]).join(", ");
-}
-
-function isPatternRecord(value: unknown): value is PatternRecord {
-  if (typeof value !== "object" || value === null) return false;
-  const candidate = value as Partial<PatternRecord>;
-  return (
-    typeof candidate.id === "string" &&
-    typeof candidate.title === "string" &&
-    Array.isArray(candidate.approaches) &&
-    Array.isArray(candidate.symbols)
-  );
-}
-
-export async function readPatternFiles(patternsDir: string): Promise<PatternRecord[]> {
-  const files = (await readdir(patternsDir)).filter((f) => f.endsWith(".json"));
-  const patterns: PatternRecord[] = [];
-
-  for (const file of files) {
-    const raw = await readFile(path.join(patternsDir, file), "utf-8");
-    let parsed: unknown;
-    try {
-      parsed = JSON.parse(raw);
-    } catch (error) {
-      throw new Error(`${file}: invalid JSON (${(error as Error).message})`);
-    }
-    if (!isPatternRecord(parsed)) {
-      throw new Error(`${file}: not a pattern file — expected { id, title, approaches, symbols }`);
-    }
-    patterns.push(parsed);
-  }
-
-  return patterns.sort((a, b) => a.id.localeCompare(b.id));
 }
 
 interface ResolvedSymbol {

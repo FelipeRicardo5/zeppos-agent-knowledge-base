@@ -7,7 +7,8 @@ import type {
   Runtime,
   SymbolRecord,
 } from "../types.js";
-import { INDEX_FILE, cell, indexSymbols, prepareOutDir, readModuleFiles, writePage } from "./shared.js";
+import { INDEX_FILE, cell, prepareOutDir, writePage } from "./shared.js";
+import { indexSymbols, readExampleFiles, readModuleFiles } from "../store/read.js";
 
 // The `examples/` view: the sample apps, read as answers to "how do I call this".
 //
@@ -66,38 +67,6 @@ const RUNTIME_LABELS: Record<Runtime, string> = {
 
 function runtimeLabels(runtimes: Runtime[]): string {
   return runtimes.length === 0 ? "—" : runtimes.map((r) => RUNTIME_LABELS[r]).join(", ");
-}
-
-function isExampleRecord(value: unknown): value is ExampleRecord {
-  if (typeof value !== "object" || value === null) return false;
-  const candidate = value as Partial<ExampleRecord>;
-  return (
-    typeof candidate.id === "string" &&
-    Array.isArray(candidate.files) &&
-    Array.isArray(candidate.usages) &&
-    Array.isArray(candidate.symbols)
-  );
-}
-
-export async function readExampleFiles(examplesDir: string): Promise<ExampleRecord[]> {
-  const files = (await readdir(examplesDir)).filter((f) => f.endsWith(".json"));
-  const examples: ExampleRecord[] = [];
-
-  for (const file of files) {
-    const raw = await readFile(path.join(examplesDir, file), "utf-8");
-    let parsed: unknown;
-    try {
-      parsed = JSON.parse(raw);
-    } catch (error) {
-      throw new Error(`${file}: invalid JSON (${(error as Error).message})`);
-    }
-    if (!isExampleRecord(parsed)) {
-      throw new Error(`${file}: not an example file — expected { id, files, usages, symbols }`);
-    }
-    examples.push(parsed);
-  }
-
-  return examples.sort((a, b) => a.id.localeCompare(b.id));
 }
 
 /**

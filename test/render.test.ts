@@ -251,7 +251,6 @@ describe("render", () => {
     assert.equal(await readFile(path.join(out, "api", "README.md"), "utf-8"), "curated by hand\n");
   });
 
-
   it("writes a page for every runtime, not only the covered ones", async () => {
     // A missing page reads like "this runtime does not exist". The KB's whole
     // stance is that absence is coverage, so every runtime gets a page.

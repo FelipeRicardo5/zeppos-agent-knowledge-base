@@ -2,8 +2,9 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { SymbolRecord } from "../types.js";
 import { readAnnotations, staleAnnotations } from "../render/annotations.js";
-import { readModuleFiles } from "../render/shared.js";
+
 import { ANSWERS } from "./answers.js";
+import { readModuleFiles } from "../store/read.js";
 
 // Stage 5, and the one the project had never had: does the base *answer*?
 //

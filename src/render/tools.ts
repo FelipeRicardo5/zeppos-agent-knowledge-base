@@ -1,7 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { AppJsonRecord, Runtime, SymbolRecord, ToolsRecord } from "../types.js";
-import { INDEX_FILE, cell, prepareOutDir, readModuleFiles, writePage } from "./shared.js";
+import { INDEX_FILE, cell, prepareOutDir, writePage } from "./shared.js";
+import { readModuleFiles } from "../store/read.js";
 
 // The `tools/` view: how to build and run the thing the rest of this base helps
 // you write.

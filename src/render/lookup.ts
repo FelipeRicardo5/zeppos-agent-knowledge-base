@@ -1,8 +1,9 @@
+import { type NameKind, nameIndex, writtenAs } from "../index/names.js";
 import { moduleSlug, type ModuleFile } from "../store/index.js";
 import type { SymbolRecord } from "../types.js";
 import { NOT_STATED, apiLevelLabel, cell } from "./shared.js";
 
-// The `lookup.md` view: every name in the base, and what owns it.
+// The `lookup.md` view: the name index, as a page.
 //
 // The second eval run called a symbol-first reverse index "the most-wanted
 // structural change": *where does `setInterval` live?* cost three file reads,
@@ -10,86 +11,15 @@ import { NOT_STATED, apiLevelLabel, cell } from "./shared.js";
 // where a thing sits rather than by what it is called. An agent reading someone
 // else's code arrives with a bare name and nothing else.
 //
-// Three kinds of name answer to that question and only one of them was
-// indexed anywhere:
-//
-//   symbols    `setInterval` -> `@zos/global.setInterval`
-//   members    `getCurrent` -> 12 different sensors, and they are 12 different
-//              methods returning 12 different shapes, so the owner is the
-//              answer rather than a detail
-//   enum       `CENTER_H` -> `@zos/ui.align` and `hmUI.align`, one per runtime
-//
-// Bare value domains are left out on purpose. `retCode` runs 0..10 and the
-// weather `index` 0..28; nobody looks up "where does `4` live", and including
-// them put `0` in the index with eleven owners.
+// The index itself is built in `src/index/names.ts`, which knows nothing about
+// Markdown. This file is one of its two consumers and owns only the rendering.
 
 export const LOOKUP_FILE = "lookup.md";
 
-/**
- * A name worth looking up: an identifier, not a number or a sentence.
- *
- * Dots and hyphens are allowed because three real symbols carry them —
- * `localStorage-instance` from a page filename, and `console.log`, which the
- * Side Service page titles that way because that is how it is written. A
- * dotted name is also indexed under its last segment, so looking up `log`
- * finds it; that is the whole point of a reverse index.
- */
-const LOOKUP_NAME_RE = /^[A-Za-z_$][A-Za-z0-9_$.-]*$/;
-
-type Kind = "symbol" | "member" | "enum value";
-
-interface Entry {
-  kind: Kind;
-  /** The record that owns it, for the link and the compatibility columns. */
-  owner: SymbolRecord;
-  /** How the name is reached — `align.CENTER_H`, `.getCurrent()`. */
-  written: string;
-}
-
-function collect(modules: ModuleFile[]): Map<string, Entry[]> {
-  const index = new Map<string, Entry[]>();
-  const add = (name: string, entry: Entry) => {
-    if (!LOOKUP_NAME_RE.test(name)) return;
-    index.set(name, [...(index.get(name) ?? []), entry]);
-
-    const last = name.slice(name.lastIndexOf(".") + 1);
-    if (last !== name && LOOKUP_NAME_RE.test(last)) {
-      index.set(last, [...(index.get(last) ?? []), entry]);
-    }
-  };
-
-  for (const module of modules) {
-    for (const record of module.symbols) {
-      add(record.symbol, { kind: "symbol", owner: record, written: record.id });
-
-      for (const member of record.members ?? []) {
-        add(member.name, { kind: "member", owner: record, written: `${record.id}.${member.name}()` });
-      }
-
-      const enums = [
-        ...(record.enums ?? []).map((spec) => ({ spec, on: record.symbol })),
-        ...(record.members ?? []).flatMap((member) =>
-          (member.enums ?? []).map((spec) => ({ spec, on: `${record.symbol}.${member.name}` })),
-        ),
-      ];
-
-      for (const { spec, on } of enums) {
-        for (const value of spec.members) {
-          add(value.value, {
-            kind: "enum value",
-            owner: record,
-            // Qualified enums are written through their own name; a bare set is
-            // a domain of the symbol, so the symbol is how you get to it.
-            written: spec.qualified
-              ? `${spec.name}.${value.value}`
-              : `${module.module}.${on} -> ${spec.name}`,
-          });
-        }
-      }
-    }
-  }
-
-  return index;
+/** `property` does not take an `s`, and the kinds are English rather than code. */
+function plural(kind: NameKind, n: number): string {
+  if (n === 1) return kind;
+  return kind === "property" ? "properties" : `${kind}s`;
 }
 
 function anchorFor(record: SymbolRecord): string {
@@ -98,10 +28,10 @@ function anchorFor(record: SymbolRecord): string {
 }
 
 function lookupPage(modules: ModuleFile[]): string {
-  const index = collect(modules);
+  const index = nameIndex(modules);
   const names = [...index.keys()].sort((a, b) => a.localeCompare(b));
   const entries = [...index.values()].flat();
-  const counts = new Map<Kind, number>();
+  const counts = new Map<NameKind, number>();
   for (const entry of entries) counts.set(entry.kind, (counts.get(entry.kind) ?? 0) + 1);
 
   const ambiguous = names.filter((name) => (index.get(name) ?? []).length > 1);
@@ -110,24 +40,28 @@ function lookupPage(modules: ModuleFile[]): string {
   lines.push(
     "Start here when you have a bare name and nothing else: a symbol out of",
     "someone else's code, a method called on a value, a constant passed to a",
-    "function. Every other index in this base is keyed by module, `API_LEVEL` or",
-    "runtime — by where a thing sits rather than by what it is called.",
+    "function, a property set on a widget. Every other index in this base is",
+    "keyed by module, `API_LEVEL` or runtime — by where a thing sits rather than",
+    "by what it is called.",
     "",
     `**${names.length} names**, ${entries.length} entries: ` +
       [...counts]
         .sort(([a], [b]) => a.localeCompare(b))
-        .map(([kind, n]) => `${n} ${kind}${n === 1 ? "" : "s"}`)
+        .map(([kind, n]) => `${n} ${plural(kind, n)}`)
         .join(", ") +
       `. ${ambiguous.length} names have more than one owner.`,
     "",
     "**A name with several owners is not a duplicate.** 12 sensors document a",
     "`getCurrent` and they return 12 different shapes; `CENTER_H` belongs to",
-    "`@zos/ui.align` in a Device App and `hmUI.align` in a watchface. Read the",
-    "row whose runtime matches what you are building.",
+    "`@zos/ui.align` in a Device App and `hmUI.align` in a watchface; `align_h`",
+    "is a property of five widgets across two runtimes. Read the row whose",
+    "runtime matches what you are building.",
     "",
     "Bare numeric domains are excluded — `retCode` 0..10, the weather `index`",
     "0..28. Those are values, not names, and indexing them put `0` here with",
-    "eleven owners. Look those up on the owning symbol's page instead.",
+    "eleven owners. Look those up on the owning symbol's page instead. A widely",
+    "shared property is not that: `x` has 52 owners and the breadth is the",
+    "answer, since it is a position prop on every widget.",
     "",
   );
 
@@ -139,7 +73,7 @@ function lookupPage(modules: ModuleFile[]): string {
       const { owner } = entry;
       const runtimes = owner.runtimes.length > 0 ? owner.runtimes.join(", ") : NOT_STATED;
       lines.push(
-        `| \`${name}\` | ${entry.kind} | \`${cell(entry.written)}\` | ${cell(runtimes)} | ` +
+        `| \`${name}\` | ${entry.kind} | \`${cell(writtenAs(entry))}\` | ${cell(runtimes)} | ` +
           `${apiLevelLabel(owner.minApiLevel)} | [${moduleSlug(owner.module)}](${anchorFor(owner)}) |`,
       );
     }
@@ -174,5 +108,5 @@ export function lookupMarkdown(modules: ModuleFile[]): string {
 
 /** How many distinct names the index holds, for the run summary. */
 export function lookupNameCount(modules: ModuleFile[]): number {
-  return collect(modules).size;
+  return nameIndex(modules).size;
 }

@@ -1,0 +1,71 @@
+{
+  "configVersion": "v2",
+  "app": {
+    "appId": 1000234,
+    "appName": "HeartSync",
+    "appType": "app",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "icon": "icon.png",
+    "vender": "HeartSync",
+    "description": "Reads your heart rate and syncs it to a URL you configure."
+  },
+  "permissions": [
+    "data:user.hd.heart_rate",
+    "data:os.device.info"
+  ],
+  "runtime": {
+    "apiVersion": {
+      "compatible": "2.1.0",
+      "target": "4.2.0",
+      "minVersion": "2.1.0"
+    }
+  },
+  "targets": {
+    "bip6": {
+      "module": {
+        "page": {
+          "pages": ["page/index"]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        { "name": "bip6", "deviceSource": 9765120 },
+        { "name": "bip6", "deviceSource": 9765121 },
+        { "name": "bip6", "deviceSource": 10158337 }
+      ],
+      "designWidth": 390
+    },
+    "bip5": {
+      "module": {
+        "page": {
+          "pages": ["page/index"]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        { "name": "bip5", "deviceSource": 8454400 },
+        { "name": "bip5", "deviceSource": 8454401 }
+      ],
+      "designWidth": 320
+    }
+  },
+  "i18n": {
+    "en-US": {
+      "appName": "HeartSync"
+    }
+  },
+  "defaultLanguage": "en-US"
+}

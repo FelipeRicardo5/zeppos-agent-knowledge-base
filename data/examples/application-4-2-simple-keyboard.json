@@ -72,7 +72,22 @@
       "targets.*.platforms",
       "targets.*.platforms.dw",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "4.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "4.2"
+      ],
+      "runtime.apiVersion.target": [
+        "4.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/index",
+        "data-widget/index.page"
+      ]
+    }
   },
   "files": [
     {
@@ -359,22 +374,19 @@
           "line": 362,
           "code": "widgets.Button({\n  text: \"Go to Settings\",\n  normal_color: 0x383838,\n  press_color: 0x383838,\n  click_func() {\n    keyboard_gotoSettings();\n  },\n  layout: {\n    ...default_layout,\n    width: unit.f(),\n    height: px(88),\n    font_size: px(36),"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "cancel",
+      "method": "clearInput",
       "snippets": [
         {
           "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
-          "line": 209,
-          "code": "this.cancel();"
-        },
-        {
-          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
-          "line": 258,
-          "code": "cancel() {\n  keyboard.sendFnKey(keyboard.CANCEL);\n},"
+          "line": 267,
+          "code": "keyboard.clearInput();"
         }
-      ]
+      ],
+      "resolved": false
     },
     {
       "method": "createWidget",
@@ -384,7 +396,41 @@
           "line": 161,
           "code": "const ele = parent.createWidget(id, widget_props);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "Fill_rect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 377,
+          "code": "widgets.Fill_rect({\n  layout: {\n    ...default_layout,\n    width: unit.f(),\n    height: px(100),\n  },\n})"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getContentRect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.layout.js",
+          "line": 14,
+          "code": "const { h } = keyboard.getContentRect();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTextContext",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 206,
+          "code": "if (keyboard.getTextContext()) {\n  this.enter();\n} else {\n  this.cancel();\n}"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getType",
@@ -394,22 +440,101 @@
           "line": 211,
           "code": "if (ele.getType() === idOfWidget.VIRTUAL_CONTAINER) {\n  const children = ele.layoutChildren;\n  deleteWidget(ele);\n  children.forEach((item) => {\n    removeElement(item);\n  });\n} else {\n  deleteWidget(ele);\n}"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "keyboard",
+      "method": "gotoSettings",
       "snippets": [
         {
           "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
-          "line": 460,
-          "code": "this.keyboard(() => {\n  this.onResume();\n});"
-        },
+          "line": 43,
+          "code": "return keyboard.gotoSettings();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "Img",
+      "snippets": [
         {
           "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
-          "line": 538,
-          "code": "this.keyboard();"
+          "line": 325,
+          "code": "widgets.Img({\n  src: \"image/keyboard_setting.png\",\n  auto_scale: true,\n  layout: {\n    ...default_layout,\n    top: unit.z(),\n    left: unit.z(),\n    width: unit.f(),\n    height: unit.f(),\n    tags: unit.il(),\n  },\n}),"
         }
-      ]
+      ],
+      "resolved": false
+    },
+    {
+      "method": "inputBuffer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 279,
+          "code": "keyboard.inputBuffer(this.state.inputBuffer, 0x757575, 0x757575);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "inputText",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 275,
+          "code": "keyboard.inputText(text);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "isArray",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 190,
+          "code": "if (Array.isArray(opts)) {\n  child_id = opts[0];\n  child_widget_props = opts[1];\n} else if (protoOf(opts) === widget_opts_proto) {\n  child_id = opts.id;\n  child_widget_props = opts.props;\n} else {\n  throw new Error(`error: create child widget opts is error`);\n}"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "isEnabled",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 29,
+          "code": "return keyboard.isEnabled();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "isSelected",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 36,
+          "code": "return keyboard.isSelected();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "sendFnKey",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 247,
+          "code": "keyboard.sendFnKey(keyboard.SELECT);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js",
+          "line": 251,
+          "code": "keyboard.sendFnKey(keyboard.SWITCH);"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setAlpha",
@@ -419,7 +544,8 @@
           "line": 171,
           "code": "btn.setAlpha(0);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "Text",
@@ -434,7 +560,24 @@
           "line": 337,
           "code": "widgets.Text({\n  ...default_text_style,\n  text: appName,\n  align_h: align.LEFT,\n  layout: {\n    ...default_layout,\n    left: px(20),\n    width: unit.wrap_content(),\n    max_width: px(200),\n    height: px(70),\n    font_size: px(27),\n    line_clamp: 2,"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "Virtual_container",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 290,
+          "code": "widgets.Virtual_container(\n  {\n    ref: vc,\n    layout: {\n      ...default_layout,\n      left: unit.z(),\n      top: unit.z(),\n      width: unit.w1(),\n      height: unit.h1(),\n      display: unit.fx(),\n      flex_flow: unit.col(),\n      row_gap: px(25),"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/simple-keyboard/page/index.js",
+          "line": 317,
+          "code": "widgets.Virtual_container(\n  {\n    layout: {\n      ...default_layout,\n      width: px(336),\n      height: px(126),\n    },\n  },\n  widgets.Img({\n    src: \"image/keyboard_setting.png\",\n    auto_scale: true,\n    layout: {"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [
@@ -467,5 +610,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.2/simple-keyboard",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

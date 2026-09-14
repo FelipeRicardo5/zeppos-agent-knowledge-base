@@ -66,7 +66,27 @@
       "targets.*.platforms",
       "targets.*.platforms.dw",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "3.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "3.0"
+      ],
+      "runtime.apiVersion.target": [
+        "3.0"
+      ],
+      "targets.*.module.app-side.path": [
+        "app-side/index"
+      ],
+      "targets.*.module.page.pages": [
+        "page/home/index.page"
+      ],
+      "targets.*.module.setting.path": [
+        "setting/index"
+      ]
+    }
   },
   "files": [
     {
@@ -427,7 +447,8 @@
           "line": 40,
           "code": "this.state.addButton = hmUI.createWidget(hmUI.widget.BUTTON, {\n  ...ADD_BUTTON,\n  click_func: () => {\n    this.addRandomTodoItem()\n  }\n})"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "getItem",
@@ -442,22 +463,56 @@
           "line": 8,
           "code": "? JSON.parse(settingsLib.getItem('todoList'))"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "setItem",
+      "method": "getLogger",
       "snippets": [
         {
-          "file": "zeppos-samples/application/3.0/todo-list/app-side/index.js",
-          "line": 23,
-          "code": "settingsLib.setItem('todoList', JSON.stringify(newTodoList))"
+          "file": "zeppos-samples/application/3.0/todo-list/app.js",
+          "line": 4,
+          "code": "const logger = Logger.getLogger('todo-list-app')"
         },
         {
-          "file": "zeppos-samples/application/3.0/todo-list/app-side/index.js",
-          "line": 32,
-          "code": "settingsLib.setItem('todoList', JSON.stringify(newTodoList))"
+          "file": "zeppos-samples/application/3.0/todo-list/page/home/index.page.js",
+          "line": 16,
+          "code": "const logger = Logger.getLogger('todo-list-page')"
         }
-      ]
+      ],
+      "resolved": false
+    },
+    {
+      "method": "readFile",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/todo-list/utils/fs.js",
+          "line": 10,
+          "code": "const resData = readFile({\n  path: TODO_FILE_NAME,\n  options: {\n    encoding: 'utf8'\n  }\n})"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/todo-list/utils/fs.js",
+          "line": 25,
+          "code": "params = [...readFile(), ...data]"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "request",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/todo-list/page/home/index.page.js",
+          "line": 59,
+          "code": "this.request({\n  method: 'GET_TODO_LIST'\n})"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/todo-list/page/home/index.page.js",
+          "line": 71,
+          "code": "this.request({\n  method: 'ADD'\n})"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -472,7 +527,8 @@
           "line": 117,
           "code": "this.state.refreshText && this.state.refreshText.setProperty(hmUI.prop.VISIBLE, false)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "showToast",
@@ -487,7 +543,8 @@
           "line": 82,
           "code": "hmUI.showToast({\n  text: getText('addFailure')\n})"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -512,5 +569,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/todo-list",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

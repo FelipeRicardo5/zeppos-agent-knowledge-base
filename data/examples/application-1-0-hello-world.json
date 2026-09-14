@@ -80,7 +80,23 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.target": [
+        "1.0.1"
+      ],
+      "targets.*.module.page.pages": [
+        "page/gtr3-pro/home/index.page",
+        "page/gtr3/home/index.page",
+        "page/gts3/home/index.page"
+      ]
+    }
   },
   "files": [
     {
@@ -140,7 +156,8 @@
           "line": 7,
           "code": "hmUI.createWidget(hmUI.widget.TEXT, {\n  ...TEXT_STYLE,\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "getDeviceInfo",
@@ -155,7 +172,24 @@
           "line": 4,
           "code": "hmSetting.getDeviceInfo();"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/hello-world/page/gtr3/home/index.page.js",
+          "line": 3,
+          "code": "const logger = DeviceRuntimeCore.HmLogger.getLogger(\"helloworld\");"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/hello-world/page/gtr3-pro/home/index.page.js",
+          "line": 3,
+          "code": "const logger = DeviceRuntimeCore.HmLogger.getLogger(\"helloworld\");"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [],
@@ -165,5 +199,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/1.0/hello-world",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

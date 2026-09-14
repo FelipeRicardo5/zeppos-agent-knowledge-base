@@ -125,6 +125,18 @@ imgBg = ui.createWidget(ui.widget.IMG, {
 ```
 — `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 103
 
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = log.getLogger('app')
+```
+— `zeppos-samples/watchface/3.0/timer/app.js`, line 3
+
+```js
+const logger = log.getLogger('timer-page')
+```
+— `zeppos-samples/watchface/3.0/timer/watchface/round/index.js`, line 5
+
 ### `.setProperty()` — `hmUI.setProperty`
 
 ```js

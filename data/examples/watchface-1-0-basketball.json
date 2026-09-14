@@ -66,7 +66,21 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.target": [
+        "1.0.0"
+      ],
+      "targets.*.module.watchface.path": [
+        "watchface/gtr-3/index"
+      ]
+    }
   },
   "files": [
     {
@@ -119,6 +133,22 @@
   "globalCalls": [],
   "memberCalls": [
     {
+      "method": "clearImmediate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js",
+          "line": 25,
+          "code": "globalNS.clearImmediate = function clearImmediate(timerRef) {\n  timerRef && timer.stopTimer(timerRef)\n}"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/basketball/shared/setTimeout.js",
+          "line": 34,
+          "code": "globalNS.clearImmediate(timer1)"
+        }
+      ],
+      "resolved": false
+    },
+    {
       "method": "clearTimeout",
       "snippets": [
         {
@@ -131,7 +161,8 @@
           "line": 16,
           "code": "globalNS.clearTimeout(timer1)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createTimer",
@@ -146,7 +177,8 @@
           "line": 30,
           "code": "const timer1 = timer.createTimer(\n  1,\n  Number.MAX_SAFE_INTEGER,\n  function () {\n    globalNS.clearImmediate(timer1)\n    func && func()\n  },\n  {},\n)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -161,7 +193,24 @@
           "line": 63,
           "code": "let animA = hmUI.createWidget(hmUI.widget.IMG_ANIM, {\n  x: px(0),\n  y: px(0),\n  anim_path: img('bg'),\n  anim_prefix: 'a',\n  anim_ext: 'png',\n  anim_fps: 25,\n  anim_size: 23,\n  repeat_count: 1,\n  anim_repeat: false,\n  anim_status: hmUI.anim_status.START,\n  display_on_restart: false,"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/basketball/app.js",
+          "line": 3,
+          "code": "const logger = Logger.getLogger('basketball-app')"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/basketball/watchface/round/index.js",
+          "line": 12,
+          "code": "const logger = Logger.getLogger('basketball-page')"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -176,7 +225,8 @@
           "line": 37,
           "code": "animCreate.setProperty(hmUI.prop.VISIBLE, false)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stopTimer",
@@ -191,7 +241,8 @@
           "line": 26,
           "code": "timerRef && timer.stopTimer(timerRef)"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [],
@@ -201,5 +252,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/watchface/1.0/basketball",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

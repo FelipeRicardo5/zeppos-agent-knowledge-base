@@ -117,6 +117,101 @@ receiver's type is **not** resolved, so treat the match as a hint rather than
 a fact. Where several candidates survive the row says **ambiguous** and names
 them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
+### `._eachEntry()` *(no record in this KB)*
+
+```js
+this._eachEntry(input[i], i)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 514
+
+```js
+Enumerator.prototype._eachEntry = function _eachEntry(entry, i) {
+  var c = this._instanceConstructor
+  var resolve$$1 = c.resolve
+
+  if (resolve$$1 === resolve$1) {
+    var _then = void 0
+    var error = void 0
+    var didError = false
+    try {
+      _then = entry.then
+    } catch (e) {
+      didError = true
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 518
+
+### `._enumerate()` *(no record in this KB)*
+
+```js
+this._enumerate(input)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 502
+
+```js
+Enumerator.prototype._enumerate = function _enumerate(input) {
+  for (var i = 0; this._state === PENDING && i < input.length; i++) {
+    this._eachEntry(input[i], i)
+  }
+}
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 512
+
+### `._onerror()` *(no record in this KB)*
+
+```js
+promise._onerror(promise._result)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 347
+
+### `._setScheduler()` *(no record in this KB)*
+
+```js
+Promise._setScheduler(function (flush) {
+  flush && flush()
+})
+```
+— `zeppos-samples/application/2.0/todo-list/shared/device-polyfill.js`, line 4
+
+### `._settledAt()` *(no record in this KB)*
+
+```js
+this._settledAt(entry._state, i, entry._result)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 534
+
+```js
+Enumerator.prototype._settledAt = function _settledAt(state, i, value) {
+  var promise = this.promise
+
+  if (promise._state === PENDING) {
+    this._remaining--
+
+    if (state === REJECTED) {
+      reject(promise, value)
+    } else {
+      this._result[i] = value
+    }
+  }
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 559
+
+### `._willSettleAt()` *(no record in this KB)*
+
+```js
+this._willSettleAt(promise, i)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 545
+
+```js
+this._willSettleAt(
+  new c(function (resolve$$1) {
+    return resolve$$1(entry)
+  }),
+  i
+)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 547
+
 ### `.addListener()` — **ambiguous**: module `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
@@ -135,19 +230,17 @@ messaging.peerSocket.addListener('message', (message) => {
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 306
 
-### `.clear()` — **ambiguous**: module `settings-storage.clear`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
+### `.copy()` *(no record in this KB)*
 
 ```js
-this.map.clear()
+dataBin.copy(tailBuf, headerSize, offset, offset + tailSize)
 ```
-— `zeppos-samples/application/2.0/todo-list/shared/event.js`, line 29
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 503
 
 ```js
-clear() {
-  this.sessions.clear()
-}
+dataBin.copy(_buf, headerSize, offset, offset + hmDataSize)
 ```
-— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 220
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 525
 
 ### `.createConnect()` — `@zos/ble.createConnect`
 
@@ -169,24 +262,48 @@ this.ble.createConnect((index, data, size) => {
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message.js`, line 287
 
-### `.disConnect()` — `@zos/ble.disConnect`
+### `.createTextNode()` *(no record in this KB)*
 
 ```js
-this.globalData.messageBuilder && this.globalData.messageBuilder.disConnect()
+var node = document.createTextNode('')
 ```
-— `zeppos-samples/application/2.0/todo-list/app.js`, line 23
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 100
+
+### `.delete()` *(no record in this KB)*
 
 ```js
-disConnect(cb) {
-  logger.debug('app ble disconnect')
-  this.sendClose()
-  this.off('message')
-  this.ble && this.ble.disConnect()
-
-  cb && cb(this)
-}
+this.map.delete(type)
 ```
-— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 291
+— `zeppos-samples/application/2.0/todo-list/shared/event.js`, line 26
+
+```js
+this.sessions.delete(this.key(session))
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 199
+
+### `.errorIfBleDisconnect()` *(no record in this KB)*
+
+```js
+this.errorIfBleDisconnect()
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 497
+
+```js
+errorIfBleDisconnect() {}
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 895
+
+### `.get()` *(no record in this KB)*
+
+```js
+this.map.get(type).push(cb)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/event.js`, line 8
+
+```js
+const cbs = this.map.get(type)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/event.js`, line 17
 
 ### `.getItem()` — **ambiguous**: module `settings-storage.getItem`; called on `@zos/share-storage.LocalStorage` or `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
@@ -200,12 +317,105 @@ return settings.settingsStorage.getItem('todoList')
 ```
 — `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 7
 
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger('todo-list-app')
+```
+— `zeppos-samples/application/2.0/todo-list/app.js`, line 7
+
+```js
+const logger = Logger.getLogger('todo-list-page')
+```
+— `zeppos-samples/application/2.0/todo-list/page/home/index.page.js`, line 9
+
+### `.isBuffer()` *(no record in this KB)*
+
+```js
+if (Buffer.isBuffer(data)) {
+  this.sendBuf({
+    requestId,
+    buf: data,
+    type: MessagePayloadType.Request,
+    contentType: MessagePayloadDataTypeOp.BIN,
+    dataType: getDataType(opts.dataType)
+  })
+} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
+  this.sendBuf({
+    requestId,
+    buf: Buffer.from(data),
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 991
+
+```js
+if (Buffer.isBuffer(data)) {
+  this.sendBuf({
+    requestId,
+    buf: data,
+    type: MessagePayloadType.Request,
+    contentType: MessagePayloadDataTypeOp.BIN,
+    dataType: getDataType(opts.dataType)
+  })
+} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
+  this.sendBuf({
+    requestId,
+    buf: Buffer.from(data),
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 1093
+
+### `.isView()` *(no record in this KB)*
+
+```js
+} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 999
+
+```js
+} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 1101
+
+### `.nextTick()` *(no record in this KB)*
+
+```js
+return process.nextTick(flush)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 82
+
+### `.observe()` *(no record in this KB)*
+
+```js
+observer.observe(node, { characterData: true })
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 101
+
 ### `.open()` *(no record in this KB)*
 
 ```js
 xhr.open('GET', url);
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 842
+
+### `.polyfill()` *(no record in this KB)*
+
+```js
+ES6Promise.polyfill()
+```
+— `zeppos-samples/application/2.0/todo-list/shared/device-polyfill.js`, line 2
+
+### `.postMessage()` *(no record in this KB)*
+
+```js
+return channel.port2.postMessage(0)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 113
+
+### `.require()` *(no record in this KB)*
+
+```js
+var vertx = Function('return this')().require('vertx')
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 143
 
 ### `.send()` — **ambiguous**: module `@zos/ble.send` or `messaging.send`
 
@@ -219,6 +429,81 @@ const result = this.ble.send(buf.buffer, buf.byteLength)
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 449
 
+### `.sendDataWithSession()` *(no record in this KB)*
+
+```js
+this.sendDataWithSession(
+  {
+    traceId,
+    spanId: spanId,
+    seqId: genSeqId(),
+    payload: tailBuf,
+    type,
+    opCode: MessagePayloadOpCode.Finished,
+    totalLength: userDataLength,
+    contentType,
+    dataType
+  },
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 505
+
+```js
+this.sendDataWithSession(
+  {
+    traceId,
+    spanId: spanId,
+    seqId: genSeqId(),
+    payload: _buf,
+    type,
+    opCode: MessagePayloadOpCode.Continued,
+    totalLength: userDataLength,
+    contentType,
+    dataType
+  },
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 528
+
+### `.sendHmProtocol()` *(no record in this KB)*
+
+```js
+sendHmProtocol(
+  { requestId, dataBin, type, contentType, dataType },
+  { messageType = MessageType.Data } = {}
+) {
+  const headerSize = 0
+  const hmDataSize = HM_MESSAGE_PROTO_PAYLOAD
+  const userDataLength = dataBin.byteLength
+
+  let offset = 0
+  const _buf = Buffer.alloc(hmDataSize)
+  const traceId = requestId ? requestId : genTraceId()
+  const spanId = genSpanId()
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 476
+
+```js
+this.sendHmProtocol({
+  requestId: traceId,
+  dataBin: packageBin,
+  type,
+  contentType,
+  dataType
+})
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 609
+
+### `.sendMsg()` *(no record in this KB)*
+
+```js
+this.sendMsg(shake)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 367
+
+```js
+this.sendMsg(close)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 388
+
 ### `.set()` — `@zos/alarm.set`
 
 ```js
@@ -231,18 +516,6 @@ this.sessions.set(this.key(newSession), newSession)
 ```
 — `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 193
 
-### `.setItem()` — **ambiguous**: module `settings-storage.setItem`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
-
-```js
-settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
-```
-— `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 26
-
-```js
-settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
-```
-— `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 35
-
 ### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
@@ -254,6 +527,13 @@ this.state.refreshText && this.state.refreshText.setProperty(prop.VISIBLE, false
 this.state.tipText && this.state.tipText.setProperty(prop.VISIBLE, isTip)
 ```
 — `zeppos-samples/application/2.0/todo-list/page/home/index.page.js`, line 104
+
+### `.setRequestHeader()` *(no record in this KB)*
+
+```js
+xhr.setRequestHeader('Accept', 'application/json');
+```
+— `zeppos-samples/application/2.0/todo-list/shared/es6-promise.js`, line 845
 
 ## Global calls in the phone runtimes
 

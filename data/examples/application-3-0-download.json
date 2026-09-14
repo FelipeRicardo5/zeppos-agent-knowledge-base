@@ -60,7 +60,24 @@
       "targets.*.platforms",
       "targets.*.platforms.dw",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "3.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "3.0"
+      ],
+      "runtime.apiVersion.target": [
+        "3.0"
+      ],
+      "targets.*.module.app-side.path": [
+        "app-side/index"
+      ],
+      "targets.*.module.page.pages": [
+        "page/index"
+      ]
+    }
   },
   "files": [
     {
@@ -286,21 +303,6 @@
   ],
   "memberCalls": [
     {
-      "method": "convert",
-      "snippets": [
-        {
-          "file": "zeppos-samples/application/3.0/download/app-side/image-convert-module.js",
-          "line": 9,
-          "code": "async convert(filePath) {\n  const result = await convertLib.convert({\n    filePath: filePath,\n    targetFilePath: filePath,\n  });\n\n  logger.log(\"ConvertImage result=>%j\", result);\n  return result;\n},"
-        },
-        {
-          "file": "zeppos-samples/application/3.0/download/app-side/image-convert-module.js",
-          "line": 10,
-          "code": "const result = await convertLib.convert({\n  filePath: filePath,\n  targetFilePath: filePath,\n});"
-        }
-      ]
-    },
-    {
       "method": "createWidget",
       "snippets": [
         {
@@ -313,17 +315,19 @@
           "line": 11,
           "code": "const btn = parent.createWidget(hmUI.widget.BUTTON, {\n  ...style,\n  click_down: () => {\n    mask.setProperty(hmUI.prop.VISIBLE, true);\n  },\n  click_func: () => {\n    mask.setProperty(hmUI.prop.VISIBLE, false);\n    clickCb && typeof clickCb === \"function\" && clickCb();\n  },\n  click_up: () => {\n    mask.setProperty(hmUI.prop.VISIBLE, false);\n  },"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "downloadFile",
+      "method": "download",
       "snippets": [
         {
-          "file": "zeppos-samples/application/3.0/download/app-side/index.js",
-          "line": 34,
-          "code": "this.downloadFile(encodeURI(coverUrl));"
+          "file": "zeppos-samples/application/3.0/download/app-side/file-download-module.js",
+          "line": 13,
+          "code": "const task = this.download(url, {\n  headers: {},\n  timeout: 60000,\n  filePath: `${fileNameStamp()}.png`,\n});"
         }
-      ]
+      ],
+      "resolved": false
     },
     {
       "method": "fetch",
@@ -333,7 +337,78 @@
           "line": 8,
           "code": "const result = await this.fetch({\n  method: \"get\",\n  url: \"http://yijuzhan.com/api/word.php\",\n}).catch((e) => {\n  console.log(\"fetch=>\", e);\n});"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/fetch-module.js",
+          "line": 1,
+          "code": "const logger = Logger.getLogger(\"message-fetch\");"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/file-download-module.js",
+          "line": 1,
+          "code": "const logger = Logger.getLogger(\"network-download\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTime",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/file-download-module.js",
+          "line": 5,
+          "code": "return d.getTime();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "on",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/file-transfer-module.js",
+          "line": 10,
+          "code": "task.on(\"progress\", (e) => {\n  logger.log(\"task progress\", e);\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/file-transfer-module.js",
+          "line": 14,
+          "code": "task.on(\"change\", (e) => {\n  logger.log(\"task change\", e);\n});"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "request",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/page/index.js",
+          "line": 73,
+          "code": "this.request({\n  method: \"img.cover\",\n  params: \"\",\n})"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/download/page/index.js",
+          "line": 99,
+          "code": "this.request({\n  method: \"img.trans\",\n  params: {\n    filePath: this.state.filePath,\n  },\n})"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "sendFile",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/download/app-side/file-transfer-module.js",
+          "line": 8,
+          "code": "const task = this.sendFile(url, opt);"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setAlpha",
@@ -343,7 +418,8 @@
           "line": 10,
           "code": "mask.setAlpha(0x96);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "setProperty",
@@ -358,7 +434,8 @@
           "line": 14,
           "code": "mask.setProperty(hmUI.prop.VISIBLE, true);"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -379,5 +456,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/download",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

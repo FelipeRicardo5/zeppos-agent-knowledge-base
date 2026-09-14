@@ -154,7 +154,27 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "2.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "2.0.0"
+      ],
+      "runtime.apiVersion.target": [
+        "2.0"
+      ],
+      "targets.*.module.app-side.path": [
+        "app-side/index"
+      ],
+      "targets.*.module.page.pages": [
+        "page/index"
+      ],
+      "targets.*.module.setting.path": [
+        "setting/index"
+      ]
+    }
   },
   "files": [
     {
@@ -430,7 +450,19 @@
           "line": 30,
           "code": "settings.settingsStorage.addListener(\n  \"change\",\n  async ({ key, newValue, oldValue }) => {\n    if (key === \"REQUEST_ACTION\") {\n      this.call({ type: \"SETTINGS_APP_REQUEST_DATA\" });\n    } else if (key === \"POST_ACTION\") {\n      this.postData();\n    }\n  }\n);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 52,
+          "code": "const info = this.state.sleepInstance.getInfo();"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getItem",
@@ -445,7 +477,46 @@
           "line": 70,
           "code": "const sleepData = JSON.parse(props.settingsStorage.getItem(\"sleepData\"));"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app.js",
+          "line": 7,
+          "code": "const logger = Logger.getLogger(\"post-health-data\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTime",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 64,
+          "code": "utc: this.state.timeInstance.getTime(),"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "request",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 107,
+          "code": "this.request({\n  type: \"UPLOAD\",\n  params: {\n    ...this.state.sleepData,\n  },\n}).then((data) => {\n  const { message } = data;\n\n  showToast({ content: `UPLOAD ${message}` });\n});"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 124,
+          "code": "this.request({\n  type: \"UPLOAD_DATA_SIDE_SERVICE\",\n  params: {\n    ...this.state.sleepData,\n  },\n}).then((data) => {\n  const { message } = data;\n\n  showToast({ content: `UPLOAD_DATA_SIDE_SERVICE ${message}` });\n});"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setItem",
@@ -460,7 +531,8 @@
           "line": 21,
           "code": "settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "setProperty",
@@ -470,7 +542,24 @@
           "line": 84,
           "code": "this.state.textWidget.setProperty(prop.TEXT, text);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "use",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 4,
+          "code": "BaseSideService.use(messagingPlugin);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app.js",
+          "line": 5,
+          "code": "BaseApp.use(appPlugin);"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [
@@ -499,5 +588,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/post-health-data/MiniProgram",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

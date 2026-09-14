@@ -305,6 +305,16 @@ this.state.titleWidget.addEventListener(event.CLICK_DOWN, () => {
 ```
 — `zeppos-samples/application/2.0/showcase/page/interaction/show_toast.js`, line 10
 
+### `.addLine()` *(no record in this KB)*
+
+```js
+polyline.addLine({
+  data: lineDataList,
+  count: lineDataList.length
+})
+```
+— `zeppos-samples/application/2.0/showcase/page/ui/widget/polyline.js`, line 27
+
 ### `.clear()` — **ambiguous**: called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
 
 ```js
@@ -316,6 +326,13 @@ polyline.clear()
 polyline.clear()
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/polyline.js`, line 33
+
+### `.click_func()` *(no record in this KB)*
+
+```js
+this.click_func(i, index);
+```
+— `zeppos-samples/application/2.0/showcase/utils/UI/ButtonList.js`, line 42
 
 ### `.createWidget()` — `@zos/ui.createWidget`
 
@@ -345,6 +362,65 @@ const button1 = checkbox_group.createWidget(widget.STATE_BUTTON, {
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/checkbox_group.js`, line 23
 
+### `.getCurrent()` — **ambiguous**: called on `@zos/sensor.Accelerometer` or `@zos/sensor.Battery` or `@zos/sensor.BloodOxygen` or `@zos/sensor.BodyTemperature` or `@zos/sensor.Calorie` or `@zos/sensor.Distance` or `@zos/sensor.FatBurning` or `@zos/sensor.Gyroscope` or `@zos/sensor.HeartRate` or `@zos/sensor.Stand` or `@zos/sensor.Step` or `@zos/sensor.Stress`
+
+```js
+const currentObj = bloodOxygen.getCurrent();
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js`, line 14
+
+```js
+text: `EVENT-CHANGE:${bloodOxygen.getCurrent().value}`,
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js`, line 22
+
+### `.getInfo()` — **ambiguous**: called on `@zos/sensor.Sleep` or `@zos/sensor.WorldClock`
+
+```js
+const { score, deepTime, startTime, endTime, totalTime } = sleep.getInfo();
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/sleep.js`, line 12
+
+### `.getLast()` — `@zos/sensor.HeartRate`
+
+```js
+text: `CURRENT: ${heartRate.getCurrent()}; LAST: ${heartRate.getLast()}`,
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js`, line 24
+
+```js
+text: `CURRENT: ${heartRate.getCurrent()}; LAST: ${heartRate.getLast()}`,
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js`, line 29
+
+### `.getLastWeek()` — **ambiguous**: called on `@zos/sensor.Pai` or `@zos/sensor.Stress`
+
+```js
+const lastWeekPAIArray = pai.getLastWeek();
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/pai.js`, line 23
+
+### `.getLatitude()` — `@zos/sensor.Geolocation`
+
+```js
+console.log('latitude', geolocation.getLatitude());
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js`, line 16
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+export default log.getLogger("Showcase");
+```
+— `zeppos-samples/application/2.0/showcase/utils/log.js`, line 3
+
+### `.getLongitude()` — `@zos/sensor.Geolocation`
+
+```js
+console.log('longitude', geolocation.getLongitude());
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js`, line 17
+
 ### `.getProperty()` — `@zos/ui.getProperty`
 
 ```js
@@ -356,6 +432,94 @@ this.state.logger.log('property', cycle_image_text_list.getProperty(prop.MORE, {
 const isRunning = imgAnimation.getProperty(prop.ANIM_IS_RUNINNG)
 ```
 — `zeppos-samples/application/2.0/showcase/page/ui/widget/img_anim.js`, line 27
+
+### `.getStage()` — `@zos/sensor.Sleep`
+
+```js
+const sleepStageArray = sleep.getStage();
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/sleep.js`, line 30
+
+### `.getStageConstantObj()` — `@zos/sensor.Sleep`
+
+```js
+const stageObj = sleep.getStageConstantObj();
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/sleep.js`, line 24
+
+### `.getStatus()` — **ambiguous**: called on `@zos/media.Player` or `@zos/media.Recorder` or `@zos/sensor.Compass` or `@zos/sensor.Geolocation` or `@zos/sensor.Screen` or `@zos/sensor.Wear` or `@zos/sensor.Workout`
+
+```js
+console.log(geolocation.getStatus())
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js`, line 14
+
+```js
+if (geolocation.getStatus() === "A") {
+  console.log('latitude', geolocation.getLatitude());
+  console.log('longitude', geolocation.getLongitude());
+}
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js`, line 15
+
+### `.getTarget()` — **ambiguous**: called on `@zos/sensor.Calorie` or `@zos/sensor.FatBurning` or `@zos/sensor.Stand` or `@zos/sensor.Step`
+
+```js
+text: `current:${calorie.getCurrent()};target:${calorie.getTarget()}`,
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/calorie.js`, line 15
+
+```js
+text: `current:${fatBurning.getCurrent()};target:${fatBurning.getTarget()}`,
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/fat_burning.js`, line 15
+
+### `.getTime()` — `@zos/sensor.Time`
+
+```js
+utc: time.getTime() + 1000
+```
+— `zeppos-samples/application/2.0/showcase/page/router/set_launch_app_timeout.js`, line 27
+
+### `.getToday()` — **ambiguous**: called on `@zos/sensor.BodyTemperature` or `@zos/sensor.HeartRate` or `@zos/sensor.Pai` or `@zos/sensor.Stress`
+
+```js
+text: `todayPAI:${pai.getToday()}`,
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/pai.js`, line 14
+
+### `.getTotal()` — `@zos/sensor.Pai`
+
+```js
+text: `totalPAI:${pai.getTotal()}`,
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/pai.js`, line 19
+
+### `.onChange()` — **ambiguous**: called on `@zos/sensor.Accelerometer` or `@zos/sensor.Barometer` or `@zos/sensor.Battery` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Calorie` or `@zos/sensor.Compass` or `@zos/sensor.Distance` or `@zos/sensor.FatBurning` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.Screen` or `@zos/sensor.Stand` or `@zos/sensor.Step` or `@zos/sensor.Stress` or `@zos/sensor.Wear`
+
+```js
+click_func: bloodOxygen.onChange(changeCallback),
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js`, line 43
+
+```js
+click_func: calorie.onChange(changeCallback),
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/calorie.js`, line 39
+
+### `.onCurrentChange()` — `@zos/sensor.HeartRate`
+
+```js
+click_func: heartRate.onCurrentChange(currCallback),
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js`, line 74
+
+### `.onLastChange()` — `@zos/sensor.HeartRate`
+
+```js
+click_func: heartRate.onLastChange(lastCallback),
+```
+— `zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js`, line 92
 
 ### `.setProperty()` — `@zos/ui.setProperty`
 
@@ -372,6 +536,25 @@ text.setProperty(prop.MORE, {
 })
 ```
 — `zeppos-samples/application/2.0/showcase/page/interaction/on_key.js`, line 19
+
+### `.setScrollView()` *(no record in this KB)*
+
+```js
+hmUI.setScrollView(true, page_size, page_cnt, vertical)
+```
+— `zeppos-samples/application/2.0/showcase/page/ui/widget/page_indicator.js`, line 6
+
+### `.show()` *(no record in this KB)*
+
+```js
+dialog.show(false)
+```
+— `zeppos-samples/application/2.0/showcase/page/interaction/create_modal.js`, line 19
+
+```js
+dialog.show(true)
+```
+— `zeppos-samples/application/2.0/showcase/page/interaction/create_modal.js`, line 25
 
 ### `.start()` — **ambiguous**: module `@zos/app-service.start`; called on `@zos/crypto.DigestCrypto` or `@zos/media.Player` or `@zos/media.Recorder` or `@zos/sensor.Accelerometer` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Buzzer` or `@zos/sensor.Compass` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.SystemSounds` or `@zos/sensor.Vibrator`
 

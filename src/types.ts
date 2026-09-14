@@ -394,6 +394,16 @@ export interface SymbolUsage {
 export interface MemberCallUsage {
   method: string;
   snippets: CodeSnippet[];
+  /**
+   * Whether a symbol in this base shares the name — set during enrich, absent
+   * in the raw parse.
+   *
+   * A label, never a filter. `false` is the useful value: the sample calls it,
+   * so it exists, and nothing here documents it. Dropping those was how twelve
+   * call sites for `this.request` stayed invisible while an eval run guessed
+   * the shape.
+   */
+  resolved?: boolean;
 }
 
 export interface ExampleFile {
@@ -454,9 +464,22 @@ export interface ExampleManifest {
    * `common`), so that one segment is collapsed to `*` — otherwise every sample
    * would contribute paths nothing else can be compared with.
    *
-   * Paths only; no values. An `appId` belongs to whoever registered it.
+   * Paths only; no values. An `appId` belongs to whoever registered it. The
+   * platform fields whose values *are* worth keeping are in `values`.
    */
   keyPaths: string[];
+  /**
+   * The values at an allowlist of platform key paths, each as a list.
+   *
+   * Excluding values wholesale was right about `app.appId` and wrong about
+   * `runtime.apiVersion`, which names nobody and decides whether an app
+   * installs on its target range. An eval run invented `"4.2.0"` for it while
+   * all 33 samples here write the API_LEVEL itself, `"4.0"`.
+   *
+   * Always a list: `targets.*` collapses several targets onto one path and each
+   * may state its own value. A scalar is a list of one.
+   */
+  values: Record<string, string[]>;
 }
 
 export interface RawExample {

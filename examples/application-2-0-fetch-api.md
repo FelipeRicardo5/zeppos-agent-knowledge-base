@@ -109,6 +109,98 @@ receiver's type is **not** resolved, so treat the match as a hint rather than
 a fact. Where several candidates survive the row says **ambiguous** and names
 them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
+### `._eachEntry()` *(no record in this KB)*
+
+```js
+this._eachEntry(input[i], i);
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 492
+
+```js
+Enumerator.prototype._eachEntry = function _eachEntry(entry, i) {
+  var c = this._instanceConstructor;
+  var resolve$$1 = c.resolve;
+
+
+  if (resolve$$1 === resolve$1) {
+    var _then = void 0;
+    var error = void 0;
+    var didError = false;
+    try {
+      _then = entry.then;
+    } catch (e) {
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 496
+
+### `._enumerate()` *(no record in this KB)*
+
+```js
+this._enumerate(input);
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 480
+
+```js
+Enumerator.prototype._enumerate = function _enumerate(input) {
+  for (var i = 0; this._state === PENDING && i < input.length; i++) {
+    this._eachEntry(input[i], i);
+  }
+};
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 490
+
+### `._onerror()` *(no record in this KB)*
+
+```js
+promise._onerror(promise._result);
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 327
+
+### `._setScheduler()` *(no record in this KB)*
+
+```js
+Promise._setScheduler(function (flush) {
+  flush && flush()
+})
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/device-polyfill.js`, line 4
+
+### `._settledAt()` *(no record in this KB)*
+
+```js
+this._settledAt(entry._state, i, entry._result);
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 513
+
+```js
+Enumerator.prototype._settledAt = function _settledAt(state, i, value) {
+  var promise = this.promise;
+
+
+  if (promise._state === PENDING) {
+    this._remaining--;
+
+    if (state === REJECTED) {
+      reject(promise, value);
+    } else {
+      this._result[i] = value;
+    }
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 535
+
+### `._willSettleAt()` *(no record in this KB)*
+
+```js
+this._willSettleAt(promise, i);
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 524
+
+```js
+this._willSettleAt(new c(function (resolve$$1) {
+  return resolve$$1(entry);
+}), i);
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 526
+
 ### `.addListener()` — **ambiguous**: module `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
@@ -127,19 +219,17 @@ messaging.peerSocket.addListener('message', (message) => {
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message.js`, line 293
 
-### `.clear()` — **ambiguous**: module `settings-storage.clear`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
+### `.copy()` *(no record in this KB)*
 
 ```js
-this.map.clear()
+dataBin.copy(tailBuf, headerSize, offset, offset + tailSize)
 ```
-— `zeppos-samples/application/2.0/fetch-api/shared/event.js`, line 29
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 480
 
 ```js
-clear() {
-  this.sessions.clear()
-}
+dataBin.copy(_buf, headerSize, offset, offset + hmDataSize)
 ```
-— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 202
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 502
 
 ### `.createConnect()` — `@zos/ble.createConnect`
 
@@ -159,24 +249,120 @@ this.ble.createConnect((index, data, size) => {
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message.js`, line 269
 
-### `.disConnect()` — `@zos/ble.disConnect`
+### `.createTextNode()` *(no record in this KB)*
 
 ```js
-this.globalData.messageBuilder.disConnect();
+var node = document.createTextNode('');
 ```
-— `zeppos-samples/application/2.0/fetch-api/app.js`, line 26
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 94
+
+### `.delete()` *(no record in this KB)*
 
 ```js
-disConnect(cb) {
-  logger.debug('app ble disconnect')
-  this.sendClose()
-  this.off('message')
-  this.ble && this.ble.disConnect()
-
-  cb && cb(this)
-}
+this.map.delete(type)
 ```
-— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 272
+— `zeppos-samples/application/2.0/fetch-api/shared/event.js`, line 26
+
+```js
+this.sessions.delete(this.key(session))
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 181
+
+### `.errorIfBleDisconnect()` *(no record in this KB)*
+
+```js
+this.errorIfBleDisconnect()
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 474
+
+```js
+errorIfBleDisconnect() { }
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 856
+
+### `.get()` *(no record in this KB)*
+
+```js
+this.map.get(type).push(cb)
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/event.js`, line 8
+
+```js
+const cbs = this.map.get(type)
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/event.js`, line 17
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("fetch_api");
+```
+— `zeppos-samples/application/2.0/fetch-api/pages/index.js`, line 9
+
+```js
+logger = Logger.getLogger('side-message')
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 8
+
+### `.isBuffer()` *(no record in this KB)*
+
+```js
+if (Buffer.isBuffer(data)) {
+  this.sendBuf({
+    requestId,
+    buf: data,
+    type: MessagePayloadType.Request,
+    contentType: MessagePayloadDataTypeOp.BIN,
+    dataType: getDataType(opts.dataType)
+  })
+} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
+  this.sendBuf({
+    requestId,
+    buf: Buffer.from(data),
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 952
+
+```js
+if (Buffer.isBuffer(data)) {
+  this.sendBuf({
+    requestId,
+    buf: data,
+    type: MessagePayloadType.Request,
+    contentType: MessagePayloadDataTypeOp.BIN,
+    dataType: getDataType(opts.dataType)
+  })
+} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
+  this.sendBuf({
+    requestId,
+    buf: Buffer.from(data),
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 1049
+
+### `.isView()` *(no record in this KB)*
+
+```js
+} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 960
+
+```js
+} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 1057
+
+### `.nextTick()` *(no record in this KB)*
+
+```js
+return process.nextTick(flush);
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 76
+
+### `.observe()` *(no record in this KB)*
+
+```js
+observer.observe(node, { characterData: true });
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 95
 
 ### `.open()` *(no record in this KB)*
 
@@ -184,6 +370,27 @@ disConnect(cb) {
 xhr.open('GET', url);
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 810
+
+### `.polyfill()` *(no record in this KB)*
+
+```js
+ES6Promise.polyfill()
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/device-polyfill.js`, line 2
+
+### `.postMessage()` *(no record in this KB)*
+
+```js
+return channel.port2.postMessage(0);
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 107
+
+### `.require()` *(no record in this KB)*
+
+```js
+var vertx = Function('return this')().require('vertx');
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 137
 
 ### `.send()` — **ambiguous**: module `@zos/ble.send` or `messaging.send`
 
@@ -197,6 +404,18 @@ const result = this.ble.send(buf.buffer, buf.byteLength)
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 429
 
+### `.sendMsg()` *(no record in this KB)*
+
+```js
+this.sendMsg(shake)
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 347
+
+```js
+this.sendMsg(close)
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 368
+
 ### `.set()` — `@zos/alarm.set`
 
 ```js
@@ -208,6 +427,13 @@ this.map.set(type, [cb])
 this.sessions.set(this.key(newSession), newSession)
 ```
 — `zeppos-samples/application/2.0/fetch-api/shared/message-side.js`, line 175
+
+### `.setRequestHeader()` *(no record in this KB)*
+
+```js
+xhr.setRequestHeader('Accept', 'application/json');
+```
+— `zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js`, line 813
 
 ## Global calls in the phone runtimes
 

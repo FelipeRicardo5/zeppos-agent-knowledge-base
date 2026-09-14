@@ -76,7 +76,22 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "2.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "2.0"
+      ],
+      "runtime.apiVersion.target": [
+        "2.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/gts/index",
+        "page/gts/food-list"
+      ]
+    }
   },
   "files": [
     {
@@ -349,7 +364,8 @@
           "line": 89,
           "code": "text.addEventListener(hmUI.event.SELECT, () => {\n  this.state.radioGroup.setProperty(\n    hmUI.prop.CHECKED,\n    this.state.radioButtonsArray[index]\n  );\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -364,7 +380,24 @@
           "line": 60,
           "code": "hmUI.createWidget(hmUI.widget.FILL_RECT, {\n  x: 0,\n  y: 0,\n  w: DEVICE_WIDTH,\n  h: px(\n    FOOD_LIST_Y +\n      (FOOD_CALORIES.length + 1) *\n        (FOOD_LIST_ITEM_HEIGHT + FOOD_LIST_ITEM_MARGIN)\n  ),\n});"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getCurrent",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 60,
+          "code": "const calories = new Calorie().getCurrent(); // Math.floor(Math.random() * 1000)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/page/gts/index.js",
+          "line": 68,
+          "code": "let calories = new Calorie().getCurrent(); // Math.floor(Math.random() * 1000)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getItem",
@@ -374,7 +407,24 @@
           "line": 12,
           "code": "const { foodType = 'chocolate' } = localStorage.getItem('calorie', {})"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/calories/app-widget/index.js",
+          "line": 6,
+          "code": "const logger = Logger.getLogger(\"calories\");"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/calories/app.js",
+          "line": 4,
+          "code": "const logger = Logger.getLogger('calories-app')"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setItem",
@@ -384,7 +434,8 @@
           "line": 32,
           "code": "localStorage.setItem(\"calorie\", {\n  foodType: globalData.foodType\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "setProperty",
@@ -399,7 +450,8 @@
           "line": 97,
           "code": "this.state.radioGroup.setProperty(\n  hmUI.prop.INIT,\n  this.state.radioButtonsArray[0]\n);"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -426,5 +478,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/calories",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

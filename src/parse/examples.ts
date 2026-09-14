@@ -105,9 +105,19 @@ const PHONE_RUNTIMES = new Set(["settings", "side-service"]);
 const DEFINITION_LINE_RE = /^\s*(?:async\s+)?[A-Za-z_$][\w$]*\s*\([^)]*\)\s*\{\s*$/;
 
 /**
- * Method names too generic to be worth a snippet. Every one of these is either a
- * JavaScript built-in or a sample's own logger, and matching them by name later
- * would attach noise to unrelated symbols.
+ * Method names that belong to JavaScript, not to Zepp OS.
+ *
+ * This list carries the whole burden of keeping noise out now that an unresolved
+ * call is no longer dropped. The criterion is deliberately narrow — a name is
+ * here only if it is an ECMAScript or Node built-in — because the previous
+ * criterion, "no symbol in this base shares the name", was circular and hid
+ * `getLogger`, which 27 of the 33 samples call and nothing here documents.
+ *
+ * Ambiguous names are left in rather than guessed at. `get` and `delete` are
+ * probably `Map`, but a platform API could carry them, and an unresolved call is
+ * already labelled as one this base cannot account for. Over-excluding would
+ * hide the next `getLogger`; under-excluding costs a row a reader can see is
+ * unresolved.
  */
 const NOISE_METHODS = new Set([
   "log",
@@ -148,6 +158,47 @@ const NOISE_METHODS = new Set([
   "from",
   "sort",
   "toFixed",
+  "findIndex",
+  "findLast",
+  "toUpperCase",
+  "toLowerCase",
+  "charCodeAt",
+  "charAt",
+  "padStart",
+  "padEnd",
+  "startsWith",
+  "endsWith",
+  "substring",
+  "repeat",
+  "assign",
+  "fill",
+  "now",
+  "resolve",
+  "reject",
+  "race",
+  "all",
+  "allSettled",
+  "finally",
+  "subarray",
+  "alloc",
+  "every",
+  "some",
+  "flat",
+  "flatMap",
+  "readUInt8",
+  "readUInt16LE",
+  "readUInt32LE",
+  "writeUInt8",
+  "writeUInt16LE",
+  "writeUInt32LE",
+  "useFakeTimers",
+  "floor",
+  "random",
+  "ceil",
+  "round",
+  "abs",
+  "max",
+  "min",
 ]);
 
 export function exampleSlug(sourceDir: string): string {
@@ -206,6 +257,82 @@ function snippetsFor(lines: string[], name: string, file: string): CodeSnippet[]
     .map((index) => ({ file, line: index + 1, code: statementAt(lines, index) }));
 }
 
+/** Shared by both manifest walkers: a deeply nested file must not blow the stack during a sync. */
+const MAX_KEY_DEPTH = 12;
+
+/**
+ * Key paths whose *value* is worth keeping.
+ *
+ * Values were excluded wholesale, for a good reason stated on `keyPaths`: an
+ * `appId` belongs to whoever registered it. The blanket exclusion also dropped
+ * `runtime.apiVersion`, which identifies nobody and is the field that decides
+ * whether an app installs on its target range — an eval run had to invent
+ * `"4.2.0"` where every sample writes `"4.0"`, the API_LEVEL itself rather than
+ * a semver.
+ *
+ * So: an allowlist, not a filter on what looks sensitive. Each entry is a
+ * platform fact. Nothing under `app.` is here, because that object is entirely
+ * about the publisher — id, name, icon, vendor, description.
+ */
+const VALUED_PATHS = new Set([
+  "runtime.apiVersion.compatible",
+  "runtime.apiVersion.minVersion",
+  "runtime.apiVersion.target",
+  // Which file turns each runtime on. Architecture, and the one thing a reader
+  // copying a sample's layout has to get right.
+  "targets.*.module.page.pages",
+  "targets.*.module.app-side.path",
+  "targets.*.module.setting.path",
+  "targets.*.module.watchface.path",
+  "targets.*.module.app-service.path",
+]);
+
+/**
+ * The values at the allowlisted paths, collected under the same path-collapsing
+ * rules `keyPaths` uses so the two line up.
+ *
+ * Always a list: several targets collapse onto one `targets.*` path and each
+ * may state its own value, and a scalar is a list of one. A caller that wants
+ * "the" value is asking a question the data does not always answer.
+ */
+function valuesAt(
+  value: unknown,
+  prefix = "",
+  depth = 0,
+  into: Map<string, string[]> = new Map(),
+): Map<string, string[]> {
+  if (depth > MAX_KEY_DEPTH) return into;
+
+  if (Array.isArray(value)) {
+    if (VALUED_PATHS.has(prefix)) {
+      for (const entry of value) {
+        if (typeof entry !== "string") continue;
+        const seen = into.get(prefix) ?? [];
+        if (!seen.includes(entry)) into.set(prefix, [...seen, entry]);
+      }
+      return into;
+    }
+    for (const entry of value) valuesAt(entry, prefix, depth + 1, into);
+    return into;
+  }
+
+  if (typeof value === "object" && value !== null) {
+    for (const [key, child] of Object.entries(value)) {
+      const segment = prefix === "targets" ? "*" : key;
+      valuesAt(child, prefix === "" ? key : `${prefix}.${segment}`, depth + 1, into);
+    }
+    return into;
+  }
+
+  if (VALUED_PATHS.has(prefix) && (typeof value === "string" || typeof value === "number")) {
+    const seen = into.get(prefix) ?? [];
+    const text = String(value);
+    if (!seen.includes(text)) into.set(prefix, [...seen, text]);
+  }
+
+  return into;
+}
+
 /**
  * Every key path in a manifest, dotted.
  *
@@ -218,7 +345,7 @@ function snippetsFor(lines: string[], name: string, file: string): CodeSnippet[]
  * nests pathologically would otherwise blow the stack during a sync.
  */
 function keyPaths(value: unknown, prefix = "", depth = 0): string[] {
-  if (depth > 12 || typeof value !== "object" || value === null) return [];
+  if (depth > MAX_KEY_DEPTH || typeof value !== "object" || value === null) return [];
 
   if (Array.isArray(value)) {
     return [...new Set(value.flatMap((entry) => keyPaths(entry, prefix, depth + 1)))];
@@ -260,6 +387,7 @@ async function readManifest(appJson: string): Promise<ExampleManifest | undefine
     platforms: isObject ? platformSelectors(targets as Record<string, unknown>) : [],
     keys: Object.keys(manifest).sort(),
     keyPaths: keyPaths(manifest).sort(),
+    values: Object.fromEntries([...valuesAt(manifest)].sort(([a], [b]) => a.localeCompare(b))),
   };
 }
 
@@ -336,6 +464,12 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
     const usages = new Map<string, CodeSnippet[]>();
     const memberCalls = new Map<string, CodeSnippet[]>();
     const globalCalls = new Map<string, CodeSnippet[]>();
+    // Every method the app defines for itself, across all of its files. A call
+    // to one of these is the sample calling its own helper; a call to anything
+    // else came from outside the app. That distinction is a parse-time fact —
+    // it is about the code, not about what this base happens to know already —
+    // so it belongs here rather than in a join against the symbol table.
+    const definedInApp = new Set<string>();
 
     for (const file of await walkFiles(appDir, [".js"])) {
       const content = await readSource(file);
@@ -344,6 +478,11 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
       const appRelative = path.relative(appDir, file).split(path.sep).join("/");
 
       const symbols: string[] = [];
+
+      for (const line of lines) {
+        if (!DEFINITION_LINE_RE.test(line)) continue;
+        definedInApp.add(line.trim().replace(/^async\s+/, "").split("(")[0].trim());
+      }
 
       for (const [, namedImports, module] of content.matchAll(NAMED_IMPORT_RE)) {
         for (const raw of namedImports.split(",")) {
@@ -415,7 +554,11 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
         .sort((a, b) => a.id.localeCompare(b.id)),
       memberCalls: [...memberCalls]
         .map(([method, snippets]): MemberCallUsage => ({ method, snippets }))
-        .filter(({ snippets }) => snippets.length > 0)
+        // A method the app also defines is the sample calling its own helper —
+        // `getSleepData`, `responseCall`. Anything left was called and never
+        // defined here, so it came from outside the app, which is the only
+        // property that makes it worth recording.
+        .filter(({ method, snippets }) => snippets.length > 0 && !definedInApp.has(method))
         .sort((a, b) => a.method.localeCompare(b.method)),
       globalCalls: [...globalCalls]
         .map(([method, snippets]): MemberCallUsage => ({ method, snippets }))

@@ -185,7 +185,8 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
     targets: ["gtr-3"],
     platforms: [{ deviceSource: 226 }],
     keys: ["app", "configVersion", "permissions", "targets"],
-    keyPaths: [
+    values: {},
+  keyPaths: [
       "app",
       "app.appId",
       "app.extType",

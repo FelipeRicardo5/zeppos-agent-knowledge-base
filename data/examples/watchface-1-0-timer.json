@@ -65,7 +65,21 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.target": [
+        "1.0.0"
+      ],
+      "targets.*.module.watchface.path": [
+        "watchface/gtr-3-pro/index"
+      ]
+    }
   },
   "files": [
     {
@@ -130,7 +144,24 @@
           "line": 275,
           "code": "backBtn.addEventListener(hmUI.event.CLICK_UP, function (info) {\n  timer.stopTimer(hsTimer)\n  timer.stopTimer(sTimer)\n  green_red_btn.setProperty(hmUI.prop.SRC, img('btn/lv.png'))\n  for (let n = 0; n < 8; n++) {\n    bigNumObject[n].setProperty(hmUI.prop.VISIBLE, false)\n    smallNumObject[n].setProperty(hmUI.prop.VISIBLE, false)\n  }\n  backBtn.setProperty(hmUI.prop.VISIBLE, false)\n  green_red_btn.setProperty(hmUI.prop.VISIBLE, false)\n\n  week.setProperty(hmUI.prop.VISIBLE, true)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "clearImmediate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/timer/shared/setTimeout.js",
+          "line": 25,
+          "code": "globalNS.clearImmediate = function clearImmediate(timerRef) {\n  timerRef && timer.stopTimer(timerRef)\n}"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/timer/shared/setTimeout.js",
+          "line": 34,
+          "code": "globalNS.clearImmediate(timer1)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "clearTimeout",
@@ -145,7 +176,8 @@
           "line": 16,
           "code": "globalNS.clearTimeout(timer1)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createTimer",
@@ -160,7 +192,8 @@
           "line": 30,
           "code": "const timer1 = timer.createTimer(\n  1,\n  Number.MAX_SAFE_INTEGER,\n  function () {\n    globalNS.clearImmediate(timer1)\n    func && func()\n  },\n  {},\n)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -175,7 +208,24 @@
           "line": 99,
           "code": "imgBg = hmUI.createWidget(hmUI.widget.IMG, {\n  x: px(0),\n  y: px(0),\n  w: px(480),\n  h: px(480),\n  src: img('bg/bg.png'),\n  show_level: hmUI.show_level.ONAL_NORML,\n})"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/timer/app.js",
+          "line": 3,
+          "code": "const logger = Logger.getLogger('timer-app')"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/timer/watchface/round/index.js",
+          "line": 20,
+          "code": "const logger = Logger.getLogger('timer-page')"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getScreenType",
@@ -185,7 +235,8 @@
           "line": 89,
           "code": "var screenType = hmSetting.getScreenType()"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "setProperty",
@@ -200,7 +251,8 @@
           "line": 171,
           "code": "smallNumObject[j].setProperty(hmUI.prop.VISIBLE, false)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stopTimer",
@@ -215,7 +267,8 @@
           "line": 26,
           "code": "timerRef && timer.stopTimer(timerRef)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "SysProGetInt",
@@ -230,7 +283,8 @@
           "line": 316,
           "code": "rootPath + 'smallNum/' + hmFS.SysProGetInt('t1') + '.png',"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "SysProSetInt",
@@ -245,7 +299,8 @@
           "line": 337,
           "code": "hmFS.SysProSetInt('t1', 0)"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [],
@@ -255,5 +310,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/watchface/1.0/timer",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

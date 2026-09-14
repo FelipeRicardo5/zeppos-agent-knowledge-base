@@ -61,7 +61,21 @@
       "targets.*.platforms",
       "targets.*.platforms.dw",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "3.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "3.0"
+      ],
+      "runtime.apiVersion.target": [
+        "3.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/index"
+      ]
+    }
   },
   "files": [
     {
@@ -184,7 +198,46 @@
           "line": 8,
           "code": "hmUI.createWidget(hmUI.widget.BUTTON, {\n  ...Styles.BTN_STYLE,\n  click_func: () => {\n    notificationMgr.notify({\n      title: getText(\"title\"),\n      content: getText(\"content\"),\n      actions: [\n        {\n          text: getText(\"later_min\", 1),\n          file: \"app-service/delay\",\n          param: \"\",\n        },"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/delay.js",
+          "line": 4,
+          "code": "const logger = Logger.getLogger(\"index-service\");"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/index.js",
+          "line": 5,
+          "code": "const logger = Logger.getLogger(\"index-service\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getMinutes",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/delay.js",
+          "line": 14,
+          "code": "date.setMinutes(date.getMinutes() + 1);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTime",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/delay.js",
+          "line": 18,
+          "code": "date: Math.round(date.getTime() / 1000),"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "notify",
@@ -199,7 +252,8 @@
           "line": 11,
           "code": "notificationMgr.notify({\n  title: getText(\"title\"),\n  content: getText(\"content\"),\n  actions: [\n    {\n      text: getText(\"later_min\", 1),\n      file: \"app-service/delay\",\n      param: \"\",\n    },\n  ],\n  vibrate: 6,\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "set",
@@ -209,7 +263,19 @@
           "line": 23,
           "code": "alarmMgr.set(alarm);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "setMinutes",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/notification/app-service/delay.js",
+          "line": 14,
+          "code": "date.setMinutes(date.getMinutes() + 1);"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [
@@ -225,5 +291,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/notification",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

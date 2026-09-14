@@ -220,19 +220,12 @@ widgets.Button({
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 362
 
-### `.cancel()` — **ambiguous**: module `@zos/alarm.cancel` or `@zos/notification.cancel`
+### `.clearInput()` *(no record in this KB)*
 
 ```js
-this.cancel();
+keyboard.clearInput();
 ```
-— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 209
-
-```js
-cancel() {
-  keyboard.sendFnKey(keyboard.CANCEL);
-},
-```
-— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 258
+— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 267
 
 ### `.createWidget()` — `@zos/ui.createWidget`
 
@@ -240,6 +233,37 @@ cancel() {
 const ele = parent.createWidget(id, widget_props);
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 161
+
+### `.Fill_rect()` *(no record in this KB)*
+
+```js
+widgets.Fill_rect({
+  layout: {
+    ...default_layout,
+    width: unit.f(),
+    height: px(100),
+  },
+})
+```
+— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 377
+
+### `.getContentRect()` *(no record in this KB)*
+
+```js
+const { h } = keyboard.getContentRect();
+```
+— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.layout.js`, line 14
+
+### `.getTextContext()` *(no record in this KB)*
+
+```js
+if (keyboard.getTextContext()) {
+  this.enter();
+} else {
+  this.cancel();
+}
+```
+— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 206
 
 ### `.getType()` — **ambiguous**: module `@zos/ui.getType`; called on `@zos/sensor.Vibrator`
 
@@ -256,19 +280,85 @@ if (ele.getType() === idOfWidget.VIRTUAL_CONTAINER) {
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 211
 
-### `.keyboard()` — `@zos/ui.keyboard`
+### `.gotoSettings()` *(no record in this KB)*
 
 ```js
-this.keyboard(() => {
-  this.onResume();
-});
+return keyboard.gotoSettings();
 ```
-— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 460
+— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 43
+
+### `.Img()` *(no record in this KB)*
 
 ```js
-this.keyboard();
+widgets.Img({
+  src: "image/keyboard_setting.png",
+  auto_scale: true,
+  layout: {
+    ...default_layout,
+    top: unit.z(),
+    left: unit.z(),
+    width: unit.f(),
+    height: unit.f(),
+    tags: unit.il(),
+  },
+}),
 ```
-— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 538
+— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 325
+
+### `.inputBuffer()` *(no record in this KB)*
+
+```js
+keyboard.inputBuffer(this.state.inputBuffer, 0x757575, 0x757575);
+```
+— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 279
+
+### `.inputText()` *(no record in this KB)*
+
+```js
+keyboard.inputText(text);
+```
+— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 275
+
+### `.isArray()` *(no record in this KB)*
+
+```js
+if (Array.isArray(opts)) {
+  child_id = opts[0];
+  child_widget_props = opts[1];
+} else if (protoOf(opts) === widget_opts_proto) {
+  child_id = opts.id;
+  child_widget_props = opts.props;
+} else {
+  throw new Error(`error: create child widget opts is error`);
+}
+```
+— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 190
+
+### `.isEnabled()` — `@zos/sensor.Buzzer`
+
+```js
+return keyboard.isEnabled();
+```
+— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 29
+
+### `.isSelected()` *(no record in this KB)*
+
+```js
+return keyboard.isSelected();
+```
+— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 36
+
+### `.sendFnKey()` *(no record in this KB)*
+
+```js
+keyboard.sendFnKey(keyboard.SELECT);
+```
+— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 247
+
+```js
+keyboard.sendFnKey(keyboard.SWITCH);
+```
+— `zeppos-samples/application/4.2/simple-keyboard/data-widget/index.page.js`, line 251
 
 ### `.setAlpha()` — `@zos/ui.setAlpha`
 
@@ -308,3 +398,37 @@ widgets.Text({
     line_clamp: 2,
 ```
 — `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 337
+
+### `.Virtual_container()` *(no record in this KB)*
+
+```js
+widgets.Virtual_container(
+  {
+    ref: vc,
+    layout: {
+      ...default_layout,
+      left: unit.z(),
+      top: unit.z(),
+      width: unit.w1(),
+      height: unit.h1(),
+      display: unit.fx(),
+      flex_flow: unit.col(),
+      row_gap: px(25),
+```
+— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 290
+
+```js
+widgets.Virtual_container(
+  {
+    layout: {
+      ...default_layout,
+      width: px(336),
+      height: px(126),
+    },
+  },
+  widgets.Img({
+    src: "image/keyboard_setting.png",
+    auto_scale: true,
+    layout: {
+```
+— `zeppos-samples/application/4.2/simple-keyboard/page/index.js`, line 317

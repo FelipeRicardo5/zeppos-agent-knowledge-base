@@ -84,7 +84,24 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.target": [
+        "1.0.1"
+      ],
+      "targets.*.module.app-side.path": [
+        "app-side/index"
+      ],
+      "targets.*.module.page.pages": [
+        "pages/index"
+      ]
+    }
   },
   "files": [
     {
@@ -248,6 +265,38 @@
   ],
   "memberCalls": [
     {
+      "method": "_immediateFn",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/promise.js",
+          "line": 125,
+          "code": "Promise._immediateFn(function () {\n  var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected\n  if (cb === null) {\n    ;(self._state === 1 ? resolve : reject)(deferred.promise, self._value)\n    return\n  }\n  var ret\n  try {\n    ret = cb(self._value)\n  } catch (e) {\n    reject(deferred.promise, e)\n    return"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/promise.js",
+          "line": 174,
+          "code": "Promise._immediateFn(function () {\n  if (!self._handled) {\n    Promise._unhandledRejectionFn(self._value)\n  }\n})"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_unhandledRejectionFn",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/promise.js",
+          "line": 176,
+          "code": "Promise._unhandledRejectionFn(self._value)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/promise.js",
+          "line": 320,
+          "code": "Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {\n  if (typeof console !== 'undefined' && console) {\n    console.log('[jsfwk.error  ] Possible Unhandled Promise Rejection:', err) // eslint-disable-line no-console\n  }\n}"
+        }
+      ],
+      "resolved": false
+    },
+    {
       "method": "addListener",
       "snippets": [
         {
@@ -255,22 +304,24 @@
           "line": 229,
           "code": "messaging.peerSocket.addListener('message', (message) => {\n  // logger.warn('[RAW] [R] receive size=>%d bin=>%s', message.byteLength, this.bin2hex(message))\n  this.onMessage(message)\n})"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "clear",
+      "method": "clearImmediate",
       "snippets": [
         {
-          "file": "zeppos-samples/application/1.0/fetch-api/shared/event.js",
-          "line": 29,
-          "code": "this.map.clear()"
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
+          "line": 25,
+          "code": "globalNS.clearImmediate = function clearImmediate(timerRef) {\n  timerRef && timer.stopTimer(timerRef)\n}"
         },
         {
-          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
-          "line": 159,
-          "code": "clear() {\n  this.sessions.clear()\n}"
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js",
+          "line": 34,
+          "code": "globalNS.clearImmediate(timer1)"
         }
-      ]
+      ],
+      "resolved": false
     },
     {
       "method": "clearTimeout",
@@ -285,7 +336,8 @@
           "line": 16,
           "code": "globalNS.clearTimeout(timer1)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "close",
@@ -300,7 +352,24 @@
           "line": 79,
           "code": "hmFS.close(file)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "copy",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 439,
+          "code": "dataBin.copy(tailBuf, headerSize, offset, offset + tailSize)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 454,
+          "code": "dataBin.copy(_buf, headerSize, offset, offset + dataSize)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "createConnect",
@@ -310,7 +379,8 @@
           "line": 208,
           "code": "hmBle.createConnect((index, data, size) => {\n  // logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, this.bin2hex(data))\n  console.log('createConnect-------', size)\n  this.onFragmentData(data)\n})"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createTimer",
@@ -325,7 +395,8 @@
           "line": 30,
           "code": "const timer1 = timer.createTimer(\n  1,\n  Number.MAX_SAFE_INTEGER,\n  function () {\n    globalNS.clearImmediate(timer1)\n    func && func()\n  },\n  {},\n)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -340,22 +411,40 @@
           "line": 39,
           "code": "hmUI.createWidget(hmUI.widget.TEXT, {\n  x: px(56),\n  y: px(74),\n  w: DEVICE_WIDTH - 2 * px(56),\n  h: px(200),\n  color: 0xffffff,\n  text_size: px(36),\n  align_h: hmUI.align.CENTER_H,\n  align_v: hmUI.align.CENTER_V,\n  text_style: hmUI.text_style.NONE,\n  text: text,\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "disConnect",
+      "method": "delete",
       "snippets": [
         {
-          "file": "zeppos-samples/application/1.0/fetch-api/app.js",
-          "line": 25,
-          "code": "this.globalData.messageBuilder.disConnect();"
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/event.js",
+          "line": 26,
+          "code": "this.map.delete(type)"
         },
         {
           "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
-          "line": 218,
-          "code": "disConnect(cb) {\n  // logger.debug('app ble disconnect')\n  this.sendClose()\n  this.off('message')\n  hmBle && hmBle.disConnect()\n\n  cb && cb(this)\n}"
+          "line": 148,
+          "code": "this.sessions.delete(this.key(session))"
         }
-      ]
+      ],
+      "resolved": false
+    },
+    {
+      "method": "get",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/event.js",
+          "line": 8,
+          "code": "this.map.get(type).push(cb)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/event.js",
+          "line": 17,
+          "code": "const cbs = this.map.get(type)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getDeviceInfo",
@@ -365,7 +454,35 @@
           "line": 2,
           "code": "hmSetting.getDeviceInfo();"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/pages/index.js",
+          "line": 7,
+          "code": "const logger = DeviceRuntimeCore.HmLogger.getLogger(\"fetch_api\");"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 1,
+          "code": "const logger = DeviceRuntimeCore.HmLogger.getLogger('fs.js')"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "mkdir",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/fs.js",
+          "line": 115,
+          "code": "hmFS.mkdir(path)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "open",
@@ -380,7 +497,19 @@
           "line": 73,
           "code": "const file = hmFS.open(filename, hmFS.O_RDONLY)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "packageInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/app.js",
+          "line": 15,
+          "code": "appId = hmApp.packageInfo().appId;"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "read",
@@ -390,7 +519,8 @@
           "line": 77,
           "code": "hmFS.read(file, destination_buf.buffer, 0, fs_stat.size)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "readdirSync",
@@ -405,7 +535,8 @@
           "line": 126,
           "code": "hmFS.readdirSync(path)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "remove",
@@ -415,7 +546,8 @@
           "line": 93,
           "code": "const result = hmFS.remove(filename)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "rename",
@@ -425,7 +557,8 @@
           "line": 104,
           "code": "hmFS.rename(oldFilename, newFilename)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "seek",
@@ -440,7 +573,8 @@
           "line": 75,
           "code": "hmFS.seek(file, 0, hmFS.SEEK_SET)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "send",
@@ -455,7 +589,24 @@
           "line": 394,
           "code": "messaging.peerSocket.send(buf.buffer)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "sendMsg",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 285,
+          "code": "this.sendMsg(shake)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+          "line": 306,
+          "code": "this.sendMsg(close)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "set",
@@ -470,7 +621,8 @@
           "line": 142,
           "code": "this.sessions.set(this.key(newSession), newSession)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stat",
@@ -480,7 +632,8 @@
           "line": 24,
           "code": "const [fs_stat, err] = hmFS.stat(filename)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stopTimer",
@@ -495,7 +648,8 @@
           "line": 26,
           "code": "timerRef && timer.stopTimer(timerRef)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "write",
@@ -505,7 +659,8 @@
           "line": 53,
           "code": "hmFS.write(file, source_buf.buffer, 0, source_buf.length)"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [],
@@ -516,5 +671,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/1.0/fetch-api",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

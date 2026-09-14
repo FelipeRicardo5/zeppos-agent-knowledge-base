@@ -72,7 +72,22 @@
       "targets.*.platforms",
       "targets.*.platforms.dw",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "4.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "4.2"
+      ],
+      "runtime.apiVersion.target": [
+        "4.0"
+      ],
+      "targets.*.module.page.pages": [
+        "pages/guidelines",
+        "data-widget/index"
+      ]
+    }
   },
   "files": [
     {
@@ -398,17 +413,24 @@
           "line": 179,
           "code": "key_data.touch_overlay.addEventListener(event.CLICK_DOWN, (info) => {\n  if (is_pressed) return;\n\n  is_pressed = true;\n  press_start_time = Date.now();\n  is_long_press = false;\n\n  highlightKey();\n\n  if (this.keyboard.state.longpress_timer) {\n    clearTimeout(this.keyboard.state.longpress_timer);\n  }"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "cancel",
+      "method": "callback",
       "snippets": [
         {
-          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-handlers.js",
-          "line": 134,
-          "code": "t9_engine.cancel();"
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 164,
+          "code": "latest.callback(suggestions);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 173,
+          "code": "callback([]);"
         }
-      ]
+      ],
+      "resolved": false
     },
     {
       "method": "clear",
@@ -418,7 +440,8 @@
           "line": 311,
           "code": "this.seq_cache.clear();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -428,7 +451,40 @@
           "line": 54,
           "code": "const ele = parent.createWidget(id, rest);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "fromCharCode",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 110,
+          "code": "? String.fromCharCode(char_code + 32)"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 291,
+          "code": "? String.fromCharCode(first_code - 32)"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "get",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 61,
+          "code": "let words_arr = this.seq_map.get(seq);"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 73,
+          "code": "const freq_a = freq_map.get(a) || 0;"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getType",
@@ -443,22 +499,30 @@
           "line": 66,
           "code": "[widget.GROUP, widget.VIEW_CONTAINER].includes(ele.getType()) &&"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "keyboard",
+      "method": "has",
       "snippets": [
         {
-          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
-          "line": 346,
-          "code": "this.keyboard(() => {\n  this.onResume();\n});"
-        },
-        {
-          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
-          "line": 432,
-          "code": "this.keyboard();"
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js",
+          "line": 180,
+          "code": "if (this.seq_cache.has(cache_key)) {\n  debugLog(3, `t9 cache hit for \"${seq}\"`);\n  const cached = this.seq_cache.get(cache_key);\n  callback(this.applyCapitalization(cached, typed_prefix));\n  return;\n}"
         }
-      ]
+      ],
+      "resolved": false
+    },
+    {
+      "method": "isArray",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/helpers/required.js",
+          "line": 11,
+          "code": "if (Array.isArray(param) && param.length > MAX_ITEMS) {\n  return [...param.slice(0, MAX_ITEMS), ' ...more'];\n} else {\n  return param;\n}"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "launchApp",
@@ -468,7 +532,24 @@
           "line": 198,
           "code": "r.launchApp({ url: 'Settings_keyboardScreen', params: { native: true } });"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "scrollToTop",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 131,
+          "code": "this.scrollToTop();"
+        },
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js",
+          "line": 136,
+          "code": "scrollToTop() { scrollTo({ y: 0 }); },"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "set",
@@ -483,7 +564,19 @@
           "line": 93,
           "code": "this.prefix_idx.set(prefix, prefix_arr);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "setMode",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-handlers.js",
+          "line": 574,
+          "code": "vibro.setMode(27); // VIBRATOR_SCENE_DURATION"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -498,7 +591,8 @@
           "line": 144,
           "code": "this.keyboard.state.ui.cursor_widget.setProperty(prop.ALPHA, 255);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "start",
@@ -508,7 +602,8 @@
           "line": 575,
           "code": "vibro.start();"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -540,5 +635,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.2/t9-keyboard",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

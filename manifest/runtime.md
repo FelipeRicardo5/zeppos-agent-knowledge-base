@@ -12,6 +12,14 @@ page declares, not what a build was observed to accept.
 | `apiVersion` | `object` | yes | v2 | Runtime API Versions. |
 | `type` | `number` | no | v2 | The loader type for loading Mini Programs at runtime, supporting the following values: 0 Current value YES Default value. It indicates that the Mini Program is loaded with the loader of the QuickJS-js interpreter, with the suffix .js, 1 indicates that the Mini Program is loaded with the loader of the C interpreter, with the suffix .c, 2 indicates that the Mini Program is loaded with the loader of the QuickJS-bytecode interpreter, with the suffix .bin |
 
+**What the 33 sample manifests write here.** Observed
+values with the number of apps writing each, not a permitted set — the table
+above states the shape and never the vocabulary.
+
+- `runtime.apiVersion.compatible` — `1.0.0` (8), `2.0` (7), `3.0` (7), `4.0` (7), `3.6` (4)
+- `runtime.apiVersion.minVersion` — `1.0.0` (8), `3.0` (7), `2.0` (5), `4.0` (5), `3.6` (4), `4.2` (2), `2.0.0` (1), `2.1.0` (1)
+- `runtime.apiVersion.target` — `2.0` (7), `3.0` (7), `4.0` (7), `1.0.0` (5), `3.6` (4), `1.0.1` (3)
+
 ```js
 {
   "runtime": {
@@ -33,3 +41,11 @@ page declares, not what a build was observed to accept.
 | `minVersion` | `string` | yes | v2 | Runtime requirements, this field YES is required to determine the current runtime requirements of the Mini Program; v <= minVersion, cannot be upgraded or installed. |
 | `compatible` | `string` | no | v2 | Compatible version, optional. |
 | `target` | `string` | no | v2 | This is the version of the target SDK, runtime, optionally. |
+
+**What the 33 sample manifests write here.** Observed
+values with the number of apps writing each, not a permitted set — the table
+above states the shape and never the vocabulary.
+
+- `runtime.apiVersion.compatible` — `1.0.0` (8), `2.0` (7), `3.0` (7), `4.0` (7), `3.6` (4)
+- `runtime.apiVersion.minVersion` — `1.0.0` (8), `3.0` (7), `2.0` (5), `4.0` (5), `3.6` (4), `4.2` (2), `2.0.0` (1), `2.1.0` (1)
+- `runtime.apiVersion.target` — `2.0` (7), `3.0` (7), `4.0` (7), `1.0.0` (5), `3.6` (4), `1.0.1` (3)

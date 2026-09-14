@@ -59,7 +59,21 @@
       "targets.*.module.watchface.path",
       "targets.*.platforms",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "2.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "2.0"
+      ],
+      "runtime.apiVersion.target": [
+        "2.0"
+      ],
+      "targets.*.module.watchface.path": [
+        "watchface/gtr-3-pro/index"
+      ]
+    }
   },
   "files": [
     {
@@ -126,7 +140,8 @@
           "line": 279,
           "code": "backBtn.addEventListener(ui.event.CLICK_UP, function (info) {\n  timer.stopTimer(hsTimer)\n  timer.stopTimer(sTimer)\n  green_red_btn.setProperty(ui.prop.SRC, img('btn/lv.png'))\n  for (let n = 0; n < 8; n++) {\n    bigNumObject[n].setProperty(ui.prop.VISIBLE, false)\n    smallNumObject[n].setProperty(ui.prop.VISIBLE, false)\n  }\n  backBtn.setProperty(ui.prop.VISIBLE, false)\n  green_red_btn.setProperty(ui.prop.VISIBLE, false)\n\n  week.setProperty(ui.prop.VISIBLE, true)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createTimer",
@@ -141,7 +156,8 @@
           "line": 422,
           "code": "sTimer = timer.createTimer(1000, 1000, setSeconds, {})"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -156,7 +172,24 @@
           "line": 103,
           "code": "imgBg = ui.createWidget(ui.widget.IMG, {\n  x: px(0),\n  y: px(0),\n  w: px(480),\n  h: px(480),\n  src: img('bg/bg.png'),\n  show_level: ui.show_level.ONAL_NORML,\n})"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/app.js",
+          "line": 3,
+          "code": "const logger = log.getLogger('app')"
+        },
+        {
+          "file": "zeppos-samples/watchface/3.0/timer/watchface/round/index.js",
+          "line": 5,
+          "code": "const logger = log.getLogger('timer-page')"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -171,7 +204,8 @@
           "line": 175,
           "code": "smallNumObject[j].setProperty(ui.prop.VISIBLE, false)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stopTimer",
@@ -186,7 +220,8 @@
           "line": 281,
           "code": "timer.stopTimer(sTimer)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "SysProGetInt",
@@ -201,7 +236,8 @@
           "line": 320,
           "code": "rootPath + 'smallNum/' + hmFS.SysProGetInt('t1') + '.png',"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "SysProSetInt",
@@ -216,7 +252,8 @@
           "line": 341,
           "code": "hmFS.SysProSetInt('t1', 0)"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -230,5 +267,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/watchface/3.0/timer",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

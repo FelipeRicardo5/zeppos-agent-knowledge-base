@@ -200,7 +200,21 @@
       "targets.*.module.data-widget.widgets.window.isPinned",
       "targets.*.platforms",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "3.6"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "3.6"
+      ],
+      "runtime.apiVersion.target": [
+        "3.6"
+      ],
+      "targets.*.module.app-side.path": [
+        "app-side/index/index"
+      ]
+    }
   },
   "files": [
     {
@@ -326,7 +340,30 @@
       ]
     }
   ],
-  "memberCalls": [],
+  "memberCalls": [
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js",
+          "line": 2,
+          "code": "const log = Logger.getLogger(\"app-side-service\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "request",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js",
+          "line": 137,
+          "code": "this.request({\n  method: \"your-method\",\n  params: {\n    name: \"foo\",\n  },\n}).then((data) => {\n  this.log(\"result=>\", data);\n});"
+        }
+      ],
+      "resolved": false
+    }
+  ],
   "symbols": [
     "@zeppos/zml/base-app.BaseApp",
     "@zeppos/zml/base-page.BasePage",
@@ -346,5 +383,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

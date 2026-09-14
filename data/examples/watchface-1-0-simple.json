@@ -69,7 +69,18 @@
       "runtime.apiVersion.compatible",
       "runtime.apiVersion.minVersion",
       "runtime.apiVersion.target"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.target": [
+        "1.0.1"
+      ]
+    }
   },
   "files": [
     {
@@ -99,7 +110,8 @@
           "line": 85,
           "code": "heartSensor.addEventListener(heartSensor.event.LAST, function () {\n    heartRate.setProperty(hmUI.prop.MORE, {\n        text: `HR:${heartSensor.last}`,\n    });\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "App",
@@ -109,7 +121,24 @@
           "line": 81,
           "code": "__$$app$$__.app = DeviceRuntimeCore.App({\n    globalData: {},\n    onCreate(options) {\n    },\n    onDestroy(options) {\n    },\n    onError(error) {\n    },\n    onPageNotFound(obj) {\n    },\n    onUnhandledRejection(obj) {\n    }"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "clearImmediate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 61,
+          "code": "globalNS.clearImmediate = function clearImmediate(timerRef) {\n    timerRef && timer.stopTimer(timerRef);\n};"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 66,
+          "code": "globalNS.clearImmediate(timer1);"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "clearTimeout",
@@ -124,7 +153,8 @@
           "line": 56,
           "code": "globalNS.clearTimeout(timer1);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createSensor",
@@ -139,7 +169,8 @@
           "line": 70,
           "code": "heartSensor = hmSensor.createSensor(hmSensor.id.HEART);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createTimer",
@@ -154,7 +185,8 @@
           "line": 65,
           "code": "const timer1 = timer.createTimer(1, Number.MAX_SAFE_INTEGER, function () {\n    globalNS.clearImmediate(timer1);\n    func && func();\n}, {});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -169,7 +201,8 @@
           "line": 23,
           "code": "digitalTime = hmUI.createWidget(hmUI.widget.TEXT, {\n    x: 141,\n    y: 190,\n    w: 200,\n    h: 100,\n    text: \"[HOUR_24_Z]:[MIN_Z]\",\n    color: \"0xFF497d80\",\n    text_size: 60,\n    text_style: hmUI.text_style.NONE,\n    align_h: hmUI.align.CENTER_H,\n    align_v: hmUI.align.CENTER_V,\n    show_level: hmUI.show_level.ONLY_NORMAL,"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "getLanguage",
@@ -179,7 +212,41 @@
           "line": 11,
           "code": "lang: new DeviceRuntimeCore.HmUtils.Lang(DeviceRuntimeCore.HmUtils.getLanguage()),"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getPx",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 12,
+          "code": "px: DeviceRuntimeCore.HmUtils.getPx(480)"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "gettextFactory",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 16,
+          "code": "__$$app$$__.__globals__.gettext = DeviceRuntimeCore.HmUtils.gettextFactory(languageTable, __$$app$$__.__globals__.lang, 'en-US');"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "Lang",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/app.js",
+          "line": 11,
+          "code": "lang: new DeviceRuntimeCore.HmUtils.Lang(DeviceRuntimeCore.HmUtils.getLanguage()),"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -194,7 +261,8 @@
           "line": 86,
           "code": "heartRate.setProperty(hmUI.prop.MORE, {\n    text: `HR:${heartSensor.last}`,\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stopTimer",
@@ -209,7 +277,19 @@
           "line": 62,
           "code": "timerRef && timer.stopTimer(timerRef);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "WatchFace",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js",
+          "line": 10,
+          "code": "__$$module$$__.module = DeviceRuntimeCore.WatchFace({\n    init_view() {\n        // Create a background rectangle widget for the watch face.\n        hmUI.createWidget(hmUI.widget.FILL_RECT, {\n            x: 0,\n            y: 0,\n            w: 480,\n            h: 480,\n            color: \"0xFF343934\",\n            radius: 240,\n            show_level: hmUI.show_level.ONLY_NORMAL,\n        });"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [],
@@ -219,5 +299,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/watchface/1.0/simple",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

@@ -103,6 +103,32 @@ hmUI.createWidget(hmUI.widget.BUTTON, {
 ```
 — `zeppos-samples/application/3.0/notification/page/index.js`, line 8
 
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("index-service");
+```
+— `zeppos-samples/application/3.0/notification/app-service/delay.js`, line 4
+
+```js
+const logger = Logger.getLogger("index-service");
+```
+— `zeppos-samples/application/3.0/notification/app-service/index.js`, line 5
+
+### `.getMinutes()` — `@zos/sensor.Time`
+
+```js
+date.setMinutes(date.getMinutes() + 1);
+```
+— `zeppos-samples/application/3.0/notification/app-service/delay.js`, line 14
+
+### `.getTime()` — `@zos/sensor.Time`
+
+```js
+date: Math.round(date.getTime() / 1000),
+```
+— `zeppos-samples/application/3.0/notification/app-service/delay.js`, line 18
+
 ### `.notify()` — `@zos/notification.notify`
 
 ```js
@@ -137,3 +163,10 @@ notificationMgr.notify({
 alarmMgr.set(alarm);
 ```
 — `zeppos-samples/application/3.0/notification/app-service/delay.js`, line 23
+
+### `.setMinutes()` *(no record in this KB)*
+
+```js
+date.setMinutes(date.getMinutes() + 1);
+```
+— `zeppos-samples/application/3.0/notification/app-service/delay.js`, line 14

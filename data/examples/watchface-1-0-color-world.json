@@ -65,7 +65,21 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.target": [
+        "1.0.0"
+      ],
+      "targets.*.module.watchface.path": [
+        "watchface/gts-3/index"
+      ]
+    }
   },
   "files": [
     {
@@ -118,6 +132,22 @@
   "globalCalls": [],
   "memberCalls": [
     {
+      "method": "clearImmediate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js",
+          "line": 25,
+          "code": "globalNS.clearImmediate = function clearImmediate(timerRef) {\n  timerRef && timer.stopTimer(timerRef)\n}"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js",
+          "line": 34,
+          "code": "globalNS.clearImmediate(timer1)"
+        }
+      ],
+      "resolved": false
+    },
+    {
       "method": "clearTimeout",
       "snippets": [
         {
@@ -130,7 +160,8 @@
           "line": 16,
           "code": "globalNS.clearTimeout(timer1)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createTimer",
@@ -145,7 +176,8 @@
           "line": 30,
           "code": "const timer1 = timer.createTimer(\n  1,\n  Number.MAX_SAFE_INTEGER,\n  function () {\n    globalNS.clearImmediate(timer1)\n    func && func()\n  },\n  {},\n)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -160,7 +192,24 @@
           "line": 346,
           "code": "hmUI.createWidget(hmUI.widget.TEXT_IMG, {\n  x: config.numX + 1,\n  y: config.numY,\n  w: config.bgw,\n  type: config.dataType,\n  font_array: config.numArray,\n  h_space: config.h,\n  align_h: hmUI.align.CENTER_H,\n  show_level: hmUI.show_level.ONLY_NORMAL,\n  unit_sc: config.unitSc,\n  unit_en: config.unitEn,\n  unit_tc: config.unitTc,"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/app.js",
+          "line": 3,
+          "code": "const logger = Logger.getLogger('color-world-app')"
+        },
+        {
+          "file": "zeppos-samples/watchface/1.0/color-world/watchface/square/index.js",
+          "line": 1,
+          "code": "const logger = Logger.getLogger('color-world-page')"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getProperty",
@@ -175,7 +224,8 @@
           "line": 731,
           "code": "let item = editGroup.getProperty(hmUI.prop.CURRENT_TYPE)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "getScreenType",
@@ -185,7 +235,8 @@
           "line": 827,
           "code": "const screenType = hmSetting.getScreenType()"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stopTimer",
@@ -200,7 +251,8 @@
           "line": 26,
           "code": "timerRef && timer.stopTimer(timerRef)"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [],
@@ -210,5 +262,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/watchface/1.0/color-world",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

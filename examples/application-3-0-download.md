@@ -139,29 +139,6 @@ receiver's type is **not** resolved, so treat the match as a hint rather than
 a fact. Where several candidates survive the row says **ambiguous** and names
 them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
-### `.convert()` — `image-convert.convert`
-
-```js
-async convert(filePath) {
-  const result = await convertLib.convert({
-    filePath: filePath,
-    targetFilePath: filePath,
-  });
-
-  logger.log("ConvertImage result=>%j", result);
-  return result;
-},
-```
-— `zeppos-samples/application/3.0/download/app-side/image-convert-module.js`, line 9
-
-```js
-const result = await convertLib.convert({
-  filePath: filePath,
-  targetFilePath: filePath,
-});
-```
-— `zeppos-samples/application/3.0/download/app-side/image-convert-module.js`, line 10
-
 ### `.createWidget()` — `@zos/ui.createWidget`
 
 ```js
@@ -190,12 +167,16 @@ const btn = parent.createWidget(hmUI.widget.BUTTON, {
 ```
 — `zeppos-samples/application/3.0/download/components/pressed-btn/index.js`, line 11
 
-### `.downloadFile()` — `download-file.downloadFile`
+### `.download()` *(no record in this KB)*
 
 ```js
-this.downloadFile(encodeURI(coverUrl));
+const task = this.download(url, {
+  headers: {},
+  timeout: 60000,
+  filePath: `${fileNameStamp()}.png`,
+});
 ```
-— `zeppos-samples/application/3.0/download/app-side/index.js`, line 34
+— `zeppos-samples/application/3.0/download/app-side/file-download-module.js`, line 13
 
 ### `.fetch()` — `fetch.fetch`
 
@@ -208,6 +189,68 @@ const result = await this.fetch({
 });
 ```
 — `zeppos-samples/application/3.0/download/app-side/fetch-module.js`, line 8
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("message-fetch");
+```
+— `zeppos-samples/application/3.0/download/app-side/fetch-module.js`, line 1
+
+```js
+const logger = Logger.getLogger("network-download");
+```
+— `zeppos-samples/application/3.0/download/app-side/file-download-module.js`, line 1
+
+### `.getTime()` — `@zos/sensor.Time`
+
+```js
+return d.getTime();
+```
+— `zeppos-samples/application/3.0/download/app-side/file-download-module.js`, line 5
+
+### `.on()` — `@zos/utils.EventBus`
+
+```js
+task.on("progress", (e) => {
+  logger.log("task progress", e);
+});
+```
+— `zeppos-samples/application/3.0/download/app-side/file-transfer-module.js`, line 10
+
+```js
+task.on("change", (e) => {
+  logger.log("task change", e);
+});
+```
+— `zeppos-samples/application/3.0/download/app-side/file-transfer-module.js`, line 14
+
+### `.request()` *(no record in this KB)*
+
+```js
+this.request({
+  method: "img.cover",
+  params: "",
+})
+```
+— `zeppos-samples/application/3.0/download/page/index.js`, line 73
+
+```js
+this.request({
+  method: "img.trans",
+  params: {
+    filePath: this.state.filePath,
+  },
+})
+```
+— `zeppos-samples/application/3.0/download/page/index.js`, line 99
+
+### `.sendFile()` *(no record in this KB)*
+
+```js
+const task = this.sendFile(url, opt);
+```
+— `zeppos-samples/application/3.0/download/app-side/file-transfer-module.js`, line 8
 
 ### `.setAlpha()` — `@zos/ui.setAlpha`
 

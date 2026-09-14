@@ -77,3 +77,10 @@ them all — see [`../conflicts/index.md`](../conflicts/index.md).
 hmUI.createWidget(hmUI.widget.TEXT, TEXT_STYLE);
 ```
 — `zeppos-samples/application/3.0/hello-world/page/gt/home/index.page.js`, line 12
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("helloworld");
+```
+— `zeppos-samples/application/3.0/hello-world/page/gt/home/index.page.js`, line 5

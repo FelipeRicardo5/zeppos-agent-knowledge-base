@@ -253,6 +253,18 @@ receiver's type is **not** resolved, so treat the match as a hint rather than
 a fact. Where several candidates survive the row says **ambiguous** and names
 them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
+### `.ab2Str()` *(no record in this KB)*
+
+```js
+console.log("this is mac addr ====" + Utils.ab2Str(mac).toString());
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 6
+
+```js
+console.log(Utils.ab2Str(data).toString() + "this is data num");
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 64
+
 ### `.addEventListener()` — **ambiguous**: module `@zos/ui.addEventListener`; called on `@zos/media.Player` or `@zos/media.Recorder`
 
 ```js
@@ -264,6 +276,42 @@ canvasIndex0.addEventListener(hmUI.event.CLICK_UP, btnUpCb);
 canvasIndex0.addEventListener(hmUI.event.CLICK_DOWN, btnDnCb);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 79
+
+### `.c1()` *(no record in this KB)*
+
+```js
+w2 = Math.round(Utils.c1(w1, 2) * 1000);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 169
+
+```js
+w2 = Math.round(Utils.c1(w1, 1) * 1000);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 171
+
+### `.c2()` *(no record in this KB)*
+
+```js
+w2 = Math.round(Utils.c2(w1, 3) / 0.0022046);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 174
+
+```js
+w2 = Math.round(Utils.c2(w1, 2) / 0.0022046);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 176
+
+### `.calc32Data()` *(no record in this KB)*
+
+```js
+const w1 = Utils.calc32Data(
+  dataview.getUint8(10),
+  dataview.getUint8(11),
+  dataview.getUint8(12),
+  0
+);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 160
 
 ### `.cancel()` — **ambiguous**: module `@zos/alarm.cancel` or `@zos/notification.cancel`
 
@@ -291,6 +339,13 @@ canvasIndex1.clear({
 });
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 212
+
+### `.cmpLength()` *(no record in this KB)*
+
+```js
+} else if (Utils.cmpLength(cnParam.data, 19)) {
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 158
 
 ### `.createTimer()` *(no record in this KB)*
 
@@ -324,6 +379,84 @@ hmUI.deleteWidget(vc), (vc = null);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 83
 
+### `.drawCircle()` *(no record in this KB)*
+
+```js
+canvasIndex2.drawCircle({
+  center_x: CANVAS_1.center_x,
+  center_y: CANVAS_1.center_y,
+  radius: CANVAS_1.radius,
+  color: 0xfff400,
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 110
+
+```js
+canvasIndex2.drawCircle({
+  center_x: CANVAS_2.center_x,
+  center_y: CANVAS_2.center_y,
+  radius: CANVAS_2.radius,
+  color: 0x1ff4ff,
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 117
+
+### `.drawFill()` *(no record in this KB)*
+
+```js
+canvasIndex2.drawFill(CANVAS_STYLE_2_REC_1);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 125
+
+```js
+canvasIndex2.drawFill(CANVAS_STYLE_2_REC_2);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 126
+
+### `.drawImage()` *(no record in this KB)*
+
+```js
+canvasIndex0.drawImage({
+  x: 0,
+  y: 0,
+  w: DEVICE_WIDTH,
+  h: DEVICE_HEIGHT,
+  alpha: 255,
+  image: "images/canvas/backg.png",
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 62
+
+```js
+canvasIndex1.drawImage({
+  ...CANVAS_STYLE_1_IMG,
+  image: "images/canvas/anim2/WDF_Animation_1.png",
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 93
+
+### `.drawText()` *(no record in this KB)*
+
+```js
+canvasIndex0.drawText({
+  ...CANVAS_TEXT,
+  text: "all in canvas",
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 71
+
+### `.emit()` — `@zos/utils.EventBus`
+
+```js
+devEvent.emit("scan", result.dev_addr);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 82
+
+```js
+devEvent.emit("error");
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 101
+
 ### `.exit()` — **ambiguous**: module `@zos/app-service.exit` or `@zos/router.exit`
 
 ```js
@@ -351,6 +484,212 @@ let services = appService.getAllAppServices();
 let notifications = notificationMgr.getAllNotifications();
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/notification.js`, line 52
+
+### `.getCurrent()` — **ambiguous**: called on `@zos/sensor.Accelerometer` or `@zos/sensor.Battery` or `@zos/sensor.BloodOxygen` or `@zos/sensor.BodyTemperature` or `@zos/sensor.Calorie` or `@zos/sensor.Distance` or `@zos/sensor.FatBurning` or `@zos/sensor.Gyroscope` or `@zos/sensor.HeartRate` or `@zos/sensor.Stand` or `@zos/sensor.Step` or `@zos/sensor.Stress`
+
+```js
+const result = spo2Sr.getCurrent();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/spo2.js`, line 21
+
+### `.getDailySummary()` — `@zos/sensor.HeartRate`
+
+```js
+let maxHr = hrSr.getDailySummary();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/heart.js`, line 26
+
+### `.getDate()` — `@zos/sensor.Time`
+
+```js
+}-${dateTime.getDate()}`
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 100
+
+```js
+init_val_index: dateTime.getDate() - 1,
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 168
+
+### `.getDirection()` — `@zos/sensor.Compass`
+
+```js
+show_text += "\ndirection:" + compass.getDirection();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/compass.js`, line 22
+
+### `.getDirectionAngle()` — `@zos/sensor.Compass`
+
+```js
+show_text += "\ndirection_angle:" + compass.getDirectionAngle();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/compass.js`, line 21
+
+### `.getFullYear()` — `@zos/sensor.Time`
+
+```js
+`${dateTime.getFullYear()}-${
+  dateTime.getMonth() + 1
+}-${dateTime.getDate()}`
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 98
+
+```js
+init_val_index: dateTime.getFullYear() - 1970,
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 172
+
+### `.getHistory()` — `@zos/sensor.Workout`
+
+```js
+const history = workout.getHistory();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/workout.js`, line 18
+
+### `.getHours()` — `@zos/sensor.Time`
+
+```js
+content: `Now the time is ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`,
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 17
+
+```js
+`${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 45
+
+### `.getLastWeek()` — **ambiguous**: called on `@zos/sensor.Pai` or `@zos/sensor.Stress`
+
+```js
+let all7DaysHours = stressSr.getLastWeek();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/stress.js`, line 109
+
+### `.getLastWeekByHour()` — `@zos/sensor.Stress`
+
+```js
+let allDays = stressSr.getLastWeekByHour();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/stress.js`, line 133
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = log.getLogger("system_event_service");
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/system_event_service.js`, line 2
+
+```js
+const logger = log.getLogger("time.service");
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 10
+
+### `.getMinutes()` — `@zos/sensor.Time`
+
+```js
+content: `Now the time is ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`,
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 17
+
+```js
+`${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 45
+
+### `.getMonth()` — `@zos/sensor.Time`
+
+```js
+dateTime.getMonth() + 1
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 99
+
+```js
+init_val_index: dateTime.getMonth(),
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 164
+
+### `.getNap()` — `@zos/sensor.Sleep`
+
+```js
+let shortSlp = sleepSr.getNap();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/sleep.js`, line 38
+
+### `.getSeconds()` — `@zos/sensor.Time`
+
+```js
+content: `Now the time is ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`,
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 17
+
+```js
+`${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 45
+
+### `.getSleepingStatus()` — `@zos/sensor.Sleep`
+
+```js
+let sleeping = sleepSr.getSleepingStatus();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/sleep.js`, line 26
+
+### `.getStatus()` — **ambiguous**: called on `@zos/media.Player` or `@zos/media.Recorder` or `@zos/sensor.Compass` or `@zos/sensor.Geolocation` or `@zos/sensor.Screen` or `@zos/sensor.Wear` or `@zos/sensor.Workout`
+
+```js
+text: "screen Info: status: " + screen.getStatus(),
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/screen.js`, line 16
+
+```js
+const show_text = "screen Info: status: " + screen.getStatus();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/screen.js`, line 21
+
+### `.getTime()` — `@zos/sensor.Time`
+
+```js
+alarmObj.time = Math.floor(dateTime.getTime() / 1000);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 70
+
+### `.getToday()` — **ambiguous**: called on `@zos/sensor.BodyTemperature` or `@zos/sensor.HeartRate` or `@zos/sensor.Pai` or `@zos/sensor.Stress`
+
+```js
+let allday = stressSr.getToday();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/stress.js`, line 57
+
+### `.getTodayByHour()` — `@zos/sensor.Stress`
+
+```js
+let allHours = stressSr.getTodayByHour();
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/stress.js`, line 81
+
+### `.getUint16()` *(no record in this KB)*
+
+```js
+const r = dataview.getUint16(7, true);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 155
+
+```js
+const impedance = dataview.getUint16(13, true);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 179
+
+### `.getUint8()` *(no record in this KB)*
+
+```js
+const unit = dataview.getUint8(21);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 159
+
+```js
+dataview.getUint8(10),
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 161
 
 ### `.mstBuildProfile()` — `@zos/ble.mstBuildProfile`
 
@@ -573,6 +912,83 @@ notificationMgr.notify({
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/notification.js`, line 29
 
+### `.offChange()` — **ambiguous**: called on `@zos/sensor.Accelerometer` or `@zos/sensor.Barometer` or `@zos/sensor.Battery` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Calorie` or `@zos/sensor.Compass` or `@zos/sensor.Distance` or `@zos/sensor.FatBurning` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.Screen` or `@zos/sensor.Stand` or `@zos/sensor.Step` or `@zos/sensor.Stress` or `@zos/sensor.Wear`
+
+```js
+screen.offChange(callback);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/screen.js`, line 39
+
+```js
+spo2Sr.offChange(callback);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/spo2.js`, line 47
+
+### `.on()` — `@zos/utils.EventBus`
+
+```js
+devEvent.on("scan", (addr) => {
+  console.log("---emit scan---");
+  const devAddrArr = ab2Arr(addr).map((d) => d.toString(16).toUpperCase());
+  const devAddrStr = devAddrArr.join(":");
+  console.log("---device mac---", devAddrStr);
+  textWidget && textWidget.setProperty(hmUI.prop.TEXT, devAddrStr);
+  stopScanDevice();
+  startConnect(addr);
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/ble.js`, line 59
+
+```js
+devEvent.on("data", (text) => {
+  textWidget &&
+    textWidget.setProperty(hmUI.prop.TEXT, `data:${text.toString()}`);
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/ble.js`, line 69
+
+### `.onChange()` — **ambiguous**: called on `@zos/sensor.Accelerometer` or `@zos/sensor.Barometer` or `@zos/sensor.Battery` or `@zos/sensor.BloodOxygen` or `@zos/sensor.Calorie` or `@zos/sensor.Compass` or `@zos/sensor.Distance` or `@zos/sensor.FatBurning` or `@zos/sensor.Geolocation` or `@zos/sensor.Gyroscope` or `@zos/sensor.Screen` or `@zos/sensor.Stand` or `@zos/sensor.Step` or `@zos/sensor.Stress` or `@zos/sensor.Wear`
+
+```js
+acc.onChange(function (cb_info) {
+  const show_text =
+    "acc info\nx:" + cb_info.x + "\ny:" + cb_info.y + "\nz:" + cb_info.z;
+  textWidget.setProperty(hmUI.prop.TEXT, show_text);
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/acc.js`, line 19
+
+```js
+compass.onChange(function () {
+  let show_text = "compass info:";
+  show_text += "\ndirection_angle:" + compass.getDirectionAngle();
+  show_text += "\ndirection:" + compass.getDirection();
+  text.setProperty(hmUI.prop.TEXT, show_text);
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/compass.js`, line 19
+
+### `.onPerDay()` — `@zos/sensor.Time`
+
+```js
+timeSensor.onPerDay(() => {
+  logger.log(moduleName + " === day change ===");
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 50
+
+### `.onPerMinute()` — `@zos/sensor.Time`
+
+```js
+timeSensor.onPerMinute(() => {
+  logger.log(
+    `${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`
+  );
+  sendNotification();
+});
+```
+— `zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js`, line 43
+
 ### `.redraw()` — `@zos/ui.redraw`
 
 ```js
@@ -587,6 +1003,46 @@ let id = alarmMgr.set(alarmObj);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 77
 
+### `.setDate()` *(no record in this KB)*
+
+```js
+dateTime.setDate(value_index + 1); // 1~31
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 137
+
+### `.setFullYear()` *(no record in this KB)*
+
+```js
+dateTime.setFullYear(value_index + 1970);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 140
+
+### `.setHours()` *(no record in this KB)*
+
+```js
+dateTime.setHours(value_index);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 189
+
+### `.setMinutes()` *(no record in this KB)*
+
+```js
+dateTime.setMinutes(dateTime.getMinutes() + 5);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 21
+
+```js
+dateTime.setMinutes(value_index);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 192
+
+### `.setMonth()` *(no record in this KB)*
+
+```js
+dateTime.setMonth(value_index); // 0~11
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 134
+
 ### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
@@ -600,6 +1056,13 @@ function setProperty(w, p, v) {
 }
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/bgService.js`, line 11
+
+### `.setSeconds()` *(no record in this KB)*
+
+```js
+dateTime.setSeconds(value_index);
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 195
 
 ### `.showToast()` — `@zos/interaction.showToast`
 
@@ -654,3 +1117,31 @@ acc && acc.stop();
 // timer.stopTimer(animTimer);
 ```
 — `zeppos-samples/application/3.0/3.0-feature/pages/canvas.js`, line 244
+
+### `.substr()` *(no record in this KB)*
+
+```js
+queryString[0] === "?" ? queryString.substr(1) : queryString
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/utils.js`, line 11
+
+### `.toBuffer()` *(no record in this KB)*
+
+```js
+let data = Utils.toBuffer(arr);
+```
+— `zeppos-samples/application/3.0/3.0-feature/libs/ble.js`, line 63
+
+### `.toLocaleString()` *(no record in this KB)*
+
+```js
+"time: " + d.toLocaleString() + ", value:" + result.value + "\n";
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/spo2.js`, line 25
+
+### `.UTC()` *(no record in this KB)*
+
+```js
+//time: dateTime.UTC()/1000,
+```
+— `zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js`, line 40

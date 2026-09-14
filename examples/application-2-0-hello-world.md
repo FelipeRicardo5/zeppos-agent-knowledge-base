@@ -78,3 +78,23 @@ x: px(42),
 y: px(200),
 ```
 — `zeppos-samples/application/2.0/hello-world/page/gtr/home/index.style.js`, line 11
+
+## Methods called on a value
+
+These are never imported, so no import line names their module. The name is
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("helloworld");
+```
+— `zeppos-samples/application/2.0/hello-world/page/gtr/home/index.page.js`, line 5
+
+```js
+const logger = Logger.getLogger("helloworld");
+```
+— `zeppos-samples/application/2.0/hello-world/page/gts/home/index.page.js`, line 5

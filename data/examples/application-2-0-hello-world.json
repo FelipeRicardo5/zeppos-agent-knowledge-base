@@ -70,7 +70,22 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "2.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "2.0"
+      ],
+      "runtime.apiVersion.target": [
+        "2.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/gtr/home/index.page",
+        "page/gts/home/index.page"
+      ]
+    }
   },
   "files": [
     {
@@ -186,7 +201,24 @@
     }
   ],
   "globalCalls": [],
-  "memberCalls": [],
+  "memberCalls": [
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gtr/home/index.page.js",
+          "line": 5,
+          "code": "const logger = Logger.getLogger(\"helloworld\");"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/hello-world/page/gts/home/index.page.js",
+          "line": 5,
+          "code": "const logger = Logger.getLogger(\"helloworld\");"
+        }
+      ],
+      "resolved": false
+    }
+  ],
   "symbols": [
     "@zos/device.getDeviceInfo",
     "@zos/i18n.getText",
@@ -203,5 +235,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/hello-world",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

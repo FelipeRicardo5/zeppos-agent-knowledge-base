@@ -80,7 +80,57 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "2.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "2.1.0"
+      ],
+      "runtime.apiVersion.target": [
+        "2.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/index",
+        "page/sensor/blood_oxygen",
+        "page/sensor/calorie",
+        "page/sensor/distance",
+        "page/sensor/fat_burning",
+        "page/sensor/heart_rate",
+        "page/sensor/pai",
+        "page/sensor/sleep",
+        "page/sensor/stand",
+        "page/sensor/step",
+        "page/sensor/stress",
+        "page/sensor/geolocation",
+        "page/router/set_launch_app_timeout",
+        "page/interaction/on_digital_crown",
+        "page/interaction/on_wrist_motion",
+        "page/interaction/on_key",
+        "page/interaction/show_toast",
+        "page/interaction/create_modal",
+        "page/ui/widget/text",
+        "page/ui/widget/img",
+        "page/ui/widget/button",
+        "page/ui/widget/fill_rect",
+        "page/ui/widget/stroke_rect",
+        "page/ui/widget/arc",
+        "page/ui/widget/img_anim",
+        "page/ui/widget/qrcode",
+        "page/ui/widget/dialog",
+        "page/ui/widget/histogram",
+        "page/ui/widget/polyline",
+        "page/ui/widget/radio_group",
+        "page/ui/widget/checkbox_group",
+        "page/ui/widget/slide_switch",
+        "page/ui/widget/pick_date",
+        "page/ui/widget/scroll_list",
+        "page/ui/widget/view_container",
+        "page/ui/widget/cycle_list",
+        "page/ui/widget/cycle_image_text_list"
+      ]
+    }
   },
   "files": [
     {
@@ -837,7 +887,19 @@
           "line": 10,
           "code": "this.state.titleWidget.addEventListener(event.CLICK_DOWN, () => {\n  showToast({\n    content: 'Hello ZeppOS'\n  })\n})"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "addLine",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/ui/widget/polyline.js",
+          "line": 27,
+          "code": "polyline.addLine({\n  data: lineDataList,\n  count: lineDataList.length\n})"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "clear",
@@ -852,7 +914,19 @@
           "line": 33,
           "code": "polyline.clear()"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "click_func",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/utils/UI/ButtonList.js",
+          "line": 42,
+          "code": "this.click_func(i, index);"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "createWidget",
@@ -867,7 +941,95 @@
           "line": 23,
           "code": "const button1 = checkbox_group.createWidget(widget.STATE_BUTTON, {\n  x: px(40),\n  y: px(200),\n  w: px(64),\n  h: px(64)\n})"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getCurrent",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js",
+          "line": 14,
+          "code": "const currentObj = bloodOxygen.getCurrent();"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js",
+          "line": 22,
+          "code": "text: `EVENT-CHANGE:${bloodOxygen.getCurrent().value}`,"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getInfo",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/sleep.js",
+          "line": 12,
+          "code": "const { score, deepTime, startTime, endTime, totalTime } = sleep.getInfo();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLast",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js",
+          "line": 24,
+          "code": "text: `CURRENT: ${heartRate.getCurrent()}; LAST: ${heartRate.getLast()}`,"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js",
+          "line": 29,
+          "code": "text: `CURRENT: ${heartRate.getCurrent()}; LAST: ${heartRate.getLast()}`,"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLastWeek",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/pai.js",
+          "line": 23,
+          "code": "const lastWeekPAIArray = pai.getLastWeek();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLatitude",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js",
+          "line": 16,
+          "code": "console.log('latitude', geolocation.getLatitude());"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/utils/log.js",
+          "line": 3,
+          "code": "export default log.getLogger(\"Showcase\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLongitude",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js",
+          "line": 17,
+          "code": "console.log('longitude', geolocation.getLongitude());"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getProperty",
@@ -882,7 +1044,133 @@
           "line": 27,
           "code": "const isRunning = imgAnimation.getProperty(prop.ANIM_IS_RUNINNG)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getStage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/sleep.js",
+          "line": 30,
+          "code": "const sleepStageArray = sleep.getStage();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getStageConstantObj",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/sleep.js",
+          "line": 24,
+          "code": "const stageObj = sleep.getStageConstantObj();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getStatus",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js",
+          "line": 14,
+          "code": "console.log(geolocation.getStatus())"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/geolocation.js",
+          "line": 15,
+          "code": "if (geolocation.getStatus() === \"A\") {\n  console.log('latitude', geolocation.getLatitude());\n  console.log('longitude', geolocation.getLongitude());\n}"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTarget",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/calorie.js",
+          "line": 15,
+          "code": "text: `current:${calorie.getCurrent()};target:${calorie.getTarget()}`,"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/fat_burning.js",
+          "line": 15,
+          "code": "text: `current:${fatBurning.getCurrent()};target:${fatBurning.getTarget()}`,"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTime",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/router/set_launch_app_timeout.js",
+          "line": 27,
+          "code": "utc: time.getTime() + 1000"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getToday",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/pai.js",
+          "line": 14,
+          "code": "text: `todayPAI:${pai.getToday()}`,"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTotal",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/pai.js",
+          "line": 19,
+          "code": "text: `totalPAI:${pai.getTotal()}`,"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "onChange",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/blood_oxygen.js",
+          "line": 43,
+          "code": "click_func: bloodOxygen.onChange(changeCallback),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/calorie.js",
+          "line": 39,
+          "code": "click_func: calorie.onChange(changeCallback),"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "onCurrentChange",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js",
+          "line": 74,
+          "code": "click_func: heartRate.onCurrentChange(currCallback),"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "onLastChange",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/sensor/heart_rate.js",
+          "line": 92,
+          "code": "click_func: heartRate.onLastChange(lastCallback),"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -897,7 +1185,35 @@
           "line": 19,
           "code": "text.setProperty(prop.MORE, {\n  text: `key: ${key};action: ${action}`\n})"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "setScrollView",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/ui/widget/page_indicator.js",
+          "line": 6,
+          "code": "hmUI.setScrollView(true, page_size, page_cnt, vertical)"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "show",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/create_modal.js",
+          "line": 19,
+          "code": "dialog.show(false)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/showcase/page/interaction/create_modal.js",
+          "line": 25,
+          "code": "dialog.show(true)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "start",
@@ -912,7 +1228,8 @@
           "line": 21,
           "code": "geolocation.start();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stop",
@@ -927,7 +1244,8 @@
           "line": 25,
           "code": "this.state.instance && this.state.instance.stop()"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -970,5 +1288,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/showcase",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

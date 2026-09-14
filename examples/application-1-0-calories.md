@@ -110,6 +110,64 @@ hmSetting.getDeviceInfo();
 ```
 — `zeppos-samples/application/1.0/calories/utils/styles.js`, line 4
 
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = DeviceRuntimeCore.HmLogger.getLogger("calories-app");
+```
+— `zeppos-samples/application/1.0/calories/app.js`, line 3
+
+```js
+const logger = DeviceRuntimeCore.HmLogger.getLogger("calories");
+```
+— `zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js`, line 12
+
+### `.goBack()` *(no record in this KB)*
+
+```js
+hmApp.goBack();
+```
+— `zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js`, line 28
+
+```js
+hmApp.goBack();
+```
+— `zeppos-samples/application/1.0/calories/page/gts-3/food-list.js`, line 27
+
+### `.gotoPage()` *(no record in this KB)*
+
+```js
+hmApp.gotoPage({
+  file: "page/gtr-3/food-list",
+});
+```
+— `zeppos-samples/application/1.0/calories/page/gtr-3/index.js`, line 80
+
+```js
+hmApp.gotoPage({
+  file: "page/gts-3/food-list",
+});
+```
+— `zeppos-samples/application/1.0/calories/page/gts-3/index.js`, line 78
+
+### `.measureTextWidth()` *(no record in this KB)*
+
+```js
+DeviceRuntimeCore.HmUtils.measureTextWidth(
+  "" + calories,
+  CALORIE_TEXT_SIZE
+)
+```
+— `zeppos-samples/application/1.0/calories/page/gtr-3/index.js`, line 30
+
+```js
+DeviceRuntimeCore.HmUtils.measureTextWidth(
+  gettext("unit"),
+  UNIT_TEXT_SIZE
+)
+```
+— `zeppos-samples/application/1.0/calories/page/gtr-3/index.js`, line 36
+
 ### `.open()` *(no record in this KB)*
 
 ```js
@@ -135,15 +193,6 @@ hmFS.read(file, fileContentUnit.buffer, 0, size);
 hmFS.seek(file, 0, hmFS.SEEK_SET);
 ```
 — `zeppos-samples/application/1.0/calories/utils/storage.js`, line 30
-
-### `.set()` — `@zos/alarm.set`
-
-```js
-this.globalData.localStorage.set({
-  foodType: getApp()._options.globalData.foodType,
-});
-```
-— `zeppos-samples/application/1.0/calories/app.js`, line 22
 
 ### `.setProperty()` — `@zos/ui.setProperty`
 

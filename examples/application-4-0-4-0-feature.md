@@ -151,6 +151,13 @@ createWidget(widget.FILL_RECT, { parent: root_container, ...Styles.BACKGROUND_FI
 ```
 — `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 22
 
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = log.getLogger("app");
+```
+— `zeppos-samples/application/4.0/4.0-feature/app.js`, line 4
+
 ### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js
@@ -162,6 +169,18 @@ layout_show.setProperty(prop.TEXT, text_show);
 layout_show.setProperty(prop.TEXT, "tags:newtrack");
 ```
 — `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 139
+
+### `.toPixel()` *(no record in this KB)*
+
+```js
+item_space: "8".toPixel(),
+```
+— `zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js`, line 15
+
+```js
+x: "10vw".toPixel(),
+```
+— `zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js`, line 24
 
 ### `.updateLayoutStyle()` — `@zos/ui.updateLayoutStyle`
 

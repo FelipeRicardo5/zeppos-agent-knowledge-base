@@ -62,7 +62,21 @@
       "targets.*.module.page.pages",
       "targets.*.platforms",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "3.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "3.0"
+      ],
+      "runtime.apiVersion.target": [
+        "3.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/gt/home/index.page"
+      ]
+    }
   },
   "files": [
     {
@@ -158,7 +172,19 @@
           "line": 12,
           "code": "hmUI.createWidget(hmUI.widget.TEXT, TEXT_STYLE);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/hello-world/page/gt/home/index.page.js",
+          "line": 5,
+          "code": "const logger = Logger.getLogger(\"helloworld\");"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [
@@ -173,5 +199,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/hello-world",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

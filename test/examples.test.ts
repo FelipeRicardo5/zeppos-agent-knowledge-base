@@ -195,14 +195,30 @@ describe("enrichExamples", () => {
     ...overrides,
   });
 
-  it("keeps only the member calls a known symbol shares a name with", () => {
-    // parse cannot filter these — it has no symbol table. Without the join, a
-    // hundred receiver-specific names ride along attached to nothing.
+  it("labels a member call as resolved rather than dropping the rest", () => {
+    // This used to keep only the calls a symbol shared a name with. That
+    // criterion was circular — "this base does not know it" deleted exactly the
+    // evidence that would have closed a gap — and it hid `this.request`, which
+    // twelve sample call sites show and an eval run had to guess the shape of.
+    // Noise is excluded in parse now, by whether the app defines the method.
     const [record] = enrichExamples([raw()], [symbol("@zos/ui.setProperty")]);
 
     assert.deepEqual(
-      record.memberCalls.map((c) => c.method),
-      ["setProperty"],
+      record.memberCalls.map((c) => [c.method, c.resolved]),
+      [
+        ["setProperty", true],
+        ["cursorWidget", false],
+      ],
+    );
+  });
+
+  it("keeps an unresolved call, because that is the gap it is evidence of", () => {
+    const [record] = enrichExamples([raw()], []);
+
+    assert.deepEqual(
+      record.memberCalls.filter((c) => c.resolved === false).map((c) => c.method),
+      ["setProperty", "cursorWidget"],
+      "a call no symbol backs is the finding, not the noise",
     );
   });
 
@@ -244,7 +260,8 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
     targets: ["gt.r"],
     platforms: [],
     keys: ["app", "permissions"],
-    keyPaths: ["app", "app.appType", "permissions"],
+    values: {},
+  keyPaths: ["app", "app.appType", "permissions"],
   },
   files: [{ path: "page/index.js", runtime: "device-app", symbols: ["@zos/ui.createWidget"] }],
   usages: [

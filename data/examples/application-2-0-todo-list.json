@@ -73,7 +73,27 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "2.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "2.0"
+      ],
+      "runtime.apiVersion.target": [
+        "2.0"
+      ],
+      "targets.*.module.app-side.path": [
+        "app-side/index"
+      ],
+      "targets.*.module.page.pages": [
+        "page/home/index.page"
+      ],
+      "targets.*.module.setting.path": [
+        "setting/index"
+      ]
+    }
   },
   "files": [
     {
@@ -395,6 +415,92 @@
   ],
   "memberCalls": [
     {
+      "method": "_eachEntry",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 514,
+          "code": "this._eachEntry(input[i], i)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 518,
+          "code": "Enumerator.prototype._eachEntry = function _eachEntry(entry, i) {\n  var c = this._instanceConstructor\n  var resolve$$1 = c.resolve\n\n  if (resolve$$1 === resolve$1) {\n    var _then = void 0\n    var error = void 0\n    var didError = false\n    try {\n      _then = entry.then\n    } catch (e) {\n      didError = true"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_enumerate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 502,
+          "code": "this._enumerate(input)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 512,
+          "code": "Enumerator.prototype._enumerate = function _enumerate(input) {\n  for (var i = 0; this._state === PENDING && i < input.length; i++) {\n    this._eachEntry(input[i], i)\n  }\n}"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_onerror",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 347,
+          "code": "promise._onerror(promise._result)"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_setScheduler",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/device-polyfill.js",
+          "line": 4,
+          "code": "Promise._setScheduler(function (flush) {\n  flush && flush()\n})"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_settledAt",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 534,
+          "code": "this._settledAt(entry._state, i, entry._result)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 559,
+          "code": "Enumerator.prototype._settledAt = function _settledAt(state, i, value) {\n  var promise = this.promise\n\n  if (promise._state === PENDING) {\n    this._remaining--\n\n    if (state === REJECTED) {\n      reject(promise, value)\n    } else {\n      this._result[i] = value\n    }\n  }"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_willSettleAt",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 545,
+          "code": "this._willSettleAt(promise, i)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 547,
+          "code": "this._willSettleAt(\n  new c(function (resolve$$1) {\n    return resolve$$1(entry)\n  }),\n  i\n)"
+        }
+      ],
+      "resolved": false
+    },
+    {
       "method": "addListener",
       "snippets": [
         {
@@ -407,22 +513,24 @@
           "line": 306,
           "code": "messaging.peerSocket.addListener('message', (message) => {\n  DEBUG &&\n    logger.warn('[RAW] [R] receive size=>%d bin=>%s', message.byteLength, bin2hex(message))\n  this.onMessage(message)\n})"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "clear",
+      "method": "copy",
       "snippets": [
         {
-          "file": "zeppos-samples/application/2.0/todo-list/shared/event.js",
-          "line": 29,
-          "code": "this.map.clear()"
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 503,
+          "code": "dataBin.copy(tailBuf, headerSize, offset, offset + tailSize)"
         },
         {
           "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
-          "line": 220,
-          "code": "clear() {\n  this.sessions.clear()\n}"
+          "line": 525,
+          "code": "dataBin.copy(_buf, headerSize, offset, offset + hmDataSize)"
         }
-      ]
+      ],
+      "resolved": false
     },
     {
       "method": "createConnect",
@@ -437,22 +545,67 @@
           "line": 287,
           "code": "this.ble.createConnect((index, data, size) => {\n  DEBUG &&\n    logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, bin2hex(data))\n  this.onFragmentData(data)\n})"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "disConnect",
+      "method": "createTextNode",
       "snippets": [
         {
-          "file": "zeppos-samples/application/2.0/todo-list/app.js",
-          "line": 23,
-          "code": "this.globalData.messageBuilder && this.globalData.messageBuilder.disConnect()"
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 100,
+          "code": "var node = document.createTextNode('')"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "delete",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/event.js",
+          "line": 26,
+          "code": "this.map.delete(type)"
         },
         {
           "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
-          "line": 291,
-          "code": "disConnect(cb) {\n  logger.debug('app ble disconnect')\n  this.sendClose()\n  this.off('message')\n  this.ble && this.ble.disConnect()\n\n  cb && cb(this)\n}"
+          "line": 199,
+          "code": "this.sessions.delete(this.key(session))"
         }
-      ]
+      ],
+      "resolved": false
+    },
+    {
+      "method": "errorIfBleDisconnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 497,
+          "code": "this.errorIfBleDisconnect()"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 895,
+          "code": "errorIfBleDisconnect() {}"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "get",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/event.js",
+          "line": 8,
+          "code": "this.map.get(type).push(cb)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/event.js",
+          "line": 17,
+          "code": "const cbs = this.map.get(type)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getItem",
@@ -467,7 +620,78 @@
           "line": 7,
           "code": "? JSON.parse(settings.settingsStorage.getItem('todoList'))"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/app.js",
+          "line": 7,
+          "code": "const logger = Logger.getLogger('todo-list-app')"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 9,
+          "code": "const logger = Logger.getLogger('todo-list-page')"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "isBuffer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 991,
+          "code": "if (Buffer.isBuffer(data)) {\n  this.sendBuf({\n    requestId,\n    buf: data,\n    type: MessagePayloadType.Request,\n    contentType: MessagePayloadDataTypeOp.BIN,\n    dataType: getDataType(opts.dataType)\n  })\n} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {\n  this.sendBuf({\n    requestId,\n    buf: Buffer.from(data),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 1093,
+          "code": "if (Buffer.isBuffer(data)) {\n  this.sendBuf({\n    requestId,\n    buf: data,\n    type: MessagePayloadType.Request,\n    contentType: MessagePayloadDataTypeOp.BIN,\n    dataType: getDataType(opts.dataType)\n  })\n} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {\n  this.sendBuf({\n    requestId,\n    buf: Buffer.from(data),"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "isView",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 999,
+          "code": "} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 1101,
+          "code": "} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "nextTick",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 82,
+          "code": "return process.nextTick(flush)"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "observe",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 101,
+          "code": "observer.observe(node, { characterData: true })"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "open",
@@ -477,7 +701,41 @@
           "line": 842,
           "code": "xhr.open('GET', url);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "polyfill",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/device-polyfill.js",
+          "line": 2,
+          "code": "ES6Promise.polyfill()"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "postMessage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 113,
+          "code": "return channel.port2.postMessage(0)"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "require",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 143,
+          "code": "var vertx = Function('return this')().require('vertx')"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "send",
@@ -492,7 +750,56 @@
           "line": 449,
           "code": "const result = this.ble.send(buf.buffer, buf.byteLength)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "sendDataWithSession",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 505,
+          "code": "this.sendDataWithSession(\n  {\n    traceId,\n    spanId: spanId,\n    seqId: genSeqId(),\n    payload: tailBuf,\n    type,\n    opCode: MessagePayloadOpCode.Finished,\n    totalLength: userDataLength,\n    contentType,\n    dataType\n  },"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 528,
+          "code": "this.sendDataWithSession(\n  {\n    traceId,\n    spanId: spanId,\n    seqId: genSeqId(),\n    payload: _buf,\n    type,\n    opCode: MessagePayloadOpCode.Continued,\n    totalLength: userDataLength,\n    contentType,\n    dataType\n  },"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "sendHmProtocol",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 476,
+          "code": "sendHmProtocol(\n  { requestId, dataBin, type, contentType, dataType },\n  { messageType = MessageType.Data } = {}\n) {\n  const headerSize = 0\n  const hmDataSize = HM_MESSAGE_PROTO_PAYLOAD\n  const userDataLength = dataBin.byteLength\n\n  let offset = 0\n  const _buf = Buffer.alloc(hmDataSize)\n  const traceId = requestId ? requestId : genTraceId()\n  const spanId = genSpanId()"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 609,
+          "code": "this.sendHmProtocol({\n  requestId: traceId,\n  dataBin: packageBin,\n  type,\n  contentType,\n  dataType\n})"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "sendMsg",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 367,
+          "code": "this.sendMsg(shake)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+          "line": 388,
+          "code": "this.sendMsg(close)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "set",
@@ -507,22 +814,8 @@
           "line": 193,
           "code": "this.sessions.set(this.key(newSession), newSession)"
         }
-      ]
-    },
-    {
-      "method": "setItem",
-      "snippets": [
-        {
-          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
-          "line": 26,
-          "code": "settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))"
-        },
-        {
-          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
-          "line": 35,
-          "code": "settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))"
-        }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "setProperty",
@@ -537,7 +830,19 @@
           "line": 104,
           "code": "this.state.tipText && this.state.tipText.setProperty(prop.VISIBLE, isTip)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "setRequestHeader",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/todo-list/shared/es6-promise.js",
+          "line": 845,
+          "code": "xhr.setRequestHeader('Accept', 'application/json');"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [
@@ -563,5 +868,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/todo-list",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

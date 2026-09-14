@@ -66,6 +66,27 @@ receiver's type is **not** resolved, so treat the match as a hint rather than
 a fact. Where several candidates survive the row says **ambiguous** and names
 them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
+### `.getHours()` — `@zos/sensor.Time`
+
+```js
+const hourVal = time.getHours();
+```
+— `zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js`, line 25
+
+### `.getMinutes()` — `@zos/sensor.Time`
+
+```js
+const minuteVal = time.getMinutes();
+```
+— `zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js`, line 26
+
+### `.getSeconds()` — `@zos/sensor.Time`
+
+```js
+const secondVal = time.getSeconds();
+```
+— `zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js`, line 27
+
 ### `.setProperty()` *(no record in this KB)*
 
 ```js

@@ -78,7 +78,24 @@
       "targets.*.module.page.pages",
       "targets.*.platforms",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "4.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "4.0"
+      ],
+      "runtime.apiVersion.target": [
+        "4.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/index",
+        "page/TC/TC_01/index",
+        "page/TC/TC_02/index",
+        "page/TC/TC_03/index"
+      ]
+    }
   },
   "files": [
     {
@@ -308,7 +325,19 @@
           "line": 22,
           "code": "createWidget(widget.FILL_RECT, { parent: root_container, ...Styles.BACKGROUND_FILL_STYLE });"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/app.js",
+          "line": 4,
+          "code": "const logger = log.getLogger(\"app\");"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -323,7 +352,24 @@
           "line": 139,
           "code": "layout_show.setProperty(prop.TEXT, \"tags:newtrack\");"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "toPixel",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js",
+          "line": 15,
+          "code": "item_space: \"8\".toPixel(),"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js",
+          "line": 24,
+          "code": "x: \"10vw\".toPixel(),"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "updateLayoutStyle",
@@ -338,7 +384,8 @@
           "line": 111,
           "code": "group_root.updateLayoutStyle(flex_layout);"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -365,5 +412,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.0/4.0-feature",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

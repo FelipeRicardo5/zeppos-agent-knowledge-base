@@ -69,6 +69,20 @@ __$$app$$__.app = DeviceRuntimeCore.App({
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 81
 
+### `.clearImmediate()` *(no record in this KB)*
+
+```js
+globalNS.clearImmediate = function clearImmediate(timerRef) {
+    timerRef && timer.stopTimer(timerRef);
+};
+```
+— `zeppos-samples/watchface/1.0/simple/app.js`, line 61
+
+```js
+globalNS.clearImmediate(timer1);
+```
+— `zeppos-samples/watchface/1.0/simple/app.js`, line 66
+
 ### `.clearTimeout()` *(no record in this KB)*
 
 ```js
@@ -151,6 +165,27 @@ lang: new DeviceRuntimeCore.HmUtils.Lang(DeviceRuntimeCore.HmUtils.getLanguage()
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 11
 
+### `.getPx()` *(no record in this KB)*
+
+```js
+px: DeviceRuntimeCore.HmUtils.getPx(480)
+```
+— `zeppos-samples/watchface/1.0/simple/app.js`, line 12
+
+### `.gettextFactory()` *(no record in this KB)*
+
+```js
+__$$app$$__.__globals__.gettext = DeviceRuntimeCore.HmUtils.gettextFactory(languageTable, __$$app$$__.__globals__.lang, 'en-US');
+```
+— `zeppos-samples/watchface/1.0/simple/app.js`, line 16
+
+### `.Lang()` *(no record in this KB)*
+
+```js
+lang: new DeviceRuntimeCore.HmUtils.Lang(DeviceRuntimeCore.HmUtils.getLanguage()),
+```
+— `zeppos-samples/watchface/1.0/simple/app.js`, line 11
+
 ### `.setProperty()` — `hmUI.setProperty`
 
 ```js
@@ -180,3 +215,21 @@ timerRef && timer.stopTimer(timerRef);
 timerRef && timer.stopTimer(timerRef);
 ```
 — `zeppos-samples/watchface/1.0/simple/app.js`, line 62
+
+### `.WatchFace()` *(no record in this KB)*
+
+```js
+__$$module$$__.module = DeviceRuntimeCore.WatchFace({
+    init_view() {
+        // Create a background rectangle widget for the watch face.
+        hmUI.createWidget(hmUI.widget.FILL_RECT, {
+            x: 0,
+            y: 0,
+            w: 480,
+            h: 480,
+            color: "0xFF343934",
+            radius: 240,
+            show_level: hmUI.show_level.ONLY_NORMAL,
+        });
+```
+— `zeppos-samples/watchface/1.0/simple/watchface/default-target/index.js`, line 10

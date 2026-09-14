@@ -33,6 +33,20 @@ receiver's type is **not** resolved, so treat the match as a hint rather than
 a fact. Where several candidates survive the row says **ambiguous** and names
 them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
+### `.clearImmediate()` *(no record in this KB)*
+
+```js
+globalNS.clearImmediate = function clearImmediate(timerRef) {
+  timerRef && timer.stopTimer(timerRef)
+}
+```
+— `zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js`, line 25
+
+```js
+globalNS.clearImmediate(timer1)
+```
+— `zeppos-samples/watchface/1.0/color-world/shared/setTimeout.js`, line 34
+
 ### `.clearTimeout()` *(no record in this KB)*
 
 ```js
@@ -104,6 +118,18 @@ hmUI.createWidget(hmUI.widget.TEXT_IMG, {
   unit_tc: config.unitTc,
 ```
 — `zeppos-samples/watchface/1.0/color-world/watchface/square/index.js`, line 346
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger('color-world-app')
+```
+— `zeppos-samples/watchface/1.0/color-world/app.js`, line 3
+
+```js
+const logger = Logger.getLogger('color-world-page')
+```
+— `zeppos-samples/watchface/1.0/color-world/watchface/square/index.js`, line 1
 
 ### `.getProperty()` — `hmUI.getProperty`
 

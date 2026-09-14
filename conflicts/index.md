@@ -53,17 +53,26 @@ Settings App's `settings-storage.getItem`.
 | Call | Samples | Module symbols of that name | Instance members of that name |
 | --- | --- | --- | --- |
 | `.addEventListener()` | 7 | `@zos/ui.addEventListener` | `@zos/media.Player`, `@zos/media.Recorder` |
-| `.clear()` | 7 | `settings-storage.clear` | `@zos/storage.ShareLocalStorage`, `@zos/storage.ShareTypedStorage`, `@zos/storage.TypedStorage`, `@zos/storage.localStorage`, `@zos/storage.localStorage-instance`, `@zos/storage.sessionStorage`, `@zos/storage.sessionStorage-instance`, `@zos/utils.EventBus` |
 | `.getItem()` | 6 | `settings-storage.getItem` | `@zos/share-storage.LocalStorage`, `@zos/storage.ShareLocalStorage`, `@zos/storage.localStorage`, `@zos/storage.localStorage-instance`, `@zos/storage.sessionStorage`, `@zos/storage.sessionStorage-instance` |
-| `.setItem()` | 6 | `settings-storage.setItem` | `@zos/storage.ShareLocalStorage`, `@zos/storage.localStorage`, `@zos/storage.localStorage-instance`, `@zos/storage.sessionStorage`, `@zos/storage.sessionStorage-instance` |
 | `.addListener()` | 5 | `@zos/ble.addListener`, `messaging.addListener`, `settings-storage.addListener` | — |
+| `.getCurrent()` | 5 | — | `@zos/sensor.Accelerometer`, `@zos/sensor.Battery`, `@zos/sensor.BloodOxygen`, `@zos/sensor.BodyTemperature`, `@zos/sensor.Calorie`, `@zos/sensor.Distance`, `@zos/sensor.FatBurning`, `@zos/sensor.Gyroscope`, `@zos/sensor.HeartRate`, `@zos/sensor.Stand`, `@zos/sensor.Step`, `@zos/sensor.Stress` |
 | `.send()` | 4 | `@zos/ble.send`, `messaging.send` | — |
-| `.cancel()` | 3 | `@zos/alarm.cancel`, `@zos/notification.cancel` | — |
+| `.clear()` | 3 | — | `@zos/storage.ShareLocalStorage`, `@zos/storage.ShareTypedStorage`, `@zos/storage.TypedStorage`, `@zos/storage.localStorage`, `@zos/storage.localStorage-instance`, `@zos/storage.sessionStorage`, `@zos/storage.sessionStorage-instance`, `@zos/utils.EventBus` |
 | `.start()` | 3 | `@zos/app-service.start` | `@zos/crypto.DigestCrypto`, `@zos/media.Player`, `@zos/media.Recorder`, `@zos/sensor.Accelerometer`, `@zos/sensor.BloodOxygen`, `@zos/sensor.Buzzer`, `@zos/sensor.Compass`, `@zos/sensor.Geolocation`, `@zos/sensor.Gyroscope`, `@zos/sensor.SystemSounds`, `@zos/sensor.Vibrator` |
+| `.getInfo()` | 2 | — | `@zos/sensor.Sleep`, `@zos/sensor.WorldClock` |
+| `.getLastWeek()` | 2 | — | `@zos/sensor.Pai`, `@zos/sensor.Stress` |
+| `.getStatus()` | 2 | — | `@zos/media.Player`, `@zos/media.Recorder`, `@zos/sensor.Compass`, `@zos/sensor.Geolocation`, `@zos/sensor.Screen`, `@zos/sensor.Wear`, `@zos/sensor.Workout` |
+| `.getToday()` | 2 | — | `@zos/sensor.BodyTemperature`, `@zos/sensor.HeartRate`, `@zos/sensor.Pai`, `@zos/sensor.Stress` |
 | `.getType()` | 2 | `@zos/ui.getType` | `@zos/sensor.Vibrator` |
+| `.onChange()` | 2 | — | `@zos/sensor.Accelerometer`, `@zos/sensor.Barometer`, `@zos/sensor.Battery`, `@zos/sensor.BloodOxygen`, `@zos/sensor.Calorie`, `@zos/sensor.Compass`, `@zos/sensor.Distance`, `@zos/sensor.FatBurning`, `@zos/sensor.Geolocation`, `@zos/sensor.Gyroscope`, `@zos/sensor.Screen`, `@zos/sensor.Stand`, `@zos/sensor.Step`, `@zos/sensor.Stress`, `@zos/sensor.Wear` |
 | `.remove()` | 2 | — | `@zos/storage.ShareTypedStorage`, `@zos/storage.TypedStorage` |
+| `.setItem()` | 2 | `settings-storage.setItem` | `@zos/storage.ShareLocalStorage`, `@zos/storage.localStorage`, `@zos/storage.localStorage-instance`, `@zos/storage.sessionStorage`, `@zos/storage.sessionStorage-instance` |
 | `.stop()` | 2 | `@zos/app-service.stop` | `@zos/media.Player`, `@zos/media.Recorder`, `@zos/sensor.Accelerometer`, `@zos/sensor.BloodOxygen`, `@zos/sensor.Buzzer`, `@zos/sensor.Compass`, `@zos/sensor.Geolocation`, `@zos/sensor.Gyroscope`, `@zos/sensor.SystemSounds`, `@zos/sensor.Vibrator` |
+| `.cancel()` | 1 | `@zos/alarm.cancel`, `@zos/notification.cancel` | — |
 | `.exit()` | 1 | `@zos/app-service.exit`, `@zos/router.exit` | — |
+| `.getTarget()` | 1 | — | `@zos/sensor.Calorie`, `@zos/sensor.FatBurning`, `@zos/sensor.Stand`, `@zos/sensor.Step` |
+| `.has()` | 1 | — | `@zos/storage.ShareTypedStorage`, `@zos/storage.TypedStorage` |
+| `.offChange()` | 1 | — | `@zos/sensor.Accelerometer`, `@zos/sensor.Barometer`, `@zos/sensor.Battery`, `@zos/sensor.BloodOxygen`, `@zos/sensor.Calorie`, `@zos/sensor.Compass`, `@zos/sensor.Distance`, `@zos/sensor.FatBurning`, `@zos/sensor.Geolocation`, `@zos/sensor.Gyroscope`, `@zos/sensor.Screen`, `@zos/sensor.Stand`, `@zos/sensor.Step`, `@zos/sensor.Stress`, `@zos/sensor.Wear` |
 | `.readFileSync()` | 1 | `@zos/fs.readFileSync` | `@zos/share-storage.FileSystem` |
 
 ## `widget`: documented pages and written ids

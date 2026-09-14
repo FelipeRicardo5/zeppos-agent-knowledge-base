@@ -115,6 +115,35 @@ y: px(82),
 ```
 — `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js`, line 22
 
+## Methods called on a value
+
+These are never imported, so no import line names their module. The name is
+matched against the symbol records, narrowed to this sample's runtimes; the
+receiver's type is **not** resolved, so treat the match as a hint rather than
+a fact. Where several candidates survive the row says **ambiguous** and names
+them all — see [`../conflicts/index.md`](../conflicts/index.md).
+
+### `.getLogger()` *(no record in this KB)*
+
+```js
+const log = Logger.getLogger("app-side-service");
+```
+— `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js`, line 2
+
+### `.request()` *(no record in this KB)*
+
+```js
+this.request({
+  method: "your-method",
+  params: {
+    name: "foo",
+  },
+}).then((data) => {
+  this.log("result=>", data);
+});
+```
+— `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js`, line 137
+
 ## Global calls in the phone runtimes
 
 The Settings App and the Side Service are all globals: their files import

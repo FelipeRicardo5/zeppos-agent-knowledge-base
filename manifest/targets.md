@@ -13,6 +13,15 @@ page declares, not what a build was observed to accept.
 | `platforms` | `Array<object>` | yes | v2 | Mini Program running platform device selection. |
 | `designWidth` | `number` | yes | v2 | The design width of the current view, adjusted using the px runtime; this value depends on the design drafts |
 
+**What the 33 sample manifests write here.** Observed
+values with the number of apps writing each, not a permitted set — the table
+above states the shape and never the vocabulary.
+
+- `targets.*.module.app-side.path` — `app-side/index` (10), `app-side/index/index` (1)
+- `targets.*.module.page.pages` — `page/index` (8), `page/home/index.page` (3), `pages/index` (3), `page/gt/food-list` (2), `page/gt/home/index.page` (2), `page/gt/index` (2), `data-widget/index` (1), `data-widget/index.page` (1), `page/gtr-3/food-list` (1), `page/gtr-3/home/index.page` (1), `page/gtr-3/index` (1), `page/gtr/home/index.page` (1), `page/gtr3-pro/home/index.page` (1), `page/gtr3/home/index.page` (1), `page/gts-3/food-list` (1), `page/gts-3/index` (1), `page/gts/food-list` (1), `page/gts/home/index.page` (1), `page/gts/index` (1), `page/gts3/home/index.page` (1), `page/interaction/create_modal` (1), `page/interaction/on_digital_crown` (1), `page/interaction/on_key` (1), `page/interaction/on_wrist_motion` (1), `page/interaction/show_toast` (1), `page/router/set_launch_app_timeout` (1), `page/sensor/blood_oxygen` (1), `page/sensor/calorie` (1), `page/sensor/distance` (1), `page/sensor/fat_burning` (1), `page/sensor/geolocation` (1), `page/sensor/heart_rate` (1), `page/sensor/pai` (1), `page/sensor/sleep` (1), `page/sensor/stand` (1), `page/sensor/step` (1), `page/sensor/stress` (1), `page/TC/TC_01/index` (1), `page/TC/TC_02/index` (1), `page/TC/TC_03/index` (1), `page/ui/widget/arc` (1), `page/ui/widget/button` (1), `page/ui/widget/checkbox_group` (1), `page/ui/widget/cycle_image_text_list` (1), `page/ui/widget/cycle_list` (1), `page/ui/widget/dialog` (1), `page/ui/widget/fill_rect` (1), `page/ui/widget/histogram` (1), `page/ui/widget/img` (1), `page/ui/widget/img_anim` (1), `page/ui/widget/pick_date` (1), `page/ui/widget/polyline` (1), `page/ui/widget/qrcode` (1), `page/ui/widget/radio_group` (1), `page/ui/widget/scroll_list` (1), `page/ui/widget/slide_switch` (1), `page/ui/widget/stroke_rect` (1), `page/ui/widget/text` (1), `page/ui/widget/view_container` (1), `pages/acc` (1), `pages/alarm` (1), `pages/bgService` (1), `pages/ble` (1), `pages/canvas` (1), `pages/compass` (1), `pages/gps` (1), `pages/guidelines` (1), `pages/gyro` (1), `pages/heart` (1), `pages/newAlarm` (1), `pages/notification` (1), `pages/screen` (1), `pages/sensor` (1), `pages/sleep` (1), `pages/spo2` (1), `pages/stress` (1), `pages/systemEvent` (1), `pages/target` (1), `pages/workout` (1)
+- `targets.*.module.setting.path` — `setting/index` (5)
+- `targets.*.module.watchface.path` — `watchface/gtr-3-pro/index` (2), `watchface/gtr-3/index` (1), `watchface/gts-3/index` (1)
+
 ```js
 {
   "targets": {

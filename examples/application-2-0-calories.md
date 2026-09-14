@@ -230,12 +230,36 @@ hmUI.createWidget(hmUI.widget.FILL_RECT, {
 ```
 — `zeppos-samples/application/2.0/calories/page/gts/food-list.js`, line 60
 
+### `.getCurrent()` — **ambiguous**: called on `@zos/sensor.Accelerometer` or `@zos/sensor.Battery` or `@zos/sensor.BloodOxygen` or `@zos/sensor.BodyTemperature` or `@zos/sensor.Calorie` or `@zos/sensor.Distance` or `@zos/sensor.FatBurning` or `@zos/sensor.Gyroscope` or `@zos/sensor.HeartRate` or `@zos/sensor.Stand` or `@zos/sensor.Step` or `@zos/sensor.Stress`
+
+```js
+const calories = new Calorie().getCurrent(); // Math.floor(Math.random() * 1000)
+```
+— `zeppos-samples/application/2.0/calories/app-widget/index.js`, line 60
+
+```js
+let calories = new Calorie().getCurrent(); // Math.floor(Math.random() * 1000)
+```
+— `zeppos-samples/application/2.0/calories/page/gts/index.js`, line 68
+
 ### `.getItem()` — **ambiguous**: called on `@zos/share-storage.LocalStorage` or `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
 const { foodType = 'chocolate' } = localStorage.getItem('calorie', {})
 ```
 — `zeppos-samples/application/2.0/calories/app.js`, line 12
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("calories");
+```
+— `zeppos-samples/application/2.0/calories/app-widget/index.js`, line 6
+
+```js
+const logger = Logger.getLogger('calories-app')
+```
+— `zeppos-samples/application/2.0/calories/app.js`, line 4
 
 ### `.setItem()` — **ambiguous**: called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 

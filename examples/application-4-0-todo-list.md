@@ -219,17 +219,50 @@ return settingsLib.getItem('todoList')
 ```
 — `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 8
 
-### `.setItem()` — **ambiguous**: module `settings-storage.setItem`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
+### `.getLogger()` — `@zos/utils.log`
 
 ```js
-settingsLib.setItem('todoList', JSON.stringify(newTodoList))
+const logger = Logger.getLogger('todo-list-app')
 ```
-— `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 23
+— `zeppos-samples/application/4.0/todo-list/app.js`, line 4
 
 ```js
-settingsLib.setItem('todoList', JSON.stringify(newTodoList))
+const logger = Logger.getLogger('todo-list-page')
 ```
-— `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 32
+— `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 16
+
+### `.readFile()` *(no record in this KB)*
+
+```js
+const resData = readFile({
+  path: TODO_FILE_NAME,
+  options: {
+    encoding: 'utf8'
+  }
+})
+```
+— `zeppos-samples/application/4.0/todo-list/utils/fs.js`, line 10
+
+```js
+params = [...readFile(), ...data]
+```
+— `zeppos-samples/application/4.0/todo-list/utils/fs.js`, line 25
+
+### `.request()` *(no record in this KB)*
+
+```js
+this.request({
+  method: 'GET_TODO_LIST'
+})
+```
+— `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 59
+
+```js
+this.request({
+  method: 'ADD'
+})
+```
+— `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 71
 
 ### `.setProperty()` — `@zos/ui.setProperty`
 

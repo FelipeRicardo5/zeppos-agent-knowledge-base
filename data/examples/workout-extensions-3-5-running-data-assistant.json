@@ -202,7 +202,18 @@
       "targets.*.platforms",
       "targets.*.platforms.dw",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "3.6"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "3.6"
+      ],
+      "runtime.apiVersion.target": [
+        "3.6"
+      ]
+    }
   },
   "files": [
     {
@@ -290,6 +301,39 @@
   "globalCalls": [],
   "memberCalls": [
     {
+      "method": "getHours",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js",
+          "line": 25,
+          "code": "const hourVal = time.getHours();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getMinutes",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js",
+          "line": 26,
+          "code": "const minuteVal = time.getMinutes();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getSeconds",
+      "snippets": [
+        {
+          "file": "zeppos-samples/workout-extensions/3.5/running-data-assistant/data-widget/common/index.js",
+          "line": 27,
+          "code": "const secondVal = time.getSeconds();"
+        }
+      ],
+      "resolved": false
+    },
+    {
       "method": "setProperty",
       "snippets": [
         {
@@ -297,7 +341,8 @@
           "line": 33,
           "code": "timeText.setProperty(prop.MORE, {\n  text: hour + \":\" + minute + \":\" + second,\n});"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -318,5 +363,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/workout-extensions/3.5/running-data-assistant",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

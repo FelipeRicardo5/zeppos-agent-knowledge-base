@@ -62,7 +62,24 @@
       "targets.*.platforms",
       "targets.*.platforms.dw",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "4.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "4.0"
+      ],
+      "runtime.apiVersion.target": [
+        "4.0"
+      ],
+      "targets.*.module.app-side.path": [
+        "app-side/index"
+      ],
+      "targets.*.module.page.pages": [
+        "page/index"
+      ]
+    }
   },
   "files": [
     {
@@ -297,7 +314,30 @@
           "line": 34,
           "code": "textWidget = hmUI.createWidget(hmUI.widget.TEXT, {\n  ...FETCH_RESULT_TEXT,\n  text,\n});"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/fetch-api/page/index.js",
+          "line": 9,
+          "code": "const logger = Logger.getLogger(\"fetch_api\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "request",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/4.0/fetch-api/page/index.js",
+          "line": 25,
+          "code": "this.request({\n  method: \"GET_DATA\",\n})"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -307,7 +347,8 @@
           "line": 39,
           "code": "textWidget.setProperty(hmUI.prop.TEXT, text);"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -325,5 +366,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.0/fetch-api",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

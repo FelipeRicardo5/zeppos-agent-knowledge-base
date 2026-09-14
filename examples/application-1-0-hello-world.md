@@ -60,3 +60,15 @@ hmSetting.getDeviceInfo();
 hmSetting.getDeviceInfo();
 ```
 — `zeppos-samples/application/1.0/hello-world/page/gtr3-pro/home/index.style.js`, line 4
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = DeviceRuntimeCore.HmLogger.getLogger("helloworld");
+```
+— `zeppos-samples/application/1.0/hello-world/page/gtr3/home/index.page.js`, line 3
+
+```js
+const logger = DeviceRuntimeCore.HmLogger.getLogger("helloworld");
+```
+— `zeppos-samples/application/1.0/hello-world/page/gtr3-pro/home/index.page.js`, line 3

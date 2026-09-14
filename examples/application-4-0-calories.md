@@ -172,6 +172,25 @@ const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {
 ```
 — `zeppos-samples/application/4.0/calories/page/gt/food-list.js`, line 38
 
+### `.getCurrent()` — **ambiguous**: called on `@zos/sensor.Accelerometer` or `@zos/sensor.Battery` or `@zos/sensor.BloodOxygen` or `@zos/sensor.BodyTemperature` or `@zos/sensor.Calorie` or `@zos/sensor.Distance` or `@zos/sensor.FatBurning` or `@zos/sensor.Gyroscope` or `@zos/sensor.HeartRate` or `@zos/sensor.Stand` or `@zos/sensor.Step` or `@zos/sensor.Stress`
+
+```js
+let calories = new Calorie().getCurrent(); // Math.floor(Math.random() * 1000)
+```
+— `zeppos-samples/application/4.0/calories/page/gt/index.js`, line 68
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("calories-app");
+```
+— `zeppos-samples/application/4.0/calories/app.js`, line 4
+
+```js
+const logger = Logger.getLogger("calories");
+```
+— `zeppos-samples/application/4.0/calories/page/gt/food-list.js`, line 15
+
 ### `.getTextLayout()` — `@zos/ui.getTextLayout`
 
 ```js
@@ -191,15 +210,6 @@ const { width: w2 } = hmUI.getTextLayout(getText("unit"), {
 });
 ```
 — `zeppos-samples/application/4.0/calories/page/gt/index.js`, line 38
-
-### `.set()` — `@zos/alarm.set`
-
-```js
-this.globalData.localStorage.set({
-  foodType: getApp()._options.globalData.foodType,
-});
-```
-— `zeppos-samples/application/4.0/calories/app.js`, line 23
 
 ### `.setProperty()` — `@zos/ui.setProperty`
 

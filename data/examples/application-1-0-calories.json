@@ -78,7 +78,24 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "1.0.0"
+      ],
+      "runtime.apiVersion.target": [
+        "1.0.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/gtr-3/index",
+        "page/gtr-3/food-list",
+        "page/gts-3/index",
+        "page/gts-3/food-list"
+      ]
+    }
   },
   "files": [
     {
@@ -143,7 +160,8 @@
           "line": 81,
           "code": "text.addEventListener(hmUI.event.SELECT, () => {\n  this.state.radioGroup.setProperty(\n    hmUI.prop.CHECKED,\n    this.state.radioButtonsArray[index]\n  );\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "close",
@@ -158,7 +176,8 @@
           "line": 32,
           "code": "hmFS.close(file);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createSensor",
@@ -173,7 +192,8 @@
           "line": 64,
           "code": "let calories = hmSensor.createSensor(hmSensor.id.CALORIE).current; // Math.floor(Math.random() * 1000)"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -188,7 +208,8 @@
           "line": 35,
           "code": "const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {\n  ...FOOD_LIST_RADIOGROUP,\n  check_func: (group, index, checked) => {\n    if (checked) {\n      this.state.isFinishInit && this.setPrograms(index);\n    }\n  },\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "getDeviceInfo",
@@ -203,7 +224,72 @@
           "line": 4,
           "code": "hmSetting.getDeviceInfo();"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/app.js",
+          "line": 3,
+          "code": "const logger = DeviceRuntimeCore.HmLogger.getLogger(\"calories-app\");"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js",
+          "line": 12,
+          "code": "const logger = DeviceRuntimeCore.HmLogger.getLogger(\"calories\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "goBack",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/food-list.js",
+          "line": 28,
+          "code": "hmApp.goBack();"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gts-3/food-list.js",
+          "line": 27,
+          "code": "hmApp.goBack();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "gotoPage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/index.js",
+          "line": 80,
+          "code": "hmApp.gotoPage({\n  file: \"page/gtr-3/food-list\",\n});"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gts-3/index.js",
+          "line": 78,
+          "code": "hmApp.gotoPage({\n  file: \"page/gts-3/food-list\",\n});"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "measureTextWidth",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/index.js",
+          "line": 30,
+          "code": "DeviceRuntimeCore.HmUtils.measureTextWidth(\n  \"\" + calories,\n  CALORIE_TEXT_SIZE\n)"
+        },
+        {
+          "file": "zeppos-samples/application/1.0/calories/page/gtr-3/index.js",
+          "line": 36,
+          "code": "DeviceRuntimeCore.HmUtils.measureTextWidth(\n  gettext(\"unit\"),\n  UNIT_TEXT_SIZE\n)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "open",
@@ -218,7 +304,8 @@
           "line": 29,
           "code": "const file = hmFS.open(this.fileName, hmFS.O_RDONLY | hmFS.O_CREAT);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "read",
@@ -228,7 +315,8 @@
           "line": 31,
           "code": "hmFS.read(file, fileContentUnit.buffer, 0, size);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "seek",
@@ -238,17 +326,8 @@
           "line": 30,
           "code": "hmFS.seek(file, 0, hmFS.SEEK_SET);"
         }
-      ]
-    },
-    {
-      "method": "set",
-      "snippets": [
-        {
-          "file": "zeppos-samples/application/1.0/calories/app.js",
-          "line": 22,
-          "code": "this.globalData.localStorage.set({\n  foodType: getApp()._options.globalData.foodType,\n});"
-        }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "setProperty",
@@ -263,7 +342,8 @@
           "line": 94,
           "code": "this.state.radioGroup.setProperty(\n  hmUI.prop.INIT,\n  this.state.radioButtonsArray[0]\n);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stat",
@@ -273,7 +353,8 @@
           "line": 25,
           "code": "const [fsStat, err] = hmFS.stat(this.fileName);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "write",
@@ -283,7 +364,8 @@
           "line": 20,
           "code": "hmFS.write(file, contentBuffer, 0, contentBuffer.byteLength);"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [],
@@ -293,5 +375,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/1.0/calories",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

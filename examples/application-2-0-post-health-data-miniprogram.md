@@ -198,6 +198,13 @@ settings.settingsStorage.addListener(
 ```
 — `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 30
 
+### `.getInfo()` — **ambiguous**: called on `@zos/sensor.Sleep` or `@zos/sensor.WorldClock`
+
+```js
+const info = this.state.sleepInstance.getInfo();
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 52
+
 ### `.getItem()` — **ambiguous**: module `settings-storage.getItem`; called on `@zos/share-storage.LocalStorage` or `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
 ```js
@@ -209,6 +216,50 @@ body: settings.settingsStorage.getItem("sleepData"),
 const sleepData = JSON.parse(props.settingsStorage.getItem("sleepData"));
 ```
 — `zeppos-samples/application/2.0/post-health-data/MiniProgram/setting/index.js`, line 70
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("post-health-data");
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app.js`, line 7
+
+### `.getTime()` — `@zos/sensor.Time`
+
+```js
+utc: this.state.timeInstance.getTime(),
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 64
+
+### `.request()` *(no record in this KB)*
+
+```js
+this.request({
+  type: "UPLOAD",
+  params: {
+    ...this.state.sleepData,
+  },
+}).then((data) => {
+  const { message } = data;
+
+  showToast({ content: `UPLOAD ${message}` });
+});
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 107
+
+```js
+this.request({
+  type: "UPLOAD_DATA_SIDE_SERVICE",
+  params: {
+    ...this.state.sleepData,
+  },
+}).then((data) => {
+  const { message } = data;
+
+  showToast({ content: `UPLOAD_DATA_SIDE_SERVICE ${message}` });
+});
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 124
 
 ### `.setItem()` — **ambiguous**: module `settings-storage.setItem`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage`
 
@@ -228,6 +279,18 @@ settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
 this.state.textWidget.setProperty(prop.TEXT, text);
 ```
 — `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 84
+
+### `.use()` *(no record in this KB)*
+
+```js
+BaseSideService.use(messagingPlugin);
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 4
+
+```js
+BaseApp.use(appPlugin);
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app.js`, line 5
 
 ## Global calls in the phone runtimes
 

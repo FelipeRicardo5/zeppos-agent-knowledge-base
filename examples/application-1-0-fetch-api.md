@@ -35,6 +35,49 @@ receiver's type is **not** resolved, so treat the match as a hint rather than
 a fact. Where several candidates survive the row says **ambiguous** and names
 them all — see [`../conflicts/index.md`](../conflicts/index.md).
 
+### `._immediateFn()` *(no record in this KB)*
+
+```js
+Promise._immediateFn(function () {
+  var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected
+  if (cb === null) {
+    ;(self._state === 1 ? resolve : reject)(deferred.promise, self._value)
+    return
+  }
+  var ret
+  try {
+    ret = cb(self._value)
+  } catch (e) {
+    reject(deferred.promise, e)
+    return
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/promise.js`, line 125
+
+```js
+Promise._immediateFn(function () {
+  if (!self._handled) {
+    Promise._unhandledRejectionFn(self._value)
+  }
+})
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/promise.js`, line 174
+
+### `._unhandledRejectionFn()` *(no record in this KB)*
+
+```js
+Promise._unhandledRejectionFn(self._value)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/promise.js`, line 176
+
+```js
+Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
+  if (typeof console !== 'undefined' && console) {
+    console.log('[jsfwk.error  ] Possible Unhandled Promise Rejection:', err) // eslint-disable-line no-console
+  }
+}
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/promise.js`, line 320
+
 ### `.addListener()` — **ambiguous**: module `@zos/ble.addListener` or `messaging.addListener` or `settings-storage.addListener`
 
 ```js
@@ -45,19 +88,19 @@ messaging.peerSocket.addListener('message', (message) => {
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 229
 
-### `.clear()` — **ambiguous**: module `settings-storage.clear`; called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
+### `.clearImmediate()` *(no record in this KB)*
 
 ```js
-this.map.clear()
-```
-— `zeppos-samples/application/1.0/fetch-api/shared/event.js`, line 29
-
-```js
-clear() {
-  this.sessions.clear()
+globalNS.clearImmediate = function clearImmediate(timerRef) {
+  timerRef && timer.stopTimer(timerRef)
 }
 ```
-— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 159
+— `zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js`, line 25
+
+```js
+globalNS.clearImmediate(timer1)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/setTimeout.js`, line 34
 
 ### `.clearTimeout()` — `@zos/global.clearTimeout`
 
@@ -84,6 +127,18 @@ hmFS.close(file)
 hmFS.close(file)
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 79
+
+### `.copy()` *(no record in this KB)*
+
+```js
+dataBin.copy(tailBuf, headerSize, offset, offset + tailSize)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 439
+
+```js
+dataBin.copy(_buf, headerSize, offset, offset + dataSize)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 454
 
 ### `.createConnect()` — `@zos/ble.createConnect`
 
@@ -158,24 +213,29 @@ hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/application/1.0/fetch-api/pages/index.js`, line 39
 
-### `.disConnect()` — `@zos/ble.disConnect`
+### `.delete()` *(no record in this KB)*
 
 ```js
-this.globalData.messageBuilder.disConnect();
+this.map.delete(type)
 ```
-— `zeppos-samples/application/1.0/fetch-api/app.js`, line 25
+— `zeppos-samples/application/1.0/fetch-api/shared/event.js`, line 26
 
 ```js
-disConnect(cb) {
-  // logger.debug('app ble disconnect')
-  this.sendClose()
-  this.off('message')
-  hmBle && hmBle.disConnect()
-
-  cb && cb(this)
-}
+this.sessions.delete(this.key(session))
 ```
-— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 218
+— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 148
+
+### `.get()` *(no record in this KB)*
+
+```js
+this.map.get(type).push(cb)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/event.js`, line 8
+
+```js
+const cbs = this.map.get(type)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/event.js`, line 17
 
 ### `.getDeviceInfo()` — `@zos/device.getDeviceInfo`
 
@@ -183,6 +243,25 @@ disConnect(cb) {
 hmSetting.getDeviceInfo();
 ```
 — `zeppos-samples/application/1.0/fetch-api/utils/config/device.js`, line 2
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = DeviceRuntimeCore.HmLogger.getLogger("fetch_api");
+```
+— `zeppos-samples/application/1.0/fetch-api/pages/index.js`, line 7
+
+```js
+const logger = DeviceRuntimeCore.HmLogger.getLogger('fs.js')
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 1
+
+### `.mkdir()` *(no record in this KB)*
+
+```js
+hmFS.mkdir(path)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 115
 
 ### `.open()` *(no record in this KB)*
 
@@ -195,6 +274,13 @@ const file = hmFS.open(filename, hmFS.O_CREAT | hmFS.O_RDWR | hmFS.O_TRUNC)
 const file = hmFS.open(filename, hmFS.O_RDONLY)
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/fs.js`, line 73
+
+### `.packageInfo()` *(no record in this KB)*
+
+```js
+appId = hmApp.packageInfo().appId;
+```
+— `zeppos-samples/application/1.0/fetch-api/app.js`, line 15
 
 ### `.read()` *(no record in this KB)*
 
@@ -256,6 +342,18 @@ hmBle.send(buf.buffer, buf.byteLength)
 messaging.peerSocket.send(buf.buffer)
 ```
 — `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 394
+
+### `.sendMsg()` *(no record in this KB)*
+
+```js
+this.sendMsg(shake)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 285
+
+```js
+this.sendMsg(close)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 306
 
 ### `.set()` — `@zos/alarm.set`
 

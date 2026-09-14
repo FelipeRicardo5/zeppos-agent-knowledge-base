@@ -99,7 +99,36 @@ function subtree(sections: ManifestSection[], root: string): ManifestSection[] {
   return sections.filter((s) => s.path === root || s.path.startsWith(`${root}.`));
 }
 
-function sectionMarkdown(section: ManifestSection, depth: number): string[] {
+/**
+ * What real manifests write under a section, most common first.
+ *
+ * Matched by prefix, because the documented section is the parent: the page has
+ * a table for `runtime.apiVersion` while the values live at
+ * `runtime.apiVersion.target` and its siblings.
+ */
+function observedValueLines(sectionPath: string, observed: Observed): string[] {
+  const under = [...observed.values]
+    .filter(([keyPath]) => keyPath === sectionPath || keyPath.startsWith(`${sectionPath}.`))
+    .sort(([a], [b]) => a.localeCompare(b));
+  if (under.length === 0) return [];
+
+  const lines = [
+    `**What the ${observed.manifests} sample manifests write here.** Observed`,
+    "values with the number of apps writing each, not a permitted set — the table",
+    "above states the shape and never the vocabulary.",
+    "",
+  ];
+  for (const [keyPath, seen] of under) {
+    const written = [...seen].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    lines.push(
+      `- \`${keyPath}\` — ` + written.map(([value, apps]) => `\`${value}\` (${apps})`).join(", "),
+    );
+  }
+  lines.push("");
+  return lines;
+}
+
+function sectionMarkdown(section: ManifestSection, depth: number, observed: Observed): string[] {
   const heading = "#".repeat(Math.min(depth + 2, 6));
   const lines = [`${heading} \`${section.path}\``, ""];
 
@@ -112,12 +141,13 @@ function sectionMarkdown(section: ManifestSection, depth: number): string[] {
   if (section.props.length > 0) lines.push(...propTable(section.props), "");
   else lines.push("The page states no property table for this key — only the example below.", "");
 
+  lines.push(...observedValueLines(section.path, observed));
   lines.push(...exampleBlocks(section.examples));
   return lines;
 }
 
 /** One page per top-level key with a shape of its own. */
-function keyPageMarkdown(record: AppJsonRecord, root: ManifestSection): string {
+function keyPageMarkdown(record: AppJsonRecord, root: ManifestSection, observed: Observed): string {
   const sections = subtree(record.sections, root.path);
   const lines = [
     `# \`app.json\` — \`${root.path}\``,
@@ -130,7 +160,9 @@ function keyPageMarkdown(record: AppJsonRecord, root: ManifestSection): string {
   ];
 
   for (const section of sections) {
-    lines.push(...sectionMarkdown(section, section.path.split(".").length - root.path.split(".").length));
+    lines.push(
+      ...sectionMarkdown(section, section.path.split(".").length - root.path.split(".").length, observed),
+    );
   }
 
   const gaps = record.gaps.filter((gap) => gap.path.startsWith(`${root.path}.`));
@@ -153,6 +185,16 @@ function keyPageMarkdown(record: AppJsonRecord, root: ManifestSection): string {
 interface Observed {
   /** Key path -> how many sample manifests contain it. */
   paths: Map<string, number>;
+  /**
+   * Key path -> the values real manifests put there, each with how many apps
+   * write it.
+   *
+   * The reference page states the *shape* of `runtime.apiVersion` and never
+   * what goes in it. An eval run read that table, found three string fields
+   * described as versions, and invented `"4.2.0"` — where every sample writes
+   * the API_LEVEL itself. The schema was documented and the vocabulary was not.
+   */
+  values: Map<string, Map<string, number>>;
   /** Permission code -> how many sample manifests declare it. */
   permissions: Map<string, number>;
   manifests: number;
@@ -405,14 +447,21 @@ async function readObserved(examplesDir: string): Promise<Observed> {
 
   const paths = new Map<string, number>();
   const permissions = new Map<string, number>();
+  const values = new Map<string, Map<string, number>>();
   for (const manifest of manifests) {
     for (const keyPath of manifest.keyPaths ?? []) paths.set(keyPath, (paths.get(keyPath) ?? 0) + 1);
     for (const code of manifest.permissions) {
       permissions.set(code, (permissions.get(code) ?? 0) + 1);
     }
+    for (const [keyPath, written] of Object.entries(manifest.values ?? {})) {
+      const seen = values.get(keyPath) ?? new Map<string, number>();
+      // Once per app, however many targets repeat it inside that one file.
+      for (const value of new Set(written)) seen.set(value, (seen.get(value) ?? 0) + 1);
+      values.set(keyPath, seen);
+    }
   }
 
-  return { paths, permissions, manifests: manifests.length };
+  return { paths, permissions, values, manifests: manifests.length };
 }
 
 /**
@@ -463,7 +512,7 @@ export async function renderManifest(
   for (const root of roots) {
     const file = `${root.key}.md`;
     pages.set(root.key, file);
-    await writePage(path.join(dir, file), keyPageMarkdown(record, root));
+    await writePage(path.join(dir, file), keyPageMarkdown(record, root, observed));
   }
 
   await writePage(path.join(dir, INDEX_FILE), indexMarkdown(record, observed, symbols, pages));

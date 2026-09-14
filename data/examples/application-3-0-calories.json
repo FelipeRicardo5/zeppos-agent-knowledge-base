@@ -61,7 +61,22 @@
       "targets.*.platforms",
       "targets.*.platforms.dw",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "3.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "3.0"
+      ],
+      "runtime.apiVersion.target": [
+        "3.0"
+      ],
+      "targets.*.module.page.pages": [
+        "page/gt/index",
+        "page/gt/food-list"
+      ]
+    }
   },
   "files": [
     {
@@ -268,7 +283,8 @@
           "line": 79,
           "code": "text.addEventListener(hmUI.event.SELECT, () => {\n  this.state.radioGroup.setProperty(\n    hmUI.prop.CHECKED,\n    this.state.radioButtonsArray[index]\n  );\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -283,7 +299,35 @@
           "line": 38,
           "code": "const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {\n  ...FOOD_LIST_RADIOGROUP,\n  check_func: (group, index, checked) => {\n    if (checked) {\n      this.state.isFinishInit && this.setPrograms(index);\n    }\n  },\n});"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getCurrent",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/calories/page/gt/index.js",
+          "line": 68,
+          "code": "let calories = new Calorie().getCurrent(); // Math.floor(Math.random() * 1000)"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/calories/app.js",
+          "line": 4,
+          "code": "const logger = Logger.getLogger(\"calories-app\");"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/calories/page/gt/food-list.js",
+          "line": 15,
+          "code": "const logger = Logger.getLogger(\"calories\");"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "getTextLayout",
@@ -298,17 +342,8 @@
           "line": 38,
           "code": "const { width: w2 } = hmUI.getTextLayout(getText(\"unit\"), {\n  text_size: UNIT_TEXT_SIZE,\n  text_width: 0,\n  wrapped: 0,\n});"
         }
-      ]
-    },
-    {
-      "method": "set",
-      "snippets": [
-        {
-          "file": "zeppos-samples/application/3.0/calories/app.js",
-          "line": 23,
-          "code": "this.globalData.localStorage.set({\n  foodType: getApp()._options.globalData.foodType,\n});"
-        }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "setProperty",
@@ -323,7 +358,8 @@
           "line": 87,
           "code": "this.state.radioGroup.setProperty(\n  hmUI.prop.INIT,\n  this.state.radioButtonsArray[0]\n);"
         }
-      ]
+      ],
+      "resolved": true
     }
   ],
   "symbols": [
@@ -345,5 +381,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/calories",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

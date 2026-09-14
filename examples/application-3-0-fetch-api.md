@@ -140,6 +140,22 @@ textWidget = hmUI.createWidget(hmUI.widget.TEXT, {
 ```
 — `zeppos-samples/application/3.0/fetch-api/page/index.js`, line 34
 
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger("fetch_api");
+```
+— `zeppos-samples/application/3.0/fetch-api/page/index.js`, line 9
+
+### `.request()` *(no record in this KB)*
+
+```js
+this.request({
+  method: "GET_DATA",
+})
+```
+— `zeppos-samples/application/3.0/fetch-api/page/index.js`, line 25
+
 ### `.setProperty()` — `@zos/ui.setProperty`
 
 ```js

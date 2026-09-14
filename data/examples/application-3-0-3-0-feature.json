@@ -82,7 +82,40 @@
       "targets.*.module.page.pages",
       "targets.*.platforms",
       "targets.*.platforms.st"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "3.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "3.0"
+      ],
+      "runtime.apiVersion.target": [
+        "3.0"
+      ],
+      "targets.*.module.page.pages": [
+        "pages/index",
+        "pages/acc",
+        "pages/alarm",
+        "pages/bgService",
+        "pages/canvas",
+        "pages/ble",
+        "pages/compass",
+        "pages/gps",
+        "pages/screen",
+        "pages/workout",
+        "pages/gyro",
+        "pages/heart",
+        "pages/newAlarm",
+        "pages/notification",
+        "pages/sensor",
+        "pages/sleep",
+        "pages/spo2",
+        "pages/stress",
+        "pages/target",
+        "pages/systemEvent"
+      ]
+    }
   },
   "files": [
     {
@@ -571,6 +604,22 @@
   "globalCalls": [],
   "memberCalls": [
     {
+      "method": "ab2Str",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 6,
+          "code": "console.log(\"this is mac addr ====\" + Utils.ab2Str(mac).toString());"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 64,
+          "code": "console.log(Utils.ab2Str(data).toString() + \"this is data num\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
       "method": "addEventListener",
       "snippets": [
         {
@@ -583,7 +632,51 @@
           "line": 79,
           "code": "canvasIndex0.addEventListener(hmUI.event.CLICK_DOWN, btnDnCb);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "c1",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 169,
+          "code": "w2 = Math.round(Utils.c1(w1, 2) * 1000);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 171,
+          "code": "w2 = Math.round(Utils.c1(w1, 1) * 1000);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "c2",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 174,
+          "code": "w2 = Math.round(Utils.c2(w1, 3) / 0.0022046);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 176,
+          "code": "w2 = Math.round(Utils.c2(w1, 2) / 0.0022046);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "calc32Data",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 160,
+          "code": "const w1 = Utils.calc32Data(\n  dataview.getUint8(10),\n  dataview.getUint8(11),\n  dataview.getUint8(12),\n  0\n);"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "cancel",
@@ -598,7 +691,8 @@
           "line": 70,
           "code": "notificationMgr.cancel(b);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "clear",
@@ -613,7 +707,19 @@
           "line": 212,
           "code": "canvasIndex1.clear({\n  ...CANVAS_STYLE_1_CLEAR_1,\n  x: anim.posx,\n});"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "cmpLength",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 158,
+          "code": "} else if (Utils.cmpLength(cnParam.data, 19)) {"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "createTimer",
@@ -623,7 +729,8 @@
           "line": 237,
           "code": "// animTimer = timer.createTimer(0, 100, timerCB, undefined);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "createWidget",
@@ -638,7 +745,8 @@
           "line": 14,
           "code": "textWidget = hmUI.createWidget(hmUI.widget.TEXT, {\n  ...Styles.TEXT_STYLE,\n  text: \"ACC Info simulator sample value from positive horizontal to negative horizontal\",\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "deleteWidget",
@@ -648,7 +756,83 @@
           "line": 83,
           "code": "hmUI.deleteWidget(vc), (vc = null);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "drawCircle",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 110,
+          "code": "canvasIndex2.drawCircle({\n  center_x: CANVAS_1.center_x,\n  center_y: CANVAS_1.center_y,\n  radius: CANVAS_1.radius,\n  color: 0xfff400,\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 117,
+          "code": "canvasIndex2.drawCircle({\n  center_x: CANVAS_2.center_x,\n  center_y: CANVAS_2.center_y,\n  radius: CANVAS_2.radius,\n  color: 0x1ff4ff,\n});"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "drawFill",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 125,
+          "code": "canvasIndex2.drawFill(CANVAS_STYLE_2_REC_1);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 126,
+          "code": "canvasIndex2.drawFill(CANVAS_STYLE_2_REC_2);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "drawImage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 62,
+          "code": "canvasIndex0.drawImage({\n  x: 0,\n  y: 0,\n  w: DEVICE_WIDTH,\n  h: DEVICE_HEIGHT,\n  alpha: 255,\n  image: \"images/canvas/backg.png\",\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 93,
+          "code": "canvasIndex1.drawImage({\n  ...CANVAS_STYLE_1_IMG,\n  image: \"images/canvas/anim2/WDF_Animation_1.png\",\n});"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "drawText",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/canvas.js",
+          "line": 71,
+          "code": "canvasIndex0.drawText({\n  ...CANVAS_TEXT,\n  text: \"all in canvas\",\n});"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "emit",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 82,
+          "code": "devEvent.emit(\"scan\", result.dev_addr);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 101,
+          "code": "devEvent.emit(\"error\");"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "exit",
@@ -658,7 +842,8 @@
           "line": 37,
           "code": "appServiceMgr.exit();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "getAllAlarms",
@@ -668,7 +853,8 @@
           "line": 39,
           "code": "let alarms = alarmMgr.getAllAlarms();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "getAllAppServices",
@@ -678,7 +864,8 @@
           "line": 119,
           "code": "let services = appService.getAllAppServices();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "getAllNotifications",
@@ -688,7 +875,300 @@
           "line": 52,
           "code": "let notifications = notificationMgr.getAllNotifications();"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "getCurrent",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/spo2.js",
+          "line": 21,
+          "code": "const result = spo2Sr.getCurrent();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getDailySummary",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/heart.js",
+          "line": 26,
+          "code": "let maxHr = hrSr.getDailySummary();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getDate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 100,
+          "code": "}-${dateTime.getDate()}`"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 168,
+          "code": "init_val_index: dateTime.getDate() - 1,"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getDirection",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/compass.js",
+          "line": 22,
+          "code": "show_text += \"\\ndirection:\" + compass.getDirection();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getDirectionAngle",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/compass.js",
+          "line": 21,
+          "code": "show_text += \"\\ndirection_angle:\" + compass.getDirectionAngle();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getFullYear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 98,
+          "code": "`${dateTime.getFullYear()}-${\n  dateTime.getMonth() + 1\n}-${dateTime.getDate()}`"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 172,
+          "code": "init_val_index: dateTime.getFullYear() - 1970,"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getHistory",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/workout.js",
+          "line": 18,
+          "code": "const history = workout.getHistory();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getHours",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 17,
+          "code": "content: `Now the time is ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`,"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 45,
+          "code": "`${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLastWeek",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/stress.js",
+          "line": 109,
+          "code": "let all7DaysHours = stressSr.getLastWeek();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLastWeekByHour",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/stress.js",
+          "line": 133,
+          "code": "let allDays = stressSr.getLastWeekByHour();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/system_event_service.js",
+          "line": 2,
+          "code": "const logger = log.getLogger(\"system_event_service\");"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 10,
+          "code": "const logger = log.getLogger(\"time.service\");"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getMinutes",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 17,
+          "code": "content: `Now the time is ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`,"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 45,
+          "code": "`${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getMonth",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 99,
+          "code": "dateTime.getMonth() + 1"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 164,
+          "code": "init_val_index: dateTime.getMonth(),"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getNap",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/sleep.js",
+          "line": 38,
+          "code": "let shortSlp = sleepSr.getNap();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getSeconds",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 17,
+          "code": "content: `Now the time is ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`,"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 45,
+          "code": "`${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getSleepingStatus",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/sleep.js",
+          "line": 26,
+          "code": "let sleeping = sleepSr.getSleepingStatus();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getStatus",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/screen.js",
+          "line": 16,
+          "code": "text: \"screen Info: status: \" + screen.getStatus(),"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/screen.js",
+          "line": 21,
+          "code": "const show_text = \"screen Info: status: \" + screen.getStatus();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTime",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 70,
+          "code": "alarmObj.time = Math.floor(dateTime.getTime() / 1000);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getToday",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/stress.js",
+          "line": 57,
+          "code": "let allday = stressSr.getToday();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getTodayByHour",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/stress.js",
+          "line": 81,
+          "code": "let allHours = stressSr.getTodayByHour();"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getUint16",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 155,
+          "code": "const r = dataview.getUint16(7, true);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 179,
+          "code": "const impedance = dataview.getUint16(13, true);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getUint8",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 159,
+          "code": "const unit = dataview.getUint8(21);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 161,
+          "code": "dataview.getUint8(10),"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "mstBuildProfile",
@@ -698,7 +1178,8 @@
           "line": 57,
           "code": "hmBle.mstBuildProfile(profileObject);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstConnect",
@@ -708,7 +1189,8 @@
           "line": 94,
           "code": "hmBle.mstConnect(mac, function (conParam) {\n  console.log(\"----------mstConnect\");\n  console.log(conParam.connected, conParam.connect_id);\n  if (conParam.connected === 0) {\n    console.log(\"**************connected\");\n    hmBle.mstDisconnect(() => {\n      console.log(\"----------mstDisconnect\");\n      devEvent.emit(\"error\");\n    });\n    hmBle.mstOnPrepare(function (preParam) {\n      console.log(\"----------mstOnPrepare\");\n      if (preParam.status === 0) {"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstDisconnect",
@@ -723,7 +1205,8 @@
           "line": 204,
           "code": "hmBle.mstDisconnect(connectId);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOffAllCb",
@@ -733,7 +1216,8 @@
           "line": 209,
           "code": "hmBle.mstOffAllCb();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOnCharaNotification",
@@ -743,7 +1227,8 @@
           "line": 143,
           "code": "hmBle.mstOnCharaNotification(function (cnParam) {\n  console.log(\"----------mstOnCharaNotification\");\n  console.log(\"*1***\", cnParam.uuid);\n  console.log(\"*2***\", cnParam.length);\n  console.log(\"*3***\", cnParam.profile);\n  const arr = Utils.ab2Str(cnParam.data);\n\n  console.log(\"*origin data***\", JSON.stringify(arr));\n  if (cnParam.data.byteLength < 6) {\n    return;\n  }\n  const dataview = new DataView(cnParam.data);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOnCharaValueArrived",
@@ -753,7 +1238,8 @@
           "line": 113,
           "code": "hmBle.mstOnCharaValueArrived(function (ccParam) {\n  console.log(\"----------mstOnCharaValueArrived\");\n  console.log(ccParam.profile, ccParam.uuid, ccParam.status);\n  if (ccParam.status === 0) {\n    console.log(\"**************CharaValueArrived\");\n  } else {\n    console.log(\"===error CharaValueArrived\");\n    devEvent.emit(\"error\");\n  }\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOnCharaWriteComplete",
@@ -763,7 +1249,8 @@
           "line": 123,
           "code": "hmBle.mstOnCharaWriteComplete(function (ccParam) {\n  console.log(\"----------mstOnCharaWriteComplete\");\n  console.log(ccParam.profile, ccParam.uuid, ccParam.status);\n  if (ccParam.status === 0) {\n    console.log(\"**************CharaWriteComplete\");\n  } else {\n    console.log(\"===error mstOnCharaWriteComplete\");\n    devEvent.emit(\"error\");\n  }\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOnDescValueArrived",
@@ -773,7 +1260,8 @@
           "line": 133,
           "code": "hmBle.mstOnDescValueArrived(function (param) {\n  console.log(\"----------mstOnDescValueArrived\");\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOnDescWriteComplete",
@@ -783,7 +1271,8 @@
           "line": 136,
           "code": "hmBle.mstOnDescWriteComplete(function (dwcParam) {\n  console.log(\"----------mstOnDescWriteComplete\");\n  console.log(\"*1***\", dwcParam.chara);\n  console.log(\"*2***\", dwcParam.desc);\n  console.log(\"*3***\", dwcParam.status);\n  console.log(\"*4***\", dwcParam.profile);\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOnPrepare",
@@ -793,7 +1282,8 @@
           "line": 103,
           "code": "hmBle.mstOnPrepare(function (preParam) {\n  console.log(\"----------mstOnPrepare\");\n  if (preParam.status === 0) {\n    console.log(\"**************prepared\");\n    createListen(preParam.profile);\n  } else {\n    console.log(\"===error mstOnPrepare\");\n    devEvent.emit(\"error\");\n  }\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOnServiceChangeBegin",
@@ -803,7 +1293,8 @@
           "line": 189,
           "code": "hmBle.mstOnServiceChangeBegin(function (param) {\n  console.log(\"----------mstOnServiceChangeBegin\");\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstOnServiceChangeEnd",
@@ -813,7 +1304,8 @@
           "line": 192,
           "code": "hmBle.mstOnServiceChangeEnd(function (param) {\n  console.log(\"----------mstOnServiceChangeEnd\");\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstStartScan",
@@ -823,7 +1315,8 @@
           "line": 76,
           "code": "hmBle.mstStartScan(function (result) {\n  console.log(\"--has been scanned---\", result.dev_name);\n  if (result.dev_name !== deviceName) {\n    return;\n  }\n  console.log(\"--target device----\", JSON.stringify(result));\n  devEvent.emit(\"scan\", result.dev_addr);\n});"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstStopScan",
@@ -833,7 +1326,8 @@
           "line": 88,
           "code": "hmBle.mstStopScan();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "mstWriteDescriptor",
@@ -843,7 +1337,8 @@
           "line": 65,
           "code": "hmBle.mstWriteDescriptor(\n  profile,\n  `0000${uuid}-0000-1000-8000-00805f9b34fb`,\n  \"2902\",\n  data,\n  arr.length\n);"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "notify",
@@ -858,7 +1353,78 @@
           "line": 29,
           "code": "notificationMgr.notify({\n  title: \"This is title\",\n  content: \"This is content ...\",\n  actions: [\n    {\n      text: \"Home Page\",\n      file: \"pages/index\",\n    },\n    {\n      text: \"GO1\",\n      file: \"pages/target\",\n      param: \"GO1 button Clicked\","
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "offChange",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/screen.js",
+          "line": 39,
+          "code": "screen.offChange(callback);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/spo2.js",
+          "line": 47,
+          "code": "spo2Sr.offChange(callback);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "on",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/ble.js",
+          "line": 59,
+          "code": "devEvent.on(\"scan\", (addr) => {\n  console.log(\"---emit scan---\");\n  const devAddrArr = ab2Arr(addr).map((d) => d.toString(16).toUpperCase());\n  const devAddrStr = devAddrArr.join(\":\");\n  console.log(\"---device mac---\", devAddrStr);\n  textWidget && textWidget.setProperty(hmUI.prop.TEXT, devAddrStr);\n  stopScanDevice();\n  startConnect(addr);\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/ble.js",
+          "line": 69,
+          "code": "devEvent.on(\"data\", (text) => {\n  textWidget &&\n    textWidget.setProperty(hmUI.prop.TEXT, `data:${text.toString()}`);\n});"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "onChange",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/acc.js",
+          "line": 19,
+          "code": "acc.onChange(function (cb_info) {\n  const show_text =\n    \"acc info\\nx:\" + cb_info.x + \"\\ny:\" + cb_info.y + \"\\nz:\" + cb_info.z;\n  textWidget.setProperty(hmUI.prop.TEXT, show_text);\n});"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/compass.js",
+          "line": 19,
+          "code": "compass.onChange(function () {\n  let show_text = \"compass info:\";\n  show_text += \"\\ndirection_angle:\" + compass.getDirectionAngle();\n  show_text += \"\\ndirection:\" + compass.getDirection();\n  text.setProperty(hmUI.prop.TEXT, show_text);\n});"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "onPerDay",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 50,
+          "code": "timeSensor.onPerDay(() => {\n  logger.log(moduleName + \" === day change ===\");\n});"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "onPerMinute",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/app-service/time_service.js",
+          "line": 43,
+          "code": "timeSensor.onPerMinute(() => {\n  logger.log(\n    `${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`\n  );\n  sendNotification();\n});"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "redraw",
@@ -868,7 +1434,8 @@
           "line": 84,
           "code": "hmUI.redraw();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "set",
@@ -878,7 +1445,68 @@
           "line": 77,
           "code": "let id = alarmMgr.set(alarmObj);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "setDate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 137,
+          "code": "dateTime.setDate(value_index + 1); // 1~31"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "setFullYear",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 140,
+          "code": "dateTime.setFullYear(value_index + 1970);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "setHours",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 189,
+          "code": "dateTime.setHours(value_index);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "setMinutes",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 21,
+          "code": "dateTime.setMinutes(dateTime.getMinutes() + 5);"
+        },
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 192,
+          "code": "dateTime.setMinutes(value_index);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "setMonth",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 134,
+          "code": "dateTime.setMonth(value_index); // 0~11"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "setProperty",
@@ -893,7 +1521,19 @@
           "line": 11,
           "code": "function setProperty(w, p, v) {\n  w.setProperty(p, v);\n}"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "setSeconds",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 195,
+          "code": "dateTime.setSeconds(value_index);"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "showToast",
@@ -908,7 +1548,8 @@
           "line": 88,
           "code": "hmUI.showToast({ text: `stop result: ${info.result}` });"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "start",
@@ -923,7 +1564,8 @@
           "line": 52,
           "code": "const result = appService.start({\n  url: serviceFile,\n  param: `service=${serviceFile}&action=start`,\n  complete_func: (info) => {\n    logger.log(`startService result: ` + JSON.stringify(info));\n    hmUI.showToast({ text: `start result: ${info.result}` });\n    // refresh for button status\n\n    if (info.result) {\n      vm.state.running = true;\n      setProperty(\n        vm.state.txtLabel,"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stop",
@@ -938,7 +1580,8 @@
           "line": 48,
           "code": "acc && acc.stop();"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
       "method": "stopTimer",
@@ -948,7 +1591,52 @@
           "line": 244,
           "code": "// timer.stopTimer(animTimer);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "substr",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/utils.js",
+          "line": 11,
+          "code": "queryString[0] === \"?\" ? queryString.substr(1) : queryString"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "toBuffer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/libs/ble.js",
+          "line": 63,
+          "code": "let data = Utils.toBuffer(arr);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "toLocaleString",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/spo2.js",
+          "line": 25,
+          "code": "\"time: \" + d.toLocaleString() + \", value:\" + result.value + \"\\n\";"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "UTC",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/3.0/3.0-feature/pages/newAlarm.js",
+          "line": 40,
+          "code": "//time: dateTime.UTC()/1000,"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [
@@ -983,5 +1671,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/3.0-feature",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

@@ -67,6 +67,20 @@ backBtn.addEventListener(hmUI.event.CLICK_UP, function (info) {
 ```
 — `zeppos-samples/watchface/1.0/timer/watchface/round/index.js`, line 275
 
+### `.clearImmediate()` *(no record in this KB)*
+
+```js
+globalNS.clearImmediate = function clearImmediate(timerRef) {
+  timerRef && timer.stopTimer(timerRef)
+}
+```
+— `zeppos-samples/watchface/1.0/timer/shared/setTimeout.js`, line 25
+
+```js
+globalNS.clearImmediate(timer1)
+```
+— `zeppos-samples/watchface/1.0/timer/shared/setTimeout.js`, line 34
+
 ### `.clearTimeout()` *(no record in this KB)*
 
 ```js
@@ -133,6 +147,18 @@ imgBg = hmUI.createWidget(hmUI.widget.IMG, {
 })
 ```
 — `zeppos-samples/watchface/1.0/timer/watchface/round/index.js`, line 99
+
+### `.getLogger()` — `@zos/utils.log`
+
+```js
+const logger = Logger.getLogger('timer-app')
+```
+— `zeppos-samples/watchface/1.0/timer/app.js`, line 3
+
+```js
+const logger = Logger.getLogger('timer-page')
+```
+— `zeppos-samples/watchface/1.0/timer/watchface/round/index.js`, line 20
 
 ### `.getScreenType()` — `hmSetting.getScreenType`
 

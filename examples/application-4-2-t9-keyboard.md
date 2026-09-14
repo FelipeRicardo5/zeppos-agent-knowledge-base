@@ -205,12 +205,17 @@ key_data.touch_overlay.addEventListener(event.CLICK_DOWN, (info) => {
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-renderer.js`, line 179
 
-### `.cancel()` — **ambiguous**: module `@zos/alarm.cancel` or `@zos/notification.cancel`
+### `.callback()` *(no record in this KB)*
 
 ```js
-t9_engine.cancel();
+latest.callback(suggestions);
 ```
-— `zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-handlers.js`, line 134
+— `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 164
+
+```js
+callback([]);
+```
+— `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 173
 
 ### `.clear()` — **ambiguous**: called on `@zos/storage.localStorage` or `@zos/storage.localStorage-instance` or `@zos/storage.sessionStorage` or `@zos/storage.sessionStorage-instance` or `@zos/storage.ShareLocalStorage` or `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage` or `@zos/utils.EventBus`
 
@@ -225,6 +230,30 @@ this.seq_cache.clear();
 const ele = parent.createWidget(id, rest);
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 54
+
+### `.fromCharCode()` *(no record in this KB)*
+
+```js
+? String.fromCharCode(char_code + 32)
+```
+— `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 110
+
+```js
+? String.fromCharCode(first_code - 32)
+```
+— `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 291
+
+### `.get()` *(no record in this KB)*
+
+```js
+let words_arr = this.seq_map.get(seq);
+```
+— `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 61
+
+```js
+const freq_a = freq_map.get(a) || 0;
+```
+— `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 73
 
 ### `.getType()` — **ambiguous**: module `@zos/ui.getType`; called on `@zos/sensor.Vibrator`
 
@@ -245,19 +274,28 @@ if (ele.getType() === widget.VIRTUAL_CONTAINER) {
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 66
 
-### `.keyboard()` — `@zos/ui.keyboard`
+### `.has()` — **ambiguous**: called on `@zos/storage.ShareTypedStorage` or `@zos/storage.TypedStorage`
 
 ```js
-this.keyboard(() => {
-  this.onResume();
-});
+if (this.seq_cache.has(cache_key)) {
+  debugLog(3, `t9 cache hit for "${seq}"`);
+  const cached = this.seq_cache.get(cache_key);
+  callback(this.applyCapitalization(cached, typed_prefix));
+  return;
+}
 ```
-— `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 346
+— `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 180
+
+### `.isArray()` *(no record in this KB)*
 
 ```js
-this.keyboard();
+if (Array.isArray(param) && param.length > MAX_ITEMS) {
+  return [...param.slice(0, MAX_ITEMS), ' ...more'];
+} else {
+  return param;
+}
 ```
-— `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 432
+— `zeppos-samples/application/4.2/t9-keyboard/helpers/required.js`, line 11
 
 ### `.launchApp()` — `@zos/router.launchApp`
 
@@ -265,6 +303,18 @@ this.keyboard();
 r.launchApp({ url: 'Settings_keyboardScreen', params: { native: true } });
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/safe-keyboard.js`, line 198
+
+### `.scrollToTop()` *(no record in this KB)*
+
+```js
+this.scrollToTop();
+```
+— `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 131
+
+```js
+scrollToTop() { scrollTo({ y: 0 }); },
+```
+— `zeppos-samples/application/4.2/t9-keyboard/pages/guidelines.js`, line 136
 
 ### `.set()` — `@zos/alarm.set`
 
@@ -277,6 +327,13 @@ this.seq_map.set(seq, words_arr);
 this.prefix_idx.set(prefix, prefix_arr);
 ```
 — `zeppos-samples/application/4.2/t9-keyboard/data-widget/engine/t9-engine.js`, line 93
+
+### `.setMode()` — `@zos/sensor.Vibrator`
+
+```js
+vibro.setMode(27); // VIBRATOR_SCENE_DURATION
+```
+— `zeppos-samples/application/4.2/t9-keyboard/data-widget/modules/keyboard-handlers.js`, line 574
 
 ### `.setProperty()` — `@zos/ui.setProperty`
 

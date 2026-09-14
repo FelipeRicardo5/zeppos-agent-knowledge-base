@@ -316,15 +316,21 @@ export function enrichDevices(rawDevices: RawDevice[]): DeviceRecord[] {
 }
 
 /**
- * Examples enrich: one sample app in, one record out, plus the join that decides
- * which member calls are worth keeping.
+ * Examples enrich: one sample app in, one record out, plus the join that says
+ * which member calls this base can already account for.
  *
- * `parse` cannot filter them — resolving `text.setProperty(...)` to a module
- * needs the symbol table, which only exists here. So it collects every method
- * call and this drops the ones no symbol shares a name with. That is what keeps
- * `setProperty` (it is `@zos/ui.setProperty`) and discards `cursor_widget` and
- * the hundred other receiver-specific names, which would otherwise be attached
- * to nothing and read as noise.
+ * This used to *drop* every call no symbol shared a name with, to keep
+ * receiver-specific noise like `cursor_widget` out. The reasoning was sound and
+ * the criterion was not: "this base does not know it" is circular, so the
+ * filter deleted exactly the evidence that would have closed a gap. An eval run
+ * guessed the shape of `this.request({type, params})` while twelve sample call
+ * sites for it were parsed and then thrown away here. The same hazard is named
+ * six lines below, for `globalCalls`, and the opposite choice was made there.
+ *
+ * Noise is now excluded in `parse`, by whether the app defines the method
+ * itself — a fact about the code rather than about this base's coverage. What
+ * survives is labelled instead: `resolved` says whether a symbol shares the
+ * name, so an unresolved call reads as a gap rather than as an omission.
  *
  * The match is by name only, never by resolved type. Render says so where it
  * shows these, because a same-named method on an unrelated object would land
@@ -337,7 +343,10 @@ export function enrichExamples(rawExamples: RawExample[], symbols: SymbolRecord[
   return rawExamples
     .map(({ sourceDir, memberCalls, ...example }) => ({
       ...example,
-      memberCalls: memberCalls.filter(({ method }) => knownNames.has(method)),
+      memberCalls: memberCalls.map((call) => ({
+        ...call,
+        resolved: knownNames.has(call.method),
+      })),
       // `globalCalls` is NOT filtered against the symbol table. It comes only
       // from the phone runtimes, whose API is global, and the symbols missing
       // there are precisely the ones a filter would drop: `AppSettingsPage`

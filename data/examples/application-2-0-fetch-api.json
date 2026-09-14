@@ -69,7 +69,24 @@
       "targets.*.platforms",
       "targets.*.platforms.deviceSource",
       "targets.*.platforms.name"
-    ]
+    ],
+    "values": {
+      "runtime.apiVersion.compatible": [
+        "2.0"
+      ],
+      "runtime.apiVersion.minVersion": [
+        "2.0"
+      ],
+      "runtime.apiVersion.target": [
+        "2.0"
+      ],
+      "targets.*.module.app-side.path": [
+        "app-side/index"
+      ],
+      "targets.*.module.page.pages": [
+        "pages/index"
+      ]
+    }
   },
   "files": [
     {
@@ -288,6 +305,92 @@
   ],
   "memberCalls": [
     {
+      "method": "_eachEntry",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 492,
+          "code": "this._eachEntry(input[i], i);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 496,
+          "code": "Enumerator.prototype._eachEntry = function _eachEntry(entry, i) {\n  var c = this._instanceConstructor;\n  var resolve$$1 = c.resolve;\n\n\n  if (resolve$$1 === resolve$1) {\n    var _then = void 0;\n    var error = void 0;\n    var didError = false;\n    try {\n      _then = entry.then;\n    } catch (e) {"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_enumerate",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 480,
+          "code": "this._enumerate(input);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 490,
+          "code": "Enumerator.prototype._enumerate = function _enumerate(input) {\n  for (var i = 0; this._state === PENDING && i < input.length; i++) {\n    this._eachEntry(input[i], i);\n  }\n};"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_onerror",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 327,
+          "code": "promise._onerror(promise._result);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_setScheduler",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/device-polyfill.js",
+          "line": 4,
+          "code": "Promise._setScheduler(function (flush) {\n  flush && flush()\n})"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_settledAt",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 513,
+          "code": "this._settledAt(entry._state, i, entry._result);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 535,
+          "code": "Enumerator.prototype._settledAt = function _settledAt(state, i, value) {\n  var promise = this.promise;\n\n\n  if (promise._state === PENDING) {\n    this._remaining--;\n\n    if (state === REJECTED) {\n      reject(promise, value);\n    } else {\n      this._result[i] = value;\n    }"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "_willSettleAt",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 524,
+          "code": "this._willSettleAt(promise, i);"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 526,
+          "code": "this._willSettleAt(new c(function (resolve$$1) {\n  return resolve$$1(entry);\n}), i);"
+        }
+      ],
+      "resolved": false
+    },
+    {
       "method": "addListener",
       "snippets": [
         {
@@ -300,22 +403,24 @@
           "line": 293,
           "code": "messaging.peerSocket.addListener('message', (message) => {\n  DEBUG && logger.warn('[RAW] [R] receive size=>%d bin=>%s', message.byteLength, bin2hex(message))\n  this.onMessage(message)\n})"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "clear",
+      "method": "copy",
       "snippets": [
         {
-          "file": "zeppos-samples/application/2.0/fetch-api/shared/event.js",
-          "line": 29,
-          "code": "this.map.clear()"
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 480,
+          "code": "dataBin.copy(tailBuf, headerSize, offset, offset + tailSize)"
         },
         {
           "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
-          "line": 202,
-          "code": "clear() {\n  this.sessions.clear()\n}"
+          "line": 502,
+          "code": "dataBin.copy(_buf, headerSize, offset, offset + hmDataSize)"
         }
-      ]
+      ],
+      "resolved": false
     },
     {
       "method": "createConnect",
@@ -330,22 +435,137 @@
           "line": 269,
           "code": "this.ble.createConnect((index, data, size) => {\n  DEBUG && logger.warn('[RAW] [R] receive index=>%d size=>%d bin=>%s', index, size, bin2hex(data))\n  this.onFragmentData(data)\n})"
         }
-      ]
+      ],
+      "resolved": true
     },
     {
-      "method": "disConnect",
+      "method": "createTextNode",
       "snippets": [
         {
-          "file": "zeppos-samples/application/2.0/fetch-api/app.js",
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 94,
+          "code": "var node = document.createTextNode('');"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "delete",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/event.js",
           "line": 26,
-          "code": "this.globalData.messageBuilder.disConnect();"
+          "code": "this.map.delete(type)"
         },
         {
           "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
-          "line": 272,
-          "code": "disConnect(cb) {\n  logger.debug('app ble disconnect')\n  this.sendClose()\n  this.off('message')\n  this.ble && this.ble.disConnect()\n\n  cb && cb(this)\n}"
+          "line": 181,
+          "code": "this.sessions.delete(this.key(session))"
         }
-      ]
+      ],
+      "resolved": false
+    },
+    {
+      "method": "errorIfBleDisconnect",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 474,
+          "code": "this.errorIfBleDisconnect()"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 856,
+          "code": "errorIfBleDisconnect() { }"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "get",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/event.js",
+          "line": 8,
+          "code": "this.map.get(type).push(cb)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/event.js",
+          "line": 17,
+          "code": "const cbs = this.map.get(type)"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "getLogger",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/pages/index.js",
+          "line": 9,
+          "code": "const logger = Logger.getLogger(\"fetch_api\");"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 8,
+          "code": "logger = Logger.getLogger('side-message')"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "isBuffer",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 952,
+          "code": "if (Buffer.isBuffer(data)) {\n  this.sendBuf({\n    requestId,\n    buf: data,\n    type: MessagePayloadType.Request,\n    contentType: MessagePayloadDataTypeOp.BIN,\n    dataType: getDataType(opts.dataType)\n  })\n} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {\n  this.sendBuf({\n    requestId,\n    buf: Buffer.from(data),"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 1049,
+          "code": "if (Buffer.isBuffer(data)) {\n  this.sendBuf({\n    requestId,\n    buf: data,\n    type: MessagePayloadType.Request,\n    contentType: MessagePayloadDataTypeOp.BIN,\n    dataType: getDataType(opts.dataType)\n  })\n} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {\n  this.sendBuf({\n    requestId,\n    buf: Buffer.from(data),"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "isView",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 960,
+          "code": "} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 1057,
+          "code": "} else if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "nextTick",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 76,
+          "code": "return process.nextTick(flush);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "observe",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 95,
+          "code": "observer.observe(node, { characterData: true });"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "open",
@@ -355,7 +575,41 @@
           "line": 810,
           "code": "xhr.open('GET', url);"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "polyfill",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/device-polyfill.js",
+          "line": 2,
+          "code": "ES6Promise.polyfill()"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "postMessage",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 107,
+          "code": "return channel.port2.postMessage(0);"
+        }
+      ],
+      "resolved": false
+    },
+    {
+      "method": "require",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 137,
+          "code": "var vertx = Function('return this')().require('vertx');"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "send",
@@ -370,7 +624,24 @@
           "line": 429,
           "code": "const result = this.ble.send(buf.buffer, buf.byteLength)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "sendMsg",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 347,
+          "code": "this.sendMsg(shake)"
+        },
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+          "line": 368,
+          "code": "this.sendMsg(close)"
+        }
+      ],
+      "resolved": false
     },
     {
       "method": "set",
@@ -385,7 +656,19 @@
           "line": 175,
           "code": "this.sessions.set(this.key(newSession), newSession)"
         }
-      ]
+      ],
+      "resolved": true
+    },
+    {
+      "method": "setRequestHeader",
+      "snippets": [
+        {
+          "file": "zeppos-samples/application/2.0/fetch-api/shared/es6-promise.js",
+          "line": 813,
+          "code": "xhr.setRequestHeader('Accept', 'application/json');"
+        }
+      ],
+      "resolved": false
     }
   ],
   "symbols": [
@@ -406,5 +689,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/fetch-api",
-  "extractedAt": "2026-09-13"
+  "extractedAt": "2026-09-14"
 }

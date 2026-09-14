@@ -3,3 +3,6 @@
 node_modules/
 dist/
 .cache/
+
+# Direction notes: unversioned on purpose, like TODO.md was.
+DIRECTION.md

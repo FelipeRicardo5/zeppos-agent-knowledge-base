@@ -27,6 +27,47 @@ Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/
 
 **Side Service** — `app-side/index.js`
 
+## Messages passed between runtimes
+
+Sites that write the same string literal in more than one of this app's
+runtimes. **That shared literal is the only thing grouping them** — no import,
+symbol or declaration in these files connects a call to a handler, so nothing
+below says one reaches the other. Both citations are here; the conclusion is
+the reader's.
+
+### `"GET_DATA"`
+
+**side-service** — comparison
+
+```js
+if (req.method === "GET_DATA") {
+  fetchData(res);
+}
+```
+— `zeppos-samples/application/3.0/fetch-api/app-side/index.js`, line 47
+
+**device-app** — call argument
+
+```js
+method: "GET_DATA",
+```
+— `zeppos-samples/application/3.0/fetch-api/page/index.js`, line 26
+
+### What a message carries
+
+Verbatim lines, never a synthesised signature: a type nothing declares would
+be this base inventing one.
+
+```js
+onRequest(req, res) {
+  console.log("=====>,", req.method);
+  if (req.method === "GET_DATA") {
+    fetchData(res);
+  }
+},
+```
+— `zeppos-samples/application/3.0/fetch-api/app-side/index.js`, line 45
+
 ## Imported symbols, called
 
 ### `@zeppos/zml/base-app.BaseApp`

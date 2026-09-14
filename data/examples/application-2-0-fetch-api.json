@@ -231,6 +231,71 @@
       ]
     }
   ],
+  "messageShapes": [
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+      "line": 259,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+      "line": 289,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/fetch-api/shared/message-side.js",
+      "line": 858,
+      "code": "onMessage(messagePayload) {\n  const payload = this.readPayload(messagePayload)\n  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)\n\n  if (!session) {\n    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)\n\n    // TODO: 需要考虑缓冲，监听回调要放到启动之前，或者没有增加监听就缓存请求\n    session.on('data', (fullPayload) => {\n      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {\n        if (fullPayload.payloadType === MessagePayloadType.Request) {\n          this.emit('request', {"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/fetch-api/shared/message.js",
+      "line": 265,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/fetch-api/shared/message.js",
+      "line": 295,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/fetch-api/shared/message.js",
+      "line": 864,
+      "code": "onMessage(messagePayload) {\n  const payload = this.readPayload(messagePayload)\n  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)\n\n  if (!session) {\n    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)\n\n    // TODO: 需要考虑缓冲，监听回调要放到启动之前，或者没有增加监听就缓存请求\n    session.on('data', (fullPayload) => {\n      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {\n        if (fullPayload.payloadType === MessagePayloadType.Request) {\n          this.emit('request', {"
+    }
+  ],
+  "messages": [
+    {
+      "value": "GET_DATA",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/2.0/fetch-api/app-side/index.js",
+          "line": 50,
+          "code": "if (jsonRpc.method === \"GET_DATA\") {\n  return fetchData(ctx);\n}"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/fetch-api/pages/index.js",
+          "line": 34,
+          "code": "method: \"GET_DATA\","
+        }
+      ]
+    }
+  ],
   "globalCalls": [
     {
       "method": "AppSideService",

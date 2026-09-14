@@ -31,6 +31,7 @@ describe("the MCP surface", () => {
       tools.map((t) => t.name).sort(),
       [
         "check_compatibility",
+        "describe_wiring",
         "get_device",
         "get_freshness",
         "get_pattern",
@@ -39,6 +40,7 @@ describe("the MCP surface", () => {
         "list_by_runtime",
         "list_module",
         "list_patterns",
+        "list_wiring",
         "lookup",
         "resolve_call",
       ],

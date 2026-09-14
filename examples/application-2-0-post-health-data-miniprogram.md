@@ -29,6 +29,132 @@ Builds for: `deviceSource` `251`, `414`, `415`, `418`, `419`, `6553856`, `655385
 
 **Side Service** — `app-side/index.js`
 
+## Messages passed between runtimes
+
+Sites that write the same string literal in more than one of this app's
+runtimes. **That shared literal is the only thing grouping them** — no import,
+symbol or declaration in these files connects a call to a handler, so nothing
+below says one reaches the other. Both citations are here; the conclusion is
+the reader's.
+
+### `"SETTINGS_APP_REQUEST_DATA"`
+
+**side-service** — call argument
+
+```js
+this.call({ type: "SETTINGS_APP_REQUEST_DATA" });
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 34
+
+**device-app** — comparison
+
+```js
+if (type === "SETTINGS_APP_REQUEST_DATA") {
+  this.getSleepData();
+
+  this.request({
+    type: "UPLOAD_DATA_SIDE_SERVICE",
+    params: {
+      ...this.state.sleepData,
+    },
+  }).then((data) => {
+    const { message } = data;
+
+    showToast({ content: `UPLOAD_DATA_SIDE_SERVICE ${message}` });
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 121
+
+### `"UPLOAD"`
+
+**side-service** — comparison
+
+```js
+if (type === "UPLOAD") {
+  console.log(params);
+
+  settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
+
+  const result = await this.postData();
+
+  res(null, result);
+} else if (type === "UPLOAD_DATA_SIDE_SERVICE") {
+  console.log("params", params);
+  settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 11
+
+**device-app** — call argument
+
+```js
+type: "UPLOAD",
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 108
+
+### `"UPLOAD_DATA_SIDE_SERVICE"`
+
+**side-service** — comparison
+
+```js
+} else if (type === "UPLOAD_DATA_SIDE_SERVICE") {
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 19
+
+**device-app** — call argument
+
+```js
+type: "UPLOAD_DATA_SIDE_SERVICE",
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 125
+
+### What a message carries
+
+Verbatim lines, never a synthesised signature: a type nothing declares would
+be this base inventing one.
+
+```js
+async onRequest(req, res) {
+  const { type, params } = req;
+
+  if (type === "UPLOAD") {
+    console.log(params);
+
+    settings.settingsStorage.setItem("sleepData", JSON.stringify(params));
+
+    const result = await this.postData();
+
+    res(null, result);
+  } else if (type === "UPLOAD_DATA_SIDE_SERVICE") {
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 8
+
+```js
+const { type, params } = req;
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js`, line 9
+
+```js
+onCall(data) {
+  console.log("data", data);
+  this.responseCall(data);
+},
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 42
+
+```js
+const { message } = data;
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 113
+
+```js
+const { type = "" } = data;
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 119
+
+```js
+const { message } = data;
+```
+— `zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js`, line 130
+
 ## Imported symbols, called
 
 ### `@zeppos/zml/base/base-app.BaseApp`

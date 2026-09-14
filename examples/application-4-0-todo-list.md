@@ -29,6 +29,108 @@ Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/
 
 **Side Service** — `app-side/index.js`
 
+## Messages passed between runtimes
+
+Sites that write the same string literal in more than one of this app's
+runtimes. **That shared literal is the only thing grouping them** — no import,
+symbol or declaration in these files connects a call to a handler, so nothing
+below says one reaches the other. Both citations are here; the conclusion is
+the reader's.
+
+### `"ADD"`
+
+**side-service** — comparison
+
+```js
+} else if (req.method === 'ADD') {
+```
+— `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 19
+
+**device-app** — call argument
+
+```js
+method: 'ADD'
+```
+— `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 72
+
+### `"DELETE"`
+
+**side-service** — comparison
+
+```js
+} else if (req.method === 'DELETE') {
+```
+— `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 28
+
+**device-app** — call argument
+
+```js
+method: 'DELETE',
+```
+— `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 89
+
+### `"GET_TODO_LIST"`
+
+**side-service** — comparison
+
+```js
+if (req.method === 'GET_TODO_LIST') {
+  res(null, {
+    result: getTodoList()
+  })
+} else if (req.method === 'ADD') {
+  // 这里补充一个
+  const todoList = getTodoList()
+  const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]
+  settingsLib.setItem('todoList', JSON.stringify(newTodoList))
+
+  res(null, {
+    result: newTodoList
+```
+— `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 15
+
+**device-app** — call argument
+
+```js
+method: 'GET_TODO_LIST'
+```
+— `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 60
+
+### What a message carries
+
+Verbatim lines, never a synthesised signature: a type nothing declares would
+be this base inventing one.
+
+```js
+onRequest(req, res) {
+  if (req.method === 'GET_TODO_LIST') {
+    res(null, {
+      result: getTodoList()
+    })
+  } else if (req.method === 'ADD') {
+    // 这里补充一个
+    const todoList = getTodoList()
+    const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]
+    settingsLib.setItem('todoList', JSON.stringify(newTodoList))
+
+    res(null, {
+```
+— `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 14
+
+```js
+const { index } = req.params
+```
+— `zeppos-samples/application/4.0/todo-list/app-side/index.js`, line 29
+
+```js
+onCall(req) {
+  const dataList = req.result.map((i) => ({ name: i, img_src: 'delete.png' }))
+  logger.log('call dataList', dataList)
+  this.refreshAndUpdate(dataList)
+},
+```
+— `zeppos-samples/application/4.0/todo-list/page/home/index.page.js`, line 53
+
 ## Imported symbols, called
 
 ### `@zeppos/zml/base-app.BaseApp`

@@ -203,6 +203,36 @@
       ]
     }
   ],
+  "messageShapes": [
+    {
+      "runtime": "side-service",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/4.0/fetch-api/app-side/index.js",
+      "line": 45,
+      "code": "onRequest(req, res) {\n  console.log(\"=====>,\", req.method);\n  if (req.method === \"GET_DATA\") {\n    fetchData(res);\n  }\n},"
+    }
+  ],
+  "messages": [
+    {
+      "value": "GET_DATA",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/4.0/fetch-api/app-side/index.js",
+          "line": 47,
+          "code": "if (req.method === \"GET_DATA\") {\n  fetchData(res);\n}"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/4.0/fetch-api/page/index.js",
+          "line": 26,
+          "code": "method: \"GET_DATA\","
+        }
+      ]
+    }
+  ],
   "globalCalls": [
     {
       "method": "AppSideService",

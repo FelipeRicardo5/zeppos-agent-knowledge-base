@@ -291,6 +291,158 @@
       ]
     }
   ],
+  "messageShapes": [
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+      "line": 22,
+      "code": "this.onMessage()"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+      "line": 47,
+      "code": "onMessage() {\n  messageBuilder.on('call', ({ payload: buf }) => {\n    const data = messageBuilder.buf2Json(buf)\n    const dataList = data.map((i) => ({ name: i }))\n    logger.log('call dataList', dataList)\n    this.refreshAndUpdate(dataList)\n  })\n},"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/secondary-widget/index.js",
+      "line": 22,
+      "code": "this.onMessage()"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/secondary-widget/index.js",
+      "line": 52,
+      "code": "onMessage() {\n  messageBuilder.on('call', ({ payload: buf }) => {\n    const data = messageBuilder.buf2Json(buf)\n    const dataList = data.map((i) => ({ name: i }))\n    logger.log('call dataList', dataList)\n    this.refreshAndUpdate(dataList)\n  })\n},"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+      "line": 277,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+      "line": 309,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/shared/message-side.js",
+      "line": 897,
+      "code": "onMessage(messagePayload) {\n  const payload = this.readPayload(messagePayload)\n  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)\n\n  if (!session) {\n    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)\n\n    // TODO: 需要考虑缓冲，监听回调要放到启动之前，或者没有增加监听就缓存请求\n    session.on('data', (fullPayload) => {\n      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {\n        if (fullPayload.payloadType === MessagePayloadType.Request) {\n          this.emit('request', {"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/shared/message.js",
+      "line": 283,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/shared/message.js",
+      "line": 315,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/todo-list/shared/message.js",
+      "line": 903,
+      "code": "onMessage(messagePayload) {\n  const payload = this.readPayload(messagePayload)\n  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)\n\n  if (!session) {\n    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)\n\n    // TODO: 需要考虑缓冲，监听回调要放到启动之前，或者没有增加监听就缓存请求\n    session.on('data', (fullPayload) => {\n      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {\n        if (fullPayload.payloadType === MessagePayloadType.Request) {\n          this.emit('request', {"
+    }
+  ],
+  "messages": [
+    {
+      "value": "ADD",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
+          "line": 22,
+          "code": "} else if (payload.method === 'ADD') {"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 70,
+          "code": "method: 'ADD'"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/todo-list/secondary-widget/index.js",
+          "line": 75,
+          "code": "method: 'ADD'"
+        }
+      ]
+    },
+    {
+      "value": "DELETE",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
+          "line": 31,
+          "code": "} else if (payload.method === 'DELETE') {"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 81,
+          "code": "method: 'DELETE',"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/todo-list/secondary-widget/index.js",
+          "line": 86,
+          "code": "method: 'DELETE',"
+        }
+      ]
+    },
+    {
+      "value": "GET_TODO_LIST",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/2.0/todo-list/app-side/index.js",
+          "line": 18,
+          "code": "if (payload.method === 'GET_TODO_LIST') {\n  ctx.response({\n    data: { result: getTodoList() }\n  })\n} else if (payload.method === 'ADD') {\n  // 这里补充一个\n  const todoList = getTodoList()\n  const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]\n  settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))\n\n  ctx.response({\n    data: { result: newTodoList }"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/todo-list/page/home/index.page.js",
+          "line": 58,
+          "code": "method: 'GET_TODO_LIST'"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/todo-list/secondary-widget/index.js",
+          "line": 63,
+          "code": "method: 'GET_TODO_LIST'"
+        }
+      ]
+    }
+  ],
   "globalCalls": [
     {
       "method": "AppSettingsPage",

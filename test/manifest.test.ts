@@ -199,6 +199,8 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
   files: [],
   usages: [],
   memberCalls: [],
+  messages: [],
+  messageShapes: [],
   globalCalls: [],
   symbols: [],
   runtimes: ["device-app"],

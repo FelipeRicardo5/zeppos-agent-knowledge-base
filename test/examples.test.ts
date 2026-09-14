@@ -188,6 +188,8 @@ describe("enrichExamples", () => {
       { method: "setProperty", snippets: [{ file: "a.js", line: 1, code: "x.setProperty(1)" }] },
       { method: "cursorWidget", snippets: [{ file: "a.js", line: 2, code: "x.cursorWidget()" }] },
     ],
+    messages: [],
+    messageShapes: [],
     globalCalls: [
       { method: "AppSettingsPage", snippets: [{ file: "s.js", line: 1, code: "AppSettingsPage({})" }] },
     ],
@@ -276,6 +278,8 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
       snippets: [{ file: "zeppos-samples/a/page/index.js", line: 20, code: "text.setProperty(prop.MORE, {})" }],
     },
   ],
+  messages: [],
+  messageShapes: [],
   globalCalls: [
     {
       method: "AppSettingsPage",

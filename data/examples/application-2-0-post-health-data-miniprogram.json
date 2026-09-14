@@ -344,6 +344,109 @@
       ]
     }
   ],
+  "messageShapes": [
+    {
+      "runtime": "side-service",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+      "line": 8,
+      "code": "async onRequest(req, res) {\n  const { type, params } = req;\n\n  if (type === \"UPLOAD\") {\n    console.log(params);\n\n    settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));\n\n    const result = await this.postData();\n\n    res(null, result);\n  } else if (type === \"UPLOAD_DATA_SIDE_SERVICE\") {"
+    },
+    {
+      "runtime": "side-service",
+      "position": "destructuring",
+      "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+      "line": 9,
+      "code": "const { type, params } = req;"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+      "line": 42,
+      "code": "onCall(data) {\n  console.log(\"data\", data);\n  this.responseCall(data);\n},"
+    },
+    {
+      "runtime": "device-app",
+      "position": "destructuring",
+      "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+      "line": 113,
+      "code": "const { message } = data;"
+    },
+    {
+      "runtime": "device-app",
+      "position": "destructuring",
+      "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+      "line": 119,
+      "code": "const { type = \"\" } = data;"
+    },
+    {
+      "runtime": "device-app",
+      "position": "destructuring",
+      "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+      "line": 130,
+      "code": "const { message } = data;"
+    }
+  ],
+  "messages": [
+    {
+      "value": "SETTINGS_APP_REQUEST_DATA",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 34,
+          "code": "this.call({ type: \"SETTINGS_APP_REQUEST_DATA\" });"
+        },
+        {
+          "runtime": "device-app",
+          "position": "comparison",
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 121,
+          "code": "if (type === \"SETTINGS_APP_REQUEST_DATA\") {\n  this.getSleepData();\n\n  this.request({\n    type: \"UPLOAD_DATA_SIDE_SERVICE\",\n    params: {\n      ...this.state.sleepData,\n    },\n  }).then((data) => {\n    const { message } = data;\n\n    showToast({ content: `UPLOAD_DATA_SIDE_SERVICE ${message}` });"
+        }
+      ]
+    },
+    {
+      "value": "UPLOAD",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 11,
+          "code": "if (type === \"UPLOAD\") {\n  console.log(params);\n\n  settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));\n\n  const result = await this.postData();\n\n  res(null, result);\n} else if (type === \"UPLOAD_DATA_SIDE_SERVICE\") {\n  console.log(\"params\", params);\n  settings.settingsStorage.setItem(\"sleepData\", JSON.stringify(params));"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 108,
+          "code": "type: \"UPLOAD\","
+        }
+      ]
+    },
+    {
+      "value": "UPLOAD_DATA_SIDE_SERVICE",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/app-side/index.js",
+          "line": 19,
+          "code": "} else if (type === \"UPLOAD_DATA_SIDE_SERVICE\") {"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/2.0/post-health-data/MiniProgram/page/index.js",
+          "line": 125,
+          "code": "type: \"UPLOAD_DATA_SIDE_SERVICE\","
+        }
+      ]
+    }
+  ],
   "globalCalls": [
     {
       "method": "AppSettingsPage",

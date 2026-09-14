@@ -16,6 +16,7 @@ import {
   lookup,
   resolveCall,
 } from "./tools.js";
+import { describeWiring, listWiring } from "./wiring.js";
 
 // The MCP wiring, and nothing else.
 //
@@ -191,6 +192,32 @@ export function createServer(base: Base): McpServer {
       inputSchema: { id: z.string() },
     },
     async ({ id }) => json(getPattern(base, id)),
+  );
+
+  server.registerTool(
+    "list_wiring",
+    {
+      description:
+        "Sample apps that pass messages between runtimes, and how many distinct " +
+        "message tags each one uses. Pick one and call describe_wiring.",
+      inputSchema: {},
+    },
+    async () => json(listWiring(base)),
+  );
+
+  server.registerTool(
+    "describe_wiring",
+    {
+      description:
+        "How one sample app wires its runtimes together: every site that writes " +
+        "a message tag, grouped by the tag, plus the lines showing what a " +
+        "message carries. Scoped to one app on purpose - within an app the " +
+        "co-location is observable, across the corpus it would be a rule no " +
+        "source states. Nothing here asserts that one site's call reaches " +
+        "another's handler; read `notAsserted` in the response.",
+      inputSchema: { app: z.string().describe("Sample app id, from list_wiring or list_examples") },
+    },
+    async ({ app }) => json(describeWiring(base, app)),
   );
 
   return server;

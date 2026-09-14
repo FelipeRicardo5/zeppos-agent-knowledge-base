@@ -286,6 +286,88 @@
       ]
     }
   ],
+  "messageShapes": [
+    {
+      "runtime": "side-service",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/3.0/todo-list/app-side/index.js",
+      "line": 14,
+      "code": "onRequest(req, res) {\n  if (req.method === 'GET_TODO_LIST') {\n    res(null, {\n      result: getTodoList()\n    })\n  } else if (req.method === 'ADD') {\n    // 这里补充一个\n    const todoList = getTodoList()\n    const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]\n    settingsLib.setItem('todoList', JSON.stringify(newTodoList))\n\n    res(null, {"
+    },
+    {
+      "runtime": "side-service",
+      "position": "destructuring",
+      "file": "zeppos-samples/application/3.0/todo-list/app-side/index.js",
+      "line": 29,
+      "code": "const { index } = req.params"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/3.0/todo-list/page/home/index.page.js",
+      "line": 53,
+      "code": "onCall(req) {\n  const dataList = req.result.map((i) => ({ name: i, img_src: 'delete.png' }))\n  logger.log('call dataList', dataList)\n  this.refreshAndUpdate(dataList)\n},"
+    }
+  ],
+  "messages": [
+    {
+      "value": "ADD",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/3.0/todo-list/app-side/index.js",
+          "line": 19,
+          "code": "} else if (req.method === 'ADD') {"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/3.0/todo-list/page/home/index.page.js",
+          "line": 72,
+          "code": "method: 'ADD'"
+        }
+      ]
+    },
+    {
+      "value": "DELETE",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/3.0/todo-list/app-side/index.js",
+          "line": 28,
+          "code": "} else if (req.method === 'DELETE') {"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/3.0/todo-list/page/home/index.page.js",
+          "line": 89,
+          "code": "method: 'DELETE',"
+        }
+      ]
+    },
+    {
+      "value": "GET_TODO_LIST",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/3.0/todo-list/app-side/index.js",
+          "line": 15,
+          "code": "if (req.method === 'GET_TODO_LIST') {\n  res(null, {\n    result: getTodoList()\n  })\n} else if (req.method === 'ADD') {\n  // 这里补充一个\n  const todoList = getTodoList()\n  const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]\n  settingsLib.setItem('todoList', JSON.stringify(newTodoList))\n\n  res(null, {\n    result: newTodoList"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/3.0/todo-list/page/home/index.page.js",
+          "line": 60,
+          "code": "method: 'GET_TODO_LIST'"
+        }
+      ]
+    }
+  ],
   "globalCalls": [
     {
       "method": "AppSettingsPage",

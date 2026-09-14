@@ -494,6 +494,20 @@ export interface RawExample {
   usages: SymbolUsage[];
   memberCalls: MemberCallUsage[];
   /**
+   * Message-shaped string literals and every site that writes them.
+   *
+   * The cross-runtime wiring, recorded as observations rather than as a graph.
+   * See `MessageSite` for why there is no edge here.
+   */
+  messages: MessageLiteral[];
+  /**
+   * Lines showing the envelope a message travels in, verbatim.
+   *
+   * Separate from `messages` because they carry no literal: a destructuring or
+   * a handler signature says what a message contains, never which one it is.
+   */
+  messageShapes: MessageSite[];
+  /**
    * Bare function calls in a Settings App or Side Service file. Those runtimes
    * are all globals, so their code imports nothing that names a module — which
    * made every `setting/` file produce zero excerpts, the largest single gap the
@@ -734,4 +748,35 @@ export interface Annotation {
   writtenAgainst?: Record<string, string>;
   /** ISO date, so a reader can weigh how old the judgement is. */
   date: string;
+}
+
+/**
+ * Where a message-shaped string literal occurs, and in what syntactic position.
+ *
+ * Deliberately not an edge. Nothing in a sample declares that a call in one
+ * file is received by a handler in another — no import, no symbol, no type — so
+ * recording `from`/`to` would assert something no source states. What is
+ * observable is the site, and that two sites share a literal.
+ */
+export interface MessageSite {
+  runtime?: Runtime;
+  /** The syntactic fact, kept separate from any reading of it. */
+  position:
+    | "call argument"
+    | "comparison"
+    | "switch case"
+    /** `const { type, params } = req` — what the message carries. */
+    | "destructuring"
+    /** `onRequest(req, res) {` — the callback a framework invokes. */
+    | "handler definition";
+  file: string;
+  line: number;
+  /** The statement, verbatim. */
+  code: string;
+}
+
+/** One literal and every place an app writes it. Pairing is left to the reader. */
+export interface MessageLiteral {
+  value: string;
+  sites: MessageSite[];
 }

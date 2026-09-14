@@ -120,6 +120,68 @@ function snippetBlock(snippet: CodeSnippet): string[] {
   return ["```js", snippet.code, "```", `— \`${snippet.file}\`, line ${snippet.line}`, ""];
 }
 
+/**
+ * How this app's runtimes pass messages, as observations rather than as a graph.
+ *
+ * An eval run wrote `this.request({method, params})` where this corpus writes
+ * `{type, params}` in twelve places. Nothing was missing from the samples; the
+ * pieces were simply never put beside each other.
+ *
+ * Putting them beside each other is the risk this section manages. There is no
+ * arrow and no "from → to": nothing in these files links a call to a handler —
+ * no import, no shared symbol, no type — so an edge would be this base asserting
+ * something no source states. What is observable is that both sites write the
+ * same literal, and the section says that is the only thing grouping them. The
+ * reader draws the conclusion, holding both citations.
+ */
+function wiringLines(example: ExampleRecord): string[] {
+  const crossRuntime = (example.messages ?? []).filter(
+    (message) =>
+      new Set(message.sites.map((site) => site.runtime).filter(Boolean)).size > 1,
+  );
+  if (crossRuntime.length === 0 && (example.messageShapes ?? []).length === 0) return [];
+
+  const lines = ["## Messages passed between runtimes", ""];
+  lines.push(
+    "Sites that write the same string literal in more than one of this app's",
+    "runtimes. **That shared literal is the only thing grouping them** — no import,",
+    "symbol or declaration in these files connects a call to a handler, so nothing",
+    "below says one reaches the other. Both citations are here; the conclusion is",
+    "the reader's.",
+    "",
+  );
+
+  for (const message of crossRuntime) {
+    lines.push(`### \`"${message.value}"\``, "");
+    for (const site of message.sites) {
+      lines.push(
+        `**${site.runtime ?? "runtime not attributed"}** — ${site.position}`,
+        "",
+        "```js",
+        site.code,
+        "```",
+        `— \`${site.file}\`, line ${site.line}`,
+        "",
+      );
+    }
+  }
+
+  const shapes = example.messageShapes ?? [];
+  if (shapes.length > 0) {
+    lines.push("### What a message carries", "");
+    lines.push(
+      "Verbatim lines, never a synthesised signature: a type nothing declares would",
+      "be this base inventing one.",
+      "",
+    );
+    for (const site of shapes) {
+      lines.push("```js", site.code, "```", `— \`${site.file}\`, line ${site.line}`, "");
+    }
+  }
+
+  return lines;
+}
+
 function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord>): string {
   const lines = [`# ${example.name}`, ""];
   lines.push(
@@ -175,6 +237,8 @@ function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord
   for (const [label, paths] of [...byRuntime].sort()) {
     lines.push(`**${label}** — ${paths.map((p) => `\`${p}\``).join(", ")}`, "");
   }
+
+  lines.push(...wiringLines(example));
 
   if (example.usages.length > 0) {
     lines.push("## Imported symbols, called", "");

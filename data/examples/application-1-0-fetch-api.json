@@ -191,6 +191,50 @@
     }
   ],
   "usages": [],
+  "messageShapes": [
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+      "line": 204,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+      "line": 231,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/1.0/fetch-api/shared/message.js",
+      "line": 748,
+      "code": "onMessage(messagePayload) {\n  const payload = this.readPayload(messagePayload)\n  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)\n\n  if (!session) {\n    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)\n\n    session.on('data', (fullPayload) => {\n      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {\n        if (fullPayload.payloadType === MessagePayloadType.Request) {\n          this.emit('request', {\n            request: fullPayload,"
+    }
+  ],
+  "messages": [
+    {
+      "value": "GET_DATA",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/1.0/fetch-api/app-side/index.js",
+          "line": 50,
+          "code": "if (jsonRpc.method === \"GET_DATA\") {\n  return fetchData(ctx);\n}"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/1.0/fetch-api/pages/index.js",
+          "line": 32,
+          "code": "method: \"GET_DATA\","
+        }
+      ]
+    }
+  ],
   "globalCalls": [
     {
       "method": "AppSideService",

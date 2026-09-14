@@ -872,6 +872,16 @@
       ]
     }
   ],
+  "messageShapes": [
+    {
+      "runtime": "device-app",
+      "position": "destructuring",
+      "file": "zeppos-samples/application/2.0/showcase/page/interaction/on_wrist_motion.js",
+      "line": 19,
+      "code": "const { motion } = data"
+    }
+  ],
+  "messages": [],
   "globalCalls": [],
   "memberCalls": [
     {

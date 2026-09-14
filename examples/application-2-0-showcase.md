@@ -25,6 +25,24 @@ Builds for: `deviceSource` `7864577`, `7930112`, `7930113`, `7995648`, `7995649`
 
 **Device App** — `app.js`, `config/constants.js`, `config/device.js`, `config/tree.js`, `page/index.js`, `page/interaction/create_modal.js`, `page/interaction/on_digital_crown.js`, `page/interaction/on_key.js`, `page/interaction/on_wrist_motion.js`, `page/interaction/show_toast.js`, `page/router/set_launch_app_timeout.js`, `page/sensor/blood_oxygen.js`, `page/sensor/calorie.js`, `page/sensor/distance.js`, `page/sensor/fat_burning.js`, `page/sensor/geolocation.js`, `page/sensor/heart_rate.js`, `page/sensor/pai.js`, `page/sensor/sleep.js`, `page/sensor/stand.js`, `page/sensor/step.js`, `page/sensor/stress.js`, `page/ui/widget/arc.js`, `page/ui/widget/button.js`, `page/ui/widget/checkbox_group.js`, `page/ui/widget/circle.js`, `page/ui/widget/cycle_image_text_list.js`, `page/ui/widget/cycle_list.js`, `page/ui/widget/dialog.js`, `page/ui/widget/fill_rect.js`, `page/ui/widget/histogram.js`, `page/ui/widget/img_anim.js`, `page/ui/widget/img.js`, `page/ui/widget/page_indicator.js`, `page/ui/widget/pick_date.js`, `page/ui/widget/polyline.js`, `page/ui/widget/qrcode.js`, `page/ui/widget/radio_group.js`, `page/ui/widget/scroll_list.js`, `page/ui/widget/slide_switch.js`, `page/ui/widget/stroke_rect.js`, `page/ui/widget/text.js`, `page/ui/widget/view_container.js`, `utils/log.js`, `utils/styles.js`, `utils/template/PageAdvanced.js`, `utils/test.js`, `utils/UI/ButtonList.js`, `utils/UI/EmptySpace.js`, `utils/UI/TextByLine.js`, `utils/UI/Title.js`, `utils/utils.js`
 
+## Messages passed between runtimes
+
+Sites that write the same string literal in more than one of this app's
+runtimes. **That shared literal is the only thing grouping them** — no import,
+symbol or declaration in these files connects a call to a handler, so nothing
+below says one reaches the other. Both citations are here; the conclusion is
+the reader's.
+
+### What a message carries
+
+Verbatim lines, never a synthesised signature: a type nothing declares would
+be this base inventing one.
+
+```js
+const { motion } = data
+```
+— `zeppos-samples/application/2.0/showcase/page/interaction/on_wrist_motion.js`, line 19
+
 ## Imported symbols, called
 
 ### `@zos/device.getDeviceInfo`

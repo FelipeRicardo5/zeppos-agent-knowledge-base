@@ -308,6 +308,36 @@
       ]
     }
   ],
+  "messageShapes": [
+    {
+      "runtime": "side-service",
+      "position": "handler definition",
+      "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js",
+      "line": 18,
+      "code": "onRequest(req, res) {\n  switch (req.method) {\n    case 'your-method':\n      res(null, {\n        code: 0,\n        message: 'success',\n      })\n  }\n}"
+    }
+  ],
+  "messages": [
+    {
+      "value": "your-method",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "switch case",
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js",
+          "line": 20,
+          "code": "case 'your-method':"
+        },
+        {
+          "runtime": "workout-extension",
+          "position": "call argument",
+          "file": "zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js",
+          "line": 138,
+          "code": "method: \"your-method\","
+        }
+      ]
+    }
+  ],
   "globalCalls": [
     {
       "method": "AppSideService",

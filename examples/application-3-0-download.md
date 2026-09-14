@@ -27,6 +27,51 @@ Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`
 
 **Side Service** — `app-side/fetch-module.js`, `app-side/file-download-module.js`, `app-side/file-transfer-module.js`, `app-side/image-convert-module.js`, `app-side/index.js`
 
+## Messages passed between runtimes
+
+Sites that write the same string literal in more than one of this app's
+runtimes. **That shared literal is the only thing grouping them** — no import,
+symbol or declaration in these files connects a call to a handler, so nothing
+below says one reaches the other. Both citations are here; the conclusion is
+the reader's.
+
+### What a message carries
+
+Verbatim lines, never a synthesised signature: a type nothing declares would
+be this base inventing one.
+
+```js
+async onRequest(req, res) {
+  const [, action] = req.method.split(".");
+  switch (action) {
+    case "cover": {
+      const { coverUrl = "https://docs.zepp.com/zh-cn/img/logo.png" } =
+        req.params || {};
+      this.downloadFile(encodeURI(coverUrl));
+      res(null, {
+        status: "success",
+        data: "",
+      });
+      break;
+```
+— `zeppos-samples/application/3.0/download/app-side/index.js`, line 28
+
+```js
+const { filePath } = req.params;
+```
+— `zeppos-samples/application/3.0/download/app-side/index.js`, line 42
+
+```js
+onCall({ result }) {
+  if (result && "filePath" in result) {
+    this.state.filePath = result.filePath;
+    this.state.isDownload = false;
+    textWidget.setProperty(hmUI.prop.TEXT, getText("transTip"));
+  }
+},
+```
+— `zeppos-samples/application/3.0/download/page/index.js`, line 20
+
 ## Imported symbols, called
 
 ### `@zeppos/zml/base-app.BaseApp`

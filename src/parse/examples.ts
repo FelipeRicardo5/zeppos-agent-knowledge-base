@@ -6,6 +6,8 @@ import type {
   ExampleManifest,
   PlatformSelector,
   MemberCallUsage,
+  MessageLiteral,
+  MessageSite,
   RawExample,
   SymbolUsage,
 } from "../types.js";
@@ -92,6 +94,55 @@ const KEYWORDS = new Set([
   "Promise",
   "Error",
 ]);
+/**
+ * Where a string literal sits, and what that position is — the syntactic fact,
+ * not a reading of it.
+ *
+ * Nothing in the samples declares a channel between runtimes: no import, no
+ * shared symbol, no type. What is observable is that the same literal occurs as
+ * the value of a `type` property in one file and as the operand of a comparison
+ * in another. Recording the position keeps the observation separable from the
+ * conclusion a reader draws from it.
+ *
+ * Any quoted string qualifies. Filtering by shape — only SCREAMING_CASE, say —
+ * looked right and was not: `DELETE` and `ADD` are real message tags in
+ * `todo-list`, while `GET` and `POST` are HTTP verbs passed to `fetch`. What
+ * separates them is not how they are spelled but whether they occur in more
+ * than one file, which is decided per app after every file is read.
+ */
+const MESSAGE_PATTERNS: [MessageSite["position"], RegExp][] = [
+  ["call argument", /\b(?:type|method)\s*:\s*['"]([^'"]+)['"]/g],
+  ["comparison", /\b(?:type|method)\s*===?\s*['"]([^'"]+)['"]/g],
+  ["switch case", /\bcase\s+['"]([^'"]+)['"]/g],
+];
+
+/**
+ * A literal must occur in at least this many of an app's files to be recorded.
+ *
+ * One file means it is the app's own data: `pizza` and `sausage` live in the
+ * calories sample's `utils/constants.js`, and `POST` only ever appears in the
+ * one `app-side/index.js` that calls `fetch`. Two files is what a tag passed
+ * between them looks like.
+ */
+const MESSAGE_MIN_FILES = 2;
+
+/**
+ * Lines that show what a message *carries*, rather than which message it is.
+ *
+ * The literals say a tag travels; these say what travels with it. They hold no
+ * literal themselves, so the message patterns never see them — and they are
+ * exactly what an eval run got wrong, writing `{method, params}` where
+ * `app-side/index.js` destructures `const { type, params } = req`.
+ *
+ * Recorded verbatim and never turned into a signature. `request(options: {type:
+ * string, params: object})` would be a type no source declares; the
+ * destructuring is a line a person wrote.
+ */
+const ENVELOPE_PATTERNS: [MessageSite["position"], RegExp][] = [
+  ["destructuring", /\b(?:const|let|var)\s*\{[^}]*\}\s*=\s*(?:req|request|data|payload|res)\b/g],
+  ["handler definition", /\b(?:async\s+)?on(?:Request|Call|Message)\s*\(/g],
+];
+
 /** The phone runtimes, whose API is global and therefore invisible to imports. */
 const PHONE_RUNTIMES = new Set(["settings", "side-service"]);
 /**
@@ -470,6 +521,8 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
     // it is about the code, not about what this base happens to know already —
     // so it belongs here rather than in a join against the symbol table.
     const definedInApp = new Set<string>();
+    const messages = new Map<string, MessageSite[]>();
+    const envelopes: MessageSite[] = [];
 
     for (const file of await walkFiles(appDir, [".js"])) {
       const content = await readSource(file);
@@ -512,6 +565,28 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
 
       const runtime = runtimeForPath(`${SAMPLES_REPO}/${tree}/${platformVersion}/${appRelative}`);
 
+      for (const [index, line] of lines.entries()) {
+        for (const [position, pattern] of ENVELOPE_PATTERNS) {
+          if (!pattern.test(line)) continue;
+          pattern.lastIndex = 0;
+          envelopes.push({
+            runtime,
+            position,
+            file: cacheRelative,
+            line: index + 1,
+            code: statementAt(lines, index),
+          });
+        }
+        for (const [position, pattern] of MESSAGE_PATTERNS) {
+          for (const [, value] of line.matchAll(pattern)) {
+            messages.set(value, [
+              ...(messages.get(value) ?? []),
+              { runtime, position, file: cacheRelative, line: index + 1, code: statementAt(lines, index) },
+            ]);
+          }
+        }
+      }
+
       if (runtime !== undefined && PHONE_RUNTIMES.has(runtime)) {
         const defined = new Set(
           lines
@@ -552,6 +627,12 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
         .map(([id, snippets]): SymbolUsage => ({ id, snippets }))
         .filter(({ snippets }) => snippets.length > 0)
         .sort((a, b) => a.id.localeCompare(b.id)),
+      messageShapes: envelopes,
+      messages: [...messages]
+        // A literal in one file is the app's own data, not a tag it passes.
+        .filter(([, sites]) => new Set(sites.map((s) => s.file)).size >= MESSAGE_MIN_FILES)
+        .map(([value, sites]): MessageLiteral => ({ value, sites }))
+        .sort((a, b) => a.value.localeCompare(b.value)),
       memberCalls: [...memberCalls]
         .map(([method, snippets]): MemberCallUsage => ({ method, snippets }))
         // A method the app also defines is the sample calling its own helper —

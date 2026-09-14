@@ -249,6 +249,30 @@
       ]
     }
   ],
+  "messageShapes": [
+    {
+      "runtime": "side-service",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/3.0/download/app-side/index.js",
+      "line": 28,
+      "code": "async onRequest(req, res) {\n  const [, action] = req.method.split(\".\");\n  switch (action) {\n    case \"cover\": {\n      const { coverUrl = \"https://docs.zepp.com/zh-cn/img/logo.png\" } =\n        req.params || {};\n      this.downloadFile(encodeURI(coverUrl));\n      res(null, {\n        status: \"success\",\n        data: \"\",\n      });\n      break;"
+    },
+    {
+      "runtime": "side-service",
+      "position": "destructuring",
+      "file": "zeppos-samples/application/3.0/download/app-side/index.js",
+      "line": 42,
+      "code": "const { filePath } = req.params;"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/3.0/download/page/index.js",
+      "line": 20,
+      "code": "onCall({ result }) {\n  if (result && \"filePath\" in result) {\n    this.state.filePath = result.filePath;\n    this.state.isDownload = false;\n    textWidget.setProperty(hmUI.prop.TEXT, getText(\"transTip\"));\n  }\n},"
+    }
+  ],
+  "messages": [],
   "globalCalls": [
     {
       "method": "AppSideService",

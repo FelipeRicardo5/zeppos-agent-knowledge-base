@@ -252,4 +252,20 @@ export const ANSWERS: Answer[] = [
         : `all ${total} symbols state a level, which no sync has ever produced`;
     },
   },
+  {
+    question: "How does a Device App page hand data to its Side Service?",
+    why: "The gap that cost the third eval run its worst finding. The agent wrote `this.request({method, params})`; twelve sample call sites write `{type, params}`, and the receiving half destructures exactly that. Nothing was missing from the samples - the pieces were never put beside each other. This asks that they still are, and that putting them there never became an assertion that one reaches the other.",
+    check: (base) => {
+      const page = base.page("examples/application-2-0-post-health-data-miniprogram.md");
+      if (!/## Messages passed between runtimes/.test(page)) {
+        return "the sample page no longer shows how its runtimes pass messages";
+      }
+      if (!/const \{ type, params \} = req;/.test(page)) {
+        return "the page no longer shows what a message carries, which is the fact a run guessed wrong";
+      }
+      return /only thing grouping them/.test(page)
+        ? undefined
+        : "the page groups the sites without stating that a shared literal is all that groups them";
+    },
+  },
 ];

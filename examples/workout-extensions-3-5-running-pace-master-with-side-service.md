@@ -27,6 +27,48 @@ Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`
 
 **Workout Extension** — `app.js`, `data-widget/common/index.js`
 
+## Messages passed between runtimes
+
+Sites that write the same string literal in more than one of this app's
+runtimes. **That shared literal is the only thing grouping them** — no import,
+symbol or declaration in these files connects a call to a handler, so nothing
+below says one reaches the other. Both citations are here; the conclusion is
+the reader's.
+
+### `"your-method"`
+
+**side-service** — switch case
+
+```js
+case 'your-method':
+```
+— `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js`, line 20
+
+**workout-extension** — call argument
+
+```js
+method: "your-method",
+```
+— `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/data-widget/common/index.js`, line 138
+
+### What a message carries
+
+Verbatim lines, never a synthesised signature: a type nothing declares would
+be this base inventing one.
+
+```js
+onRequest(req, res) {
+  switch (req.method) {
+    case 'your-method':
+      res(null, {
+        code: 0,
+        message: 'success',
+      })
+  }
+}
+```
+— `zeppos-samples/workout-extensions/3.5/running-pace-master-with-side-service/app-side/index/index.js`, line 18
+
 ## Imported symbols, called
 
 ### `@zeppos/zml/base-app.BaseApp`

@@ -27,6 +27,63 @@ Builds for: `deviceSource` `224`, `225`, `226`, `227`, `229`, `230`, `418`, `419
 
 **Side Service** — `app-side/index.js`
 
+## Messages passed between runtimes
+
+Sites that write the same string literal in more than one of this app's
+runtimes. **That shared literal is the only thing grouping them** — no import,
+symbol or declaration in these files connects a call to a handler, so nothing
+below says one reaches the other. Both citations are here; the conclusion is
+the reader's.
+
+### `"GET_DATA"`
+
+**side-service** — comparison
+
+```js
+if (jsonRpc.method === "GET_DATA") {
+  return fetchData(ctx);
+}
+```
+— `zeppos-samples/application/1.0/fetch-api/app-side/index.js`, line 50
+
+**device-app** — call argument
+
+```js
+method: "GET_DATA",
+```
+— `zeppos-samples/application/1.0/fetch-api/pages/index.js`, line 32
+
+### What a message carries
+
+Verbatim lines, never a synthesised signature: a type nothing declares would
+be this base inventing one.
+
+```js
+this.onMessage(message)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 204
+
+```js
+this.onMessage(message)
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 231
+
+```js
+onMessage(messagePayload) {
+  const payload = this.readPayload(messagePayload)
+  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)
+
+  if (!session) {
+    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)
+
+    session.on('data', (fullPayload) => {
+      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {
+        if (fullPayload.payloadType === MessagePayloadType.Request) {
+          this.emit('request', {
+            request: fullPayload,
+```
+— `zeppos-samples/application/1.0/fetch-api/shared/message.js`, line 748
+
 ## Methods called on a value
 
 These are never imported, so no import line names their module. The name is

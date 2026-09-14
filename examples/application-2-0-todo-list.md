@@ -29,6 +29,185 @@ Builds for: `deviceSource` `7930112`, `7930113`, `7995648`, `7995649` (`configVe
 
 **Side Service** — `app-side/index.js`
 
+## Messages passed between runtimes
+
+Sites that write the same string literal in more than one of this app's
+runtimes. **That shared literal is the only thing grouping them** — no import,
+symbol or declaration in these files connects a call to a handler, so nothing
+below says one reaches the other. Both citations are here; the conclusion is
+the reader's.
+
+### `"ADD"`
+
+**side-service** — comparison
+
+```js
+} else if (payload.method === 'ADD') {
+```
+— `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 22
+
+**device-app** — call argument
+
+```js
+method: 'ADD'
+```
+— `zeppos-samples/application/2.0/todo-list/page/home/index.page.js`, line 70
+
+**device-app** — call argument
+
+```js
+method: 'ADD'
+```
+— `zeppos-samples/application/2.0/todo-list/secondary-widget/index.js`, line 75
+
+### `"DELETE"`
+
+**side-service** — comparison
+
+```js
+} else if (payload.method === 'DELETE') {
+```
+— `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 31
+
+**device-app** — call argument
+
+```js
+method: 'DELETE',
+```
+— `zeppos-samples/application/2.0/todo-list/page/home/index.page.js`, line 81
+
+**device-app** — call argument
+
+```js
+method: 'DELETE',
+```
+— `zeppos-samples/application/2.0/todo-list/secondary-widget/index.js`, line 86
+
+### `"GET_TODO_LIST"`
+
+**side-service** — comparison
+
+```js
+if (payload.method === 'GET_TODO_LIST') {
+  ctx.response({
+    data: { result: getTodoList() }
+  })
+} else if (payload.method === 'ADD') {
+  // 这里补充一个
+  const todoList = getTodoList()
+  const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]
+  settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))
+
+  ctx.response({
+    data: { result: newTodoList }
+```
+— `zeppos-samples/application/2.0/todo-list/app-side/index.js`, line 18
+
+**device-app** — call argument
+
+```js
+method: 'GET_TODO_LIST'
+```
+— `zeppos-samples/application/2.0/todo-list/page/home/index.page.js`, line 58
+
+**device-app** — call argument
+
+```js
+method: 'GET_TODO_LIST'
+```
+— `zeppos-samples/application/2.0/todo-list/secondary-widget/index.js`, line 63
+
+### What a message carries
+
+Verbatim lines, never a synthesised signature: a type nothing declares would
+be this base inventing one.
+
+```js
+this.onMessage()
+```
+— `zeppos-samples/application/2.0/todo-list/page/home/index.page.js`, line 22
+
+```js
+onMessage() {
+  messageBuilder.on('call', ({ payload: buf }) => {
+    const data = messageBuilder.buf2Json(buf)
+    const dataList = data.map((i) => ({ name: i }))
+    logger.log('call dataList', dataList)
+    this.refreshAndUpdate(dataList)
+  })
+},
+```
+— `zeppos-samples/application/2.0/todo-list/page/home/index.page.js`, line 47
+
+```js
+this.onMessage()
+```
+— `zeppos-samples/application/2.0/todo-list/secondary-widget/index.js`, line 22
+
+```js
+onMessage() {
+  messageBuilder.on('call', ({ payload: buf }) => {
+    const data = messageBuilder.buf2Json(buf)
+    const dataList = data.map((i) => ({ name: i }))
+    logger.log('call dataList', dataList)
+    this.refreshAndUpdate(dataList)
+  })
+},
+```
+— `zeppos-samples/application/2.0/todo-list/secondary-widget/index.js`, line 52
+
+```js
+this.onMessage(message)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 277
+
+```js
+this.onMessage(message)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 309
+
+```js
+onMessage(messagePayload) {
+  const payload = this.readPayload(messagePayload)
+  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)
+
+  if (!session) {
+    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)
+
+    // TODO: 需要考虑缓冲，监听回调要放到启动之前，或者没有增加监听就缓存请求
+    session.on('data', (fullPayload) => {
+      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {
+        if (fullPayload.payloadType === MessagePayloadType.Request) {
+          this.emit('request', {
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message-side.js`, line 897
+
+```js
+this.onMessage(message)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message.js`, line 283
+
+```js
+this.onMessage(message)
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message.js`, line 315
+
+```js
+onMessage(messagePayload) {
+  const payload = this.readPayload(messagePayload)
+  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)
+
+  if (!session) {
+    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)
+
+    // TODO: 需要考虑缓冲，监听回调要放到启动之前，或者没有增加监听就缓存请求
+    session.on('data', (fullPayload) => {
+      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {
+        if (fullPayload.payloadType === MessagePayloadType.Request) {
+          this.emit('request', {
+```
+— `zeppos-samples/application/2.0/todo-list/shared/message.js`, line 903
+
 ## Imported symbols, called
 
 ### `@zos/app.getPackageInfo`

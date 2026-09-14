@@ -85,6 +85,9 @@ const PAGES = [
   "compatibility/devices.md",
   "conflicts/index.md",
   "examples/index.md",
+  // The sample a run leaned on hardest, and the one that shows how a Device App
+  // page hands data to its Side Service.
+  "examples/application-2-0-post-health-data-miniprogram.md",
   "patterns/multi-screen-adaption.md",
   "runtimes/watchface.md",
 ];

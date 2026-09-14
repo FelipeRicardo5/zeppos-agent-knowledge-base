@@ -214,6 +214,102 @@
     }
   ],
   "usages": [],
+  "messageShapes": [
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+      "line": 18,
+      "code": "this.onMessage()"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+      "line": 42,
+      "code": "onMessage() {\n  messageBuilder.on('call', ({ payload: buf }) => {\n    const data = messageBuilder.buf2Json(buf)\n    const dataList = data.map((i) => ({ name: i }))\n    logger.log('call dataList', dataList)\n    this.refreshAndUpdate(dataList)\n  })\n},"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+      "line": 341,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+      "line": 369,
+      "code": "this.onMessage(message)"
+    },
+    {
+      "runtime": "device-app",
+      "position": "handler definition",
+      "file": "zeppos-samples/application/1.0/todo-list/shared/message.js",
+      "line": 957,
+      "code": "onMessage(messagePayload) {\n  const payload = this.readPayload(messagePayload)\n  let session = this.sessionMgr.getById(payload.traceId, payload.payloadType)\n\n  if (!session) {\n    session = this.sessionMgr.newSession(payload.traceId, payload.payloadType, this)\n\n    // TODO: 需要考虑缓冲，监听回调要放到启动之前，或者没有增加监听就缓存请求\n    session.on('data', (fullPayload) => {\n      if (fullPayload.opCode === MessagePayloadOpCode.Finished) {\n        if (fullPayload.payloadType === MessagePayloadType.Request) {\n          this.emit('request', {"
+    }
+  ],
+  "messages": [
+    {
+      "value": "ADD",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 22,
+          "code": "} else if (payload.method === 'ADD') {"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+          "line": 65,
+          "code": "method: 'ADD'"
+        }
+      ]
+    },
+    {
+      "value": "DELETE",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 31,
+          "code": "} else if (payload.method === 'DELETE') {"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+          "line": 76,
+          "code": "method: 'DELETE',"
+        }
+      ]
+    },
+    {
+      "value": "GET_TODO_LIST",
+      "sites": [
+        {
+          "runtime": "side-service",
+          "position": "comparison",
+          "file": "zeppos-samples/application/1.0/todo-list/app-side/index.js",
+          "line": 18,
+          "code": "if (payload.method === 'GET_TODO_LIST') {\n  ctx.response({\n    data: { result: getTodoList() }\n  })\n} else if (payload.method === 'ADD') {\n  // 这里补充一个\n  const todoList = getTodoList()\n  const newTodoList = [...todoList, String(Math.floor(Math.random() * 100))]\n  settings.settingsStorage.setItem('todoList', JSON.stringify(newTodoList))\n\n  ctx.response({\n    data: { result: newTodoList }"
+        },
+        {
+          "runtime": "device-app",
+          "position": "call argument",
+          "file": "zeppos-samples/application/1.0/todo-list/page/gtr-3/home/index.page.js",
+          "line": 53,
+          "code": "method: 'GET_TODO_LIST'"
+        }
+      ]
+    }
+  ],
   "globalCalls": [
     {
       "method": "AppSettingsPage",

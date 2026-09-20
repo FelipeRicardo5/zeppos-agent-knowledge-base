@@ -16,6 +16,7 @@ import {
   lookup,
   resolveCall,
 } from "./tools.js";
+import { check } from "../check/index.js";
 import { describeWiring, listWiring } from "./wiring.js";
 
 // The MCP wiring, and nothing else.
@@ -218,6 +219,20 @@ export function createServer(base: Base): McpServer {
       inputSchema: { app: z.string().describe("Sample app id, from list_wiring or list_examples") },
     },
     async ({ app }) => json(describeWiring(base, app)),
+  );
+
+  server.registerTool(
+    "check_app",
+    {
+      description:
+        "Check an app directory against this base and return a three-way verdict " +
+        "per finding: VOUCHED, UNVERIFIABLE or VIOLATION. Never pass/fail - every " +
+        "official sample passes with zero violations and still carries symbols " +
+        "this base cannot speak to, so no violation is not approval. Read " +
+        "`notChecked`: nothing here compiles or runs the code.",
+      inputSchema: { path: z.string().describe("Path to the app directory holding app.json") },
+    },
+    async ({ path: root }) => json(await check(root, base)),
   );
 
   return server;

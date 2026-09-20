@@ -30,6 +30,7 @@ describe("the MCP surface", () => {
     assert.deepEqual(
       tools.map((t) => t.name).sort(),
       [
+        "check_app",
         "check_compatibility",
         "describe_wiring",
         "get_device",

@@ -46,9 +46,10 @@ const SNIPPETS_PER_SYMBOL = 2;
 /** A statement longer than this is a whole function, not an illustration. */
 const MAX_SNIPPET_LINES = 12;
 
-const NAMED_IMPORT_RE = /import\s*\{([^}]*)\}\s*from\s*['"](@[^'"]+)['"]/g;
+/** Exported so `check` reads an app the same way this front reads a sample. */
+export const NAMED_IMPORT_RE = /import\s*\{([^}]*)\}\s*from\s*['"](@[^'"]+)['"]/g;
 /** `text.setProperty(`, `sensor.addEventListener(` — receiver unresolved. */
-const MEMBER_CALL_RE = /\.([a-zA-Z_$][\w$]*)\s*\(/g;
+export const MEMBER_CALL_RE = /\.([a-zA-Z_$][\w$]*)\s*\(/g;
 /**
  * A bare call — `View(...)`, `AppSettingsPage({...})` — with no receiver and no
  * import. Collected only in the phone runtimes, where the whole API is global:
@@ -170,7 +171,7 @@ const DEFINITION_LINE_RE = /^\s*(?:async\s+)?[A-Za-z_$][\w$]*\s*\([^)]*\)\s*\{\s
  * hide the next `getLogger`; under-excluding costs a row a reader can see is
  * unresolved.
  */
-const NOISE_METHODS = new Set([
+export const NOISE_METHODS = new Set([
   "log",
   "warn",
   "error",

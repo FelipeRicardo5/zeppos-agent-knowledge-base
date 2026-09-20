@@ -9,7 +9,8 @@
     "mcp": "tsx src/mcp/serve.ts",
     "test": "node --import tsx --test \"test/**/*.test.ts\"",
     "typecheck": "tsc --noEmit",
-    "verify": "tsx src/cli.ts verify"
+    "verify": "tsx src/cli.ts verify",
+    "check": "tsx src/cli.ts check"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

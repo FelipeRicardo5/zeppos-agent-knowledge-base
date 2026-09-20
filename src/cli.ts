@@ -17,6 +17,8 @@ import { parsePhoneApis } from "./parse/phone.js";
 import { parseTools } from "./parse/tools.js";
 import { parseWatchface } from "./parse/watchface.js";
 import { render } from "./render/index.js";
+import { check, formatReport } from "./check/index.js";
+import { loadBase } from "./mcp/base.js";
 import { verify } from "./verify/index.js";
 import { renderExamples } from "./render/examples.js";
 import { renderConflicts } from "./render/conflicts.js";
@@ -189,6 +191,25 @@ switch (command) {
     );
     break;
   }
+  case "check": {
+    const target = process.argv[3];
+    if (target === undefined) {
+      console.error("usage: npm run check -- <path to an app directory>");
+      process.exit(1);
+    }
+
+    const base = await loadBase(".");
+    const report = await check(target, base);
+    console.log(formatReport(report));
+
+    // A violation is a contradiction with something this base records, so it
+    // fails. An unverifiable line is not a failure - exiting non-zero on those
+    // would make the honest majority look like breakage and train a reader to
+    // pass `--force`.
+    if (report.counts.VIOLATION > 0) process.exit(1);
+    break;
+  }
+
   case "verify": {
     const { total, failures } = await verify(path.join(DATA_DIR, "symbols"), OUT_DIR, ANNOTATIONS_DIR);
 

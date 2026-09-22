@@ -1,5 +1,7 @@
 # fetch-api
 
+**Fetch API** — A sample application to demonstrate the fetch API
+
 A Mini Program sample
 for platform 4.0. Runtimes present: Device App, Side Service.
 
@@ -15,11 +17,26 @@ Top-level keys: `app`, `configVersion`, `defaultLanguage`, `i18n`, `permissions`
 
 `app.appType`: `app`
 
+Installs on: target `4.0`, minVersion `4.0`, compatible `4.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `device:os.local_storage`
 
 Targets: `common` — these key the `assets/` subdirectories.
 
 Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `common` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `common` |
 
 ## Files
 

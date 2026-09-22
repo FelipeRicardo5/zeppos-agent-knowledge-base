@@ -3,6 +3,8 @@
   "name": "t9-keyboard",
   "tree": "application",
   "platformVersion": "4.2",
+  "family": "T9-Keyboard",
+  "category": "Keyboard",
   "manifest": {
     "appType": "app",
     "configVersion": "v3",
@@ -87,7 +89,40 @@
         "pages/guidelines",
         "data-widget/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "T9 Keyboard",
+      "description": "T9 Predictive Text Keyboard for ZeppOS",
+      "appType": "app",
+      "version": "1.2.1"
+    },
+    "entryPoints": [
+      {
+        "module": "data-widget",
+        "target": "default",
+        "path": "data-widget/index",
+        "file": "data-widget/index.js",
+        "shape": "widgets",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "default",
+        "path": "data-widget/index",
+        "file": "data-widget/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "default",
+        "path": "pages/guidelines",
+        "file": "pages/guidelines.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -637,5 +672,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.2/t9-keyboard",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

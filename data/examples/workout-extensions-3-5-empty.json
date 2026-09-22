@@ -3,6 +3,8 @@
   "name": "empty",
   "tree": "workout-extensions",
   "platformVersion": "3.5",
+  "family": "Empty",
+  "category": "Workout-Extension",
   "manifest": {
     "appType": "app",
     "configVersion": "v3",
@@ -209,7 +211,24 @@
       "runtime.apiVersion.target": [
         "3.6"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Empty",
+      "appType": "app",
+      "extType": "workout",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "data-widget",
+        "target": "common",
+        "path": "data-widget/common/index",
+        "file": "data-widget/common/index.js",
+        "shape": "widgets",
+        "runtime": "workout-extension"
+      }
+    ]
   },
   "files": [
     {
@@ -235,5 +254,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/workout-extensions/3.5/empty",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

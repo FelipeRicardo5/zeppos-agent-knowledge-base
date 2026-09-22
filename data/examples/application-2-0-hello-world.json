@@ -3,6 +3,8 @@
   "name": "hello-world",
   "tree": "application",
   "platformVersion": "2.0",
+  "family": "HelloWorld",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v2",
@@ -85,7 +87,32 @@
         "page/gtr/home/index.page",
         "page/gts/home/index.page"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Hello World",
+      "description": "hello world app",
+      "appType": "app",
+      "version": "1.0.1"
+    },
+    "entryPoints": [
+      {
+        "module": "page",
+        "target": "gtr",
+        "path": "page/gtr/home/index.page",
+        "file": "page/gtr/home/index.page.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gts",
+        "path": "page/gts/home/index.page",
+        "file": "page/gts/home/index.page.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -237,5 +264,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/hello-world",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

@@ -119,7 +119,7 @@ Sample manifests declare `st: "r"` 19 times and `st: "s"` 11 times, and never na
 
 ### Where the samples and the device list disagree
 
-The 33 sample manifests name 33 distinct `deviceSource` values between them. 32 match a device below.
+The 33 sample manifests name 34 distinct `deviceSource` values between them. 33 match a device below.
 
 **1 does not.** A shipped sample builds for `7864576`, and no row of the device list declares
 that number. Either the list is behind the samples or the sample targets hardware
@@ -164,7 +164,7 @@ call works on it.
 | Device | Targeted by | Symbols those samples import |
 | --- | --- | --- |
 | Amazfit GTR 3 | [application-1-0-calories](../examples/application-1-0-calories.md), [application-1-0-fetch-api](../examples/application-1-0-fetch-api.md), [application-1-0-hello-world](../examples/application-1-0-hello-world.md), [application-1-0-todo-list](../examples/application-1-0-todo-list.md), [watchface-1-0-basketball](../examples/watchface-1-0-basketball.md) | 0 |
-| Amazfit GTR 3 Pro | [application-1-0-calories](../examples/application-1-0-calories.md), [application-1-0-fetch-api](../examples/application-1-0-fetch-api.md), [application-1-0-hello-world](../examples/application-1-0-hello-world.md), [application-1-0-todo-list](../examples/application-1-0-todo-list.md), [watchface-1-0-timer](../examples/watchface-1-0-timer.md) | 0 |
+| Amazfit GTR 3 Pro | [application-1-0-calories](../examples/application-1-0-calories.md), [application-1-0-fetch-api](../examples/application-1-0-fetch-api.md), [application-1-0-hello-world](../examples/application-1-0-hello-world.md), [application-1-0-todo-list](../examples/application-1-0-todo-list.md), [watchface-1-0-simple](../examples/watchface-1-0-simple.md), [watchface-1-0-timer](../examples/watchface-1-0-timer.md) | 0 |
 | Amazfit GTS 3 | [application-1-0-calories](../examples/application-1-0-calories.md), [application-1-0-fetch-api](../examples/application-1-0-fetch-api.md), [application-1-0-hello-world](../examples/application-1-0-hello-world.md), [application-1-0-todo-list](../examples/application-1-0-todo-list.md), [watchface-1-0-color-world](../examples/watchface-1-0-color-world.md) | 0 |
 
 | Device | Zepp OS | Screen | Keys | deviceSource |

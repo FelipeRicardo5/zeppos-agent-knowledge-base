@@ -253,6 +253,39 @@ export const ANSWERS: Answer[] = [
     },
   },
   {
+    question: "Which file is this app's Side Service, and which file is its Settings App?",
+    why: "The manifest writes an extensionless path and the loader supplies the extension, so the layout of what a run produced could only ever be guessed. Three runs wrote a Settings App file and none could cite where the app.json points.",
+    check: (base) => {
+      const page = base.page("examples/application-2-0-todo-list.md");
+      if (!/## Entry points/.test(page)) return "the sample page no longer resolves its `module` keys";
+      for (const needle of ["`app-side/index.js`", "`setting/index.js`", "Side Service", "Settings App"]) {
+        const missing = has(page, needle, "examples/application-2-0-todo-list.md");
+        if (missing) return missing;
+      }
+      return undefined;
+    },
+  },
+  {
+    question: "What does an app declare in `runtime.apiVersion`?",
+    why: "The field that decides whether an app installs on its target range. An eval run invented `4.2.0`; every sample writes the API_LEVEL itself.",
+    check: (base) =>
+      has(base.page("examples/application-2-0-todo-list.md"), "Installs on:", "the sample page") ??
+      (/not a semver/.test(base.page("examples/application-2-0-todo-list.md"))
+        ? undefined
+        : "the page states the value without saying it is an API_LEVEL rather than a semver"),
+  },
+  {
+    question: "Which sample apps does the samples README not list?",
+    why: "Four sample directories are linked from nowhere in that README, including the only 3.0-era watchface and the only sample that downloads a file. A reader working from the list never learns they exist, and the base reads the tree instead.",
+    check: (base) => {
+      const page = base.page("examples/index.md");
+      if (!/## Samples the README does not list/.test(page)) {
+        return "examples/index.md no longer diffs the README against the tree";
+      }
+      return has(page, "watchface-3-0-timer.md", "examples/index.md");
+    },
+  },
+  {
     question: "How does a Device App page hand data to its Side Service?",
     why: "The gap that cost the third eval run its worst finding. The agent wrote `this.request({method, params})`; twelve sample call sites write `{type, params}`, and the receiving half destructures exactly that. Nothing was missing from the samples - the pieces were never put beside each other. This asks that they still are, and that putting them there never became an assertion that one reaches the other.",
     check: (base) => {

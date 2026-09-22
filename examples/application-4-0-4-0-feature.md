@@ -1,5 +1,7 @@
 # 4.0-feature
 
+**4.0 Feature** — A sample application about the new features of 4.0
+
 A Mini Program sample
 for platform 4.0. Runtimes present: Device App.
 
@@ -15,11 +17,28 @@ Top-level keys: `app`, `configVersion`, `debug`, `defaultLanguage`, `permissions
 
 `app.appType`: `app`
 
+Installs on: target `4.0`, minVersion `4.0`, compatible `4.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `data:user.hd.heart_rate`, `data:user.hd.sleep`, `data:user.hd.spo2`, `data:user.hd.stress`, `data:user.hd.workout`, `device:os.accelerometer`, `device:os.alarm`, `device:os.bg_service`, `device:os.ble`, `device:os.compass`, `device:os.geolocation`, `device:os.gyroscope`, `device:os.notification`, `event:customize.test`, `event:os.bp.expires`, `event:os.bp.high`, `event:os.bp.low`, `event:os.health.heart_rate_abnl`, `event:os.health.sleep_status`, `event:os.system.no_disturb`, `event:os.system.power_saving`, `event:os.system.theater_mode`, `event:os.weather.sun_rise`, `event:os.weather.sun_set`
 
 Targets: `default` — these key the `assets/` subdirectories.
 
 Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `default` |
+| `page` | `page/TC/TC_01/index` | `pages` | `page/TC/TC_01/index.js` | Device App | `default` |
+| `page` | `page/TC/TC_02/index` | `pages` | `page/TC/TC_02/index.js` | Device App | `default` |
+| `page` | `page/TC/TC_03/index` | `pages` | `page/TC/TC_03/index.js` | Device App | `default` |
 
 ## Files
 

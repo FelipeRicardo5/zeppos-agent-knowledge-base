@@ -174,7 +174,376 @@
       "targets.*.module.setting.path": [
         "setting/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Post Health Data",
+      "description": "empty application",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "app-side",
+        "target": "320x380-amazfit-bip-5",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "360x360-amazfit-active-edge",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "390x450-amazfit-active",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "390x450-amazfit-cheetah-square",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "390x450-amazfit-gts-4",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "416x416-amazfit-falcon",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "416x416-amazfit-gtr-mini",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "454x454-amazfit-cheetah-round",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "454x454-amazfit-t-rex-2",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "454x454-amazfit-t-rex-ultra",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "466x466-amazfit-gtr-4",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "480x480-amazfit-balance",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "480x480-amazfit-cheetah-pro",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "480x480-amazfit-gtr-4-limited-edition",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "app-side",
+        "target": "480x480-runner-pro",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "page",
+        "target": "320x380-amazfit-bip-5",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "360x360-amazfit-active-edge",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "390x450-amazfit-active",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "390x450-amazfit-cheetah-square",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "390x450-amazfit-gts-4",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "416x416-amazfit-falcon",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "416x416-amazfit-gtr-mini",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "454x454-amazfit-cheetah-round",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "454x454-amazfit-t-rex-2",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "454x454-amazfit-t-rex-ultra",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "466x466-amazfit-gtr-4",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "480x480-amazfit-balance",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "480x480-amazfit-cheetah-pro",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "480x480-amazfit-gtr-4-limited-edition",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "480x480-runner-pro",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "setting",
+        "target": "320x380-amazfit-bip-5",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "360x360-amazfit-active-edge",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "390x450-amazfit-active",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "390x450-amazfit-cheetah-square",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "390x450-amazfit-gts-4",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "416x416-amazfit-falcon",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "416x416-amazfit-gtr-mini",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "454x454-amazfit-cheetah-round",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "454x454-amazfit-t-rex-2",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "454x454-amazfit-t-rex-ultra",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "466x466-amazfit-gtr-4",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "480x480-amazfit-balance",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "480x480-amazfit-cheetah-pro",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "480x480-amazfit-gtr-4-limited-edition",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      },
+      {
+        "module": "setting",
+        "target": "480x480-runner-pro",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      }
+    ]
   },
   "files": [
     {
@@ -691,5 +1060,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/post-health-data/MiniProgram",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

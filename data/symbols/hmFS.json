@@ -14,7 +14,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/close.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.open",
@@ -72,7 +72,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/open.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.open_asset",
@@ -130,7 +130,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/open_asset.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.read",
@@ -176,7 +176,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/read.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.remove",
@@ -191,7 +191,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/remove.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.rename",
@@ -225,7 +225,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/rename.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.seek",
@@ -265,7 +265,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/seek.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.stat",
@@ -297,7 +297,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/stat.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.stat_asset",
@@ -329,7 +329,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/stat_asset.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProGetBool",
@@ -344,7 +344,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetBool.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProGetChars",
@@ -359,7 +359,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetChars.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProGetDouble",
@@ -374,7 +374,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetDouble.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProGetInt",
@@ -389,7 +389,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetInt.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProGetInt64",
@@ -404,7 +404,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProGetInt64.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProSetBool",
@@ -438,7 +438,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetBool.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProSetChars",
@@ -472,7 +472,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetChars.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProSetDouble",
@@ -506,7 +506,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetDouble.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProSetInt",
@@ -540,7 +540,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetInt.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.SysProSetInt64",
@@ -574,7 +574,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/SysProSetInt64.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     },
     {
       "id": "hmFS.write",
@@ -630,7 +630,7 @@
       "source": "docs-watchface",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/watchface/api/hmFS/write.mdx",
-      "extractedAt": "2026-09-14"
+      "extractedAt": "2026-09-22"
     }
   ]
 }

@@ -3,6 +3,8 @@
   "name": "calories",
   "tree": "application",
   "platformVersion": "1.0",
+  "family": "Calories",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v2",
@@ -95,7 +97,64 @@
         "page/gts-3/index",
         "page/gts-3/food-list"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Calories",
+      "description": "calories application",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "page",
+        "target": "gtr-3",
+        "path": "page/gtr-3/food-list",
+        "file": "page/gtr-3/food-list.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gtr-3-pro",
+        "path": "page/gtr-3/food-list",
+        "file": "page/gtr-3/food-list.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gtr-3",
+        "path": "page/gtr-3/index",
+        "file": "page/gtr-3/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gtr-3-pro",
+        "path": "page/gtr-3/index",
+        "file": "page/gtr-3/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gts-3",
+        "path": "page/gts-3/food-list",
+        "file": "page/gts-3/food-list.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gts-3",
+        "path": "page/gts-3/index",
+        "file": "page/gts-3/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -377,5 +436,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/1.0/calories",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

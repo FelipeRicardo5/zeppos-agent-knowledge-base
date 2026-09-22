@@ -3,6 +3,8 @@
   "name": "simple-keyboard",
   "tree": "application",
   "platformVersion": "4.2",
+  "family": "Simple-Keyboard",
+  "category": "Keyboard",
   "manifest": {
     "appType": "app",
     "configVersion": "v3",
@@ -87,7 +89,40 @@
         "page/index",
         "data-widget/index.page"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "拼音键盘",
+      "description": "empty application",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "data-widget",
+        "target": "default",
+        "path": "data-widget/index.page",
+        "file": "data-widget/index.page.js",
+        "shape": "widgets",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "default",
+        "path": "data-widget/index.page",
+        "file": "data-widget/index.page.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "default",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -612,5 +647,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.2/simple-keyboard",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

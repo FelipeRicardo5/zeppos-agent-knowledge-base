@@ -3,6 +3,8 @@
   "name": "calories",
   "tree": "application",
   "platformVersion": "2.0",
+  "family": "Calories",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v2",
@@ -91,7 +93,48 @@
         "page/gts/index",
         "page/gts/food-list"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Calories",
+      "description": "calories application",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "app-widget",
+        "target": "gts",
+        "path": "app-widget/index",
+        "file": "app-widget/index.js",
+        "shape": "widgets",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gts",
+        "path": "page/gts/food-list",
+        "file": "page/gts/food-list.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gts",
+        "path": "page/gts/index",
+        "file": "page/gts/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "secondary-widget",
+        "target": "gts",
+        "path": "secondary-widget/index",
+        "file": "secondary-widget/index.js",
+        "shape": "widgets",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -480,5 +523,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/calories",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

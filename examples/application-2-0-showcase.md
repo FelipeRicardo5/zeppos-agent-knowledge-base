@@ -1,5 +1,7 @@
 # showcase
 
+**ZeppOSShowcase** — empty application
+
 A Mini Program sample
 for platform 2.0. Runtimes present: Device App.
 
@@ -15,11 +17,61 @@ Top-level keys: `app`, `configVersion`, `defaultLanguage`, `i18n`, `permissions`
 
 `app.appType`: `app`
 
+Installs on: target `2.0`, minVersion `2.1.0`, compatible `2.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `data:user.hd.calorie`, `data:user.hd.distance`, `data:user.hd.fat_burning`, `data:user.hd.heart_rate`, `data:user.hd.pai`, `data:user.hd.sleep`, `data:user.hd.spo2`, `data:user.hd.stand`, `data:user.hd.step`, `data:user.hd.stress`, `device:os.geolocation`
 
 Targets: `gt4` — these key the `assets/` subdirectories.
 
 Builds for: `deviceSource` `7864577`, `7930112`, `7930113`, `7995648`, `7995649` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `gt4` |
+| `page` | `page/interaction/create_modal` | `pages` | `page/interaction/create_modal.js` | Device App | `gt4` |
+| `page` | `page/interaction/on_digital_crown` | `pages` | `page/interaction/on_digital_crown.js` | Device App | `gt4` |
+| `page` | `page/interaction/on_key` | `pages` | `page/interaction/on_key.js` | Device App | `gt4` |
+| `page` | `page/interaction/on_wrist_motion` | `pages` | `page/interaction/on_wrist_motion.js` | Device App | `gt4` |
+| `page` | `page/interaction/show_toast` | `pages` | `page/interaction/show_toast.js` | Device App | `gt4` |
+| `page` | `page/router/set_launch_app_timeout` | `pages` | `page/router/set_launch_app_timeout.js` | Device App | `gt4` |
+| `page` | `page/sensor/blood_oxygen` | `pages` | `page/sensor/blood_oxygen.js` | Device App | `gt4` |
+| `page` | `page/sensor/calorie` | `pages` | `page/sensor/calorie.js` | Device App | `gt4` |
+| `page` | `page/sensor/distance` | `pages` | `page/sensor/distance.js` | Device App | `gt4` |
+| `page` | `page/sensor/fat_burning` | `pages` | `page/sensor/fat_burning.js` | Device App | `gt4` |
+| `page` | `page/sensor/geolocation` | `pages` | `page/sensor/geolocation.js` | Device App | `gt4` |
+| `page` | `page/sensor/heart_rate` | `pages` | `page/sensor/heart_rate.js` | Device App | `gt4` |
+| `page` | `page/sensor/pai` | `pages` | `page/sensor/pai.js` | Device App | `gt4` |
+| `page` | `page/sensor/sleep` | `pages` | `page/sensor/sleep.js` | Device App | `gt4` |
+| `page` | `page/sensor/stand` | `pages` | `page/sensor/stand.js` | Device App | `gt4` |
+| `page` | `page/sensor/step` | `pages` | `page/sensor/step.js` | Device App | `gt4` |
+| `page` | `page/sensor/stress` | `pages` | `page/sensor/stress.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/arc` | `pages` | `page/ui/widget/arc.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/button` | `pages` | `page/ui/widget/button.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/checkbox_group` | `pages` | `page/ui/widget/checkbox_group.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/cycle_image_text_list` | `pages` | `page/ui/widget/cycle_image_text_list.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/cycle_list` | `pages` | `page/ui/widget/cycle_list.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/dialog` | `pages` | `page/ui/widget/dialog.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/fill_rect` | `pages` | `page/ui/widget/fill_rect.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/histogram` | `pages` | `page/ui/widget/histogram.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/img` | `pages` | `page/ui/widget/img.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/img_anim` | `pages` | `page/ui/widget/img_anim.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/pick_date` | `pages` | `page/ui/widget/pick_date.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/polyline` | `pages` | `page/ui/widget/polyline.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/qrcode` | `pages` | `page/ui/widget/qrcode.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/radio_group` | `pages` | `page/ui/widget/radio_group.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/scroll_list` | `pages` | `page/ui/widget/scroll_list.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/slide_switch` | `pages` | `page/ui/widget/slide_switch.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/stroke_rect` | `pages` | `page/ui/widget/stroke_rect.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/text` | `pages` | `page/ui/widget/text.js` | Device App | `gt4` |
+| `page` | `page/ui/widget/view_container` | `pages` | `page/ui/widget/view_container.js` | Device App | `gt4` |
 
 ## Files
 

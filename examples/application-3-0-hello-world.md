@@ -1,5 +1,7 @@
 # hello-world
 
+**Hello World** — hello world app
+
 A Mini Program sample
 for platform 3.0. Runtimes present: Device App.
 
@@ -15,11 +17,25 @@ Top-level keys: `app`, `configVersion`, `debug`, `defaultLanguage`, `i18n`, `per
 
 `app.appType`: `app`
 
+Installs on: target `3.0`, minVersion `3.0`, compatible `3.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `device:os.local_storage`
 
 Targets: `gt` — these key the `assets/` subdirectories.
 
 Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `page` | `page/gt/home/index.page` | `pages` | `page/gt/home/index.page.js` | Device App | `gt` |
 
 ## Files
 

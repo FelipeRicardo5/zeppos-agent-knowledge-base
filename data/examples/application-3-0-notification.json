@@ -75,7 +75,40 @@
       "targets.*.module.page.pages": [
         "page/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Notification",
+      "description": "A sample app for notifications",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "app-service",
+        "target": "gt",
+        "path": "app-service/delay",
+        "file": "app-service/delay.js",
+        "shape": "services",
+        "runtime": "device-app"
+      },
+      {
+        "module": "app-service",
+        "target": "gt",
+        "path": "app-service/index",
+        "file": "app-service/index.js",
+        "shape": "services",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -293,5 +326,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/notification",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

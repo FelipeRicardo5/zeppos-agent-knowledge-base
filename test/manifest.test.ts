@@ -186,6 +186,9 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
     platforms: [{ deviceSource: 226 }],
     keys: ["app", "configVersion", "permissions", "targets"],
     values: {},
+    layout: "targets",
+    identity: {},
+    entryPoints: [],
   keyPaths: [
       "app",
       "app.appId",

@@ -3,6 +3,8 @@
   "name": "basketball",
   "tree": "watchface",
   "platformVersion": "1.0",
+  "family": "Basketball",
+  "category": "Watchface",
   "manifest": {
     "appType": "watchface",
     "configVersion": "v2",
@@ -80,7 +82,24 @@
       "targets.*.module.watchface.path": [
         "watchface/gtr-3/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Basketball",
+      "description": "basketball watchface",
+      "appType": "watchface",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "watchface",
+        "target": "gtr-3",
+        "path": "watchface/gtr-3/index",
+        "file": "watchface/gtr-3/index.js",
+        "shape": "path",
+        "runtime": "watchface"
+      }
+    ]
   },
   "files": [
     {
@@ -254,5 +273,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/watchface/1.0/basketball",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

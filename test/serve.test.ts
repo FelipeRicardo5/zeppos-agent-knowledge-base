@@ -32,7 +32,9 @@ describe("the MCP surface", () => {
       [
         "check_app",
         "check_compatibility",
+        "describe_app",
         "describe_wiring",
+        "find_app",
         "get_device",
         "get_freshness",
         "get_pattern",

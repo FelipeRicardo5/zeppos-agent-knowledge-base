@@ -1,0 +1,4 @@
+AppSideService({
+  onInit() {},
+  onRun() {},
+});

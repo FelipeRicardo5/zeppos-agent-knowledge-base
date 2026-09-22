@@ -8,41 +8,79 @@ to pass it, because no record carries a signature. These do, with excerpts cited
 to file and line — `OBSERVED` evidence of a call that works, not a documented
 contract.
 
-| App | Type | Platform | Runtimes | Symbols | Page |
-| --- | --- | --- | --- | --- | --- |
-| calories | application | 1.0 | Device App | 0 | [application-1-0-calories.md](application-1-0-calories.md) |
-| fetch-api | application | 1.0 | Device App, Side Service | 0 | [application-1-0-fetch-api.md](application-1-0-fetch-api.md) |
-| hello-world | application | 1.0 | Device App | 0 | [application-1-0-hello-world.md](application-1-0-hello-world.md) |
-| todo-list | application | 1.0 | Device App, Settings App, Side Service | 0 | [application-1-0-todo-list.md](application-1-0-todo-list.md) |
-| calories | application | 2.0 | Device App | 16 | [application-2-0-calories.md](application-2-0-calories.md) |
-| fetch-api | application | 2.0 | Device App, Side Service | 9 | [application-2-0-fetch-api.md](application-2-0-fetch-api.md) |
-| hello-world | application | 2.0 | Device App | 8 | [application-2-0-hello-world.md](application-2-0-hello-world.md) |
-| MiniProgram | application | 2.0 | Device App, Settings App, Side Service | 16 | [application-2-0-post-health-data-miniprogram.md](application-2-0-post-health-data-miniprogram.md) |
-| showcase | application | 2.0 | Device App | 32 | [application-2-0-showcase.md](application-2-0-showcase.md) |
-| todo-list | application | 2.0 | Device App, Settings App, Side Service | 13 | [application-2-0-todo-list.md](application-2-0-todo-list.md) |
-| 3.0-feature | application | 3.0 | Device App | 24 | [application-3-0-3-0-feature.md](application-3-0-3-0-feature.md) |
-| calories | application | 3.0 | Device App | 11 | [application-3-0-calories.md](application-3-0-calories.md) |
-| download | application | 3.0 | Device App, Side Service | 9 | [application-3-0-download.md](application-3-0-download.md) |
-| fetch-api | application | 3.0 | Device App, Side Service | 6 | [application-3-0-fetch-api.md](application-3-0-fetch-api.md) |
-| hello-world | application | 3.0 | Device App | 4 | [application-3-0-hello-world.md](application-3-0-hello-world.md) |
-| notification | application | 3.0 | Device App | 5 | [application-3-0-notification.md](application-3-0-notification.md) |
-| todo-list | application | 3.0 | Device App, Settings App, Side Service | 12 | [application-3-0-todo-list.md](application-3-0-todo-list.md) |
-| 4.0-feature | application | 4.0 | Device App | 16 | [application-4-0-4-0-feature.md](application-4-0-4-0-feature.md) |
-| calories | application | 4.0 | Device App | 11 | [application-4-0-calories.md](application-4-0-calories.md) |
-| fetch-api | application | 4.0 | Device App, Side Service | 6 | [application-4-0-fetch-api.md](application-4-0-fetch-api.md) |
-| hello-world | application | 4.0 | Device App | 4 | [application-4-0-hello-world.md](application-4-0-hello-world.md) |
-| todo-list | application | 4.0 | Device App, Settings App, Side Service | 12 | [application-4-0-todo-list.md](application-4-0-todo-list.md) |
-| simple-keyboard | application | 4.2 | Device App | 22 | [application-4-2-simple-keyboard.md](application-4-2-simple-keyboard.md) |
-| t9-keyboard | application | 4.2 | Device App | 21 | [application-4-2-t9-keyboard.md](application-4-2-t9-keyboard.md) |
-| basketball | watchface | 1.0 | Watchface | 0 | [watchface-1-0-basketball.md](watchface-1-0-basketball.md) |
-| color-world | watchface | 1.0 | Watchface | 0 | [watchface-1-0-color-world.md](watchface-1-0-color-world.md) |
-| simple | watchface | 1.0 | Watchface | 0 | [watchface-1-0-simple.md](watchface-1-0-simple.md) |
-| timer | watchface | 1.0 | Watchface | 0 | [watchface-1-0-timer.md](watchface-1-0-timer.md) |
-| timer | watchface | 3.0 | Watchface | 3 | [watchface-3-0-timer.md](watchface-3-0-timer.md) |
-| empty | workout-extensions | 3.5 | Workout Extension | 0 | [workout-extensions-3-5-empty.md](workout-extensions-3-5-empty.md) |
-| running-data-assistant | workout-extensions | 3.5 | Workout Extension | 10 | [workout-extensions-3-5-running-data-assistant.md](workout-extensions-3-5-running-data-assistant.md) |
-| running-pace-master | workout-extensions | 3.5 | Workout Extension | 7 | [workout-extensions-3-5-running-pace-master.md](workout-extensions-3-5-running-pace-master.md) |
-| running-pace-master-with-side-service | workout-extensions | 3.5 | Side Service, Workout Extension | 10 | [workout-extensions-3-5-running-pace-master-with-side-service.md](workout-extensions-3-5-running-pace-master-with-side-service.md) |
+An agent starting a task asks which whole sample is closest before it asks
+what any symbol does. The columns below are what that question needs: what the
+app says it is, which family it belongs to, and which `module` keys it
+declares — the keys are the app's architecture, since each one turns on a
+runtime and names the file that runs.
+
+| App | Says it is | Family | Platform | Runtimes | `module` keys | Symbols |
+| --- | --- | --- | --- | --- | --- | --- |
+| [calories](application-1-0-calories.md) | calories application | Calories (Application) | 1.0 | Device App | `page` | 0 |
+| [fetch-api](application-1-0-fetch-api.md) | A sample application to demonstrate the fetch API | FetchApi (Application) | 1.0 | Device App, Side Service | `app-side`, `page` | 0 |
+| [hello-world](application-1-0-hello-world.md) | hello world app | HelloWorld (Application) | 1.0 | Device App | `page` | 0 |
+| [todo-list](application-1-0-todo-list.md) | todo list application | TodoList (Application) | 1.0 | Device App, Settings App, Side Service | `app-side`, `page`, `setting` | 0 |
+| [calories](application-2-0-calories.md) | calories application | Calories (Application) | 2.0 | Device App | `app-widget`, `page`, `secondary-widget` | 16 |
+| [fetch-api](application-2-0-fetch-api.md) | A sample application to demonstrate the fetch API | FetchApi (Application) | 2.0 | Device App, Side Service | `app-side`, `page` | 9 |
+| [hello-world](application-2-0-hello-world.md) | hello world app | HelloWorld (Application) | 2.0 | Device App | `page` | 8 |
+| [MiniProgram](application-2-0-post-health-data-miniprogram.md) | empty application | *not listed* | 2.0 | Device App, Settings App, Side Service | `app-side`, `page`, `setting` | 16 |
+| [showcase](application-2-0-showcase.md) | empty application | ShowCase (Application) | 2.0 | Device App | `page` | 32 |
+| [todo-list](application-2-0-todo-list.md) | todo list application | TodoList (Application) | 2.0 | Device App, Settings App, Side Service | `app-side`, `page`, `setting` | 13 |
+| [3.0-feature](application-3-0-3-0-feature.md) | A sample application about the new features of 3.0 | ShowCase (Application) | 3.0 | Device App | `app-event`, `app-service`, `page` | 24 |
+| [calories](application-3-0-calories.md) | calories application | Calories (Application) | 3.0 | Device App | `page` | 11 |
+| [download](application-3-0-download.md) | A sample application for downloading and transferring resources | *not listed* | 3.0 | Device App, Side Service | `app-side`, `page` | 9 |
+| [fetch-api](application-3-0-fetch-api.md) | A sample application to demonstrate the fetch API | FetchApi (Application) | 3.0 | Device App, Side Service | `app-side`, `page` | 6 |
+| [hello-world](application-3-0-hello-world.md) | hello world app | HelloWorld (Application) | 3.0 | Device App | `page` | 4 |
+| [notification](application-3-0-notification.md) | A sample app for notifications | *not listed* | 3.0 | Device App | `app-service`, `page` | 5 |
+| [todo-list](application-3-0-todo-list.md) | todo list application | TodoList (Application) | 3.0 | Device App, Settings App, Side Service | `app-side`, `page`, `setting` | 12 |
+| [4.0-feature](application-4-0-4-0-feature.md) | A sample application about the new features of 4.0 | ShowCase (Application) | 4.0 | Device App | `page` | 16 |
+| [calories](application-4-0-calories.md) | calories application | Calories (Application) | 4.0 | Device App | `page` | 11 |
+| [fetch-api](application-4-0-fetch-api.md) | A sample application to demonstrate the fetch API | FetchApi (Application) | 4.0 | Device App, Side Service | `app-side`, `page` | 6 |
+| [hello-world](application-4-0-hello-world.md) | hello world app | HelloWorld (Application) | 4.0 | Device App | `page` | 4 |
+| [todo-list](application-4-0-todo-list.md) | todo list application | TodoList (Application) | 4.0 | Device App, Settings App, Side Service | `app-side`, `page`, `setting` | 12 |
+| [simple-keyboard](application-4-2-simple-keyboard.md) | empty application | Simple-Keyboard (Keyboard) | 4.2 | Device App | `data-widget`, `page` | 22 |
+| [t9-keyboard](application-4-2-t9-keyboard.md) | T9 Predictive Text Keyboard for ZeppOS | T9-Keyboard (Keyboard) | 4.2 | Device App | `data-widget`, `page` | 21 |
+| [basketball](watchface-1-0-basketball.md) | basketball watchface | Basketball (Watchface) | 1.0 | Watchface | `watchface` | 0 |
+| [color-world](watchface-1-0-color-world.md) | color world watchface | ColorWorld (Watchface) | 1.0 | Watchface | `watchface` | 0 |
+| [simple](watchface-1-0-simple.md) | a simple watch face generated by chatGPT | Simple (Watchface) | 1.0 | Watchface | `watchface` | 0 |
+| [timer](watchface-1-0-timer.md) | timer watchface | Timer (Watchface) | 1.0 | Watchface | `watchface` | 0 |
+| [timer](watchface-3-0-timer.md) | timer watchface | *not listed* | 3.0 | Watchface | `watchface` | 3 |
+| [empty](workout-extensions-3-5-empty.md) | Empty | Empty (Workout-Extension) | 3.5 | Workout Extension | `data-widget` | 0 |
+| [running-data-assistant](workout-extensions-3-5-running-data-assistant.md) | Running Data Assistant | Running-data-assistant (Workout-Extension) | 3.5 | Workout Extension | `data-widget` | 10 |
+| [running-pace-master](workout-extensions-3-5-running-pace-master.md) | Running Pace Master | Running-pace-master (Workout-Extension) | 3.5 | Workout Extension | `data-widget` | 7 |
+| [running-pace-master-with-side-service](workout-extensions-3-5-running-pace-master-with-side-service.md) | Running Pace Master | Running-pace-master-with-side-service (Workout-Extension) | 3.5 | Side Service, Workout Extension | `app-side`, `data-widget` | 10 |
+
+## The same app, across platform versions
+
+Where a family has more than one version, the newest is the one written
+against the current API and the older ones show what the same task looked
+like before it. Nothing in a directory name says these are the same app.
+
+| Family | Versions |
+| --- | --- |
+| Application / Calories | [1.0](application-1-0-calories.md) · [2.0](application-2-0-calories.md) · [3.0](application-3-0-calories.md) · [4.0](application-4-0-calories.md) |
+| Application / FetchApi | [1.0](application-1-0-fetch-api.md) · [2.0](application-2-0-fetch-api.md) · [3.0](application-3-0-fetch-api.md) · [4.0](application-4-0-fetch-api.md) |
+| Application / HelloWorld | [1.0](application-1-0-hello-world.md) · [2.0](application-2-0-hello-world.md) · [3.0](application-3-0-hello-world.md) · [4.0](application-4-0-hello-world.md) |
+| Application / ShowCase | [2.0](application-2-0-showcase.md) · [3.0](application-3-0-3-0-feature.md) · [4.0](application-4-0-4-0-feature.md) |
+| Application / TodoList | [1.0](application-1-0-todo-list.md) · [2.0](application-2-0-todo-list.md) · [3.0](application-3-0-todo-list.md) · [4.0](application-4-0-todo-list.md) |
+
+## Samples the README does not list
+
+4 of the 33 sample directories are linked from nowhere in the
+samples README, so a reader working from that list never learns they exist.
+They are here because this base reads the tree, not the list.
+
+- [MiniProgram](application-2-0-post-health-data-miniprogram.md) — `zeppos-samples/application/2.0/post-health-data/MiniProgram` — empty application
+- [download](application-3-0-download.md) — `zeppos-samples/application/3.0/download` — A sample application for downloading and transferring resources
+- [notification](application-3-0-notification.md) — `zeppos-samples/application/3.0/notification` — A sample app for notifications
+- [timer](watchface-3-0-timer.md) — `zeppos-samples/watchface/3.0/timer` — timer watchface
+
+
+### Where the description identifies nothing
+
+- `empty application` is written by 3 unrelated apps: [MiniProgram](application-2-0-post-health-data-miniprogram.md), [showcase](application-2-0-showcase.md), [simple-keyboard](application-4-2-simple-keyboard.md)
+- 4 state no description at all: [empty](workout-extensions-3-5-empty.md), [running-data-assistant](workout-extensions-3-5-running-data-assistant.md), [running-pace-master](workout-extensions-3-5-running-pace-master.md), [running-pace-master-with-side-service](workout-extensions-3-5-running-pace-master-with-side-service.md)
+
 
 ## Where a symbol is used
 

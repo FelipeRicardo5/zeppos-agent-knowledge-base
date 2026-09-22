@@ -1,0 +1,28 @@
+{
+  "configVersion": "v3",
+  "app": {
+    "appId": 1047460,
+    "appName": "Running Pace Master",
+    "appType": "app",
+    "extType": "workout",
+    "version": { "code": 1, "name": "1.0.1" },
+    "icon": "icon.png",
+    "vender": "huami",
+    "description": ""
+  },
+  "permissions": [],
+  "runtime": { "apiVersion": { "compatible": "3.6", "target": "3.6", "minVersion": "3.6" } },
+  "targets": {
+    "common": {
+      "module": {
+        "data-widget": {
+          "widgets": [{ "path": "data-widget/common/index", "name": "Running Pace Master" }]
+        },
+        "app-side": { "path": "app-side/index/index" }
+      },
+      "platforms": [{ "st": "r" }],
+      "designWidth": 480
+    }
+  },
+  "defaultLanguage": "en-US"
+}

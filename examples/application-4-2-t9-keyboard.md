@@ -1,5 +1,7 @@
 # t9-keyboard
 
+**T9 Keyboard** — T9 Predictive Text Keyboard for ZeppOS
+
 A Mini Program sample
 for platform 4.2. Runtimes present: Device App.
 
@@ -15,11 +17,27 @@ Top-level keys: `app`, `configVersion`, `defaultLanguage`, `i18n`, `permissions`
 
 `app.appType`: `app`
 
+Installs on: target `4.0`, minVersion `4.2`, compatible `4.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `device:os.input.method`
 
 Targets: `default` — these key the `assets/` subdirectories.
 
 Builds for: `st: "r"`, `st: "s"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `data-widget` | `data-widget/index` | `widgets` | `data-widget/index.js` | Device App | `default` |
+| `page` | `data-widget/index` | `pages` | `data-widget/index.js` | Device App | `default` |
+| `page` | `pages/guidelines` | `pages` | `pages/guidelines.js` | Device App | `default` |
 
 ## Files
 

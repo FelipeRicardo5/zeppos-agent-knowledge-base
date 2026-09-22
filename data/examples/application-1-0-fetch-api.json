@@ -3,6 +3,8 @@
   "name": "fetch-api",
   "tree": "application",
   "platformVersion": "1.0",
+  "family": "FetchApi",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v2",
@@ -101,7 +103,32 @@
       "targets.*.module.page.pages": [
         "pages/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Fetch API",
+      "description": "A sample application to demonstrate the fetch API",
+      "appType": "app",
+      "version": "1.0.1"
+    },
+    "entryPoints": [
+      {
+        "module": "app-side",
+        "target": "common",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/index",
+        "file": "pages/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -715,5 +742,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/1.0/fetch-api",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

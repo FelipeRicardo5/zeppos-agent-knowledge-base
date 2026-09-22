@@ -1,5 +1,7 @@
 # todo-list
 
+**Todo List** — todo list application
+
 A Mini Program sample
 for platform 2.0. Runtimes present: Device App, Settings App, Side Service.
 
@@ -15,11 +17,29 @@ Top-level keys: `app`, `configVersion`, `debug`, `defaultLanguage`, `i18n`, `per
 
 `app.appType`: `app`
 
+Installs on: target `2.0`, minVersion `2.0`, compatible `2.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `device:os.local_storage`
 
 Targets: `gts` — these key the `assets/` subdirectories.
 
 Builds for: `deviceSource` `7930112`, `7930113`, `7995648`, `7995649` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `gts` |
+| `page` | `page/home/index.page` | `pages` | `page/home/index.page.js` | Device App | `gts` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `gts` |
+
+Holds code under `secondary-widget/`, which other samples turn on with a `module` key and this manifest never names. Those files ship and nothing runs them.
 
 ## Files
 

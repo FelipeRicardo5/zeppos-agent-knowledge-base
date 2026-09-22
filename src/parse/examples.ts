@@ -1,7 +1,10 @@
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import type {
+  AppIdentity,
   CodeSnippet,
+  EntryPoint,
+  EntryShape,
   ExampleFile,
   ExampleManifest,
   PlatformSelector,
@@ -34,10 +37,12 @@ import { readSource, walkFiles } from "./util.js";
 //                against the symbol records by name, saying so. This is the only
 //                way `setProperty` surfaces at all: it is never imported.
 //
-// Each app's `app.json` is read too. Not for its values — an `appId` belongs to
-// whoever registered it — but for its shape: which keys a real manifest has,
-// what permissions it declares, what its targets are called. The eval run found
-// `app.json` half-blocking, and 33 valid examples answer that better than prose.
+// Each app's `app.json` is read too, for three things. Its shape — which keys a
+// real manifest has, what permissions it declares, what its targets are called.
+// The values at an allowlist of platform paths, because excluding values
+// wholesale was right about `appId` and wrong about `runtime.apiVersion`. And
+// the two joins that make the app itself the record rather than a bag of
+// symbols: what it says it is, and which file each `module` key turns on.
 
 const SAMPLES_REPO = "zeppos-samples";
 
@@ -413,7 +418,143 @@ function keyPaths(value: unknown, prefix = "", depth = 0): string[] {
   return [...new Set(paths)];
 }
 
-async function readManifest(appJson: string): Promise<ExampleManifest | undefined> {
+/** A blank string says no more than a missing key. Both are absence. */
+function stated(value: unknown): string | undefined {
+  return typeof value === "string" && value.trim() !== "" ? value : undefined;
+}
+
+/**
+ * What the app says about itself.
+ *
+ * Nothing under `app.` was kept before, on the reasoning that the object is
+ * entirely about the publisher. That holds for `appId`, `icon` and `vender`,
+ * which stay out. It does not hold for these: an agent choosing between the
+ * samples has no other statement of what any of them is for, and choosing the
+ * closest whole sample is the question the eval runs actually asked.
+ */
+function identity(app: Record<string, unknown>): AppIdentity {
+  const version = (app.version ?? {}) as Record<string, unknown>;
+  const appName = stated(app.appName);
+  const description = stated(app.description);
+  const appType = stated(app.appType);
+  const extType = stated(app.extType);
+  const versionName = stated(version.name);
+
+  return {
+    ...(appName === undefined ? {} : { appName }),
+    ...(description === undefined ? {} : { description }),
+    ...(appType === undefined ? {} : { appType }),
+    ...(extType === undefined ? {} : { extType }),
+    ...(versionName === undefined ? {} : { version: versionName }),
+  };
+}
+
+interface TargetBlock {
+  /** Absent in the flat layout, which has no `targets` key to name it. */
+  key?: string;
+  block: Record<string, unknown>;
+}
+
+/**
+ * The blocks carrying `module` and `platforms`, with the target key naming each.
+ *
+ * Two layouts exist and both declare `configVersion: v2`, so that field does not
+ * separate them. The common one nests both under `targets.<key>`; one sample
+ * writes them at the top level with no `targets` at all. Reading only the nested
+ * form is why that sample was the one app in the corpus with no hardware
+ * selector recorded — its manifest states three `deviceSource` numbers and the
+ * walker was looking one level too deep.
+ */
+function targetBlocks(manifest: Record<string, unknown>): TargetBlock[] {
+  const targets = manifest.targets;
+
+  if (typeof targets === "object" && targets !== null && !Array.isArray(targets)) {
+    return Object.entries(targets as Record<string, unknown>)
+      .filter(([, block]) => typeof block === "object" && block !== null && !Array.isArray(block))
+      .map(([key, block]) => ({ key, block: block as Record<string, unknown> }));
+  }
+
+  if (typeof manifest.module === "object" && manifest.module !== null) return [{ block: manifest }];
+  return [];
+}
+
+/** What a declared path is loaded as. `page/home/index.page` resolves through `.js`. */
+const ENTRY_EXTENSIONS = [".js", ".page.js"];
+
+function stringsIn(value: unknown): string[] {
+  return Array.isArray(value) ? value.filter((entry): entry is string => typeof entry === "string") : [];
+}
+
+/**
+ * Every file a `module` key turns on, resolved against the app's own files.
+ *
+ * Four declaration forms, and the key decides which: a string `path`, the
+ * `pages` list on `module.page`, `widgets[].path` on the widget keys, and
+ * `services` on `app-service`. The reference page documents the first two. A
+ * walker reading `path` alone finds no entry point for a Workout Extension or
+ * a Background Service, which are two of the runtimes this base is thinnest on.
+ *
+ * Resolving is the point. The manifest writes an extensionless path and the
+ * loader supplies the extension, so the question a reader has — which file is
+ * this app's Side Service — is answerable only with both sides in hand, and
+ * nothing upstream puts them together.
+ */
+function entryPoints(blocks: TargetBlock[], files: ExampleFile[]): EntryPoint[] {
+  const byPath = new Map(files.map((file) => [file.path, file]));
+  const found = new Map<string, EntryPoint>();
+
+  for (const { key: target, block } of blocks) {
+    const modules = block.module;
+    if (typeof modules !== "object" || modules === null || Array.isArray(modules)) continue;
+
+    for (const [module, value] of Object.entries(modules as Record<string, unknown>)) {
+      if (typeof value !== "object" || value === null || Array.isArray(value)) continue;
+      const entry = value as Record<string, unknown>;
+      const single = stated(entry.path);
+
+      const declared: [EntryShape, string][] = [
+        ...(single === undefined ? [] : ([["path", single]] as [EntryShape, string][])),
+        ...stringsIn(entry.pages).map((page): [EntryShape, string] => ["pages", page]),
+        ...stringsIn(entry.services).map((service): [EntryShape, string] => ["services", service]),
+        ...(Array.isArray(entry.widgets) ? entry.widgets : [])
+          .map((widget) =>
+            typeof widget === "object" && widget !== null
+              ? stated((widget as Record<string, unknown>).path)
+              : undefined,
+          )
+          .filter((declaredPath): declaredPath is string => declaredPath !== undefined)
+          .map((declaredPath): [EntryShape, string] => ["widgets", declaredPath]),
+      ];
+
+      for (const [shape, declaredPath] of declared) {
+        const file = ENTRY_EXTENSIONS.map((extension) => declaredPath + extension).find((candidate) =>
+          byPath.has(candidate),
+        );
+        const runtime = file === undefined ? undefined : byPath.get(file)?.runtime;
+
+        // Keyed by the three fields that make a row distinct: the same path
+        // under two target keys is two declarations, not a duplicate.
+        found.set([target ?? "", module, declaredPath].join(" "), {
+          module,
+          ...(target === undefined ? {} : { target }),
+          path: declaredPath,
+          ...(file === undefined ? {} : { file }),
+          shape,
+          ...(runtime === undefined ? {} : { runtime }),
+        });
+      }
+    }
+  }
+
+  return [...found.values()].sort(
+    (a, b) =>
+      a.module.localeCompare(b.module) ||
+      a.path.localeCompare(b.path) ||
+      (a.target ?? "").localeCompare(b.target ?? ""),
+  );
+}
+
+async function readManifest(appJson: string, files: ExampleFile[]): Promise<ExampleManifest | undefined> {
   let parsed: unknown;
   try {
     parsed = JSON.parse(await readFile(appJson, "utf-8"));
@@ -427,7 +568,8 @@ async function readManifest(appJson: string): Promise<ExampleManifest | undefine
   const manifest = parsed as Record<string, unknown>;
   const app = (manifest.app ?? {}) as Record<string, unknown>;
   const targets = manifest.targets;
-  const isObject = typeof targets === "object" && targets !== null && !Array.isArray(targets);
+  const nested = typeof targets === "object" && targets !== null && !Array.isArray(targets);
+  const blocks = targetBlocks(manifest);
 
   return {
     appType: typeof app.appType === "string" ? app.appType : undefined,
@@ -435,16 +577,19 @@ async function readManifest(appJson: string): Promise<ExampleManifest | undefine
     permissions: Array.isArray(manifest.permissions)
       ? manifest.permissions.filter((p): p is string => typeof p === "string").sort()
       : [],
-    targets: isObject ? Object.keys(targets as object).sort() : [],
-    platforms: isObject ? platformSelectors(targets as Record<string, unknown>) : [],
+    targets: nested ? Object.keys(targets as object).sort() : [],
+    platforms: platformSelectors(blocks),
     keys: Object.keys(manifest).sort(),
     keyPaths: keyPaths(manifest).sort(),
     values: Object.fromEntries([...valuesAt(manifest)].sort(([a], [b]) => a.localeCompare(b))),
+    layout: nested ? "targets" : "flat",
+    identity: identity(app),
+    entryPoints: entryPoints(blocks, files),
   };
 }
 
 /**
- * Every distinct `targets.*.platforms[]` entry in the manifest.
+ * Every distinct `platforms[]` entry in the manifest.
  *
  * This is the field that says which hardware a sample builds for, and the
  * `targets` key above it is not: the reference page calls that key "named
@@ -452,15 +597,18 @@ async function readManifest(appJson: string): Promise<ExampleManifest | undefine
  * eval runs asked what the `targets` key for a given watch is and invented one,
  * because the base offered nothing better to look at.
  *
+ * Read from whichever layout the manifest uses, because the flat one states
+ * these at the top level and nowhere else.
+ *
  * Kept verbatim and unmerged across the two generations, because they are not
  * interchangeable: a v2 manifest names `deviceSource` numbers and a v3 one
  * names a screen shape instead.
  */
-function platformSelectors(targets: Record<string, unknown>): PlatformSelector[] {
+function platformSelectors(blocks: TargetBlock[]): PlatformSelector[] {
   const seen = new Map<string, PlatformSelector>();
 
-  for (const target of Object.values(targets)) {
-    const platforms = (target as Record<string, unknown> | null)?.platforms;
+  for (const { block } of blocks) {
+    const platforms = block.platforms;
     if (!Array.isArray(platforms)) continue;
 
     for (const entry of platforms) {
@@ -480,6 +628,73 @@ function platformSelectors(targets: Record<string, unknown>): PlatformSelector[]
   }
 
   return [...seen.values()].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+}
+
+/**
+ * What the samples repository says about its own samples.
+ *
+ * Its README is the only place a sample is grouped with its siblings: HelloWorld
+ * at four platform versions is one app four times, and ShowCase, `3.0-feature`
+ * and `4.0-feature` are one family under three directory names that share no
+ * substring. No manifest states that, and neither does any directory.
+ *
+ * It is also a list that can disagree with the tree beside it, in both
+ * directions, which is the diff that has held every finding since `manifest/`.
+ */
+export interface CatalogueEntry {
+  /** The family as the README writes it: `HelloWorld`, `Running-pace-master`. */
+  family: string;
+  /** The `###` heading it sits under: Application, Keyboard, Watchface, ... */
+  category: string;
+  /** Repo-relative directory, normalized: `application/2.0/todo-list`. */
+  dir: string;
+}
+
+const README_FILE = "README.md";
+const CATEGORY_RE = /^###\s+(.+?)\s*$/;
+const BULLET_RE = /^\s*[*-]\s+(.*)$/;
+const LINK_RE = /\[[^\]]*\]\(([^)]+)\)/g;
+
+/**
+ * The README's sample list, as entries.
+ *
+ * A bullet is `Family [1.0](./path) | [2.0](./path)`, so the family is whatever
+ * precedes the first link and the rest are its versions. Paths are normalized
+ * because the file writes one of them with a doubled separator, and a reader
+ * joining on the raw string would silently drop that sample.
+ */
+export async function parseSampleCatalogue(cacheDir: string): Promise<CatalogueEntry[]> {
+  let content: string;
+  try {
+    content = await readSource(path.join(cacheDir, SAMPLES_REPO, README_FILE));
+  } catch {
+    return [];
+  }
+
+  const entries: CatalogueEntry[] = [];
+  let category = "";
+
+  for (const line of content.split("\n")) {
+    const heading = CATEGORY_RE.exec(line);
+    if (heading) {
+      category = heading[1];
+      continue;
+    }
+
+    const bullet = BULLET_RE.exec(line);
+    if (!bullet || category === "") continue;
+
+    const family = bullet[1].slice(0, bullet[1].indexOf("[")).trim();
+    if (family === "") continue;
+
+    for (const [, target] of bullet[1].matchAll(LINK_RE)) {
+      const dir = target.replace(/^\.\//, "").replace(/\/+/g, "/").replace(/\/$/, "");
+      if (dir.startsWith("http") || dir === "") continue;
+      entries.push({ family, category, dir });
+    }
+  }
+
+  return entries;
 }
 
 /** Every directory holding an `app.json` — one sample app each. */
@@ -506,10 +721,18 @@ async function appDirs(samplesDir: string): Promise<string[]> {
 export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
   const samplesDir = path.join(cacheDir, SAMPLES_REPO);
   const examples: RawExample[] = [];
+  // Keyed by repo-relative directory. An app whose directory the README never
+  // links stays unlisted rather than being filed under a guessed family — the
+  // index counts those, because a sample nobody links is a sample nobody finds.
+  const catalogue = new Map(
+    (await parseSampleCatalogue(cacheDir)).map((entry) => [entry.dir, entry] as const),
+  );
 
   for (const appDir of await appDirs(samplesDir)) {
     const sourceDir = path.relative(cacheDir, appDir);
-    const segments = sourceDir.split(path.sep).join("/").split("/");
+    const posix = sourceDir.split(path.sep).join("/");
+    const listed = catalogue.get(posix.slice(SAMPLES_REPO.length + 1));
+    const segments = posix.split("/");
     const [, tree, platformVersion] = [segments[0], segments[1], segments[2]];
 
     const files: ExampleFile[] = [];
@@ -616,14 +839,18 @@ export async function parseExamples(cacheDir: string): Promise<RawExample[]> {
       });
     }
 
+    // Sorted before the manifest is read: entry points resolve against these.
+    const sortedFiles = files.sort((a, b) => a.path.localeCompare(b.path));
+
     examples.push({
       id: exampleSlug(sourceDir),
       // The directory name, not `app.appName` — that is often an i18n key.
       name: path.basename(sourceDir),
       tree,
       platformVersion,
-      manifest: await readManifest(path.join(appDir, "app.json")),
-      files: files.sort((a, b) => a.path.localeCompare(b.path)),
+      ...(listed === undefined ? {} : { family: listed.family, category: listed.category }),
+      manifest: await readManifest(path.join(appDir, "app.json"), sortedFiles),
+      files: sortedFiles,
       usages: [...usages]
         .map(([id, snippets]): SymbolUsage => ({ id, snippets }))
         .filter(({ snippets }) => snippets.length > 0)

@@ -3,6 +3,8 @@
   "name": "calories",
   "tree": "application",
   "platformVersion": "4.0",
+  "family": "Calories",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v3",
@@ -76,7 +78,32 @@
         "page/gt/index",
         "page/gt/food-list"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Calories",
+      "description": "calories application",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "page",
+        "target": "gt",
+        "path": "page/gt/food-list",
+        "file": "page/gt/food-list.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt",
+        "path": "page/gt/index",
+        "file": "page/gt/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -383,5 +410,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.0/calories",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

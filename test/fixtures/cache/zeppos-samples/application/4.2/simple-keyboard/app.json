@@ -11,7 +11,20 @@
   },
   "permissions": ["device:os.input.method", "data:os.device.info"],
   "runtime": { "apiVersion": { "compatible": "4.2.0", "target": "4.2.0" } },
-  "targets": { "gt.r": { "module": {} }, "gt.s": { "module": {} } },
+  "targets": {
+    "gt.r": {
+      "module": {
+        "page": { "pages": ["page/index", "page/update"] },
+        "setting": { "path": "setting/index" },
+        "app-service": { "services": ["app-service/index", "app-service/never-written"] }
+      },
+      "platforms": [{ "st": "r", "sr": "w480" }]
+    },
+    "gt.s": {
+      "module": { "page": { "pages": ["page/index"] } },
+      "platforms": [{ "st": "s" }]
+    }
+  },
   "i18n": { "en-US": { "appName": "Simple Keyboard" } },
   "defaultLanguage": "en-US"
 }

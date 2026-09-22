@@ -1,6 +1,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import type {
+  ExampleManifest,
   CodeSnippet,
   ExampleRecord,
   PlatformSelector,
@@ -182,8 +183,143 @@ function wiringLines(example: ExampleRecord): string[] {
   return lines;
 }
 
-function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord>): string {
+/**
+ * What the app calls itself, when it says anything.
+ *
+ * The page is titled by the directory, which is what every citation uses. The
+ * two disagree often enough to be worth showing: one watchface directory named
+ * `simple` holds an app called `chatGPT-demo`.
+ */
+function identityLine(example: ExampleRecord): string[] {
+  const identity = example.manifest?.identity;
+  if (identity === undefined || identity.appName === undefined) return [];
+
+  const described = identity.description === undefined ? "" : ` — ${identity.description}`;
+  return [`**${identity.appName}**${described}`, ""];
+}
+
+/**
+ * The version range the app declares it installs on.
+ *
+ * `runtime.apiVersion` decides whether an app installs at all, and an eval run
+ * invented `"4.2.0"` for it. Every sample writes the API_LEVEL itself.
+ */
+function apiVersionLine(manifest: ExampleManifest): string[] {
+  const parts = (["target", "minVersion", "compatible"] as const)
+    .map((field) => [field, manifest.values[`runtime.apiVersion.${field}`] ?? []] as const)
+    .filter(([, values]) => values.length > 0)
+    .map(([field, values]) => `${field} ${values.map((value) => `\`${value}\``).join(" / ")}`);
+
+  if (parts.length === 0) return ["States no `runtime.apiVersion`.", ""];
+
+  return [
+    `Installs on: ${parts.join(", ")} — this field is the API_LEVEL, not a semver.`,
+    "",
+  ];
+}
+
+/** Which of the two manifest layouts this file uses, and where that puts things. */
+function layoutLine(manifest: ExampleManifest): string[] {
+  return [
+    manifest.layout === "flat"
+      ? "Layout: `flat` — `module` and `platforms` sit at the top level and there is no `targets` key. See [`../manifest/index.md`](../manifest/index.md)."
+      : "Layout: `targets` — `module` and `platforms` sit under each target key.",
+    "",
+  ];
+}
+
+/**
+ * Which file each `module` key turns on.
+ *
+ * The join nothing upstream states. A manifest writes an extensionless path and
+ * the loader supplies the extension, so a reader copying this layout has to
+ * know both halves; getting it wrong breaks the build before any API runs. The
+ * runtime column is the project's own path rule applied to the resolved file,
+ * which is how a `setting/` entry is named the Settings App rather than guessed.
+ */
+function entryPointLines(manifest: ExampleManifest): string[] {
+  if (manifest.entryPoints.length === 0) {
+    return [
+      "## Entry points",
+      "",
+      "This manifest declares no `module` path, so nothing here says which file runs.",
+      "",
+    ];
+  }
+
+  const lines = [
+    "## Entry points",
+    "",
+    "Which file each `module` key turns on. The manifest writes the path without",
+    "an extension and the loader supplies it; the file column is that resolution",
+    "against this app's own files.",
+    "",
+    "| `module` | Declared | Form | File | Runtime | Target |",
+    "| --- | --- | --- | --- | --- | --- |",
+  ];
+
+  for (const entry of manifest.entryPoints) {
+    lines.push(
+      `| \`${entry.module}\` | \`${entry.path}\` | \`${entry.shape}\` | ` +
+        (entry.file === undefined ? "**no file matches**" : `\`${entry.file}\``) +
+        ` | ${entry.runtime === undefined ? "—" : RUNTIME_LABELS[entry.runtime]} | ` +
+        `${entry.target === undefined ? "—" : `\`${entry.target}\``} |`,
+    );
+  }
+  lines.push("");
+
+  if (manifest.entryPoints.some((entry) => entry.file === undefined)) {
+    lines.push(
+      "A declared path matching no file is left as it stands. Every path in the",
+      "sample corpus resolves, so this one is a finding rather than a gap in what",
+      "was read.",
+      "",
+    );
+  }
+
+  return lines;
+}
+
+/**
+ * Directories some manifest in the corpus names with a `module` key.
+ *
+ * Derived rather than listed. A hand-written list of "runtime directories"
+ * would be a second source of truth beside the manifests, and it would be the
+ * one that goes stale when upstream adds a key — which is how the
+ * `data-widget` key stayed invisible while six samples shipped one.
+ */
+function entryDirectories(examples: ExampleRecord[]): Set<string> {
+  return new Set(
+    examples.flatMap((example) =>
+      (example.manifest?.entryPoints ?? []).map((entry) => entry.path.split("/")[0]),
+    ),
+  );
+}
+
+/**
+ * Code sitting in a directory that some app turns on with a `module` key, which
+ * *this* app never names.
+ *
+ * The other direction of the entry-point diff, and the direction that has held
+ * every finding since `manifest/`. Files nothing turns on still ship, still
+ * read as part of the sample, and are the easiest thing for a reader to copy.
+ */
+function unreachedDirectories(example: ExampleRecord, entryDirs: Set<string>): string[] {
+  const reached = new Set((example.manifest?.entryPoints ?? []).map((entry) => entry.path.split("/")[0]));
+  const present = new Set(
+    example.files.map((file) => file.path.split("/")[0]).filter((dir) => dir.includes(".") === false),
+  );
+
+  return [...present].filter((dir) => entryDirs.has(dir) && !reached.has(dir)).sort();
+}
+
+function exampleMarkdown(
+  example: ExampleRecord,
+  known: Map<string, SymbolRecord>,
+  entryDirs: Set<string>,
+): string {
   const lines = [`# ${example.name}`, ""];
+  lines.push(...identityLine(example));
   lines.push(
     `A ${example.tree === "application" ? "Mini Program" : example.tree.replace(/s$/, "")} sample`,
     `for platform ${example.platformVersion}. Runtimes present: ${runtimeLabels(example.runtimes)}.`,
@@ -201,6 +337,10 @@ function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord
     lines.push("## `app.json`", "");
     lines.push(`Top-level keys: ${manifest.keys.map((k) => `\`${k}\``).join(", ")}`, "");
     if (manifest.appType) lines.push(`\`app.appType\`: \`${manifest.appType}\``, "");
+    if (manifest.identity.extType) {
+      lines.push(`\`app.extType\`: \`${manifest.identity.extType}\` — what \`appType\` alone does not say.`, "");
+    }
+    lines.push(...apiVersionLine(manifest));
     lines.push(
       manifest.permissions.length === 0
         ? "Declares no permissions."
@@ -233,6 +373,20 @@ function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord
     const label = file.runtime ? RUNTIME_LABELS[file.runtime] : "not attributed";
     byRuntime.set(label, [...(byRuntime.get(label) ?? []), file.path]);
   }
+  if (example.manifest) {
+    lines.push(...layoutLine(example.manifest));
+    lines.push(...entryPointLines(example.manifest));
+
+    const unreached = unreachedDirectories(example, entryDirs);
+    if (unreached.length > 0) {
+      lines.push(
+        `Holds code under ${unreached.map((dir) => `\`${dir}/\``).join(", ")}, which other samples turn on with a ` +
+          "`module` key and this manifest never names. Those files ship and nothing runs them.",
+        "",
+      );
+    }
+  }
+
   lines.push("## Files", "");
   for (const [label, paths] of [...byRuntime].sort()) {
     lines.push(`**${label}** — ${paths.map((p) => `\`${p}\``).join(", ")}`, "");
@@ -290,6 +444,114 @@ function exampleMarkdown(example: ExampleRecord, known: Map<string, SymbolRecord
   return lines.join("\n");
 }
 
+/**
+ * The family view, and the two ways it disagrees with the tree.
+ *
+ * A family is the only statement that HelloWorld at four platform versions is
+ * one app four times, and that ShowCase, `3.0-feature` and `4.0-feature` are one
+ * family under three directory names sharing no substring. It comes from the
+ * samples README, which is a hand-maintained list beside a directory tree — so
+ * it is read here as evidence, and diffed against the tree in both directions.
+ */
+/**
+ * A key that reads two records as the same app.
+ *
+ * The family when the README lists one, the directory name otherwise, folded
+ * because the two spell it differently: the README writes `Timer` and the
+ * directory `timer`. Without the fold, `watchface/1.0/timer` and
+ * `watchface/3.0/timer` — one app at two versions — read as two apps that
+ * happen to share a description.
+ */
+function sameApp(example: ExampleRecord): string {
+  return (example.family ?? example.name).toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+function catalogueLines(examples: ExampleRecord[]): string[] {
+  const lines: string[] = [];
+
+  const byFamily = new Map<string, ExampleRecord[]>();
+  for (const example of examples) {
+    if (example.family === undefined) continue;
+    const key = `${example.category} / ${example.family}`;
+    byFamily.set(key, [...(byFamily.get(key) ?? []), example]);
+  }
+
+  const versioned = [...byFamily].filter(([, apps]) => apps.length > 1).sort(([a], [b]) => a.localeCompare(b));
+
+  if (versioned.length > 0) {
+    lines.push(
+      "",
+      "## The same app, across platform versions",
+      "",
+      "Where a family has more than one version, the newest is the one written",
+      "against the current API and the older ones show what the same task looked",
+      "like before it. Nothing in a directory name says these are the same app.",
+      "",
+      "| Family | Versions |",
+      "| --- | --- |",
+    );
+    for (const [family, apps] of versioned) {
+      const sorted = [...apps].sort((a, b) => a.platformVersion.localeCompare(b.platformVersion));
+      lines.push(
+        `| ${cell(family)} | ${sorted.map((app) => `[${app.platformVersion}](${app.id}.md)`).join(" · ")} |`,
+      );
+    }
+  }
+
+  const unlisted = examples.filter((example) => example.family === undefined);
+  if (unlisted.length > 0) {
+    lines.push(
+      "",
+      "## Samples the README does not list",
+      "",
+      `${unlisted.length} of the ${examples.length} sample directories are linked from nowhere in the`,
+      "samples README, so a reader working from that list never learns they exist.",
+      "They are here because this base reads the tree, not the list.",
+      "",
+    );
+    for (const example of unlisted) {
+      const says = example.manifest?.identity?.description ?? example.manifest?.identity?.appName;
+      lines.push(`- [${example.name}](${example.id}.md) — \`${example.originalPath}\`${says === undefined ? "" : ` — ${says}`}`);
+    }
+    lines.push("");
+  }
+
+  // Two apps writing the same description is the description saying nothing.
+  // Grouped by family, falling back to the directory name: an app the README
+  // never lists has no family, and `watchface/1.0/timer` and `watchface/3.0/timer`
+  // are one app at two versions rather than two apps sharing a description.
+  // Worth naming, because the column above reads as identification and for
+  // these rows it is not.
+  const byDescription = new Map<string, ExampleRecord[]>();
+  for (const example of examples) {
+    const description = example.manifest?.identity?.description;
+    if (description === undefined) continue;
+    byDescription.set(description, [...(byDescription.get(description) ?? []), example]);
+  }
+  const shared = [...byDescription]
+    .filter(([, apps]) => new Set(apps.map((app) => sameApp(app))).size > 1)
+    .sort(([a], [b]) => a.localeCompare(b));
+
+  const silent = examples.filter((example) => example.manifest?.identity?.description === undefined);
+
+  if (shared.length > 0 || silent.length > 0) {
+    lines.push("", "### Where the description identifies nothing", "");
+    for (const [description, apps] of shared) {
+      lines.push(
+        `- \`${description}\` is written by ${apps.length} unrelated apps: ${apps.map((app) => `[${app.name}](${app.id}.md)`).join(", ")}`,
+      );
+    }
+    if (silent.length > 0) {
+      lines.push(
+        `- ${silent.length} state no description at all: ${silent.map((app) => `[${app.name}](${app.id}.md)`).join(", ")}`,
+      );
+    }
+    lines.push("");
+  }
+
+  return lines;
+}
+
 function examplesIndexMarkdown(examples: ExampleRecord[], known: Map<string, SymbolRecord>): string {
   const lines = ["# Examples index", ""];
   lines.push(
@@ -303,13 +565,30 @@ function examplesIndexMarkdown(examples: ExampleRecord[], known: Map<string, Sym
     "",
   );
 
-  lines.push("| App | Type | Platform | Runtimes | Symbols | Page |");
-  lines.push("| --- | --- | --- | --- | --- | --- |");
+  lines.push(
+    "An agent starting a task asks which whole sample is closest before it asks",
+    "what any symbol does. The columns below are what that question needs: what the",
+    "app says it is, which family it belongs to, and which `module` keys it",
+    "declares — the keys are the app's architecture, since each one turns on a",
+    "runtime and names the file that runs.",
+    "",
+  );
+  lines.push("| App | Says it is | Family | Platform | Runtimes | `module` keys | Symbols |");
+  lines.push("| --- | --- | --- | --- | --- | --- | --- |");
   for (const example of examples) {
+    const identity = example.manifest?.identity;
+    const says = identity?.description ?? identity?.appName ?? "—";
+    const family = example.family === undefined ? "*not listed*" : `${example.family} (${example.category})`;
+    const modules = [...new Set((example.manifest?.entryPoints ?? []).map((entry) => entry.module))].sort();
+
     lines.push(
-      `| ${cell(example.name)} | ${example.tree} | ${example.platformVersion} | ${cell(runtimeLabels(example.runtimes))} | ${example.symbols.length} | [${example.id}.md](${example.id}.md) |`,
+      `| [${cell(example.name)}](${example.id}.md) | ${cell(says)} | ${cell(family)} | ` +
+        `${example.platformVersion} | ${cell(runtimeLabels(example.runtimes))} | ` +
+        `${modules.length === 0 ? "—" : modules.map((m) => `\`${m}\``).join(", ")} | ${example.symbols.length} |`,
     );
   }
+
+  lines.push(...catalogueLines(examples));
 
   const usedBy = new Map<string, string[]>();
   for (const example of examples) {
@@ -443,8 +722,9 @@ export async function renderExamples(
   const dir = path.join(outDir, EXAMPLES_DIR);
   await prepareOutDir(dir);
 
+  const entryDirs = entryDirectories(examples);
   for (const example of examples) {
-    await writePage(path.join(dir, `${example.id}.md`), exampleMarkdown(example, known));
+    await writePage(path.join(dir, `${example.id}.md`), exampleMarkdown(example, known, entryDirs));
   }
   await writePage(path.join(dir, INDEX_FILE), examplesIndexMarkdown(examples, known));
 

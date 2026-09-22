@@ -3,6 +3,8 @@
   "name": "showcase",
   "tree": "application",
   "platformVersion": "2.0",
+  "family": "ShowCase",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v2",
@@ -130,7 +132,312 @@
         "page/ui/widget/cycle_list",
         "page/ui/widget/cycle_image_text_list"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "ZeppOSShowcase",
+      "description": "empty application",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/interaction/create_modal",
+        "file": "page/interaction/create_modal.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/interaction/on_digital_crown",
+        "file": "page/interaction/on_digital_crown.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/interaction/on_key",
+        "file": "page/interaction/on_key.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/interaction/on_wrist_motion",
+        "file": "page/interaction/on_wrist_motion.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/interaction/show_toast",
+        "file": "page/interaction/show_toast.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/router/set_launch_app_timeout",
+        "file": "page/router/set_launch_app_timeout.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/blood_oxygen",
+        "file": "page/sensor/blood_oxygen.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/calorie",
+        "file": "page/sensor/calorie.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/distance",
+        "file": "page/sensor/distance.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/fat_burning",
+        "file": "page/sensor/fat_burning.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/geolocation",
+        "file": "page/sensor/geolocation.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/heart_rate",
+        "file": "page/sensor/heart_rate.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/pai",
+        "file": "page/sensor/pai.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/sleep",
+        "file": "page/sensor/sleep.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/stand",
+        "file": "page/sensor/stand.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/step",
+        "file": "page/sensor/step.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/sensor/stress",
+        "file": "page/sensor/stress.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/arc",
+        "file": "page/ui/widget/arc.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/button",
+        "file": "page/ui/widget/button.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/checkbox_group",
+        "file": "page/ui/widget/checkbox_group.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/cycle_image_text_list",
+        "file": "page/ui/widget/cycle_image_text_list.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/cycle_list",
+        "file": "page/ui/widget/cycle_list.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/dialog",
+        "file": "page/ui/widget/dialog.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/fill_rect",
+        "file": "page/ui/widget/fill_rect.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/histogram",
+        "file": "page/ui/widget/histogram.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/img",
+        "file": "page/ui/widget/img.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/img_anim",
+        "file": "page/ui/widget/img_anim.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/pick_date",
+        "file": "page/ui/widget/pick_date.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/polyline",
+        "file": "page/ui/widget/polyline.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/qrcode",
+        "file": "page/ui/widget/qrcode.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/radio_group",
+        "file": "page/ui/widget/radio_group.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/scroll_list",
+        "file": "page/ui/widget/scroll_list.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/slide_switch",
+        "file": "page/ui/widget/slide_switch.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/stroke_rect",
+        "file": "page/ui/widget/stroke_rect.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/text",
+        "file": "page/ui/widget/text.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gt4",
+        "path": "page/ui/widget/view_container",
+        "file": "page/ui/widget/view_container.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -1298,5 +1605,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/2.0/showcase",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

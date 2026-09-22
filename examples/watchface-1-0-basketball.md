@@ -1,5 +1,7 @@
 # basketball
 
+**Basketball** — basketball watchface
+
 A watchface sample
 for platform 1.0. Runtimes present: Watchface.
 
@@ -15,11 +17,25 @@ Top-level keys: `app`, `configVersion`, `debug`, `defaultLanguage`, `i18n`, `per
 
 `app.appType`: `watchface`
 
+Installs on: target `1.0.0`, minVersion `1.0.0`, compatible `1.0.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `gps`
 
 Targets: `gtr-3` — these key the `assets/` subdirectories.
 
 Builds for: `deviceSource` `226`, `227` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `watchface` | `watchface/gtr-3/index` | `path` | `watchface/gtr-3/index.js` | Watchface | `gtr-3` |
 
 ## Files
 

@@ -9,7 +9,7 @@ import {
 import { fetchSources } from "./fetch/index.js";
 import { unreadHeaders } from "./parse/diagnostics.js";
 import { parseDevices } from "./parse/devices.js";
-import { parseExamples } from "./parse/examples.js";
+import { parseExamples, parseSampleCatalogue } from "./parse/examples.js";
 import { parseAppJson } from "./parse/manifest.js";
 import { parseLlmsContent, parseMarkdown, parseSamples } from "./parse/index.js";
 import { parsePatterns } from "./parse/patterns.js";
@@ -76,6 +76,21 @@ switch (command) {
     ]);
     console.log(
       `parsed: ${docs.length} docs-reference, ${phone.length} phone-api, ${watch.length} watchface, ${llms.length} llms, ${samples.length} sample usages, ${guides.length} guides, ${hardware.length} devices, ${apps.length} sample apps, ${appJson[0]?.sections.length ?? 0} app.json keys, ${toolPages[0]?.commands.length ?? 0} CLI commands`,
+    );
+
+    // The samples README against the tree beside it, both ways. Neither number
+    // is an error today and both are the kind that moves silently: a link
+    // naming no sample means the list rotted, and a sample nobody links is one
+    // a reader working from the list never finds. A count that changed is the
+    // only signal this class has ever given.
+    const catalogue = await parseSampleCatalogue(CACHE_DIR);
+    const appDirs = new Set(
+      apps.map((app) => app.sourceDir.split(path.sep).join("/").replace(/^zeppos-samples\//, "")),
+    );
+    console.log(
+      `catalogue: ${catalogue.length} README links, ` +
+        `${catalogue.filter((entry) => !appDirs.has(entry.dir)).length} naming no sample, ` +
+        `${apps.filter((app) => app.family === undefined).length} samples the README does not list`,
     );
 
     const records = enrich([...docs, ...phone, ...watch, ...llms, ...samples]);

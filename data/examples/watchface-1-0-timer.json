@@ -3,6 +3,8 @@
   "name": "timer",
   "tree": "watchface",
   "platformVersion": "1.0",
+  "family": "Timer",
+  "category": "Watchface",
   "manifest": {
     "appType": "watchface",
     "configVersion": "v2",
@@ -79,7 +81,24 @@
       "targets.*.module.watchface.path": [
         "watchface/gtr-3-pro/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Timer",
+      "description": "timer watchface",
+      "appType": "watchface",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "watchface",
+        "target": "gtr-3-pro",
+        "path": "watchface/gtr-3-pro/index",
+        "file": "watchface/gtr-3-pro/index.js",
+        "shape": "path",
+        "runtime": "watchface"
+      }
+    ]
   },
   "files": [
     {
@@ -312,5 +331,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/watchface/1.0/timer",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

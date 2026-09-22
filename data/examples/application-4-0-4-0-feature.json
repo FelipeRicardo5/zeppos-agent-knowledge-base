@@ -3,6 +3,8 @@
   "name": "4.0-feature",
   "tree": "application",
   "platformVersion": "4.0",
+  "family": "ShowCase",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v3",
@@ -95,7 +97,48 @@
         "page/TC/TC_02/index",
         "page/TC/TC_03/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "4.0 Feature",
+      "description": "A sample application about the new features of 4.0",
+      "appType": "app",
+      "version": "4.0"
+    },
+    "entryPoints": [
+      {
+        "module": "page",
+        "target": "default",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "default",
+        "path": "page/TC/TC_01/index",
+        "file": "page/TC/TC_01/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "default",
+        "path": "page/TC/TC_02/index",
+        "file": "page/TC/TC_02/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "default",
+        "path": "page/TC/TC_03/index",
+        "file": "page/TC/TC_03/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -414,5 +457,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.0/4.0-feature",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

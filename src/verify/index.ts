@@ -88,6 +88,8 @@ const PAGES = [
   // The sample a run leaned on hardest, and the one that shows how a Device App
   // page hands data to its Side Service.
   "examples/application-2-0-post-health-data-miniprogram.md",
+  // Three runtimes in one app, so its manifest resolves an entry point for each.
+  "examples/application-2-0-todo-list.md",
   "patterns/multi-screen-adaption.md",
   "runtimes/watchface.md",
 ];

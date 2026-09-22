@@ -1,5 +1,7 @@
 # MiniProgram
 
+**Post Health Data** — empty application
+
 A Mini Program sample
 for platform 2.0. Runtimes present: Device App, Settings App, Side Service.
 
@@ -15,11 +17,69 @@ Top-level keys: `app`, `configVersion`, `defaultLanguage`, `i18n`, `permissions`
 
 `app.appType`: `app`
 
+Installs on: target `2.0`, minVersion `2.0.0`, compatible `2.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `data:user.hd.sleep`
 
 Targets: `320x380-amazfit-bip-5`, `360x360-amazfit-active-edge`, `390x450-amazfit-active`, `390x450-amazfit-cheetah-square`, `390x450-amazfit-gts-4`, `416x416-amazfit-falcon`, `416x416-amazfit-gtr-mini`, `454x454-amazfit-cheetah-round`, `454x454-amazfit-t-rex-2`, `454x454-amazfit-t-rex-ultra`, `466x466-amazfit-gtr-4`, `480x480-amazfit-balance`, `480x480-amazfit-cheetah-pro`, `480x480-amazfit-gtr-4-limited-edition`, `480x480-runner-pro` — these key the `assets/` subdirectories.
 
 Builds for: `deviceSource` `251`, `414`, `415`, `418`, `419`, `6553856`, `6553857`, `7864576`, `7864577`, `7930112`, `7930113`, `7995648`, `7995649`, `8126720`, `8126721`, `8192256`, `8192257`, `8257793`, `8323328`, `8323329`, `8388864`, `8388865`, `8454400`, `8454401`, `8519936`, `8519937`, `8519939` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `320x380-amazfit-bip-5` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `360x360-amazfit-active-edge` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `390x450-amazfit-active` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `390x450-amazfit-cheetah-square` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `390x450-amazfit-gts-4` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `416x416-amazfit-falcon` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `416x416-amazfit-gtr-mini` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `454x454-amazfit-cheetah-round` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `454x454-amazfit-t-rex-2` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `454x454-amazfit-t-rex-ultra` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `466x466-amazfit-gtr-4` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `480x480-amazfit-balance` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `480x480-amazfit-cheetah-pro` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `480x480-amazfit-gtr-4-limited-edition` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `480x480-runner-pro` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `320x380-amazfit-bip-5` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `360x360-amazfit-active-edge` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `390x450-amazfit-active` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `390x450-amazfit-cheetah-square` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `390x450-amazfit-gts-4` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `416x416-amazfit-falcon` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `416x416-amazfit-gtr-mini` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `454x454-amazfit-cheetah-round` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `454x454-amazfit-t-rex-2` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `454x454-amazfit-t-rex-ultra` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `466x466-amazfit-gtr-4` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `480x480-amazfit-balance` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `480x480-amazfit-cheetah-pro` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `480x480-amazfit-gtr-4-limited-edition` |
+| `page` | `page/index` | `pages` | `page/index.js` | Device App | `480x480-runner-pro` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `320x380-amazfit-bip-5` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `360x360-amazfit-active-edge` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `390x450-amazfit-active` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `390x450-amazfit-cheetah-square` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `390x450-amazfit-gts-4` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `416x416-amazfit-falcon` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `416x416-amazfit-gtr-mini` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `454x454-amazfit-cheetah-round` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `454x454-amazfit-t-rex-2` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `454x454-amazfit-t-rex-ultra` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `466x466-amazfit-gtr-4` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `480x480-amazfit-balance` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `480x480-amazfit-cheetah-pro` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `480x480-amazfit-gtr-4-limited-edition` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `480x480-runner-pro` |
 
 ## Files
 

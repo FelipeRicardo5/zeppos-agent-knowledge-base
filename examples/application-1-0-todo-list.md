@@ -1,5 +1,7 @@
 # todo-list
 
+**Todo List** — todo list application
+
 A Mini Program sample
 for platform 1.0. Runtimes present: Device App, Settings App, Side Service.
 
@@ -15,11 +17,33 @@ Top-level keys: `app`, `configVersion`, `debug`, `defaultLanguage`, `i18n`, `per
 
 `app.appType`: `app`
 
+Installs on: target `1.0.0`, minVersion `1.0.0`, compatible `1.0.0` — this field is the API_LEVEL, not a semver.
+
 Declares no permissions.
 
 Targets: `gtr-3`, `gtr-3-pro`, `gts-3` — these key the `assets/` subdirectories.
 
 Builds for: `deviceSource` `224`, `225`, `226`, `227`, `229`, `230`, `418`, `419` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `gtr-3` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `gtr-3-pro` |
+| `app-side` | `app-side/index` | `path` | `app-side/index.js` | Side Service | `gts-3` |
+| `page` | `page/gtr-3/home/index.page` | `pages` | `page/gtr-3/home/index.page.js` | Device App | `gtr-3` |
+| `page` | `page/gtr-3/home/index.page` | `pages` | `page/gtr-3/home/index.page.js` | Device App | `gtr-3-pro` |
+| `page` | `page/gtr-3/home/index.page` | `pages` | `page/gtr-3/home/index.page.js` | Device App | `gts-3` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `gtr-3` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `gtr-3-pro` |
+| `setting` | `setting/index` | `path` | `setting/index.js` | Settings App | `gts-3` |
 
 ## Files
 

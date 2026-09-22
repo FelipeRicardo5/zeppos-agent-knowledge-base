@@ -3,6 +3,8 @@
   "name": "3.0-feature",
   "tree": "application",
   "platformVersion": "3.0",
+  "family": "ShowCase",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v3",
@@ -115,7 +117,200 @@
         "pages/target",
         "pages/systemEvent"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "3.0 Feature",
+      "description": "A sample application about the new features of 3.0",
+      "appType": "app",
+      "version": "3.0"
+    },
+    "entryPoints": [
+      {
+        "module": "app-event",
+        "target": "common",
+        "path": "app-service/system_event_service",
+        "file": "app-service/system_event_service.js",
+        "shape": "path",
+        "runtime": "device-app"
+      },
+      {
+        "module": "app-service",
+        "target": "common",
+        "path": "app-service/system_event_service",
+        "file": "app-service/system_event_service.js",
+        "shape": "services",
+        "runtime": "device-app"
+      },
+      {
+        "module": "app-service",
+        "target": "common",
+        "path": "app-service/time_service",
+        "file": "app-service/time_service.js",
+        "shape": "services",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/acc",
+        "file": "pages/acc.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/alarm",
+        "file": "pages/alarm.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/bgService",
+        "file": "pages/bgService.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/ble",
+        "file": "pages/ble.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/canvas",
+        "file": "pages/canvas.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/compass",
+        "file": "pages/compass.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/gps",
+        "file": "pages/gps.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/gyro",
+        "file": "pages/gyro.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/heart",
+        "file": "pages/heart.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/index",
+        "file": "pages/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/newAlarm",
+        "file": "pages/newAlarm.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/notification",
+        "file": "pages/notification.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/screen",
+        "file": "pages/screen.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/sensor",
+        "file": "pages/sensor.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/sleep",
+        "file": "pages/sleep.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/spo2",
+        "file": "pages/spo2.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/stress",
+        "file": "pages/stress.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/systemEvent",
+        "file": "pages/systemEvent.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/target",
+        "file": "pages/target.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "common",
+        "path": "pages/workout",
+        "file": "pages/workout.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -1673,5 +1868,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/3.0-feature",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

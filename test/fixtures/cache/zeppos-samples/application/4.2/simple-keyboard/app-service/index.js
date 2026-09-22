@@ -1,0 +1,4 @@
+AppService({
+  onInit() {},
+  onDestroy() {},
+});

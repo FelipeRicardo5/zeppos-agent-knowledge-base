@@ -77,7 +77,32 @@
       "targets.*.module.page.pages": [
         "page/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Download",
+      "description": "A sample application for downloading and transferring resources",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "app-side",
+        "target": "gt",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "page",
+        "target": "gt",
+        "path": "page/index",
+        "file": "page/index.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -480,5 +505,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/download",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { describe, it } from "node:test";
 import { enrichExamples } from "../src/enrich/index.js";
-import { exampleSlug, parseExamples } from "../src/parse/examples.js";
+import { exampleSlug, parseExamples, parseSampleCatalogue } from "../src/parse/examples.js";
 import { renderExamples } from "../src/render/examples.js";
 import type { ExampleRecord, RawExample, SymbolRecord } from "../src/types.js";
 
@@ -20,7 +20,12 @@ describe("parseExamples", () => {
 
     assert.deepEqual(
       examples.map((e) => e.id).sort(),
-      ["application-4-2-simple-keyboard", "watchface-3-0-timer"],
+      [
+        "application-4-2-simple-keyboard",
+        "watchface-1-0-simple",
+        "watchface-3-0-timer",
+        "workout-extensions-3-5-pace-master",
+      ],
     );
     assert.equal(exampleSlug("zeppos-samples/application/2.0/post-health-data/MiniProgram"), "application-2-0-post-health-data-miniprogram");
   });
@@ -151,6 +156,111 @@ describe("parseExamples", () => {
     assert.deepEqual(watchface?.globalCalls, []);
   });
 
+  it("resolves each `module` key to the file it turns on", async () => {
+    // The manifest writes an extensionless path and the loader supplies the
+    // extension, so "which file is this app's Settings App" is a question only
+    // the manifest and the file tree answer together. Nothing upstream joins
+    // them, and three eval runs had to guess the layout of what they wrote.
+    const entries = (await byId()).get("application-4-2-simple-keyboard")?.manifest?.entryPoints ?? [];
+    const setting = entries.find((e) => e.module === "setting");
+
+    assert.equal(setting?.path, "setting/index", "verbatim, as the manifest writes it");
+    assert.equal(setting?.file, "setting/index.js", "resolved against the app's own files");
+    assert.equal(setting?.runtime, "settings", "labelled by the same path rule every record uses");
+    assert.equal(setting?.target, "gt.r", "and by the target key that declares it");
+  });
+
+  it("reads all four forms a `module` key uses to name a file", async () => {
+    // The reference page documents `path` and `pages`. `services` is on
+    // `app-service`, a row it types `object` and gives no section at all, and
+    // `widgets[].path` is on the `data-widget` key it never mentions. A walker
+    // reading `path` alone finds no entry point for a Background Service or a
+    // Workout Extension.
+    const examples = await byId();
+    const shape = (id: string, module: string) =>
+      examples.get(id)?.manifest?.entryPoints.find((e) => e.module === module)?.shape;
+
+    assert.equal(shape("application-4-2-simple-keyboard", "page"), "pages");
+    assert.equal(shape("application-4-2-simple-keyboard", "setting"), "path");
+    assert.equal(shape("application-4-2-simple-keyboard", "app-service"), "services");
+    assert.equal(shape("workout-extensions-3-5-pace-master", "data-widget"), "widgets");
+  });
+
+  it("leaves a declared path that matches no file unresolved, rather than inventing one", async () => {
+    // Every declared path in the real corpus resolves. That is what makes an
+    // unresolved one worth reporting instead of hiding — a manifest naming a
+    // file nobody wrote is a build that fails before any API runs.
+    const entries = (await byId()).get("application-4-2-simple-keyboard")?.manifest?.entryPoints ?? [];
+    const missing = entries.find((e) => e.path === "app-service/never-written");
+
+    assert.ok(missing, "the declaration is kept");
+    assert.equal(missing.file, undefined, "and no file is claimed for it");
+    assert.equal(missing.runtime, undefined, "so it gets no runtime either");
+  });
+
+  it("reads `module` and `platforms` from a manifest that has no `targets`", async () => {
+    // Two layouts, both calling themselves `configVersion: v2`, so that field
+    // does not separate them. Reading only the nested form left the one sample
+    // using the flat one with no hardware selector at all, while its manifest
+    // states them plainly.
+    const manifest = (await byId()).get("watchface-1-0-simple")?.manifest;
+
+    assert.equal(manifest?.layout, "flat");
+    assert.deepEqual(manifest?.targets, [], "there is no target key to name");
+    assert.deepEqual(
+      manifest?.platforms.map((p) => p.deviceSource).sort((a, b) => Number(a) - Number(b)),
+      [229, 6095106],
+    );
+    assert.equal(manifest?.entryPoints[0]?.file, "watchface/default-target/index.js");
+    assert.equal(manifest?.entryPoints[0]?.target, undefined, "a flat manifest has none");
+  });
+
+  it("keeps what the app says it is, and drops a field left blank", async () => {
+    // `app.*` is publisher data and stays out — except these, which are the only
+    // statement any source makes about what a sample is *for*. A blank string
+    // says no more than a missing key, so both read as absence.
+    const examples = await byId();
+    const keyboard = examples.get("application-4-2-simple-keyboard")?.manifest?.identity;
+    const workout = examples.get("workout-extensions-3-5-pace-master")?.manifest?.identity;
+
+    assert.equal(keyboard?.appName, "simple-keyboard");
+    assert.equal(keyboard?.description, "simple keyboard sample");
+    assert.equal(keyboard?.version, "1.0.0");
+    assert.equal(workout?.extType, "workout", "what `appType: app` alone cannot say");
+    assert.equal(workout?.description, undefined, "written as an empty string");
+  });
+
+  it("reads the samples README as the only source that groups an app with its siblings", async () => {
+    // HelloWorld at four platform versions is one app four times, and nothing in
+    // a directory name says so. The README is a hand-maintained list beside the
+    // tree, so it is read as evidence and diffed against the tree, not trusted.
+    const entries = await parseSampleCatalogue(CACHE);
+
+    assert.deepEqual(
+      entries.find((entry) => entry.dir === "application/4.2/simple-keyboard"),
+      { family: "Keyboard", category: "Application", dir: "application/4.2/simple-keyboard" },
+    );
+    assert.ok(
+      entries.some((entry) => entry.dir === "workout-extensions/3.5/pace-master"),
+      "a doubled separator in a link still joins — the real README writes one",
+    );
+    assert.ok(
+      !entries.some((entry) => entry.dir.startsWith("http")),
+      "the documentation link is not a sample",
+    );
+  });
+
+  it("leaves an app the README never links without a family, rather than guessing one", async () => {
+    // A sample linked from nowhere is invisible to a reader working from the
+    // list. Filing it under a family inferred from its directory would hide that.
+    const examples = await byId();
+
+    assert.equal(examples.get("application-4-2-simple-keyboard")?.family, "Keyboard");
+    assert.equal(examples.get("application-4-2-simple-keyboard")?.category, "Application");
+    assert.equal(examples.get("watchface-3-0-timer")?.family, undefined);
+    assert.equal(examples.get("watchface-3-0-timer")?.category, undefined);
+  });
+
   it("skips generic method names that would attach noise to a symbol", async () => {
     const examples = await parseExamples(CACHE);
     const methods = examples.flatMap((e) => e.memberCalls.map((c) => c.method));
@@ -263,6 +373,9 @@ const example = (overrides: Partial<ExampleRecord> = {}): ExampleRecord => ({
     platforms: [],
     keys: ["app", "permissions"],
     values: {},
+    layout: "targets",
+    identity: {},
+    entryPoints: [],
   keyPaths: ["app", "app.appType", "permissions"],
   },
   files: [{ path: "page/index.js", runtime: "device-app", symbols: ["@zos/ui.createWidget"] }],
@@ -317,6 +430,97 @@ describe("renderExamples", () => {
 
     assert.deepEqual(await renderExamples(examplesDir, symbolsDir, out), { examples: 1 });
     assert.deepEqual((await readdir(path.join(out, "examples"))).sort(), ["demo.md", "index.md"]);
+  });
+
+  it("resolves each `module` key to a file, a runtime and a target", async () => {
+    const { examplesDir, symbolsDir, out } = await fixture(
+      [
+        example({
+          manifest: {
+            appType: "app",
+            permissions: [],
+            targets: ["gt.r"],
+            platforms: [],
+            keys: ["app", "targets"],
+            values: { "runtime.apiVersion.target": ["4.0"] },
+            keyPaths: ["app"],
+            layout: "targets",
+            identity: { appName: "Demo", description: "a demo application" },
+            entryPoints: [
+              {
+                module: "app-side",
+                target: "gt.r",
+                path: "app-side/index",
+                file: "app-side/index.js",
+                shape: "path",
+                runtime: "side-service",
+              },
+              { module: "app-service", path: "app-service/late", shape: "services" },
+            ],
+          },
+        }),
+      ],
+      [],
+    );
+
+    await renderExamples(examplesDir, symbolsDir, out);
+    const page = await readFile(path.join(out, "examples", "demo.md"), "utf-8");
+
+    assert.match(page, /## Entry points/);
+    assert.match(page, /\| `app-side` \| `app-side\/index` \| `path` \| `app-side\/index\.js` \| Side Service \| `gt\.r` \|/);
+    // A path nothing matches is stated as unmatched. Every path in the real
+    // corpus resolves, so this is the row that would be a finding.
+    assert.match(page, /\*\*no file matches\*\*/);
+    assert.match(page, /Installs on: target `4\.0`/);
+    assert.match(page, /\*\*Demo\*\* — a demo application/);
+  });
+
+  it("marks a manifest that has no `targets` key as the other layout", async () => {
+    const { examplesDir, symbolsDir, out } = await fixture(
+      [
+        example({
+          manifest: {
+            appType: "watchface",
+            permissions: [],
+            targets: [],
+            platforms: [{ deviceSource: 229 }],
+            keys: ["app", "module", "platforms"],
+            values: {},
+            keyPaths: ["module"],
+            layout: "flat",
+            identity: {},
+            entryPoints: [],
+          },
+        }),
+      ],
+      [],
+    );
+
+    await renderExamples(examplesDir, symbolsDir, out);
+    const page = await readFile(path.join(out, "examples", "demo.md"), "utf-8");
+
+    assert.match(page, /Layout: `flat`/);
+    assert.match(page, /declares no `module` path, so nothing here says which file runs/);
+  });
+
+  it("groups an app with its siblings and names the ones the README never lists", async () => {
+    const { examplesDir, symbolsDir, out } = await fixture(
+      [
+        example({ id: "demo", name: "demo", family: "Demo", category: "Application", platformVersion: "2.0" }),
+        example({ id: "demo-4", name: "demo", family: "Demo", category: "Application", platformVersion: "4.0" }),
+        example({ id: "stray", name: "stray", platformVersion: "3.0" }),
+      ],
+      [],
+    );
+
+    await renderExamples(examplesDir, symbolsDir, out);
+    const index = await readFile(path.join(out, "examples", "index.md"), "utf-8");
+
+    assert.match(index, /## The same app, across platform versions/);
+    assert.match(index, /\| Application \/ Demo \| \[2\.0\]\(demo\.md\) · \[4\.0\]\(demo-4\.md\) \|/);
+    assert.match(index, /## Samples the README does not list/);
+    assert.match(index, /\[stray\]\(stray\.md\)/);
+    assert.match(index, /\*not listed\*/, "and the row says so rather than leaving the column blank");
   });
 
   it("quotes the code with its file and line", async () => {

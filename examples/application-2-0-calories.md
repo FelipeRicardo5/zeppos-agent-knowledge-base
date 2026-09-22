@@ -1,5 +1,7 @@
 # calories
 
+**Calories** — calories application
+
 A Mini Program sample
 for platform 2.0. Runtimes present: Device App.
 
@@ -15,11 +17,28 @@ Top-level keys: `app`, `configVersion`, `defaultLanguage`, `i18n`, `permissions`
 
 `app.appType`: `app`
 
+Installs on: target `2.0`, minVersion `2.0`, compatible `2.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `data:user.hd.calorie`, `device:os.local_storage`
 
 Targets: `gts` — these key the `assets/` subdirectories.
 
 Builds for: `deviceSource` `7995648`, `7995649` (`configVersion` `v2`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `app-widget` | `app-widget/index` | `widgets` | `app-widget/index.js` | Device App | `gts` |
+| `page` | `page/gts/food-list` | `pages` | `page/gts/food-list.js` | Device App | `gts` |
+| `page` | `page/gts/index` | `pages` | `page/gts/index.js` | Device App | `gts` |
+| `secondary-widget` | `secondary-widget/index` | `widgets` | `secondary-widget/index.js` | Device App | `gts` |
 
 ## Files
 

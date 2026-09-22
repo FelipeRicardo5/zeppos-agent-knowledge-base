@@ -1,5 +1,7 @@
 # 3.0-feature
 
+**3.0 Feature** — A sample application about the new features of 3.0
+
 A Mini Program sample
 for platform 3.0. Runtimes present: Device App.
 
@@ -15,11 +17,47 @@ Top-level keys: `app`, `configVersion`, `debug`, `defaultLanguage`, `permissions
 
 `app.appType`: `app`
 
+Installs on: target `3.0`, minVersion `3.0`, compatible `3.0` — this field is the API_LEVEL, not a semver.
+
 Permissions: `data:os.device.info`, `data:user.hd.heart_rate`, `data:user.hd.sleep`, `data:user.hd.spo2`, `data:user.hd.stress`, `data:user.hd.workout`, `device:os.accelerometer`, `device:os.alarm`, `device:os.bg_service`, `device:os.ble`, `device:os.compass`, `device:os.geolocation`, `device:os.gyroscope`, `device:os.notification`, `event:customize.test`, `event:os.bp.expires`, `event:os.bp.high`, `event:os.bp.low`, `event:os.health.heart_rate_abnl`, `event:os.health.sleep_status`, `event:os.system.no_disturb`, `event:os.system.power_saving`, `event:os.system.theater_mode`, `event:os.weather.sun_rise`, `event:os.weather.sun_set`
 
 Targets: `common` — these key the `assets/` subdirectories.
 
 Builds for: `st: "r"` (`configVersion` `v3`). See [`../compatibility/devices.md`](../compatibility/devices.md) for what each selector reaches.
+
+Layout: `targets` — `module` and `platforms` sit under each target key.
+
+## Entry points
+
+Which file each `module` key turns on. The manifest writes the path without
+an extension and the loader supplies it; the file column is that resolution
+against this app's own files.
+
+| `module` | Declared | Form | File | Runtime | Target |
+| --- | --- | --- | --- | --- | --- |
+| `app-event` | `app-service/system_event_service` | `path` | `app-service/system_event_service.js` | Device App | `common` |
+| `app-service` | `app-service/system_event_service` | `services` | `app-service/system_event_service.js` | Device App | `common` |
+| `app-service` | `app-service/time_service` | `services` | `app-service/time_service.js` | Device App | `common` |
+| `page` | `pages/acc` | `pages` | `pages/acc.js` | Device App | `common` |
+| `page` | `pages/alarm` | `pages` | `pages/alarm.js` | Device App | `common` |
+| `page` | `pages/bgService` | `pages` | `pages/bgService.js` | Device App | `common` |
+| `page` | `pages/ble` | `pages` | `pages/ble.js` | Device App | `common` |
+| `page` | `pages/canvas` | `pages` | `pages/canvas.js` | Device App | `common` |
+| `page` | `pages/compass` | `pages` | `pages/compass.js` | Device App | `common` |
+| `page` | `pages/gps` | `pages` | `pages/gps.js` | Device App | `common` |
+| `page` | `pages/gyro` | `pages` | `pages/gyro.js` | Device App | `common` |
+| `page` | `pages/heart` | `pages` | `pages/heart.js` | Device App | `common` |
+| `page` | `pages/index` | `pages` | `pages/index.js` | Device App | `common` |
+| `page` | `pages/newAlarm` | `pages` | `pages/newAlarm.js` | Device App | `common` |
+| `page` | `pages/notification` | `pages` | `pages/notification.js` | Device App | `common` |
+| `page` | `pages/screen` | `pages` | `pages/screen.js` | Device App | `common` |
+| `page` | `pages/sensor` | `pages` | `pages/sensor.js` | Device App | `common` |
+| `page` | `pages/sleep` | `pages` | `pages/sleep.js` | Device App | `common` |
+| `page` | `pages/spo2` | `pages` | `pages/spo2.js` | Device App | `common` |
+| `page` | `pages/stress` | `pages` | `pages/stress.js` | Device App | `common` |
+| `page` | `pages/systemEvent` | `pages` | `pages/systemEvent.js` | Device App | `common` |
+| `page` | `pages/target` | `pages` | `pages/target.js` | Device App | `common` |
+| `page` | `pages/workout` | `pages` | `pages/workout.js` | Device App | `common` |
 
 ## Files
 

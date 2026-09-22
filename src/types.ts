@@ -432,6 +432,63 @@ export interface PlatformSelector {
   sr?: string;
 }
 
+/**
+ * Which of the four forms a `module` key uses to name the file it turns on.
+ *
+ * The reference page documents `path` and `pages`. `widgets` belongs to the
+ * `data-widget` key that page never mentions, and `services` to `app-service`,
+ * a row it types `object` and gives no section at all. A walker reading `path`
+ * alone finds no entry point for a Workout Extension or a Background Service,
+ * which are two of the runtimes this base is thinnest on.
+ */
+export type EntryShape = "path" | "pages" | "widgets" | "services";
+
+/**
+ * One file a `module` key turns on, joined to the file it resolves to.
+ *
+ * The join nothing upstream states: the manifest writes an extensionless path
+ * and the loader supplies the extension, so "which file is this app's Side
+ * Service" can only be answered by reading the manifest and the file tree
+ * together. Every declared path in the sample corpus resolves, which is what
+ * makes an unresolved one a finding rather than a coverage hole.
+ */
+export interface EntryPoint {
+  /** The `module` key: `page`, `app-side`, `setting`, `data-widget`, ... */
+  module: string;
+  /** The `targets` key it sits under. Absent in the flat layout, which has none. */
+  target?: string;
+  /** Verbatim from the manifest: extensionless, as the loader wants it. */
+  path: string;
+  /** The file it resolves to, relative to the app root. Absent means none matched. */
+  file?: string;
+  shape: EntryShape;
+  /** The resolved file's runtime, by the same path rule every other record uses. */
+  runtime?: Runtime;
+}
+
+/**
+ * What an app says about itself, in its own manifest.
+ *
+ * `app.*` is otherwise excluded here as publisher data, and `appId`, `icon` and
+ * `vender` stay excluded. These are different: they are the only place any
+ * source states what a sample is *for*. The samples README names a family and
+ * a category; nothing anywhere else describes the task, so an agent asking
+ * "which whole sample is closest" has had nothing to read.
+ *
+ * A blank string is dropped rather than kept, because a field left empty says
+ * no more than a field left out. How many apps say nothing is counted on the
+ * rendered index instead of asserted here.
+ */
+export interface AppIdentity {
+  appName?: string;
+  description?: string;
+  appType?: string;
+  /** `workout` on a Workout Extension — what `appType: "app"` alone cannot say. */
+  extType?: string;
+  /** `app.version.name`, the developer-facing string. */
+  version?: string;
+}
+
 /** The parts of a sample's `app.json` that generalize to another project. */
 export interface ExampleManifest {
   appType?: string;
@@ -480,11 +537,37 @@ export interface ExampleManifest {
    * may state its own value. A scalar is a list of one.
    */
   values: Record<string, string[]>;
+  /**
+   * Which of the two manifest layouts this file uses.
+   *
+   * `targets` nests `module` and `platforms` under a named key; `flat` writes
+   * both at the top level and has no `targets` at all. Both call themselves
+   * `configVersion: v2`, so the version field does not separate them and a
+   * reader copying one layout into the other gets no warning.
+   */
+  layout: "targets" | "flat";
+  /** What the app says it is. Empty when the manifest states none of it. */
+  identity: AppIdentity;
+  /** Every file a `module` key turns on, resolved against this app's files. */
+  entryPoints: EntryPoint[];
 }
 
 export interface RawExample {
   id: string;
   name: string;
+  /**
+   * The family the samples README groups this app under, when it lists it.
+   *
+   * The only source that says HelloWorld at four platform versions is one app
+   * four times, or that ShowCase, `3.0-feature` and `4.0-feature` are one
+   * family under three directory names sharing no substring.
+   *
+   * Absent means the README does not link this directory, which is a fact
+   * about the README rather than about the sample.
+   */
+  family?: string;
+  /** The README heading the family sits under: Application, Keyboard, Watchface. */
+  category?: string;
   /** `application`, `watchface` or `workout-extensions`. */
   tree: string;
   /** The version directory the sample sits in: `2.0`, `4.2`, ... */

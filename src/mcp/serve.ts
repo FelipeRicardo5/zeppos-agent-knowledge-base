@@ -17,6 +17,7 @@ import {
   resolveCall,
 } from "./tools.js";
 import { check } from "../check/index.js";
+import { describeApp, findApps } from "./apps.js";
 import { describeWiring, listWiring } from "./wiring.js";
 
 // The MCP wiring, and nothing else.
@@ -193,6 +194,39 @@ export function createServer(base: Base): McpServer {
       inputSchema: { id: z.string() },
     },
     async ({ id }) => json(getPattern(base, id)),
+  );
+
+  server.registerTool(
+    "find_app",
+    {
+      description:
+        "Which whole sample app is closest to a task. Filter by text, runtime, " +
+        "`module` key or tree, and read `modules` as the app's architecture - each " +
+        "key turns on a runtime and names the file that runs. Ranked by platform " +
+        "version, never by how well the text matched: the match is a substring, not " +
+        "a judgement. Read `notAsserted`.",
+      inputSchema: {
+        text: z.string().optional().describe("Substring of the name, what it says it is, or its family"),
+        runtime: z.string().optional().describe("Only apps with a file in this runtime"),
+        module: z.string().optional().describe("Only apps declaring this `module` key, e.g. app-side"),
+        tree: z.string().optional().describe("application, watchface or workout-extensions"),
+      },
+    },
+    async (query) => json(findApps(base, query as Parameters<typeof findApps>[1])),
+  );
+
+  server.registerTool(
+    "describe_app",
+    {
+      description:
+        "One sample app assembled: what it says it is, its family and siblings, " +
+        "which file each `module` key turns on and in which runtime, its files by " +
+        "runtime, and what the manifest declares around them. `notStated` lists the " +
+        "absences - a missing family means the samples README does not link the " +
+        "directory, which says nothing about the sample.",
+      inputSchema: { app: z.string().describe("Sample app id or directory name, from find_app") },
+    },
+    async ({ app }) => json(describeApp(base, app)),
   );
 
   server.registerTool(

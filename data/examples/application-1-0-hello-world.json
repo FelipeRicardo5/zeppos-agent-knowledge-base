@@ -3,6 +3,8 @@
   "name": "hello-world",
   "tree": "application",
   "platformVersion": "1.0",
+  "family": "HelloWorld",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v2",
@@ -96,7 +98,40 @@
         "page/gtr3/home/index.page",
         "page/gts3/home/index.page"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Hello World",
+      "description": "hello world app",
+      "appType": "app",
+      "version": "1.0.1"
+    },
+    "entryPoints": [
+      {
+        "module": "page",
+        "target": "gtr3-pro",
+        "path": "page/gtr3-pro/home/index.page",
+        "file": "page/gtr3-pro/home/index.page.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gtr3",
+        "path": "page/gtr3/home/index.page",
+        "file": "page/gtr3/home/index.page.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "page",
+        "target": "gts3",
+        "path": "page/gts3/home/index.page",
+        "file": "page/gts3/home/index.page.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      }
+    ]
   },
   "files": [
     {
@@ -201,5 +236,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/1.0/hello-world",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

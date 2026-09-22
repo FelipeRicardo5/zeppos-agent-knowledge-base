@@ -3,6 +3,8 @@
   "name": "todo-list",
   "tree": "application",
   "platformVersion": "3.0",
+  "family": "TodoList",
+  "category": "Application",
   "manifest": {
     "appType": "app",
     "configVersion": "v3",
@@ -86,7 +88,40 @@
       "targets.*.module.setting.path": [
         "setting/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Todo List",
+      "description": "todo list application",
+      "appType": "app",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "app-side",
+        "target": "gt",
+        "path": "app-side/index",
+        "file": "app-side/index.js",
+        "shape": "path",
+        "runtime": "side-service"
+      },
+      {
+        "module": "page",
+        "target": "gt",
+        "path": "page/home/index.page",
+        "file": "page/home/index.page.js",
+        "shape": "pages",
+        "runtime": "device-app"
+      },
+      {
+        "module": "setting",
+        "target": "gt",
+        "path": "setting/index",
+        "file": "setting/index.js",
+        "shape": "path",
+        "runtime": "settings"
+      }
+    ]
   },
   "files": [
     {
@@ -651,5 +686,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/3.0/todo-list",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

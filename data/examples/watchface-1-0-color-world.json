@@ -3,6 +3,8 @@
   "name": "color-world",
   "tree": "watchface",
   "platformVersion": "1.0",
+  "family": "ColorWorld",
+  "category": "Watchface",
   "manifest": {
     "appType": "watchface",
     "configVersion": "v2",
@@ -79,7 +81,24 @@
       "targets.*.module.watchface.path": [
         "watchface/gts-3/index"
       ]
-    }
+    },
+    "layout": "targets",
+    "identity": {
+      "appName": "Color World",
+      "description": "color world watchface",
+      "appType": "watchface",
+      "version": "1.0.0"
+    },
+    "entryPoints": [
+      {
+        "module": "watchface",
+        "target": "gts-3",
+        "path": "watchface/gts-3/index",
+        "file": "watchface/gts-3/index.js",
+        "shape": "path",
+        "runtime": "watchface"
+      }
+    ]
   },
   "files": [
     {
@@ -264,5 +283,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/watchface/1.0/color-world",
-  "extractedAt": "2026-09-14"
+  "extractedAt": "2026-09-22"
 }

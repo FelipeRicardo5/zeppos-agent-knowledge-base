@@ -1,9 +1,78 @@
 # Changelog
 
-Versions are stamped into [`data/manifest.json`](data/manifest.json) by `sync`,
+Versions are stamped into [`data/manifest.json`](data/manifest.json) by `render`,
 so a consumer can cite what they read without a git checkout. That is not
 bookkeeping: an eval run is handed a copy built with `git archive`, which has no
 `.git`, and the run that found the most had to report "no commit available".
+
+Until 0.3.0 only `sync` wrote that stamp, which made a release a network
+operation: reaching the manifest meant re-fetching both upstream repositories
+and committing whatever they had changed alongside the version. `0.2.0` has no
+entry below for the same reason the stamp was easy to forget — the release was
+a side effect of a sync rather than a step of its own.
+
+## 0.3.0 — 2026-09-27
+
+Built from the same sources as 0.2.0 — `zeppos-docs` at `c08725b2`,
+`zeppos-samples` at `7cee748b`. Nothing was re-fetched: every change here is in
+what this base reads out of sources it already held.
+
+### The limitation 0.1.0 published, answered
+
+That release listed this under what it cannot do:
+
+> **A table that names its shape with a heading instead of a column is not
+> read.** `hmSetting/setBrightScreen.mdx` states a return shape as
+> `| Dscription | Type |` under a `### result` heading, and nothing connects the
+> two.
+
+It is read now. 88 pages write the name as the heading over a table with no
+column for it, and every row had been dropped without an error — the failure
+mode every parser bug in this project has had. **142 symbols carry 232 such
+declarations**, and a signature that ends in a type no source on its page
+defines went from **123 of 211 to 8**. Those 8 now say so on the page, because a
+reader who follows `getScreenType(): screenType` and finds a bare word needs to
+be told it is an upstream silence and not an omission here.
+
+Three column maps were wrong in the same direction, and each was found by
+reading the corpus for something else:
+
+- `Dscription` and `Description-` — one upstream typo each, both heading the
+  table that states what the function returns.
+- `algorithmId` heads the `alg.*` rows in `crypto/`. Without it `alg` carried
+  **1 member of 10**, and `createCrypto` cannot be called with the nine that
+  were missing.
+- The diagnostic's own allowlist had silenced that heading on a false claim.
+  Entries that silence nothing are now reported on every sync; one is idle
+  today (`location`).
+
+### Figures that can no longer go stale
+
+A number about the data, typed into prose, has shipped wrong five times in this
+repository. Both READMEs now render their coverage table from `data/` on every
+`npm run render`, from one computation, and CI diffs the result — so a stale
+figure breaks the build instead of misleading a reader.
+
+`site/` is the same rule applied to the landing page: generated from those
+counts, committed, inside the CI diff, and published by `pages.yml`.
+
+### Releasing no longer requires a fetch
+
+`render` stamps `data/manifest.json` with the version in `package.json`, and
+touches nothing else in it — `lastSyncAt`, `sources` and `recordCounts` are
+claims about a fetch, and rewriting them outside one would assert a sync that
+never happened. `data/manifest.json` joins the CI reproducibility diff, so a
+bump that never reached the manifest fails the build rather than reaching an
+eval run that has no `.git` to correct it from.
+
+### What it still cannot do
+
+Unchanged, and worth re-reading before depending on it: only the Device App can
+be certified for a device (353 of 375 symbols state a minimum `API_LEVEL`,
+against 3 of 105 for the Watchface runtime and **none** for the Settings App and
+Side Service); no `hm*` symbol documents a permission; and 36 tables under 33
+headings still have no column map. The Side Service remains the only runtime
+that states nothing but a description on every axis.
 
 ## 0.1.0 — 2026-09-11
 

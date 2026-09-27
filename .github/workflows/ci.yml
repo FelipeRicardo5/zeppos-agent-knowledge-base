@@ -47,10 +47,15 @@ jobs:
       #    A diff here means someone edited generated Markdown by hand, or
       #    changed the renderer and did not re-run it. Both are the failure the
       #    "JSON is the source of truth" rule exists to prevent.
+      #
+      #    `data/manifest.json` is in the list for one field: render stamps the
+      #    version from `package.json`, so a bump that never reached the
+      #    manifest fails here instead of reaching an eval run, which cites the
+      #    manifest and has no `.git` to correct it from.
       - name: Render is reproducible
         run: |
           npm run render
-          if ! git diff --exit-code --stat -- api compatibility runtimes patterns examples manifest conflicts tools site; then
+          if ! git diff --exit-code --stat -- api compatibility runtimes patterns examples manifest conflicts tools site data/manifest.json; then
             echo "::error::The rendered tree does not match what this code renders from data/. Run 'npm run render' and commit the result."
             exit 1
           fi

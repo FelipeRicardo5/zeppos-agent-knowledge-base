@@ -1,4 +1,4 @@
-import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { UnreadHeader, UnusedAllowlistEntry } from "../parse/diagnostics.js";
 import type {
@@ -74,6 +74,41 @@ export async function writeSymbols(records: SymbolRecord[], dataDir: string): Pr
 export async function writeManifest(manifest: SyncManifest, dataDir: string): Promise<void> {
   await mkdir(dataDir, { recursive: true });
   await writeJson(path.join(dataDir, "manifest.json"), manifest);
+}
+
+/**
+ * Brings the manifest's version up to `package.json`, without a sync.
+ *
+ * `sync` is what first writes the manifest, so until now the version reached it
+ * only by fetching upstream — which made a release a network operation and
+ * mixed whatever upstream had changed into the same commit. That is backwards:
+ * the version describes this base's own code, not the sources it read.
+ *
+ * Only the version moves. `lastSyncAt`, `sources` and `recordCounts` are claims
+ * about a fetch, and a render that rewrote them would be asserting a sync that
+ * never happened — the same class of lie as a hand-typed count.
+ *
+ * Returns what changed so the caller can print it, and `undefined` when there
+ * is no manifest yet (a tree that has never synced has nothing to stamp).
+ */
+export async function restampVersion(
+  dataDir: string,
+  version: string,
+): Promise<{ from: string; to: string } | undefined> {
+  const file = path.join(dataDir, "manifest.json");
+
+  let manifest: SyncManifest;
+  try {
+    manifest = JSON.parse(await readFile(file, "utf-8"));
+  } catch {
+    return undefined;
+  }
+
+  if (manifest.version === version) return undefined;
+
+  const from = manifest.version;
+  await writeJson(file, { ...manifest, version });
+  return { from, to: version };
 }
 
 /**

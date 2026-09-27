@@ -28,6 +28,7 @@ import { renderManifest } from "./render/manifest.js";
 import { renderPatterns } from "./render/patterns.js";
 import { renderTools } from "./render/tools.js";
 import {
+  restampVersion,
   writeAppJson,
   writeDevices,
   writeDiagnostics,
@@ -219,10 +220,17 @@ switch (command) {
     // is the same bug as a stale README — and `site/` is in the CI diff too.
     const { pages } = await renderSite(DATA_DIR, OUT_DIR);
 
+    // A release is a statement about this code, not about upstream. Stamping
+    // the version here rather than only in `sync` is what lets a bump be a bump
+    // — before this, reaching the manifest meant re-fetching both source repos
+    // and committing whatever they had changed alongside the release.
+    const restamped = await restampVersion(DATA_DIR, await baseVersion());
+
     console.log(
       `rendered: ${modules} modules, ${names} indexed names, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts, ${commands} CLI commands, ${annotations} annotations (plus an index in each)` +
         (written.length === 0 ? "" : `, coverage block in ${written.join(" and ")}`) +
-        `, ${pages.length} site pages`,
+        `, ${pages.length} site pages` +
+        (restamped === undefined ? "" : `, version ${restamped.from} -> ${restamped.to}`),
     );
     break;
   }

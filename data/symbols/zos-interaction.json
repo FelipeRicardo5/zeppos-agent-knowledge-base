@@ -472,6 +472,18 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Key",
+          "type": "number",
+          "description": "Key name, value reference key name constants, currently only KEY_HOME is supported"
+        },
+        {
+          "name": "Degree",
+          "type": "number",
+          "description": "The rotation angle, positive number is counterclockwise rotation, negative number is clockwise rotation. The value is the angle of rotation, the faster the rotation speed, the larger the absolute value"
+        }
+      ],
       "enums": [
         {
           "name": "Key name constants",
@@ -545,6 +557,18 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "GestureEvent",
+          "type": "number",
+          "description": "Gesture event name, value reference gesture event constants"
+        },
+        {
+          "name": "PreventDefault",
+          "type": "boolean",
+          "description": "Whether to skip the default gesture behavior, true - skip, false - don't skip"
+        }
+      ],
       "enums": [
         {
           "name": "Gesture event constants",
@@ -604,6 +628,23 @@
               "apiLevel": 2
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Key",
+          "type": "number",
+          "description": "Key name, value reference key name constants"
+        },
+        {
+          "name": "KeyEvent",
+          "type": "number",
+          "description": "Key event name, value reference key event constants"
+        },
+        {
+          "name": "PreventDefault",
+          "type": "boolean",
+          "description": "Whether to skip the default key behavior, true - skip, false - don't skip"
         }
       ],
       "enums": [

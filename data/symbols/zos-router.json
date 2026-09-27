@@ -309,6 +309,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The returned value is a positive integer value which identifies the timer created by the call to setLaunchAppTimeout. This value can be passed to clearLaunchAppTimeout to cancel the timeout"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -341,6 +348,13 @@
       "description": "Fuzzy match the English name of installed Mini Programs on the device by name.",
       "minApiLevel": 3.6,
       "signature": "function getAppIdByName(name: string): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Matched Mini Program ID, returns invalid ID when match fails"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -769,6 +783,13 @@
               "apiLevel": 2
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The returned value is a positive integer value which identifies the timer created by the call to setLaunchAppTimeout. This value can be passed to clearLaunchAppTimeout to cancel the timeout."
         }
       ],
       "runtimes": [

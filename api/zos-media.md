@@ -19,6 +19,8 @@ function create(controllerId: typeof id.PLAYER): Player
 function create(controllerId: typeof id.RECORDER): Recorder
 ```
 
+The signature returns `Recorder` and no source on this page says what `Recorder` is. Absence of evidence: the type exists, this base cannot tell you its shape.
+
 ### `@zos/media.Player`
 
 The media player controller sets audio sources, prepares playback resources, controls playback, and reads media information..

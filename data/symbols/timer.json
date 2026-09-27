@@ -39,6 +39,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "timerId",
+          "description": "timer handle",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -54,6 +61,13 @@
       "type": "function",
       "description": "Delete Timer",
       "signature": "(timerId: number) => void",
+      "declares": [
+        {
+          "name": "timerId",
+          "description": "timer handle, returned when the timer object is created",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],

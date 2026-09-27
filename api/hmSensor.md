@@ -30,6 +30,8 @@ Create the sensor.
 (sensor_id: SENSOR_ID) => result
 ```
 
+The signature returns `result` and no source on this page says what `result` is. Absence of evidence: the type exists, this base cannot tell you its shape.
+
 ### `hmSensor.id`
 
 Its 18 values, and the shape each one returns, are in [`hmSensor.id`](hmSensor.id.md).

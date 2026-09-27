@@ -37,6 +37,13 @@ Close file
 (fileId: number) => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `fileId` | `number` | File handle, returned when the file is opened |
+| `result` | `number` | **returned** — result, 0 get success |
+
 ### `hmFS.open`
 
 Open file
@@ -44,6 +51,13 @@ Open file
 ```ts
 (path: string, flag: FLAG) => fileId
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `path` | `string` | required — file path |
+| `fileId` | `number` | **returned** — file handle |
 
 **FLAG**
 
@@ -65,6 +79,13 @@ Open the file in the application assets directory.
 (path: string, flag: FLAG) => fileId
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `path` | `string` | required — Mini Program's assets directory file name (relative path) |
+| `fileId` | `number` | **returned** — file handle |
+
 **FLAG**
 
 | Value | Description |
@@ -85,6 +106,13 @@ Read file
 (fileId: number, buffer: ArrayBuffer, position: number, length: number) => [fileList, err]
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `fileList` | `Array<string>` | Array of filenames |
+| `err` | `number` | Error code, 0 means get success |
+
 **Parameters**
 
 | Property | Type | Required | Default | Description |
@@ -102,6 +130,13 @@ Delete file
 (path: string) => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `path` | `string` | required — Deleted file path |
+| `result` | `number` | **returned** — The result of the operation, 0 means success |
+
 ### `hmFS.rename`
 
 Rename file
@@ -109,6 +144,12 @@ Rename file
 ```ts
 (oldPath: string, newPath: string) => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The result of the operation, 0 means success |
 
 **Parameters**
 
@@ -141,6 +182,13 @@ Get file information
 (path: string) => [stat, err]
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `path` | `string` | required — file path/filename |
+| `err` | `number` | Error code, 0 means get success |
+
 **stat**
 
 | Property | Type | Required | Default | Description |
@@ -155,6 +203,13 @@ Get information about the files in the application assets directory.
 ```ts
 (path: string) => [stat, err]
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `path` | `string` | required — Mini Program's assets directory file name (relative path) |
+| `err` | `number` | Error code, 0 means get success |
 
 **stat**
 
@@ -171,6 +226,13 @@ Get the temporarily stored boolean value, which will be cleared by system reboot
 (key: string) => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `key` | `string` | required — key string |
+| `result` | `boolean` | **returned** — Stored boolean values |
+
 ### `hmFS.SysProGetChars`
 
 Get the temporarily stored string, system reboot will clear it.
@@ -178,6 +240,13 @@ Get the temporarily stored string, system reboot will clear it.
 ```ts
 (key: string) => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `key` | `string` | required — key string |
+| `result` | `string` | **returned** — stored string |
 
 ### `hmFS.SysProGetDouble`
 
@@ -187,6 +256,12 @@ Get the temporarily stored double precision character points, system reboot will
 (key: string) => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — stored double-precision floating-point number |
+
 ### `hmFS.SysProGetInt`
 
 Get the temporarily stored integer that will be cleared by system reboot.
@@ -194,6 +269,13 @@ Get the temporarily stored integer that will be cleared by system reboot.
 ```ts
 (key: string) => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `key` | `string` | required — key string |
+| `result` | `number` | **returned** — stored integer |
 
 ### `hmFS.SysProGetInt64`
 
@@ -203,6 +285,13 @@ Get a 64-bit integer for temporary storage, which will be cleared by system rebo
 (key: string) => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `key` | `string` | required — key string |
+| `result` | `number` | **returned** — stored 64-bit integer |
+
 ### `hmFS.SysProSetBool`
 
 Store temporary boolean value, system reboot will clear it.
@@ -210,6 +299,12 @@ Store temporary boolean value, system reboot will clear it.
 ```ts
 (key: string, val: boolean) => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The result of the operation, 0 means success |
 
 **Parameters**
 
@@ -226,6 +321,8 @@ Store temporary string, system reboot will clear.
 (key: string, val: string) => result
 ```
 
+The signature returns `result` and no source on this page says what `result` is. Absence of evidence: the type exists, this base cannot tell you its shape.
+
 **Parameters**
 
 | Property | Type | Required | Default | Description |
@@ -240,6 +337,12 @@ Store temporary double precision floating point numbers, system reboot will clea
 ```ts
 (key: string, val: number) => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The result of the operation, 0 means success |
 
 **Parameters**
 
@@ -256,6 +359,12 @@ Store temporary integer, system reboot will clear.
 (key: string, val: number) => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The result of the operation, 0 means success |
+
 **Parameters**
 
 | Property | Type | Required | Default | Description |
@@ -270,6 +379,12 @@ Stores a temporary 64-bit integer that will be cleared by system reboot.
 ```ts
 (key: string, val: number) => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The result of the operation, 0 means success |
 
 **Parameters**
 

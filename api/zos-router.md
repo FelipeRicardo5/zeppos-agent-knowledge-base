@@ -130,6 +130,12 @@ Cancel the wakeup Mini Program timer created by `setLaunchAppTimeout`.
 function clearLaunchAppTimeout(option: Option): void
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | The returned value is a positive integer value which identifies the timer created by the call to setLaunchAppTimeout. This value can be passed to clearLaunchAppTimeout to cancel the timeout |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -151,6 +157,12 @@ Fuzzy match the English name of installed Mini Programs on the device by name.
 ```ts
 function getAppIdByName(name: string): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Matched Mini Program ID, returns invalid ID when match fails |
 
 ### `@zos/router.home`
 
@@ -258,6 +270,12 @@ Register a timer to launch the Mini Program at a given time.
 ```ts
 function setLaunchAppTimeout(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The returned value is a positive integer value which identifies the timer created by the call to setLaunchAppTimeout. This value can be passed to clearLaunchAppTimeout to cancel the timeout. |
 
 **Option**
 

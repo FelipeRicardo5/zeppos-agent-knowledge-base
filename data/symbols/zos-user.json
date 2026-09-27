@@ -28,6 +28,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "undefined"
+        }
+      ],
       "permissions": [
         "data:user.health"
       ],

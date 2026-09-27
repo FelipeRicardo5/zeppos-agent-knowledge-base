@@ -489,6 +489,13 @@ Check the availability of sensors on the current device.
 function checkSensor(sensor: Sensor): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Sensor` | `object` | Sensor, such as checking if the positioning sensor is available, pass in the Geolocation sensor construction function |
+| `Result` | `boolean` | **returned** — true - auto-brightness is set to on, false - auto-brightness is set to off |
+
 ### `@zos/sensor.Compass`
 
 compass.

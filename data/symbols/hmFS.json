@@ -8,6 +8,18 @@
       "type": "function",
       "description": "Close file",
       "signature": "(fileId: number) => result",
+      "declares": [
+        {
+          "name": "fileId",
+          "description": "File handle, returned when the file is opened",
+          "type": "number"
+        },
+        {
+          "name": "result",
+          "description": "result, 0 get success",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -23,6 +35,19 @@
       "type": "function",
       "description": "Open file",
       "signature": "(path: string, flag: FLAG) => fileId",
+      "declares": [
+        {
+          "name": "path",
+          "description": "file path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "fileId",
+          "description": "file handle",
+          "type": "number"
+        }
+      ],
       "enums": [
         {
           "name": "FLAG",
@@ -81,6 +106,19 @@
       "type": "function",
       "description": "Open the file in the application assets directory.",
       "signature": "(path: string, flag: FLAG) => fileId",
+      "declares": [
+        {
+          "name": "path",
+          "description": "Mini Program's assets directory file name (relative path)",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "fileId",
+          "description": "file handle",
+          "type": "number"
+        }
+      ],
       "enums": [
         {
           "name": "FLAG",
@@ -170,6 +208,18 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "fileList",
+          "description": "Array of filenames",
+          "type": "Array<string>"
+        },
+        {
+          "name": "err",
+          "description": "Error code, 0 means get success",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -185,6 +235,19 @@
       "type": "function",
       "description": "Delete file",
       "signature": "(path: string) => result",
+      "declares": [
+        {
+          "name": "path",
+          "description": "Deleted file path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "result",
+          "description": "The result of the operation, 0 means success",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -217,6 +280,13 @@
               "type": "string"
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "result",
+          "description": "The result of the operation, 0 means success",
+          "type": "number"
         }
       ],
       "runtimes": [
@@ -291,6 +361,19 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "path",
+          "description": "file path/filename",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "err",
+          "description": "Error code, 0 means get success",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -323,6 +406,19 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "path",
+          "description": "Mini Program's assets directory file name (relative path)",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "err",
+          "description": "Error code, 0 means get success",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -338,6 +434,19 @@
       "type": "function",
       "description": "Get the temporarily stored boolean value, which will be cleared by system reboot.",
       "signature": "(key: string) => result",
+      "declares": [
+        {
+          "name": "key",
+          "description": "key string",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "result",
+          "description": "Stored boolean values",
+          "type": "boolean"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -353,6 +462,19 @@
       "type": "function",
       "description": "Get the temporarily stored string, system reboot will clear it.",
       "signature": "(key: string) => result",
+      "declares": [
+        {
+          "name": "key",
+          "description": "key string",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "result",
+          "description": "stored string",
+          "type": "string"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -368,6 +490,13 @@
       "type": "function",
       "description": "Get the temporarily stored double precision character points, system reboot will clear.",
       "signature": "(key: string) => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "stored double-precision floating-point number",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -383,6 +512,19 @@
       "type": "function",
       "description": "Get the temporarily stored integer that will be cleared by system reboot.",
       "signature": "(key: string) => result",
+      "declares": [
+        {
+          "name": "key",
+          "description": "key string",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "result",
+          "description": "stored integer",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -398,6 +540,19 @@
       "type": "function",
       "description": "Get a 64-bit integer for temporary storage, which will be cleared by system reboot.",
       "signature": "(key: string) => result",
+      "declares": [
+        {
+          "name": "key",
+          "description": "key string",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "result",
+          "description": "stored 64-bit integer",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -430,6 +585,13 @@
               "type": "boolean"
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "result",
+          "description": "The result of the operation, 0 means success",
+          "type": "number"
         }
       ],
       "runtimes": [
@@ -500,6 +662,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "result",
+          "description": "The result of the operation, 0 means success",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -534,6 +703,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "result",
+          "description": "The result of the operation, 0 means success",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -566,6 +742,13 @@
               "type": "number"
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "result",
+          "description": "The result of the operation, 0 means success",
+          "type": "number"
         }
       ],
       "runtimes": [

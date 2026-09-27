@@ -22,6 +22,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "permissions": [
         "device:os.alarm"
       ],
@@ -245,6 +252,13 @@
               "apiLevel": 3
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The id returned by the timer creation, 0 is an invalid ID, which means the timer creation failed, and the ID remains the same after the system restart for timers that support persistence"
         }
       ],
       "enums": [

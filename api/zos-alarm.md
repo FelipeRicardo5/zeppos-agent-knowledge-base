@@ -34,6 +34,12 @@ Cancels the set timer, if the timer is set to persist and also cancels the persi
 function cancel(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -87,6 +93,12 @@ Support for persistent timers to wake up pages of Mini Program.
 ```ts
 function set(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The id returned by the timer creation, 0 is an invalid ID, which means the timer creation failed, and the ID remains the same after the system restart for timers that support persistence |
 
 **Option**
 

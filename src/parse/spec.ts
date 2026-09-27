@@ -64,6 +64,13 @@ const COLUMNS: Record<string, keyof PropSpec> = {
   "说明": "description",
   "类型": "type",
   description: "description",
+  // Two upstream typos, each on one page and each on the table that states what
+  // the function returns: `setBrightScreen` heads it `Dscription` and
+  // `SysProGetInt` heads it `Description-`. The diagnostic reported both and
+  // nothing read them, so both returns stayed unreachable while the heading
+  // that names them sat one line above.
+  dscription: "description",
+  "description-": "description",
   type: "type",
   required: "required",
   default: "default",
@@ -257,6 +264,14 @@ const ENUM_COLUMNS: Record<string, keyof EnumMember> = {
   // them, which is how the gap surfaced.
   constant: "value",
   constants: "value",
+  // `crypto/CRCCrypto.mdx` and `DigestCrypto.mdx` head the column with the
+  // parameter it fills: `algorithmId`. The rows are the `alg.*` set, and
+  // without this alias `alg` carried one member of ten — only `ECDSA`, whose
+  // page heads the column differently. `createCrypto` cannot be called
+  // without the other nine. The diagnostic that exists to catch this class
+  // had the heading on its allowlist, silenced on the claim that they were
+  // "reached as enum values instead"; nothing had checked it.
+  algorithmid: "value",
   description: "description",
   type: "type",
   api_level: "apiLevel",
@@ -357,6 +372,72 @@ function valueTables(content: string): ValueTable[] {
 
   flush();
   return tables;
+}
+
+/**
+ * Types the page declares under a heading, with no name column to key them on.
+ *
+ * The last structural table form nothing read. `hmFS/open.mdx` documents its
+ * parameter as `### path` over `| Description | Required | Type | Default |`
+ * and its return as `### fileId` over `| Description | Type |`: the name is the
+ * heading, and the table has no column for it. `extractShapes` requires a name
+ * column, so every row produced nothing and the table vanished without an error
+ * — the failure mode every parser bug in this project has had.
+ *
+ * The rule is "no name column and exactly one data row", and both halves are
+ * measured rather than assumed. Of the tables with no name column of any kind,
+ * all but two hold a single row; those two are the `alg.*` sets, whose name
+ * column is headed `algorithmId` and which belong to the enum path instead. A
+ * multi-row headless table is therefore a value set that some column map is
+ * failing to read, not a declaration — and it is left alone so the diagnostic
+ * keeps reporting it.
+ *
+ * What the heading names is not decided here. `Result` and `fileId` are
+ * returns, `path` is a parameter, and the symbol's own signature is what says
+ * which — `function open(path, flag): fileId` reads unambiguously beside them.
+ * Guessing the role from the heading would invent a fact the page does not
+ * state.
+ */
+export function extractDeclarations(content: string): PropSpec[] {
+  const declared: PropSpec[] = [];
+  const lines = content.split("\n");
+
+  let heading: string | undefined;
+
+  lines.forEach((line, index) => {
+    const headingMatch = line.match(SHAPE_HEADING_RE);
+    if (headingMatch && line.startsWith("#")) {
+      heading = headingMatch[1].replace(/`/g, "").trim();
+      return;
+    }
+
+    if (heading === undefined) return;
+
+    const header = cells(line);
+    const next = cells(lines[index + 1] ?? "");
+    // A header is the row a separator follows, the same structural test the
+    // other extractors use — a data row reading `| value | number |` is not one.
+    if (header === undefined || next === undefined || !isSeparator(next)) return;
+
+    const fields = header.map((cell) => normalizeHeader(cell));
+    if (fields.some((field) => COLUMNS[field] === "name" || ENUM_COLUMNS[field] === "value")) return;
+    if (fields.filter((field) => field in COLUMNS || field in ENUM_COLUMNS).length < 2) return;
+
+    const rows: string[][] = [];
+    for (let at = index + 2; at < lines.length; at += 1) {
+      const row = cells(lines[at]);
+      if (row === undefined || isSeparator(row)) break;
+      rows.push(row);
+    }
+    if (rows.length !== 1) return;
+
+    // `toProp` refuses a nameless row on purpose, so the heading is supplied as
+    // the name before the row is read rather than patched in afterwards.
+    const prop = toProp(["name", ...header], [headingName(heading), ...rows[0]]);
+    if (prop !== undefined) declared.push(prop);
+  });
+
+  return declared;
 }
 
 /**

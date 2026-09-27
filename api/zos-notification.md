@@ -40,6 +40,12 @@ Send notifications to the Watch Notification Center.
 function notify(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The result of the notification delivery, returns 0 for delivery failure, the rest of the result indicates the ID of the notification |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |

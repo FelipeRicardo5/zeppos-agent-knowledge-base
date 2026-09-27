@@ -36,6 +36,12 @@ Returns the screen brightness of the current device.
 () => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The screen brightness of the current device, in the range [0, 100] |
+
 ### `hmSetting.getDateFormat`
 
 Return the current year, month and day order.
@@ -98,6 +104,12 @@ Returns the current language serial number.
 () => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — Language serial number, corresponding to country, reference [Multilingual Mapping](../../../reference/related-resources/language-list.mdx) |
+
 ### `hmSetting.getMileageUnit`
 
 Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user and does not represent the units of the data. The units of the data refer to the interface description of the corresponding data.
@@ -105,6 +117,12 @@ Returns whether the current distance unit is metric or imperial. This method is 
 ```ts
 () => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The current distance unit, 0:metric, 1:imperial, others are invalid |
 
 ### `hmSetting.getScreenAutoBright`
 
@@ -114,6 +132,12 @@ Returns whether the current device has auto-brightness enabled. If auto-brightne
 () => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `boolean` | **returned** — Returns whether auto-brightness is enabled for the current device, true is enabled |
+
 ### `hmSetting.getScreenType`
 
 Get the current screen Screen information.
@@ -122,6 +146,8 @@ Get the current screen Screen information.
 () => screenType
 ```
 
+The signature returns `screenType` and no source on this page says what `screenType` is. Absence of evidence: the type exists, this base cannot tell you its shape.
+
 ### `hmSetting.getSleepTarget`
 
 Get the user sleep target.
@@ -129,6 +155,12 @@ Get the user sleep target.
 ```ts
 () => sleepTarget
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `sleepTarget` | `number` | **returned** — The user-set sleep target, default is 0, in minutes |
 
 ### `hmSetting.getTimeFormat`
 
@@ -172,6 +204,12 @@ Get the user's weight target.
 () => weightTarget
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `weightTarget` | `number` | **returned** — user-set weight target, default is 0, in kilogram |
+
 ### `hmSetting.getWeightUnit`
 
 Get the weight unit set by the user.
@@ -208,6 +246,13 @@ Sets the screen brightness of the current device, in the range [0, 100]. If auto
 (brightness: number) => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `brightness` | `number` | required — Set the brightness of the current device, range [0, 100] |
+| `result` | `number` | **returned** — result, 0 means the setting is successful |
+
 ### `hmSetting.setBrightScreen`
 
 Set the bright screen time. When you need the screen to be always on, you can set a larger bright screen time.
@@ -215,6 +260,13 @@ Set the bright screen time. When you need the screen to be always on, you can se
 ```ts
 (brightTime: number) => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `brightTime` | `number` | required — The bright time of the current device, in seconds, in the range [1, 2147483] |
+| `result` | `number` | **returned** — result, 0 means the setting is successful |
 
 ### `hmSetting.setBrightScreenCancel`
 
@@ -224,6 +276,12 @@ Cancel the bright screen time. You need to call `setBrightScreenCancel` method i
 () => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The result of the operation, 0 means the setting was successful |
+
 ### `hmSetting.setScreenAutoBright`
 
 Set whether auto-brightness is enabled or not. If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect.
@@ -232,6 +290,13 @@ Set whether auto-brightness is enabled or not. If auto-brightness is currently t
 (isAutoBright: boolean) => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `isAutoBright` | `boolean` | required — Whether to open the automatic brightness |
+| `result` | `number` | **returned** — result, 0 means the setting is successful |
+
 ### `hmSetting.setScreenOff`
 
 Call `setScreenOff` to rest the screen.
@@ -239,3 +304,9 @@ Call `setScreenOff` to rest the screen.
 ```ts
 () => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The result of the operation, 0 means the setting was successful |

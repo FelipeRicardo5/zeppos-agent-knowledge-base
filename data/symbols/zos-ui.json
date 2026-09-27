@@ -1108,6 +1108,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "WIDGET",
+          "description": "Widget object",
+          "type": "object"
+        }
+      ],
       "runtimes": [
         "device-app",
         "workout-extension"
@@ -1516,6 +1523,13 @@
       "description": "Delete the UI widget.",
       "minApiLevel": 2,
       "signature": "(widget: WIDGET) => void",
+      "declares": [
+        {
+          "name": "WIDGET",
+          "description": "widget object, returned by createWidget",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -1942,6 +1956,13 @@
       "description": "Get the unique ID of the widget.",
       "minApiLevel": 2,
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "unique ID",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -2030,6 +2051,13 @@
       "description": "Query whether the current system language setting is RTL language. Setting the language to Hebrew and Arabic will return `true`.",
       "minApiLevel": 2,
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "Query results, true indicates RTL language, false indicates non-RTL language",
+          "type": "boolean"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -2164,6 +2192,13 @@
       "description": "Get the UI widget type.",
       "minApiLevel": 2,
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "The type of UI widget. Refer to WIDGET_ID in createWidget.",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -3215,6 +3250,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Return Value",
+          "type": "Inspector",
+          "description": "Inspector object instance"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -4062,6 +4104,13 @@
       "description": "Apply RTL layout to the widget based on the current system language. After calling this method, the current system language will be queried. If it is an RTL language, RTL layout adjustments will be made to all widgets on the current calling page. If there are widgets on the current page that do not need to be flipped, you need to organize the calling timing of `relayoutRtl()` and widget creation Design specification reference [Design Specifications - Internationalization - Interface layouts](../../../../designs/internationalization/interface-layouts.md)",
       "minApiLevel": 2,
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "Call result, true succeeds, false fails",
+          "type": "boolean"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -4525,6 +4574,13 @@
       "description": "Set the opacity of the widget. For widgets that do not support the `alpha` property, use `widget.setAlpha` to set opacity.",
       "minApiLevel": 2.1,
       "signature": "(val: any) => void",
+      "declares": [
+        {
+          "name": "val",
+          "description": "Transparency, 0 - 255, default value is 255 for opaque, 0 for full",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -4570,6 +4626,13 @@
       "description": "Set whether the widget responds to screen gesture interaction events, the default is to respond. If the widgets are stacked in the Z-axis direction, the widgets above the stack will block events and the widgets below will not receive events such as `CLICK_DOWN` and `CLICK_UP`. If you want the widgets below to receive gesture events, set `widget.setEnable(false)` for the widgets stacked above.",
       "minApiLevel": 2,
       "signature": "(response: boolean) => void",
+      "declares": [
+        {
+          "name": "response",
+          "description": "Whether the widget responds to gesture interaction events, true responds, false does not respond",
+          "type": "boolean"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

@@ -1,6 +1,6 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { UnreadHeader } from "../parse/diagnostics.js";
+import type { UnreadHeader, UnusedAllowlistEntry } from "../parse/diagnostics.js";
 import type {
   AppJsonRecord,
   ToolsRecord,
@@ -142,12 +142,15 @@ export async function writeExamples(examples: ExampleRecord[], dataDir: string):
  * presence is not itself a signal and a diff shows a heading appearing.
  */
 export async function writeDiagnostics(
-  headers: UnreadHeader[],
+  diagnostics: { headers: UnreadHeader[]; unusedAllowlist: UnusedAllowlistEntry[] },
   dataDir: string,
 ): Promise<number> {
   await mkdir(dataDir, { recursive: true });
-  await writeJson(path.join(dataDir, "diagnostics.json"), { unreadTableHeaders: headers });
-  return headers.length;
+  await writeJson(path.join(dataDir, "diagnostics.json"), {
+    unreadTableHeaders: diagnostics.headers,
+    unusedAllowlist: diagnostics.unusedAllowlist,
+  });
+  return diagnostics.headers.length;
 }
 
 export async function writeTools(records: ToolsRecord[], dataDir: string): Promise<number> {

@@ -9,6 +9,13 @@
       "description": "Get the vertical coordinate of the current scroll position of the page.",
       "minApiLevel": 2,
       "signature": "function getScrollTop(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The vertical coordinate of the current scroll position of the page"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -25,6 +32,13 @@
       "description": "Get the scroll position of the current page, only if the page scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL` return the index of the current item (starting from `1`), otherwise return `undefined`.",
       "minApiLevel": 2,
       "signature": "function getSwiperIndex(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number&#124;undefined",
+          "description": "If the page scroll mode is SCROLL_MODE_SWIPER or SCROLL_MODE_SWIPER_HORIZONTAL, the value is the index of the current item (starting from 1). Otherwise, it is undefined."
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -314,6 +328,13 @@
               "apiLevel": 3
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If true is returned, success is indicated"
         }
       ],
       "enums": [

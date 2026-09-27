@@ -18,6 +18,12 @@ By default, the system will off the screen in one page of the Mini Program, and 
 function getSportData(options: Options, callback: (callbackResult: CallbackResult) => void): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `boolean` | **returned** — If it returns true, it means the call was successful, otherwise the call failed |
+
 **Options**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |

@@ -8,6 +8,14 @@
       ]
     },
     {
+      "header": "event_type value",
+      "tables": 2,
+      "files": [
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/PICKER.mdx",
+        "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/TIME_PICKER.mdx"
+      ]
+    },
+    {
       "header": "operation",
       "tables": 2,
       "files": [
@@ -106,24 +114,10 @@
       ]
     },
     {
-      "header": "description-",
-      "tables": 1,
-      "files": [
-        "zeppos-docs/docs/watchface/api/hmFS/SysProGetInt.mdx"
-      ]
-    },
-    {
       "header": "dimension",
       "tables": 1,
       "files": [
         "zeppos-docs/docs/designs/self-checklist.md"
-      ]
-    },
-    {
-      "header": "dscription",
-      "tables": 1,
-      "files": [
-        "zeppos-docs/docs/watchface/api/hmSetting/setBrightScreen.mdx"
       ]
     },
     {
@@ -237,6 +231,12 @@
       "files": [
         "zeppos-docs/docs/reference/device-app-api/newAPI/ui/widget/SCROLL_LIST.mdx"
       ]
+    }
+  ],
+  "unusedAllowlist": [
+    {
+      "header": "location",
+      "reason": "the physical-keys page: a key's position on the case"
     }
   ]
 }

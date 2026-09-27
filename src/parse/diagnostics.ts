@@ -36,9 +36,27 @@ const NOT_SYMBOL_TABLES: Record<string, string> = {
   category: "a grouping column in a topic page",
   rules: "prose guidance, not a property table",
   sample: "an example-code column",
-  algorithmid: "crypto algorithm ids, reached as enum values instead",
-  "event_type value": "event tables reached through their symbol's enum",
 };
+
+/**
+ * An allowlist entry that matched no table in the corpus.
+ *
+ * An entry here silences a heading permanently, so a wrong one is worse than
+ * a missing column map: the map fails loudly the moment someone counts, and
+ * this fails by staying quiet forever. Two of the entries written with this
+ * file were false. `algorithmid` claimed its ids were "reached as enum values
+ * instead"; `alg` carried one member of ten until the alias was added, and
+ * `createCrypto` takes one of the nine that were missing. `event_type value`
+ * silenced the domain of the picker callback's `event_type` parameter on two
+ * pages. Both were found by reading the corpus for something else, which is
+ * the failure mode this whole file was built to end.
+ *
+ * So the allowlist is measured the same way the headings are.
+ */
+export interface UnusedAllowlistEntry {
+  header: string;
+  reason: string;
+}
 
 export interface UnreadHeader {
   /** The heading as written, lower-cased. */
@@ -56,10 +74,14 @@ const normalize = (header: string): string => header.toLowerCase().replace(/[*`\
  * A heading is counted once per table, not once per row: the cost of missing a
  * table is the table, and a 39-row one is not 39 findings.
  */
-export async function unreadHeaders(cacheDir: string): Promise<UnreadHeader[]> {
+export async function unreadHeaders(
+  cacheDir: string,
+): Promise<{ headers: UnreadHeader[]; unusedAllowlist: UnusedAllowlistEntry[] }> {
   const docsDir = path.join(cacheDir, "zeppos-docs", "docs");
   const files = await walkFiles(docsDir, [".md", ".mdx"]);
   const found = new Map<string, { tables: number; files: Set<string> }>();
+  /** Allowlist entries that actually silenced something. */
+  const silenced = new Set<string>();
 
   for (const file of files) {
     const lines = (await readSource(file)).split("\n");
@@ -77,7 +99,10 @@ export async function unreadHeaders(cacheDir: string): Promise<UnreadHeader[]> {
       if (first.length === 0 || readsHeader(first)) return;
 
       const raw = (header[0] ?? "").toLowerCase().replace(/[*`]/g, "").trim();
-      if (raw in NOT_SYMBOL_TABLES) return;
+      if (raw in NOT_SYMBOL_TABLES) {
+        silenced.add(raw);
+        return;
+      }
 
       const entry = found.get(raw) ?? { tables: 0, files: new Set<string>() };
       entry.tables += 1;
@@ -86,11 +111,17 @@ export async function unreadHeaders(cacheDir: string): Promise<UnreadHeader[]> {
     });
   }
 
-  return [...found]
-    .map(([header, { tables, files }]) => ({
-      header,
-      tables,
-      files: [...files].sort().slice(0, 5),
-    }))
-    .sort((a, b) => b.tables - a.tables || a.header.localeCompare(b.header));
+  return {
+    headers: [...found]
+      .map(([header, { tables, files }]) => ({
+        header,
+        tables,
+        files: [...files].sort().slice(0, 5),
+      }))
+      .sort((a, b) => b.tables - a.tables || a.header.localeCompare(b.header)),
+    unusedAllowlist: Object.entries(NOT_SYMBOL_TABLES)
+      .filter(([header]) => !silenced.has(header))
+      .map(([header, reason]) => ({ header, reason }))
+      .sort((a, b) => a.header.localeCompare(b.header)),
+  };
 }

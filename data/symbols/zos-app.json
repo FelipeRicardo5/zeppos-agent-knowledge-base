@@ -44,6 +44,13 @@
       "description": "Get some of the fields in the Mini Program configuration `app.json`.",
       "minApiLevel": 2,
       "signature": "function getPackageInfo(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "object",
+          "description": "Please see the fields in app.json for more details"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -71,6 +78,13 @@
               "apiLevel": 4
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "object",
+          "description": "Please see the fields in app.json for more details"
         }
       ],
       "runtimes": [
@@ -291,6 +305,13 @@
       "description": "Get the current scene where the Mini Program is running.",
       "minApiLevel": 2,
       "signature": "function getScene(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The current scene in which the Mini Program is running, value reference scene constants"
+        }
+      ],
       "enums": [
         {
           "name": "Current scene running Mini Program constants",
@@ -353,6 +374,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "Array&#60;number&#62;",
+          "description": "Permissions query result array, corresponding to the order of permissions array, 0: not authorized, 1: unknown permissions, 2: authorized"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -386,6 +414,13 @@
               "apiLevel": 3
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Method result value. See 'result' for a description"
         }
       ],
       "enums": [

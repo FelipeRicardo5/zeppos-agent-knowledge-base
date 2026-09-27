@@ -28,6 +28,13 @@
       "description": "Get the list of running App services, used to query the service status.",
       "minApiLevel": 3,
       "signature": "function getAllAppServices(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "Array&#60;string&#62;",
+          "description": "Get the list of currently running App services"
+        }
+      ],
       "permissions": [
         "device:os.bg_service"
       ],
@@ -94,6 +101,13 @@
               "apiLevel": 3
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "If the return value is 0, it indicates that the device application service has been successfully started; for the meanings of other values, refer to ERROR_CODE"
         }
       ],
       "enums": [
@@ -220,6 +234,13 @@
               "apiLevel": 3
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "If 0 is returned, The App Service is closed successfully"
         }
       ],
       "permissions": [

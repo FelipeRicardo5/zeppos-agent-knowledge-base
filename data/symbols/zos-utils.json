@@ -9,6 +9,33 @@
       "description": "Used to handle resource file paths, splice `basePath`. and can pass in parameters for rtl path conversion of images, for RTL adaptation of Mini Program.",
       "minApiLevel": 2,
       "signature": "function assets(basePath: BasePath): AssetsPathFunc",
+      "declares": [
+        {
+          "name": "BasePath",
+          "type": "string",
+          "description": "The base path, which will be spliced before the resource file path"
+        },
+        {
+          "name": "AssetsPathFunc",
+          "type": "(path: Path, isRtl?: IsRtl) =&#62; ResultPath",
+          "description": "Resource file path constructor"
+        },
+        {
+          "name": "Path",
+          "type": "string",
+          "description": "Resource file path"
+        },
+        {
+          "name": "IsRtl",
+          "type": "boolean",
+          "description": "Whether to splice the rtl path"
+        },
+        {
+          "name": "ResultPath",
+          "type": "string",
+          "description": "Final file path"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -25,6 +52,18 @@
       "description": "Convert `ArrayBuffer` type to string type.",
       "minApiLevel": 4,
       "signature": "function bufferToString(buffer: InputBuffer): Result",
+      "declares": [
+        {
+          "name": "InputBuffer",
+          "type": "ArrayBuffer",
+          "description": "The ArrayBuffer to be converted"
+        },
+        {
+          "name": "Result",
+          "type": "string",
+          "description": "The converted string"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -136,6 +175,18 @@
       "description": "Pixel scaling calculation. The `designWidth` of each model in the `targets` object in the `app.json` is used as the base..",
       "minApiLevel": 2,
       "signature": "function px(value: PxValue): Result",
+      "declares": [
+        {
+          "name": "PxValue",
+          "type": "number",
+          "description": "Pixel values based on designWidth"
+        },
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Pixel values after scaling calculation"
+        }
+      ],
       "runtimes": [
         "device-app",
         "workout-extension"
@@ -153,6 +204,18 @@
       "description": "Convert string type to `ArrayBuffer` type.",
       "minApiLevel": 4,
       "signature": "function stringToBuffer(str: InputString): Result",
+      "declares": [
+        {
+          "name": "InputString",
+          "type": "string",
+          "description": "The string to be converted"
+        },
+        {
+          "name": "Result",
+          "type": "ArrayBuffer",
+          "description": "The converted ArrayBuffer"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

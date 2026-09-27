@@ -37,6 +37,8 @@ Query connection status
 () => Result
 ```
 
+The signature returns `Result` and no source on this page says what `Result` is. Absence of evidence: the type exists, this base cannot tell you its shape.
+
 ### `hmBle.createConnect`
 
 Create connection

@@ -26,6 +26,12 @@ Get the vertical coordinate of the current scroll position of the page.
 function getScrollTop(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The vertical coordinate of the current scroll position of the page |
+
 ### `@zos/page.getSwiperIndex`
 
 Get the scroll position of the current page, only if the page scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL` return the index of the current item (starting from `1`), otherwise return `undefined`.
@@ -33,6 +39,12 @@ Get the scroll position of the current page, only if the page scroll mode is `SC
 ```ts
 function getSwiperIndex(): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number&#124;undefined` | **returned** — If the page scroll mode is SCROLL_MODE_SWIPER or SCROLL_MODE_SWIPER_HORIZONTAL, the value is the index of the current item (starting from 1). Otherwise, it is undefined. |
 
 ### `@zos/page.SCROLL_ANIMATION_NONE`
 
@@ -99,6 +111,12 @@ Set the scroll mode of the page.
 ```ts
 function setScrollMode(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If true is returned, success is indicated |
 
 **Option**
 

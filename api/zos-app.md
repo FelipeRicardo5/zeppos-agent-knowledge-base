@@ -41,6 +41,12 @@ Get some of the fields in the Mini Program configuration `app.json`.
 function getPackageInfo(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `object` | **returned** — Please see the fields in app.json for more details |
+
 ### `@zos/app.getPackageInfoById`
 
 Get some of the fields in the Mini Program configuration `app.json` by app ID.
@@ -48,6 +54,12 @@ Get some of the fields in the Mini Program configuration `app.json` by app ID.
 ```ts
 function getPackageInfoById(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `object` | **returned** — Please see the fields in app.json for more details |
 
 **Option**
 
@@ -135,6 +147,12 @@ Get the current scene where the Mini Program is running.
 function getScene(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The current scene in which the Mini Program is running, value reference scene constants |
+
 **Current scene running Mini Program constants**
 
 | Value | Min API_LEVEL | Description |
@@ -152,6 +170,12 @@ Check the authorization status of Mini Program permissions.
 function queryPermission(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `Array&#60;number&#62;` | **returned** — Permissions query result array, corresponding to the order of permissions array, 0: not authorized, 1: unknown permissions, 2: authorized |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -165,6 +189,12 @@ Dynamic permission application, when querying a dynamic permission has not been 
 ```ts
 function requestPermission(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Method result value. See 'result' for a description |
 
 **Option**
 

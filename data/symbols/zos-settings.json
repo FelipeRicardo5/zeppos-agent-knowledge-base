@@ -84,6 +84,13 @@
       "description": "Get the current system date format.",
       "minApiLevel": 2,
       "signature": "function getDateFormat(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Date format, value refer to date format constants"
+        }
+      ],
       "enums": [
         {
           "name": "Date format constants",
@@ -126,6 +133,13 @@
       "description": "Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user, not to represent the units of the data, the data units refer to the interface description of the corresponding data.",
       "minApiLevel": 2,
       "signature": "function getDistanceUnit(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Distance units, value refer to distance unit constants"
+        }
+      ],
       "enums": [
         {
           "name": "Distance unit constants",
@@ -162,6 +176,13 @@
       "description": "Get the current system language setting.",
       "minApiLevel": 2,
       "signature": "function getLanguage(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Please see the Multilingual Mapping for more details"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -178,6 +199,13 @@
       "description": "Get the sleep target set by the user.",
       "minApiLevel": 2,
       "signature": "function getSleepTarget(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "User-set sleep target, default is 0, in minutes"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -312,6 +340,13 @@
       "description": "Get the temperature units set by the user.",
       "minApiLevel": 2.1,
       "signature": "function getTemperatureUnit(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Temperature units, value reference temperature unit constants"
+        }
+      ],
       "enums": [
         {
           "name": "Temperature unit constants",
@@ -348,6 +383,13 @@
       "description": "Get the current system time format, 12-hour format or 24-hour format.",
       "minApiLevel": 2.1,
       "signature": "function getTimeFormat(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Hour format, value refer to hour format constants"
+        }
+      ],
       "enums": [
         {
           "name": "Hour format constants",
@@ -384,6 +426,13 @@
       "description": "Get the weight target set by the user.",
       "minApiLevel": 2,
       "signature": "function getWeightTarget(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "User-set weight target, default is 0"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -400,6 +449,13 @@
       "description": "Gets the weight unit set by the user.",
       "minApiLevel": 2,
       "signature": "function getWeightUnit(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Weight units, value refer to weight unit constants"
+        }
+      ],
       "enums": [
         {
           "name": "Weight unit constants",

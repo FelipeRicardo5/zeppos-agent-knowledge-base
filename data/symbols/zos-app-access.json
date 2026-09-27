@@ -39,6 +39,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "If it returns true, it means the call was successful, otherwise the call failed"
+        }
+      ],
       "enums": [
         {
           "name": "SportType",

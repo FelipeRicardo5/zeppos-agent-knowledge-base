@@ -34,6 +34,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "unknown",
+          "description": "App instance"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -73,6 +80,13 @@
               "apiLevel": 3
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "unknown",
+          "description": "AppService instance"
         }
       ],
       "permissions": [
@@ -137,6 +151,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "unknown",
+          "description": "AppWidget instance"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -168,6 +189,13 @@
       "description": "Cancel the timer registered by `setInterval`.",
       "minApiLevel": 2,
       "signature": "function clearInterval(intervalID: IntervalID): void",
+      "declares": [
+        {
+          "name": "IntervalID",
+          "type": "number",
+          "description": "Timer number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -184,6 +212,13 @@
       "description": "Cancel the timer registered by `setTimeout`.",
       "minApiLevel": 2,
       "signature": "function clearTimeout(timeoutID: TimeoutID): void",
+      "declares": [
+        {
+          "name": "TimeoutID",
+          "type": "number",
+          "description": "Timer number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -263,6 +298,13 @@
               "apiLevel": 3.6
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "object",
+          "description": "DataWidget instance"
         }
       ],
       "runtimes": [
@@ -392,6 +434,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "unknown",
+          "description": "Page instance"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -451,6 +500,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "unknown",
+          "description": "SecondaryWidget instance"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -467,6 +523,23 @@
       "description": "Repeatedly call a function with a fixed time interval between each call.",
       "minApiLevel": 2,
       "signature": "function setInterval(callback: Callback, delay: Delay): IntervalID",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "() =&#62; unknown",
+          "description": "Repeatedly called callback functions"
+        },
+        {
+          "name": "Delay",
+          "type": "number",
+          "description": "Time interval between each callback function call"
+        },
+        {
+          "name": "IntervalID",
+          "type": "number",
+          "description": "Timer number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -483,6 +556,23 @@
       "description": "Set a timer and execute the registered callback function after the timer expires.",
       "minApiLevel": 2,
       "signature": "function setTimeout(callback: Callback, delay?: Delay): TimeoutID",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "() =&#62; unknown",
+          "description": "Callback functions executed after the timer expires"
+        },
+        {
+          "name": "Delay",
+          "type": "number",
+          "description": "The number of milliseconds to delay the function, default 1ms"
+        },
+        {
+          "name": "TimeoutID",
+          "type": "number",
+          "description": "Timer number"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

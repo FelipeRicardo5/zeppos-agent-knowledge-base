@@ -55,6 +55,12 @@ Create UI widgets.
 (widgetId: WIDGET_ID, option?: Option) => widget: WIDGET
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `WIDGET` | `object` | Widget object |
+
 **Parameters**
 
 | Property | Type | Required | Default | Description |
@@ -138,6 +144,12 @@ Delete the UI widget.
 (widget: WIDGET) => void
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `WIDGET` | `number` | widget object, returned by hmUI.createWidget |
+
 ### `hmUI.getProperty`
 
 Get the UI widget properties, use `widget.getProperty(hmUI.prop.MORE, {})` to get all the properties of the widget.
@@ -145,6 +157,8 @@ Get the UI widget properties, use `widget.getProperty(hmUI.prop.MORE, {})` to ge
 ```ts
 (key: any) => result
 ```
+
+The signature returns `result` and no source on this page says what `result` is. Absence of evidence: the type exists, this base cannot tell you its shape.
 
 **Parameters**
 

@@ -286,6 +286,27 @@ export const ANSWERS: Answer[] = [
     },
   },
   {
+    question: "What does `@zos/alarm.cancel` return, and what is `Result`?",
+    why: "88 pages write `### Result` over a table with no name column, and the name is the heading. Every row was dropped without an error, so 123 of 211 signatures ended in a type nothing in the base defined. Reading them left 8.",
+    check: (base) => {
+      const page = base.page("api/zos-alarm.md");
+      if (!/\*\*Declares\*\*/.test(page)) return "the module page no longer renders what its pages declare";
+      return /\| `Result` \| `number` \| \*\*returned\*\*/.test(page)
+        ? undefined
+        : "the declared type is there but nothing marks it as the one the signature returns";
+    },
+  },
+  {
+    question: "What does `hmSetting.getScreenType` return?",
+    why: "One of the eight signatures still naming a type no page defines. The run that hit it reported AMBIGUOUS and worked around it; the page must say the type is undocumented rather than leave a reader to assume the `screen_type` enum, which is the app scene and a different thing.",
+    check: (base) =>
+      /The signature returns `screenType` and no source on this page says what `screenType` is/.test(
+        base.page("api/hmSetting.md"),
+      )
+        ? undefined
+        : "api/hmSetting.md no longer states that its return type is undocumented",
+  },
+  {
     question: "How does a Device App page hand data to its Side Service?",
     why: "The gap that cost the third eval run its worst finding. The agent wrote `this.request({method, params})`; twelve sample call sites write `{type, params}`, and the receiving half destructures exactly that. Nothing was missing from the samples - the pieces were never put beside each other. This asks that they still are, and that putting them there never became an assertion that one reaches the other.",
     check: (base) => {

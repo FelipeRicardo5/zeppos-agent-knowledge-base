@@ -583,6 +583,18 @@
       "description": "Check the availability of sensors on the current device.",
       "minApiLevel": 3,
       "signature": "function checkSensor(sensor: Sensor): Result",
+      "declares": [
+        {
+          "name": "Sensor",
+          "type": "object",
+          "description": "Sensor, such as checking if the positioning sensor is available, pass in the Geolocation sensor construction function"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "true - auto-brightness is set to on, false - auto-brightness is set to off"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

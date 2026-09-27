@@ -35,6 +35,12 @@ Close the file handle synchronously.
 function closeSync(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -48,6 +54,12 @@ Synchronously create a directory in the `/data` directory of the Mini Program.
 ```ts
 function mkdirSync(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
 
 **Option**
 
@@ -91,6 +103,12 @@ Open the file in the `/assets` directory of the Mini Program synchronously and g
 function openAssetsSync(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The numeric file descriptor |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -117,6 +135,12 @@ Open the file in the `/data` directory of the Mini Program synchronously and get
 ```ts
 function openSync(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The numeric file descriptor |
 
 **Option**
 
@@ -152,6 +176,12 @@ Read the directory under the `/data` directory of the Mini Program synchronously
 function readdirSync(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `Array&#60;string&#62;&#124;undefined` | **returned** — If undefined is returned, the directory does not exist, otherwise an array of filenames is returned |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -165,6 +195,12 @@ Returns the entire contents of the specified file in the `/data` directory of th
 ```ts
 function readFileSync(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `ArrayBuffer&#124;string&#124;undefined` | **returned** — File content. If undefined is returned, the file failed to be read |
 
 **Option**
 
@@ -186,6 +222,12 @@ Synchronously reads the content from the file specified by the file handle into 
 ```ts
 function readSync(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The number of bytes read |
 
 **Option**
 
@@ -211,6 +253,12 @@ Rename the files in the `/data` directory of the Mini Program, renaming the file
 function renameSync(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -226,6 +274,12 @@ Synchronously delete files in the `/data` directory of the Mini Program.
 function rmSync(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -239,6 +293,12 @@ Synchronously gets information about the files in the Mini Program `/assets` dir
 ```ts
 function statAssetsSync(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `FSStat&#124;undefined` | **returned** — If undefined is returned, the target file does not exist, otherwise the file information object is returned |
 
 **Option**
 
@@ -259,6 +319,12 @@ Get information about the files in the `/data` directory of the Mini Program syn
 ```ts
 function statSync(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `FSStat&#124;undefined` | **returned** — If undefined is returned, the target file does not exist, otherwise the file information object is returned |
 
 **Option**
 
@@ -301,6 +367,12 @@ Synchronously write ArrayBuffer to the file specified by fd.
 ```ts
 function writeSync(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — The number of bytes written |
 
 **Option**
 

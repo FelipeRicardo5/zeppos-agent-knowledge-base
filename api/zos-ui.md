@@ -375,6 +375,8 @@ Create a Dialog.
 (option: Option) => result
 ```
 
+The signature returns `result` and no source on this page says what `result` is. Absence of evidence: the type exists, this base cannot tell you its shape.
+
 **Option**
 
 | Property | Type | Required | Default | Description |
@@ -391,6 +393,12 @@ Create UI widgets.
 ```ts
 (widgetId: WIDGET_ID, option?: Option) => widget: WIDGET
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `WIDGET` | `object` | Widget object |
 
 **Parameters**
 
@@ -517,6 +525,12 @@ Delete the UI widget.
 (widget: WIDGET) => void
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `WIDGET` | `number` | widget object, returned by createWidget |
+
 ### `@zos/ui.DIALOG`
 
 This widget has been discontinued. It is recommended to replace it with the more powerful [@zos/interaction createModal API](../../interaction/createModal.mdx) Dialog popup consists of a piece of text and two buttons. The popup box disappears when the buttons are clicked.
@@ -627,6 +641,12 @@ Get the unique ID of the widget.
 () => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — unique ID |
+
 ### `@zos/ui.getImageInfo`
 
 Get information about the image resources in the `/assets` resource directory.
@@ -656,6 +676,8 @@ Get the UI widget properties, use `widget.getProperty(prop.MORE, {})` to get all
 (key: any) => result
 ```
 
+The signature returns `result` and no source on this page says what `result` is. Absence of evidence: the type exists, this base cannot tell you its shape.
+
 **Parameters**
 
 | Property | Type | Required | Default | Description |
@@ -669,6 +691,12 @@ Query whether the current system language setting is RTL language. Setting the l
 ```ts
 () => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `boolean` | **returned** — Query results, true indicates RTL language, false indicates non-RTL language |
 
 ### `@zos/ui.gettersetter`
 
@@ -715,6 +743,12 @@ Get the UI widget type.
 ```ts
 () => result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `number` | **returned** — The type of UI widget. Refer to WIDGET_ID in createWidget. |
 
 ### `@zos/ui.GRADIENT_POLYLINE`
 
@@ -999,6 +1033,12 @@ During development, especially when using Flex layout, you may need to check the
 function openInspector(): Inspector
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Return Value` | `Inspector` | **returned** — Inspector object instance |
+
 **Parameters**
 
 | Property | Type | Required | Default | Description |
@@ -1235,6 +1275,12 @@ Apply RTL layout to the widget based on the current system language. After calli
 () => result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `result` | `boolean` | **returned** — Call result, true succeeds, false fails |
+
 ### `@zos/ui.removeEventListener`
 
 Remove event listeners registered by the UI widget using the `widget.addEventListener` method.
@@ -1364,6 +1410,12 @@ Set the opacity of the widget. For widgets that do not support the `alpha` prope
 (val: any) => void
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `val` | `number` | Transparency, 0 - 255, default value is 255 for opaque, 0 for full |
+
 ### `@zos/ui.setAppWidgetSize`
 
 Set the size of the Shortcut cards, currently only height adjustment is supported.
@@ -1385,6 +1437,12 @@ Set whether the widget responds to screen gesture interaction events, the defaul
 ```ts
 (response: boolean) => void
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `response` | `boolean` | Whether the widget responds to gesture interaction events, true responds, false does not respond |
 
 ### `@zos/ui.setLayoutParent`
 

@@ -6,7 +6,7 @@ function, a property set on a widget. Every other index in this base is
 keyed by module, `API_LEVEL` or runtime — by where a thing sits rather than
 by what it is called.
 
-**1362 names**, 2669 entries: 397 enum values, 257 members, 1501 properties, 514 symbols. 492 names have more than one owner.
+**1371 names**, 2678 entries: 406 enum values, 257 members, 1501 properties, 514 symbols. 492 names have more than one owner.
 
 **A name with several owners is not a duplicate.** 12 sensors document a
 `getCurrent` and they return 12 different shapes; `CENTER_H` belongs to
@@ -40,6 +40,7 @@ answer, since it is a position prop on every widget.
 | `addListener` | symbol | `hmBle.addListener` | watchface | not stated | [hmBle](hmBle.md#hmbleaddlistener) |
 | `addListener` | symbol | `messaging.addListener` | side-service | not stated | [messaging](messaging.md#messagingaddlistener) |
 | `addListener` | symbol | `settings-storage.addListener` | settings, side-service | not stated | [settings-storage](settings-storage.md#settings-storageaddlistener) |
+| `AES_CBC` | enum value | `alg.AES_CBC` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
 | `AESCrypto` | symbol | `@zos/crypto.AESCrypto` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoaescrypto) |
 | `age` | property | `@zos/user.getProfile -> Result.age` | device-app | >= 2 | [zos-user](zos-user.md#zosusergetprofile) |
 | `age` | property | `hmSetting.getUserData -> userData.age` | watchface | not stated | [hmSetting](hmSetting.md#hmsettinggetuserdata) |
@@ -393,6 +394,8 @@ answer, since it is a position prop on every widget.
 | `count` | property | `hmSensor.id.WEATHER -> ForecastData.count` | watchface | not stated | [hmSensor.id](hmSensor.id.md#hmsensoridweather) |
 | `count` | property | `hmSensor.id.WEATHER -> TideData.count` | watchface | not stated | [hmSensor.id](hmSensor.id.md#hmsensoridweather) |
 | `COUNT_DOWN` | enum value | `data_type.COUNT_DOWN` | watchface | not stated | [hmUI](hmUI.md#hmuidata_type) |
+| `CRC16` | enum value | `alg.CRC16` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
+| `CRC32` | enum value | `alg.CRC32` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
 | `CRCCrypto` | symbol | `@zos/crypto.CRCCrypto` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptocrccrypto) |
 | `create` | symbol | `@zos/media.create` | device-app | >= 3 | [zos-media](zos-media.md#zosmediacreate) |
 | `createChiper` | member | `@zos/crypto.AESCrypto.createChiper()` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoaescrypto) |
@@ -946,6 +949,9 @@ answer, since it is a position prop on every widget.
 | `high` | property | `hmSensor.id.WEATHER -> ForecastDataItem.high` | watchface | not stated | [hmSensor.id](hmSensor.id.md#hmsensoridweather) |
 | `HISTOGRAM` | symbol | `@zos/ui.HISTOGRAM` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
 | `HISTOGRAM` | enum value | `widget.HISTOGRAM` | device-app, workout-extension | not stated | [zos-ui](zos-ui.md#zosuiwidget) |
+| `HMAC_SHA_1` | enum value | `alg.HMAC_SHA_1` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
+| `HMAC_SHA_256` | enum value | `alg.HMAC_SHA_256` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
+| `HMACMD5` | enum value | `alg.HMACMD5` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
 | `home` | symbol | `@zos/router.home` | device-app | >= 2 | [zos-router](zos-router.md#zosrouterhome) |
 | `horizontal` | property | `@zos/ui.PAGE_INDICATOR -> Param.horizontal` | device-app | >= 2.1 | [zos-ui](zos-ui.md#zosuipage_indicator) |
 | `horizontal` | property | `ui.Toast -> Props.horizontal` | settings | not stated | [ui](ui.md#uitoast) |
@@ -1227,6 +1233,7 @@ answer, since it is a position prop on every widget.
 | `maxValue` | property | `@zos/sensor.HeartRate.getAFibRecord -> AfibInfo.maxValue` | device-app | >= 2 | [zos-sensor](zos-sensor.md#zossensorheartrate) |
 | `md_content` | property | `@zos/crypto.DigestCrypto.encrypt -> DigestResult.md_content` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptodigestcrypto) |
 | `md_content` | property | `@zos/crypto.DigestCrypto.finish -> DigestResult.md_content` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptodigestcrypto) |
+| `MD5` | enum value | `alg.MD5` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
 | `memory` | property | `@zos/app.getPerformance -> Result.memory` | device-app | >= 4 | [zos-app](zos-app.md#zosappgetperformance) |
 | `message` | property | `ui.Toast -> Props.message` | settings | not stated | [ui](ui.md#uitoast) |
 | `MESSAGE` | property | `@zos/sensor.SystemSounds.getSourceType -> Type.MESSAGE` | device-app | >= 3.6 | [zos-sensor](zos-sensor.md#zossensorsystemsounds) |
@@ -1894,6 +1901,8 @@ answer, since it is a position prop on every widget.
 | `settingsLib` | symbol | `@zeppos/zml/base-side.settingsLib` | side-service | not stated | [zeppos-zml-base-side](zeppos-zml-base-side.md#zepposzmlbase-sidesettingslib) |
 | `setVolume` | member | `@zos/media.Player.setVolume()` | device-app | >= 3 | [zos-media](zos-media.md#zosmediaplayer) |
 | `setWakeUpRelaunch` | symbol | `@zos/display.setWakeUpRelaunch` | device-app | >= 2 | [zos-display](zos-display.md#zosdisplaysetwakeuprelaunch) |
+| `SHA_1` | enum value | `alg.SHA_1` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
+| `SHA_256` | enum value | `alg.SHA_256` | device-app | not stated | [zos-crypto](zos-crypto.md#zoscryptoalg) |
 | `ShareLocalStorage` | symbol | `@zos/storage.ShareLocalStorage` | device-app | >= 3 | [zos-storage](zos-storage.md#zosstoragesharelocalstorage) |
 | `ShareTypedStorage` | symbol | `@zos/storage.ShareTypedStorage` | device-app | >= 3 | [zos-storage](zos-storage.md#zosstoragesharetypedstorage) |
 | `show` | property | `@zos/interaction.createModal -> Option.show` | device-app | >= 2 | [zos-interaction](zos-interaction.md#zosinteractioncreatemodal) |

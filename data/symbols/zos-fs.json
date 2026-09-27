@@ -22,6 +22,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -49,6 +56,13 @@
               "apiLevel": 2
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
         }
       ],
       "runtimes": [
@@ -192,6 +206,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The numeric file descriptor"
+        }
+      ],
       "enums": [
         {
           "name": "file open constants",
@@ -295,6 +316,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The numeric file descriptor"
+        }
+      ],
       "enums": [
         {
           "name": "file open constants",
@@ -374,6 +402,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "Array&#60;string&#62;&#124;undefined",
+          "description": "If undefined is returned, the directory does not exist, otherwise an array of filenames is returned"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -418,6 +453,13 @@
               "apiLevel": 2
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "ArrayBuffer&#124;string&#124;undefined",
+          "description": "File content. If undefined is returned, the file failed to be read"
         }
       ],
       "runtimes": [
@@ -487,6 +529,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The number of bytes read"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -522,6 +571,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -549,6 +605,13 @@
               "apiLevel": 2
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
         }
       ],
       "runtimes": [
@@ -591,6 +654,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "FSStat&#124;undefined",
+          "description": "If undefined is returned, the target file does not exist, otherwise the file information object is returned"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -629,6 +699,13 @@
               "apiLevel": 2
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "FSStat&#124;undefined",
+          "description": "If undefined is returned, the target file does not exist, otherwise the file information object is returned"
         }
       ],
       "runtimes": [
@@ -749,6 +826,13 @@
               "apiLevel": 2
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The number of bytes written"
         }
       ],
       "runtimes": [

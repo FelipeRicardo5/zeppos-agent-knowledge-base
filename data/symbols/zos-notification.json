@@ -102,6 +102,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The result of the notification delivery, returns 0 for delivery failure, the rest of the result indicates the ID of the notification"
+        }
+      ],
       "permissions": [
         "device:os.notification"
       ],

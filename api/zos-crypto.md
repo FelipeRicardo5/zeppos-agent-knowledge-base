@@ -22,6 +22,12 @@
 function createCrypto(algorithmId: typeof alg.AES_CBC, option: AESOptions): AESCrypto | undefined
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `AESData` | `number[]&#124;ArrayBuffer&#124;Uint8Array` | Data to process |
+
 **AESOptions**
 
 | Property | Type | Required | Default | Description |
@@ -89,13 +95,28 @@ decrypt(data: createCrypto.AESData): AESCipherResult | undefined
 
 | Value | Min API_LEVEL | Description |
 | --- | --- | --- |
+| `alg.AES_CBC` | >= 3 | AES-CBC symmetric encryption |
+| `alg.CRC16` | >= 3 | CRC16 checksum |
+| `alg.CRC32` | >= 3 | CRC32 checksum |
 | `alg.ECDSA` | >= 3 | ECDSA digital signature |
+| `alg.HMAC_SHA_1` | >= 3 | HMAC-SHA-1 digest |
+| `alg.HMAC_SHA_256` | >= 3 | HMAC-SHA-256 digest |
+| `alg.HMACMD5` | >= 3 | HMAC-MD5 digest |
+| `alg.MD5` | >= 3 | MD5 digest |
+| `alg.SHA_1` | >= 3 | SHA-1 digest |
+| `alg.SHA_256` | >= 3 | SHA-256 digest |
 
 ### `@zos/crypto.CRCCrypto`
 
 ```ts
 function createCrypto(algorithmId: typeof alg.CRC16 | typeof alg.CRC32): CRCCrypto | undefined
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `CRCData` | `number[]&#124;ArrayBuffer&#124;Uint8Array` | Data to checksum |
 
 **Called on a `CRCCrypto` value** — 1 members
 
@@ -130,6 +151,12 @@ function createCrypto(
   option: HMACOptions,
 ): DigestCrypto | undefined
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `DigestData` | `number[]&#124;ArrayBuffer&#124;Uint8Array` | Data to digest |
 
 **DigestOptions**
 
@@ -204,6 +231,12 @@ finish(): DigestResult | undefined
 ```ts
 function createCrypto(algorithmId: typeof alg.ECDSA, option?: ECDSAOptions): ECDSACrypto | undefined
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `ECDSAData` | `number[]&#124;ArrayBuffer&#124;Uint8Array` | Data to process |
 
 **ECDSAOptions**
 
@@ -310,3 +343,9 @@ Encrypt data with the firmware PUF hardware module using AES. Input length must 
 ```ts
 function encryptKey(data: CryptoData): ArrayBuffer | undefined
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `CryptoData` | `number[]&#124;ArrayBuffer&#124;Uint8Array` | Data to encrypt |

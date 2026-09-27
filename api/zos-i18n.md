@@ -15,3 +15,10 @@ Get the corresponding string from the internationalization resource file (.po) b
 ```ts
 function getText(key: Key): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Key` | `string` | Internationalization key |
+| `Result` | `string` | **returned** — The string corresponding to the internationalized key |

@@ -121,6 +121,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "WIDGET",
+          "description": "Widget object",
+          "type": "object"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -434,6 +441,13 @@
       "type": "function",
       "description": "Delete the UI widget.",
       "signature": "(widget: WIDGET) => void",
+      "declares": [
+        {
+          "name": "WIDGET",
+          "description": "widget object, returned by hmUI.createWidget",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],

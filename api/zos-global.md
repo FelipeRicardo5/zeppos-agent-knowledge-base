@@ -29,6 +29,12 @@ Register the Mini Program, specifying the Mini Program's lifecycle callbacks, et
 function App(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `unknown` | **returned** — App instance |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -47,6 +53,12 @@ Register an App Service in the Mini Program, specify the lifecycle callback for 
 function AppService(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `unknown` | **returned** — AppService instance |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -62,6 +74,12 @@ Register AppWidget, specify the lifecycle callback for the current AppWidget, et
 ```ts
 function AppWidget(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `unknown` | **returned** — AppWidget instance |
 
 **Option**
 
@@ -86,6 +104,12 @@ Cancel the timer registered by `setInterval`.
 function clearInterval(intervalID: IntervalID): void
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `IntervalID` | `number` | Timer number |
+
 ### `@zos/global.clearTimeout`
 
 Cancel the timer registered by `setTimeout`.
@@ -93,6 +117,12 @@ Cancel the timer registered by `setTimeout`.
 ```ts
 function clearTimeout(timeoutID: TimeoutID): void
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `TimeoutID` | `number` | Timer number |
 
 ### `@zos/global.console`
 
@@ -119,6 +149,12 @@ Register DataWidget, specify the lifecycle callback for the current DataWidget, 
 ```ts
 function DataWidget(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `object` | **returned** — DataWidget instance |
 
 **Option**
 
@@ -179,6 +215,12 @@ Register a page in the Mini Program, specify the lifecycle callback for the curr
 function Page(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `unknown` | **returned** — Page instance |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -195,6 +237,12 @@ Register SecondaryWidget, specify the lifecycle callback for the current Seconda
 ```ts
 function SecondaryWidget(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `unknown` | **returned** — SecondaryWidget instance |
 
 **Option**
 
@@ -215,6 +263,14 @@ Repeatedly call a function with a fixed time interval between each call.
 function setInterval(callback: Callback, delay: Delay): IntervalID
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Callback` | `() =&#62; unknown` | Repeatedly called callback functions |
+| `Delay` | `number` | Time interval between each callback function call |
+| `IntervalID` | `number` | **returned** — Timer number |
+
 ### `@zos/global.setTimeout`
 
 Set a timer and execute the registered callback function after the timer expires.
@@ -222,3 +278,11 @@ Set a timer and execute the registered callback function after the timer expires
 ```ts
 function setTimeout(callback: Callback, delay?: Delay): TimeoutID
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Callback` | `() =&#62; unknown` | Callback functions executed after the timer expires |
+| `Delay` | `number` | The number of milliseconds to delay the function, default 1ms |
+| `TimeoutID` | `number` | **returned** — Timer number |

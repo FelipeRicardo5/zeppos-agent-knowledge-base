@@ -9,6 +9,33 @@
       "description": "A system-level timer that can be registered in device app services and runs regardless of watch screen state.",
       "minApiLevel": 4,
       "signature": "function createSysTimer(periodic: Periodic, period: Period, callback: Callback, arg?: Arg): Result",
+      "declares": [
+        {
+          "name": "Periodic",
+          "type": "boolean",
+          "description": "Whether to create a periodic timer"
+        },
+        {
+          "name": "Period",
+          "type": "number",
+          "description": "Timer period (ms). For non-periodic timers, it represents delay duration, 0 means immediate execution"
+        },
+        {
+          "name": "Callback",
+          "type": "(arg?: unknown) =&#62; void",
+          "description": "Callback function"
+        },
+        {
+          "name": "Arg",
+          "type": "unknown",
+          "description": "Parameter passed to the callback function"
+        },
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "The ID returned by creating a system timer, used to stop the timer later"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -25,6 +52,13 @@
       "description": "Stop the timer created by `createSysTimer` method.",
       "minApiLevel": 4,
       "signature": "function stopTimer(timerId: TimerId): void",
+      "declares": [
+        {
+          "name": "TimerId",
+          "type": "number",
+          "description": "Timer ID to be stopped, returned by createSysTimer method"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

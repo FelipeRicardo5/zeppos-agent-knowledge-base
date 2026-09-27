@@ -58,6 +58,12 @@ Get the current system date format.
 function getDateFormat(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Date format, value refer to date format constants |
+
 **Date format constants**
 
 | Value | Min API_LEVEL | Description |
@@ -74,6 +80,12 @@ Returns whether the current distance unit is metric or imperial. This method is 
 function getDistanceUnit(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Distance units, value refer to distance unit constants |
+
 **Distance unit constants**
 
 | Value | Min API_LEVEL | Description |
@@ -89,6 +101,12 @@ Get the current system language setting.
 function getLanguage(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Please see the Multilingual Mapping for more details |
+
 ### `@zos/settings.getSleepTarget`
 
 Get the sleep target set by the user.
@@ -96,6 +114,12 @@ Get the sleep target set by the user.
 ```ts
 function getSleepTarget(): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — User-set sleep target, default is 0, in minutes |
 
 ### `@zos/settings.getSystemInfo`
 
@@ -143,6 +167,12 @@ Get the temperature units set by the user.
 function getTemperatureUnit(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Temperature units, value reference temperature unit constants |
+
 **Temperature unit constants**
 
 | Value | Min API_LEVEL | Description |
@@ -157,6 +187,12 @@ Get the current system time format, 12-hour format or 24-hour format.
 ```ts
 function getTimeFormat(): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Hour format, value refer to hour format constants |
 
 **Hour format constants**
 
@@ -173,6 +209,12 @@ Get the weight target set by the user.
 function getWeightTarget(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — User-set weight target, default is 0 |
+
 ### `@zos/settings.getWeightUnit`
 
 Gets the weight unit set by the user.
@@ -180,6 +222,12 @@ Gets the weight unit set by the user.
 ```ts
 function getWeightUnit(): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Weight units, value refer to weight unit constants |
 
 **Weight unit constants**
 

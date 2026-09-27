@@ -31,6 +31,12 @@ Get the list of running App services, used to query the service status.
 function getAllAppServices(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `Array&#60;string&#62;` | **returned** — Get the list of currently running App services |
+
 ### `@zos/app-service.start`
 
 Start the specified App service, return the result through the callback function.
@@ -40,6 +46,12 @@ Start the specified App service, return the result through the callback function
 ```ts
 function start(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `boolean` | **returned** — If the return value is 0, it indicates that the device application service has been successfully started; for the meanings of other values, refer to ERROR_CODE |
 
 **Option**
 
@@ -80,6 +92,12 @@ Shutdown the specified backend service, called asynchronously, with the shutdown
 ```ts
 function stop(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `boolean` | **returned** — If 0 is returned, The App Service is closed successfully |
 
 **Option**
 

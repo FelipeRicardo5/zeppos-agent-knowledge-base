@@ -29,6 +29,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "AESData",
+          "type": "number[]&#124;ArrayBuffer&#124;Uint8Array",
+          "description": "Data to process"
+        }
+      ],
       "members": [
         {
           "name": "createChiper",
@@ -116,8 +123,62 @@
           "qualified": true,
           "members": [
             {
+              "value": "AES_CBC",
+              "description": "AES-CBC symmetric encryption",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "CRC16",
+              "description": "CRC16 checksum",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "CRC32",
+              "description": "CRC32 checksum",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
               "value": "ECDSA",
               "description": "ECDSA digital signature",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "HMAC_SHA_1",
+              "description": "HMAC-SHA-1 digest",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "HMAC_SHA_256",
+              "description": "HMAC-SHA-256 digest",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "HMACMD5",
+              "description": "HMAC-MD5 digest",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "MD5",
+              "description": "MD5 digest",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SHA_1",
+              "description": "SHA-1 digest",
+              "apiLevel": 3,
+              "confidence": "OFFICIAL"
+            },
+            {
+              "value": "SHA_256",
+              "description": "SHA-256 digest",
               "apiLevel": 3,
               "confidence": "OFFICIAL"
             }
@@ -129,7 +190,7 @@
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
-      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/ECDSACrypto.mdx",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/AESCrypto.mdx",
       "extractedAt": "2026-09-22"
     },
     {
@@ -138,6 +199,13 @@
       "symbol": "CRCCrypto",
       "type": "value",
       "signature": "function createCrypto(algorithmId: typeof alg.CRC16 | typeof alg.CRC32): CRCCrypto | undefined",
+      "declares": [
+        {
+          "name": "CRCData",
+          "type": "number[]&#124;ArrayBuffer&#124;Uint8Array",
+          "description": "Data to checksum"
+        }
+      ],
       "members": [
         {
           "name": "encrypt",
@@ -201,6 +269,13 @@
               "description": "Whether the key is encrypted again by the hardware key"
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "DigestData",
+          "type": "number[]&#124;ArrayBuffer&#124;Uint8Array",
+          "description": "Data to digest"
         }
       ],
       "members": [
@@ -298,6 +373,13 @@
               "description": "Existing public key"
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "ECDSAData",
+          "type": "number[]&#124;ArrayBuffer&#124;Uint8Array",
+          "description": "Data to process"
         }
       ],
       "members": [
@@ -453,6 +535,13 @@
       "description": "Encrypt data with the firmware PUF hardware module using AES. Input length must be a multiple of 16 bytes; returns `undefined` on failure.",
       "minApiLevel": 3,
       "signature": "function encryptKey(data: CryptoData): ArrayBuffer | undefined",
+      "declares": [
+        {
+          "name": "CryptoData",
+          "type": "number[]&#124;ArrayBuffer&#124;Uint8Array",
+          "description": "Data to encrypt"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

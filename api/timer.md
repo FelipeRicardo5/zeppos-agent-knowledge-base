@@ -19,6 +19,12 @@ Create Timer
 (delay: number, repeat: number, callback: (option: any) => void, option: any) => timerId
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `timerId` | `number` | **returned** — timer handle |
+
 **Parameters**
 
 | Property | Type | Required | Default | Description |
@@ -35,3 +41,9 @@ Delete Timer
 ```ts
 (timerId: number) => void
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `timerId` | `number` | timer handle, returned when the timer object is created |

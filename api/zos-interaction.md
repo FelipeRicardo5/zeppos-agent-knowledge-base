@@ -181,6 +181,13 @@ Listen to the digital crown rotation event, only one event is allowed to be regi
 function onDigitalCrown(option: Option): void
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Key` | `number` | Key name, value reference key name constants, currently only KEY_HOME is supported |
+| `Degree` | `number` | The rotation angle, positive number is counterclockwise rotation, negative number is clockwise rotation. The value is the angle of rotation, the faster the rotation speed, the larger the absolute value |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -206,6 +213,13 @@ Listen to user gesture events, only one event is allowed to be registered, if mu
 function onGesture(option: Option): void
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `GestureEvent` | `number` | Gesture event name, value reference gesture event constants |
+| `PreventDefault` | `boolean` | Whether to skip the default gesture behavior, true - skip, false - don't skip |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -228,6 +242,14 @@ Listen to key events, only one event is allowed to be registered, if multiple re
 ```ts
 function onKey(option: Option): void
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Key` | `number` | Key name, value reference key name constants |
+| `KeyEvent` | `number` | Key event name, value reference key event constants |
+| `PreventDefault` | `boolean` | Whether to skip the default key behavior, true - skip, false - don't skip |
 
 **Option**
 

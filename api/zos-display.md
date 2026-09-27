@@ -28,6 +28,12 @@ Get whether to turn on the screen auto brightness setting.
 function getAutoBrightness(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `boolean` | **returned** — true - auto-brightness is set to on, false - auto-brightness is set to off |
+
 ### `@zos/display.getBrightness`
 
 Get the screen brightness of the current device.
@@ -35,6 +41,12 @@ Get the screen brightness of the current device.
 ```ts
 function getBrightness(): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — Screen brightness value, range 0 - 100 |
 
 ### `@zos/display.getSettings`
 
@@ -94,6 +106,12 @@ Suspension of wrist resting behavior.
 function pauseDropWristScreenOff(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -107,6 +125,12 @@ Suspension of overlapping palm resting screen behavior.
 ```ts
 function pausePalmScreenOff(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
 
 **Option**
 
@@ -122,6 +146,12 @@ Resume wrist drop resting behavior.
 function resetDropWristScreenOff(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 ### `@zos/display.resetPageBrightTime`
 
 Cancel the bright time set by `setPageBrightTime`.
@@ -130,6 +160,12 @@ Cancel the bright time set by `setPageBrightTime`.
 function resetPageBrightTime(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 ### `@zos/display.resetPalmScreenOff`
 
 Recovery of overlapping palm resting screen behavior.
@@ -137,6 +173,12 @@ Recovery of overlapping palm resting screen behavior.
 ```ts
 function resetPalmScreenOff(): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
 
 ### `@zos/display.setAutoBrightness`
 
@@ -160,6 +202,12 @@ Set the screen brightness of the current device. If the auto brightness setting 
 function setBrightness(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |
@@ -173,6 +221,12 @@ Set the current page screen lighting time, this setting will follow the page des
 ```ts
 function setPageBrightTime(option: Option): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
 
 **Option**
 
@@ -188,6 +242,12 @@ Set the screen to rest.
 function setScreenOff(): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `number` | **returned** — If 0 is returned, success is indicated |
+
 ### `@zos/display.setWakeUpRelaunch`
 
 By default, the system will off the screen in one page of the Mini Program, and the system will exit the Mini Program after 10s, and enter the dial page when the watch is woken up again. If `relaunch` is set to `true`, the Mini Program will reopen and enter the corresponding page when the watch is woken up again.
@@ -195,6 +255,12 @@ By default, the system will off the screen in one page of the Mini Program, and 
 ```ts
 function setWakeUpRelaunch(option: Option): void
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Option` | `Options&#124;boolean` | true - auto-brightness is set to on, false - auto-brightness is set to off |
 
 **Options**
 

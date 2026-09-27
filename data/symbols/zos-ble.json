@@ -9,6 +9,13 @@
       "description": "Registering connection status listening callback function.",
       "minApiLevel": 2,
       "signature": "function addListener(callback: Callback): void",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(status?: boolean) =&#62; void",
+          "description": "Connection callback function, status Connection status"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -41,6 +48,13 @@
       "description": "Create connection.",
       "minApiLevel": 2,
       "signature": "function createConnect(callback: Callback): void",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(index?: number, data?: object, size?: number) =&#62; void",
+          "description": "Connection callback function, index packet number, data data, size data length"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -211,6 +225,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -252,6 +273,23 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "DeviceAddress",
+          "type": "ArrayBuffer",
+          "description": "Device MAC address, 6 bytes long, Uint8Array view recommended"
+        },
+        {
+          "name": "Callback",
+          "type": "(result: ConnectResult) =&#62; void",
+          "description": "Connection result callback function"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -268,6 +306,13 @@
       "description": "Destroy Profile.",
       "minApiLevel": 3,
       "signature": "function mstDestroyProfileInstance(profile: Profile): void",
+      "declares": [
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -284,6 +329,18 @@
       "description": "Disconnecting devices.",
       "minApiLevel": 3,
       "signature": "function mstDisconnect(connectId: ConnectId): Result",
+      "declares": [
+        {
+          "name": "ConnectId",
+          "type": "number",
+          "description": "The connection ID returned when the connection is successful using the mstConnect API"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -300,6 +357,18 @@
       "description": "Look up the connection Id based on the Peripheral MAC address.",
       "minApiLevel": 3,
       "signature": "function mstGetConnIdByRemoteAddr(deviceAddress: DeviceAddress): Result",
+      "declares": [
+        {
+          "name": "DeviceAddress",
+          "type": "ArrayBuffer",
+          "description": "Device MAC address, 6 bytes long, Uint8Array view recommended"
+        },
+        {
+          "name": "Result",
+          "type": "number&#124;undefined",
+          "description": "The result of the function call returns connectId for a successful query and undefined for a failed query."
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -316,6 +385,23 @@
       "description": "Query Profile pointer based on Profile name and connection ID.",
       "minApiLevel": 3,
       "signature": "function mstGetProfileInstance(profileName: ProfileName, connectId: ConnectId): Result",
+      "declares": [
+        {
+          "name": "ProfileName",
+          "type": "string",
+          "description": "Profile name"
+        },
+        {
+          "name": "ConnectId",
+          "type": "number",
+          "description": "The ID returned on a successful connection"
+        },
+        {
+          "name": "Result",
+          "type": "number&#124;undefined",
+          "description": "A successful search returns the Profile pointer, a failed search returns undefined"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -348,6 +434,38 @@
       "description": "Register Characteristic Notification to reach the callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnCharaNotification(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(profile: Profile, uuid: UUID, data: Data, length: Length) =&#62; void",
+          "description": "Characteristic Notification arrives at the callback function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "Data",
+          "type": "ArrayBuffer",
+          "description": "It is recommended to use the Uint8Array view to read the data"
+        },
+        {
+          "name": "Length",
+          "type": "number",
+          "description": "Data length"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -364,6 +482,33 @@
       "description": "Register the read Characteristic completion callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnCharaReadComplete(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(profile: Profile, uuid: UUID, status: Status) =&#62; void",
+          "description": "Read Characteristic Completion Callback Function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "Status",
+          "type": "number",
+          "description": "Status, 0 indicates success"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -380,6 +525,38 @@
       "description": "Register to read Characteristic data to the callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnCharaValueArrived(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(profile: Profile, uuid: UUID, data: Data, status: Status) =&#62; void",
+          "description": "Read Characteristic data to the callback function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "Data",
+          "type": "ArrayBuffer",
+          "description": "Reads the data using the Uint8Array view"
+        },
+        {
+          "name": "Status",
+          "type": "number",
+          "description": "Status, 0 indicates success"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -396,6 +573,33 @@
       "description": "Register the Write Characteristic data completion callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnCharaWriteComplete(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(profile: Profile, uuid: UUID, status: Status) =&#62; void",
+          "description": "Write Characteristic Data Completion Callback Function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "Status",
+          "type": "number",
+          "description": "Status, 0 indicates success"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -412,6 +616,43 @@
       "description": "Register the Read Descriptor data arrival callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnDescValueArrived(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "( profile: Profile, uuid: UUID, descUUID: DescUUID, data: Data, status: Status, ) =&#62; void",
+          "description": "Read Descriptor data to the callback function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "DescUUID",
+          "type": "string",
+          "description": "Descriptor UUID string"
+        },
+        {
+          "name": "Data",
+          "type": "ArrayBuffer",
+          "description": "Reads the data using the Uint8Array view"
+        },
+        {
+          "name": "Status",
+          "type": "number",
+          "description": "Status, 0 indicates success"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -428,6 +669,38 @@
       "description": "Register Descriptor data write completion callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnDescWriteComplete(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(profile: Profile, uuid: UUID, descUUID: DescUUID, status: Status) =&#62; void",
+          "description": "Descriptor Data write completion callback function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "DescUUID",
+          "type": "string",
+          "description": "Descriptor UUID string"
+        },
+        {
+          "name": "Status",
+          "type": "number",
+          "description": "Status, 0 indicates success"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -444,6 +717,28 @@
       "description": "Register the prepare operation callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnPrepare(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(profile: Profile, status: Status) =&#62; void",
+          "description": "Listening to the prepare event callback function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "Status",
+          "type": "number",
+          "description": "Status, 0 indicates success"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -460,6 +755,23 @@
       "description": "Register the Service start change callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnServiceChangeBegin(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(profile: Profile) =&#62; void",
+          "description": "Service start change callback function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -476,6 +788,23 @@
       "description": "Register the Service change end callback function.",
       "minApiLevel": 3,
       "signature": "function mstOnServiceChangeEnd(callback: Callback): Result",
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(profile: Profile) =&#62; void",
+          "description": "Service change end callback function"
+        },
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -492,6 +821,18 @@
       "description": "Pairing with devices via `connectId`.",
       "minApiLevel": 3,
       "signature": "function mstPair(connectId: ConnectId): Result",
+      "declares": [
+        {
+          "name": "ConnectId",
+          "type": "number",
+          "description": "The connection ID returned when the connection is successful using the mstConnect API"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -508,6 +849,13 @@
       "description": "prepare interface.",
       "minApiLevel": 3,
       "signature": "function mstPrepare(profile: Profile): void",
+      "declares": [
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "The profile pointer returned by mstBuildProfile"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -524,6 +872,18 @@
       "description": "Read Characteristic information.",
       "minApiLevel": 3,
       "signature": "function mstReadCharacteristic(profile: Profile, uuid: UUID): void",
+      "declares": [
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -540,6 +900,23 @@
       "description": "Write characteristic information.",
       "minApiLevel": 3,
       "signature": "function mstReadDescriptor(profile: Profile, uuid: UUID, descUUID: DescUUID): void",
+      "declares": [
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "DescUUID",
+          "type": "string",
+          "description": "Descriptor UUID string"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -662,6 +1039,18 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(result: ScanResult, filter?: Filter, timeout?: Timeout) =&#62; void",
+          "description": "Callback function for receiving scan results"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -678,6 +1067,13 @@
       "description": "Stop device scanning, used in conjunction with `mstStartScan`.",
       "minApiLevel": 3,
       "signature": "function mstStopScan(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -694,6 +1090,28 @@
       "description": "Write Characteristic information.",
       "minApiLevel": 3,
       "signature": "function mstWriteCharacteristic(profile: Profile, uuid: UUID, data: Data, length: Length): void",
+      "declares": [
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "Data",
+          "type": "ArrayBuffer",
+          "description": "Reads the data using the Uint8Array view"
+        },
+        {
+          "name": "Length",
+          "type": "number",
+          "description": "Data length"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -710,6 +1128,38 @@
       "description": "Register the Characteristic notification arrival callback function.",
       "minApiLevel": 3,
       "signature": "function mstWriteDescriptor(\n  profile: Profile,\n  uuid: UUID,\n  descUUID: DescUUID,\n  data: Data,\n  length: Length,\n): Result",
+      "declares": [
+        {
+          "name": "Profile",
+          "type": "number",
+          "description": "Profile pointer"
+        },
+        {
+          "name": "UUID",
+          "type": "string",
+          "description": "Characteristic UUID string"
+        },
+        {
+          "name": "DescUUID",
+          "type": "string",
+          "description": "Descriptor UUID string"
+        },
+        {
+          "name": "Data",
+          "type": "ArrayBuffer",
+          "description": "Reads the data using the Uint8Array view"
+        },
+        {
+          "name": "Length",
+          "type": "number",
+          "description": "Data length"
+        },
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "The result of the function call, true means success, false means failure"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],

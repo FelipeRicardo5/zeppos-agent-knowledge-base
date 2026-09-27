@@ -22,6 +22,12 @@ Set user health data information.
 function addHealthData(option: Option): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `Result` | `boolean` | **returned** — undefined |
+
 **Option**
 
 | Property | Type | Required | Default | Min API_LEVEL | Description |

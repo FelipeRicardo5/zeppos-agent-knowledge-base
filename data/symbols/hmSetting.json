@@ -8,6 +8,13 @@
       "type": "function",
       "description": "Returns the screen brightness of the current device.",
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "The screen brightness of the current device, in the range [0, 100]",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -162,6 +169,13 @@
       "type": "function",
       "description": "Returns the current language serial number.",
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "Language serial number, corresponding to country, reference [Multilingual Mapping](../../../reference/related-resources/language-list.mdx)",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -177,6 +191,13 @@
       "type": "function",
       "description": "Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user and does not represent the units of the data. The units of the data refer to the interface description of the corresponding data.",
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "The current distance unit, 0:metric, 1:imperial, others are invalid",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -192,6 +213,13 @@
       "type": "function",
       "description": "Returns whether the current device has auto-brightness enabled. If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect.",
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "Returns whether auto-brightness is enabled for the current device, true is enabled",
+          "type": "boolean"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -222,6 +250,13 @@
       "type": "function",
       "description": "Get the user sleep target.",
       "signature": "() => sleepTarget",
+      "declares": [
+        {
+          "name": "sleepTarget",
+          "description": "The user-set sleep target, default is 0, in minutes",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -320,6 +355,13 @@
       "type": "function",
       "description": "Get the user's weight target.",
       "signature": "() => weightTarget",
+      "declares": [
+        {
+          "name": "weightTarget",
+          "description": "user-set weight target, default is 0, in kilogram",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -419,6 +461,19 @@
       "type": "function",
       "description": "Sets the screen brightness of the current device, in the range [0, 100]. If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect. You need to turn off auto-brightness first and then set the screen brightness. If you exit the page, you need to consider whether you need to set the brightness back to the original one.",
       "signature": "(brightness: number) => result",
+      "declares": [
+        {
+          "name": "brightness",
+          "description": "Set the brightness of the current device, range [0, 100]",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "result",
+          "description": "result, 0 means the setting is successful",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -434,6 +489,19 @@
       "type": "function",
       "description": "Set the bright screen time. When you need the screen to be always on, you can set a larger bright screen time.",
       "signature": "(brightTime: number) => result",
+      "declares": [
+        {
+          "name": "brightTime",
+          "description": "The bright time of the current device, in seconds, in the range [1, 2147483]",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "result",
+          "description": "result, 0 means the setting is successful",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -449,6 +517,13 @@
       "type": "function",
       "description": "Cancel the bright screen time. You need to call `setBrightScreenCancel` method in the app destroy function after you have called `setBrightScreen` method to set the bright screen time.",
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "The result of the operation, 0 means the setting was successful",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -464,6 +539,19 @@
       "type": "function",
       "description": "Set whether auto-brightness is enabled or not. If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect.",
       "signature": "(isAutoBright: boolean) => result",
+      "declares": [
+        {
+          "name": "isAutoBright",
+          "description": "Whether to open the automatic brightness",
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "name": "result",
+          "description": "result, 0 means the setting is successful",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],
@@ -479,6 +567,13 @@
       "type": "function",
       "description": "Call `setScreenOff` to rest the screen.",
       "signature": "() => result",
+      "declares": [
+        {
+          "name": "result",
+          "description": "The result of the operation, 0 means the setting was successful",
+          "type": "number"
+        }
+      ],
       "runtimes": [
         "watchface"
       ],

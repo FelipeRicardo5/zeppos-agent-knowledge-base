@@ -9,6 +9,13 @@
       "description": "Get whether to turn on the screen auto brightness setting.",
       "minApiLevel": 2,
       "signature": "function getAutoBrightness(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "boolean",
+          "description": "true - auto-brightness is set to on, false - auto-brightness is set to off"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -25,6 +32,13 @@
       "description": "Get the screen brightness of the current device.",
       "minApiLevel": 2,
       "signature": "function getBrightness(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "Screen brightness value, range 0 - 100"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -207,6 +221,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -237,6 +258,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -253,6 +281,13 @@
       "description": "Resume wrist drop resting behavior.",
       "minApiLevel": 2.1,
       "signature": "function resetDropWristScreenOff(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -269,6 +304,13 @@
       "description": "Cancel the bright time set by `setPageBrightTime`.",
       "minApiLevel": 2,
       "signature": "function resetPageBrightTime(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -285,6 +327,13 @@
       "description": "Recovery of overlapping palm resting screen behavior.",
       "minApiLevel": 2.1,
       "signature": "function resetPalmScreenOff(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -343,6 +392,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -373,6 +429,13 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -389,6 +452,13 @@
       "description": "Set the screen to rest.",
       "minApiLevel": 2,
       "signature": "function setScreenOff(): Result",
+      "declares": [
+        {
+          "name": "Result",
+          "type": "number",
+          "description": "If 0 is returned, success is indicated"
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
@@ -416,6 +486,13 @@
               "apiLevel": 2
             }
           ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Option",
+          "type": "Options&#124;boolean",
+          "description": "true - auto-brightness is set to on, false - auto-brightness is set to off"
         }
       ],
       "runtimes": [

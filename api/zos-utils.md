@@ -21,6 +21,16 @@ Used to handle resource file paths, splice `basePath`. and can pass in parameter
 function assets(basePath: BasePath): AssetsPathFunc
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `BasePath` | `string` | The base path, which will be spliced before the resource file path |
+| `AssetsPathFunc` | `(path: Path, isRtl?: IsRtl) =&#62; ResultPath` | **returned** — Resource file path constructor |
+| `Path` | `string` | Resource file path |
+| `IsRtl` | `boolean` | Whether to splice the rtl path |
+| `ResultPath` | `string` | Final file path |
+
 ### `@zos/utils.bufferToString`
 
 Convert `ArrayBuffer` type to string type.
@@ -28,6 +38,13 @@ Convert `ArrayBuffer` type to string type.
 ```ts
 function bufferToString(buffer: InputBuffer): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `InputBuffer` | `ArrayBuffer` | The ArrayBuffer to be converted |
+| `Result` | `string` | **returned** — The converted string |
 
 ### `@zos/utils.EventBus`
 
@@ -163,6 +180,13 @@ Pixel scaling calculation. The `designWidth` of each model in the `targets` obje
 function px(value: PxValue): Result
 ```
 
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `PxValue` | `number` | Pixel values based on designWidth |
+| `Result` | `number` | **returned** — Pixel values after scaling calculation |
+
 ### `@zos/utils.stringToBuffer`
 
 Convert string type to `ArrayBuffer` type.
@@ -170,3 +194,10 @@ Convert string type to `ArrayBuffer` type.
 ```ts
 function stringToBuffer(str: InputString): Result
 ```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `InputString` | `string` | The string to be converted |
+| `Result` | `ArrayBuffer` | **returned** — The converted ArrayBuffer |

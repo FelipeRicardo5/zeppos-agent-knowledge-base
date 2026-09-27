@@ -220,6 +220,7 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
     const withDescription = ranked.find((u) => u.description !== undefined);
     const withSignature = ranked.find((u) => u.signature !== undefined);
     const withShapes = ranked.find((u) => u.shapes !== undefined);
+    const withDeclarations = ranked.find((u) => u.declares !== undefined);
     // Priority, not union: unlike an enum, two sources listing methods are two
     // claims about one interface rather than two partial views of a set. Only
     // the reference front produces these today, so there is nothing to
@@ -240,6 +241,7 @@ export function enrich(rawUnits: RawUnit[]): SymbolRecord[] {
       minApiLevel: withApiLevel?.apiLevel,
       signature: withSignature?.signature,
       shapes: withShapes?.shapes,
+      declares: withDeclarations?.declares,
       enums: mergeEnums(ranked),
       members: withMembers?.members,
       permissions: withPermissions?.permissions,

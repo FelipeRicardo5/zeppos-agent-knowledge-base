@@ -165,6 +165,14 @@ export interface SymbolRecord {
    * never how to call it.
    */
   signature?: string;
+  /**
+   * Types the page declares under a heading, with no name column: `Result`,
+   * `fileId`, `path`. The signature is what says whether one is a return or a
+   * parameter — `function open(path, flag): fileId` reads unambiguously beside
+   * them — so the role is left to the reader rather than guessed from the
+   * heading.
+   */
+  declares?: PropSpec[];
   /** The object shapes the signature refers to, `Props` first where present. */
   shapes?: ShapeSpec[];
   /**
@@ -212,6 +220,14 @@ export interface RawUnit {
   description?: string;
   apiLevel?: number;
   signature?: string;
+  /**
+   * Types the page declares under a heading, with no name column: `Result`,
+   * `fileId`, `path`. The signature is what says whether one is a return or a
+   * parameter — `function open(path, flag): fileId` reads unambiguously beside
+   * them — so the role is left to the reader rather than guessed from the
+   * heading.
+   */
+  declares?: PropSpec[];
   shapes?: ShapeSpec[];
   enums?: EnumSpec[];
   members?: MemberSpec[];

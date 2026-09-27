@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
+  extractDeclarations,
   extractEnums,
   extractMembers,
   extractShapes,
@@ -77,6 +78,99 @@ describe("extractSignature", () => {
     const page = "# x\n\n## Example\n\n```ts\nconst a = 1\n```\n";
 
     assert.equal(extractSignature(page), undefined);
+  });
+});
+
+// The last structural table form nothing read: no column names the thing, the
+// heading does. Taken from `hmFS/open.mdx`, which documents its parameter and
+// its return this way and had neither recorded.
+const HEADLESS_PAGE = `# open
+
+## Type
+
+\`\`\`ts
+(path: string, flag: FLAG) => fileId
+\`\`\`
+
+## Parameters
+
+### path
+
+|  Description | Required |   Type   | Default |
+| ------------ | -------- | -------- | ------- |
+|  file path   |    yes   | \`string\` |    -    |
+
+### FLAG
+
+| Optional Properties | Description |
+| ------------------- | ----------- |
+|       O_RDONLY      | read-only   |
+|       O_WRONLY      | write-only  |
+
+### fileId
+
+| Description |   Type   |
+| ----------- | -------- |
+| file handle | \`number\` |
+`;
+
+describe("extractDeclarations", () => {
+  it("names a headless table by the heading above it", () => {
+    // `(path: string, flag: FLAG) => fileId` is unusable while `fileId` is a
+    // word in a signature and nothing else. 88 pages write `### Result` over a
+    // table with no name column, and every row was dropped without an error.
+    const declared = extractDeclarations(HEADLESS_PAGE);
+
+    assert.deepEqual(
+      declared.map((d) => d.name),
+      ["path", "fileId"],
+    );
+    assert.deepEqual(declared[1], { name: "fileId", description: "file handle", type: "number" });
+  });
+
+  it("reads the column order the page happens to use", () => {
+    // `| Description | Type |` and `| Type | Description |` are both common and
+    // a positional read would file one as the other.
+    const [declared] = extractDeclarations("## x\n\n### Result\n\n| Type | Description |\n| --- | --- |\n| `number` | the id |\n");
+
+    assert.deepEqual(declared, { name: "Result", type: "number", description: "the id" });
+  });
+
+  it("keeps what the row states beyond the type", () => {
+    const [path] = extractDeclarations(HEADLESS_PAGE);
+
+    assert.equal(path.required, true);
+    assert.equal(path.description, "file path");
+  });
+
+  it("leaves a table alone when a column does name its rows", () => {
+    // `FLAG` has an `Optional Properties` column, so its rows are values with
+    // names of their own and belong to the enum path. Taking it here would file
+    // seven constants as one declaration named FLAG.
+    const names = extractDeclarations(HEADLESS_PAGE).map((d) => d.name);
+
+    assert.ok(!names.includes("FLAG"));
+    assert.deepEqual(
+      extractEnums(HEADLESS_PAGE).map((spec) => spec.name),
+      ["FLAG"],
+    );
+  });
+
+  it("refuses a headless table with more than one row", () => {
+    // A heading names one thing. Two rows under it means a column that names
+    // them exists and nothing reads it — which is a finding for the diagnostic,
+    // not a declaration to invent. Both real instances were the `alg.*` sets.
+    const page = "## x\n\n### Result\n\n| Type | Description |\n| --- | --- |\n| `number` | ok |\n| `string` | also |\n";
+
+    assert.deepEqual(extractDeclarations(page), []);
+  });
+
+  it("does not mistake a data row for a header", () => {
+    // `sensor/BloodOxygen.mdx` has a data row reading `| value | number | ... |`.
+    // A header is the row a separator follows, and nothing else.
+    const page = "## x\n\n### Result\n\n| Name | Type |\n| --- | --- |\n| value | number |\n";
+
+    assert.deepEqual(extractDeclarations(page), []);
   });
 });
 

@@ -1,7 +1,13 @@
 import path from "node:path";
 import type { RawUnit } from "../types.js";
 import { runtimeForPath } from "./runtime.js";
-import { extractEnums, extractMembers, extractShapes, extractSignature } from "./spec.js";
+import {
+  extractDeclarations,
+  extractEnums,
+  extractMembers,
+  extractShapes,
+  extractSignature,
+} from "./spec.js";
 import { readSource, walkFiles } from "./util.js";
 
 // Front 9: docs/watchface/api/** — the `hm*` API.
@@ -149,6 +155,7 @@ export async function parseWatchface(cacheDir: string): Promise<RawUnit[]> {
       const module = moduleFromCode(content, symbol) ?? parent;
       if (module) {
         const shapes = extractShapes(content);
+        const declares = extractDeclarations(content);
         const own = enums.filter((spec) => !spec.qualified);
 
         units.push({
@@ -160,6 +167,7 @@ export async function parseWatchface(cacheDir: string): Promise<RawUnit[]> {
           // an absent level is absent evidence, never a claim of availability.
           signature: extractSignature(content),
           shapes: shapes.length > 0 ? shapes : undefined,
+          declares: declares.length > 0 ? declares : undefined,
           enums: own.length > 0 ? own : undefined,
           runtimeHint,
           sourceFile,

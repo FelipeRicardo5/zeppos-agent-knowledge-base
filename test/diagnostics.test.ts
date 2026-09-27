@@ -12,7 +12,7 @@ const CACHE = path.join(import.meta.dirname, "fixtures", "cache");
 
 describe("unreadHeaders", () => {
   it("reports a table heading no column map reads", async () => {
-    const rows = await unreadHeaders(CACHE);
+    const { headers: rows } = await unreadHeaders(CACHE);
 
     assert.ok(rows.length > 0, "the fixtures contain headings nothing reads");
     for (const row of rows) {
@@ -23,7 +23,7 @@ describe("unreadHeaders", () => {
   });
 
   it("says nothing about a heading the maps do read", async () => {
-    const rows = await unreadHeaders(CACHE);
+    const { headers: rows } = await unreadHeaders(CACHE);
     const reported = new Set(rows.map((r) => r.header));
 
     for (const known of ["property", "properties", "value", "parameter", "callback name"]) {
@@ -34,11 +34,28 @@ describe("unreadHeaders", () => {
   it("counts a table once, not once per row", async () => {
     // The cost of missing a table is the table. A 39-row one is not 39
     // findings, and ranking by rows would bury a small table that matters.
-    const rows = await unreadHeaders(CACHE);
+    const { headers: rows } = await unreadHeaders(CACHE);
 
     for (const row of rows) {
       assert.ok(row.tables <= 20, `${row.header} reports ${row.tables} — counting rows, not tables`);
     }
+  });
+
+  it("reports an allowlist entry that silenced nothing", async () => {
+    // An entry silences a heading for good, so a wrong one fails by staying
+    // quiet. Two of the entries shipped with that file were false: one claimed
+    // the `alg.*` ids were reached as enum values when `alg` carried one of
+    // ten, the other silenced the picker callback's `event_type` domain.
+    const { unusedAllowlist } = await unreadHeaders(CACHE);
+
+    for (const entry of unusedAllowlist) {
+      assert.ok(entry.header.length > 0);
+      assert.ok(entry.reason.length > 0, "an entry without a reason cannot be judged");
+    }
+    // The fixtures are a handful of pages, so most entries silence nothing here.
+    // What matters is that the list is produced at all, and that a reported
+    // entry is one the corpus never hit.
+    assert.ok(unusedAllowlist.length > 0, "the fixture corpus does not hit every entry");
   });
 
   it("asks the column maps rather than keeping a copy of them", () => {

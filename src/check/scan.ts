@@ -33,6 +33,12 @@ export interface ScannedFile {
 
 export interface ScannedManifest {
   permissions: string[];
+  /**
+   * `app.extType`. The one field that says an app is a workout extension rather
+   * than a Mini Program, which is what tells a `data-widget/` file apart from a
+   * keyboard's widget of the same name — see `runtimeForAppFile`.
+   */
+  extType?: string;
   /** `platforms[].deviceSource` ids — the only key that joins to the device list. */
   deviceSources: string[];
   /** Target keys. Recorded, but they join to no device; see `rules.ts`. */
@@ -70,7 +76,10 @@ function readManifest(parsed: unknown): ScannedManifest | undefined {
   const api = (runtime.apiVersion ?? {}) as Record<string, unknown>;
   const text = (value: unknown) => (typeof value === "string" ? value : undefined);
 
+  const app = (manifest.app ?? {}) as Record<string, unknown>;
+
   return {
+    extType: text(app.extType),
     permissions: Array.isArray(manifest.permissions)
       ? manifest.permissions.filter((p): p is string => typeof p === "string")
       : [],
@@ -116,7 +125,12 @@ export async function scanApp(root: string): Promise<ScannedApp> {
       }
     }
 
-    files.push({ path: relative, runtime: runtimeForAppFile(relative), imports, calls });
+    files.push({
+      path: relative,
+      runtime: runtimeForAppFile(relative, manifest?.extType),
+      imports,
+      calls,
+    });
   }
 
   return { root, manifest, files: files.sort((a, b) => a.path.localeCompare(b.path)) };

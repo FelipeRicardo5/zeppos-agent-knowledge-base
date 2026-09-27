@@ -151,14 +151,58 @@ describe("check", () => {
     assert.ok(levelled.every((f) => f.detail.includes(device.name) || f.status === "UNVERIFIABLE"));
   });
 
-  it("reports the official samples with no violation and something unverifiable", async () => {
-    // The measurement the three-way verdict exists for: these apps ship and
-    // work, and this base still cannot vouch for all of them.
-    const report = await check(".cache/zeppos-samples/application/2.0/calories", base);
+  it("returns all three verdicts for one app, in one report", async () => {
+    // The shape of the answer is the answer: an app can be backed in part,
+    // uncovered in part and contradicted in part at the same time, and a
+    // report carrying only its worst finding would be read as a grade.
+    //
+    // The same claim against the *real* samples — every official app, zero
+    // violations, and symbols in them this base cannot speak to — is in
+    // `test/live/samples.ts`, which needs `.cache/` and so cannot run here.
+    const root = await app({
+      "app.json": MANIFEST(),
+      "page/index.js":
+        `import { createWidget } from '@zos/ui'\n` +
+        `import { somethingNobodyDocumented } from '@zos/ui'\n`,
+      "setting/index.js": `import { HeartRate } from '@zos/sensor'\n`,
+    });
 
-    assert.equal(report.counts.VIOLATION, 0);
-    assert.ok(report.counts.VOUCHED > 0);
-    assert.ok(report.counts.UNVERIFIABLE > 0, "no violation is not approval");
+    const report = await check(root, base);
+
+    for (const status of ["VOUCHED", "UNVERIFIABLE", "VIOLATION"] as const) {
+      assert.ok(report.counts[status] > 0, `nothing came back ${status}`);
+    }
+  });
+
+  it("does not contradict a workout extension for using workout-extension symbols", async () => {
+    // The manifest is what makes a `data-widget/` file the extension's rather
+    // than a keyboard's, so the checker reads `app.extType` before it reads the
+    // directory. Without this the base contradicted three official samples it
+    // had extracted those very symbols from.
+    const workout = [...base.symbols.values()].find(
+      (s) => s.runtimes.length === 1 && s.runtimes[0] === "workout-extension",
+    );
+    assert.ok(workout, "the base records no workout-extension-only symbol");
+
+    const files = (extra: Record<string, unknown>) => ({
+      "app.json": MANIFEST({ app: { appType: "app", ...extra } }),
+      "data-widget/common/index.js": `import { ${workout.symbol} } from '${workout.module}'\n`,
+    });
+
+    const extension = await check(await app(files({ extType: "workout" })), base);
+    assert.equal(
+      extension.findings.filter((f) => f.status === "VIOLATION" && f.rule === "runtime").length,
+      0,
+      `${workout.id} is valid in the runtime the manifest declares`,
+    );
+
+    // And the other direction still holds: the same file in a Mini Program is a
+    // Device App file, so the same import is a contradiction there.
+    const miniProgram = await check(await app(files({})), base);
+    assert.ok(
+      miniProgram.findings.some((f) => f.status === "VIOLATION" && f.rule === "runtime"),
+      "a data-widget without extType is still the watch",
+    );
   });
 
   it("states what it did not look at, in every report", async () => {

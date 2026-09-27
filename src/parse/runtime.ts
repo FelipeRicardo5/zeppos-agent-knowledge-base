@@ -43,6 +43,23 @@ const SAMPLE_TREES: Record<string, Runtime> = {
   "workout-extensions": "workout-extension",
 };
 
+/**
+ * The directory a workout extension's data widget lives in, which is the
+ * `data-widget` module key its manifest declares.
+ *
+ * Gated on `app.extType`, never on the directory alone. Two Mini Programs in
+ * the samples — `application/4.2/simple-keyboard` and `t9-keyboard` — declare a
+ * `data-widget` module beside their `page` module and set no `extType`, so a
+ * rule reading the directory by itself would call a keyboard a workout
+ * extension. A workout extension is the app whose manifest says it is one.
+ *
+ * This only matters for paths relative to an app root. A cache-relative path
+ * carries the `workout-extensions/` tree above it and is already answered by
+ * SAMPLE_TREES.
+ */
+const WORKOUT_WIDGET_DIR = "data-widget";
+const WORKOUT_EXT_TYPE = "workout";
+
 /** Prefixes in `zeppos-docs`, each the API surface of exactly one runtime. */
 const DOCS_PREFIXES: [prefix: string, runtime: Runtime][] = [
   ["docs/reference/device-app-api/", "device-app"],
@@ -61,11 +78,26 @@ const DOCS_PREFIXES: [prefix: string, runtime: Runtime][] = [
  * or `app.js` is the Device App. Unlike `runtimeForPath` this always answers,
  * because the caller has already established that the path *is* an app file.
  */
-export function runtimeForAppFile(file: string): Runtime {
-  for (const segment of toPosixPath(file).split("/")) {
+export function runtimeForAppFile(file: string, extType?: string): Runtime {
+  const segments = toPosixPath(file).split("/");
+
+  // Still first. A workout extension may ship a Side Service of its own —
+  // `running-pace-master-with-side-service` does — and its `app-side/` files
+  // belong to that runtime, not to the extension.
+  for (const segment of segments) {
     const phoneRuntime = PHONE_DIRS[segment];
     if (phoneRuntime) return phoneRuntime;
   }
+
+  // `extType` is the manifest's `app.extType`, passed by a caller that has one.
+  // Without it a workout extension's `data-widget/` files read as Device App
+  // files, and every symbol attributed only to the Workout Extension runtime in
+  // them comes back a contradiction — which is what `check` reported against
+  // three official samples that ship and work.
+  if (extType === WORKOUT_EXT_TYPE && segments.includes(WORKOUT_WIDGET_DIR)) {
+    return "workout-extension";
+  }
+
   return "device-app";
 }
 

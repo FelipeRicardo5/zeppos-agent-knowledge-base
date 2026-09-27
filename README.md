@@ -19,11 +19,14 @@ Sources: [`zepp-health/zeppos-docs`](https://github.com/zepp-health/zeppos-docs)
 | `enrich` — merge the symbol fronts into one record per symbol | implemented |
 | `store` — write the JSON source of truth, one file per module | implemented |
 | `render` — generate the final Markdown knowledge base | implemented (api/ incl. `lookup.md`, compatibility/, runtimes/, patterns/, examples/, manifest/, conflicts/, tools/) |
-| `verify` — ask the rendered base 20 real questions and check the answers | implemented |
+| `verify` — ask the rendered base real questions and check the answers | implemented (`npm run verify` prints how many) |
+| `check` — score an app directory against the base, the way the eval scores it | implemented |
+| `mcp` — serve the base over MCP, so an agent queries it instead of reading it | implemented (16 tools, stdio) |
+| `site` — the landing page that explains the project, rendered from `data/` like every other view | implemented (`site/`, published by `pages.yml`) |
 | CI — typecheck, tests, render reproducibility, `verify`; plus a weekly sync that opens a PR | implemented |
 
 CI proves the whole chain from JSON to Markdown **without touching the
-network**, because `data/` and the 160 rendered pages are both committed: it
+network**, because `data/` and the rendered pages are both committed: it
 re-renders and fails if the result differs from what is in the tree, which is
 the "JSON is the source of truth" rule made enforceable. A separate weekly job
 does the part that needs the network — re-run `sync` against upstream and open a
@@ -32,35 +35,77 @@ count that went down is the thing to look at**: every parser bug here has been
 an upstream format change that made an extraction silently smaller, and a
 reviewable diff is the only form in which those have ever been caught.
 
-`npm run verify` asks the **rendered** base 20 questions a developer would
-actually ask — *where does `setInterval` live*, *what values may `align_h` take*,
+`npm run verify` asks the **rendered** base a fixed set of questions a developer
+would actually ask — *where does `setInterval` live*, *what values may `align_h` take*,
 *what must `app.json` declare for `@zos/alarm.set`* — and fails, naming the
 question, when one stops being answerable. It reads the Markdown rather than the
 JSON, because a fact that survives into `data/` and dies in the render is still
 a wrong answer. Every question carries the reason it is in the set, which is
 usually an eval finding or a bug that shipped.
 
-Fixture-based tests cover all ten parse fronts, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: `npm test` (262 passing, no `todo`). Those prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
+Fixture-based tests cover every parse front, runtime attribution, call-shape and value-set extraction, the enrich merge and every render view: run `npm test` for the count, which is deliberately not quoted here — a figure typed into prose is true once, and this sentence has carried a wrong one twice. Those tests prove the extractor does not regress; they do not prove the base *answers well*, which is what [`eval/`](eval/README.md) is for.
 
-Snapshot of the last sync (see [`data/manifest.json`](data/manifest.json) for live numbers):
+### What is in it
 
-- **513 symbols** across **50 modules**, from all 241 reference pages + 36 phone-runtime entries + **89 watchface `hm*` pages** + 443 `static/llms` entries + 785 sample observations
-- 496 `OFFICIAL`, 17 `OBSERVED`
-- 353 symbols carry a minimum `API_LEVEL`; 367 carry a description; **178 carry a call signature and 147 carry property tables** — 1157 properties, 591 of them with their own minimum level
-- **73 value sets** — 492 members, each stating its own minimum level where the table gives one. Some come from a documented table, some from sample code, marked per member
-- **257 instance members** on 46 symbols — what you call on a value rather than import: `new HeartRate().getCurrent()`, `localStorage.getItem(...)`. Every one carries a signature and prose, 44 state their own minimum level, and 60 of the shapes and 10 of the value sets above belong to a member rather than to the symbol
-- **every runtime is covered**: 375 Device App, **105 Watchface**, 21 Settings App, 20 Side Service, 12 Workout Extension — 20 symbols valid in more than one
-- **11 patterns** from the best-practice guides, 32 approaches, using 17 distinct symbols — all 17 covered by the symbol records
-- **41 devices**: 29 running Zepp OS with a stated `API_LEVEL`, 5 on Zepp OS 1.0 with none, 7 that run no Mini Program at all
-- **how to target each of them**: the `st`/`sr` screen selectors a v3 manifest needs, derived from the device's own screen, beside the `deviceSource` numbers a v2 one needs — plus the reverse index, and a two-way diff against what the 33 samples actually build for
-- **33 sample apps** read as code, yielding 592 cited excerpts and the shape of 33 working `app.json` files
-- **15 conflicts** the sources do not know they have: a description two official pages state differently, a widget id written one way in code and documented another, and 13 method calls whose name resolves to more than one thing inside the sample's own runtime. `conflicts/index.md` cites both sides of each
-- **the Zeus CLI**: 8 commands, and the join the CLI page does not make — each file `zeus create` scaffolds, the runtime it belongs to (derived by the same rule every symbol is attributed by) and the `module` key that turns that runtime on. Plus 7 recommended packages, tiered `RECOMMENDED`/`COMMUNITY` from the headings they sit under
-- **the `app.json` schema**: 20 documented keys with their property tables, 3 keys the reference page names and never describes, and a two-way diff against the 33 working manifests — 48 key paths real apps use that the page never mentions, 12 documented keys no sample uses, and 38 permission strings joined to the symbols that state them
+The counts below are generated from `data/` on every render, because a figure
+typed into prose is true once. What each number *means* is the part worth
+reading, and it is here; how big it is today is in the table.
+
+<!-- coverage:start -->
+
+<!-- Generated by `npm run render` from `data/`. Do not edit by hand — CI re-renders and fails on a diff. -->
+
+| What | Count |
+| --- | --- |
+| Symbols | **513** |
+| Modules | 50 |
+| `OFFICIAL` / `OBSERVED` | 496 / 17 |
+| Symbols stating a minimum `API_LEVEL` | 353 |
+| Symbols with a description | 435 |
+| Symbols with a call signature | 234 |
+| Symbols with a property table, and properties in them | 184, 1300 |
+| Types declared under a heading with no name column | 142, 232 |
+| Value sets, and members in them | 55, 388 |
+| Instance members | 257 |
+| By runtime | device-app 375, watchface 105, settings 21, side-service 20, workout-extension 12 |
+| Devices, of which run Zepp OS with a stated level | 41, 29 |
+| Best-practice patterns | 11 |
+| Sample apps read as code | 33 |
+
+<!-- coverage:end -->
+
+- **Every runtime is covered, unevenly.** Device App dominates, and the Settings
+  App and the Side Service state no `API_LEVEL` at all — no page in either tree
+  does — so they answer "does this exist here" and never "since when". Per-axis
+  coverage is derived per runtime in [`runtimes/`](runtimes/).
+- **Values, not just names.** A value set says what `align_h` accepts, a
+  property table says what goes in `props`, and a declaration says what the type
+  in a signature is. Some members come from a documented table and some from
+  sample code, marked per member.
+- **Instance members** are what you call on a value rather than import —
+  `new HeartRate().getCurrent()`, `localStorage.getItem(...)`. They are rendered
+  under their owning symbol, because that is how they are reached.
+- **How to target a device**: the `st`/`sr` screen selectors a v3 manifest needs,
+  derived from the device's own screen, beside the `deviceSource` numbers a v2
+  one needs — plus the reverse index and a two-way diff against what the samples
+  actually build for. See [`compatibility/devices.md`](compatibility/devices.md).
+- **Conflicts the sources do not know they have**: a description two official
+  pages state differently, a widget id written one way in code and documented
+  another, a method name that resolves to more than one thing inside the
+  sample's own runtime. [`conflicts/index.md`](conflicts/index.md) cites both
+  sides of each.
+- **The Zeus CLI**, with the join the CLI page does not make: each file
+  `zeus create` scaffolds, the runtime it belongs to — derived by the same rule
+  every symbol is attributed by — and the `module` key that turns that runtime
+  on. See [`tools/index.md`](tools/index.md).
+- **The `app.json` schema**, with a two-way diff against the working manifests:
+  key paths real apps use that the reference page never mentions, documented
+  keys no sample uses, and permission strings joined to the symbols that state
+  them. See [`manifest/index.md`](manifest/index.md).
 
 ### Looking a name up
 
-[`api/lookup.md`](api/lookup.md) indexes **733 names** — every symbol, every
+[`api/lookup.md`](api/lookup.md) indexes **every name in the base** — every symbol, every
 instance member, every enum value — against what owns it. Every other index
 here is keyed by module, `API_LEVEL` or runtime, which answers *what is in
 `@zos/ui`* and not *where does `setInterval` live*; the second eval run called
@@ -76,7 +121,7 @@ domains are excluded — `retCode` 0..10 is a set of values, not of names.
 
 Read this before trusting an answer that came out of this KB.
 
-- **The watchface `hm*` API states no `API_LEVEL` anywhere.** Not one of its 89 reference pages carries a badge, so its 102 symbols answer "does this exist" and never "since when" — the same shape of gap the Settings App and the Side Service have. Nothing in `compatibility/` can vouch for a watchface symbol on a given device.
+- **The watchface `hm*` API states no `API_LEVEL` anywhere.** Not one of its reference pages carries a badge, so its symbols answer "does this exist" and never "since when" — the same shape of gap the Settings App and the Side Service have. Nothing in `compatibility/` can vouch for a watchface symbol on a given device.
 - **A watchface symbol's id is a global path, not an import.** `hmUI.widget.TEXT`, `hmSensor.id.HEART`, `hmFS.open` — that is how the code writes them, and there is no `import` line anywhere in the tree. The module is read from the page's own example, with the directory as fallback: `hmUI/widget/data_type.mdx` is in the widget directory and the code writes `hmUI.data_type`.
 - **The runtime axis is populated, unevenly.** Every runtime now has symbols, but 375 of 411 are Device App. The Settings App's 21 and the Side Service's 20 have **no `API_LEVEL` at all** — no page in either tree states one — so they answer "does this exist here" but not "since when".
 - **Instance members are a field, never a symbol.** `getCurrent` is reached through a value (`new BloodOxygen().getCurrent()`), so it lives on the owning record rather than as `@zos/sensor.getCurrent`, an id nothing can import. 12 sensors document a `getCurrent` and they return 12 different shapes, which is why the owner is part of the identity. A member states its own minimum `API_LEVEL` and the symbol's does not imply it: `BloodOxygen` is 2.0 while its `start` and `stop` are 2.1.
@@ -84,7 +129,7 @@ Read this before trusting an answer that came out of this KB.
 - **A missing symbol means "not covered", not "does not exist."** This holds hardest on the runtime axis: a symbol absent from `runtimes/settings.md` says nothing about whether the Settings App can use it, because nothing has been extracted for that runtime at all.
 - **Runtime is inferred from the source path, never from a page's text.** No page or sample states its runtime; both official repos separate the runtimes by directory, so the directory is the evidence. The rules and the doc that anchors each one live in [`src/parse/runtime.ts`](src/parse/runtime.ts). This is the axis most exposed to an upstream reorganization, and the reason it has its own test file.
 - **`API_LEVEL` is the one axis that works today.** It is read verbatim from the badge blockquote on each page (`Start from API_LEVEL`, or `Supported since API_LEVEL` — both wordings occur), never inferred.
-- **44 of 411 symbols have no description.** 14 are name-only `OBSERVED` sightings in sample code, which carries no prose — 11 of those are `@zeppos/zml`, a helper library rather than platform API. The rest are pages with nothing between title and first section, plus the enum symbols whose pages document their members and never describe the set.
+- **Some symbols have no description** — the table above gives how many, and [`api/index.md`](api/index.md) names them. Most are name-only `OBSERVED` sightings in sample code, which carries no prose, and most of those are `@zeppos/zml`, a helper library rather than platform API. The rest are pages with nothing between title and first section, plus the enum symbols whose pages document their members and never describe the set.
 - **An enum's members are documented on the pages that use it, not on its own.** `align` is defined across `ui/widget/TEXT.mdx` and `ui/widget/PAGE_INDICATOR.mdx`, so its members are the *union* of what several pages state — the one field this base merges by union rather than by source priority. A member missing from every page that happened to mention the enum is missing here too.
 - **`widget` is the one value set the documentation calls incomplete, and it says so.** The reference page lists a single widget id and then says "the rest of the values are not listed"; the other 24 are `OBSERVED`, read off sample code. Neither source is the whole set, and `api/zos-ui.md` states that rather than presenting 25 as the answer.
 - **Members read from sample code are scoped to what the file imports.** `align.CENTER_H` counts because the file says `import { align } from '@zos/ui'` above it. That is also why watchface samples contribute none: they use the `hm*` globals, so their `widget.X` is a different `widget`.
@@ -105,20 +150,31 @@ Read this before trusting an answer that came out of this KB.
 ```bash
 npm install
 npm run sync       # fetch -> parse -> enrich -> write data/
-npm test           # fixture tests for the parsers and the enrich merge
+npm run render     # data/ -> the Markdown pages, and the coverage block in both READMEs
+npm test           # fixture tests for the parsers, the enrich merge and every view
 npm run typecheck
+npm run verify     # ask the rendered base its question set, and fail on an unanswerable one
 ```
 
 `sync` clones the official repos into `.cache/` (untracked, ~ tens of MB) and rewrites `data/`. It is idempotent: running it twice in a row produces no diff.
 
-`npm run render` rewrites `api/`, `compatibility/`, `runtimes/` and `patterns/` from the JSON source of truth. Each dir gets an `index.md` (the module list; the inverse view — which modules a given `API_LEVEL` unlocks, and which devices reach it; the runtime coverage table; and the pattern list with a symbol-to-patterns index). `compatibility/` also gets `devices.md`. A hand-written `README.md` in any of them is preserved; every other `.md` there is generated and overwritten.
+`npm run render` rewrites `api/` (including `lookup.md`), `compatibility/`, `runtimes/`, `patterns/`, `examples/`, `manifest/`, `conflicts/` and `tools/` from the JSON source of truth. Each dir gets an `index.md` (the module list; the inverse view — which modules a given `API_LEVEL` unlocks, and which devices reach it; the runtime coverage table; the pattern list with a symbol-to-patterns index; and so on). `compatibility/` also gets `devices.md`. A hand-written `README.md` in any of them is preserved; every other `.md` there is generated and overwritten. It also rewrites the coverage block in this file and in the Portuguese one — see [Numbers in this README](#numbers-in-this-readme).
+
+Two commands consume the base rather than build it:
+
+```bash
+npm run check -- path/to/an/app    # score an app directory against the base
+npm run mcp                        # serve the base over MCP on stdio
+```
+
+Both are described under [Using the base](#using-the-base).
 
 ## How it works
 
-Four stages, each idempotent and independently inspectable, so any one of them can be rerun without redoing the earlier ones. Execution is local and on demand — there is no scheduled CI job in v0.
+Four stages, each idempotent and independently inspectable, so any one of them can be rerun without redoing the earlier ones. Everything runs locally and offline except `fetch`; the one scheduled job is the weekly sync in [`.github/workflows/sync.yml`](.github/workflows/sync.yml), which is the only thing here that touches the network on a timer.
 
 1. **fetch** — clones or updates the official repos into `.cache/`, and records the exact commit of each. Third-party content, never versioned here.
-2. **parse** — seven independent fronts over the raw cache:
+2. **parse** — ten independent fronts over the raw cache:
    - **docs-reference** — `docs/reference/**/*.mdx`, one file per symbol. The module comes from the import line in the page's own example; when the page has none — it documents a runtime global like `setTimeout` or `console`, so there is nothing to import — it falls back to the `newAPI/<dir>` directory. Measured: 221 of the 222 pages that *do* have an import agree with the directory, the exception being a submodule (`@zos/ble/TransferFile`), so the import stays primary.
    - **phone runtimes** — `docs/reference/side-service-api/**` and `docs/reference/app-settings-api/**`. These APIs are globals (`fetch`, `settings.settingsStorage`, `messaging.peerSocket`) or Settings App components, so there is no import to key on and the docs-reference front skips them. Across all 22 pages they take four shapes — page-as-symbol, `##`-as-symbol, `##`-as-module with `###` symbols (signalled by the heading ending in the word `module`), and no heading at all — so the shape is detected rather than assumed.
    - **llms** — `static/llms/@zos-*.md`, one file per module, reusing the structuring Zepp Health already did for LLM consumption. The module id comes from the import lines inside the file, not from the H1: `@zos/ui` is split across several files whose H1 reads `@zos/ui-methods`, `@zos/ui-widget-basic` and so on, and those ids can't be imported.
@@ -126,17 +182,91 @@ Four stages, each idempotent and independently inspectable, so any one of them c
    - **guides** — `docs/guides/best-practice/**.mdx`, one file per task. Only the parts with a fixed shape are read: frontmatter title, `##` sections, fenced code blocks and the reference pages the guide links to. Nothing is inferred from the prose.
    - **sample apps** — the same 33 apps, read as *code* rather than as a list of import names. For each: its `app.json` shape, each file’s runtime, and verbatim excerpts of real calls cited to file and line. Also every method called on a value (`text.setProperty(...)`), whose receiver type is left unresolved and matched to a module by name at render time — the only way `setProperty` surfaces at all, since it is never imported.
    - **device list** — `docs/reference/related-resources/device-list.mdx`, the only source that ties an `API_LEVEL` to hardware. One file, two tables with *different* columns, so columns are resolved by header name and a missing one throws.
+   - **watchface** — `docs/reference/watchface-api/**`, the `hm*` tree. Its symbols are global paths rather than imports (`hmUI.widget.TEXT`), so the module is read from the page's own example with the directory as fallback. Not one page in this tree states an `API_LEVEL`, which is why the limits section names it first.
+   - **app.json** — `docs/reference/app-json.mdx`, the manifest schema: the key tree nested by row membership, each key's property table, and the keys the page types as objects and never describes.
+   - **Zeus CLI** — `docs/guides/tools/**`, the commands and the packages the guides tier as `RECOMMENDED` or `COMMUNITY`. The files `zeus create` scaffolds are joined to the runtime each belongs to by the same path rules every symbol is attributed by.
 
    Each front also attributes a **runtime** from the path it read the unit from, since no content states one: `docs/reference/device-app-api/` is the Device App, `zeppos-samples/watchface/` is a Watchface, `app-side/` inside any sample app is the Side Service. A path no rule covers gets no runtime rather than a default.
 3. **enrich** — groups observations by symbol id and normalizes the metadata that is the point of the project: minimum `API_LEVEL`, runtime, source and confidence tier. Field-level priority is `docs-reference` > `llms` > `sample` — except `runtimes`, which is **unioned** instead, because each front observes a different runtime rather than making a competing claim about the same one. A symbol documented under the Device App API and also seen in a watchface sample is valid in both.
-4. **render** — generates four views, plus an `index.md` in each:
-   - `api/` — symbols per module
+4. **render** — generates eight views, plus an `index.md` in each:
+   - `api/` — symbols per module, plus `lookup.md`, the name-to-owner index
    - `compatibility/` — grouped by minimum `API_LEVEL`, plus `devices.md`
    - `runtimes/` — one page per runtime
    - `patterns/` — one page per best-practice guide
-   - `examples/` — one page per sample app, indexed by symbol
+   - `examples/` — one page per sample app, keyed by application
+   - `manifest/` — the `app.json` schema and its two-way diff against real manifests
+   - `conflicts/` — where two sources state the same thing differently
+   - `tools/` — the Zeus CLI and the packages the guides recommend
 
-   A symbol with no documented minimum is labelled `not stated`, never `any` — absence of a level is absence of evidence, not a compatibility claim. `runtimes/` renders a page for **every** runtime including the ones with no symbols, because a missing page reads like "this runtime does not exist" while a page stating "0 symbols covered" reads like the coverage gap it is. `concepts/` and `tools/` are the two dirs `render` does not write: `concepts/` is hand-written by design, and `tools/` waits on a front. This is what the Agent Skill reads.
+   A symbol with no documented minimum is labelled `not stated`, never `any` — absence of a level is absence of evidence, not a compatibility claim. `runtimes/` renders a page for **every** runtime including the ones with no symbols, because a missing page reads like "this runtime does not exist" while a page stating "0 symbols covered" reads like the coverage gap it is. `concepts/` is the one dir `render` does not write, because it is hand-written by design; `annotations/` is an input rather than an output. This is what the Agent Skill reads, and what `mcp` serves.
+
+## Using the base
+
+Three ways in, in order of how much the consumer has to read.
+
+### `mcp` — query it by name
+
+```bash
+npm run mcp          # stdio; ZEPPOS_KB_ROOT points it at a checkout
+```
+
+Sixteen tools over stdio, local-first: the base is a checkout on the same
+machine, there is no service to run, nothing to authenticate and no request that
+leaves the host. The base loads once at startup, because a server that re-read
+`data/` per call would answer the same question two ways if `sync` ran
+mid-session, and an agent comparing two answers cannot tell that apart from a
+real contradiction — which this base exists to report.
+
+| Tool | Answers |
+| --- | --- |
+| `get_freshness` | What this base is and when it was built: version, upstream commits, counts. Call it first — a report that cannot name the version it read cannot be compared with another |
+| `get_symbol` | One symbol by id, with signature, shapes, value sets and members |
+| `lookup` | A bare name, and everything that owns it |
+| `list_module` | Every symbol in a module, plus its submodules |
+| `check_compatibility` | `RUNS` / `TOO_NEW` / `UNKNOWN` / `NOT_COVERED`, per symbol, at a level or on a named device |
+| `list_by_runtime`, `list_by_api_level` | The two coverage axes |
+| `resolve_call` | A method called on a value, and what it might belong to |
+| `get_device` | One device: level, screen, what a manifest needs to target it |
+| `list_patterns`, `get_pattern` | The best-practice guides and their symbol joins |
+| `find_app`, `describe_app` | The sample apps: which exist, and one assembled |
+| `list_wiring`, `describe_wiring` | Cross-runtime message sites, scoped to one app |
+| `check_app` | The check below, over MCP |
+
+Every answer is computed in `src/mcp/tools.ts`, which knows nothing about MCP,
+so the tests call the whole surface directly and measure the answers rather than
+the transport.
+
+### `check` — score an app against it
+
+```bash
+npm run check -- path/to/an/app
+```
+
+Three evaluation runs all finished and all failed the same way: they delivered
+working-looking code the base could not vouch for. Scoring that by hand is what
+[`eval/`](eval/README.md) does; `check` does it to any app directory in a second,
+under four rules — runtime, permission, `API_LEVEL` and manifest.
+
+The verdict is three-way and never pass/fail:
+
+| Status | Meaning |
+| --- | --- |
+| `VOUCHED` | This base can point at the record that backs it |
+| `UNVERIFIABLE` | Not covered here. Never evidence that the symbol does not exist |
+| `VIOLATION` | This base contradicts it |
+
+**No violation is not approval.** Every official sample passes with zero
+violations and still carries symbols this base cannot speak to, so every report
+ships a `notChecked` list: nothing compiles or runs the code, method receivers
+are never resolved, cross-runtime message tags are not linked, and permissions
+are only documented for the Device App tree. A checker that listed only what it
+found would teach a reader that silence is approval — the exact reading this
+project exists to prevent.
+
+### The rendered Markdown — read it
+
+`api/`, `compatibility/`, `runtimes/` and the rest are committed, so cloning the
+repo is enough. This is what [the Agent Skill](#agent-skill) reads.
 
 ## Data model
 
@@ -221,7 +351,7 @@ Table columns are resolved by header name, never by position, because the two tr
 | `physicalKeys`, `watchfacePreview`, `secondaryWidget` | Each absent where the table states `-` rather than a value |
 | `runsZeppOs` | `false` for the rows under *Non-Zepp OS Devices* — hardware that takes watchfaces but runs no Mini Program |
 
-**Why this front matters most for answering a real question.** `compatibility/` says a symbol needs `>= 4.2`. That is not the question a developer has; *"does it run on a Bip 6?"* is. `compatibility/devices.md` joins the two and answers it, and the compatibility index now names the hardware reaching each level. The join also produces a **symbols-available count per device** that exists nowhere upstream — an Amazfit Bip 5 (`API_LEVEL 2.1`) reaches 205 of the 354 symbols that state a minimum, a Balance 3 (`4.4`) reaches all 354.
+**Why this front matters most for answering a real question.** `compatibility/` says a symbol needs `>= 4.2`. That is not the question a developer has; *"does it run on a Bip 6?"* is. `compatibility/devices.md` joins the two and answers it, and the compatibility index now names the hardware reaching each level. The join also produces a **symbols-available count per device** that exists nowhere upstream — an Amazfit Bip 5 (`API_LEVEL 2.1`) reaches a fraction of the symbols that state a minimum and a Balance 3 (`4.4`) reaches all of them, with the count per device on the page itself.
 
 The count is a floor, deliberately: the 29 symbols with no stated minimum are excluded rather than assumed available, and a device with no stated level counts zero symbols and is rendered in its own section saying so.
 
@@ -283,27 +413,48 @@ naming it.
 ```
 src/
   fetch/    stage 1 — clone/update official repos
-  parse/    stage 2 — four extraction fronts
+  parse/    stage 2 — ten extraction fronts
+    index.ts     docs-reference, llms and the sample-import fronts
+    watchface.ts the hm* tree, whose symbols are globals rather than imports
     devices.ts   the device-list front (columns resolved by header name)
     patterns.ts  the best-practice guides front
     examples.ts  the sample apps read as code, with cited excerpts
     manifest.ts  the app.json schema, nested by row membership
+    tools.ts     the Zeus CLI front: commands, scaffolded files, packages
     spec.ts      signatures and property tables, columns by header name
     phone.ts     the Side Service + Settings App front (four page shapes)
     runtime.ts   path -> runtime rules, with the doc anchoring each one
+    diagnostics.ts  headers no front read, so a silent gap becomes a count
     util.ts      dir walk + the LF-normalizing read
   enrich/   stage 3 — merge and normalize into SymbolRecord / PatternRecord
-  store/    write the JSON source of truth + manifest
+  store/    write the JSON source of truth + manifest, and read it back
+  index/    the derived indexes: names, modules, per-runtime census
   render/   stage 4 — Markdown generation
-    examples.ts  the examples view: symbol -> code, method -> likely symbol
+    lookup.ts    the name -> owner index every other view is keyed against
+    examples.ts  the examples view: one page per app, method -> likely symbol
     manifest.ts  the app.json view: key -> runtime, documented vs. observed
     patterns.ts  the patterns view and its join against the symbols
+    conflicts.ts where two sources state the same thing differently
+    tools.ts     the Zeus CLI view and its join to runtimes and module keys
+    annotations.ts  the hand-written notes, rendered beside the extracted fact
+    readme.ts    the coverage block in both READMEs, generated from data/
     shared.ts    helpers every view agrees on
-  cli.ts    sync / render commands
+  check/    score an app directory against the base (`npm run check`)
+    rules.ts     the four rules: runtime, permission, api-level, manifest
+    scan.ts      read an app from disk: manifest, files, calls per runtime
+  mcp/      serve the base over MCP on stdio (`npm run mcp`)
+    tools.ts     every answer, computed with no knowledge of MCP
+    apps.ts      the sample-app answers: find_app, describe_app
+    wiring.ts    cross-runtime message sites, scoped to one app
+    base.ts      load data/ once, at startup
+    serve.ts     the MCP wiring, and nothing else
+  cli.ts    sync / render / verify / check commands
 data/
   manifest.json   sync state: date, source commits, counts
   devices.json    the device list: API_LEVEL, OS version, screen, deviceSource
   app-json.json   the app.json schema: key tree, property tables, gaps
+  tools.json      the Zeus CLI: commands, scaffolded files, packages
+  diagnostics.json  what the parse fronts saw and did not read
   symbols/        the JSON source of truth, one file per module
   patterns/       one file per best-practice guide
   examples/       one file per sample app: manifest, files, cited excerpts
@@ -326,7 +477,7 @@ eval/
 assets/     this repository's own logo — not a Zepp OS app `assets/` directory
 ```
 
-The generated Markdown lands in `api/`, `compatibility/`, `runtimes/`, `patterns/`, `examples/` and `manifest/`. `concepts/` holds hand-written notes in two blocks: **the domain model** — what a symbol is, what a runtime is, which of the four version numbers answers which question, what a confidence tier promises — and the retrieval stack (RAG, embeddings, vector stores, MCP) and its relation to this project. Start at [concepts/dominio.md](concepts/dominio.md); index at [concepts/README.md](concepts/README.md). `tools/` stays empty until a front exists to fill it — the raw material is already in `.cache/` (`guides/tools/` + `guides/version-info/`), so it is a parsing job, not a curation job.
+The generated Markdown lands in `api/`, `compatibility/`, `runtimes/`, `patterns/`, `examples/`, `manifest/`, `conflicts/` and `tools/`. `concepts/` holds hand-written notes in two blocks: **the domain model** — what a symbol is, what a runtime is, which of the four version numbers answers which question, what a confidence tier promises — and the retrieval stack (RAG, embeddings, vector stores, MCP) and its relation to this project. Start at [concepts/dominio.md](concepts/dominio.md); index at [concepts/README.md](concepts/README.md). `concepts/` is the only one of these `render` never writes.
 
 ## Design decisions
 
@@ -391,11 +542,34 @@ conflicts. What is left is narrow: upstream contradicting *itself*, where no
 source can be quoted because the sources disagree. There are two such notes
 today.
 
+## Numbers in this README
+
+The table under [What is in it](#what-is-in-it) sits between
+`<!-- coverage:start -->` and `<!-- coverage:end -->` and is written by
+`src/render/readme.ts` on every `npm run render`, into both translations from
+one computation. Do not edit it by hand.
+
+It exists because of a bug that shipped five times: a figure about the data,
+typed into prose, that was true when it was written. The `29` that should have
+been `56`, a note claiming two runtimes were not extracted, "168 passing" when
+it was 170, "262 passing" when it was 335, and a coverage table that went stale
+twice in one afternoon. Each was corrected by hand, which is not a fix — it
+resets the clock.
+
+So the rule this repository holds itself to is: **derive a figure that comes
+from the data, or name the command that prints it.** That is why the test count
+is not quoted, why `verify`'s question count is not quoted, and why a sentence
+that wanted a number now names the page to read instead. CI re-renders and fails
+on any diff, so a stale figure breaks the build rather than misleading a reader.
+
 ## Open questions
 
-1. **A serving layer.** Using this base means cloning it. An MCP server would
-   let an agent query it by name instead of reading a 187 KB index — the
-   question is retrieval cost, not access.
+1. **Whether querying actually beats reading.** The serving layer that used to
+   be the open question is [built](#mcp--query-it-by-name): an agent can ask for
+   a symbol by name instead of reading a 187 KB index. What that has not settled
+   is the question underneath it — no eval run has gone through MCP yet, so the
+   retrieval cost it was meant to lower is still unmeasured. Until a run does,
+   "an agent queries it" is a capability, not a result.
 
 ## Agent Skill
 

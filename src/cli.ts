@@ -22,6 +22,8 @@ import { loadBase } from "./mcp/base.js";
 import { verify } from "./verify/index.js";
 import { renderExamples } from "./render/examples.js";
 import { renderConflicts } from "./render/conflicts.js";
+import { renderReadmes } from "./render/readme.js";
+import { renderSite } from "./render/site.js";
 import { renderManifest } from "./render/manifest.js";
 import { renderPatterns } from "./render/patterns.js";
 import { renderTools } from "./render/tools.js";
@@ -136,13 +138,21 @@ switch (command) {
     // heading no map recognised, dropped without an error, and every one was
     // found by accident. Reported on every sync so the next arrives as a
     // number that changed rather than as a silence.
-    const unread = await unreadHeaders(CACHE_DIR);
-    await writeDiagnostics(unread, DATA_DIR);
-    if (unread.length > 0) {
-      const tables = unread.reduce((n, h) => n + h.tables, 0);
+    const diagnostics = await unreadHeaders(CACHE_DIR);
+    await writeDiagnostics(diagnostics, DATA_DIR);
+    if (diagnostics.headers.length > 0) {
+      const tables = diagnostics.headers.reduce((n, h) => n + h.tables, 0);
       console.log(
-        `unread: ${tables} tables under ${unread.length} headings no column map reads` +
-          ` (worst: ${unread.slice(0, 3).map((h) => `\`${h.header}\` x${h.tables}`).join(", ")})`,
+        `unread: ${tables} tables under ${diagnostics.headers.length} headings no column map reads` +
+          ` (worst: ${diagnostics.headers.slice(0, 3).map((h) => `\`${h.header}\` x${h.tables}`).join(", ")})`,
+      );
+    }
+    // An allowlist entry silences a heading for good, so a stale one fails by
+    // staying quiet. Two of the entries shipped with that file were false.
+    if (diagnostics.unusedAllowlist.length > 0) {
+      console.log(
+        `allowlist: ${diagnostics.unusedAllowlist.length} entries silenced nothing this sync` +
+          ` (${diagnostics.unusedAllowlist.map((e) => `\`${e.header}\``).join(", ")})`,
       );
     }
 
@@ -201,8 +211,18 @@ switch (command) {
       symbolsDir,
       OUT_DIR,
     );
+    // The README's own figures, which have gone stale five times when typed by
+    // hand. CI re-renders and diffs, so a stale one now fails the build.
+    const { written } = await renderReadmes(DATA_DIR, OUT_DIR);
+    // The landing page, from the same counts. It explains the base to a reader
+    // who has not cloned it, so a figure on it that the data stopped supporting
+    // is the same bug as a stale README — and `site/` is in the CI diff too.
+    const { pages } = await renderSite(DATA_DIR, OUT_DIR);
+
     console.log(
-      `rendered: ${modules} modules, ${names} indexed names, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts, ${commands} CLI commands, ${annotations} annotations (plus an index in each)`,
+      `rendered: ${modules} modules, ${names} indexed names, ${devices} devices, ${runtimes} runtimes, ${patterns} patterns, ${examples} examples, ${manifestKeys} app.json keys, ${conflicts} conflicts, ${commands} CLI commands, ${annotations} annotations (plus an index in each)` +
+        (written.length === 0 ? "" : `, coverage block in ${written.join(" and ")}`) +
+        `, ${pages.length} site pages`,
     );
     break;
   }
@@ -239,6 +259,6 @@ switch (command) {
     break;
   }
   default:
-    console.error(`Unknown command: ${command}. Use "sync", "render" or "verify".`);
+    console.error(`Unknown command: ${command}. Use "sync", "render", "verify" or "check".`);
     process.exit(1);
 }

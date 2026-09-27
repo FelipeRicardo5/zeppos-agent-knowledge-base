@@ -13,7 +13,7 @@
     "check": "tsx src/cli.ts check"
   },
   "devDependencies": {
-    "@types/node": "^20.14.0",
+    "@types/node": "^20.19.43",
     "tsx": "^4.19.0",
     "typescript": "^5.5.0"
   },

@@ -7,6 +7,7 @@ import path from "node:path";
 import type { RawUnit } from "../types.js";
 import { runtimeForPath } from "./runtime.js";
 import {
+  extractDeclarations,
   extractEnums,
   extractMembers,
   extractShapes,
@@ -112,6 +113,7 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
     const members = extractMembers(content);
     const pageOnly = members.length > 0 ? withoutMembers(content) : content;
     const shapes = extractShapes(pageOnly);
+    const declares = extractDeclarations(pageOnly);
 
     // A page declares two kinds of value set, and they belong to two different
     // symbols. `ui/widget/TEXT.mdx` documents the members of `align`, which is
@@ -129,6 +131,7 @@ export async function parseMarkdown(cacheDir: string): Promise<RawUnit[]> {
       apiLevel: apiLevelMatch ? Number(apiLevelMatch[1]) : undefined,
       signature: extractSignature(pageOnly),
       shapes: shapes.length > 0 ? shapes : undefined,
+      declares: declares.length > 0 ? declares : undefined,
       enums: own.length > 0 ? own : undefined,
       members: members.length > 0 ? members : undefined,
       permissions: permissions.length > 0 ? permissions.sort() : undefined,

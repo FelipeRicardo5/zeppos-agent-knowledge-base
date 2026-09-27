@@ -135,6 +135,7 @@ function apiMarkdown(module: ModuleFile, all: ModuleFile[], notes: Annotation[])
       r.description !== undefined ||
       r.signature !== undefined ||
       r.shapes !== undefined ||
+      r.declares !== undefined ||
       r.enums !== undefined ||
       r.permissions !== undefined,
   );
@@ -175,7 +176,10 @@ function apiMarkdown(module: ModuleFile, all: ModuleFile[], notes: Annotation[])
         // TypeScript, and normalising it would invent a shape the docs never
         // stated. The shapes below are what the parameter names refer to.
         lines.push("```ts", record.signature, "```", "");
+        lines.push(...undefinedReturnLines(record));
       }
+
+      lines.push(...declarationLines(record));
 
       for (const shape of record.shapes ?? []) {
         lines.push(...shapeLines(shape));
@@ -190,6 +194,109 @@ function apiMarkdown(module: ModuleFile, all: ModuleFile[], notes: Annotation[])
   }
 
   return lines.join("\n");
+}
+
+/** Builtins a signature can return without any page needing to declare them. */
+const BUILTIN_TYPES = new Set([
+  "void",
+  "any",
+  "number",
+  "string",
+  "boolean",
+  "object",
+  "undefined",
+  "null",
+  "Object",
+  "Array",
+  "Promise",
+  "Function",
+  "unknown",
+  "never",
+]);
+
+/** `Array&#60;string&#62;` -> `Array`; `` `number` `` -> `number`. */
+function bareType(value: string): string {
+  return value
+    .replace(/&#\d+;/g, "")
+    .replace(/[<>[\]].*$/, "")
+    .replace(/`/g, "")
+    .trim();
+}
+
+/** The type a signature says the symbol returns, when it says one. */
+function returnType(signature: string): string | undefined {
+  const match =
+    signature.match(/\)\s*:\s*([A-Za-z_][\w<>&#;.[\]]*)\s*$/) ??
+    signature.match(/=>\s*([A-Za-z_][\w<>&#;.[\]]*)\s*$/);
+  return match === undefined || match === null ? undefined : bareType(match[1]);
+}
+
+/**
+ * What the page declares under a heading, with no column naming it.
+ *
+ * `function open(path, flag): fileId` is unusable while `fileId` is a word in a
+ * signature and nothing else. These are the rows that say what it is — and
+ * whether one is a return or a parameter is left to the signature beside them,
+ * because the page states the name and the type and never the role.
+ */
+function declarationLines(record: SymbolRecord): string[] {
+  const declares = record.declares ?? [];
+  if (declares.length === 0) return [];
+
+  const returned = record.signature === undefined ? undefined : returnType(record.signature);
+
+  const lines = ["**Declares**", "", "| Name | Type | Notes |", "| --- | --- | --- |"];
+  for (const declared of declares) {
+    // A name the signature returns is marked, because that is the one a reader
+    // arrived looking for. Matched on the declared type too: `openInspector`
+    // returns `Inspector` and the page declares it as `Result` of that type.
+    const isReturn =
+      returned !== undefined &&
+      (bareType(declared.name) === returned || (declared.type !== undefined && bareType(declared.type) === returned));
+    const notes = [
+      isReturn ? "**returned**" : undefined,
+      declared.required === true ? "required" : undefined,
+      declared.apiLevel === undefined ? undefined : `API_LEVEL ${declared.apiLevel}`,
+      declared.description,
+    ].filter((note): note is string => note !== undefined);
+
+    lines.push(
+      `| \`${declared.name}\` | ${declared.type === undefined ? "—" : `\`${declared.type}\``} | ${notes.join(" — ") || "—"} |`,
+    );
+  }
+  lines.push("");
+
+  return lines;
+}
+
+/**
+ * A signature that ends in a type nothing on its page defines.
+ *
+ * The other direction of the same join, and the one worth stating: a reader who
+ * follows the signature finds a word. Reading the headless tables took this
+ * from most of the corpus to a handful, and every one left is a page that names
+ * a return type and documents it nowhere — an upstream silence, not an
+ * extraction gap, which is exactly the distinction this base exists to keep.
+ */
+function undefinedReturnLines(record: SymbolRecord): string[] {
+  if (record.signature === undefined) return [];
+  const returned = returnType(record.signature);
+  if (returned === undefined || BUILTIN_TYPES.has(returned)) return [];
+
+  const declared = [
+    ...(record.declares ?? []).map((d) => bareType(d.name)),
+    ...(record.declares ?? []).map((d) => (d.type === undefined ? "" : bareType(d.type))),
+    ...(record.shapes ?? []).map((s) => bareType(s.name)),
+    ...(record.shapes ?? []).flatMap((s) => s.props.map((p) => (p.type === undefined ? "" : bareType(p.type)))),
+    ...(record.enums ?? []).map((e) => bareType(e.name)),
+  ];
+  if (declared.includes(returned)) return [];
+
+  return [
+    `The signature returns \`${returned}\` and no source on this page says what \`${returned}\` is. ` +
+      "Absence of evidence: the type exists, this base cannot tell you its shape.",
+    "",
+  ];
 }
 
 /**

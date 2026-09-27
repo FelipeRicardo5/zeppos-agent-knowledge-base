@@ -71,6 +71,26 @@ that.
 
 Results land in `results/`, one file per run, named `task-NN-<date>.md`.
 
+## Two channels, and only one variable at a time
+
+The same task can be run two ways, and which way it was run is part of the
+result:
+
+- **Files** — `.\prepare-run.ps1` hands the agent the rendered tree and the
+  `zepp-os` skill. This is how the first three runs were measured.
+- **MCP** — `.\prepare-run.ps1 -Mcp` hands it the server and **no tree at
+  all**, plus the `zepp-os-mcp` skill, which teaches the 16 tools instead of a
+  read order over pages. The server runs from a second archive of the same
+  commit with `eval/` removed, because a client config names the path it
+  launches and that path must not lead to `results/`.
+
+Giving an agent both is the one combination that measures nothing: it will read
+files, and the difference between reading and querying stays unattributable.
+For the same reason, change the task or the channel between runs — never both.
+Confirm `get_freshness` answers before handing over the task; a silent server
+turns an MCP run into an agent working from memory, which is the failure the
+isolation rule exists to prevent.
+
 ## Two files per task, on purpose
 
 The task file is what the agent gets. The notes file is what the operator gets,

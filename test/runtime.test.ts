@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import path from "node:path";
 import { describe, it } from "node:test";
-import { runtimeForPath } from "../src/parse/runtime.js";
+import { runtimeForAppFile, runtimeForPath } from "../src/parse/runtime.js";
 
 // The runtime axis is read from the path, so these cases *are* the axis. Each one
 // is anchored to a directory that exists in the upstream repos — see the doc
@@ -112,5 +112,38 @@ describe("runtimeForPath (portability)", () => {
     const hostPath = path.join("zeppos-samples", "watchface", "3.0", "timer", "app.js");
 
     assert.equal(runtimeForPath(hostPath), "watchface");
+  });
+});
+
+describe("runtimeForAppFile", () => {
+  it("reads an app-relative path, defaulting to the watch", () => {
+    assert.equal(runtimeForAppFile("page/index.js"), "device-app");
+    assert.equal(runtimeForAppFile("app.js"), "device-app");
+    assert.equal(runtimeForAppFile("app-side/index.js"), "side-service");
+    assert.equal(runtimeForAppFile("setting/index.js"), "settings");
+  });
+
+  it("reads a workout extension's data widget as the extension, given its extType", () => {
+    // Without this, every symbol attributed only to the Workout Extension
+    // runtime read as a contradiction inside the very samples it was extracted
+    // from. `check` reported exactly that against three official apps.
+    assert.equal(
+      runtimeForAppFile("data-widget/common/index.js", "workout"),
+      "workout-extension",
+    );
+  });
+
+  it("leaves a Mini Program's data widget on the watch", () => {
+    // `application/4.2/simple-keyboard` and `t9-keyboard` declare a
+    // `data-widget` module beside their `page` module and set no extType. The
+    // directory alone would call a keyboard a workout extension.
+    assert.equal(runtimeForAppFile("data-widget/common/index.js"), "device-app");
+    assert.equal(runtimeForAppFile("data-widget/common/index.js", "other"), "device-app");
+  });
+
+  it("keeps a workout extension's own side service on the phone", () => {
+    // `running-pace-master-with-side-service` ships both. The phone directories
+    // are checked first for this reason.
+    assert.equal(runtimeForAppFile("app-side/index.js", "workout"), "side-service");
   });
 });

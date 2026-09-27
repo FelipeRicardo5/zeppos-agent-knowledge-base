@@ -92,7 +92,17 @@ h1 {
   font-size: clamp(2rem, 5vw, 2.9rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.35rem;
+}
+
+/* What the name stands for. A short name tells a first-time reader nothing on
+   its own, so the expansion sits directly under it rather than in a footer. */
+.expansion {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.9rem;
 }
 
 h2 {

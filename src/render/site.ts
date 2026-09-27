@@ -52,6 +52,17 @@ const PAGES: { language: Language; file: string; other: string }[] = [
 interface Copy {
   lang: string;
   otherLanguage: string;
+  /**
+   * The short name, in the header and as the headline. Same in both
+   * translations — a name is not a word to be translated.
+   */
+  name: string;
+  /**
+   * What the name stands for, kept beside it rather than replaced by it. A
+   * reader arriving from a search has no way to know what "ZoaK" is, and the
+   * expansion is the one line that says so.
+   */
+  expansion: string;
   title: string;
   description: string;
   tagline: string;
@@ -97,7 +108,9 @@ const COPY: Record<Language, Copy> = {
   en: {
     lang: "en",
     otherLanguage: "Português",
-    title: "Zepp OS Agent Knowledge Base",
+    name: "ZoaK",
+    expansion: "Zepp OS Agent Knowledge Base",
+    title: "ZoaK — Zepp OS Agent Knowledge Base",
     description:
       "A compatibility-aware knowledge base between the official Zepp OS sources and the AI agents that write Zepp OS code.",
     tagline:
@@ -209,7 +222,9 @@ const COPY: Record<Language, Copy> = {
   pt: {
     lang: "pt-BR",
     otherLanguage: "English",
-    title: "Zepp OS Agent Knowledge Base",
+    name: "ZoaK",
+    expansion: "Zepp OS Agent Knowledge Base",
+    title: "ZoaK — Zepp OS Agent Knowledge Base",
     description:
       "Uma base de conhecimento ciente de compatibilidade entre as fontes oficiais do Zepp OS e os agentes de IA que escrevem código para Zepp OS.",
     tagline:
@@ -457,7 +472,7 @@ export function sitePage(
 <header class="top">
   <a class="brand" href="${self}">
     <img src="assets/logo.png" alt="" width="40" height="40">
-    <span>${escapeHtml(copy.title)}</span>
+    <span>${escapeHtml(copy.name)}</span>
   </a>
   <nav>
     <a href="${other}">${escapeHtml(copy.otherLanguage)}</a>
@@ -467,7 +482,8 @@ export function sitePage(
 
 <main>
   <section class="hero">
-    <h1>${escapeHtml(copy.title)}</h1>
+    <h1>${escapeHtml(copy.name)}</h1>
+    <p class="expansion">${escapeHtml(copy.expansion)}</p>
     <p class="tagline">${escapeHtml(copy.tagline)}</p>
     <ul class="stats">
 ${list(
@@ -682,7 +698,17 @@ h1 {
   font-size: clamp(2rem, 5vw, 2.9rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.35rem;
+}
+
+/* What the name stands for. A short name tells a first-time reader nothing on
+   its own, so the expansion sits directly under it rather than in a footer. */
+.expansion {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.9rem;
 }
 
 h2 {

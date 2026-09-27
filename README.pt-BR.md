@@ -1,6 +1,8 @@
-<img src="assets/logo.png" alt="Zepp OS Agent Knowledge Base" width="96" />
+<img src="assets/logo.png" alt="ZoaK" width="96" />
 
-# Zepp OS Agent Knowledge Base
+# ZoaK
+
+**Zepp OS Agent Knowledge Base**
 
 [English](README.md) · **Português**
 

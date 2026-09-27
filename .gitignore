@@ -6,3 +6,7 @@ dist/
 
 # Direction notes: unversioned on purpose, like TODO.md was.
 DIRECTION.md
+
+# Staged by the Pages workflow at deploy time, never committed: the tree keeps
+# one copy of the logo, under assets/.
+site/assets/

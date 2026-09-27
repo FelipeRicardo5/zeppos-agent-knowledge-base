@@ -1,6 +1,6 @@
 {
   "name": "zeppos-knowledge",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,6 +8,7 @@
     "render": "tsx src/cli.ts render",
     "mcp": "tsx src/mcp/serve.ts",
     "test": "node --import tsx --test \"test/**/*.test.ts\"",
+    "test:samples": "node --import tsx --test \"test/live/*.ts\"",
     "typecheck": "tsc --noEmit",
     "verify": "tsx src/cli.ts verify",
     "check": "tsx src/cli.ts check"

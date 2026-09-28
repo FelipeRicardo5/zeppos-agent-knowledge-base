@@ -22,7 +22,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/getAutoBrightness.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.getBrightness",
@@ -45,7 +45,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/getBrightness.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.getSettings",
@@ -197,7 +197,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/getSettings.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.pauseDropWristScreenOff",
@@ -234,7 +234,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/pauseDropWristScreenOff.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.pausePalmScreenOff",
@@ -271,7 +271,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/pausePalmScreenOff.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.resetDropWristScreenOff",
@@ -294,7 +294,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/resetDropWristScreenOff.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.resetPageBrightTime",
@@ -317,7 +317,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/resetPageBrightTime.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.resetPalmScreenOff",
@@ -340,7 +340,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/resetPalmScreenOff.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.setAutoBrightness",
@@ -369,7 +369,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/setAutoBrightness.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.setBrightness",
@@ -405,7 +405,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/setBrightness.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.setPageBrightTime",
@@ -442,7 +442,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/setPageBrightTime.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.setScreenOff",
@@ -465,7 +465,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/setScreenOff.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/display.setWakeUpRelaunch",
@@ -501,7 +501,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/display/setWakeUpRelaunch.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     }
   ]
 }

@@ -47,7 +47,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/App.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.AppService",
@@ -98,7 +98,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/AppService.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.AppWidget",
@@ -164,7 +164,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/AppWidget.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.Buffer",
@@ -179,7 +179,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/Buffer.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.clearInterval",
@@ -202,7 +202,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/clearInterval.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.clearTimeout",
@@ -225,7 +225,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/clearTimeout.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.console",
@@ -247,7 +247,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/console.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.DataWidget",
@@ -313,7 +313,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/DataWidget.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.getApp",
@@ -353,7 +353,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/getApp.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.getCurrentPage",
@@ -393,7 +393,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/getCurrentPage.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.Page",
@@ -447,7 +447,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/Page.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.SecondaryWidget",
@@ -513,7 +513,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/SecondaryWidget.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.setInterval",
@@ -546,7 +546,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/setInterval.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/global.setTimeout",
@@ -579,7 +579,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/global/setTimeout.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     }
   ]
 }

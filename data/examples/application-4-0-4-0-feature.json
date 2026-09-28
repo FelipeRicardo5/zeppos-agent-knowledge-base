@@ -256,13 +256,13 @@
       "id": "@zos/router.push",
       "snippets": [
         {
-          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.js",
-          "line": 44,
-          "code": "push({\n  url: \"page/TC/TC_\" + String(index).padStart(2, '0') + \"/index\"\n});"
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 33,
+          "code": "fill_rect_list.push(btn);"
         },
         {
           "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
-          "line": 33,
+          "line": 58,
           "code": "fill_rect_list.push(btn);"
         }
       ]
@@ -271,14 +271,14 @@
       "id": "@zos/ui.createWidget",
       "snippets": [
         {
-          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.js",
-          "line": 24,
-          "code": "this.state.scroll_list = createWidget(widget.SCROLL_LIST, {\n  ...Styles.SCROLL_LIST_CONFIG_STYLE,\n  data_array: page_list,\n  data_count: page_list.length,\n  item_common_focus: common_focus_flag,\n  data_type_config: [\n    {\n      start: 0,\n      end: 0,\n      type_id: 0,\n    },\n    {"
-        },
-        {
           "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
           "line": 20,
           "code": "let root_container = createWidget(widget.VIRTUAL_CONTAINER, { layout: Styles.BUTTON_ROOT_CONTAINER_STYLE });"
+        },
+        {
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 22,
+          "code": "createWidget(widget.FILL_RECT, { parent: root_container, ...Styles.BACKGROUND_FILL_STYLE });"
         }
       ]
     },
@@ -316,13 +316,13 @@
       "id": "@zos/ui.updateLayout",
       "snippets": [
         {
-          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.js",
-          "line": 51,
-          "code": "// updateLayout(); no need call by user when screen load"
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
+          "line": 59,
+          "code": "updateLayout();"
         },
         {
           "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js",
-          "line": 59,
+          "line": 71,
           "code": "updateLayout();"
         }
       ]
@@ -404,14 +404,14 @@
       "method": "toPixel",
       "snippets": [
         {
-          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js",
-          "line": 15,
-          "code": "item_space: \"8\".toPixel(),"
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.r.layout.js",
+          "line": 6,
+          "code": "w: \"100vw\".toPixel(),"
         },
         {
-          "file": "zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js",
-          "line": 24,
-          "code": "x: \"10vw\".toPixel(),"
+          "file": "zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.r.layout.js",
+          "line": 7,
+          "code": "h: \"120\".toPixel(),"
         }
       ],
       "resolved": false
@@ -457,5 +457,5 @@
   "source": "sample-app",
   "confidence": "OBSERVED",
   "originalPath": "zeppos-samples/application/4.0/4.0-feature",
-  "extractedAt": "2026-09-22"
+  "extractedAt": "2026-09-28"
 }

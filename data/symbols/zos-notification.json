@@ -18,7 +18,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/notification/cancel.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/notification.getAllNotifications",
@@ -37,7 +37,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/notification/getAllNotifications.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/notification.notify",
@@ -118,7 +118,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/notification/notify.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     }
   ]
 }

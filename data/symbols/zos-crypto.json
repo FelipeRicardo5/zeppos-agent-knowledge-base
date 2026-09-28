@@ -110,7 +110,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/AESCrypto.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/crypto.alg",
@@ -191,7 +191,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/AESCrypto.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/crypto.CRCCrypto",
@@ -236,7 +236,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/CRCCrypto.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/crypto.DigestCrypto",
@@ -340,7 +340,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/DigestCrypto.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/crypto.ECDSACrypto",
@@ -486,7 +486,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/ECDSACrypto.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/crypto.ecp_dp",
@@ -525,7 +525,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/ECDSACrypto.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     },
     {
       "id": "@zos/crypto.encryptKey",
@@ -548,7 +548,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/crypto/encryptKey.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-09-28"
     }
   ]
 }

@@ -38,7 +38,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/alarm/cancel.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.getAllAlarms",
@@ -57,7 +57,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/alarm/getAllAlarms.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.REPEAT_DAY",
@@ -72,7 +72,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.REPEAT_HOUR",
@@ -87,7 +87,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.REPEAT_MINUTE",
@@ -102,7 +102,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.REPEAT_MONTH",
@@ -117,7 +117,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.REPEAT_ONCE",
@@ -132,7 +132,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.REPEAT_WEEK",
@@ -147,7 +147,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.REPEAT_YEAR",
@@ -162,7 +162,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.set",
@@ -368,7 +368,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/alarm/set.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.WEEK_FRI",
@@ -383,7 +383,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.WEEK_MON",
@@ -398,7 +398,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.WEEK_SAT",
@@ -413,7 +413,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.WEEK_SUN",
@@ -428,7 +428,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.WEEK_THU",
@@ -443,7 +443,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.WEEK_TUE",
@@ -458,7 +458,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/alarm.WEEK_WED",
@@ -473,7 +473,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-alarm.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     }
   ]
 }

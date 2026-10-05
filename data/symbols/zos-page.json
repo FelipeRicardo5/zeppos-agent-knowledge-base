@@ -22,7 +22,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/getScrollTop.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.getSwiperIndex",
@@ -45,7 +45,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/getSwiperIndex.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.SCROLL_ANIMATION_NONE",
@@ -60,7 +60,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-page.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.SCROLL_ANIMATION_SMOOTH",
@@ -75,7 +75,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-page.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.SCROLL_MODE_FREE",
@@ -90,7 +90,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-page.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.SCROLL_MODE_SWIPER",
@@ -105,7 +105,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-page.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.SCROLL_MODE_SWIPER_HORIZONTAL",
@@ -120,7 +120,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-page.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.scrollTo",
@@ -185,7 +185,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/scrollTo.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.setScrollLock",
@@ -215,7 +215,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/setScrollLock.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.setScrollMode",
@@ -369,7 +369,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/setScrollMode.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     },
     {
       "id": "@zos/page.swipeToIndex",
@@ -425,7 +425,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/page/swipeToIndex.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-05"
     }
   ]
 }

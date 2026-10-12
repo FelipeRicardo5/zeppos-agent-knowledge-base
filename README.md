@@ -175,6 +175,45 @@ Both are described under [Using the base](#using-the-base).
 
 Four stages, each idempotent and independently inspectable, so any one of them can be rerun without redoing the earlier ones. Everything runs locally and offline except `fetch`; the one scheduled job is the weekly sync in [`.github/workflows/sync.yml`](.github/workflows/sync.yml), which is the only thing here that touches the network on a timer.
 
+```mermaid
+flowchart LR
+    subgraph upstream["Upstream — never versioned here"]
+        docs["zeppos-docs<br/>reference · llms · guides · device list · app.json · Zeus CLI"]
+        samples["zeppos-samples<br/>33 example apps"]
+    end
+
+    fetch["fetch<br/>clone into .cache/, pin the commit"]
+    parse["parse<br/>ten fronts"]
+    enrich["enrich<br/>one record per symbol"]
+    store["store<br/>data/*.json — the source of truth"]
+    render["render"]
+
+    upstream --> fetch --> parse --> enrich --> store --> render
+
+    subgraph views["Derived views — regenerated on every render, never edited by hand"]
+        pages["api/ · compatibility/ · runtimes/ · patterns/<br/>examples/ · manifest/ · conflicts/ · tools/"]
+        readme["site/ · the coverage block in both READMEs"]
+    end
+
+    render --> pages
+    render --> readme
+
+    subgraph consumers["Consumers of the rendered base"]
+        verify["verify — the fixed question set"]
+        check["check — score an app directory"]
+        mcp["mcp — 16 tools over stdio"]
+        skill["Agent Skill"]
+    end
+
+    pages --> verify
+    pages --> check
+    pages --> mcp
+    pages --> skill
+
+    ci["CI — re-render and fail on any diff"]
+    render -.-> ci
+```
+
 1. **fetch** — clones or updates the official repos into `.cache/`, and records the exact commit of each. Third-party content, never versioned here.
 2. **parse** — ten independent fronts over the raw cache:
    - **docs-reference** — `docs/reference/**/*.mdx`, one file per symbol. The module comes from the import line in the page's own example; when the page has none — it documents a runtime global like `setTimeout` or `console`, so there is nothing to import — it falls back to the `newAPI/<dir>` directory. Measured: 221 of the 222 pages that *do* have an import agree with the directory, the exception being a submodule (`@zos/ble/TransferFile`), so the import stays primary.

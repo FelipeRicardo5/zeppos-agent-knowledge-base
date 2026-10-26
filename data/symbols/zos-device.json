@@ -2,6 +2,74 @@
   "module": "@zos/device",
   "symbols": [
     {
+      "id": "@zos/device.getDataDiskInfo",
+      "module": "@zos/device",
+      "symbol": "getDataDiskInfo",
+      "type": "function",
+      "description": "Gets the total, available, and used capacity of the data partition (`data://`) in bytes. This covers the whole data partition, not the current application's storage usage. Check `isSuccess` before reading the capacity fields.",
+      "minApiLevel": 5,
+      "signature": "function getDataDiskInfo(): Result",
+      "shapes": [
+        {
+          "name": "SuccessResult",
+          "props": [
+            {
+              "name": "isSuccess",
+              "type": "true",
+              "description": "The query succeeded",
+              "apiLevel": 5
+            },
+            {
+              "name": "total",
+              "type": "number",
+              "description": "Total data partition capacity in bytes",
+              "apiLevel": 5
+            },
+            {
+              "name": "free",
+              "type": "number",
+              "description": "Available data partition capacity in bytes",
+              "apiLevel": 5
+            },
+            {
+              "name": "used",
+              "type": "number",
+              "description": "Used data partition capacity in bytes",
+              "apiLevel": 5
+            }
+          ]
+        },
+        {
+          "name": "FailResult",
+          "props": [
+            {
+              "name": "isSuccess",
+              "type": "false",
+              "description": "The query failed; capacity fields are not included",
+              "apiLevel": 5
+            }
+          ]
+        }
+      ],
+      "declares": [
+        {
+          "name": "Result",
+          "type": "SuccessResult&#124;FailResult",
+          "description": "undefined"
+        }
+      ],
+      "permissions": [
+        "data:os.device.info"
+      ],
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDataDiskInfo.mdx",
+      "extractedAt": "2026-10-26"
+    },
+    {
       "id": "@zos/device.getDeviceInfo",
       "module": "@zos/device",
       "symbol": "getDeviceInfo",
@@ -99,16 +167,16 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDeviceInfo.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/device.getDiskInfo",
       "module": "@zos/device",
       "symbol": "getDiskInfo",
       "type": "function",
-      "description": "Gets disk information.",
+      "description": "Gets device storage totals, available space, and usage by Mini Programs, watchfaces, music, and the system. Returns the result synchronously when called without arguments. Starting from API_LEVEL 3.0, pass a callback to query asynchronously; asynchronous queries are recommended.",
       "minApiLevel": 2,
-      "signature": "function getDiskInfo(): Result",
+      "signature": "function getDiskInfo(): Result\nfunction getDiskInfo(callback: Callback): void",
       "shapes": [
         {
           "name": "Result",
@@ -152,13 +220,37 @@
           ]
         }
       ],
+      "declares": [
+        {
+          "name": "Callback",
+          "type": "(diskInfo: Result) =&#62; void",
+          "description": "Callback receiving device storage information when the query completes; capacities are in bytes"
+        }
+      ],
+      "conflicts": [
+        {
+          "field": "description",
+          "claims": [
+            {
+              "value": "Gets device storage totals, available space, and usage by Mini Programs, watchfaces, music, and the system. Returns the result synchronously when called without arguments. Starting from API_LEVEL 3.0, pass a callback to query asynchronously; asynchronous queries are recommended.",
+              "source": "docs-reference",
+              "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDiskInfo.mdx"
+            },
+            {
+              "value": "Gets disk information",
+              "source": "llms",
+              "originalPath": "zeppos-docs/static/llms/@zos-device.md"
+            }
+          ]
+        }
+      ],
       "runtimes": [
         "device-app"
       ],
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/device/getDiskInfo.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/device.SCREEN_SHAPE_ROUND",
@@ -173,7 +265,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-device.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/device.SCREEN_SHAPE_SQUARE",
@@ -188,7 +280,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-device.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     }
   ]
 }

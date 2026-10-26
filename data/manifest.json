@@ -1,22 +1,22 @@
 {
   "version": "0.3.0",
-  "lastSyncAt": "2026-09-22T20:25:03.762Z",
+  "lastSyncAt": "2026-10-26T10:06:02.475Z",
   "sources": {
     "zeppos-docs": {
-      "commit": "c08725b2cfa3398d9e4da9379a2d83abaf3475a6"
+      "commit": "2b7b79e527361077b4f71b2cdf5e521e175d1df1"
     },
     "zeppos-samples": {
       "commit": "7cee748bb774512b0682cec8bb1209a89e02a351"
     }
   },
   "recordCounts": {
-    "docs-reference": 256,
+    "docs-reference": 263,
     "docs-phone-api": 36,
     "docs-watchface": 105,
     "llms": 443,
     "sample": 785,
     "guide": 11,
-    "symbols": 513,
+    "symbols": 520,
     "modules": 50,
     "patterns": 11,
     "devices": 41,

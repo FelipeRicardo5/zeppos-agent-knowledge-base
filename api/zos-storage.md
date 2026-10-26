@@ -26,8 +26,8 @@ Locally stored key-value pairs, data cleared after Mini Program uninstallation. 
 
 | Member | Signature |
 | --- | --- |
-| [`setItem`](#zosstoragelocalstoragesetitem) | `setItem(key: string, value: any): void` |
-| [`getItem`](#zosstoragelocalstoragegetitem) | `getItem<T = any>(key: string, defaultValue?: T): T | undefined` |
+| [`setItem`](#zosstoragelocalstoragesetitem) | `setItem(key: string, value: unknown): void` |
+| [`getItem`](#zosstoragelocalstoragegetitem) | `getItem<T = unknown>(key: string, defaultValue?: T): T | undefined` |
 | [`removeItem`](#zosstoragelocalstorageremoveitem) | `removeItem(key: string): boolean` |
 | [`clear`](#zosstoragelocalstorageclear) | `clear(): void` |
 
@@ -36,7 +36,7 @@ Locally stored key-value pairs, data cleared after Mini Program uninstallation. 
 Save data
 
 ```ts
-setItem(key: string, value: any): void
+setItem(key: string, value: unknown): void
 ```
 
 #### `@zos/storage.localStorage.getItem`
@@ -44,7 +44,7 @@ setItem(key: string, value: any): void
 Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 #### `@zos/storage.localStorage.removeItem`
@@ -77,8 +77,8 @@ Locally stored key-value pairs, data cleared after Mini Program uninstallation.
 
 | Member | Signature |
 | --- | --- |
-| [`setItem`](#zosstoragelocalstorage-instancesetitem) | `setItem(key: string, value: any): void` |
-| [`getItem`](#zosstoragelocalstorage-instancegetitem) | `getItem<T = any>(key: string, defaultValue?: T): T | undefined` |
+| [`setItem`](#zosstoragelocalstorage-instancesetitem) | `setItem(key: string, value: unknown): void` |
+| [`getItem`](#zosstoragelocalstorage-instancegetitem) | `getItem<T = unknown>(key: string, defaultValue?: T): T | undefined` |
 | [`removeItem`](#zosstoragelocalstorage-instanceremoveitem) | `removeItem(key: string): boolean` |
 | [`clear`](#zosstoragelocalstorage-instanceclear) | `clear(): void` |
 
@@ -87,7 +87,7 @@ Locally stored key-value pairs, data cleared after Mini Program uninstallation.
 Save data
 
 ```ts
-setItem(key: string, value: any): void
+setItem(key: string, value: unknown): void
 ```
 
 #### `@zos/storage.localStorage-instance.getItem`
@@ -95,7 +95,7 @@ setItem(key: string, value: any): void
 Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 #### `@zos/storage.localStorage-instance.removeItem`
@@ -122,8 +122,8 @@ Key-value pairs are stored and data is cleared after exiting the Mini Program. E
 
 | Member | Signature |
 | --- | --- |
-| [`setItem`](#zosstoragesessionstoragesetitem) | `setItem(key: string, value: any): void` |
-| [`getItem`](#zosstoragesessionstoragegetitem) | `getItem<T = any>(key: string, defaultValue?: T): T | undefined` |
+| [`setItem`](#zosstoragesessionstoragesetitem) | `setItem(key: string, value: unknown): void` |
+| [`getItem`](#zosstoragesessionstoragegetitem) | `getItem<T = unknown>(key: string, defaultValue?: T): T | undefined` |
 | [`removeItem`](#zosstoragesessionstorageremoveitem) | `removeItem(key: string): boolean` |
 | [`clear`](#zosstoragesessionstorageclear) | `clear(): void` |
 
@@ -132,7 +132,7 @@ Key-value pairs are stored and data is cleared after exiting the Mini Program. E
 Save data
 
 ```ts
-setItem(key: string, value: any): void
+setItem(key: string, value: unknown): void
 ```
 
 #### `@zos/storage.sessionStorage.getItem`
@@ -140,7 +140,7 @@ setItem(key: string, value: any): void
 Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 #### `@zos/storage.sessionStorage.removeItem`
@@ -171,8 +171,8 @@ Key-value pairs are stored and data is cleared after exiting the Mini Program.
 
 | Member | Signature |
 | --- | --- |
-| [`setItem`](#zosstoragesessionstorage-instancesetitem) | `setItem(key: string, value: any): void` |
-| [`getItem`](#zosstoragesessionstorage-instancegetitem) | `getItem<T = any>(key: string, defaultValue?: T): T | undefined` |
+| [`setItem`](#zosstoragesessionstorage-instancesetitem) | `setItem(key: string, value: unknown): void` |
+| [`getItem`](#zosstoragesessionstorage-instancegetitem) | `getItem<T = unknown>(key: string, defaultValue?: T): T | undefined` |
 | [`removeItem`](#zosstoragesessionstorage-instanceremoveitem) | `removeItem(key: string): boolean` |
 | [`clear`](#zosstoragesessionstorage-instanceclear) | `clear(): void` |
 
@@ -181,7 +181,7 @@ Key-value pairs are stored and data is cleared after exiting the Mini Program.
 Save data
 
 ```ts
-setItem(key: string, value: any): void
+setItem(key: string, value: unknown): void
 ```
 
 #### `@zos/storage.sessionStorage-instance.getItem`
@@ -189,7 +189,7 @@ setItem(key: string, value: any): void
 Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 #### `@zos/storage.sessionStorage-instance.removeItem`
@@ -218,8 +218,8 @@ Shared JSON key-value storage for cross-application scenarios. Application A pub
 
 | Member | Signature |
 | --- | --- |
-| [`setItem`](#zosstoragesharelocalstoragesetitem) | `setItem(key: string, value: any): void` |
-| [`getItem`](#zosstoragesharelocalstoragegetitem) | `getItem<T = any>(key: string, defaultValue?: T): T | undefined` |
+| [`setItem`](#zosstoragesharelocalstoragesetitem) | `setItem(key: string, value: unknown): void` |
+| [`getItem`](#zosstoragesharelocalstoragegetitem) | `getItem<T = unknown>(key: string, defaultValue?: T): T | undefined` |
 | [`removeItem`](#zosstoragesharelocalstorageremoveitem) | `removeItem(key: string): boolean` |
 | [`clear`](#zosstoragesharelocalstorageclear) | `clear(): void` |
 
@@ -228,7 +228,7 @@ Shared JSON key-value storage for cross-application scenarios. Application A pub
 Set a value
 
 ```ts
-setItem(key: string, value: any): void
+setItem(key: string, value: unknown): void
 ```
 
 #### `@zos/storage.ShareLocalStorage.getItem`
@@ -236,7 +236,7 @@ setItem(key: string, value: any): void
 Get a value, or return the default value when not found
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 #### `@zos/storage.ShareLocalStorage.removeItem`

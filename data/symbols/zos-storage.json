@@ -12,12 +12,12 @@
         {
           "name": "setItem",
           "description": "Save data",
-          "signature": "setItem(key: string, value: any): void"
+          "signature": "setItem(key: string, value: unknown): void"
         },
         {
           "name": "getItem",
           "description": "Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.",
-          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+          "signature": "getItem<T = unknown>(key: string, defaultValue?: T): T | undefined"
         },
         {
           "name": "removeItem",
@@ -39,7 +39,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/localStorage.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/storage.LocalStorage",
@@ -54,7 +54,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-storage.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/storage.localStorage-instance",
@@ -67,12 +67,12 @@
         {
           "name": "setItem",
           "description": "Save data",
-          "signature": "setItem(key: string, value: any): void"
+          "signature": "setItem(key: string, value: unknown): void"
         },
         {
           "name": "getItem",
           "description": "Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.",
-          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+          "signature": "getItem<T = unknown>(key: string, defaultValue?: T): T | undefined"
         },
         {
           "name": "removeItem",
@@ -94,7 +94,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/localStorage-instance.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/storage.sessionStorage",
@@ -107,12 +107,12 @@
         {
           "name": "setItem",
           "description": "Save data",
-          "signature": "setItem(key: string, value: any): void"
+          "signature": "setItem(key: string, value: unknown): void"
         },
         {
           "name": "getItem",
           "description": "Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.",
-          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+          "signature": "getItem<T = unknown>(key: string, defaultValue?: T): T | undefined"
         },
         {
           "name": "removeItem",
@@ -131,7 +131,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/sessionStorage.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/storage.SessionStorage",
@@ -146,7 +146,7 @@
       "source": "llms",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/static/llms/@zos-storage.md",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/storage.sessionStorage-instance",
@@ -159,12 +159,12 @@
         {
           "name": "setItem",
           "description": "Save data",
-          "signature": "setItem(key: string, value: any): void"
+          "signature": "setItem(key: string, value: unknown): void"
         },
         {
           "name": "getItem",
           "description": "Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.",
-          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+          "signature": "getItem<T = unknown>(key: string, defaultValue?: T): T | undefined"
         },
         {
           "name": "removeItem",
@@ -183,7 +183,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/sessionStorage-instance.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/storage.ShareLocalStorage",
@@ -196,12 +196,12 @@
         {
           "name": "setItem",
           "description": "Set a value",
-          "signature": "setItem(key: string, value: any): void"
+          "signature": "setItem(key: string, value: unknown): void"
         },
         {
           "name": "getItem",
           "description": "Get a value, or return the default value when not found",
-          "signature": "getItem<T = any>(key: string, defaultValue?: T): T | undefined"
+          "signature": "getItem<T = unknown>(key: string, defaultValue?: T): T | undefined"
         },
         {
           "name": "removeItem",
@@ -223,7 +223,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/ShareLocalStorage.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/storage.ShareTypedStorage",
@@ -305,7 +305,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/ShareTypedStorage.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/storage.TypedStorage",
@@ -387,7 +387,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/storage/TypedStorage.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     }
   ]
 }

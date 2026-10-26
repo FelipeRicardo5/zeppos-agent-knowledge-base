@@ -1,6 +1,6 @@
 # @zos/device — compatibility
 
-**4 of 4 symbols state a minimum API_LEVEL**
+**5 of 5 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 
@@ -8,3 +8,7 @@
 - `@zos/device.getDiskInfo`
 - `@zos/device.SCREEN_SHAPE_ROUND`
 - `@zos/device.SCREEN_SHAPE_SQUARE`
+
+## API_LEVEL 5
+
+- `@zos/device.getDataDiskInfo`

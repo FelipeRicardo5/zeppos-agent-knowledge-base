@@ -42,7 +42,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/assets.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/utils.bufferToString",
@@ -70,7 +70,96 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/bufferToString.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
+    },
+    {
+      "id": "@zos/utils.bufferToValue",
+      "module": "@zos/utils",
+      "symbol": "bufferToValue",
+      "type": "function",
+      "description": "Restores a JS value from an `ArrayBuffer` produced by `valueToBuffer`, using a stable, reliable, and efficient method built into the JS engine.",
+      "minApiLevel": 5,
+      "signature": "function bufferToValue(buffer: InputBuffer): Result",
+      "declares": [
+        {
+          "name": "InputBuffer",
+          "type": "ArrayBuffer",
+          "description": "The ArrayBuffer to be converted"
+        },
+        {
+          "name": "Result",
+          "type": "unknown",
+          "description": "The converted JS value"
+        }
+      ],
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/bufferToValue.mdx",
+      "extractedAt": "2026-10-26"
+    },
+    {
+      "id": "@zos/utils.cborDecode",
+      "module": "@zos/utils",
+      "symbol": "cborDecode",
+      "type": "function",
+      "description": "Decodes a CBOR `ArrayBuffer` to a JS value.",
+      "minApiLevel": 5,
+      "signature": "function cborDecode(buffer: InputBuffer): Result",
+      "declares": [
+        {
+          "name": "InputBuffer",
+          "type": "ArrayBuffer",
+          "description": "The CBOR ArrayBuffer to decode"
+        },
+        {
+          "name": "Result",
+          "type": "unknown",
+          "description": "The decoded JS value"
+        }
+      ],
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/cborDecode.mdx",
+      "extractedAt": "2026-10-26"
+    },
+    {
+      "id": "@zos/utils.cborEncode",
+      "module": "@zos/utils",
+      "symbol": "cborEncode",
+      "type": "function",
+      "description": "Encodes a JS value to a CBOR `ArrayBuffer` for data exchange that requires CBOR. For application-local persistence, prefer `valueToBuffer`, a stable, reliable, and efficient method built into the JS engine that requires no buffer size estimate.",
+      "minApiLevel": 5,
+      "signature": "function cborEncode(value: InputValue, estimatedSize?: EstimatedSize): Result",
+      "declares": [
+        {
+          "name": "InputValue",
+          "type": "unknown",
+          "description": "The JS value to encode"
+        },
+        {
+          "name": "EstimatedSize",
+          "type": "number",
+          "description": "Estimated encoded binary size in bytes. Optional; the native default is 2 KB (2048 bytes), with a maximum of 32 KB (32768 bytes). The estimate should cover the encoded size without being excessively large; a poor estimate can affect performance"
+        },
+        {
+          "name": "Result",
+          "type": "ArrayBuffer",
+          "description": "The CBOR-encoded ArrayBuffer"
+        }
+      ],
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/cborEncode.mdx",
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/utils.EventBus",
@@ -117,7 +206,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/EventBus.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/utils.log",
@@ -165,7 +254,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/log.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/utils.px",
@@ -194,7 +283,7 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/px.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
     },
     {
       "id": "@zos/utils.stringToBuffer",
@@ -222,7 +311,35 @@
       "source": "docs-reference",
       "confidence": "OFFICIAL",
       "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/stringToBuffer.mdx",
-      "extractedAt": "2026-09-22"
+      "extractedAt": "2026-10-26"
+    },
+    {
+      "id": "@zos/utils.valueToBuffer",
+      "module": "@zos/utils",
+      "symbol": "valueToBuffer",
+      "type": "function",
+      "description": "Serializes a JS value to an `ArrayBuffer` using a stable, reliable, and efficient method built into the JS engine. Recommended for application-local persistence; no buffer size estimate is needed.",
+      "minApiLevel": 5,
+      "signature": "function valueToBuffer(value: InputValue): Result",
+      "declares": [
+        {
+          "name": "InputValue",
+          "type": "unknown",
+          "description": "The JS value to be converted"
+        },
+        {
+          "name": "Result",
+          "type": "ArrayBuffer",
+          "description": "The converted ArrayBuffer"
+        }
+      ],
+      "runtimes": [
+        "device-app"
+      ],
+      "source": "docs-reference",
+      "confidence": "OFFICIAL",
+      "originalPath": "zeppos-docs/docs/reference/device-app-api/newAPI/utils/valueToBuffer.mdx",
+      "extractedAt": "2026-10-26"
     }
   ]
 }

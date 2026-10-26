@@ -1,15 +1,19 @@
 # @zos/utils
 
-**6 symbols**
+**10 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
 | `assets` | function | >= 2 | OFFICIAL |
 | `bufferToString` | function | >= 4 | OFFICIAL |
+| `bufferToValue` | function | >= 5 | OFFICIAL |
+| `cborDecode` | function | >= 5 | OFFICIAL |
+| `cborEncode` | function | >= 5 | OFFICIAL |
 | `EventBus` | value | >= 2 | OFFICIAL |
 | `log` | value | >= 2 | OFFICIAL |
 | `px` | function | >= 2 | OFFICIAL |
 | `stringToBuffer` | function | >= 4 | OFFICIAL |
+| `valueToBuffer` | function | >= 5 | OFFICIAL |
 
 ## Symbols in detail
 
@@ -45,6 +49,52 @@ function bufferToString(buffer: InputBuffer): Result
 | --- | --- | --- |
 | `InputBuffer` | `ArrayBuffer` | The ArrayBuffer to be converted |
 | `Result` | `string` | **returned** — The converted string |
+
+### `@zos/utils.bufferToValue`
+
+Restores a JS value from an `ArrayBuffer` produced by `valueToBuffer`, using a stable, reliable, and efficient method built into the JS engine.
+
+```ts
+function bufferToValue(buffer: InputBuffer): Result
+```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `InputBuffer` | `ArrayBuffer` | The ArrayBuffer to be converted |
+| `Result` | `unknown` | **returned** — The converted JS value |
+
+### `@zos/utils.cborDecode`
+
+Decodes a CBOR `ArrayBuffer` to a JS value.
+
+```ts
+function cborDecode(buffer: InputBuffer): Result
+```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `InputBuffer` | `ArrayBuffer` | The CBOR ArrayBuffer to decode |
+| `Result` | `unknown` | **returned** — The decoded JS value |
+
+### `@zos/utils.cborEncode`
+
+Encodes a JS value to a CBOR `ArrayBuffer` for data exchange that requires CBOR. For application-local persistence, prefer `valueToBuffer`, a stable, reliable, and efficient method built into the JS engine that requires no buffer size estimate.
+
+```ts
+function cborEncode(value: InputValue, estimatedSize?: EstimatedSize): Result
+```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `InputValue` | `unknown` | The JS value to encode |
+| `EstimatedSize` | `number` | Estimated encoded binary size in bytes. Optional; the native default is 2 KB (2048 bytes), with a maximum of 32 KB (32768 bytes). The estimate should cover the encoded size without being excessively large; a poor estimate can affect performance |
+| `Result` | `ArrayBuffer` | **returned** — The CBOR-encoded ArrayBuffer |
 
 ### `@zos/utils.EventBus`
 
@@ -200,4 +250,19 @@ function stringToBuffer(str: InputString): Result
 | Name | Type | Notes |
 | --- | --- | --- |
 | `InputString` | `string` | The string to be converted |
+| `Result` | `ArrayBuffer` | **returned** — The converted ArrayBuffer |
+
+### `@zos/utils.valueToBuffer`
+
+Serializes a JS value to an `ArrayBuffer` using a stable, reliable, and efficient method built into the JS engine. Recommended for application-local persistence; no buffer size estimate is needed.
+
+```ts
+function valueToBuffer(value: InputValue): Result
+```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `InputValue` | `unknown` | The JS value to be converted |
 | `Result` | `ArrayBuffer` | **returned** — The converted ArrayBuffer |

@@ -1,6 +1,6 @@
 # @zos/utils — compatibility
 
-**6 of 6 symbols state a minimum API_LEVEL**
+**10 of 10 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 
@@ -13,3 +13,10 @@
 
 - `@zos/utils.bufferToString`
 - `@zos/utils.stringToBuffer`
+
+## API_LEVEL 5
+
+- `@zos/utils.bufferToValue`
+- `@zos/utils.cborDecode`
+- `@zos/utils.cborEncode`
+- `@zos/utils.valueToBuffer`

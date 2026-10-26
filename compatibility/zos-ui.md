@@ -1,6 +1,6 @@
 # @zos/ui — compatibility
 
-**61 of 74 symbols state a minimum API_LEVEL**
+**62 of 75 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 2
 
@@ -80,6 +80,10 @@
 ## API_LEVEL 4.2
 
 - `@zos/ui.keyboard`
+
+## API_LEVEL 5
+
+- `@zos/ui.LIST_VIEW`
 
 ## No stated API_LEVEL
 

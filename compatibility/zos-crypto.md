@@ -1,10 +1,14 @@
 # @zos/crypto — compatibility
 
-**1 of 7 symbols state a minimum API_LEVEL**
+**2 of 8 symbols state a minimum API_LEVEL**
 
 ## API_LEVEL 3
 
 - `@zos/crypto.encryptKey`
+
+## API_LEVEL 5
+
+- `@zos/crypto.getRandomValues`
 
 ## No stated API_LEVEL
 

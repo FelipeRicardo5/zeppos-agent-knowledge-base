@@ -1,6 +1,6 @@
 # Device App — runtime
 
-**375 symbols across 31 modules.**
+**382 symbols across 31 modules.**
 
 A symbol is attributed to a runtime by the source path it was extracted from,
 not by any statement in its own text. Absence is *not covered*, not *invalid here*.
@@ -9,12 +9,12 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 
 | Axis | Symbols stating it |
 | --- | --- |
-| Minimum `API_LEVEL` | 353 of 375 |
-| Call signature | 165 of 375 |
-| Instance members | 46 of 375 |
-| Permission | 35 of 375 |
+| Minimum `API_LEVEL` | 360 of 382 |
+| Call signature | 171 of 382 |
+| Instance members | 46 of 382 |
+| Permission | 36 of 382 |
 
-**35 of 375 symbols state a permission** `app.json` must declare. Absence on the rest is *not documented*, not *not needed* — see [`../manifest/index.md`](../manifest/index.md).
+**36 of 382 symbols state a permission** `app.json` must declare. Absence on the rest is *not documented*, not *not needed* — see [`../manifest/index.md`](../manifest/index.md).
 
 ## `@zeppos/zml/2.0/module/messaging/plugin/app`
 
@@ -157,11 +157,13 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `ECDSACrypto` | not stated | — |
 | `ecp_dp` | not stated | — |
 | `encryptKey` | >= 3 | — |
+| `getRandomValues` | >= 5 | — |
 
 ## `@zos/device`
 
 | Symbol | Min API_LEVEL | Also valid in |
 | --- | --- | --- |
+| `getDataDiskInfo` | >= 5 | — |
 | `getDeviceInfo` | >= 2 | — |
 | `getDiskInfo` | >= 2 | — |
 | `SCREEN_SHAPE_ROUND` | >= 2 | — |
@@ -490,6 +492,7 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | `inputType` | not stated | — |
 | `keyboard` | >= 4.2 | — |
 | `KEYBOARD` | >= 3 | — |
+| `LIST_VIEW` | >= 5 | — |
 | `openInspector` | >= 4 | — |
 | `PAGE_INDICATOR` | >= 2.1 | — |
 | `PAGE_SCROLLBAR` | >= 3 | — |
@@ -541,7 +544,11 @@ not by any statement in its own text. Absence is *not covered*, not *invalid her
 | --- | --- | --- |
 | `assets` | >= 2 | — |
 | `bufferToString` | >= 4 | — |
+| `bufferToValue` | >= 5 | — |
+| `cborDecode` | >= 5 | — |
+| `cborEncode` | >= 5 | — |
 | `EventBus` | >= 2 | — |
 | `log` | >= 2 | Watchface |
 | `px` | >= 2 | Workout Extension |
 | `stringToBuffer` | >= 4 | — |
+| `valueToBuffer` | >= 5 | — |

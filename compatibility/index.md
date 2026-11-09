@@ -84,6 +84,15 @@ Reached by 14 of 29 devices with a stated level — highest first: Amazfit Balan
 
 - `@zos/ui` — 1 symbols ([zos-ui.md](zos-ui.md))
 
+## API_LEVEL 5
+
+**No device in the device list reaches this level.**
+
+- `@zos/crypto` — 1 symbols ([zos-crypto.md](zos-crypto.md))
+- `@zos/device` — 1 symbols ([zos-device.md](zos-device.md))
+- `@zos/ui` — 1 symbols ([zos-ui.md](zos-ui.md))
+- `@zos/utils` — 4 symbols ([zos-utils.md](zos-utils.md))
+
 ## No stated API_LEVEL
 
 Symbols no source states a minimum for. Absence means *not stated*, not *any* level.

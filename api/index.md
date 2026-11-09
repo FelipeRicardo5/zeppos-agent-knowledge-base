@@ -1,6 +1,6 @@
 # API index
 
-**50 modules, 513 symbols**
+**50 modules, 520 symbols**
 
 | Module | Symbols | With stated API_LEVEL | Page |
 | --- | --- | --- | --- |
@@ -19,8 +19,8 @@
 | `@zos/app-service` | 4 | 4 | [zos-app-service.md](zos-app-service.md) |
 | `@zos/ble` | 30 | 30 | [zos-ble.md](zos-ble.md) |
 | `@zos/ble/TransferFile` | 1 | 1 | [zos-ble-TransferFile.md](zos-ble-TransferFile.md) |
-| `@zos/crypto` | 7 | 1 | [zos-crypto.md](zos-crypto.md) |
-| `@zos/device` | 4 | 4 | [zos-device.md](zos-device.md) |
+| `@zos/crypto` | 8 | 2 | [zos-crypto.md](zos-crypto.md) |
+| `@zos/device` | 5 | 5 | [zos-device.md](zos-device.md) |
 | `@zos/display` | 13 | 13 | [zos-display.md](zos-display.md) |
 | `@zos/fs` | 20 | 20 | [zos-fs.md](zos-fs.md) |
 | `@zos/global` | 14 | 14 | [zos-global.md](zos-global.md) |
@@ -35,9 +35,9 @@
 | `@zos/share-storage` | 3 | 3 | [zos-share-storage.md](zos-share-storage.md) |
 | `@zos/storage` | 9 | 9 | [zos-storage.md](zos-storage.md) |
 | `@zos/timer` | 2 | 2 | [zos-timer.md](zos-timer.md) |
-| `@zos/ui` | 74 | 61 | [zos-ui.md](zos-ui.md) |
+| `@zos/ui` | 75 | 62 | [zos-ui.md](zos-ui.md) |
 | `@zos/user` | 5 | 5 | [zos-user.md](zos-user.md) |
-| `@zos/utils` | 6 | 6 | [zos-utils.md](zos-utils.md) |
+| `@zos/utils` | 10 | 10 | [zos-utils.md](zos-utils.md) |
 | `download-file` | 1 | 0 | [download-file.md](download-file.md) |
 | `fetch` | 1 | 0 | [fetch.md](fetch.md) |
 | `global` | 1 | 0 | [global.md](global.md) |

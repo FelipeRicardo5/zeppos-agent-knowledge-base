@@ -1,6 +1,6 @@
 # @zos/ui
 
-**74 symbols**
+**75 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
@@ -43,6 +43,7 @@
 | `inputType` | constant | not stated | OFFICIAL |
 | `keyboard` | value | >= 4.2 | OFFICIAL |
 | `KEYBOARD` | value | >= 3 | OFFICIAL |
+| `LIST_VIEW` | value | >= 5 | OFFICIAL |
 | `openInspector` | function | >= 4 | OFFICIAL |
 | `PAGE_INDICATOR` | value | >= 2.1 | OFFICIAL |
 | `PAGE_SCROLLBAR` | value | >= 3 | OFFICIAL |
@@ -1025,6 +1026,26 @@ The keyboard API provides rich input interface capabilities, greatly simplifying
 | `color` | `number` | no | — | Text color |
 | `show` | `boolean` | no | — | Text showon |
 
+### `@zos/ui.LIST_VIEW`
+
+`LIST_VIEW` uses [`GROUP`](./GROUP.mdx) widgets as list items. Create non-container widgets such as text, images, buttons, slide switches, and image animations directly in each item. Use it for task and settings lists with controls inside each row. Compared with the template and data-array model of [`SCROLL_LIST`](./SCROLL_LIST.mdx), `LIST_VIEW` provides these capabilities: - Compose items directly with `createWidget()`, without first defining text and image templates in `item_config`. - Place `BUTTON`, `SLIDE_SWITCH`, and other widgets inside a row and handle interaction through their own callbacks. - Keep child widget instances and use `setProperty()` to update content within an individual row. `SCROLL_LIST` remains suitable for lists mainly displaying text and images. `LIST_VIEW` makes it easier to create and operate independent buttons, switches, and other widget combinations within each row.
+
+**Param**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `x` | `number` | yes | — | Widget x-coordinate |
+| `y` | `number` | yes | — | Widget y-coordinate |
+| `w` | `number` | yes | — | Viewport width |
+| `h` | `number` | yes | — | Viewport height |
+| `item_space` | `number` | no | — | Spacing between items |
+| `snap_type` | `number` | no | — | Snap mode, corresponding to the SCROLL_LIST snap_type configuration |
+| `enable_scroll_bar` | `boolean` | no | — | Whether to create an arc scrollbar |
+| `item_click_func` | `function` | no | — | Click callback for the top-level GROUP of a list item |
+| `item_enable_horizon_drag` | `boolean` | no | — | Whether items can be dragged horizontally |
+| `item_drag_max_distance` | `number` | no | — | Maximum horizontal drag offset |
+| `pos_y` | `number` | no | — | Initial vertical scroll offset |
+
 ### `@zos/ui.openInspector`
 
 During development, especially when using Flex layout, you may need to check the actual layout position and size of each widget. Using `openInspector()` can visually display the boundaries of all widgets participating in layout in the simulator, helping developers debug layout issues. Used in the simulator to draw boundary rectangles for all widgets participating in layout, helping developers debug layout issues. This method should be called after the `build()` lifecycle.
@@ -1638,6 +1659,13 @@ Text widget for displaying text. Support setting text size, color, alignment, fo
 | `end_angle` | `number` | no | — | Arc layout ending angle (start_angle < end_angle) |
 | `mode` | `number` | no | — | Arc layout mode, default 0<br/>0: inner<br/>1: outer |
 | `radius` | `number` | no | — | Controls the arc layout radius, defaults to half of the widget's width and height |
+
+**getCursorPos**
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `x` | `number` | not stated | — | Horizontal offset relative to the text widget |
+| `y` | `number` | not stated | — | Vertical offset relative to the text widget |
 
 ### `@zos/ui.text_style`
 

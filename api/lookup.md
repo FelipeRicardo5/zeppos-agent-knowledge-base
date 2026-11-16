@@ -6,7 +6,7 @@ function, a property set on a widget. Every other index in this base is
 keyed by module, `API_LEVEL` or runtime — by where a thing sits rather than
 by what it is called.
 
-**1371 names**, 2678 entries: 406 enum values, 257 members, 1501 properties, 514 symbols. 492 names have more than one owner.
+**1379 names**, 2703 entries: 406 enum values, 257 members, 1519 properties, 521 symbols. 497 names have more than one owner.
 
 **A name with several owners is not a duplicate.** 12 sensors document a
 `getCurrent` and they return 12 different shapes; `CENTER_H` belongs to
@@ -200,6 +200,7 @@ answer, since it is a position prop on every widget.
 | `buffer` | property | `@zos/fs.writeSync -> Option.buffer` | device-app | >= 2 | [zos-fs](zos-fs.md#zosfswritesync) |
 | `Buffer` | symbol | `@zos/global.Buffer` | device-app | >= 2 | [zos-global](zos-global.md#zosglobalbuffer) |
 | `bufferToString` | symbol | `@zos/utils.bufferToString` | device-app | >= 4 | [zos-utils](zos-utils.md#zosutilsbuffertostring) |
+| `bufferToValue` | symbol | `@zos/utils.bufferToValue` | device-app | >= 5 | [zos-utils](zos-utils.md#zosutilsbuffertovalue) |
 | `build` | property | `@zos/global.AppWidget -> Option.build` | device-app | >= 2 | [zos-global](zos-global.md#zosglobalappwidget) |
 | `build` | property | `@zos/global.DataWidget -> Option.build` | device-app | >= 3.6 | [zos-global](zos-global.md#zosglobaldatawidget) |
 | `build` | property | `@zos/global.Page -> Option.build` | device-app | >= 2 | [zos-global](zos-global.md#zosglobalpage) |
@@ -243,6 +244,8 @@ answer, since it is a position prop on every widget.
 | `CANVAS` | symbol | `@zos/ui.CANVAS` | device-app | >= 3 | [zos-ui](zos-ui.md#zosuicanvas) |
 | `capsuleButton` | property | `@zos/interaction.createModal -> Option.capsuleButton` | device-app | >= 2 | [zos-interaction](zos-interaction.md#zosinteractioncreatemodal) |
 | `category` | property | `@zos/ui.SPORT_DATA -> Param.category` | device-app | >= 3.6 | [zos-ui](zos-ui.md#zosuisport_data) |
+| `cborDecode` | symbol | `@zos/utils.cborDecode` | device-app | >= 5 | [zos-utils](zos-utils.md#zosutilscbordecode) |
+| `cborEncode` | symbol | `@zos/utils.cborEncode` | device-app | >= 5 | [zos-utils](zos-utils.md#zosutilscborencode) |
 | `CENTER_H` | enum value | `align.CENTER_H` | device-app, workout-extension | not stated | [zos-ui](zos-ui.md#zosuialign) |
 | `CENTER_H` | enum value | `align.CENTER_H` | watchface | not stated | [hmUI](hmUI.md#hmuialign) |
 | `CENTER_V` | enum value | `align.CENTER_V` | device-app, workout-extension | not stated | [zos-ui](zos-ui.md#zosuialign) |
@@ -572,6 +575,7 @@ answer, since it is a position prop on every widget.
 | `emit` | member | `@zos/utils.EventBus.emit()` | device-app | >= 2 | [zos-utils](zos-utils.md#zosutilseventbus) |
 | `emitCustomSystemEvent` | symbol | `@zos/app.emitCustomSystemEvent` | device-app | >= 3 | [zos-app](zos-app.md#zosappemitcustomsystemevent) |
 | `EMOJI` | enum value | `inputType.EMOJI` | device-app | not stated | [zos-ui](zos-ui.md#zosuiinputtype) |
+| `enable_scroll_bar` | property | `@zos/ui.LIST_VIEW -> Param.enable_scroll_bar` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `enable_scroll_bar` | property | `@zos/ui.SCROLL_LIST -> Param.enable_scroll_bar` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `encoding` | property | `@zos/fs.readFileSync -> Options.encoding` | device-app | >= 2 | [zos-fs](zos-fs.md#zosfsreadfilesync) |
 | `encoding` | property | `@zos/fs.writeFileSync -> Options.encoding` | device-app | >= 2 | [zos-fs](zos-fs.md#zosfswritefilesync) |
@@ -665,6 +669,7 @@ answer, since it is a position prop on every widget.
 | `forecastData` | property | `hmSensor.id.WEATHER -> ForecastWeather.forecastData` | watchface | not stated | [hmSensor.id](hmSensor.id.md#hmsensoridweather) |
 | `format` | property | `@zos/sensor.Geolocation.getLatitude -> Option.format` | device-app | >= 2.1 | [zos-sensor](zos-sensor.md#zossensorgeolocation) |
 | `format` | property | `@zos/sensor.Geolocation.getLongitude -> Option.format` | device-app | >= 2.1 | [zos-sensor](zos-sensor.md#zossensorgeolocation) |
+| `free` | property | `@zos/device.getDataDiskInfo -> SuccessResult.free` | device-app | >= 5 | [zos-device](zos-device.md#zosdevicegetdatadiskinfo) |
 | `free` | property | `@zos/device.getDiskInfo -> Result.free` | device-app | >= 2 | [zos-device](zos-device.md#zosdevicegetdiskinfo) |
 | `free` | property | `hmSetting.getDiskInfo -> diskInfo.free` | watchface | not stated | [hmSetting](hmSetting.md#hmsettinggetdiskinfo) |
 | `FREE_TRAINING` | enum value | `data_type.FREE_TRAINING` | watchface | not stated | [hmUI](hmUI.md#hmuidata_type) |
@@ -742,6 +747,7 @@ answer, since it is a position prop on every widget.
 | `getCurrent` | member | `@zos/sensor.Stress.getCurrent()` | device-app | >= 2 | [zos-sensor](zos-sensor.md#zossensorstress) |
 | `getCurrentPage` | symbol | `@zos/global.getCurrentPage` | device-app | >= 2 | [zos-global](zos-global.md#zosglobalgetcurrentpage) |
 | `getDailySummary` | member | `@zos/sensor.HeartRate.getDailySummary()` | device-app | >= 2 | [zos-sensor](zos-sensor.md#zossensorheartrate) |
+| `getDataDiskInfo` | symbol | `@zos/device.getDataDiskInfo` | device-app | >= 5 | [zos-device](zos-device.md#zosdevicegetdatadiskinfo) |
 | `getDate` | member | `@zos/sensor.Time.getDate()` | device-app, workout-extension | >= 2 | [zos-sensor](zos-sensor.md#zossensortime) |
 | `getDateFormat` | symbol | `@zos/settings.getDateFormat` | device-app | >= 2 | [zos-settings](zos-settings.md#zossettingsgetdateformat) |
 | `getDateFormat` | symbol | `hmSetting.getDateFormat` | watchface | not stated | [hmSetting](hmSetting.md#hmsettinggetdateformat) |
@@ -819,6 +825,7 @@ answer, since it is a position prop on every widget.
 | `getProfile` | symbol | `@zos/user.getProfile` | device-app | >= 2 | [zos-user](zos-user.md#zosusergetprofile) |
 | `getProperty` | symbol | `@zos/ui.getProperty` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuigetproperty) |
 | `getProperty` | symbol | `hmUI.getProperty` | watchface | not stated | [hmUI](hmUI.md#hmuigetproperty) |
+| `getRandomValues` | symbol | `@zos/crypto.getRandomValues` | device-app | >= 5 | [zos-crypto](zos-crypto.md#zoscryptogetrandomvalues) |
 | `getResting` | member | `@zos/sensor.HeartRate.getResting()` | device-app | >= 2 | [zos-sensor](zos-sensor.md#zossensorheartrate) |
 | `getRtlLayout` | symbol | `@zos/ui.getRtlLayout` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuigetrtllayout) |
 | `getScene` | symbol | `@zos/app.getScene` | device-app, watchface | >= 2 | [zos-app](zos-app.md#zosappgetscene) |
@@ -907,6 +914,7 @@ answer, since it is a position prop on every widget.
 | `h` | property | `@zos/ui.HISTOGRAM -> XText.h` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
 | `h` | property | `@zos/ui.HISTOGRAM -> yText.h` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
 | `h` | property | `@zos/ui.IMG -> Param.h` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiimg) |
+| `h` | property | `@zos/ui.LIST_VIEW -> Param.h` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `h` | property | `@zos/ui.PAGE_INDICATOR -> Param.h` | device-app | >= 2.1 | [zos-ui](zos-ui.md#zosuipage_indicator) |
 | `h` | property | `@zos/ui.QRCODE -> Param.h` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiqrcode) |
 | `h` | property | `@zos/ui.RADIO_GROUP -> radioGroupParam.h` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiradio_group) |
@@ -1055,6 +1063,8 @@ answer, since it is a position prop on every widget.
 | `isFocus` | property | `@zos/ui.CYCLE_IMAGE_TEXT_LIST -> ItemFocusChangeFunc.isFocus` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuicycle_image_text_list) |
 | `isFocus` | property | `@zos/ui.CYCLE_LIST -> ItemFocusChangeFunc.isFocus` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuicycle_list) |
 | `isPlaying` | property | `hmSensor.id.MUSIC -> music.isPlaying` | watchface | not stated | [hmSensor.id](hmSensor.id.md#hmsensoridmusic) |
+| `isSuccess` | property | `@zos/device.getDataDiskInfo -> SuccessResult.isSuccess` | device-app | >= 5 | [zos-device](zos-device.md#zosdevicegetdatadiskinfo) |
+| `isSuccess` | property | `@zos/device.getDataDiskInfo -> FailResult.isSuccess` | device-app | >= 5 | [zos-device](zos-device.md#zosdevicegetdatadiskinfo) |
 | `isYaw` | property | `@zos/sensor.Workout.getWorkoutTrackNavInfo -> WorkoutTrackNavInfo.isYaw` | device-app | >= 3 | [zos-sensor](zos-sensor.md#zossensorworkout) |
 | `italic` | property | `ui.Text -> Props.italic` | settings | not stated | [ui](ui.md#uitext) |
 | `item_alpha` | property | `@zos/ui.HISTOGRAM -> Param.item_alpha` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
@@ -1064,12 +1074,15 @@ answer, since it is a position prop on every widget.
 | `item_bg_radius` | property | `@zos/ui.SCROLL_LIST -> ItemConfig.item_bg_radius` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `item_click_func` | property | `@zos/ui.CYCLE_IMAGE_TEXT_LIST -> Param.item_click_func` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuicycle_image_text_list) |
 | `item_click_func` | property | `@zos/ui.CYCLE_LIST -> Param.item_click_func` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuicycle_list) |
+| `item_click_func` | property | `@zos/ui.LIST_VIEW -> Param.item_click_func` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `item_click_func` | property | `@zos/ui.SCROLL_LIST -> Param.item_click_func` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `item_color` | property | `@zos/ui.HISTOGRAM -> Param.item_color` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
 | `item_common_focus` | property | `@zos/ui.SCROLL_LIST -> Param.item_common_focus` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `item_config` | property | `@zos/ui.SCROLL_LIST -> Param.item_config` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `item_config_count` | property | `@zos/ui.SCROLL_LIST -> Param.item_config_count` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
+| `item_drag_max_distance` | property | `@zos/ui.LIST_VIEW -> Param.item_drag_max_distance` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `item_drag_max_distance` | property | `@zos/ui.SCROLL_LIST -> Param.item_drag_max_distance` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
+| `item_enable_horizon_drag` | property | `@zos/ui.LIST_VIEW -> Param.item_enable_horizon_drag` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `item_enable_horizon_drag` | property | `@zos/ui.SCROLL_LIST -> Param.item_enable_horizon_drag` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `item_focus_change_func` | property | `@zos/ui.CYCLE_IMAGE_TEXT_LIST -> Param.item_focus_change_func` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuicycle_image_text_list) |
 | `item_focus_change_func` | property | `@zos/ui.CYCLE_LIST -> Param.item_focus_change_func` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuicycle_list) |
@@ -1085,6 +1098,7 @@ answer, since it is a position prop on every widget.
 | `item_max_height` | property | `@zos/ui.HISTOGRAM -> Param.item_max_height` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
 | `item_radius` | property | `@zos/ui.HISTOGRAM -> Param.item_radius` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
 | `item_space` | property | `@zos/ui.HISTOGRAM -> Param.item_space` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
+| `item_space` | property | `@zos/ui.LIST_VIEW -> Param.item_space` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `item_space` | property | `@zos/ui.SCROLL_LIST -> Param.item_space` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `item_start_y` | property | `@zos/ui.HISTOGRAM -> Param.item_start_y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
 | `item_text_align_h` | property | `@zos/ui.CYCLE_IMAGE_TEXT_LIST -> Param.item_text_align_h` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuicycle_image_text_list) |
@@ -1205,6 +1219,7 @@ answer, since it is a position prop on every widget.
 | `list` | property | `@zos/ui.SCROLL_LIST -> ItemClickFunc.list` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `list` | property | `@zos/ui.SCROLL_LIST -> ItemFocusChangeFunc.list` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `LIST_TOP` | enum value | `prop.LIST_TOP` | device-app, workout-extension | not stated | [zos-ui](zos-ui.md#zosuiprop) |
+| `LIST_VIEW` | symbol | `@zos/ui.LIST_VIEW` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `loadedSize` | property | `@zos/ble/TransferFile.TransferFile.getInbox -> ProgressEventData.loadedSize` | device-app | >= 3 | [zos-ble-TransferFile](zos-ble-TransferFile.md#zosbletransferfiletransferfile) |
 | `localStorage` | symbol | `@zos/storage.localStorage` | device-app | >= 3 | [zos-storage](zos-storage.md#zosstoragelocalstorage) |
 | `LocalStorage` | symbol | `@zos/share-storage.LocalStorage` | device-app | >= 3 | [zos-share-storage](zos-share-storage.md#zosshare-storagelocalstorage) |
@@ -1581,6 +1596,7 @@ answer, since it is a position prop on every widget.
 | `pos_x` | property | `hmUI.widget.IMG -> Param.pos_x` | watchface | not stated | [hmUI.widget](hmUI.widget.md#hmuiwidgetimg) |
 | `pos_y` | property | `@zos/ui.FILL_RECT -> Param.pos_y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuifill_rect) |
 | `pos_y` | property | `@zos/ui.IMG -> Param.pos_y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiimg) |
+| `pos_y` | property | `@zos/ui.LIST_VIEW -> Param.pos_y` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `pos_y` | property | `@zos/ui.STROKE_RECT -> Param.pos_y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuistroke_rect) |
 | `pos_y` | property | `@zos/ui.VIEW_CONTAINER -> Param.pos_y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiview_container) |
 | `pos_y` | property | `hmUI.widget.IMG -> Param.pos_y` | watchface | not stated | [hmUI.widget](hmUI.widget.md#hmuiwidgetimg) |
@@ -1932,6 +1948,7 @@ answer, since it is a position prop on every widget.
 | `Slider` | symbol | `ui.Slider` | settings | not stated | [ui](ui.md#uislider) |
 | `slideSwitch` | property | `@zos/ui.SLIDE_SWITCH -> CheckedChangeFunc.slideSwitch` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuislide_switch) |
 | `snap_to_center` | property | `@zos/ui.SCROLL_LIST -> Param.snap_to_center` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
+| `snap_type` | property | `@zos/ui.LIST_VIEW -> Param.snap_type` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `snap_type` | property | `@zos/ui.SCROLL_LIST -> Param.snap_type` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiscroll_list) |
 | `snr` | property | `@zos/sensor.Geolocation.onGnssChange -> Satellite.snr` | device-app | >= 2.1 | [zos-sensor](zos-sensor.md#zossensorgeolocation) |
 | `solar_festival` | property | `hmSensor.id.TIME -> time.solar_festival` | watchface | not stated | [hmSensor.id](hmSensor.id.md#hmsensoridtime) |
@@ -2336,6 +2353,7 @@ answer, since it is a position prop on every widget.
 | `TOP` | enum value | `align.TOP` | watchface | not stated | [hmUI](hmUI.md#hmuialign) |
 | `top4_cn_val` | property | `@zos/sensor.Geolocation.onGnssChange -> Info.top4_cn_val` | device-app | >= 2.1 | [zos-sensor](zos-sensor.md#zossensorgeolocation) |
 | `total` | property | `@zos/app.getPerformance -> SystemMemory.total` | device-app | >= 4 | [zos-app](zos-app.md#zosappgetperformance) |
+| `total` | property | `@zos/device.getDataDiskInfo -> SuccessResult.total` | device-app | >= 5 | [zos-device](zos-device.md#zosdevicegetdatadiskinfo) |
 | `total` | property | `@zos/device.getDiskInfo -> Result.total` | device-app | >= 2 | [zos-device](zos-device.md#zosdevicegetdiskinfo) |
 | `total` | property | `hmSetting.getDiskInfo -> diskInfo.total` | watchface | not stated | [hmSetting](hmSetting.md#hmsettinggetdiskinfo) |
 | `total_count` | enum value | `@zos/app-access.getSportData -> SportType` | device-app | >= 3.6 | [zos-app-access](zos-app-access.md#zosapp-accessgetsportdata) |
@@ -2404,6 +2422,7 @@ answer, since it is a position prop on every widget.
 | `used` | property | `@zos/app.getPerformance -> AppMemory.used` | device-app | >= 4 | [zos-app](zos-app.md#zosappgetperformance) |
 | `used` | property | `@zos/app.getPerformance -> LeakingMemory.used` | device-app | >= 4 | [zos-app](zos-app.md#zosappgetperformance) |
 | `used` | property | `@zos/app.getPerformance -> MemoryModule.used` | device-app | >= 4 | [zos-app](zos-app.md#zosappgetperformance) |
+| `used` | property | `@zos/device.getDataDiskInfo -> SuccessResult.used` | device-app | >= 5 | [zos-device](zos-device.md#zosdevicegetdatadiskinfo) |
 | `utc` | property | `@zos/router.setLaunchAppTimeout -> Option.utc` | device-app | >= 2 | [zos-router](zos-router.md#zosroutersetlaunchapptimeout) |
 | `utc` | property | `hmSensor.id.TIME -> time.utc` | watchface | not stated | [hmSensor.id](hmSensor.id.md#hmsensoridtime) |
 | `uuid` | property | `@zos/ble.mstBuildProfile -> ServiceObj.uuid` | device-app | >= 3 | [zos-ble](zos-ble.md#zosblemstbuildprofile) |
@@ -2430,6 +2449,7 @@ answer, since it is a position prop on every widget.
 | `value` | property | `ui.TextInput -> Props.value` | settings | not stated | [ui](ui.md#uitextinput) |
 | `value` | property | `ui.Toggle -> Props.value` | settings | not stated | [ui](ui.md#uitoggle) |
 | `value_index` | property | `@zos/ui.TIME_PICKER -> CallBack.value_index` | device-app | >= 3.6 | [zos-ui](zos-ui.md#zosuitime_picker) |
+| `valueToBuffer` | symbol | `@zos/utils.valueToBuffer` | device-app | >= 5 | [zos-utils](zos-utils.md#zosutilsvaluetobuffer) |
 | `vertical` | property | `ui.Toast -> Props.vertical` | settings | not stated | [ui](ui.md#uitoast) |
 | `vertical_speed` | enum value | `@zos/app-access.getSportData -> SportType` | device-app | >= 3.6 | [zos-app-access](zos-app-access.md#zosapp-accessgetsportdata) |
 | `vibrate` | property | `@zos/notification.notify -> Option.vibrate` | device-app | >= 3 | [zos-notification](zos-notification.md#zosnotificationnotify) |
@@ -2476,6 +2496,7 @@ answer, since it is a position prop on every widget.
 | `w` | property | `@zos/ui.HISTOGRAM -> yText.w` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuihistogram) |
 | `w` | property | `@zos/ui.IMG -> Param.w` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiimg) |
 | `w` | property | `@zos/ui.KEYBOARD -> Param.w` | device-app | >= 3 | [zos-ui](zos-ui.md#zosuikeyboard) |
+| `w` | property | `@zos/ui.LIST_VIEW -> Param.w` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `w` | property | `@zos/ui.PAGE_INDICATOR -> Param.w` | device-app | >= 2.1 | [zos-ui](zos-ui.md#zosuipage_indicator) |
 | `w` | property | `@zos/ui.PICK_DATE -> Param.w` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuipick_date) |
 | `w` | property | `@zos/ui.QRCODE -> Param.w` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiqrcode) |
@@ -2599,6 +2620,7 @@ answer, since it is a position prop on every widget.
 | `x` | property | `@zos/ui.KEYBOARD -> Param.x` | device-app | >= 3 | [zos-ui](zos-ui.md#zosuikeyboard) |
 | `x` | property | `@zos/ui.KEYBOARD -> KeyAttr.x` | device-app | >= 3 | [zos-ui](zos-ui.md#zosuikeyboard) |
 | `x` | property | `@zos/ui.KEYBOARD -> Param.x` | device-app | >= 3 | [zos-ui](zos-ui.md#zosuikeyboard) |
+| `x` | property | `@zos/ui.LIST_VIEW -> Param.x` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `x` | property | `@zos/ui.PAGE_INDICATOR -> Param.x` | device-app | >= 2.1 | [zos-ui](zos-ui.md#zosuipage_indicator) |
 | `x` | property | `@zos/ui.PICK_DATE -> Param.x` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuipick_date) |
 | `x` | property | `@zos/ui.QRCODE -> Param.x` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiqrcode) |
@@ -2612,6 +2634,7 @@ answer, since it is a position prop on every widget.
 | `x` | property | `@zos/ui.SPORT_DATA -> Param.x` | device-app | >= 3.6 | [zos-ui](zos-ui.md#zosuisport_data) |
 | `x` | property | `@zos/ui.STROKE_RECT -> Param.x` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuistroke_rect) |
 | `x` | property | `@zos/ui.TEXT -> Param.x` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuitext) |
+| `x` | property | `@zos/ui.TEXT -> getCursorPos.x` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuitext) |
 | `x` | property | `@zos/ui.VIEW_CONTAINER -> Param.x` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiview_container) |
 | `x` | property | `hmUI.setProperty -> PropertyId.x` | watchface | not stated | [hmUI](hmUI.md#hmuisetproperty) |
 | `x` | property | `hmUI.widget.ARC -> Param.x` | watchface | not stated | [hmUI.widget](hmUI.widget.md#hmuiwidgetarc) |
@@ -2658,6 +2681,7 @@ answer, since it is a position prop on every widget.
 | `y` | property | `@zos/ui.IMG_ANIM -> Param.y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiimg_anim) |
 | `y` | property | `@zos/ui.KEYBOARD -> Param.y` | device-app | >= 3 | [zos-ui](zos-ui.md#zosuikeyboard) |
 | `y` | property | `@zos/ui.KEYBOARD -> KeyAttr.y` | device-app | >= 3 | [zos-ui](zos-ui.md#zosuikeyboard) |
+| `y` | property | `@zos/ui.LIST_VIEW -> Param.y` | device-app | >= 5 | [zos-ui](zos-ui.md#zosuilist_view) |
 | `y` | property | `@zos/ui.PAGE_INDICATOR -> Param.y` | device-app | >= 2.1 | [zos-ui](zos-ui.md#zosuipage_indicator) |
 | `y` | property | `@zos/ui.PICK_DATE -> Param.y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuipick_date) |
 | `y` | property | `@zos/ui.QRCODE -> Param.y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiqrcode) |
@@ -2671,6 +2695,7 @@ answer, since it is a position prop on every widget.
 | `y` | property | `@zos/ui.SPORT_DATA -> Param.y` | device-app | >= 3.6 | [zos-ui](zos-ui.md#zosuisport_data) |
 | `y` | property | `@zos/ui.STROKE_RECT -> Param.y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuistroke_rect) |
 | `y` | property | `@zos/ui.TEXT -> Param.y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuitext) |
+| `y` | property | `@zos/ui.TEXT -> getCursorPos.y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuitext) |
 | `y` | property | `@zos/ui.VIEW_CONTAINER -> Param.y` | device-app | >= 2 | [zos-ui](zos-ui.md#zosuiview_container) |
 | `y` | property | `hmUI.setProperty -> PropertyId.y` | watchface | not stated | [hmUI](hmUI.md#hmuisetproperty) |
 | `y` | property | `hmUI.widget.ARC -> Param.y` | watchface | not stated | [hmUI.widget](hmUI.widget.md#hmuiwidgetarc) |
@@ -2804,6 +2829,7 @@ Listed on their own because this is where a bare name stops being an answer.
 - `done_icon` — `@zos/ui.PICKER` (property), `@zos/ui.TIME_PICKER` (property), `@zos/ui.TIME_PICKER` (property)
 - `duration` — `@zos/app-access.getSportData` (enum value), `@zos/ble.mstStartScan` (property), `@zos/display.getSettings` (property), `@zos/display.pauseDropWristScreenOff` (property), `@zos/display.pausePalmScreenOff` (property), `@zos/sensor.HeartRate` (property), `@zos/sensor.Vibrator` (property), `@zos/sensor.Workout` (property), `ui.Toast` (property)
 - `ELLIPSIS` — `@zos/ui.text_style` (enum value), `hmUI.text_style` (enum value)
+- `enable_scroll_bar` — `@zos/ui.LIST_VIEW` (property), `@zos/ui.SCROLL_LIST` (property)
 - `encoding` — `@zos/fs.readFileSync` (property), `@zos/fs.writeFileSync` (property)
 - `encrypt` — `@zos/crypto.AESCrypto` (member), `@zos/crypto.CRCCrypto` (member), `@zos/crypto.DigestCrypto` (member), `@zos/crypto.ECDSACrypto` (member)
 - `end` — `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.SCROLL_LIST` (property)
@@ -2828,7 +2854,7 @@ Listed on their own because this is where a bare name stops being an answer.
 - `font_size` — `@zos/ui.PICK_DATE` (property), `@zos/ui.PICKER` (property), `@zos/ui.TIME_PICKER` (property), `@zos/ui.TIME_PICKER` (property)
 - `forecastData` — `@zos/sensor.Weather` (property), `hmSensor.id.WEATHER` (property)
 - `format` — `@zos/sensor.Geolocation` (property), `@zos/sensor.Geolocation` (property)
-- `free` — `@zos/device.getDiskInfo` (property), `hmSetting.getDiskInfo` (property)
+- `free` — `@zos/device.getDataDiskInfo` (property), `@zos/device.getDiskInfo` (property), `hmSetting.getDiskInfo` (property)
 - `FREQ_MODE_HIGH` — `@zos/sensor.Accelerometer` (enum value), `@zos/sensor.Accelerometer` (enum value), `@zos/sensor.Compass` (enum value), `@zos/sensor.Compass` (enum value), `@zos/sensor.FREQ_MODE_HIGH` (symbol), `@zos/sensor.Gyroscope` (enum value), `@zos/sensor.Gyroscope` (enum value)
 - `FREQ_MODE_LOW` — `@zos/sensor.Accelerometer` (enum value), `@zos/sensor.Accelerometer` (enum value), `@zos/sensor.Compass` (enum value), `@zos/sensor.Compass` (enum value), `@zos/sensor.FREQ_MODE_LOW` (symbol), `@zos/sensor.Gyroscope` (enum value), `@zos/sensor.Gyroscope` (enum value)
 - `FREQ_MODE_NORMAL` — `@zos/sensor.Accelerometer` (enum value), `@zos/sensor.Accelerometer` (enum value), `@zos/sensor.Compass` (enum value), `@zos/sensor.Compass` (enum value), `@zos/sensor.FREQ_MODE_NORMAL` (symbol), `@zos/sensor.Gyroscope` (enum value), `@zos/sensor.Gyroscope` (enum value)
@@ -2870,7 +2896,7 @@ Listed on their own because this is where a bare name stops being an answer.
 - `globalData` — `@zos/global.App` (property), `@zos/global.getApp` (property)
 - `GRADKIENT_POLYLINE` — `@zos/ui.widget` (enum value), `hmUI.widget.GRADKIENT_POLYLINE` (symbol)
 - `GROUP` — `@zos/ui.GROUP` (symbol), `@zos/ui.widget` (enum value)
-- `h` — `@zos/ui.ARC` (property), `@zos/ui.BUTTON` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.FILL_RECT` (property), `@zos/ui.getAppWidgetSize` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GROUP` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.IMG` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.QRCODE` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.setAppWidgetSize` (property), `@zos/ui.setProperty` (property), `@zos/ui.SLIDE_SWITCH` (property), `@zos/ui.SPORT_DATA` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.TEXT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.setProperty` (property), `hmUI.widget.ARC` (property), `hmUI.widget.BUTTON` (property), `hmUI.widget.FILL_RECT` (property), `hmUI.widget.IMG` (property), `hmUI.widget.IMG_LEVEL` (property), `hmUI.widget.STROKE_RECT` (property), `hmUI.widget.TEXT` (property), `hmUI.widget.TEXT_IMG` (property)
+- `h` — `@zos/ui.ARC` (property), `@zos/ui.BUTTON` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.FILL_RECT` (property), `@zos/ui.getAppWidgetSize` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GROUP` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.IMG` (property), `@zos/ui.LIST_VIEW` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.QRCODE` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.setAppWidgetSize` (property), `@zos/ui.setProperty` (property), `@zos/ui.SLIDE_SWITCH` (property), `@zos/ui.SPORT_DATA` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.TEXT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.setProperty` (property), `hmUI.widget.ARC` (property), `hmUI.widget.BUTTON` (property), `hmUI.widget.FILL_RECT` (property), `hmUI.widget.IMG` (property), `hmUI.widget.IMG_LEVEL` (property), `hmUI.widget.STROKE_RECT` (property), `hmUI.widget.TEXT` (property), `hmUI.widget.TEXT_IMG` (property)
 - `h_space` — `@zos/ui.PAGE_INDICATOR` (property), `hmUI.widget.TEXT_IMG` (property)
 - `has` — `@zos/storage.ShareTypedStorage` (member), `@zos/storage.TypedStorage` (member)
 - `HEART` — `hmSensor.id.HEART` (symbol), `hmUI.data_type` (enum value)
@@ -2896,13 +2922,16 @@ Listed on their own because this is where a bare name stops being an answer.
 - `initYear` — `@zos/ui.PICK_DATE` (property), `@zos/ui.TIME_PICKER` (property), `@zos/ui.TIME_PICKER` (property)
 - `inputType` — `@zos/ui.inputType` (symbol), `@zos/ui.keyboard` (property), `@zos/ui.SYSTEM_KEYBOARD` (property)
 - `isFocus` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property)
+- `isSuccess` — `@zos/device.getDataDiskInfo` (property), `@zos/device.getDataDiskInfo` (property)
 - `item_bg_color` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.SCROLL_LIST` (property)
-- `item_click_func` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.SCROLL_LIST` (property)
+- `item_click_func` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.LIST_VIEW` (property), `@zos/ui.SCROLL_LIST` (property)
+- `item_drag_max_distance` — `@zos/ui.LIST_VIEW` (property), `@zos/ui.SCROLL_LIST` (property)
+- `item_enable_horizon_drag` — `@zos/ui.LIST_VIEW` (property), `@zos/ui.SCROLL_LIST` (property)
 - `item_focus_change_func` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.SCROLL_LIST` (property)
 - `item_height` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.SCROLL_LIST` (property)
 - `item_image_x` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property)
 - `item_image_y` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property)
-- `item_space` — `@zos/ui.HISTOGRAM` (property), `@zos/ui.SCROLL_LIST` (property)
+- `item_space` — `@zos/ui.HISTOGRAM` (property), `@zos/ui.LIST_VIEW` (property), `@zos/ui.SCROLL_LIST` (property)
 - `item_text_color` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property)
 - `item_text_size` — `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property)
 - `key` — `@zos/ui.getProperty` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `hmFS.SysProSetBool` (property), `hmFS.SysProSetChars` (property), `hmFS.SysProSetDouble` (property), `hmFS.SysProSetInt` (property), `hmFS.SysProSetInt64` (property), `hmUI.getProperty` (property)
@@ -2985,7 +3014,7 @@ Listed on their own because this is where a bare name stops being an answer.
 - `PLAY` — `@zos/media.Player` (property), `@zos/media.Player` (property)
 - `pos` — `hmFS.read` (property), `hmFS.write` (property)
 - `pos_x` — `@zos/ui.FILL_RECT` (property), `@zos/ui.IMG` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.widget.IMG` (property)
-- `pos_y` — `@zos/ui.FILL_RECT` (property), `@zos/ui.IMG` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.widget.IMG` (property)
+- `pos_y` — `@zos/ui.FILL_RECT` (property), `@zos/ui.IMG` (property), `@zos/ui.LIST_VIEW` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.widget.IMG` (property)
 - `position` — `@zos/fs.readSync` (property), `@zos/fs.writeSync` (property), `hmFS.seek` (property)
 - `PREPARING` — `@zos/media.Player` (property), `@zos/media.Recorder` (property)
 - `press_color` — `@zos/ui.BUTTON` (property), `hmUI.widget.BUTTON` (property)
@@ -3061,6 +3090,7 @@ Listed on their own because this is where a bare name stops being an answer.
 - `size` — `@zos/fs.statAssetsSync` (property), `@zos/fs.statSync` (property), `hmBle.createConnect` (property), `hmBle.send` (property), `hmFS.stat` (property), `hmFS.stat_asset` (property)
 - `SLEEP` — `hmSensor.id.SLEEP` (symbol), `hmUI.data_type` (enum value)
 - `SLIDE_SWITCH` — `@zos/ui.SLIDE_SWITCH` (symbol), `@zos/ui.widget` (enum value)
+- `snap_type` — `@zos/ui.LIST_VIEW` (property), `@zos/ui.SCROLL_LIST` (property)
 - `space` — `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property)
 - `speed` — `@zos/app-access.getSportData` (enum value), `@zos/display.getSettings` (property)
 - `SPO2` — `hmSensor.id.SPO2` (symbol), `hmUI.data_type` (enum value)
@@ -3148,7 +3178,7 @@ Listed on their own because this is where a bare name stops being an answer.
 - `timeZoneMinute` — `@zos/sensor.WorldClock` (property), `hmSensor.id.WORLD_CLOCK` (property)
 - `title` — `@zos/interaction.createModal` (property), `@zos/notification.notify` (property), `@zos/ui.createDialog` (property), `@zos/ui.PICKER` (property), `@zos/ui.TIME_PICKER` (property), `@zos/ui.TIME_PICKER` (property), `@zos/ui.updateStatusBarTitle` (property), `hmSensor.id.MUSIC` (property), `ui.Auth` (property), `ui.Section` (property), `ui.Select` (property)
 - `TOP` — `@zos/ui.align` (enum value), `hmUI.align` (enum value)
-- `total` — `@zos/app.getPerformance` (property), `@zos/device.getDiskInfo` (property), `hmSetting.getDiskInfo` (property)
+- `total` — `@zos/app.getPerformance` (property), `@zos/device.getDataDiskInfo` (property), `@zos/device.getDiskInfo` (property), `hmSetting.getDiskInfo` (property)
 - `type` — `@zos/app-access.getSportData` (property), `@zos/ble/TransferFile.TransferFile` (property), `@zos/ble/TransferFile.TransferFile` (property), `@zos/interaction.createModal` (property), `@zos/interaction.onWristMotion` (property), `@zos/page.setScrollMode` (property), `@zos/sensor.Vibrator` (property), `@zos/sensor.Workout` (property), `@zos/ui.TIME_PICKER` (property), `@zos/ui.TIME_PICKER` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.widget.IMG_POINTER` (property), `hmUI.widget.TEXT_IMG` (property)
 - `type_id` — `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property)
 - `TypedStorage` — `@zos/share-storage.TypedStorage` (symbol), `@zos/storage.TypedStorage` (symbol)
@@ -3159,7 +3189,7 @@ Listed on their own because this is where a bare name stops being an answer.
 - `UPDATE_DATA` — `@zos/ui.PICKER` (property), `@zos/ui.prop` (enum value)
 - `url` — `@zos/alarm.set` (property), `@zos/router.launchApp` (property), `@zos/router.push` (property), `@zos/router.replace` (property), `@zos/router.setLaunchAppTimeout` (property)
 - `use_color` — `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.RADIO_GROUP` (property)
-- `used` — `@zos/app.getPerformance` (property), `@zos/app.getPerformance` (property), `@zos/app.getPerformance` (property), `@zos/app.getPerformance` (property)
+- `used` — `@zos/app.getPerformance` (property), `@zos/app.getPerformance` (property), `@zos/app.getPerformance` (property), `@zos/app.getPerformance` (property), `@zos/device.getDataDiskInfo` (property)
 - `utc` — `@zos/router.setLaunchAppTimeout` (property), `hmSensor.id.TIME` (property)
 - `uuid` — `@zos/ble.mstBuildProfile` (property), `@zos/ble.mstBuildProfile` (property), `@zos/ble.mstBuildProfile` (property), `@zos/ble.mstStartScan` (property), `@zos/device.getDeviceInfo` (property)
 - `val` — `@zos/sensor.HeartRate` (property), `@zos/ui.setProperty` (property), `hmFS.SysProSetBool` (property), `hmFS.SysProSetChars` (property), `hmFS.SysProSetDouble` (property), `hmFS.SysProSetInt` (property), `hmFS.SysProSetInt64` (property), `hmUI.setProperty` (property)
@@ -3168,7 +3198,7 @@ Listed on their own because this is where a bare name stops being an answer.
 - `VIRTUAL_CONTAINER` — `@zos/ui.VIRTUAL_CONTAINER` (symbol), `@zos/ui.widget` (enum value)
 - `visible` — `@zos/ui.setStatusBarVisible` (property), `ui.Toast` (property)
 - `VISIBLE` — `@zos/ui.prop` (enum value), `@zos/ui.setProperty` (property), `hmUI.setProperty` (property)
-- `w` — `@zos/ui.ARC` (property), `@zos/ui.BUTTON` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.FILL_RECT` (property), `@zos/ui.getAppWidgetSize` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GROUP` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.IMG` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.PICK_DATE` (property), `@zos/ui.QRCODE` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.setProperty` (property), `@zos/ui.SLIDE_SWITCH` (property), `@zos/ui.SPORT_DATA` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.TEXT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.setProperty` (property), `hmUI.widget.ARC` (property), `hmUI.widget.BUTTON` (property), `hmUI.widget.FILL_RECT` (property), `hmUI.widget.IMG` (property), `hmUI.widget.IMG_LEVEL` (property), `hmUI.widget.STROKE_RECT` (property), `hmUI.widget.TEXT` (property), `hmUI.widget.TEXT_IMG` (property)
+- `w` — `@zos/ui.ARC` (property), `@zos/ui.BUTTON` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.FILL_RECT` (property), `@zos/ui.getAppWidgetSize` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GROUP` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.IMG` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.LIST_VIEW` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.PICK_DATE` (property), `@zos/ui.QRCODE` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.setProperty` (property), `@zos/ui.SLIDE_SWITCH` (property), `@zos/ui.SPORT_DATA` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.TEXT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.setProperty` (property), `hmUI.widget.ARC` (property), `hmUI.widget.BUTTON` (property), `hmUI.widget.FILL_RECT` (property), `hmUI.widget.IMG` (property), `hmUI.widget.IMG_LEVEL` (property), `hmUI.widget.STROKE_RECT` (property), `hmUI.widget.TEXT` (property), `hmUI.widget.TEXT_IMG` (property)
 - `watchface` — `@zos/device.getDiskInfo` (property), `hmSetting.getDiskInfo` (property)
 - `WEEK_FRI` — `@zos/alarm.set` (enum value), `@zos/alarm.WEEK_FRI` (symbol)
 - `WEEK_MON` — `@zos/alarm.set` (enum value), `@zos/alarm.WEEK_MON` (symbol)
@@ -3188,10 +3218,10 @@ Listed on their own because this is where a bare name stops being an answer.
 - `WRIST_MOTION_FLIP` — `@zos/interaction.onWristMotion` (enum value), `@zos/interaction.WRIST_MOTION_FLIP` (symbol)
 - `WRIST_MOTION_LIFT` — `@zos/interaction.onWristMotion` (enum value), `@zos/interaction.WRIST_MOTION_LIFT` (symbol)
 - `WRIST_MOTION_LOWER` — `@zos/interaction.onWristMotion` (enum value), `@zos/interaction.WRIST_MOTION_LOWER` (symbol)
-- `x` — `@zos/sensor.Accelerometer` (property), `@zos/sensor.Gyroscope` (property), `@zos/ui.ARC` (property), `@zos/ui.BUTTON` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.FILL_RECT` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GROUP` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.IMG` (property), `@zos/ui.IMG_ANIM` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.PICK_DATE` (property), `@zos/ui.QRCODE` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.setProperty` (property), `@zos/ui.SLIDE_SWITCH` (property), `@zos/ui.SPORT_DATA` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.TEXT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.setProperty` (property), `hmUI.widget.ARC` (property), `hmUI.widget.BUTTON` (property), `hmUI.widget.FILL_RECT` (property), `hmUI.widget.IMG` (property), `hmUI.widget.IMG_ANIM` (property), `hmUI.widget.IMG_LEVEL` (property), `hmUI.widget.IMG_POINTER` (property), `hmUI.widget.IMG_PROGRESS` (property), `hmUI.widget.STROKE_RECT` (property), `hmUI.widget.TEXT` (property), `hmUI.widget.TEXT_IMG` (property)
+- `x` — `@zos/sensor.Accelerometer` (property), `@zos/sensor.Gyroscope` (property), `@zos/ui.ARC` (property), `@zos/ui.BUTTON` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.FILL_RECT` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GROUP` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.IMG` (property), `@zos/ui.IMG_ANIM` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.LIST_VIEW` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.PICK_DATE` (property), `@zos/ui.QRCODE` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.setProperty` (property), `@zos/ui.SLIDE_SWITCH` (property), `@zos/ui.SPORT_DATA` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.TEXT` (property), `@zos/ui.TEXT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.setProperty` (property), `hmUI.widget.ARC` (property), `hmUI.widget.BUTTON` (property), `hmUI.widget.FILL_RECT` (property), `hmUI.widget.IMG` (property), `hmUI.widget.IMG_ANIM` (property), `hmUI.widget.IMG_LEVEL` (property), `hmUI.widget.IMG_POINTER` (property), `hmUI.widget.IMG_PROGRESS` (property), `hmUI.widget.STROKE_RECT` (property), `hmUI.widget.TEXT` (property), `hmUI.widget.TEXT_IMG` (property)
 - `x1` — `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property)
 - `x2` — `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property)
-- `y` — `@zos/page.scrollTo` (property), `@zos/sensor.Accelerometer` (property), `@zos/sensor.Gyroscope` (property), `@zos/ui.ARC` (property), `@zos/ui.BUTTON` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.FILL_RECT` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GROUP` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.IMG` (property), `@zos/ui.IMG_ANIM` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.PICK_DATE` (property), `@zos/ui.QRCODE` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.setProperty` (property), `@zos/ui.SLIDE_SWITCH` (property), `@zos/ui.SPORT_DATA` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.TEXT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.setProperty` (property), `hmUI.widget.ARC` (property), `hmUI.widget.BUTTON` (property), `hmUI.widget.FILL_RECT` (property), `hmUI.widget.IMG` (property), `hmUI.widget.IMG_ANIM` (property), `hmUI.widget.IMG_LEVEL` (property), `hmUI.widget.IMG_POINTER` (property), `hmUI.widget.IMG_PROGRESS` (property), `hmUI.widget.STROKE_RECT` (property), `hmUI.widget.TEXT` (property), `hmUI.widget.TEXT_IMG` (property)
+- `y` — `@zos/page.scrollTo` (property), `@zos/sensor.Accelerometer` (property), `@zos/sensor.Gyroscope` (property), `@zos/ui.ARC` (property), `@zos/ui.BUTTON` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CHECKBOX_GROUP` (property), `@zos/ui.CYCLE_IMAGE_TEXT_LIST` (property), `@zos/ui.CYCLE_LIST` (property), `@zos/ui.FILL_RECT` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GRADIENT_POLYLINE` (property), `@zos/ui.GROUP` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.HISTOGRAM` (property), `@zos/ui.IMG` (property), `@zos/ui.IMG_ANIM` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.KEYBOARD` (property), `@zos/ui.LIST_VIEW` (property), `@zos/ui.PAGE_INDICATOR` (property), `@zos/ui.PICK_DATE` (property), `@zos/ui.QRCODE` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.RADIO_GROUP` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.SCROLL_LIST` (property), `@zos/ui.setProperty` (property), `@zos/ui.SLIDE_SWITCH` (property), `@zos/ui.SPORT_DATA` (property), `@zos/ui.STROKE_RECT` (property), `@zos/ui.TEXT` (property), `@zos/ui.TEXT` (property), `@zos/ui.VIEW_CONTAINER` (property), `hmUI.setProperty` (property), `hmUI.widget.ARC` (property), `hmUI.widget.BUTTON` (property), `hmUI.widget.FILL_RECT` (property), `hmUI.widget.IMG` (property), `hmUI.widget.IMG_ANIM` (property), `hmUI.widget.IMG_LEVEL` (property), `hmUI.widget.IMG_POINTER` (property), `hmUI.widget.IMG_PROGRESS` (property), `hmUI.widget.STROKE_RECT` (property), `hmUI.widget.TEXT` (property), `hmUI.widget.TEXT_IMG` (property)
 - `y1` — `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property)
 - `y2` — `@zos/ui.CANVAS` (property), `@zos/ui.CANVAS` (property)
 - `year` — `@zos/ui.PICK_DATE` (property), `hmSensor.id.TIME` (property)

@@ -61,39 +61,26 @@ export const sysScreenIsSquare = (getDeviceInfo().screenShape == SCREEN_SHAPE_SQ
 ### `@zos/router.push`
 
 ```js
-push({
-  url: "page/TC/TC_" + String(index).padStart(2, '0') + "/index"
-});
-```
-— `zeppos-samples/application/4.0/4.0-feature/page/index.js`, line 44
-
-```js
 fill_rect_list.push(btn);
 ```
 — `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 33
 
-### `@zos/ui.createWidget`
-
 ```js
-this.state.scroll_list = createWidget(widget.SCROLL_LIST, {
-  ...Styles.SCROLL_LIST_CONFIG_STYLE,
-  data_array: page_list,
-  data_count: page_list.length,
-  item_common_focus: common_focus_flag,
-  data_type_config: [
-    {
-      start: 0,
-      end: 0,
-      type_id: 0,
-    },
-    {
+fill_rect_list.push(btn);
 ```
-— `zeppos-samples/application/4.0/4.0-feature/page/index.js`, line 24
+— `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 58
+
+### `@zos/ui.createWidget`
 
 ```js
 let root_container = createWidget(widget.VIRTUAL_CONTAINER, { layout: Styles.BUTTON_ROOT_CONTAINER_STYLE });
 ```
 — `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 20
+
+```js
+createWidget(widget.FILL_RECT, { parent: root_container, ...Styles.BACKGROUND_FILL_STYLE });
+```
+— `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 22
 
 ### `@zos/ui.deleteWidget`
 
@@ -122,14 +109,14 @@ dumpLayout("layout.txt");
 ### `@zos/ui.updateLayout`
 
 ```js
-// updateLayout(); no need call by user when screen load
+updateLayout();
 ```
-— `zeppos-samples/application/4.0/4.0-feature/page/index.js`, line 51
+— `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 59
 
 ```js
 updateLayout();
 ```
-— `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 59
+— `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.js`, line 71
 
 ### `@zos/utils.EventBus`
 
@@ -192,14 +179,14 @@ layout_show.setProperty(prop.TEXT, "tags:newtrack");
 ### `.toPixel()` *(no record in this KB)*
 
 ```js
-item_space: "8".toPixel(),
+w: "100vw".toPixel(),
 ```
-— `zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js`, line 15
+— `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.r.layout.js`, line 6
 
 ```js
-x: "10vw".toPixel(),
+h: "120".toPixel(),
 ```
-— `zeppos-samples/application/4.0/4.0-feature/page/index.r.layout.js`, line 24
+— `zeppos-samples/application/4.0/4.0-feature/page/TC/TC_01/index.r.layout.js`, line 7
 
 ### `.updateLayoutStyle()` — `@zos/ui.updateLayoutStyle`
 

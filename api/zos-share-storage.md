@@ -90,7 +90,7 @@ Read-only JSON key-value storage across applications. Application A publishes da
 
 | Member | Signature |
 | --- | --- |
-| [`getItem`](#zosshare-storagelocalstoragegetitem) | `getItem<T = any>(key: string, defaultValue?: T): T | undefined` |
+| [`getItem`](#zosshare-storagelocalstoragegetitem) | `getItem<T = unknown>(key: string, defaultValue?: T): T | undefined` |
 | [`isExisted`](#zosshare-storagelocalstorageisexisted) | `isExisted(): boolean` |
 
 #### `@zos/share-storage.LocalStorage.getItem`
@@ -98,7 +98,7 @@ Read-only JSON key-value storage across applications. Application A publishes da
 Get a value, or return the default value when not found
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 #### `@zos/share-storage.LocalStorage.isExisted`

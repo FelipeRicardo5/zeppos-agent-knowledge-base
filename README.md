@@ -59,17 +59,17 @@ reading, and it is here; how big it is today is in the table.
 
 | What | Count |
 | --- | --- |
-| Symbols | **513** |
+| Symbols | **520** |
 | Modules | 50 |
-| `OFFICIAL` / `OBSERVED` | 496 / 17 |
-| Symbols stating a minimum `API_LEVEL` | 353 |
-| Symbols with a description | 435 |
-| Symbols with a call signature | 234 |
-| Symbols with a property table, and properties in them | 184, 1300 |
-| Types declared under a heading with no name column | 142, 232 |
+| `OFFICIAL` / `OBSERVED` | 503 / 17 |
+| Symbols stating a minimum `API_LEVEL` | 360 |
+| Symbols with a description | 442 |
+| Symbols with a call signature | 240 |
+| Symbols with a property table, and properties in them | 186, 1318 |
+| Types declared under a heading with no name column | 149, 245 |
 | Value sets, and members in them | 55, 388 |
 | Instance members | 257 |
-| By runtime | device-app 375, watchface 105, settings 21, side-service 20, workout-extension 12 |
+| By runtime | device-app 382, watchface 105, settings 21, side-service 20, workout-extension 12 |
 | Devices, of which run Zepp OS with a stated level | 41, 29 |
 | Best-practice patterns | 11 |
 | Sample apps read as code | 33 |

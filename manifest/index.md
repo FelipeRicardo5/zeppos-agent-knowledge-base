@@ -201,7 +201,7 @@ build — the worst class of error to hand an agent.
 
 | Permission | Symbols that state it | Samples declaring it |
 | --- | --- | --- |
-| `data:os.device.info` | `@zos/device.getDeviceInfo` | 20 of 33 |
+| `data:os.device.info` | `@zos/device.getDataDiskInfo`, `@zos/device.getDeviceInfo` | 20 of 33 |
 | `data:user.hd.body_temp` | `@zos/sensor.BodyTemperature` | 0 of 33 |
 | `data:user.hd.calorie` | `@zos/sensor.Calorie` | 4 of 33 |
 | `data:user.hd.distance` | `@zos/sensor.Distance` | 1 of 33 |

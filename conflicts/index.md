@@ -18,6 +18,15 @@ Compared after normalising punctuation, markup and the trailing `permission
 code:` note. Without that, 147 symbols "disagree" and every one of them is a
 full stop. `API_LEVEL` and signatures never disagree at all.
 
+### `@zos/device.getDiskInfo` — `description`
+
+- **docs-reference** — Gets device storage totals, available space, and usage by Mini Programs, watchfaces, music, and the system. Returns the result synchronously when called without arguments. Starting from API_LEVEL 3.0, pass a callback to query asynchronously; asynchronous queries are recommended.
+  <br/>`zeppos-docs/docs/reference/device-app-api/newAPI/device/getDiskInfo.mdx`
+- **llms** — Gets disk information
+  <br/>`zeppos-docs/static/llms/@zos-device.md`
+
+This base resolves it to the **docs-reference** value.
+
 ### `@zos/sensor.Weather` — `description`
 
 - **docs-reference** — This interface has been deprecated, please refer to https://github.com/orgs/zepp-health/discussions/83 Weather Forecasts sensor.
@@ -82,7 +91,7 @@ reference documents. Both directions have gaps, and the reference page itself
 says its list is incomplete.
 
 - **Written in code, no page**: `GRADKIENT_POLYLINE`, `IMG_LEVEL`, `STATE_BUTTON`
-- **Documented, never written as an id**: `CANVAS`, `GRADIENT_POLYLINE`, `KEYBOARD`, `PAGE_INDICATOR`, `PAGE_SCROLLBAR`, `PICKER`, `POLYLINE`, `SYSTEM_KEYBOARD`, `TIME_PICKER`
+- **Documented, never written as an id**: `CANVAS`, `GRADIENT_POLYLINE`, `KEYBOARD`, `LIST_VIEW`, `PAGE_INDICATOR`, `PAGE_SCROLLBAR`, `PICKER`, `POLYLINE`, `SYSTEM_KEYBOARD`, `TIME_PICKER`
 
 In `hmUI`, an id passed to `createWidget` should name a widget the
 reference documents. Both directions have gaps, and the reference page itself

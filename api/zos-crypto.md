@@ -1,6 +1,6 @@
 # @zos/crypto
 
-**7 symbols**
+**8 symbols**
 
 | Symbol | Type | Min API_LEVEL | Confidence |
 | --- | --- | --- | --- |
@@ -11,6 +11,7 @@
 | `ECDSACrypto` | value | not stated | OFFICIAL |
 | `ecp_dp` | constant | not stated | OFFICIAL |
 | `encryptKey` | function | >= 3 | OFFICIAL |
+| `getRandomValues` | function | >= 5 | OFFICIAL |
 
 `not stated` means no source documents a minimum for that symbol — not that it works on any level.
 
@@ -349,3 +350,18 @@ function encryptKey(data: CryptoData): ArrayBuffer | undefined
 | Name | Type | Notes |
 | --- | --- | --- |
 | `CryptoData` | `number[]&#124;ArrayBuffer&#124;Uint8Array` | Data to encrypt |
+
+### `@zos/crypto.getRandomValues`
+
+Fills the supplied `Uint8Array` with hardware-generated random values and returns the same array object. Throws an exception on failure.
+
+```ts
+function getRandomValues(array: InputArray): Result
+```
+
+**Declares**
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `InputArray` | `Uint8Array` | The Uint8Array to fill with hardware-generated random values |
+| `Result` | `Uint8Array` | **returned** — The original array filled with random values |

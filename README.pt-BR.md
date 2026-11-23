@@ -59,17 +59,17 @@ que vale ler, e está aqui; o tamanho de hoje está na tabela.
 
 | O quê | Quantidade |
 | --- | --- |
-| Símbolos | **513** |
+| Símbolos | **520** |
 | Módulos | 50 |
-| `OFFICIAL` / `OBSERVED` | 496 / 17 |
-| Símbolos que declaram `API_LEVEL` mínimo | 353 |
-| Símbolos com descrição | 435 |
-| Símbolos com assinatura de chamada | 234 |
-| Símbolos com tabela de propriedades, e propriedades nelas | 184, 1300 |
-| Tipos declarados sob um heading sem coluna de nome | 142, 232 |
+| `OFFICIAL` / `OBSERVED` | 503 / 17 |
+| Símbolos que declaram `API_LEVEL` mínimo | 360 |
+| Símbolos com descrição | 442 |
+| Símbolos com assinatura de chamada | 240 |
+| Símbolos com tabela de propriedades, e propriedades nelas | 186, 1318 |
+| Tipos declarados sob um heading sem coluna de nome | 149, 245 |
 | Conjuntos de valores, e membros neles | 55, 388 |
 | Membros de instância | 257 |
-| Por runtime | device-app 375, watchface 105, settings 21, side-service 20, workout-extension 12 |
+| Por runtime | device-app 382, watchface 105, settings 21, side-service 20, workout-extension 12 |
 | Dispositivos, dos quais rodam Zepp OS com nível declarado | 41, 29 |
 | Padrões de boas práticas | 11 |
 | Apps de exemplo lidos como código | 33 |
